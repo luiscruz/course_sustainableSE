@@ -2,24 +2,25 @@
 layout: default
 ---
 
-## Sustainable Software Engineering 🌱
-
+# Sustainable Software Engineering 🌱
 Edition of 2021/22
 
-Sustainable Software Engineering is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
+🎓 [Delft University of Technology] | [MSc in Computer Science – Software Technology]
+
+**Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
 
-Software Engineering (SE) has long addressed sustainability by narrowing it down to economic and technical sustainability.
+Software Engineering (SE) has long addressed sustainability by **narrowing it down to economic and technical sustainability**.
 However, our society is facing major sustainability challenges that can no longer be overlooked by software engineers and computer scientists.
-It was estimated that, by 2040, the ICT sector will contribute to 14% of the global carbon footprint. Hence, environmental, social, and individual ought to be part of the equation when it comes to design, build, and release software systems.
-The problem is far from simple, but we need expert computer scientists to bring sustainability into the core values of the next generation of tech-leading organizations.
+It was estimated that, **by 2040, the ICT sector will contribute to 14% of the global carbon footprint**. Hence, environmental, social, and individual ought to be part of the equation when it comes to design, build, and release software systems.
+The problem is far from simple, but **we need expert computer scientists** to bring sustainability into the core values of the next generation of tech-leading organizations.
 
 This course will cover a set of competencies needed to leverage sustainable software systems.
-It will have a strong component on Green SE, covering techniques to measure and improve the energy-efficiency at any stage of the software lifecycle.
-Students will learn about state-of-the-art practices on energy efficiency and apply them in real software projects.
+It will have a **strong component on Green SE**, covering techniques to measure and improve the energy-efficiency at any stage of the software lifecycle.
+Students will learn about **state-of-the-art practices on energy efficiency** and apply them in real software projects. Moreover, the course will cover core principles of **empirical software engineering**, and **social and individual sustainability**.
 
-## Plan
+## Outline
 
 **Please note:** The program below is tentative and is subject to change.
 
@@ -75,3 +76,7 @@ Students will learn about state-of-the-art practices on energy efficiency and ap
 - [Website Carbon Calculator](https://www.websitecarbon.com)
 - [Carbon Tracker](https://github.com/lfwa/carbontracker)
 - [Greenpeace — Europe's Green Recovery As if the planet mattered](https://www.greenpeace.de/sites/www.greenpeace.de/files/publications/20201022_greenrecovery_f_es.pdf)
+- [Green TU](https://www.tudelft.nl/sustainability/get-involved/greentu/)
+
+[Delft University of Technology]: https://www.tudelft.nl
+[MSc in Computer Science – Software Technology]: https://www.tudelft.nl/onderwijs/opleidingen/masters/cs/msc-computer-science/

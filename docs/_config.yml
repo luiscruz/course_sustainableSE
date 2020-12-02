@@ -13,10 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Luís Cruz
+title: SustainableSE
 email: l.cruz@tudelft.nl
-description: >- # this means to ignore newlines until "baseurl:"
-  Course on Sustainable Software Engineering.
+description: "TU Delft Course on Sustainable Software Engineering. Responsible software engineering that cares about the environment, the society, and the individual."
 baseurl: "/course_sustainableSE" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: luismcruz
