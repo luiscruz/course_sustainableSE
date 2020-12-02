@@ -17,7 +17,7 @@ title: Luís Cruz
 email: l.cruz@tudelft.nl
 description: >- # this means to ignore newlines until "baseurl:"
   Course on Sustainable Software Engineering.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/course_sustainableSE" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: luismcruz
 github_username:  luiscruz
