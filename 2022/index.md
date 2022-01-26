@@ -26,11 +26,12 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 ## Organisation
 
 **Course code**       | [CS4415]
+**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/399685>
 **Instructors**       | [Luís Cruz], [Arie van Deursen]
 **Schedule**          |	TBD
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
-**Examination type**  | Software project (30%); Essay (60%); Presentation (10%)
+**Examination type**  | Essay 1 (30%); Software project + essay 2 (60%); Presentation (10%)
 **Target audience**   |	Students of the [M.Sc. in Computer Science].
 **Requirements** 	    | - Intermediate understanding of OOP languages; <br/> - Practical experience with continuous integration; <br/> - Basic understanding of software testing principles; <br/> - Basic knowledge of machine learning techniques.
 
