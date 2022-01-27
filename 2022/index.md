@@ -14,6 +14,8 @@ CS4415 | Edition of 2021/22
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
 
+![s](./img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="230px" }
+
 Software Engineering (SE) has long addressed sustainability by **narrowing it down to economic and technical sustainability**.
 However, our society is facing major sustainability challenges that can no longer be overlooked by software engineers and computer scientists.
 It was estimated that, **by 2040, the ICT sector will contribute to 14% of the global carbon footprint**. Hence, environmental, social, and individual ought to be part of the equation when it comes to design, build, and release software systems.
@@ -31,7 +33,7 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 **Schedule**          |	TBD
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
-**Examination type**  | Essay 1 (30%); Software project + essay 2 (60%); Presentation (10%)
+**Examination type**  | Essay 1 (30%); Software project + essay 2 (60%); Presentations (15%)
 **Target audience**   |	Students of the [M.Sc. in Computer Science].
 **Requirements** 	    | - Intermediate understanding of OOP languages; <br/> - Practical experience with continuous integration; <br/> - Basic understanding of software testing principles; <br/> - Basic knowledge of machine learning techniques.
 
@@ -63,7 +65,7 @@ By the end of this course you will be able to:
  9     | 3   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability.
  10    | 4   | **Guest Lecture.** <!-- Rui Pereira, Asim Hussein, Alexandru, Chris Adam? -->
  11    | 4   | **Presentation.** Present a summary of a research paper.
- 12    | 4   | **Guest Lecture.** <!-- Green TU. Stefanos --> 
+ 12    | 4   | **Guest Lecture. **Security vs Energy Efficiency**. [Stefanos Georgiou].
  13    | 5   | **Lecture.** Green AI.
  14    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.
  15    | 5   | **Project.** Project 2 - Description and kick-off. 
@@ -117,7 +119,8 @@ In this project, you will use state-of-the-art power measurement measurement too
 
 [Delft University of Technology]: https://www.tudelft.nl
 [Luís Cruz]: https://luiscruz.github.io
-
+[CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=60099
+[Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
 
 [^formative]: Formative assessments are not graded. They are typically informal and focused on providing feedback that can help students improve their work.
 [^summative]: Summative assessments are graded and focused on the final outcome of the project.
