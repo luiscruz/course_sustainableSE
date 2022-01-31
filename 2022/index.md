@@ -14,7 +14,7 @@ CS4415 | Edition of 2021/22
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
 
-![s](./img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="230px" }
+![Sustainability Domains](./img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="230px" }
 
 Software Engineering (SE) has long addressed sustainability by **narrowing it down to economic and technical sustainability**.
 However, our society is facing major sustainability challenges that can no longer be overlooked by software engineers and computer scientists.
@@ -30,12 +30,13 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 **Course code**       | [CS4415]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/399685>
 **Instructors**       | [Luís Cruz], [Arie van Deursen]
-**Schedule**          |	TBD
+**Schedule**          |	Tuesdays 10:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
-**Examination type**  | Essay 1 (30%); Software project + essay 2 (60%); Presentations (15%)
+**Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in most classes.
+**Examination type**  | Project 1 - Essay (30%); Project 2 - Software Repository and Essay (60%); Presentations (15%).
 **Target audience**   |	Students of the [M.Sc. in Computer Science].
-**Requirements** 	    | - Intermediate understanding of OOP languages; <br/> - Practical experience with continuous integration; <br/> - Basic understanding of software testing principles; <br/> - Basic knowledge of machine learning techniques.
+**Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
 
 
 ## Learning Objectives
@@ -50,32 +51,32 @@ By the end of this course you will be able to:
 
 ## Outline
 
-**Please note:** The program below is tentative and is subject to change.
+**Please note:** The program below is tentative and subject to change.
+All classes will be recorded and shared privately with the students.
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: the What, Why and How.
- 2     | 1   | **Lecture.** Social and Individual Sustainability in SE.
- 3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability.
- 4     | 2   | **Presentation.** Present a summary of a research paper.
- 5     | 2   | **Lecture.** Green Software Engineering — Part I: Energy efficiency in mobile computing.
- 6     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1].
- 7     | 3   | **Project.** Project 1 - steering meeting and formative assessment.
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How. {% include tag.html name="hybrid" %}
+ 2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %}
+ 3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability. {% include tag.html name="hybrid/offline" %}
+ 4     | 2   | **Presentation.** Present a summary of a research paper. {% include tag.html name="hybrid" %}
+ 5     | 2   | **Lecture.** Green Software Engineering — Part I: Energy efficiency in mobile computing. {% include tag.html name="hybrid" %}
+ 6     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1]. {% include tag.html name="hybrid" %}
+ 7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part II: units of energy; carbon-aware data centres. 
- 9     | 3   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability.
- 10    | 4   | **Guest Lecture.** <!-- Rui Pereira, Asim Hussein, Alexandru, Chris Adam? -->
- 11    | 4   | **Presentation.** Present a summary of a research paper.
- 12    | 4   | **Guest Lecture. **Security vs Energy Efficiency**. [Stefanos Georgiou].
- 13    | 5   | **Lecture.** Green AI.
- 14    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.
- 15    | 5   | **Project.** Project 2 - Description and kick-off. 
- 16    | 6   | **Project.** Presentation and discussion of proposals.
- 17    | 6   | *Self-Study*
- 18    | 6   | **Steering Meeting.** First draft of ToC.
- 19    | 7   | **Steering Meeting.**
- 20    | 8   | **Steering Meeting.** Formative assessment.
- 21    | 9   | **Steering Meeting.** 
- 22    | 10  | **Presentation and Demos**
+ 9     | 3   | **Guest Lecture.** <!-- Rui Pereira? -->
+ 10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability.
+ 11    | 4   | **Lecture.** Green AI.
+ 12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
+ 13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
+ 14    | 5   | **Guest Lecture.** <!-- Daniel Feitosa? --> {% include tag.html name="tbd: online/in-person" %} 
+ 15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online" %}
+ 16    | 6   | **Project.** Presentation and discussion of proposals. {% include tag.html name="online" %}
+ 18    | 6   | **Steering Meeting.** First draft of ToC. {% include tag.html name="online" %}
+ 19    | 7   | **Steering Meeting.** {% include tag.html name="tbd: online/in-person" %}
+ 20    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="online/in-person" %}
+ 21    | 9   | **Steering Meeting.** {% include tag.html name="online/in-person" %}
+ 22    | 10  | **Presentation and Demos** {% include tag.html name="in-person" %}
  
 ## Assignments
 
@@ -124,4 +125,9 @@ In this project, you will use state-of-the-art power measurement measurement too
 
 [^formative]: Formative assessments are not graded. They are typically informal and focused on providing feedback that can help students improve their work.
 [^summative]: Summative assessments are graded and focused on the final outcome of the project.
+
+[Building 62, Hall G]: https://esviewer.tudelft.nl/space/72/
+[Building 35, Room 4]: https://esviewer.tudelft.nl/space/46/
+
+[MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
