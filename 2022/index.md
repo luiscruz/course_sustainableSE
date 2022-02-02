@@ -31,6 +31,7 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/399685>
 **Instructors**       | [Luís Cruz], [Arie van Deursen]
 **Schedule**          |	Tuesdays 10:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
+**Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=i7qwcxcpbby8jbjph1kfx4fxcy)
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in most classes.
@@ -60,10 +61,10 @@ All classes will be recorded and shared privately with the students.
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %}
  3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability. {% include tag.html name="hybrid/offline" %}
  4     | 2   | **Presentation.** Present a summary of a research paper. {% include tag.html name="hybrid" %}
- 5     | 2   | **Lecture.** Green Software Engineering — Part I: Energy efficiency in mobile computing. {% include tag.html name="hybrid" %}
- 6     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1]. {% include tag.html name="hybrid" %}
+ 5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1]. {% include tag.html name="hybrid" %}
+ 6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy; reliable energy measurements. {% include tag.html name="hybrid" %}
  7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
- 8     | 3   | **Lecture.** Green Software Engineering — Part II: units of energy; carbon-aware data centres. 
+ 8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres.
  9     | 3   | **Guest Lecture.** <!-- Rui Pereira? -->
  10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability.
  11    | 4   | **Lecture.** Green AI.
