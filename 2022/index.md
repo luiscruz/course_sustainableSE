@@ -71,7 +71,7 @@ All classes will be recorded and shared privately with the students.
  12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
  13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
  14    | 5   | **Guest Lecture.** <!-- Daniel Feitosa? --> {% include tag.html name="tbd: online/in-person" %} 
- 15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online" %}
+ 15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online/in-person" %}
  16    | 6   | **Project.** Presentation and discussion of proposals. {% include tag.html name="online" %}
  18    | 6   | **Steering Meeting.** First draft of ToC. {% include tag.html name="online" %}
  19    | 7   | **Steering Meeting.** {% include tag.html name="tbd: online/in-person" %}
