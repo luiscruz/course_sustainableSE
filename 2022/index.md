@@ -64,10 +64,10 @@ All classes will be recorded and shared privately with the students.
  5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1]. {% include tag.html name="hybrid" %}
  6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy; reliable energy measurements. {% include tag.html name="hybrid" %}
  7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
- 8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres.
+ 8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
  9     | 3   | **Guest Lecture.** <!-- Rui Pereira? -->
- 10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability.
- 11    | 4   | **Lecture.** Green AI.
+ 10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability. {% include tag.html name="offline" %}
+ 11    | 4   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
  12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
  13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
  14    | 5   | **Guest Lecture.** <!-- Daniel Feitosa? --> {% include tag.html name="tbd: online/in-person" %} 
@@ -104,8 +104,9 @@ In this project, you will use state-of-the-art power measurement measurement too
 
 - Wohlin, C., Runeson, P., Höst, M., Ohlsson, M. C., Regnell, B., & Wesslén, A. (2012). Experimentation in software engineering. Springer Science & Business Media.
 - Cruz, L., & Abreu, R. (2017, May). Performance-based guidelines for energy efficient mobile applications. In 2017 IEEE/ACM 4th International Conference on Mobile Software Engineering and Systems (MOBILESoft) (pp. 46-57). IEEE.
-- Cruz, L., & Abreu, R. (2019). Catalog of energy patterns for mobile applications. Empirical Software Engineering, 24(4), 2209-2235.
+- Cruz, L., & Abreu, R. (2019). [Catalog of energy patterns for mobile applications](https://arxiv.org/abs/1901.03302). Empirical Software Engineering, 24(4), 2209-2235.
 - Stol, K. J., & Fitzgerald, B. (2018). The ABC of software engineering research. ACM Transactions on Software Engineering and Methodology (TOSEM), 27(3), 1-51.
+- Spinellis, Diomidis (2017). [The Social Responsibility of Software Development](https://ieeexplore.ieee.org/document/7888390). IEEE Software.
 
 ## Interesting pointers
 
