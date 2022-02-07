@@ -65,7 +65,7 @@ All classes will be recorded and shared privately with the students.
  6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy; reliable energy measurements. {% include tag.html name="hybrid" %}
  7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
- 9     | 3   | **Guest Lecture.** <!-- Rui Pereira? -->
+ 9     | 3   | **Guest Lecture.** <!-- Rui Pereira? --> {% include tag.html name="tbd: online/in-person" %} 
  10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability. {% include tag.html name="offline" %}
  11    | 4   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
  12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
