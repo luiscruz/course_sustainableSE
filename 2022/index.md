@@ -31,7 +31,7 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/399685>
 **Instructors**       | [Luís Cruz], [Arie van Deursen]
 **Schedule**          |	Tuesdays 10:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
-**Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=i7qwcxcpbby8jbjph1kfx4fxcy)
+**Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=amhohw9r9tbiue879nhz7wxr9w)
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in most classes.
