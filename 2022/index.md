@@ -87,7 +87,7 @@ Below the description of each projects and respective formative[^formative] and 
 **⭐️(new)**
 
 - Groups of 2 or 3
-- Select 1 academic paper that talks about social or individual sustainability.
+- Select 1 academic paper that talks about social or individual sustainability in the context of software engineering.
   - Google Scholar, DBLP
 - Double check with the lecturer whether your selected paper is good enough (use mattermost).
 - Write a short summary about it (min 200 words; max 500).
