@@ -83,6 +83,20 @@ All classes will be recorded and shared privately with the students.
 
 Below the description of each projects and respective formative[^formative] and summative[^summative] assessments.
 
+### 📚 Literature Review
+**⭐️(new)**
+
+- Groups of 2 or 3
+- Select 1 academic paper that talks about social or individual sustainability.
+  - Google Scholar, DBLP
+- Double check with the lecturer whether your selected paper is good enough (use mattermost).
+- Write a short summary about it (min 200 words; max 500).
+- Prepare a presentation for next Tuesday (Feb 15).
+- 7 min + 3 min Q&A.
+- Presentation is 7.5% of the grade. (But you can recover in the presentation of project 2)
+- Submission by pull request to the website. Instructions will follow soon.
+- **Deadline** Tuesday, Feb 15.
+
 ### Project 1 – Measuring Software Energy Consumption
 
 Measure the energy consumption of a particular use case of an open source software system.
