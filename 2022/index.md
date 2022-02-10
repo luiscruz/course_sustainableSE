@@ -94,7 +94,7 @@ Below the description of each projects and respective formative[^formative] and 
 - Prepare a presentation for next Tuesday (Feb 15).
 - 7 min + 3 min Q&A.
 - Presentation is 7.5% of the grade. (But you can recover in the presentation of project 2)
-- Submission by pull request to the website. Instructions will follow soon.
+- Submission by pull request to the website. Instructions [here](https://luiscruz.github.io/course_sustainableSE/2022/literature_review.html).
 - **Deadline** Tuesday, Feb 15.
 
 ### Project 1 – Measuring Software Energy Consumption
