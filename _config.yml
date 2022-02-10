@@ -30,6 +30,12 @@ plugins:
   
 whitelist:
   - jekyll-redirect-from
+  
+collections:
+  literature_review_2022:
+    output: true
+    directory: 2022/literature_review
+    
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

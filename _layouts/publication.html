@@ -1,0 +1,72 @@
+---
+layout: default
+---
+<div class='container'>
+{%if page.image %}
+<img height="200px" class="publication-img" src="{{page.image | relative_url}}" />
+{% endif %}
+<h1> <small>{{page.paper_title}}</small></h1>
+<small>
+<p>{%for tag in page.tags %}
+<span class="badge">{{tag}}</span>
+{% endfor %}</p>
+<p><strong>Authors:</strong> {{page.paper_author}}</p>
+<p><strong>Year:</strong> {{page.year}}</p>
+<p><strong>Published in:</strong> {% if page.journal %}
+        {{page.journal}}{% if page.pages %} (pp. {{page.pages}}){% endif %}.
+      {% endif -%}
+</p>
+
+<p><strong>Read me:</strong>
+{% if page.full-text %}
+  <a href="{{page.full-text}}" target="_blank">Full-text</a>.
+{% endif %}
+{% if page.arxiv %}
+  <a href="{{page.arxiv}}" target="_blank">Arxiv</a>.
+{% endif %}
+{% if page.preprint %}
+  <a href="{{page.preprint}}" target="_blank">Preprint</a>.
+{% endif %}
+{% if page.doi %}
+  DOI:   <a href="https://doi.org/{{page.doi}}">{{page.doi}}</a>.
+{% endif %}
+{% if page.website %}
+  <a href="{{page.website}}" target="_blank">Website</a>.
+{% endif %}
+{% if page.slides %}
+  <a href="{{page.slides}}" target="_blank">🪧Slides</a>.
+{% endif %}
+{% if page.video %}
+  <a href="{{page.video}}" target="_blank">🎥Video</a>.
+{% endif %}
+{% if page.replication-package %}
+  <a href="{{page.replication-package}}" target="_blank">👩‍💻Replication package</a>.
+{% endif %}
+</p>
+
+<p align="justify"><strong>Abstract:</strong> <em>{{page.abstract}}</em></p>
+
+
+
+{%if page.bibtex %}
+<strong>Bibtex</strong> (<a class="clipboard" data-clipboard-text="{{page.bibtex}}">copy</a>):
+{% highlight bibtex %}
+{{page.bibtex}}
+{% endhighlight %}
+{% endif %}
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script>
+  var clipboard = new ClipboardJS('.clipboard');
+</script>
+</small>
+
+{% if page.annotation %}
+<h3 class="text-divider" align="center">Annotation</h3>
+<div align="justify">{{page.annotation | markdownify}}</div>
+<div align="right"><em>By {{page.readby}}.</em></div>
+<div align="center"> – 📖 – </div>
+{% endif %}
+
