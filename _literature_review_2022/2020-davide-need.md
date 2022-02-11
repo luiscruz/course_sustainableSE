@@ -51,11 +51,17 @@ tags:
   - Test First Development
 
 annotation: |-
-  The summary written by the students.
+  The effects of sleep deprivation have recently been studied in many contexts, including economics, management, and the general performance of humans in daily life. This paper draws on research already done on sleep deprivation and explores the impact it has on the performance of software developers.
+
+  The "quasi-experiment" (named thus due to the authors' inability to pick the candidates) was executed on 45 undergraduate Computer Science and Software Engineering students who were asked to solve tasks under different amounts of sleep deprivation. These tasks consisted of implementing a series of requirements using test-first development (TFD).
   
-  It can be multiline.
-  
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  The group was divided into two subgroups: the control group, which was asked to sleep normally the night before the test, and the sleep deprivation group, which was asked to spend the entire night awake. These two groups were then compared on the quality of their solutions, the engagement they displayed towards the task, and their ability to apply TFD.
+
+  It was, unfortunately, not possible to execute the entire experiment in a controlled environment and thus other methods had to be developed to assess whether candidates slept the required amount. To complement the participants' own assessment, the psychomotor vigilance task (PVT) was used to, comparing the sleep deprivation group's results after a day of good sleep and on the day of the task itself. This resulted in a "cleaned" dataset with 8 less participants who had claimed to not have slept the night before but their PVTs seemed to indicate otherwise.
+
+  From the results, it was concluded that sleep deprivation indeed has an effect on external software quality and that it is of medium gravity (about 50% deterioration). However, there was not enough evidence to reject the null hypotheses for the engagement and the TFD abilities even though there did seem to be a negative effect.
+
+  The experiment was largely influenced by the limitation in candidate choice. The candidates were selected on a voluntary basis, both to take part in the experiment as well as to be allocated to the sleep deprivation group. This provided a small and non-flexible experiment group which posed several challenges, including the limitation on the experiment design, the difficulty to check treatment conformance (whether the participants slept the amount they were supposed to), and the cost of implementing a dry-run.
 ---
 
 <!--mandatory fields: paper_title, readby, paper_author, journal, year, doi or preprint or arxiv, slides (if you have), abstract, annotation -->
