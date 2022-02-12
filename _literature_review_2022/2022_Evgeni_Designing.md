@@ -1,4 +1,3 @@
-```markdown
 layout: publication
 readby: Christie Bavelaar, Lars van Koetsveld van Ankeren
 journal: "Big Data & Society"
@@ -49,8 +48,6 @@ The authors make an explicit choice to ground their work in the human rights exp
 The paper concludes that technology can not be the solution to complex societal problems, since technology is not as ethically neutral or objective as it is often perceived. To this end the authors presented their value design approach so that institutions and societies can ensure AI contributes positively to the enjoyment of human rights. These principles do not apply only to AI, since different technologies can have a similar impact on human rights. Lastly, the authors conclude that designing for human values does not hinder technological innovation, instead leading to long-term benefits to individuals in society and developers, having gained a higher amount of trust.  
 
 Aizenberg, E., & Van den Hoven, J. (2020). Designing for human rights in AI. Big Data & Society, 7(2). https://doi.org/10.1177/2053951720949566
----
 
-<!--mandatory fields: paper_title, readby, paper_author, journal, year, doi or preprint or arxiv, slides (if you have), abstract, annotation -->
-```
+
 
