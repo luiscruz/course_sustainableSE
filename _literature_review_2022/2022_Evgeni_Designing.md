@@ -7,7 +7,6 @@ paper_title: "Designing for human rights in AI"
 year: 2020
 doi: http://dx.doi.org/10.1177/2053951720949566
 website: https://journals.sagepub.com/doi/10.1177/2053951720949566
-preprint: https://openreview.net/pdf?id=l-PrrQrK0QR
 slides: https://onedrive.live.com/redir?resid=95B039DCDE87EA81!15241&authkey=!ABqJ2fP46OQKsWM&ithint=file%2cpptx&e=AMa9Pt
 abstract: |-
   In the age of Big Data, companies and governments are increasingly using algorithms to inform hiring decisions, employee management, policing, credit scoring, insurance pricing, and many more aspects of our lives. 
