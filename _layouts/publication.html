@@ -33,9 +33,6 @@ layout: default
 {% if page.website %}
   <a href="{{page.website}}" target="_blank">Website</a>.
 {% endif %}
-{% if page.slides %}
-  <a href="{{page.slides}}" target="_blank">🪧Slides</a>.
-{% endif %}
 {% if page.video %}
   <a href="{{page.video}}" target="_blank">🎥Video</a>.
 {% endif %}
@@ -65,8 +62,14 @@ layout: default
 
 {% if page.annotation %}
 <h3 class="text-divider" align="center">Annotation</h3>
+<p align="left">
+  <small><em>By {{page.readby}}.</em>
+  {%- if page.slides %}
+    <a href="{{page.slides}}" target="_blank">🪧Slides</a>.
+  {% endif -%}
+  </small>
+</p>
 <div align="justify">{{page.annotation | markdownify}}</div>
-<div align="right"><em>By {{page.readby}}.</em></div>
 <div align="center"> – 📖 – </div>
 {% endif %}
 

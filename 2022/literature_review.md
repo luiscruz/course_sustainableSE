@@ -13,9 +13,9 @@ title: Literature Review
   <p markdown="span">
       {{publication.author}} ({{publication.year}}).
       {%- unless publication.disable-page %}
-      [**{{publication.title}}**]({{publication.url | relative_url}}).
+      [**{{publication.paper_title}}**]({{publication.url | relative_url}}).
       {%- else %}
-      **{{publication.title}}**
+      **{{publication.paper_title}}**
       {%- endunless %}
       {%- if publication.journal %}
         *{{publication.journal}}*{% if publication.pages %} (pp. {{publication.pages}}){% endif %}.
