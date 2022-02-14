@@ -44,4 +44,6 @@ Regarding tools to use, an illustrated card deck with 5-minute interventions and
 
 Finally, a way to properly time the interventions would be determined such that it does not interrupt productive thinking. This would be done with research into sensing and measuring indicators of thinking processes, such as eye tracking, sitting time or keyboard tapping speed.
 
+---
+
 <!--mandatory fields: paper_title, readby, paper_author, journal, year, doi or preprint or arxiv, slides (if you have), abstract, annotation -->
