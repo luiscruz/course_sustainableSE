@@ -26,7 +26,12 @@ bibtex: |-
    collection={ICT4S2020} }
 
 tags:
-  - individual sustainability, software engineering, meditation, breathwork, yoga
+  - individual sustainability
+  - software engineering
+  - meditation
+  - breathwork
+  - yoga
+
 annotation: |-
   Nowadays, success in the software industry often requires not only quality but also high speed of software delivery. These demands translate into the work of software engineers in form of hard deadlines, pressure to deliver to market on time and the ever-increasing pace of development. The associated pressure negatively impacts both the engineer’s productivity and their healthy distribution of energy and time among different areas of life.
 
