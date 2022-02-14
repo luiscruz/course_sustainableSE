@@ -24,11 +24,10 @@ bibtex: |-
     number = {2},
     title = {{Designing for human rights in AI}},
     volume = {7},
-    year = {2020},
-    }
+    year = {2020}
   }
 tags:
-  - human rights, Design for Values, Value Sensitive Design, ethics, stakeholders
+  - human rights, Design for Values, Value Sensitive Design, ethics, stakeholders, Artificial Intelligence
 annotation: |-
   This paper discusses their way to structure the design process for AI in a way that honours the fundamental human rights. Technological developments have the ability to infer with fundamental human rights. This happens when technical solutions are implemented without empirical study of societal context. Calls for more ethical AI stress the importance of transparency, however do not provide practical solutions. This creates a socio-technical gap that needs to be bridged. 
 
