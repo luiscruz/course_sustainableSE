@@ -1,7 +1,7 @@
 ---
 layout: publication
 readby: Natália Struharová
-journal: "ICT4S2020: Proceedings of the 7th International Conference on ICT for Sustainability"
+journal: "ICT4S2020"
 paper_author: Birgit Penzenstadler
 paper_title: "Where attention goes, energy flows: enhancing individual sustainability in software engineering"
 year: 2020
