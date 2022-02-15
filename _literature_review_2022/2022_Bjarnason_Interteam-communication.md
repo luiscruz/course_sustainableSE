@@ -8,24 +8,7 @@ year: 2022
 doi: 10.1007/s10664-021-10027-z
 slides: https://docs.google.com/presentation/d/1y8JImh1RJKz9cKGVQUcaAZbfheKUukM4MHCh8DvnAUU/edit?usp=sharing
 abstract: |-
-    Large-scale software engineering is a collaborative effort where teams need to communi-
-    cate to develop software products. Managers face the challenge of how to organise work to
-    facilitate necessary communication between teams and individuals. This includes a range
-    of decisions from distributing work over teams located in multiple buildings and sites,
-    through work processes and tools for coordinating work, to softer issues including ensur -
-    ing well-functioning teams. In this case study, we focus on inter-team communication by
-    considering geographical, cognitive and psychological distances between teams, and fac-
-    tors and strategies that can affect this communication. Data was collected for ten test teams
-    within a large development organisation, in two main phases: (1) measuring cognitive and
-    psychological distance between teams using interactive posters, and (2) five focus group
-    sessions where the obtained distance measurements were discussed. We present ten factors
-    and five strategies, and how these relate to inter-team communication. We see three types
-    of arenas that facilitate inter-team communication, namely physical, virtual and organisa-
-    tional arenas. Our findings can support managers in assessing and improving communica-
-    tion within large development organisations. In addition, the findings can provide insights
-    into factors that may explain the challenges of scaling development organisations, in par-
-    ticular agile organisations that place a large emphasis on direct communication over writ-
-    ten documentation
+    Large-scale software engineering is a collaborative effort where teams need to communicate to develop software products. Managers face the challenge of how to organise work to facilitate necessary communication between teams and individuals. This includes a range of decisions from distributing work over teams located in multiple buildings and sites, through work processes and tools for coordinating work, to softer issues including ensuring well-functioning teams. In this case study, we focus on inter-team communication by considering geographical, cognitive and psychological distances between teams, and factors and strategies that can affect this communication. Data was collected for ten test teams within a large development organisation, in two main phases: (1) measuring cognitive and psychological distance between teams using interactive posters, and (2) five focus group sessions where the obtained distance measurements were discussed. We present ten factors and five strategies, and how these relate to inter-team communication. We see three types of arenas that facilitate inter-team communication, namely physical, virtual and organisational arenas. Our findings can support managers in assessing and improving communication within large development organisations. In addition, the findings can provide insights into factors that may explain the challenges of scaling development organisations, in particular agile organisations that place a large emphasis on direct communication over written documentation.
 bibtex: |-
     @article{Bjarnason2022,
         doi = {10.1007/s10664-021-10027-z},
