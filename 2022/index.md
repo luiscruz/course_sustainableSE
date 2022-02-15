@@ -76,8 +76,7 @@ All classes will be recorded and shared privately with the students.
  18    | 6   | **Steering Meeting.** First draft of ToC. {% include tag.html name="online" %}
  19    | 7   | **Steering Meeting.** {% include tag.html name="tbd: online/in-person" %}
  20    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="online/in-person" %}
- 21    | 9   | **Steering Meeting.** {% include tag.html name="online/in-person" %}
- 22    | 10  | **Presentation and Demos** {% include tag.html name="in-person" %}
+ 22    | 9   | **Presentation and Demos** {% include tag.html name="in-person" %}
  
 ## Assignments
 
