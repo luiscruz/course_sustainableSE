@@ -26,9 +26,9 @@ annotation: |-
 	
 	Building a catalog of social sustainability value patterns with respective requirements templates was done in three phases. First they collected core values by literature review, looking at indicators and metrics about social sustainability. Afterwards they extracted value patterns by individually adressing each core value and conducting a qualitative text-analysis of a set of papers that have adressed that core value. Lastly, to define a requirements template, they used a set of questions that help explore as to how a given value can be supported in software requirements.
 	
-	To validate the claim that the application of value patterns could lead ot identification of requirements patterns, the method was applied to a total of six sample requirements specifications. Applying the method shows that similar solutions can be applied to software systems accross a diverse set of domains.
-
-
+	To validate the claim that the application of value patterns could lead to identification of requirements patterns, the method was applied to a total of six sample requirements specifications. Applying the method shows that similar solutions can be applied to software systems accross a diverse set of domains.
+	
+	The paper concludes that the evaluation shows that since the proposed approach is suitable for identification of patterns of equality when applied to six different studies, it will likely be equally suitable of other stable values. Lastly it states that the proposed method provides a direction towards the integration of social sustainability concerns into requirements engineering.
 ---
 
 <!--mandatory fields: paper_title, readby, paper_author, journal, year, doi or preprint or arxiv, slides (if you have), abstract, annotation -->
