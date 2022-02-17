@@ -61,7 +61,7 @@ All classes will be recorded and shared privately with the students.
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02]
  3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability. {% include tag.html name="~~hybrid~~/offline" %}
  4     | 2   | **Presentation.** Present a summary of a research paper. {% include tag.html name="hybrid" %}
- 5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1]. [📊Slides][slides05] {% include tag.html name="hybrid" %}
+ 5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1][#project1]. [📊Slides][slides05] {% include tag.html name="hybrid" %}
  6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy; reliable energy measurements. {% include tag.html name="hybrid" %}
  7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
@@ -83,7 +83,6 @@ All classes will be recorded and shared privately with the students.
 Below the description of each projects and respective formative[^formative] and summative[^summative] assessments.
 
 ### 📚 Literature Review
-**⭐️(new)**
 
 - Groups of 2 or 3
 - Select 1 academic paper that talks about social or individual sustainability in the context of software engineering.
@@ -96,20 +95,29 @@ Below the description of each projects and respective formative[^formative] and 
 - Submission by pull request to the website. Instructions [here](https://luiscruz.github.io/course_sustainableSE/2022/literature_review.html).
 - **Deadline** Tuesday, Feb 15.
 
-### Project 1 – Measuring Software Energy Consumption
+### 🛠 **Project 1** Measuring Software Energy Consumption **⭐️(new)**
+{: #project1}
 
-Measure the energy consumption of a particular use case of an open source software system.
-In this project, you will use state-of-the-art power measurement measurement tools: Intel Power Gadget, RAPL, PowerLog, PowerStat, Windows E3, and so on.
+- Goal: Compare energy consumption in common software use cases.
+  - Examples:
+    - Different versions of the same app;
+      - Same use case but different apps
+      - Same version, same app, but different user settings (e.g., enable/disable GPU optimisation)
+      - Same version, same app, but different running environment
+- Blog-style report (markdown, approx 2500 words).
+  - Bonus if you can automate the experiment and there is a replication package.
+- Submission by pull request to the website (instructions will follow soon).
+- **Weight in final grade**: 30%
+- **Steering meeting/formative assessment**: Tuesday, Feb 22
+- **Deadline** Thursday, Mar 3 ⚠️ **new**
+
+
+
+<!--### 🛠 Project 2 – Research Project
 
 **Formative assessment:** Short meeting with the teacher to present preliminary results. You will receive written feedback to incorporate into a final report.
 
-**Summative assessment:** Write a one-page report about the measurement experiment.
-
-### Project 2 – Research Project
-
-**Formative assessment:** Short meeting with the teacher to present preliminary results. You will receive written feedback to incorporate into a final report.
-
-**Summative assessment:** Write a short paper about the work and . Give a 15-min live talk to the class.
+**Summative assessment:** Write a short paper about the work and . Give a 15-min live talk to the class. -->
 
  
 
