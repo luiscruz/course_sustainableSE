@@ -61,7 +61,7 @@ All classes will be recorded and shared privately with the students.
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02]
  3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability. {% include tag.html name="~~hybrid~~/offline" %}
  4     | 2   | **Presentation.** Present a summary of a research paper. {% include tag.html name="hybrid" %}
- 5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1][#project1]. [📊Slides][slides05] {% include tag.html name="hybrid" %}
+ 5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). [📊Slides][slides05] {% include tag.html name="hybrid" %}
  6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy; reliable energy measurements. {% include tag.html name="hybrid" %}
  7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
