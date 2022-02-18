@@ -70,7 +70,7 @@ All classes will be recorded and shared privately with the students.
  11    | 4   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
  12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
  13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
- 14    | 5   | **Guest Lecture.** <!-- Daniel Feitosa? --> {% include tag.html name="tbd: online/in-person" %} 
+ 14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. {% include tag.html name="tbd: online/in-person" %} 
  15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online/in-person" %}
  16    | 6   | **Project.** Presentation and discussion of proposals. {% include tag.html name="online" %}
  18    | 6   | **Steering Meeting.** First draft of ToC. {% include tag.html name="online" %}
@@ -145,6 +145,7 @@ Below the description of each projects and respective formative[^formative] and 
 [Luís Cruz]: https://luiscruz.github.io
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=60099
 [Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
+[Daniel Feitosa]: https://feitosa-daniel.github.io
 
 [^formative]: Formative assessments are not graded. They are typically informal and focused on providing feedback that can help students improve their work.
 [^summative]: Summative assessments are graded and focused on the final outcome of the project.
