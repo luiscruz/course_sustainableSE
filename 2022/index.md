@@ -157,7 +157,9 @@ Below the description of each projects and respective formative[^formative] and 
 
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/qi41wkOd2mAsYPN
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/cpUC4sIOFmgoHYB
+[slides05]: https://surfdrive.surf.nl/files/index.php/s/Jrc27nmuyNoSW4w
 [slides06]: https://surfdrive.surf.nl/files/index.php/s/p2jqcN2tBpDBWKD
+
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/xGvQkfhi6hpZMnb
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/T0Fm119XCJLZT3C
 [recording06]: https://surfdrive.surf.nl/files/index.php/s/SbengCYvu8O88eF
