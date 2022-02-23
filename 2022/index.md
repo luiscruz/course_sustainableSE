@@ -62,10 +62,10 @@ All classes will be recorded and shared privately with the students.
  3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability. {% include tag.html name="~~hybrid~~/offline" %}
  4     | 2   | **Presentation.** Present a summary of a research paper. {% include tag.html name="hybrid" %}
  5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). [📊Slides][slides05] [🎥Recording][recording05] {% include tag.html name="hybrid" %}
- 6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy; reliable energy measurements. [📊Slides][slides06] [🎥Recording][recording06] {% include tag.html name="hybrid" %}
+ 6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. [📊Slides][slides06] [🎥Recording][recording06] {% include tag.html name="hybrid" %}
  7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
- 8     | 3   | **Lecture.** Green Software Engineering — Part II: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
- 9     | 3   | **Guest Lecture.** <!-- Rui Pereira? --> {% include tag.html name="tbd: online/in-person" %} 
+ 8     | 3   | **Lecture.** Green Software Engineering — Part II: Reliable energy measurements. {% include tag.html name="hybrid" %}
+ 9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
  10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability. {% include tag.html name="offline" %}
  11    | 4   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
  12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
