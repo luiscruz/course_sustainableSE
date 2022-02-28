@@ -68,7 +68,7 @@ All classes will be recorded and shared privately with the students.
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. {% include tag.html name="hybrid" %}
  10    | 4   | **Paper Reading.** Read and summarise research literature on Environmental Sustainability. {% include tag.html name="offline" %}
  11    | 4   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
- 12    | 4   | **Guest Lecture.** *Security vs Energy Efficiency*. [Stefanos Georgiou]. {% include tag.html name="online" %}
+ 12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. {% include tag.html name="online" %}
  13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
  14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. {% include tag.html name="tbd: online/in-person" %} 
  15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online/in-person" %}
