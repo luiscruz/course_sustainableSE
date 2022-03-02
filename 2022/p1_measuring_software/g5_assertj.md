@@ -17,8 +17,6 @@ bibtex: |-
   }
 ---
 
-AssertJ is a popular testing library which provides clearly defined assertions and arguably makes software testing a more enjoyable task. Is there, however, any cost to using AssertJ? In this article, we assess whether using this library brings any overhead in terms of the consumed energy and hence how sustainable AssertJ actually is.
-
 As software slowly creeps into almost every aspect of our lives, looking at its ecological impact becomes more important everyday. According to an article on Harvard Business Review [1], “the way software is designed, developed, and deployed can have a major impact on energy consumption”. It is thus crucial that software developers start becoming aware of what environmental impact their products have and what they can do to make it better.
 
 In this article, we focus on *electricity* - one of the eight principles of sustainable software engineering [2]. We will be exploring the energy-efficiency of AssertJ, a popular testing library used in many Java test suites. While not part of the production code, the assertions that AssertJ provides are run a significant amount of times during the development process of these applications and are thus an important thing to consider for the sustainability check of a software product.
