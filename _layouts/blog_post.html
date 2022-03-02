@@ -6,9 +6,9 @@ layout: default
 
 <p>
 {%- if page.authors %}
-<em>By {{ page.authors | map: 'name' | join: ', '}}.<em>
+<em>By {{ page.authors | map: 'name' | join: ', '}}.</em>
 {% else %}
-<em>{{ page.author }}.<em>
+<em>{{ page.author }}.</em>
 {% endif -%}
 </p>
 
