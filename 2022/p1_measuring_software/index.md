@@ -10,7 +10,14 @@ exclude: False
     {% if article != page %}
   <strong><a href="{{ article.url | relative_url }}">{{ article.title }}</a></strong><br/>
 <!-- <small>Posted on {{article.date | date_to_string}}.</small><br/> -->
-*<small>By {{article.author}}.</small>*<br/>
+*<small><p>
+{%- if page.authors %}
+<em>By {{ page.authors | map: 'name' | join: ', '}}.<em>
+{% else %}
+<em>{{ page.author }}.<em>
+{% endif -%}
+</p>.</small>*
+<br/>
 <small>{{ article.summary | truncate: 200 }}</small>
 <div class="clearfix"></div>
 <br/>

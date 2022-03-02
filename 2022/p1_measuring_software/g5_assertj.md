@@ -1,5 +1,9 @@
 ---
-author: Hana Jirovská, Sára Juhošová
+authors:
+  - name: Hana Jirovská
+    website: https://github.com/hjir
+  - name: Sára Juhošová
+    website: https://github.com/sarajuhosova
 title: "AssertJ: How Green is your Test Suite?"
 date: 03/03/2022
 summary: "AssertJ is a popular testing library which provides clearly defined assertions and arguably makes software testing a more enjoyable task. Is there, however, any cost to using AssertJ? In this article, we assess whether using this library brings any overhead in terms of the consumed energy and hence how sustainable AssertJ actually is."
@@ -12,8 +16,6 @@ bibtex: |-
     note = {Blog post.}
   }
 ---
-
-*by [Hana Jirovská](https://github.com/hjir) and [Sára Juhošová](https://github.com/sarajuhosova)*
 
 AssertJ is a popular testing library which provides clearly defined assertions and arguably makes software testing a more enjoyable task. Is there, however, any cost to using AssertJ? In this article, we assess whether using this library brings any overhead in terms of the consumed energy and hence how sustainable AssertJ actually is.
 
