@@ -36,6 +36,15 @@ collections:
     output: true
     directory: 2022/literature_review
     
+defaults:
+  -
+    scope:
+      path: "2022/p1_measuring_software"
+    values:
+      identifier: "p1_measuring_software_2022"
+      exclude: true
+      layout: blog_post
+      
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

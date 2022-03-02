@@ -95,7 +95,7 @@ Below the description of each projects and respective formative[^formative] and 
 - Submission by pull request to the website. Instructions [here](https://luiscruz.github.io/course_sustainableSE/2022/literature_review.html).
 - **Deadline** Tuesday, Feb 15.
 
-### 🛠 **Project 1** Measuring Software Energy Consumption **⭐️(new)**
+### 🛠 **Project 1** Measuring Software Energy Consumption
 {: #project1}
 
 - Goal: Compare energy consumption in common software use cases.
@@ -106,11 +106,10 @@ Below the description of each projects and respective formative[^formative] and 
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website (instructions will follow soon).
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2022/p1_measuring_software/). **⭐️(new)**
 - **Weight in final grade**: 30%
 - **Steering meeting/formative assessment**: Tuesday, Feb 22
-- **Deadline** Thursday, Mar 3 ⚠️ **new**
-
+- **Deadline** Thursday, Mar 3
 
 
 <!--### 🛠 Project 2 – Research Project
