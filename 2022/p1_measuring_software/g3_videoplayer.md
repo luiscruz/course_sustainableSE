@@ -16,7 +16,8 @@ bibtex: |-
 Over the last two decades, the video streaming business has been rapidly growing. It all started back in 2005 when YouTube first launched. Fast-forward to where we are today and over a billion hours of video is watched on the platform every single day[^1]. Streaming services like Netflix and Disney+ have hundreds of millions of subscribers and are making billions of dollars[^2]. Social media platform TikTok even has over a billion active users[^3]. These numbers are huge and they are only getting bigger. Therefore, it is only becoming more important to analyse the environmental impact of this enormous industry.
 Before the surge in streaming services that each had their own proprietary video player, most people watched their videos through the standard media player that they had on their computer. Most traditional media players started out with the goal of playing local files and are optimised for this task. But as media playback has shifted to streaming over the years, it might be interesting to see how different media players currently hold up to this shift in media consumption, specifically in the context of energy efficiency, as they may not be optimised for streaming. In this blog we focus on analysing the energy consumption of streaming a video from the perspective of the end-user. We will compare different video players to see whether their implementation has a significant effect on the energy consumption of video playback and whether it might be worth it to switch default players. 
 
-![logos](course_sustainableSE/2022/img/p1_measuring_software/g3_videoplayer/logos.png "Logos from the video players")
+
+![logos](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/logos.png "Logos from the video players")
 
 For this comparison we chose three popular modern video players: Windows Media Player, VLC, and mpv. Windows Media Player (WMP) has come with almost every Windows computer by default since 1992[^6], while VLC and mpv are cross-platform open-source video players. VLC has hundreds of millions of regular users[^4], making it the most popular alternative to WMP. It gained much of its popularity due to its ability to play a wide range of different video formats and it boasts an extensive set of features. This is reflected in their developer documentation which states that VLC is “focused on playing everything, and running everywhere[^5].” mpv on the other hand has a more niche target audience being geared towards tech-savvy people, with flexibility and programmability as its main highlights. 
 
@@ -30,7 +31,7 @@ We made sure that each player was updated to its most recent version at the time
 
 The video we streamed in this set-up is called Big Buck Bunny and has a duration of 10 minutes and 34 seconds. The short movie is a project from the Blender Foundation that was released in 2008[^8]. The film is made available under a Creative Commons licence and can be downloaded in several file formats[^9]. This makes it a good video to use as a benchmark as others can easily access this video as well. For this experiment we chose the 2D Full HD 30fps version of the video, as this is currently a very common resolution for online video streaming. Other versions that are available include 3D, SD, HD, ultra HD and 60fps.
 
-![Big Buck Bunny](course_sustainableSE/2022/img/p1_measuring_software/g3_videoplayer/bbb.png "Still from Big Buck Bunny")
+![Big Buck Bunny](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/bbb.png "Still from Big Buck Bunny")
 
 During our experiment we had two computer systems to our disposal, each with a different configuration. For each device we turned off all unnecessary background tasks and executed a script that automatically ran our test without human interaction required to avoid inconsistencies in measurements between the different video players.
 
@@ -48,8 +49,8 @@ The power consumption was recorded through Intel’s Power Gadget. This tool rec
 
 The results are displayed in figure 1 and 2. As described before, the experiment has been conducted on two different systems, enabling us to compare the obtained results to see if there are differences. From the results, it can be concluded that on both systems VLC Media Player is significantly more energy efficient than both mpv and WMP when looking at the Average Processor Power. In addition, the Average Processor Power used by mpv and WMP seem to be much closer to each other.
 
-![Results System 1](course_sustainableSE/2022/img/p1_measuring_software/g3_videoplayer/chart_system_1.png "Figure 1")
-![Results System 2](course_sustainableSE/2022/img/p1_measuring_software/g3_videoplayer/chart_system_2.png "Figure 2")
+![Results System 1](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/chart_system_1.png "Figure 1")
+![Results System 2](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/chart_system_2.png "Figure 2")
 
 
 From the results we see that on System 1 VLC is 33% more efficient than WMP and on System 2 it’s 29%, so we can conclude that installing a third party video player (e.g. VLC) can indeed significantly reduce power consumption for video playback, with about 31%. Just think about what this means in practice: if you can normally watch 2 movies with your standard media player on a single charge, you could watch almost a whole additional movie simply by using VLC. However, we also observe that by definition not every third party video player is more efficient. If we look at the mpv, we see that it performs similar or worse than VLC. This is probably because mpv is built with a different use case and end-user in mind: its main focus is its programmability and they might sacrifice efficiency to achieve that, hardware acceleration is for example not enabled by default.
@@ -67,7 +68,7 @@ We think that analysis of online video players could also bring us new opportuni
 In conclusion we can say that changing the default video player player on your pc could have a significant impact on the power consumption of the device. This is not only more sustainable but also a quality-of-life improvement as this be the difference between watching 2 or 3 movies on a single charge. The result of WMP also shows us that it is important to ship a device with a good default player. Many people do not take the effort to install a third party application, let alone investigate the power consumption of their software. The scale on which WMP is used means that an improvement in energy efficiency could eventually save a lot of energy.
 
 [^1]:https://blog.youtube/press/
-[^2]: https://www.businessofapps.com/data/video-streaming-app-market/
+[^2]:https://www.businessofapps.com/data/video-streaming-app-market/
 [^3]:https://www.businessofapps.com/data/tik-tok-statistics/
 [^4]:https://www.videolan.org/press/videolan-20.html
 [^5]:https://code.videolan.org/videolan/vlc
