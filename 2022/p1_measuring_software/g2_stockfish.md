@@ -3,7 +3,7 @@ author: Robert Arntzenius, Koen Hagen, Floor Straver
 title: "Stockfish energy consumption analysis"
 image: "img/blog/2021-08-20/og_image.png"
 date: 03/03/2022
-summary: "Stockfish is one of the world&#39;s best and most well known chess computer engines. Since its inception Stockfish has seen countless improvements over the years. To find the best possible chess move for a given board Stockfish analyzes an enormous amount of moves to find a suitable response. This process is highly energy intensive. This report describes and compares the energy consumption of different versions of Stockfish. The results show that energy consumption over the versions does not follow a clear trend and is mostly random. Though, few energy measurements overlap between versions. Thus it can be said that some versions are better than others in terms of energy consumption. We also find that energy consumption is almost perfectly correlated with time. The more time the algorithm needs, the higher the energy consumption."
+summary: "Stockfish is one of the world's best and most well known chess computer engines. Since its inception Stockfish has seen countless improvements over the years. To find the best possible chess move for a given board Stockfish analyzes an enormous amount of moves to find a suitable response. This process is highly energy intensive. This report describes and compares the energy consumption of different versions of Stockfish. The results show that energy consumption over the versions does not follow a clear trend and is mostly random. Though, few energy measurements overlap between versions. Thus it can be said that some versions are better than others in terms of energy consumption. We also find that energy consumption is almost perfectly correlated with time. The more time the algorithm needs, the higher the energy consumption."
 bibtex: |-
   @misc{cruz2021green,
     title = {Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments},
@@ -60,13 +60,13 @@ To make sense of the experiments done in Stockfish we applied some analysis on t
 
 The data from the experiments are plotted in violin plots with boxplots inside of them. With violin plots, one can see from which distribution the data comes and the boxplots give some more information about how the data is spread out. Because of the fact that the energy consumption after version 11 increases significantly, the boxplots of energy consumption of these versions were plotted in a separate graph. The first eleven versions do not have a specific improvement as seen in the graph, besides version 1, which is notably more efficient.
 
-![](RackMultipart20220303-4-1aqugxl_html_7ca60eaadf498ccc.png) ![](RackMultipart20220303-4-1aqugxl_html_1979e0b2eab1fbc0.png)
+![](../img/p1_measuring_software/g2_stockfish/energy_1-11.png) ![](../img/p1_measuring_software/g2_stockfish/energy_12-14.png)
 
 **Relation energy and time consumption ⏳**
 
 During the experiments it came to the attention that there may be a connection between the time and the energy consumption of running Stockfish. The scatterplot of energy versus time shows us that there is a strong linear relation between them. The longer Stockfish takes to execute the higher the energy consumption.
 
-![](RackMultipart20220303-4-1aqugxl_html_c0148cabfcac988f.png)
+![](../img/p1_measuring_software/g2_stockfish/Scatterplot.png)
 
 **Relation energy and performance Stockfish 🐟**
 
@@ -78,7 +78,7 @@ The performance of the versions of Stockfish is measured by the ELO rating of ch
 
 [^elorate2]:http://www.computerchess.org.uk/ccrl/404/rating\_list\_all.html
 
-![](RackMultipart20220303-4-1aqugxl_html_73af380dc481597.png)
+![](../img/p1_measuring_software/g2_stockfish/elorating_1.png)
 
 **Statistical analysis**
 
