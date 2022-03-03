@@ -1,13 +1,16 @@
 ---
-author: Jeffrey Bouman, Thijs Raymakers, Katja Schmahl title: "Is your adblocker saving energy?"
-date: 03/03/2022 summary: "Showing advertisements is one of the key ways to earn money on the internet. Whether it is
-through banner ads¸ sponsored messages or paid endorsements, advertising is everywhere. Users are becoming more ad
-aware, and there are many different tools for reducing the amount of advertising you see when browsing. This blogpost
-looks into the effect that advertisements and adblockers have on the additional energy usage of our devices."
-bibtex: |- @misc{greenadblocker2022, title = {Is your adblocker saving energy?}, author = {Jeffrey Bouman, Thijs
-Raymakers, Katja Schmahl}, year = {2022},
-howpublished={\url{https://luiscruz.github.io/course_sustainableSE/2022/p1_measuring_software/g6_adblocker.html}}, note
-= {Blog post.} }
+author: Jeffrey Bouman, Thijs Raymakers, Katja Schmahl
+title: "Is your adblocker saving energy?"
+date: 03/03/2022 
+summary: "Showing advertisements is one of the key ways to earn money on the internet. Whether it is through banner ads¸ sponsored messages or paid endorsements, advertising is everywhere. Users are becoming more ad aware, and there are many different tools for reducing the amount of advertising you see when browsing. This blogpost looks into the effect that advertisements and adblockers have on the additional energy usage of our devices."
+bibtex: |- 
+  @misc{greenadblocker2022, 
+    title = {Is your adblocker saving energy?}, 
+    author = {Jeffrey Bouman, Thijs Raymakers, Katja Schmahl}, 
+    year = {2022},
+    howpublished = {\url{https://luiscruz.github.io/course_sustainableSE/2022/p1_measuring_software/g6_adblocker.html}}, 
+    note = {Blog post.} 
+  }
 ---
 
 Showing advertisements is one of the key ways to earn money on the internet. Whether it is through banner ads¸ sponsored
