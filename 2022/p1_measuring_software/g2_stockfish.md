@@ -2,7 +2,6 @@
 author: Robert Arntzenius, Koen Hagen, Floor Straver
 title: "Stockfish energy consumption analysis"
 image: "img/blog/2021-08-20/og_image.png"
-date: 03/03/2022
 summary: "Stockfish is one of the world's best and most well known chess computer engines. Since its inception Stockfish has seen countless improvements over the years. To find the best possible chess move for a given board Stockfish analyzes an enormous amount of moves to find a suitable response. This process is highly energy intensive. This report describes and compares the energy consumption of different versions of Stockfish. The results show that energy consumption over the versions does not follow a clear trend and is mostly random. Though, few energy measurements overlap between versions. Thus it can be said that some versions are better than others in terms of energy consumption. We also find that energy consumption is almost perfectly correlated with time. The more time the algorithm needs, the higher the energy consumption."
 bibtex: |-
   @misc{cruz2021green,
