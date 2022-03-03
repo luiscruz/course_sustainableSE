@@ -1,8 +1,16 @@
 ---
 author: Dyon van der Ende, Sam Heslenfeld, Adriaan Pardoel
 title: "Energy Efficient Video Streaming: Is It Worth Switching?"
-image: "course_sustainableSE/2022/img/p1_measuring_software/g3_videoplayer/logos.png"
+summary: "In this blog we conducted a experiment to see whether third party video players are more efficient than the default Windows player in the case of video streaming."
 date: 03/03/2022
+bibtex: |-
+  @misc{videoplayer,
+    title = {Energy Efficient Video Streaming: Is It Worth Switching?},
+    author = {Dyon van der Ende and Sam Heslenfeld and Adriaan Pardoel},
+    year = {2022},
+    howpublished={\url{https://luiscruz.github.io/course_sustainableSE/2022/p1_measuring_software/g3_videoplayer.html}},
+    note = {Blog post.}
+  }
 ---
 
 Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
