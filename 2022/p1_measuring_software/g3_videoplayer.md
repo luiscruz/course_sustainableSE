@@ -71,6 +71,7 @@ The power consumption was recorded through Intel’s Power Gadget. This tool rec
 |   *Average GT Power_0 (Watt)*               |   |   0.004421     |   0.030751     |     |   0.600145     |   0.528102     |     |   0.443363    |   0.318906     |     |   0.313841     |   0.175294     |
 |                                             |   |                |                |     |                |                |     |               |                |     |                |                |
 |   *Idle-adjusted Power (Watt)*              |   |   0            |   0            |     |   1.543001     |   6.517973     |     |   1.037533    |   4.656448     |     |   2.159645     |   6.196956     |
+
 _Figure 1. Results._
 
 We visualised the idle-adjusted power in figure 2 to compare the most important results more easily. From this figure, it can be concluded that on both systems VLC is significantly more energy efficient than both WMP and mpv. In addition, the power consumptions of WMP and mpv seem to be much closer to each other.
