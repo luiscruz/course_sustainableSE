@@ -2,8 +2,8 @@
 author: Jeffrey Bouman, Thijs Raymakers, Katja Schmahl
 title: "Is your adblocker saving energy?"
 date: 03/03/2022 
-summary: "Showing advertisements is one of the key ways to earn money on the internet. Whether it is through banner ads¸ sponsored messages or paid endorsements, advertising is everywhere. Users are becoming more ad aware, and there are many different tools for reducing the amount of advertising you see when browsing. This blogpost looks into the effect that advertisements and adblockers have on the additional energy usage of our devices."
-bibtex: |- 
+summary: "Companies rely on digital advertising to generate income on the internet. Users are becoming more ad aware and there is increasing popularity for tools that reduce the amount of advertising when browsing. But, the effect that advertisements and adblockers have on the additional energy usage of our devices is still largely unknown. In this blogpost we will explore this open problem further."
+bibtex: |-
   @misc{greenadblocker2022, 
     title = {Is your adblocker saving energy?}, 
     author = {Jeffrey Bouman, Thijs Raymakers, Katja Schmahl}, 
@@ -122,8 +122,6 @@ Due to the small sample size of websites we are unable to say something about th
 Especially because of the distributed nature of the internet. If one would like to determine the amount of energy saved,
 the type of the shown ads also play a role. If a lot of animated ads are shown at the moment, it might be more effective
 to use an ad blocker compared to a moment when only static ads are shown.
-
----
 
 What are the implications from this experiment? First, from the perspective of a web user, it can be seen that your
 adblocker has significant impact on the amount of power you use while browsing. So if you are often on pages with a lot
