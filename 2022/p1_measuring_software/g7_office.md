@@ -47,7 +47,7 @@ To ensure that energy consumption was at minimum and that the individual applica
 
 ### Figure 1
 
-![activitymonitor.png](Report%20a6e83/activitymonitor.png)
+![activitymonitor.png](activitymonitor.png)
 
 *Figure 1 shows the Activity Monitor application on macOS, which lists all the processes that are currently running.* 
 
@@ -111,7 +111,7 @@ Let’s start off with the raw data for the three runs for Writer and Word. We m
 
 ### Figure 2:
 
-![wordprocessor-allruns.png](Report%20a6e83/wordprocessor-allruns.png)
+![wordprocessor-allruns.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//wordprocessor-allruns.png)
 
 *Figure 2 plots the power consumption of the application during the 15 seconds that the experiment was run. The experiment was run three times for each application. Each run is plotted separately.*
 
@@ -119,13 +119,13 @@ The curves from Figure 2 already give us a good hint on the consumption between 
 
 ### Figure 3:
 
-![Screenshot 2022-03-02 at 20.51.05.png](Report%20a6e83/Screenshot_2022-03-02_at_20.51.05.png)
+![Screenshot 2022-03-02 at 20.51.05.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-02_at_20.51.05.png)
 
 *Figure 3 compares the power consumption of LibreOffice Writer and Microsoft Word during Run 2 of their experiment.*
 
 ### Figure 4:
 
-![Screenshot 2022-03-03 at 13.51.51.png](Report%20a6e83/Screenshot_2022-03-03_at_13.51.51.png)
+![Screenshot 2022-03-03 at 13.51.51.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-03_at_13.51.51.png)
 
 *Figure 4 shows the average power consumption during a run for all three runs we did.* 
 
@@ -139,7 +139,7 @@ First, let’s look at the raw data we have for each file type for both Calc and
 
 ### Figure 5:
 
-![spreadsheets.png](Report%20a6e83/spreadsheets.png)
+![spreadsheets.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//spreadsheets.png)
 
 *Figure 5 compares the power usage during each run of both LibreOffice Calc and Microsoft Excel. Every experiment is done for both the .ods and .xls file format.*
 
@@ -147,13 +147,13 @@ While it is hard to make conclusions of their relative consumptions, what is int
 
 ### Figure 6:
 
-![Screenshot 2022-03-02 at 20.04.26.png](Report%20a6e83/Screenshot_2022-03-02_at_20.04.26.png)
+![Screenshot 2022-03-02 at 20.04.26.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-02_at_20.04.26.png)
 
 *Figure 6 compares the performance of the different file formats for both LibreOffice Calc and Microsoft Excel*
 
 ### Figure 7:
 
-![Screenshot 2022-03-03 at 13.53.33.png](Report%20a6e83/Screenshot_2022-03-03_at_13.53.33.png)
+![Screenshot 2022-03-03 at 13.53.33.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-03_at_13.53.33.png)
 
 *Figure 7 shows the average power consumption of a run for LibreOffice Calc and Microsoft Excel using the two file formats.*
 
@@ -163,13 +163,13 @@ The box plots also hint at another interesting result, which is that Calc perfor
 
 ### Figure 8:
 
-![spreadsheet-curve-xls.png](Report%20a6e83/spreadsheet-curve-xls.png)
+![spreadsheet-curve-xls.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//spreadsheet-curve-xls.png)
 
 *Figure 8 compares the performance of LibreOffice Calc and Microsoft Excel for the .xls format.*
 
 ### Figure 9:
 
-![spreadsheet-boxplot-xls.png](Report%20a6e83/spreadsheet-boxplot-xls.png)
+![spreadsheet-boxplot-xls.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//spreadsheet-boxplot-xls.png)
 
 *Figure 9 compares the average power consumption per run of LibreOffice Calc and Microsoft Excel for the .xls format.*
 
@@ -183,7 +183,7 @@ Let’s again start with the raw data that we obtained for both file types in ca
 
 ### Figure 10:
 
-![Screenshot 2022-03-03 at 10.10.21.png](Report%20a6e83/Screenshot_2022-03-03_at_10.10.21.png)
+![Screenshot 2022-03-03 at 10.10.21.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-03_at_10.10.21.png)
 
 *Figure 10 shows the power consumption during the experiments on LibreOffice Impress and Microsoft Powerpoint for the different file formats.*
 
@@ -191,13 +191,13 @@ Once again, the three runs for each of the application-filetype experiment in Fi
 
 ### Figure 11:
 
-![Screenshot 2022-03-03 at 10.09.56.png](Report%20a6e83/Screenshot_2022-03-03_at_10.09.56.png)
+![Screenshot 2022-03-03 at 10.09.56.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-03_at_10.09.56.png)
 
 *Figure 11 compares the performance of LibreOffice Impress and Microsoft Powerpoint for the different file formats.*
 
 ### Figure 12:
 
-![Screenshot 2022-03-03 at 10.09.43.png](Report%20a6e83/Screenshot_2022-03-03_at_10.09.43.png)
+![Screenshot 2022-03-03 at 10.09.43.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-03_at_10.09.43.png)
 
 *Figure 12 shows the average power consumption during a run for the presentation applications opening the different file formats.*
 
@@ -207,13 +207,13 @@ Knowing that .pptx is the more efficient file type to open for both, we can furt
 
 ### Figure 13:
 
-![presentation-pptx.png](Report%20a6e83/presentation-pptx.png)
+![presentation-pptx.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//presentation-pptx.png)
 
 *Figure 13 compares the performance of LibreOffice Impress and Microsoft Powerpoint for the .pptx file format.*
 
 ### Figure 14:
 
-![Screenshot 2022-03-03 at 10.23.39.png](Report%20a6e83/Screenshot_2022-03-03_at_10.23.39.png)
+![Screenshot 2022-03-03 at 10.23.39.png](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g7_office//Screenshot_2022-03-03_at_10.23.39.png)
 
 *Figure 14 compares the average power consumption per run of LibreOffice Impress and Microsoft Powerpoint for the .pptx file format.*
 
