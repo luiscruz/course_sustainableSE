@@ -17,26 +17,24 @@ Over the last two decades, the video streaming business has been rapidly growing
 
 Before the surge in streaming services that each had their own proprietary video player, most people watched their videos through the standard media player that they had on their computer. Most traditional media players started out with the goal of playing local files and are optimised for this task. But as media playback has shifted to streaming over the years, it might be interesting to see how different media players currently hold up to this shift in media consumption, specifically in the context of energy efficiency, as they may not be optimised for streaming. In this blog we focus on analysing the energy consumption of streaming a video from the perspective of the end-user. We will compare different video players to see whether their implementation has a significant effect on the energy consumption of video playback and whether it might be worth it to switch default players. 
 
-
 ![logos](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/logos.png "Logos from the video players")
 
 For this comparison we chose three popular modern video players: [Windows Media Player](https://support.microsoft.com/en-us/windows/get-windows-media-player-81718e0d-cfce-25b1-aee3-94596b658287), [VLC](https://www.videolan.org/), and [mpv](https://mpv.io/). Windows Media Player (WMP) has come with almost every Windows computer by default since 1992[^6], while VLC and mpv are cross-platform open-source video players. VLC has hundreds of millions of regular users[^4], making it the most popular alternative to WMP. It gained much of its popularity due to its ability to play a wide range of different video formats and it boasts an extensive set of features. This is reflected in their developer documentation which states that VLC is “focused on playing everything, and running everywhere[^5].” mpv on the other hand has a more niche target audience being geared towards tech-savvy people, with flexibility and programmability as its main highlights. 
 
 To test whether it is worth changing your default video player, we set up an automated test case that measures the energy consumption of each player while streaming a video.
-We made sure that each player was updated to its most recent version at the time of conducting the experiment. The default settings of the players were left intact, as users of media players usually don’t change these.
+We made sure that each player was updated to its most recent version at the time of conducting the experiment. The versions used are shown in figure 1. The default settings of the players were left intact, as users of media players usually don’t change these.
 
 | Windows Media Player | VLC    | mpv        |
 |----------------------|--------|------------|
 | 12.0                 | 3.0.16 | 2022-02-13 |
 
+_Figure 1. Used versions of each video player._
 
 The video we streamed in this set-up is called Big Buck Bunny and has a duration of 10 minutes and 34 seconds. The short movie is a project from the Blender Foundation that was released in 2008[^8]. The film is made available under a Creative Commons licence and can be downloaded in several file formats[^9]. This makes it a good video to use as a benchmark as others can easily access this video as well. For this experiment we chose the 2D Full HD 30fps version of the video, as this is currently a very common resolution for online video streaming. Other versions that are available include 3D, SD, HD, ultra HD and 60fps.
 
 ![Big Buck Bunny](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/bbb.png "Still from Big Buck Bunny")
 
-During our experiment we had two computer systems to our disposal, each with a different configuration. For each device we turned off all unnecessary background tasks and executed a script that automatically ran our test without human interaction required to avoid inconsistencies in measurements between the different video players.
-
-The first step in the script was to measure the idle power consumption of the device for the duration of the length of the video to serve as a baseline. Then in turn the video players were loaded with the URL to the video and their power consumption was recorded. In between video players we created a small break of 5 seconds to make sure that there was no overlap in recordings.
+During our experiment we had two computer systems to our disposal, each with a different configuration, as shown in figure 2. For each device we turned off all unnecessary background tasks and executed a script that automatically ran our test without human interaction required to avoid inconsistencies in measurements between the different video players.
 
 | System 1            | System 2                       |
 |---------------------|--------------------------------|
@@ -46,7 +44,11 @@ The first step in the script was to measure the idle power consumption of the de
 | 8 GB DDR4           | 16 GB DDR4                     |
 | NVIDIA Quadro M1200 | NVIDIA GeForce GTX 1050 mobile |
 
-The power consumption was recorded through Intel’s Power Gadget. This tool records a sample every 100ms and summarises the results of the log. The logs provide individual examination of CPU, GPU and RAM power consumption. A summary of the results is shown in figure 1. For our experiment, the most important measurement available in the collected logs is the Average Processor Power (CPU+GPU) in Watts. We found this measurement to be more appropriate than the Cumulative Processor Power because there were small time differences for measurements of the different video players. These small differences are probably caused by a small difference in startup and closedown time. Moreover, it could be that during one of the measurements buffering of the video took slightly longer. Because the Average Processor Power factors out these time differences, we decided that this measurement would be best for comparison of the different video players. Furhtermore, we used the average power of the idle state to adjust the measurements of the video players, as can be seen in the last row of figure 1. This allows us to compare the video players more precisely by factoring out the power consumption of other processes.
+_Figure 2. Configurations of available systems._
+
+The first step in the script was to measure the idle power consumption of the device for the duration of the length of the video to serve as a baseline. Then in turn the video players were loaded with the URL to the video and their power consumption was recorded. In between video players we created a small break of 5 seconds to make sure that there was no overlap in recordings.
+
+The power consumption was recorded through Intel’s Power Gadget. This tool records a sample every 100ms and summarises the results of the log. The logs provide individual examination of CPU, GPU and RAM power consumption. A summary of the results is shown in figure 3. For our experiment, the most important measurement available in the collected logs is the Average Processor Power (CPU+GPU) in Watts. We found this measurement to be more appropriate than the Cumulative Processor Power because there were small time differences for measurements of the different video players. These small differences are probably caused by a small difference in startup and closedown time. Moreover, it could be that during one of the measurements buffering of the video took slightly longer. Because the Average Processor Power factors out these time differences, we decided that this measurement would be best for comparison of the different video players. Furhtermore, we used the average power of the idle state to adjust the measurements of the video players, as can be seen in the last row of figure 3. This allows us to compare the video players more precisely by factoring out the power consumption of other processes.
 
 |                                             |   | *Idle*         |                |     | *WMP*          |                |     | *VLC*         |                |     | *mpv*          |                |
 |---------------------------------------------|---|----------------|----------------|-----|----------------|----------------|-----|---------------|----------------|-----|----------------|----------------|
@@ -72,12 +74,12 @@ The power consumption was recorded through Intel’s Power Gadget. This tool rec
 |                                             |   |                |                |     |                |                |     |               |                |     |                |                |
 |   *Idle-adjusted Power (Watt)*              |   |   0            |   0            |     |   1.543001     |   6.517973     |     |   1.037533    |   4.656448     |     |   2.159645     |   6.196956     |
 
-_Figure 1. Results._
+_Figure 3. Results._
 
-We visualised the idle-adjusted power in figure 2 to compare the most important results more easily. From this figure, it can be concluded that on both systems VLC is significantly more energy efficient than both WMP and mpv. In addition, the power consumptions of WMP and mpv seem to be much closer to each other.
+We visualised the idle-adjusted power in figure 4 to compare the most important results more easily. From this figure, it can be concluded that on both systems VLC is significantly more energy efficient than both WMP and mpv. In addition, the power consumptions of WMP and mpv seem to be much closer to each other.
 
-![Figure 2. Bar charts of average power consumption adjusted by idle power](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/charts.png "Figure 2. Bar charts of average power consumption adjusted by idle power")
-_Figure 2. Bar charts of average power consumption adjusted by idle power._
+![Figure 4. Bar charts of average power consumption adjusted by idle power](https://raw.githubusercontent.com/luiscruz/course_sustainableSE/main/2022/img/p1_measuring_software/g3_videoplayer/charts.png "Figure 4. Bar charts of average power consumption adjusted by idle power")
+_Figure 4. Bar charts of average power consumption adjusted by idle power._
 
 From the results we see that on System 1 VLC is 33% more efficient than WMP and on System 2 it’s 29%, so we can conclude that installing a third party video player (e.g. VLC) can indeed significantly reduce power consumption for video playback, with about 31%. Just think about what this means in practice: if you can normally watch 2 movies with your standard media player on a single charge, you could watch almost a whole additional movie simply by using VLC. However, we also observe that by definition not every third party video player is more efficient. If we look at the mpv, we see that it performs similar or worse than VLC. This is probably because mpv is built with a different use case and end-user in mind: its main focus is its programmability and they might sacrifice efficiency to achieve that, hardware acceleration is for example not enabled by default.
 
