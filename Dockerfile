@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:2.7.5
 
 WORKDIR /myapp
 COPY . /myapp
@@ -11,4 +11,4 @@ RUN bundle install
 
 EXPOSE 4000
 
-CMD bundle exec jekyll s --safe
+CMD bundle exec jekyll s --host 0.0.0.0 --safe
