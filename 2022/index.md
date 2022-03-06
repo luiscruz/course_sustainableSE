@@ -67,8 +67,8 @@ All classes will be recorded and shared privately with the students.
  8     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides08] [🎥Recording part2][recording08] {% include tag.html name="hybrid" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. [📊Slides][slides09] [🎥Recording][recording09] {% include tag.html name="hybrid" %}
  10    | 4   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 11    | 4   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
- 12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. {% include tag.html name="online" %}
+ 11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] [📊Slides][slides11.2]- . {% include tag.html name="hybrid" %} [📊Slides][slides11] [🎥Recording][recording11]
+ 12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. [📊Slides][slides12] [🎥Recording][recording12] {% include tag.html name="online" %} 
  13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
  14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. {% include tag.html name="tbd: online/in-person" %} 
  15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online/in-person" %}
@@ -160,9 +160,14 @@ Below the description of each projects and respective formative[^formative] and 
 [slides06]: https://surfdrive.surf.nl/files/index.php/s/p2jqcN2tBpDBWKD
 [slides08]: https://surfdrive.surf.nl/files/index.php/s/WAwaYYSsn04Pxdi
 [slides09]: https://surfdrive.surf.nl/files/index.php/s/unF9vN0wX0EXfqz
+[slides11.1]: https://surfdrive.surf.nl/files/index.php/s/53B00u1Je3sIds4
+[slides11.2]: https://surfdrive.surf.nl/files/index.php/s/CcagcmIQpJqmtpW
+[slides12]: https://surfdrive.surf.nl/files/index.php/s/5jHZIMIFinp4gV3
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/xGvQkfhi6hpZMnb
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/T0Fm119XCJLZT3C
 [recording06]: https://surfdrive.surf.nl/files/index.php/s/SbengCYvu8O88eF
 [recording08]: https://surfdrive.surf.nl/files/index.php/s/xOPBn8Ajc6UVxiR
 [recording09]: https://surfdrive.surf.nl/files/index.php/s/k4iZCsc532Bpx9y
+[recording11]: https://surfdrive.surf.nl/files/index.php/s/xYlNvpxu3G3BO8s
+[recording12]: https://surfdrive.surf.nl/files/index.php/s/bj6Pgue37FxdrUU
