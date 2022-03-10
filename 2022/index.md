@@ -69,8 +69,8 @@ All classes will be recorded and shared privately with the students.
  10    | 4   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
  11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] [📊Slides][slides11.2]- . {% include tag.html name="hybrid" %} [📊Slides][slides11] [🎥Recording][recording11]
  12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. [📊Slides][slides12] [🎥Recording][recording12] {% include tag.html name="online" %} 
- 13    | 5   | **Lecture.** Empirical Software Engineering. <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="hybrid" %}
- 14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. {% include tag.html name="tbd: online/in-person" %} 
+ 13    | 5   | **Lecture.** ~~Empirical Software Engineering.~~ <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="cancelled" %}
+ 14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. [📊Slides][slides14] [🎥Recording][recording14] {% include tag.html name="in-person" %} 
  15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online/in-person" %}
  16    | 6   | **Project.** Presentation and discussion of proposals. {% include tag.html name="online" %}
  18    | 6   | **Steering Meeting.** First draft of ToC. {% include tag.html name="online" %}
@@ -163,6 +163,7 @@ Below the description of each projects and respective formative[^formative] and 
 [slides11.1]: https://surfdrive.surf.nl/files/index.php/s/53B00u1Je3sIds4
 [slides11.2]: https://surfdrive.surf.nl/files/index.php/s/CcagcmIQpJqmtpW
 [slides12]: https://surfdrive.surf.nl/files/index.php/s/5jHZIMIFinp4gV3
+[slides14]: https://surfdrive.surf.nl/files/index.php/s/IF9XpWMi3vTbajO
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/xGvQkfhi6hpZMnb
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/T0Fm119XCJLZT3C
@@ -171,3 +172,4 @@ Below the description of each projects and respective formative[^formative] and 
 [recording09]: https://surfdrive.surf.nl/files/index.php/s/k4iZCsc532Bpx9y
 [recording11]: https://surfdrive.surf.nl/files/index.php/s/xYlNvpxu3G3BO8s
 [recording12]: https://surfdrive.surf.nl/files/index.php/s/bj6Pgue37FxdrUU
+[recording14]: https://surfdrive.surf.nl/files/index.php/s/XUCcyFSbjH0GTHd
