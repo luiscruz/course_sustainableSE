@@ -71,12 +71,11 @@ All classes will be recorded and shared privately with the students.
  12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. [📊Slides][slides12] [🎥Recording][recording12] {% include tag.html name="online" %} 
  13    | 5   | **Lecture.** ~~Empirical Software Engineering.~~ <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="cancelled" %}
  14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. [📊Slides][slides14] [🎥Recording][recording14] {% include tag.html name="in-person" %} 
- 15    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="online/in-person" %}
- 16    | 6   | **Project.** Presentation and discussion of proposals. {% include tag.html name="online" %}
- 18    | 6   | **Steering Meeting.** First draft of ToC. {% include tag.html name="online" %}
- 19    | 7   | **Steering Meeting.** {% include tag.html name="tbd: online/in-person" %}
- 20    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="online/in-person" %}
- 22    | 9   | **Presentation and Demos** {% include tag.html name="in-person" %}
+ 15    | 5   | **Project.** Project 2 - Description and kick-off. [📊Slides][slides15] {% include tag.html name="hybrid" %}
+ 16    | 6   | **Steering Meeting.** {% include tag.html name="online" %}
+ 17    | 7   | **Steering Meeting.** {% include tag.html name="tbd: online/in-person" %}
+ 18    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="online/in-person" %}
+ 19    | 9   | **Presentation and Demos** {% include tag.html name="in-person" %}
  
 ## Assignments
 
@@ -164,6 +163,7 @@ Below the description of each projects and respective formative[^formative] and 
 [slides11.2]: https://surfdrive.surf.nl/files/index.php/s/CcagcmIQpJqmtpW
 [slides12]: https://surfdrive.surf.nl/files/index.php/s/5jHZIMIFinp4gV3
 [slides14]: https://surfdrive.surf.nl/files/index.php/s/IF9XpWMi3vTbajO
+[slides15]: https://surfdrive.surf.nl/files/index.php/s/u6BmfIrhKjNofdD
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/xGvQkfhi6hpZMnb
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/T0Fm119XCJLZT3C
