@@ -52,8 +52,8 @@ By the end of this course you will be able to:
 
 ## Outline
 
-**Please note:** The program below is tentative and subject to change.
-All classes will be recorded and shared privately with the students.
+**⚠️ Please note:** **Recordings are only available to the students** because they are not edited and may include students' interactions.
+
 
  Class | Week| Summary
 -------| ----|----------|
@@ -73,13 +73,13 @@ All classes will be recorded and shared privately with the students.
  14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. [📊Slides][slides14] [🎥Recording][recording14] {% include tag.html name="in-person" %} 
  15    | 5   | **Project.** Project 2 - Description and kick-off. [📊Slides][slides15] {% include tag.html name="hybrid" %}
  16    | 6   | **Steering Meeting.** {% include tag.html name="online" %}
- 17    | 7   | **Steering Meeting.** {% include tag.html name="tbd: online/in-person" %}
- 18    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="online/in-person" %}
+ 17    | 7   | **Steering Meeting.** {% include tag.html name="hybrid" %}
+ 18    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="hybrid" %}
  19    | 9   | **Presentation and Demos** {% include tag.html name="in-person" %}
  
 ## Assignments
 
-Below the description of each projects and respective formative[^formative] and summative[^summative] assessments.
+Below the description of each project.
 
 ### 📚 Literature Review
 
@@ -111,12 +111,21 @@ Below the description of each projects and respective formative[^formative] and 
 - **Deadline** Thursday, Mar 3
 
 
-<!--### 🛠 Project 2 – Research Project
+### 🛠 Project 2 – Hacking Sustainability
 
-**Formative assessment:** Short meeting with the teacher to present preliminary results. You will receive written feedback to incorporate into a final report.
-
-**Summative assessment:** Write a short paper about the work and . Give a 15-min live talk to the class. -->
-
+- **Goal:** Solve a Sustainable Software Engineering problem.
+  - Identify/Describe 1 problem that should be fixed to help enabling sustainability in the software engineering industry/community.
+  - Propose a solution. It can be a tool, framework, guidelines, etc.
+  - Implement the solution.
+  - Validation. (Depending on the idea) (side note: the cancelled class was all about this)
+  - Dissemination/social impact. (Solution should be open source, welcome contributors, post on twitter, hacker news, reddit? Tool website?)
+- **Deliverables.**
+  - Paper-like article. (Min 4 pages, max 10)
+  - Online git repo with open source codebase and/or replication package.
+  - Presentation: 7 min + 5min Q&A
+- **Weight in final grade**: 60%
+- **Steering meeting/formative assessments**: Every week from week 5 to 9.
+- **Deadline** Tuesday, April 5. (Grace period until April 8).
  
 
 ## Further reading (optional)
@@ -144,9 +153,6 @@ Below the description of each projects and respective formative[^formative] and 
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=60099
 [Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
 [Daniel Feitosa]: https://feitosa-daniel.github.io
-
-[^formative]: Formative assessments are not graded. They are typically informal and focused on providing feedback that can help students improve their work.
-[^summative]: Summative assessments are graded and focused on the final outcome of the project.
 
 [Building 62, Hall G]: https://esviewer.tudelft.nl/space/72/
 [Building 35, Room 4]: https://esviewer.tudelft.nl/space/46/
