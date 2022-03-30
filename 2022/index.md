@@ -67,7 +67,7 @@ By the end of this course you will be able to:
  8     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides08] [🎥Recording part2][recording08] {% include tag.html name="hybrid" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. [📊Slides][slides09] [🎥Recording][recording09] {% include tag.html name="hybrid" %}
  10    | 4   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] [📊Slides][slides11.2]- . {% include tag.html name="hybrid" %} [📊Slides][slides11] [🎥Recording][recording11]
+ 11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] - [📊Slides][slides11.2]. {% include tag.html name="hybrid" %} [📊Slides][slides11] [🎥Recording][recording11]
  12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. [📊Slides][slides12] [🎥Recording][recording12] {% include tag.html name="online" %} 
  13    | 5   | **Lecture.** ~~Empirical Software Engineering.~~ <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="cancelled" %}
  14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. [📊Slides][slides14] [🎥Recording][recording14] {% include tag.html name="in-person" %} 
@@ -153,6 +153,7 @@ Below the description of each project.
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=60099
 [Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
 [Daniel Feitosa]: https://feitosa-daniel.github.io
+[Tim Yarally]: https://www.linkedin.com/in/tim-yarally-64b77412b/?originalSubdomain=nl
 
 [Building 62, Hall G]: https://esviewer.tudelft.nl/space/72/
 [Building 35, Room 4]: https://esviewer.tudelft.nl/space/46/
