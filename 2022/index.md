@@ -67,7 +67,7 @@ By the end of this course you will be able to:
  8     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides08] [🎥Recording part2][recording08] {% include tag.html name="hybrid" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. [📊Slides][slides09] [🎥Recording][recording09] {% include tag.html name="hybrid" %}
  10    | 4   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] - [📊Slides][slides11.2]. {% include tag.html name="hybrid" %} [📊Slides][slides11] [🎥Recording][recording11]
+ 11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] - [📊Slides][slides11.2]. [🎥Recording][recording11] {% include tag.html name="hybrid" %}
  12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. [📊Slides][slides12] [🎥Recording][recording12] {% include tag.html name="online" %} 
  13    | 5   | **Lecture.** ~~Empirical Software Engineering.~~ <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="cancelled" %}
  14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. [📊Slides][slides14] [🎥Recording][recording14] {% include tag.html name="in-person" %} 
