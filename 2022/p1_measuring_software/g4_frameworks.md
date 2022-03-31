@@ -129,7 +129,7 @@ Our study suggests that sites in Angular can display more data using less energy
 | Template Monster | Svelte | no | yes | yes | yes | 1458 | 3 MB | no |
 | Sentry | Svelte | no | no | yes | yes | 558 | 2.1 MB | no |
 
-We included a replication package for systems with Windows OS.
+We included a [replication package](https://github.com/kbaran1998/energy-comsumption-project) for systems with Windows OS.
 
 ### Framework research list
 
