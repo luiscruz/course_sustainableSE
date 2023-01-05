@@ -1,9 +1,11 @@
 ---
 layout: default
+redirect_from:
+  - /
 ---
 
 # Sustainable Software Engineering 🌱
-CS4415 | Edition of 2021/22
+CS4415 | Edition of 2022/23
 
 [Delft University of Technology] || [MSc in Computer Science – Software Technology]
 
@@ -27,8 +29,8 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 
 **Course code**       | [CS4415]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/399685>
-**Instructors**       | [Luís Cruz], [Arie van Deursen]
-**Schedule**          |	Tuesdays 10:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
+**Instructors**       | [Luís Cruz], [June Sallou]
+**Schedule**          |	Tuesdays 8:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
 **Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=amhohw9r9tbiue879nhz7wxr9w)
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
@@ -55,24 +57,24 @@ By the end of this course you will be able to:
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How. [📊Slides][slides01] [🎥Recording][recording01] {% include tag.html name="hybrid" %}
- 2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02]
- 3     | 1   | **Paper Reading.** Read and summarise research literature on Social and Individual SE Sustainability. {% include tag.html name="~~hybrid~~/offline" %}
- 4     | 2   | **Presentation.** Present a summary of a research paper. {% include tag.html name="hybrid" %}
- 5     | 2   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). [📊Slides][slides05] [🎥Recording][recording05] {% include tag.html name="hybrid" %}
- 6     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. [📊Slides][slides06] [🎥Recording][recording06] {% include tag.html name="hybrid" %}
- 7     | 3   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
- 8     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides08] [🎥Recording part2][recording08] {% include tag.html name="hybrid" %}
- 9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. [📊Slides][slides09] [🎥Recording][recording09] {% include tag.html name="hybrid" %}
- 10    | 4   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 11    | 4   | **Lecture.** Green AI - [📊Slides][slides11.1]. MSc Talk by [Tim Yarally] - [📊Slides][slides11.2]. [🎥Recording][recording11] {% include tag.html name="hybrid" %}
- 12    | 4   | **Guest Lecture.** *Saving energy in software development by making the right choices*. [Stefanos Georgiou]. [📊Slides][slides12] [🎥Recording][recording12] {% include tag.html name="online" %} 
- 13    | 5   | **Lecture.** ~~Empirical Software Engineering.~~ <!-- Qualitative vs Quantitative methods. Types of studies -->.{% include tag.html name="cancelled" %}
- 14    | 5   | **Guest Lecture.**  *The effect of design patterns on energy consumption*. [Daniel Feitosa]. [📊Slides][slides14] [🎥Recording][recording14] {% include tag.html name="in-person" %} 
- 15    | 5   | **Project.** Project 2 - Description and kick-off. [📊Slides][slides15] {% include tag.html name="hybrid" %}
- 16    | 6   | **Steering Meeting.** {% include tag.html name="online" %}
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How. <!-- [📊Slides][slides01] [🎥Recording][recording01] --> {% include tag.html name="hybrid" %}
+ 2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} <!-- [📊Slides][slides02] -->
+ 3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). <!-- [📊Slides][slides05] [🎥Recording][recording05]  -->{% include tag.html name="hybrid" %}
+ 4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
+ 5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. <!-- [📊Slides][slides06] [🎥Recording][recording06] --> {% include tag.html name="hybrid" %}
+ 6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
+ 7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. <!-- [📊Slides][slides08] [🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
+ 8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. <!-- [📊Slides][slides09] [🎥Recording][recording09] --> {% include tag.html name="hybrid" %}
+ 9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
+ 10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
+ 11    | 4   | **Lecture.** Green AI. <!-- [📊Slides][slides11]. [🎥Recording][recording11] --> {% include tag.html name="hybrid" %}
+ 12    | 4   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
+ 13    | 5   | **Project.** Project 2 - Description and kick-off. [📊Slides][slides15] {% include tag.html name="hybrid" %}
+ 14    | 5   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
+ 15    | 5   | 
+ 16    | 6   | **Steering Meeting.** {% include tag.html name="hybrid" %}
  17    | 7   | **Steering Meeting.** {% include tag.html name="hybrid" %}
- 18    | 8   | **Steering Meeting.** Formative assessment. {% include tag.html name="hybrid" %}
+ 18    | 8   | Holidays
  19    | 9   | **Presentation and Demos** {% include tag.html name="in-person" %}
  
 ## Assignments
@@ -148,6 +150,7 @@ Below the description of each project.
 
 [Delft University of Technology]: https://www.tudelft.nl
 [Luís Cruz]: https://luiscruz.github.io
+[June Sallou]: https://jnsll.github.io
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=60099
 [Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
 [Daniel Feitosa]: https://feitosa-daniel.github.io
