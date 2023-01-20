@@ -69,7 +69,7 @@ By the end of this course you will be able to:
  10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
  11    | 4   | **Lecture.** Green AI. <!-- [📊Slides][slides11]. [🎥Recording][recording11] --> {% include tag.html name="hybrid" %}
  12    | 4   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
- 13    | 5   | **Project.** Project 2 - Description and kick-off. [📊Slides][slides15] {% include tag.html name="hybrid" %}
+ 13    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
  14    | 5   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
  15    | 5   | 
  16    | 6   | **Steering Meeting.** {% include tag.html name="hybrid" %}
