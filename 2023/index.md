@@ -28,7 +28,7 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 ## Organisation
 
 **Course code**       | [CS4415]
-**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/399685>
+**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/499381>
 **Instructors**       | [Luís Cruz], [June Sallou]
 **Schedule**          |	Tuesdays 8:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
 **Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=amhohw9r9tbiue879nhz7wxr9w)
@@ -151,7 +151,7 @@ Below the description of each project.
 [Delft University of Technology]: https://www.tudelft.nl
 [Luís Cruz]: https://luiscruz.github.io
 [June Sallou]: https://jnsll.github.io
-[CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=60099
+[CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=61596
 [Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
 [Daniel Feitosa]: https://feitosa-daniel.github.io
 [Tim Yarally]: https://www.linkedin.com/in/tim-yarally-64b77412b/?originalSubdomain=nl
