@@ -5,9 +5,9 @@ redirect_from:
 ---
 
 # Sustainable Software Engineering 🌱
-CS4415 | Edition of 2022/23
+[CS4415] | Edition of 2022/23
 
-[Delft University of Technology] || [MSc in Computer Science – Software Technology]
+[Delft University of Technology] || [MSc in Computer Science]
 
 
 **Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
@@ -31,7 +31,8 @@ Students will learn about **state-of-the-art practices on energy efficiency** an
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/499381>
 **Instructors**       | [Luís Cruz], [June Sallou]
 **Schedule**          |	Tuesdays 8:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
-**Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=amhohw9r9tbiue879nhz7wxr9w)
+**Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=nob1cyhto3nstp7muqhahs95nh)
+**Zoom link**        | Link shared on [Brightspace](https://brightspace.tudelft.nl/d2l/home/499381).
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in most classes.
@@ -149,6 +150,7 @@ Below the description of each project.
 - [Green TU](https://www.tudelft.nl/sustainability/get-involved/greentu/)
 
 [Delft University of Technology]: https://www.tudelft.nl
+[MSc in Computer Science]: https://www.tudelft.nl/onderwijs/opleidingen/masters/cs/msc-computer-science
 [Luís Cruz]: https://luiscruz.github.io
 [June Sallou]: https://jnsll.github.io
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=61596
