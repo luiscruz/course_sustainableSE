@@ -1,29 +1,30 @@
 ---
 layout: default
+hide_from_navbar: false
 redirect_from:
   - /
+title: 2023
 ---
 
 # Sustainable Software Engineering 🌱
-[CS4415] | Edition of 2022/23
-
-[Delft University of Technology] || [MSc in Computer Science]
+Edition of 2022/23<br/>
+[MSc in Computer Science], [Delft University of Technology]
 
 
 **Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
 
-![Sustainability Domains](./img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="230px" }
+![Sustainability Domains](./img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="260px" }
 
-Software Engineering (SE) has long addressed sustainability by **narrowing it down to economic and technical sustainability**.
+Software Engineering (SE) has long addressed sustainability by **narrowing it down to economical and technical sustainability**.
 However, our society is facing major sustainability challenges that can no longer be overlooked by software engineers and computer scientists.
 It was estimated that, **by 2040, the ICT sector will contribute to 14% of the global carbon footprint**. Hence, environmental, social, and individual ought to be part of the equation when it comes to design, build, and release software systems.
 The problem is far from simple, but **we need expert computer scientists** to bring sustainability into the core values of the next generation of tech-leading organisations.
 
-This course will cover a set of competencies needed to leverage sustainable software systems.
-It will have a **strong component on Green SE**, covering techniques to measure and improve the energy-efficiency at any stage of the software lifecycle.
-Students will learn about **state-of-the-art practices on energy efficiency** and apply them in real software projects. Moreover, the course will cover core principles of **empirical software engineering**, and **social and individual sustainability**.
+This course covers a set of competencies needed to leverage sustainable software systems.
+It has a **strong component on Green SE**, covering techniques to measure and improve the energy-efficiency at any stage of the software lifecycle.
+Students learn **state-of-the-art practices on energy efficiency** and apply them in real software projects. Moreover, the course will cover core principles of **empirical software engineering**, and **social and individual sustainability**.
 
 ## Organisation
 
@@ -72,11 +73,12 @@ By the end of this course you will be able to:
  12    | 4   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
  13    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
  14    | 5   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
- 15    | 5   | 
- 16    | 6   | **Steering Meeting.** {% include tag.html name="hybrid" %}
- 17    | 7   | **Steering Meeting.** {% include tag.html name="hybrid" %}
+ 15    | 5   | **Steering Meeting 1.** {% include tag.html name="hybrid" %}
+ 16    | 6   | **Steering Meeting 2.** {% include tag.html name="hybrid" %}
+ 17    | 7   | **Steering Meeting 3.** {% include tag.html name="online" %} Project 2 1st Deadline (Mar 31).
  18    | 8   | Holidays
- 19    | 9   | **Presentation and Demos** {% include tag.html name="in-person" %}
+ 19    | 9   | Project 2 Final Deadline (Apr 14).
+ 20    | 10  | Presentation. (April 19)
  
 ## Assignments
 
@@ -84,16 +86,16 @@ Below the description of each project.
 
 ### 📚 Literature Review
 
-- Groups of 2 or 3
+- Groups of `TBD`
 - Select 1 academic paper that talks about social or individual sustainability in the context of software engineering.
   - Google Scholar, DBLP
 - Double check with the lecturer whether your selected paper is good enough (use mattermost).
 - Write a short summary about it (min 200 words; max 500).
-- Prepare a presentation for next Tuesday (Feb 15).
-- 7 min + 3 min Q&A.
+- Prepare a presentation for class 4 (Feb 21).
+  - 7 min + 3 min Q&A.
 - Presentation is 7.5% of the grade. (But you can recover in the presentation of project 2)
-- Submission by pull request to the website. Instructions [here](https://luiscruz.github.io/course_sustainableSE/2022/literature_review.html).
-- **Deadline** Tuesday, Feb 15.
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/literature_review.html).
+- **Deadline** Tuesday, Feb 21.
 
 ### 🛠 **Project 1** Measuring Software Energy Consumption
 {: #project1}
@@ -124,7 +126,7 @@ Below the description of each project.
   - Paper-like article. (Min 4 pages, max 10)
   - Online git repo with open source codebase and/or replication package.
   - Presentation: 7 min + 5min Q&A
-- **Weight in final grade**: 60%
+- **Weight in final grade**: 60% (extra 7.5% for the presentation)
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
 - **Deadline** Tuesday, April 5. (Grace period until April 8).
  
