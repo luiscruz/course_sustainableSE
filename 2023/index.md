@@ -59,7 +59,7 @@ By the end of this course you will be able to:
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How. <!-- [📊Slides][slides01] [🎥Recording][recording01] --> {% include tag.html name="hybrid" %}
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How. [📊Slides][slides01] [🎥Recording][recording01] {% include tag.html name="hybrid" %}
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} <!-- [📊Slides][slides02] -->
  3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). <!-- [📊Slides][slides05] [🎥Recording][recording05]  -->{% include tag.html name="hybrid" %}
  4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
@@ -165,23 +165,21 @@ Below the description of each project.
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
-[slides01]: https://surfdrive.surf.nl/files/index.php/s/qi41wkOd2mAsYPN
-[slides02]: https://surfdrive.surf.nl/files/index.php/s/cpUC4sIOFmgoHYB
-[slides05]: https://surfdrive.surf.nl/files/index.php/s/Jrc27nmuyNoSW4w
-[slides06]: https://surfdrive.surf.nl/files/index.php/s/p2jqcN2tBpDBWKD
-[slides08]: https://surfdrive.surf.nl/files/index.php/s/WAwaYYSsn04Pxdi
-[slides09]: https://surfdrive.surf.nl/files/index.php/s/unF9vN0wX0EXfqz
-[slides11.1]: https://surfdrive.surf.nl/files/index.php/s/53B00u1Je3sIds4
-[slides11.2]: https://surfdrive.surf.nl/files/index.php/s/CcagcmIQpJqmtpW
-[slides12]: https://surfdrive.surf.nl/files/index.php/s/5jHZIMIFinp4gV3
-[slides14]: https://surfdrive.surf.nl/files/index.php/s/IF9XpWMi3vTbajO
-[slides15]: https://surfdrive.surf.nl/files/index.php/s/u6BmfIrhKjNofdD
+[slides01]: https://surfdrive.surf.nl/files/index.php/s/e00qM7HCKffK0rj
+[slides02]: 
+[slides05]: 
+[slides06]: 
+[slides08]: 
+[slides09]:  
+[slides12]: 
+[slides14]: 
+[slides15]: 
 
-[recording01]: https://surfdrive.surf.nl/files/index.php/s/xGvQkfhi6hpZMnb
-[recording05]: https://surfdrive.surf.nl/files/index.php/s/T0Fm119XCJLZT3C
-[recording06]: https://surfdrive.surf.nl/files/index.php/s/SbengCYvu8O88eF
-[recording08]: https://surfdrive.surf.nl/files/index.php/s/xOPBn8Ajc6UVxiR
-[recording09]: https://surfdrive.surf.nl/files/index.php/s/k4iZCsc532Bpx9y
-[recording11]: https://surfdrive.surf.nl/files/index.php/s/xYlNvpxu3G3BO8s
-[recording12]: https://surfdrive.surf.nl/files/index.php/s/bj6Pgue37FxdrUU
-[recording14]: https://surfdrive.surf.nl/files/index.php/s/XUCcyFSbjH0GTHd
+[recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
+[recording05]: 
+[recording06]: 
+[recording08]: 
+[recording09]: 
+[recording11]: 
+[recording12]: 
+[recording14]: 
