@@ -59,7 +59,7 @@ By the end of this course you will be able to:
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How. [📊Slides][slides01] [🎥Recording][recording01] {% include tag.html name="hybrid" %}
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01] [🎥Recording][recording01] {% include tag.html name="hybrid" %}
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} <!-- [📊Slides][slides02] -->
  3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). <!-- [📊Slides][slides05] [🎥Recording][recording05]  -->{% include tag.html name="hybrid" %}
  4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
@@ -166,20 +166,20 @@ Below the description of each project.
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/e00qM7HCKffK0rj
-[slides02]: 
-[slides05]: 
-[slides06]: 
-[slides08]: 
-[slides09]:  
-[slides12]: 
-[slides14]: 
-[slides15]: 
+[slides02]: /
+[slides05]: /
+[slides06]: /
+[slides08]: /
+[slides09]: / 
+[slides12]: /
+[slides14]: /
+[slides15]: /
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
-[recording05]: 
-[recording06]: 
-[recording08]: 
-[recording09]: 
-[recording11]: 
-[recording12]: 
-[recording14]: 
+[recording05]: /
+[recording06]: /
+[recording08]: /
+[recording09]: /
+[recording11]: /
+[recording12]: /
+[recording14]: /
