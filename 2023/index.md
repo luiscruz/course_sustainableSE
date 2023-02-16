@@ -60,7 +60,7 @@ By the end of this course you will be able to:
  Class | Week| Summary
 -------| ----|----------|
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01] [🎥Recording][recording01] {% include tag.html name="hybrid" %}
- 2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} <!-- [📊Slides][slides02] -->
+ 2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02] [🎥Recording][recording02]
  3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1). <!-- [📊Slides][slides05] [🎥Recording][recording05]  -->{% include tag.html name="hybrid" %}
  4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. <!-- [📊Slides][slides06] [🎥Recording][recording06] --> {% include tag.html name="hybrid" %}
@@ -160,13 +160,11 @@ Below the description of each project.
 [Daniel Feitosa]: https://feitosa-daniel.github.io
 [Tim Yarally]: https://www.linkedin.com/in/tim-yarally-64b77412b/?originalSubdomain=nl
 
-[Building 62, Hall G]: https://esviewer.tudelft.nl/space/72/
-[Building 35, Room 4]: https://esviewer.tudelft.nl/space/46/
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/e00qM7HCKffK0rj
-[slides02]: /
+[slides02]: https://surfdrive.surf.nl/files/index.php/s/VY8Qo5y1sCxA36f
 [slides05]: /
 [slides06]: /
 [slides08]: /
@@ -176,7 +174,7 @@ Below the description of each project.
 [slides15]: /
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
-[recording05]: /
+[recording02]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
 [recording06]: /
 [recording08]: /
 [recording09]: /
