@@ -23,7 +23,7 @@ tags:
   - Information Rights
   - Survey
   - Reuse
-annotation: "|-
+annotation: |-
 Summary
 
 Social media has significantly simplified the process of sharing information all around the world. However, it also introduces concerns about the ownership of this information. A study conducted by the authors examined the attitude of frequent Twitter users towards these issues.
@@ -37,6 +37,5 @@ In the conclusion the authors discuss the implications of the findings. First, t
 Critical Analysis
 
 In order to make sure that the participants were sufficiently familiar with Twitter, the authors decided to select only frequent Twitter users to participate in the study. We assume that nowadays almost everyone has at least some understanding of social media, such as Twitter. Therefore we think that also including participants that do not have Twitter or have deleted their account could increase the value of the research because social media ownership can affect them as well.
-"
 ---
 <!--mandatory fields: paper_title, readby, paper_author, journal, year, doi or preprint or arxiv, slides (if you have), abstract, annotation -->
