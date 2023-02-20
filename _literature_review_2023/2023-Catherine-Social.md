@@ -24,7 +24,7 @@ tags:
   - Survey
   - Reuse
 annotation: |-
-######Summary
+"######Summary
 Social media has significantly simplified the process of sharing information all around the world. However, it also introduces concerns about the ownership of this information. A study conducted by the authors examined the attitude of frequent Twitter users towards these issues.
 
 To accomplish this objective the authors surveyed the participants. In the survey, the participant expresses their attitude towards several different scenarios. The scenarios are designed to investigate three main topics introduced in the paper: saving tweets, reusing tweets and deleting tweets. In each scenario the participant answers multiple questions regarding the aforementioned topics.
@@ -34,7 +34,7 @@ The authors present their findings in five different categories. The first categ
 In the conclusion the authors discuss the implications of the findings. First, they question how attitude should affect the design of collaborative spaces. Next, they question the boundaries of storing information. Finally, they wonder how joint-ownership determines the future of social media. The authors propose more research towards the topic, for instance to see how the findings compare to other social media \cite{marshall2015facebook}.
 
 ######Critical Analysis
-In order to make sure that the participants were sufficiently familiar with Twitter, the authors decided to select only frequent Twitter users to participate in the study. We assume that nowadays almost everyone has at least some understanding of social media, such as Twitter. Therefore we think that also including participants that do not have Twitter or have deleted their account could increase the value of the research because social media ownership can affect them as well.
+In order to make sure that the participants were sufficiently familiar with Twitter, the authors decided to select only frequent Twitter users to participate in the study. We assume that nowadays almost everyone has at least some understanding of social media, such as Twitter. Therefore we think that also including participants that do not have Twitter or have deleted their account could increase the value of the research because social media ownership can affect them as well."
 ---
 
 <!--mandatory fields: paper_title, readby, paper_author, journal, year, doi or preprint or arxiv, slides (if you have), abstract, annotation -->
