@@ -1,11 +1,11 @@
 ---
 layout: publication
-readby: Phillippe de Bekker, Merel Steenbergen, Sebastien van Tiggele, Ivor Zagorac
+readby: Philippe de Bekker, Merel Steenbergen, Sebastien van Tiggele, Ivor Zagorac
 journal: "Proceedings of ICT for Sustainability 2016"
 paper_author: Maryam Al Hinai, Ruzanna Chitchyan
 paper_title: "Engineering Requirements for Social Sustainability"
 year: 2016
-doi: doi.10.2991/ict4s-16.2016.10
+doi: 10.2991/ict4s-16.2016.10
 slides: https://docs.google.com/presentation/d/1tB_OsP5bvSStBYImvbOZYHZfdxpcIcrU7fH9Vb_SVZY/
 abstract: |-
   Software is no longer a passive tool, but is an active agent in shaping modern communities. Yet, to date, software engineers do not endeavour to explicitly state requirements which a software system must fulfil if it is to positively contribute to the well-being (that is the social sustainability) of its user community. This paper presents a proposal on how to bridge this gap. It notes that social sustainability requirements stem from key societal values, such as equity, security, education, which can be elicited into value patterns. Such patterns can then serve as templates for software requirements specification. The viability of this proposal is demonstrated through formation of equity value patterns, which are instantiated as requirements to 6 sample studies. We observe that while each organisation and sub-community will have own diverse cultural and traditional values with respective requirements, the fundamental notions (such as equity, security, freedom) that serve as the core of social sustainability remain relatively stable. It is such values that we propose to elicit into patterns for requirements specification.
