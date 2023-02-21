@@ -70,25 +70,25 @@ annotation: |-
   images of each other, and that impact on productivity is the most
   commonly reported effect.
   
-Happy developers
+  Happy developers
 
   | Consequence         | Freq. |
-|--------------|-----------|
-|    High productivity                     |61|
-|    High motivation                       |42|
-|    High code quality                     |38|
-|    Higher self-accomplishment            |23|
-|    High work engagement/perseverance     |20|
+  |--------------|-----------|
+  |    High productivity                     |61|
+  |    High motivation                       |42|
+  |    High code quality                     |38|
+  |    Higher self-accomplishment            |23|
+  |    High work engagement/perseverance     |20|
 
-Unhappy developers
+  Unhappy developers
 
-   | Consequence         | Freq. |
-|--------------|-----------|
-|   Low productivity     |59|
-|   Low code quality     |30|
-|   Low motivation       |21|
-|   Work withdrawal      |18|
-|   Delay                |18|
+     | Consequence         | Freq. |
+  |--------------|-----------|
+  |   Low productivity     |59|
+  |   Low code quality     |30|
+  |   Low motivation       |21|
+  |   Work withdrawal      |18|
+  |   Delay                |18|
 
   Even though in total, more consequences of happiness were reported, the
   authors managed to categorize these consequences into 32 categories,
