@@ -1,11 +1,13 @@
-FROM ruby:2.7.4
+FROM ruby:2.7.7
 
 WORKDIR /myapp
 COPY . /myapp
 
 # We usually run this every time we add a new dependency
 RUN gem install bundler
-RUN gem install jekyll -v 3.9.3
+RUN gem update --system
+RUN gem install sass-embedded -v 1.58.3
+RUN gem install jekyll
 RUN bundle install
 
 
