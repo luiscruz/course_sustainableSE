@@ -69,34 +69,26 @@ annotation: |-
   the top three consequences of both happiness and unhappiness are mirror
   images of each other, and that impact on productivity is the most
   commonly reported effect.
+  
+Happy developers
 
-  ::: {#unhappy}
-    Consequence                          Freq.
-    ----------------------------------- -------
-    High productivity                     61
-    High motivation                       42
-    High code quality                     38
-    Higher self-accomplishment            23
-    High work engagement/perseverance     20
+  | Consequence         | Freq. |
+|--------------|-----------|
+|    High productivity                     |61|
+|    High motivation                       |42|
+|    High code quality                     |38|
+|    Higher self-accomplishment            |23|
+|    High work engagement/perseverance     |20|
 
-    : Unhappy developer
-  :::
+Unhappy developers
 
-  []{#happy label="happy"}
-
-  ::: {#unhappy}
-    Consequence         Freq.
-    ------------------ -------
-    Low productivity     59
-    Low code quality     30
-    Low motivation       21
-    Work withdrawal      18
-    Delay                18
-
-    : Unhappy developer
-  :::
-
-  []{#unhappy label="unhappy"}
+   | Consequence         | Freq. |
+|--------------|-----------|
+|   Low productivity     |59|
+|   Low code quality     |30|
+|   Low motivation       |21|
+|   Work withdrawal      |18|
+|   Delay                |18|
 
   Even though in total, more consequences of happiness were reported, the
   authors managed to categorize these consequences into 32 categories,
