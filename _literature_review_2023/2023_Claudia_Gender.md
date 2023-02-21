@@ -2,7 +2,7 @@
 ### Engineering Gender-Inclusivity into Software: Ten Teams’ Tales from the Trenches
 #### Authors: Claudia Hilderbrand, Christopher Perdriau, Lara Letaw, Jillian Emard, Zoe Steine-Hanson, Margaret Burnet, Anita Sarma
 #### Students: Louise Leibbrandt, Nienke Nijkamp, Gaspar Rocha, George Vegelien
-
+#### Link to [Slides](https://github.com/louisegleibbrandt/course_sustainableSE/blob/main/_literature_review_2023/Group%202.pptx.pdf)
 
 Software has diversity problems. They affect some populations in their ability to be productive with, or even use software. A lot of these issues are related to gender inclusivity. Although there are proven methods on how to engineer gender inclusivity into software, there are few studies on the real-world application of these methods.This paper provides an evaluation of GenderMag, a software inspection method to include gender inclusivity in software engineering. GenderMag evaluates user stories using 3 personas: Tim, Pat, and Abi. The personas are walked through the steps in the user stories using a Cognitive Walkthrough, asking several subquestions designed to consider the persona's possible issues with each step. The researchers investigate the integration of GenderMag into real-world teams’ practices through an Action Research based investigation. The research follows 10 software teams, 4 university based and 6 from companies. 
 
