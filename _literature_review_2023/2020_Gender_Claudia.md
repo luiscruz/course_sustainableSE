@@ -6,6 +6,7 @@ paper_author: Claudia Hilderbrand, Christopher Perdriau, Lara Letaw, Jillian Ema
 paper_title: "Engineering Gender-Inclusivity into Software: Ten Teams’ Tales from the Trenches"
 year: 2020
 doi: 10.1145/3377811.3380371
+website: [link to site](https://dl.acm.org/doi/abs/10.1145/3377811.3380371)
 slides: [link to slides](https://github.com/louisegleibbrandt/course_sustainableSE/blob/main/_literature_review_2023/Group%202.pptx.pdf)
 abstract: |- 
 Although the need for gender-inclusivity in software is gaining attention among SE researchers and SE practitioners, and at least one method (GenderMag) has been published to help, little has been reported on how to make such methods work in real-world settings. Real-world teams are ever-mindful of the practicalities of adding new methods on top of their existing processes. For example, how can they keep the time costs viable? How can they maximize impacts of using it? What about controversies that can arise in talking about gender? To find out how software teams "in the trenches" handle these and similar questions, we collected the GenderMag-based processes of 10 real-world software teams---more than 50 people---for periods ranging from 5 months to 3.5 years. We present these teams' insights and experiences in the form of 9 practices, 2 potential pitfalls, and 2 open issues, so as to provide their insights to other real-world software teams trying to engineer gender-inclusivity into their software products.
