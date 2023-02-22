@@ -111,7 +111,7 @@ Below the description of each project.
 - Submission by pull request to the website. Instructions [here](/course_sustainableSE/2022/p1_measuring_software/). **⭐️(new)**
 - **Weight in final grade**: 30%
 - **Steering meeting/formative assessment**: Tuesday, Feb 22
-- **Deadline** Thursday, Mar 3
+- **Deadline** Friday, Mar 3
 
 
 ### 🛠 Project 2 – Hacking Sustainability
