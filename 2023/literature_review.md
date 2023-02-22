@@ -1,5 +1,5 @@
 ---
-title: Literature Review
+title: Literature Review on Individual and Social Sustainability
 ---
 
 {% for publication in site.literature_review_2023 reversed%}
