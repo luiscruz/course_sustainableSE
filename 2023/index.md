@@ -63,8 +63,8 @@ By the end of this course you will be able to:
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02] [🎥Recording][recording02]
  3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).  [📊Slides][slides03] {% include tag.html name="hybrid" %}
  4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
- 5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. <!-- [📊Slides][slides06] [🎥Recording][recording06] --> {% include tag.html name="hybrid" %}
- 6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
+ 5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. [📊Slides][slides05] [🎥Recording][recording05] {% include tag.html name="hybrid" %}
+ 6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
  7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. <!-- [📊Slides][slides08] [🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. <!-- [📊Slides][slides09] [🎥Recording][recording09] --> {% include tag.html name="hybrid" %}
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
@@ -166,7 +166,7 @@ Below the description of each project.
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/29VP8FSestOunF5
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/VY8Qo5y1sCxA36f
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/BiUcTquF78BG8NT
-[slides05]: /
+[slides05]: https://surfdrive.surf.nl/files/index.php/s/Pl4cZqf3U9RE8Ql
 [slides06]: /
 [slides08]: /
 [slides09]: / 
