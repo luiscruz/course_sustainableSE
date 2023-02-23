@@ -176,7 +176,8 @@ Below the description of each project.
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
-[recording06]: /
+[recording03]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
+[recording05]: https://surfdrive.surf.nl/files/index.php/s/o9MgZqbKYlR1uuT
 [recording08]: /
 [recording09]: /
 [recording11]: /
