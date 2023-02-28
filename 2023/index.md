@@ -70,9 +70,9 @@ By the end of this course you will be able to:
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
  10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
  11    | 4   | **Lecture.** Green AI. <!-- [📊Slides][slides11]. [🎥Recording][recording11] --> {% include tag.html name="hybrid" %}
- 12    | 4   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
- 13    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
- 14    | 5   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
+ 12    | 4   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
+ 13    | 5   | **No class (Mar 14)**
+ 14    | 5   | **Guest Lecture (Mar 16).** Energy efficiency of neural networks; AI-enabled mobile applications – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. {% include tag.html name="hybrid" %} 
  15    | 5   | **Steering Meeting 1.** {% include tag.html name="hybrid" %}
  16    | 6   | **Steering Meeting 2.** {% include tag.html name="hybrid" %}
  17    | 7   | **Steering Meeting 3.** {% include tag.html name="online" %} Project 2 1st Deadline (Mar 31).
