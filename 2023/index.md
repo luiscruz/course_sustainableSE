@@ -65,7 +65,7 @@ By the end of this course you will be able to:
  4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. [📊Slides][slides05] [🎥Recording][recording05] {% include tag.html name="hybrid" %}
  6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
- 7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. <!-- [📊Slides][slides08] [🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
+ 7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.  [📊Slides][slides07] <!--[🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. <!-- [📊Slides][slides09] [🎥Recording][recording09] --> {% include tag.html name="hybrid" %}
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
  10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
@@ -167,7 +167,7 @@ Below the description of each project.
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/VY8Qo5y1sCxA36f
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/BiUcTquF78BG8NT
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/Pl4cZqf3U9RE8Ql
-[slides06]: /
+[slides07]: https://surfdrive.surf.nl/files/index.php/s/HMfPCQswv7SAAFS
 [slides08]: /
 [slides09]: / 
 [slides12]: /
@@ -178,7 +178,7 @@ Below the description of each project.
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
 [recording03]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/o9MgZqbKYlR1uuT
-[recording08]: /
+[recording07]: /
 [recording09]: /
 [recording11]: /
 [recording12]: /
