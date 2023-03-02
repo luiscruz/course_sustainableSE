@@ -19,4 +19,9 @@ We use Intel Power Gadget to measure the energy usage on the device. Install thi
 
 ## Script
 
-The script file used for the first run (with inconclusive results) can be found [here](script_test.py)
+The script file used for the first run (with inconclusive results) can be found [here](script_test)
+
+##
+
+The scripts run according to the logic explained in the blogpost (add link!).
+The hard/software settings needed to achieve the results can also be found there.
