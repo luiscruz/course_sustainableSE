@@ -42,6 +42,8 @@ After preparing the environment we will run the tests. The tests consist of thre
 - **High performance:** This profile maximises performance by increasing the CPU speed, disabling some power-saving features, and other optimisations.  
 We will measure the *total power consumption* to run the benchmark. To further decrease the potential effect of undesired factors, we take a couple of extra measures. First, we will run each scenario 30 different times and average the results. Secondly, we automate the full test, so that manual mistakes are eliminated.
 
+The measurement tool that is created to automatically execute the experiments according to the decribed methodology is available at https://github.com/remyd95/SSE_Project1.
+
 ## Results
 The experiments were executed on an HP ZBook Studio G4 with an Intel i7-7700HQ processor and an NVIDIA Quadro M1200 Mobile with 8GB RAM. The operating system used was Ubuntu 22.04.2. In total 90 experiments, 30 for each power mode, were conducted in a randomly shuffled order. The benchmark workload that was used is a synthetic neural network training job on the Cifar-10 dataset on a Resnet model. This workload was controlled by the Perfzero benchmark tool, which is designed for Tensorflow performance benchmarks. Tensorflow has been configured to use the available GPU in the system to resemble the setup that is most common for AI engineers. The energy consumption was measured using the Powerstat tool which is based on the Intel RAPL measurement feature. 
 
@@ -106,6 +108,7 @@ Finally, we computed the Choen's or Cliff's delta, again depending on the normal
 
 <!-- argue about practical signifiance (This is in the discussion or as a new section in results not sure)-->
 
+The complete data analysis on which this section is based is available as notebook in our code repository at https://github.com/remyd95/SSE_Project1/blob/main/data_analysis.ipynb.
 
 ## Discussion
 
