@@ -39,11 +39,9 @@ To add a new article, follow the instructions below:
 3. Commit, Push.
 4. Submit a pull request.
 
-Before submitting the pull request, you should test whether your file is rendering properly in the website. This is jekyll-based website. Assuming you have it installed, you can simply run this command locally:
+Before submitting the pull request, you should test whether your file is rendering properly in the website. The easiest way to check it is by running the docker container, as instructed in the Github Readme.
 
-`bundle exec jekyll s --safe`
-
-Your page should be listed here: <http://localhost:4000/course_sustainableSE/2023/p1_measuring_software/>
+Your page should be listed here: http://localhost:4000/course_sustainableSE/2023/literature_review
 
 If you don't want to deal with jekyll, you can do it the slow and expensive way: 1) enable *github pages* in your fork repo 2) check your the deployed page. (I don't recommend it, though)
 
