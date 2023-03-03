@@ -108,7 +108,7 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2022/p1_measuring_software/). **⭐️(new)**
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p1_measuring_software/). **⭐️(new)**
 - **Weight in final grade**: 30%
 - **Steering meeting/formative assessment**: Tuesday, Feb 22
 - **Deadline** Friday, Mar 3
