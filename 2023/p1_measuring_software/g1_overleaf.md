@@ -132,10 +132,9 @@ To get the package running, you need to do some non-trivial setup steps.
 
 
 ## Results (cathrine)
-
-- We have not yet been able to successfully upload the images. 
-<img src="../img/p1_measuring_software/g1_overleaf/blog.png" alt= “” width="50%" height="50%">
-<img src="../img/p1_measuring_software/g1_overleaf/book.png" alt= “” width="50%" height="50%">
+- Here we will present our results as measured in Joules per experiment. 
+![image](../img/p1_measuring_software/g1_overleaf/blog.png)
+![image](../img/p1_measuring_software/g1_overleaf/book.png)
 
 
 
