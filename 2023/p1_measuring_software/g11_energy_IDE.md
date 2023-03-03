@@ -133,7 +133,7 @@ Lastly, for the DRAM, we get a p-value of 0.97, which would indicate that the di
 
 ![IntelliJ Javascript DRAM violin](.\..\img\p1_measuring_software\g8_energy_IDE\IntelliJ_violin\IntelliJ js DRAM violin plot.png)
 
-![IntelliJ Javascript GPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\IntelliJ_violin\IntelliJ js GPU violin plot.png)
+![Intellij Javascript GPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\IntelliJ_violin\IntelliJ js GPU violin plot.png)
 
 For the CPU, we can again see a clear outlier in the data. This also results in a rejection of the hypothesis, since we get a value of 0.0004. We can see the irregularity in the data as well in the increased density of data point in the violon plot, which the distribution widens at the upper end of the distribution. Without this outlier, the data gets a p-value of 0.46 on the Shapiro-Wilk test. This results in an average energy consumption of 360 J.
 
