@@ -49,6 +49,13 @@ defaults:
       layout: blog_post
   -
     scope:
+      path: "2023/p1_measuring_software"
+    values:
+      identifier: "p1_measuring_software_2023"
+      exclude: true
+      layout: blog_post
+  -
+    scope:
       path: ""
     values:
       hide_from_navbar: true

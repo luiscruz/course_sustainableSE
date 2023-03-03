@@ -63,16 +63,16 @@ By the end of this course you will be able to:
  2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02] [🎥Recording][recording02]
  3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).  [📊Slides][slides03] {% include tag.html name="hybrid" %}
  4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
- 5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. <!-- [📊Slides][slides06] [🎥Recording][recording06] --> {% include tag.html name="hybrid" %}
- 6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="online/in-person" %}
- 7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. <!-- [📊Slides][slides08] [🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
- 8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. <!-- [📊Slides][slides09] [🎥Recording][recording09] --> {% include tag.html name="hybrid" %}
+ 5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. [📊Slides][slides05] [🎥Recording][recording05] {% include tag.html name="hybrid" %}
+ 6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
+ 7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.  [📊Slides][slides07] <!--[🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
+ 8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.[📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="hybrid" %}
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
  10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
  11    | 4   | **Lecture.** Green AI. <!-- [📊Slides][slides11]. [🎥Recording][recording11] --> {% include tag.html name="hybrid" %}
- 12    | 4   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
- 13    | 5   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
- 14    | 5   | **Guest Lecture.** TBA {% include tag.html name="hybrid" %} 
+ 12    | 4   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
+ 13    | 5   | **No class (Mar 14)**
+ 14    | 5   | **Guest Lecture (Mar 16).** Energy efficiency of neural networks; AI-enabled mobile applications – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. {% include tag.html name="hybrid" %} 
  15    | 5   | **Steering Meeting 1.** {% include tag.html name="hybrid" %}
  16    | 6   | **Steering Meeting 2.** {% include tag.html name="hybrid" %}
  17    | 7   | **Steering Meeting 3.** {% include tag.html name="online" %} Project 2 1st Deadline (Mar 31).
@@ -108,10 +108,10 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2022/p1_measuring_software/). **⭐️(new)**
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p1_measuring_software/). **⭐️(new)**
 - **Weight in final grade**: 30%
 - **Steering meeting/formative assessment**: Tuesday, Feb 22
-- **Deadline** Thursday, Mar 3
+- **Deadline** Friday, Mar 3
 
 
 ### 🛠 Project 2 – Hacking Sustainability
@@ -163,12 +163,12 @@ Below the description of each project.
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
-[slides01]: https://surfdrive.surf.nl/files/index.php/s/e00qM7HCKffK0rj
+[slides01]: https://surfdrive.surf.nl/files/index.php/s/29VP8FSestOunF5
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/VY8Qo5y1sCxA36f
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/BiUcTquF78BG8NT
-[slides05]: /
-[slides06]: /
-[slides08]: /
+[slides05]: https://surfdrive.surf.nl/files/index.php/s/Pl4cZqf3U9RE8Ql
+[slides07]: https://surfdrive.surf.nl/files/index.php/s/HMfPCQswv7SAAFS
+[slides08]: https://surfdrive.surf.nl/files/index.php/s/jxaZHa793YUWOZA
 [slides09]: / 
 [slides12]: /
 [slides14]: /
@@ -176,9 +176,10 @@ Below the description of each project.
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
-[recording06]: /
-[recording08]: /
-[recording09]: /
+[recording03]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
+[recording05]: https://surfdrive.surf.nl/files/index.php/s/o9MgZqbKYlR1uuT
+[recording07]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
+[recording08]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
 [recording11]: /
 [recording12]: /
 [recording14]: /
