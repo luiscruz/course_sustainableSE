@@ -91,11 +91,11 @@ For its DRAM energy consumption, we see something different happening. The first
 
 ### Java Visual Studio
 
-![VS Java CPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS Java CPU violin.png)
+![VS Java CPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS java DRAM violin plot.png)
 
-![VS Java DRAM violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS Java DRAM violin plot.png)
+![VS Java DRAM violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS java DRAM violin plot.png)
 
-![VS Java GPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS Java GPU violin plot.png)
+![VS Java GPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS java GPU violin plot.png)
 
 For the Java experiment in Visual Studio, we can again see an outlier in the boxplot. If we take a look at the runs, we can see that there are two values that are significantly higher than the others, which are 273 and 241. These do not happen at the start of the run, but seems to happen in runs that are neither close to the first or last experiment. What these do have in common is that they run for a lot longer than other runs, both upwards of 20 seconds compared to 15 seconds for other executions. If we exclude these runs, the data does seems to behave according to a normal distribution. The average however with these is 160 J for the CPU.
 
@@ -115,7 +115,7 @@ In IntelliJ, the data is not indicative of anything other than a normal distribu
 
 ### Javascript Visual Studio
 
-![VS Javascript CPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS js CPU violin.png)
+![VS Javascript CPU violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS js CPU violin plot.png)
 
 ![VS Javascript DRAM violin](.\..\img\p1_measuring_software\g8_energy_IDE\VS_violin\VS js DRAM violin plot.png)
 
