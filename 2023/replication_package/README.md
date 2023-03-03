@@ -19,7 +19,7 @@ We use Intel Power Gadget to measure the energy usage on the device. Install thi
 
 ## Script
 
-The script file used for the first run (with inconclusive results) can be found [here](script_experiment1). The script file used for the second run can be found [here](script_experiment2).
+The script file used for the first run can be found [here](script_experiment1) and the script file used for the second run can be found [here](script_experiment2). The script file will ask the experimenter to manually execute either a clear of the cache, or a download deletion. This will happen before a stream run, a play of a downloaded song run or the downloading of a song run. After the experimenter has completed the task, the experimenter can press any key and the script will continue to run.
 
 ##
 
