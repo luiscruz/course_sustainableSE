@@ -40,7 +40,7 @@ This would be especially relevant if it turns out that docker uses more energy a
 The chosen container runtimes for our experiment are: 
 ![](https://i.imgur.com/bC11uqy.jpg)
 
-#### [Podman](https://www.youtube.com/watch?v=1S2nuZsBz8g)
+#### Podman
 Something about Podman.
 
 #### Docker
