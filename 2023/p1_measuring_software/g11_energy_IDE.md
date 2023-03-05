@@ -54,11 +54,11 @@ The experiments can be found on the [Github repository](https://github.com/zeger
 
 ### Python
 
-| ![python CPU/GPU boxplot](./boxplots/python%20usage.png) | 
+| ![python CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/python%20usage.png) | 
 |:--:|
 |Figure 1: CPU/GPU comparison for Python code|
 
-| ![python DRAM boxplot](./boxplots/python%20DRAM.png) | 
+| ![python DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/python%20DRAM.png) | 
 |:--:|
 |Figure 2: DRAM comparison for Python code|
 
@@ -80,11 +80,11 @@ For its DRAM energy consumption, we see something different happening. The first
 
 ### Java
 
-| ![Java CPU/GPU boxplot](./boxplots/java%20usage.png) | 
+| ![Java CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/java%20usage.png) | 
 |:--:|
 |Figure 3: CPU/GPU comparison for Java code|
 
-| ![Java DRAM boxplot](./boxplots/java%20DRAM.png) | 
+| ![Java DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/java%20DRAM.png) | 
 |:--:|
 |Figure 4: DRAM comparison for Java code|
 
@@ -102,11 +102,11 @@ In IntelliJ, the data is not indicative of anything other than a normal distribu
 
 ### JavaScript
 
-| ![JavaScript CPU/GPU boxplot](./boxplots/javascript%20usgae.png) | 
+| ![JavaScript CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/javascript%20usage.png) | 
 |:--:|
 |Figure 5: CPU/GPU comparison for JavaScript code|
 
-| ![JavaScript DRAM boxplot](./boxplots/javascript%20DRAM.png) | 
+| ![JavaScript DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/javascript%20DRAM.png) | 
 |:--:|
 |Figure 6: DRAM comparison for JavaScript code|
 
