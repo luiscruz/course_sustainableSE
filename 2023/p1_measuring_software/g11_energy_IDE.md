@@ -102,7 +102,7 @@ In IntelliJ, the data is not indicative of anything other than a normal distribu
 
 ### JavaScript
 
-| ![JavaScript CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/javascript%20usage.png) | 
+| ![JavaScript CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/javascript%20usgae.png) | 
 |:--:|
 |Figure 5: CPU/GPU comparison for JavaScript code|
 
