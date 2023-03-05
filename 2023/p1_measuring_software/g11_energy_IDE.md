@@ -1,5 +1,5 @@
 ---
-author: Rutger Doting, Nils van der Honert, Zeger Mouw
+author: Rutger Doting, Nils van den Honert, Zeger Mouw
 title: "Energy consumption of IDEs over different programming languages"
 image: "img/blog/2021-08-20/og_image.png"
 date: 03/03/2023
