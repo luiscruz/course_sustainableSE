@@ -3,7 +3,7 @@ author: Joey de Water, Leon de Klerk, Merlijn Mac Gillavry, Valentijn van de Bee
 title: "Comparing Energy and Power consumption of different container runtimes"
 image: "https://i.imgur.com/MDS86tT.png"
 date: 03/03/2023
-summary: "abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+summary: "In this post we compare energy and power consumption of different container runtimes. We show that atleast in our tests there is not a significant difference in energy and power consumption between Docker, Podman, Containerd and LCX"
 bibtex: |-
   @misc{cruz2021green,
     title = {Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments},
@@ -36,24 +36,23 @@ ___"Compared to alternatives, how energy and power efficient are docker containe
 
 This would be especially relevant if it turns out that docker uses more energy and power than its alternatives. In this blog we first discuss what container technologies are and which ones we chose to compare to docker. Then, we discuss our methodology and experiment setup to answer the question posed above. Next, we discuss our results and also find limitations to our work. Finally, we conclude our main findings and propose future work.
 
-### Container Technologies (TODO: Valentijn)
+### Container Technologies
 The chosen container runtimes for our experiment are: 
 ![](https://i.imgur.com/bC11uqy.jpg)
 
-#### Podman
-Something about Podman.
-
 #### Docker
+Created in 2013, Docker popularized the use of container technologies by supplying an easy to use interface around earlier solutions like LXC. Since, it has grown to one of the most popular development technologies currently in use. Currently it makes use of the containerd as abstraction layer.
 
-Something about Docker.
+#### Podman
+Designed by Red Hat as a secure, server and rootless alternative to docker. It aims to make running containers secure, especially within a kubernetes context. 
 
 #### Containerd
-Something about Containerd.
+Unlike podman or docker, containerd is an underlying low-level library for managing containers. It manages the lifecycle of  a container, pull containers from repositories and deal with networking. 
 
 #### LXC
-Something about LXC.
+Created in 2006 by IBM engineers, it is the original container runtime for Linux. During the earlier days of Docker, it was used as a backend but has since been replaced with containerd and now is typically used together with LXD.  Similar to containerd, it is a low-level management library for cotnainers. 
 
-## Methodology <!-- (Joey) -->
+## Methodology
 To test the energy and power consumption of different container runtimes, we want to run multiple images, consisting of a database, website and reverse proxy, on these different container runtimes. We ran these images, tests and energy measurements on an intel powered Ubuntu (22.04 LTS) system. To ensure similar speeds over every cycle, which consists of building and running the images, running the tests and running the energy and power measurements, turbo-boost on CPU was disabled. Moreover, we set the screen bightness to a known value (max), plugged the laptop in, closed all unnecessary services and turned sleep off. Finally, we run our experiments in cycles to make sure that for every container there is the same warm up and cool down structure, which results in a reliable experiment.
 
 ### Container configuration
@@ -101,13 +100,28 @@ For our experiment we used Selenium WebDriver to headlessly run Chrome and inter
 
 Note: The order of the tests is maintained by naming them in alfabetical order.
 
-### Energy measurements (Todo: Valentijn)
+### Energy measurements
 For each container runtime, the system service is brought up and the workload is started. After starting the workload, the selenium tests are run to emulate the usage of the site by some user. Finally, the power over this period is measured using 20s as the interval (which is the minimal time required for the test suite). Power is measured using the Powertop tool where the joules and the wattage are extracted. This process is repeated ten times before the system moves on to the next runtime. The averages of the joules and wattage are then reported together with the raw results.
 
-## Results (Todo: Valentijn)
-Show visualization of result data.
+## Results
+
+![Figure 1 tests](https://i.imgur.com/mW3fT5W.png)
+###### Figure 1: Comparison between wattage by container runtime
+From the mean wattage we can not determine any meaningful differences between the different processes. They are all slightly higher than running the power measurement without running a container, but the difference is marginal at best. Podman does perform the worst of the four, LXC the best with docker being a close second.
+
+![](https://i.imgur.com/uy8HXwO.png)
+###### Figure 2: Comparison between joules by container runtime
+Joules shown an interesting picture where the baseline performs on average worse than running the container runtimes. However, none of the differences are large and may just fall within reasonable variance.
+
+Barplots allow us to look not just at the means, but to get a clearer picture of both the variance as well as the outliers.
+
+![](https://i.imgur.com/p6GFJj5.jpg)
+###### Figure 3: Barplot of the wattage by container runtime
+Here we cam see that running the program in containers definitely introduces an additional load to the system. Podman's lowest quantile is higher than the means of all competitors, which is a clear indicate that it the most taxing of the four options. LXC is the lightest with a consistent wattage at around 15W. It does have one high outlier, but this is explainable by some quirk of scheduling. Containerd takes a bit more energy to run than LXC, but has a similar level of consistency. Docker is just in the middle, but with a much higher variance which covers both the high end of the containerd as well as the low-end of LXC.
+
 ![](https://i.imgur.com/GbzSZaU.jpg)
-![](https://i.imgur.com/yJZK11s.jpg)
+###### Figure 4: Barplot of the joules by container runtime
+Joules tells mostly a similar story with a very consistent baseline, presumably because it is not running anything. Podman has the most consitent results with a surprisingly low variance and mild outliers. Docker has a similar small variance, but a tendency for more extreme outliers. Containerd and LXC had a high variance, but with fewer outliers. 
 
 ## Discussion & Possible Future Work
 Based on our work we have identified a few points of interests and limitations.
