@@ -27,7 +27,7 @@ We will begin by introducing each library and discussing its strengths and weakn
 <img src="2023/img/p1_measuring_software/g9_Python_Packages/vaex.png" width="100px" style="margin: 10px">
 <img src="2023/img/p1_measuring_software/g9_Python_Packages/dask.png" width="100px" style="margin: 10px">
 
-We have considered a few Python libraries for data analysis. In the end we chose to evaluate only four: `pandas`, `polars`, `vaex`, and `dask`. These libraries are very often used and have some overlapping features, making a comparison more fair and relevant. We will focus on the following features in our comparison: 
+We have considered a few Python libraries for data analysis [2]. In the end we chose to evaluate only four: `pandas`, `polars`, `vaex`, and `dask`. These libraries are very often used and have some overlapping features, making a comparison more fair and relevant. We will focus on the following features in our comparison: 
 * Group by
 * Merge (join)
 * Read and write
@@ -36,16 +36,16 @@ We will test these features on a large dataset, as these are common operations i
 
 ### Libraries
 #### Pandas
-The most widely used DataFrame library is Pandas [2], and earlier research has been comparing this package against alternatives that might perform better on operations used on very large datasets [3]. The focus here is on speed and memory usage, but not on energy consumption. According to their website: "pandas aims to be the fundamental high-level building block for doing practical, real world data analysis in Python. Additionally, it has the broader goal of becoming the most powerful and flexible open source data analysis / manipulation tool available in any language." [4]
+The most widely used DataFrame library is Pandas [3], and earlier research has been comparing this package against alternatives that might perform better on operations used on very large datasets [4]. The focus here is on speed and memory usage, but not on energy consumption. According to their website: "pandas aims to be the fundamental high-level building block for doing practical, real world data analysis in Python. Additionally, it has the broader goal of becoming the most powerful and flexible open source data analysis / manipulation tool available in any language." [5]
 
 #### Polars
-Polars is a DataFrame library and in-memory query engine. It focuses on speed and is described on the website as "lightning fast" [5]. It does this by making use of parallel execution and cache-efficient algorithms. It has been written in Rust, which is known for being a very quick and memory-efficient programming language. 
+Polars is a DataFrame library and in-memory query engine. It focuses on speed and is described on the website as "lightning fast" [6]. It does this by making use of parallel execution and cache-efficient algorithms. It has been written in Rust, which is known for being a very quick and memory-efficient programming language. 
 
 #### Dask
-Dask is a parallel computing library for Python. It can be used to parallelize tasks from other Python libraries, such as pandas. Dask consists of two main components: Dynamic task scheduling optimized for computation, and Big Data collections like dataframes [6]. 
+Dask is a parallel computing library for Python. It can be used to parallelize tasks from other Python libraries, such as pandas. Dask consists of two main components: Dynamic task scheduling optimized for computation, and Big Data collections like dataframes [7]. 
 
 #### Vaex
-Vaex is a python library for lazy Out-of-Core DataFrames and is similar to Pandas [7]. It is meant to visualize and explore big tabular datasets. It is meant for speed and advocates on its website that it can calculate statistics on an N-dimensional grid up to a billion rows per second. It achieves this by memory mapping, a zero memory copy policy, and lazy computations. 
+Vaex is a python library for lazy Out-of-Core DataFrames and is similar to Pandas [8]. It is meant to visualize and explore big tabular datasets. It is meant for speed and advocates on its website that it can calculate statistics on an N-dimensional grid up to a billion rows per second. It achieves this by memory mapping, a zero memory copy policy, and lazy computations. 
 
 Something that these four packages have in common is the fact that their main promise is speed. All four of them promise efficiency when running data analysis experiments. In some way, this can be beneficial to the energy usage, as the hardware resources are used optimally and thus need less energy. However, running the hardware at maximum capacity when that is not necessary is not preferred and actually bad for energy consumption. Therefore, we are going to measure energy consumption rather than speed, as that is a more reliable measure of true efficiency to us. 
 
@@ -67,7 +67,7 @@ For the merge experiment, however, we need two datasets to merge. To be able to 
 
 
 ### Roadmap
-To run and analyse the three data operations using the four packages, we follow a systematic approach based on [research by Luís Cruz](https://luiscruz.github.io/2021/10/10/scientific-guide.html) [8]:
+To run and analyse the three data operations using the four packages, we follow a systematic approach based on [research by Luís Cruz](https://luiscruz.github.io/2021/10/10/scientific-guide.html) [9]:
 
 1) **Activate Zen mode** - Disable all background tasks and redundant applications, disable Bluetooth and WiFi, turn off notifications, do not use extra hardware, fix screen brightness, and prefer a cabled connection over wireless. This helps to get the measurements as stable as possible. This also means having a consistent room temperature throughout the measuring, in our case 21 degrees Celcius.
 2) **Start PowerGadget log** - This creates a `.csv` log of power consumption.
@@ -112,10 +112,10 @@ In the merge experiment, dask consistently has the lowest energy consumption, fo
 
 In the last operation, polars performed the best by far. Surprisingly, this time it is followed by pandas with remarkably lower standard deviation than in the previous examples. Dask performs similarly to pandas and vaex is the worst, also having the highest standard deviation. 
 
-Due to the small amount of iterations per feature, we decided not to perform any statistical tests. These tests are less accurate and less useful on small result sets. We can see some non-normal distributions in our current result, but we do not have enough data points to say if that is because of too few iterations or because of another reasons. Other reason could include unusual tasks being run during execution or a change in external physical conditions. 
+Due to the small number of iterations per feature, we decided not to perform any statistical tests. These tests are less accurate and less useful on small result sets. We can see some non-normal distributions in our current result, but we do not have enough data points to say if that is because of too few iterations or because of other reasons. Other reasons could include unusual tasks being run during execution or a change in external physical conditions. 
 
 ## Discussion
-The results show that the maximum difference in these situations is 3000 joules, or 3 kJ. However, the average Dutch household uses around 2810 kWh per year, which amount to roughly 28 MJ per day [9]. Seeing as the average household in the Netherlands consists of 2.2 people [10], this means the average usage is 12.6 MJ per day per person. The difference that switching packages can maximally make is only 0.02% of the average daily usage. 
+The results show that the maximum difference in these situations is 3000 joules, or 3 kJ. However, the average Dutch household uses around 2810 kWh per year, which amount to roughly 28 MJ per day [9]. Seeing as the average household in the Netherlands consists of 2.2 people [12], this means the average usage is 12.6 MJ per day per person. The difference that switching packages can maximally make is only 0.02% of the average daily usage. 
 
 Every developer should determine for themselves if this difference would be worth it to them. Especially on smaller datasets, the time spent learning to use a new package might not be worth the effort as the difference it makes would be minimal. In that case, the extra time with the screen turned on would be less energy efficient than for example using pandas. 
 
@@ -135,14 +135,14 @@ When taking energy consumption into account, it is always important to consider 
 However, since the difference is very small, we would advise only considering switching packages when these exact operations are used on a large dataset. For smaller datasets, the difference will be minimal and probably not worth the extra screen time of making the switch. 
 
 ## References
-https://towardsdatascience.com/8-alternatives-to-pandas-for-processing-large-datasets-928fc927b08c
 1. https://luiscruz.github.io/course_sustainableSE/2023/
-2. https://ponder.io/pandas-is-now-as-popular-as-python-was-in-2016/
-3. https://h2oai.github.io/db-benchmark/
-4. https://pandas.pydata.org/about/
-5. https://www.pola.rs/
-6. https://www.dask.org/
-7. https://vaex.io/docs/index.html
-8. Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments - by Luís Cruz. URL: https://luiscruz.github.io/2021/10/10/scientific-guide.html
-9. https://www.cbs.nl/nl-nl/cijfers/detail/81528NED
-10. https://www.cbs.nl/nl-nl/nieuws/2021/31/8-miljoen-woningen-in-nederland
+2. https://towardsdatascience.com/8-alternatives-to-pandas-for-processing-large-datasets-928fc927b08c
+3. https://ponder.io/pandas-is-now-as-popular-as-python-was-in-2016/
+4. https://h2oai.github.io/db-benchmark/
+5. https://pandas.pydata.org/about/
+6. https://www.pola.rs/
+7. https://www.dask.org/
+8. https://vaex.io/docs/index.html
+9. https://luiscruz.github.io/2021/10/10/scientific-guide.html
+10. https://www.cbs.nl/nl-nl/cijfers/detail/81528NED
+11. https://www.cbs.nl/nl-nl/nieuws/2021/31/8-miljoen-woningen-in-nederland
