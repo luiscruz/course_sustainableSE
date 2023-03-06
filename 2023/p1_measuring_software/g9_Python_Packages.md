@@ -23,7 +23,7 @@ We will begin by introducing each library and discussing its strengths and weakn
 
 ## Methodology
 <img src="../img/p1_measuring_software/g9_Python_Packages/pandas.png" width="100px" style="margin: 10px">
-<img src="../img/p1_measuring_software/g9_Python_Packages/polars.png" style="margin: 10px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/polars.png" width="100px" style="margin: 10px">
 <img src="../img/p1_measuring_software/g9_Python_Packages/vaex.png" width="100px" style="margin: 10px">
 <img src="../img/p1_measuring_software/g9_Python_Packages/dask.png" width="100px" style="margin: 10px">
 
