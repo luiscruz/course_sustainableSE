@@ -22,10 +22,10 @@ Usually, environmental sustainability and energy consumption are not taken into 
 We will begin by introducing each library and discussing its strengths and weaknesses. Then, we will describe the methodology used to compare the energy consumption of each library. Finally, we will present the results of our comparison and draw conclusions about the energy efficiency of each library. Overall, this report aims to provide valuable insights into the energy consumption of popular data science libraries and how they can be used in a more sustainable way.
 
 ## Methodology
-<img src="2023/img/p1_measuring_software/g9_Python_Packages/pandas.png" width="100px" style="margin: 10px">
-<img src="2023/img/p1_measuring_software/g9_Python_Packages/polars.png" style="margin: 10px">
-<img src="2023/img/p1_measuring_software/g9_Python_Packages/vaex.png" width="100px" style="margin: 10px">
-<img src="2023/img/p1_measuring_software/g9_Python_Packages/dask.png" width="100px" style="margin: 10px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/pandas.png" width="100px" style="margin: 10px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/polars.png" style="margin: 10px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/vaex.png" width="100px" style="margin: 10px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/dask.png" width="100px" style="margin: 10px">
 
 We have considered a few Python libraries for data analysis [2]. In the end we chose to evaluate only four: `pandas`, `polars`, `vaex`, and `dask`. These libraries are very often used and have some overlapping features, making a comparison more fair and relevant. We will focus on the following features in our comparison: 
 * Group by
@@ -82,7 +82,7 @@ To run and analyse the three data operations using the four packages, we follow 
 
 For the documentation and code used to run, parse and visualize the experiments, we have created an open-source tool called [Carbonara](https://github.com/philippedeb/carbonara), which allows anyone to carry out similar experiments. It is a Windows tool to compare the energy consumption of Python code using Intel Power Gadget 3.6 as described in this methodology section. 
 
-<img src="2023/img/p1_measuring_software/g9_Python_Packages/carbonarar.png" width="450px" style="margin: 20px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/carbonarar.png" width="450px" style="margin: 20px">
 
 The machine on which we run the experiments is a plugged-in HP ZBook Studio G5 with the following specifications:
 * **Processor**: Intel Core i7-8750H, Intel64, 2.2 GHz, 6 cores
@@ -94,21 +94,21 @@ The machine on which we run the experiments is a plugged-in HP ZBook Studio G5 w
 ## Results
 
 ### Groupby experiment
-![](2023/img/p1_measuring_software/g9_Python_Packages/group_violin.png)
-![](2023/img/p1_measuring_software/g9_Python_Packages/group_energy.png)
+![](../img/p1_measuring_software/g9_Python_Packages/group_violin.png)
+![](../img/p1_measuring_software/g9_Python_Packages/group_energy.png)
 
 These two plots indicate that both polars and dask perform very well energy-usage-wise. They have a consistently lower energy usage when performing group-by operations than pandas and vaex. For the latter two, their averages are very similar, but the standard deviation of pandas seems to be much higher. The energy consumption is more unpredictable than it is for vaex. 
 
 ### Merge experiment
-![](2023/img/p1_measuring_software/g9_Python_Packages/merge_violin.png)
-![](2023/img/p1_measuring_software/g9_Python_Packages/merge_iteration.png)
+![](../img/p1_measuring_software/g9_Python_Packages/merge_violin.png)
+![](../img/p1_measuring_software/g9_Python_Packages/merge_iteration.png)
 
 In the merge experiment, dask consistently has the lowest energy consumption, followed by polars, then vaex and pandas lastly. Notably, pandas again has a high standard deviation. 
 
 
 ### Read and write experiment
-![](2023/img/p1_measuring_software/g9_Python_Packages/write_violin.png)
-![](2023/img/p1_measuring_software/g9_Python_Packages/write_iteration.png)
+![](../img/p1_measuring_software/g9_Python_Packages/write_violin.png)
+![](../img/p1_measuring_software/g9_Python_Packages/write_iteration.png)
 
 In the last operation, polars performed the best by far. Surprisingly, this time it is followed by pandas with remarkably lower standard deviation than in the previous examples. Dask performs similarly to pandas and vaex is the worst, also having the highest standard deviation. 
 
