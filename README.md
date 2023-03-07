@@ -15,7 +15,7 @@ Once you have Docker installed, run the following from the project folder:
 
 ```
 docker build . -t web
-docker run -p 4000:4000 web
+docker run -itp 4000:4000 web
 ```
 
 The website should then be available at http://localhost:4000/course_sustainableSE/2022/.
