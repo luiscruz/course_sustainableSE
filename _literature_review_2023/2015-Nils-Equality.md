@@ -31,11 +31,7 @@ bibtex: |-
 tags:
   - Social Sustainability
 annotation: |-
-  The summary written by the students.
-  
-  It can be multiline.
-  
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  Social sustainability is key proponent of wellbeing created by software. However, creating the requirements for building social sustainability into software is not an easy task. Using equality as the main socials sustainability aspect, a process of requirements elicitation is shown. Equality is here defined as the right for all participants in society to access (public) resources with discrimination of any kind. Value sensitive designs exist, but are mostly unused in everyday software development. The authors generate an initial equality value pattern. They showcase the Goal, its Dimension and associated values, and the regulations and activities that have an impact on theses values.
 image: 2022/img/literature_review/template_img.png
 ---
 
