@@ -68,8 +68,8 @@ By the end of this course you will be able to:
  7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.  [📊Slides][slides07] <!--[🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.[📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="hybrid" %}
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
- 11    | 4   | **Lecture.** Green AI. <!-- [📊Slides][slides11]. [🎥Recording][recording11] --> {% include tag.html name="hybrid" %}
+ 10    | 4   | **Lecture.** Approximate Computing for Green Software. [📊Slides][slides10]. [🎥Recording][recording10] {% include tag.html name="hybrid" %}
+ 11    | 4   | **Lecture.** Green AI. [📊Slides][slides11]. [🎥Recording][recording11] {% include tag.html name="hybrid" %}
  12    | 4   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
  13    | 5   | **No class (Mar 14)**
  14    | 5   | **Guest Lecture (Mar 16).** Energy efficiency of neural networks; AI-enabled mobile applications – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. {% include tag.html name="hybrid" %} 
