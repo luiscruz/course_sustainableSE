@@ -169,8 +169,8 @@ Below the description of each project.
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/Pl4cZqf3U9RE8Ql
 [slides07]: https://surfdrive.surf.nl/files/index.php/s/HMfPCQswv7SAAFS
 [slides08]: https://surfdrive.surf.nl/files/index.php/s/jxaZHa793YUWOZA
-[slides09]: / 
-[slides12]: /
+[slides10]: https://surfdrive.surf.nl/files/index.php/s/0lQu5cEMEJinEaA
+[slides11]: https://surfdrive.surf.nl/files/index.php/s/uWkwTjtU0EB7pCC
 [slides14]: /
 [slides15]: /
 
@@ -180,6 +180,6 @@ Below the description of each project.
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/o9MgZqbKYlR1uuT
 [recording07]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
 [recording08]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
-[recording11]: /
-[recording12]: /
+[recording10]: https://surfdrive.surf.nl/files/index.php/s/YyqYDXK0bsfG6yW
+[recording11]: https://surfdrive.surf.nl/files/index.php/s/tcA4oMzTXG2GFoD
 [recording14]: /
