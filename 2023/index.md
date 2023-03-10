@@ -70,7 +70,7 @@ By the end of this course you will be able to:
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
  10    | 4   | **Lecture.** Approximate Computing for Green Software. [📊Slides][slides10]. [🎥Recording][recording10] {% include tag.html name="hybrid" %}
  11    | 4   | **Lecture.** Green AI. [📊Slides][slides11]. [🎥Recording][recording11] {% include tag.html name="hybrid" %}
- 12    | 4   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
+ 12    | 4   | **Project.** Project 2 - Description and kick-off. [Slides][slides12] {% include tag.html name="hybrid" %}
  13    | 5   | **No class (Mar 14)**
  14    | 5   | **Guest Lecture (Mar 16).** Energy efficiency of neural networks; AI-enabled mobile applications – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. {% include tag.html name="hybrid" %} 
  15    | 5   | **Steering Meeting 1.** {% include tag.html name="hybrid" %}
@@ -171,7 +171,7 @@ Below the description of each project.
 [slides08]: https://surfdrive.surf.nl/files/index.php/s/jxaZHa793YUWOZA
 [slides10]: https://surfdrive.surf.nl/files/index.php/s/0lQu5cEMEJinEaA
 [slides11]: https://surfdrive.surf.nl/files/index.php/s/uWkwTjtU0EB7pCC
-[slides14]: /
+[slides12]: https://surfdrive.surf.nl/files/index.php/s/5gqMQvB8nhUHqch
 [slides15]: /
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
