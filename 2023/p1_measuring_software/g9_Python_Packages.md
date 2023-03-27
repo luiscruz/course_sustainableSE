@@ -82,7 +82,7 @@ To run and analyse the three data operations using the four packages, we follow 
 
 For the documentation and code used to run, parse and visualize the experiments, we have created an open-source tool called [Carbonara](https://github.com/philippedeb/carbonara), which allows anyone to carry out similar experiments. It is a Windows tool to compare the energy consumption of Python code using Intel Power Gadget 3.6 as described in this methodology section. 
 
-<img src="../img/p1_measuring_software/g9_Python_Packages/carbonarar.png" width="450px" style="margin: 20px">
+<img src="../img/p1_measuring_software/g9_Python_Packages/carbonara.png" width="450px" style="margin: 20px">
 
 The machine on which we run the experiments is a plugged-in HP ZBook Studio G5 with the following specifications:
 * **Processor**: Intel Core i7-8750H, Intel64, 2.2 GHz, 6 cores
