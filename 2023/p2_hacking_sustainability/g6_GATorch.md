@@ -18,11 +18,11 @@ Introduction
 In today's world, environmental challenges are a growing concern.
 Addressing these challenges begins by increasing awareness of energy
 consumption. This is especially relevant for the IT sector due to the
-increasing energy demand [@HALDAR2022111754]. Machine Learning (ML)
+increasing energy demand [5]. Machine Learning (ML)
 algorithms are known to consume a considerable amount of energy
-[@GARCIAMARTIN201975]. Although there has been a recent surge in
+[4]. Although there has been a recent surge in
 sustainable software research and tools to measure or reduce energy
-consumption [@estimatednn2017], more extensive research efforts are
+consumption [8], more extensive research efforts are
 necessary. Large ML frameworks do not directly integrate energy and
 carbon reporting tools, which means that developers are required to rely
 on third-party tools. The available tools are often designed to report
@@ -65,7 +65,7 @@ Related Work {#relatedwork}
 
 There is increasing effort in raising awareness for best environmental
 practices in \[Green AI\], such as loose estimators like \[ML CO2
-Impact\][@mlco2] or static analysis plugins like \[EcoCode\]. Here, we
+Impact\][6] or static analysis plugins like \[EcoCode\]. Here, we
 present a more in-depth measuring tool that seamlessly integrates with
 an existing ML framework. To understand the architectural design choices
 we needed to make for our proposed solutions, we investigated existing
@@ -88,16 +88,16 @@ NVML for their data. Firstly, \[CodeCarbon\] is a complete application
 for measuring applications with longer run times and provides a large
 dashboard with much information about the overall consumption.
 \[Eco2AI\] provides similar measurements and estimates its equivalent
-carbon emissions and saves this data to a file [@eco2ai].
+carbon emissions and saves this data to a file [2].
 \[Carbontracker\] is specifically designed for tracking and predicting
 the energy consumption of the training of deep learning models and can
-measure the consumption per epoch [@carbontracker]. This permits the
+measure the consumption per epoch [1]. This permits the
 plotting of energy usage in relation to the loss value. However, this
 has not yet been implemented, and each of the beforementioned measuring
 applications introduces a large time overhead when starting or stopping
 measurements and can therefore not be used for smaller measurements.
 \[PyJoules\] is simply a small wrapper around RAPL and NVML, which means
-this application can be used for smaller measurements \[?1\].
+this application can be used for smaller measurements [9].
 
 We identified in this related work that the current efforts into Green
 AI are small-scale and generalising. Most energy consumption measuring
@@ -305,15 +305,15 @@ gained performance is no longer worth the extra energy investment.
 Additionally, it would also be possible to adjust the hyper-parameters
 based on the energy consumption measurements. The configuration of the
 hyper-parameters can have a big effect on the total energy consumption
-[@hyperparameter2021; @hyperparameteredge2022]. The results from
-existing research [@hyperparameter2021] could be used to create
+[7, 3]. The results from
+existing research [7] could be used to create
 suggestions for the adjustments that could reduce energy consumption.
 However, the actual effects of the hyper-parameter may differ per model
 and task. More research on the topic is required to discover whether
 these patterns persist throughout multiple different models and tasks. A
 more robust method to adjust the hyper-parameters would be to use
 Bayesian optimisation in search of the optimal configuration
-[@hyperparameter2021]. However, this process on its own requires energy
+[7]. However, this process on its own requires energy
 and should only be used in cases where the optimal configuration would
 save more energy than the cost of finding it.
 
@@ -339,7 +339,27 @@ of energy consumption. Moreover, we believe that future research and
 development can lead to a decision-making tool aimed at automatically
 reducing energy consumption.
 
-\[?1\] PowerAPI: A Software Library to Monitor the Energy Consumed at
-the Process-Level: A. Bourdon, A. Noureddine, R. Rouvoy, L. Seinturier.
-ERCIM News, Special Theme: Smart Energy Systems, 92, pp.43-44. ERCIM,
-2013.
+References
+==========
+
+[1] Lasse F. Wolff Anthony, Benjamin Kanding, and Raghavendra Selvan. Carbontracker: Tracking and predicting the carbon footprint of training deep
+learning models. ICML Workshop on Challenges in Deploying and monitoring Machine Learning Systems, July 2020. arXiv:2007.03051.
+
+[2] SA Budennyy, VD Lazarev, NN Zakharenko, AN Korovin, OA Plosskaya, DV Dimitrov, VS Akhripkin, IV Pavlov, IV Oseledets, IS Barsola, et al. Eco2ai: carbon emissions tracking of machine learning models as the first step towards sustainable ai. In Doklady Mathematics, pages 1–11. Springer, 2023.
+
+[3] Hasan Farooq, Julien Forgeat, Shruti Bothe, Maxime Bouton, and Per Karlsson. Edge-distributed coordinated hyper-parameter search for energy saving son use-case. In 2022 IEEE International Conference on Communications Workshops (ICC Workshops), pages 421–426, 2022.
+
+[4] Eva Garc´ıa-Mart´ın, Crefeda Faviola Rodrigues, Graham Riley, and H˚akan Grahn. Estimation of energy consumption in machine learning. Journal of
+Parallel and Distributed Computing, 134:75–88, 2019.
+
+[5] Anasuya Haldar and Narayan Sethi. Environmental effects of information and communication technology - exploring the roles of renewable energy, innovation, trade and financial development. Renewable and Sustainable Energy Reviews, 153:111754, 2022.
+
+[6] Alexandre Lacoste, Alexandra Luccioni, Victor Schmidt, and Thomas Dandres. Quantifying the carbon emissions of machine learning, 2019.
+
+[7] Lucas Høyberg Puvis de Chavannes, Mads Guldborg Kjeldgaard Kongsbak, Timmie Rantzau, and Leon Derczynski. Hyperparameter power impact in transformer language model training. In Proceedings of the Second Workshop on Simple and Efficient Natural Language Processing, pages 96–118, Virtual, November 2021. Association for Computational Linguistics.
+
+[8] Tien-Ju Yang, Yu-Hsin Chen, Joel Emer, and Vivienne Sze. A method to estimate the energy consumption of deep neural networks. In 2017 51st Asilomar Conference on Signals, Systems, and Computers, pages 1916–1920, 2017.
+
+[9] PowerAPI: A Software Library to Monitor the Energy Consumed at the Process-Level: A. Bourdon, A. Noureddine, R. Rouvoy, L. Seinturier. ERCIM
+News, Special Theme: Smart Energy Systems, 92, pp.43-44. ERCIM, 2013.
+
