@@ -64,7 +64,7 @@ Related Work
 
 There is increasing effort in raising awareness for best environmental
 practices in **Green AI**, such as loose estimators like **ML CO2
-Impact**[6] or static analysis plugins like **EcoCode**. Here, we
+Impact** [6] or static analysis plugins like **EcoCode**. Here, we
 present a more in-depth measuring tool that seamlessly integrates with
 an existing ML framework. To understand the architectural design choices
 we needed to make for our proposed solutions, we investigated existing
