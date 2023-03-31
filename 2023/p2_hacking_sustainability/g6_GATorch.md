@@ -1,7 +1,6 @@
 ---
 author: Rover van der Noort, Dajt Mullaj, Martijn Smits, Remy Duijsens
-title: "GATorch: An Energy-Aware PyTorch Extension"
-image: "img/p2_hacking_sustainability/gX_template/cover.png"
+title: 'GATorch: An Energy-Aware PyTorch Extension'
 summary: |
     GATorch is a tool seamlessly integrated with PyTorch that enables ML
     developers to generate an energy consumption report. By attaching your
@@ -60,12 +59,12 @@ provides and discuss relevant design choices. We then show the resulting
 implementation of GATorch, followed by a discussion of its limitations
 and future work.
 
-Related Work {#relatedwork}
+Related Work
 ============
 
 There is increasing effort in raising awareness for best environmental
-practices in \[Green AI\], such as loose estimators like \[ML CO2
-Impact\][6] or static analysis plugins like \[EcoCode\]. Here, we
+practices in **Green AI**, such as loose estimators like **ML CO2
+Impact**[6] or static analysis plugins like **EcoCode**. Here, we
 present a more in-depth measuring tool that seamlessly integrates with
 an existing ML framework. To understand the architectural design choices
 we needed to make for our proposed solutions, we investigated existing
@@ -73,8 +72,8 @@ related work. This section briefly describes the existing popular ML
 frameworks and the different types of energy consumption measurement
 tools it can use. Finally, we identified a gap in the current methods.
 
-Many ML frameworks exist today, but PyTorch is arguably the \[most
-commonly used\]. \[PyTorch 2.0\] was recently released and introduces
+Many ML frameworks exist today, but PyTorch is arguably the **most
+commonly used**. **PyTorch 2.0** was recently released and introduces
 module hooks that allow for code injection into the different layers and
 passes of a user's model. TensorFlow is a direct competitor but does not
 offer the same functionality, which increases the difficulty of
@@ -84,23 +83,23 @@ extensibility as Pytorch.
 
 There also exist several energy consumption measuring applications, but
 most rely on the same features such as using Intel's RAPL and NVIDIA's
-NVML for their data. Firstly, \[CodeCarbon\] is a complete application
+NVML for their data. Firstly, **CodeCarbon** is a complete application
 for measuring applications with longer run times and provides a large
 dashboard with much information about the overall consumption.
-\[Eco2AI\] provides similar measurements and estimates its equivalent
+**Eco2AI** provides similar measurements and estimates its equivalent
 carbon emissions and saves this data to a file [2].
-\[Carbontracker\] is specifically designed for tracking and predicting
+**Carbontracker** is specifically designed for tracking and predicting
 the energy consumption of the training of deep learning models and can
 measure the consumption per epoch [1]. This permits the
 plotting of energy usage in relation to the loss value. However, this
 has not yet been implemented, and each of the beforementioned measuring
 applications introduces a large time overhead when starting or stopping
 measurements and can therefore not be used for smaller measurements.
-\[PyJoules\] is simply a small wrapper around RAPL and NVML, which means
+**PyJoules** is simply a small wrapper around RAPL and NVML, which means
 this application can be used for smaller measurements [9].
 
 We identified in this related work that the current efforts into Green
-AI are small-scale and generalising. Most energy consumption measuring
+AI are small-scale and generalizing. Most energy consumption measuring
 applications work on a system or complete training level. The current
 research is missing an application that can identify energy consumption
 measurements more in-depth by looking at individual system components
@@ -134,9 +133,9 @@ other energy profilers.
 
 Lastly, the library's main goal is to inform ML developers of the energy
 consumption of their model's training. GATorch does this by showing
-relevant visualisations and aggregated scores in a dashboard. GATorch
-exports the graphs and aggregations to \[Tensorboard\], which is a
-commonly used visualisation dashboard for ML workflows. We chose this
+relevant visualizations and aggregated scores in a dashboard. GATorch
+exports the graphs and aggregations to **Tensorboard**, which is a
+commonly used visualization dashboard for ML workflows. We chose this
 tool as ML developers might already use it for plotting other metrics of
 their models and this would then seamlessly integrate with those metrics
 to give them a complete overview. GATorch provides these plots
@@ -156,12 +155,12 @@ consumption value.
 Results
 =======
 
-Our project is publicly available on \[GitHub\] under the \<LICENCE\>.
+Our project is publicly available on [GitHub](https://github.com/GreenAITorch/GATorch) under the MIT license.
 ML developers are invited to use the tool and provide contributions. To
 show the effectiveness of GATorch, we ran an exploratory experiment on a
 Ubuntu 22.04 machine with an NVIDIA RTX 3080, 5th gen Intel CPU and 16GB
-of RAM on the \[FashionMINST\] PyTorch tutorial with 100 epochs (ran
-approximately 30 min). We briefly analyse the generated results.
+of RAM on the **FashionMINST** PyTorch tutorial with 100 epochs (ran
+approximately 30 min). We briefly analyze the generated results.
 
 In Figure 1, we show the default Tensorboard graphs that GATorch
 generates. The first graphs show the average loss per epoch followed by
@@ -179,35 +178,9 @@ fully smoothed lines. This indicates that the energy measurements are
 probably influenced by other background processes, however, it does show
 possible trends and relative comparison for the user.
 
-![Average loss in Joules per epoch without
-smoothing.](media/average_loss_per_epoch.png){width="\textwidth"}
+![figure1](../img/p2_hacking_sustainability/g6_GATorch/figure1.png)
 
-[\[fig:loss\_per\_epoch\]]{#fig:loss_per_epoch
-label="fig:loss_per_epoch"}
-
-![Average energy consumed per unit of loss without
-smoothing.](media/energy_per_loss.png){width="\textwidth"}
-
-[\[fig:energy\_per\_loss\]]{#fig:energy_per_loss
-label="fig:energy_per_loss"}
-
-![Total energy consumed per
-pass.](media/overall_energy_per_pass.png){width="\textwidth"}
-
-[\[fig:energy\_per\_pass\]]{#fig:energy_per_pass
-label="fig:energy_per_pass"}
-
-![Energy consumed on the forward
-pass.](media/energy_per_forward_pass.png){width="\textwidth"}
-
-[\[fig:energy\_per\_forward\_pass\]]{#fig:energy_per_forward_pass
-label="fig:energy_per_forward_pass"}
-
-![Energy consumed on the backward
-pass.](media/energy_per_backward_pass.png){width="\textwidth"}
-
-[\[fig:energy\_per\_backward\_pass\]]{#fig:energy_per_backward_pass
-label="fig:energy_per_backward_pass"}
+![figure2](../img/p2_hacking_sustainability/g6_GATorch/figure2.png)
 
 Figure 3 shows one of the remaining graphs that GATorch can generate,
 which developers can manually integrate with any preferred platform.
@@ -215,19 +188,7 @@ This violin plot can support the developer in critical thinking about
 the used model architecture relative to the energy consumption. Lastly,
 our tool can show the total energy consumption of the experiment.
 
-![Violinplot of the energy consumption of the individual layers, full
-network, and loss
-function.](media/violinplot_energy.png){width="\textwidth"}
-
-[\[fig:violin\_energy\]]{#fig:violin_energy label="fig:violin_energy"}
-
-![Total energy consumption of current
-experiment.](media/total_energy_text_summary.png){width="\textwidth"}
-
-[\[fig:total\_energy\]]{#fig:total_energy label="fig:total_energy"}
-
-[\[fig:overview\_energy\]]{#fig:overview_energy
-label="fig:overview_energy"}
+![figure3](../img/p2_hacking_sustainability/g6_GATorch/figure3.png)
 
 Discussion
 ==========
@@ -249,7 +210,7 @@ significant performance drop while using tools other than PyJoules such
 as CodeCarbon, which seems to be an inherent architectural problem as it
 is not designed for single-function measurements.
 
-At the time this paper was written, \[PyTorch 2.0.0\] had just been
+At the time this paper was written, **PyTorch 2.0.0** had just been
 released, which introduced the built-in backward pre-hook. This allowed
 the solution to independently measure the forward and backward passes of
 each layer. Currently, layers with the same name are aggregated, while
@@ -268,7 +229,7 @@ was expected, future work might investigate this behaviour further in
 order to understand if it is determined by how PyTorch is implemented or
 if it generalizes to all models trained under specific systems.
 
-As mentioned before, \[PyTorch 2.0.0\] is a recent release and it may
+As mentioned before, **PyTorch 2.0.0** is a recent release and it may
 take some time before every ML developer upgrades to this version.
 GATorch relies on functionality released in this version and is
 therefore not compatible with older versions of PyTorch.
@@ -296,7 +257,7 @@ developer with suggestions for better Green AI practices. This allows
 developers or tools to make decisions that reduce energy consumption.
 This could be done by providing automatic action points to the user
 based on the measured data that could reduce energy consumption by
-following the \[Green AI best practices\]. For example, it can be used
+following the **Green AI best practices**. For example, it can be used
 to remove a layer that uses a higher-than-usual amount of energy, while
 the accuracy improvement gained by it is negligible. Alternatively, it
 would be possible to define an earlier stopping point, in case the
