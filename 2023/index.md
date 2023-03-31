@@ -68,11 +68,11 @@ By the end of this course you will be able to:
  7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.  [📊Slides][slides07] <!--[🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
  8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.[📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="hybrid" %}
  9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 10    | 4   | **Lecture.** Approximate Computing for Green Software. <!-- [📊Slides][slides10]. [🎥Recording][recording10] --> {% include tag.html name="hybrid" %}
- 11    | 4   | **Lecture.** Green AI. <!-- [📊Slides][slides11]. [🎥Recording][recording11] --> {% include tag.html name="hybrid" %}
- 12    | 4   | **Project.** Project 2 - Description and kick-off. {% include tag.html name="hybrid" %}
+ 10    | 4   | **Lecture.** Approximate Computing for Green Software. [📊Slides][slides10]. [🎥Recording][recording10] {% include tag.html name="hybrid" %}
+ 11    | 4   | **Lecture.** Green AI. [📊Slides][slides11]. [🎥Recording][recording11] {% include tag.html name="hybrid" %}
+ 12    | 4   | **Project.** Project 2 - Description and kick-off. [Slides][slides12] {% include tag.html name="hybrid" %}
  13    | 5   | **No class (Mar 14)**
- 14    | 5   | **Guest Lecture (Mar 16).** Energy efficiency of neural networks; AI-enabled mobile applications – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. {% include tag.html name="hybrid" %} 
+ 14    | 5   | **Guest Lecture (Mar 16).** The GAISSA project. Towards green AI-based software systems: an architecture-centric approach – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. [📊Slides][slides14]. [🎥Recording][recording14]. {% include tag.html name="hybrid" %} 
  15    | 5   | **Steering Meeting 1.** {% include tag.html name="hybrid" %}
  16    | 6   | **Steering Meeting 2.** {% include tag.html name="hybrid" %}
  17    | 7   | **Steering Meeting 3.** {% include tag.html name="online" %} Project 2 1st Deadline (Mar 31).
@@ -108,7 +108,7 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p1_measuring_software/). **⭐️(new)**
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p1_measuring_software/).
 - **Weight in final grade**: 30%
 - **Steering meeting/formative assessment**: Tuesday, Feb 22
 - **Deadline** Friday, Mar 3
@@ -128,7 +128,9 @@ Below the description of each project.
   - Presentation: 7 min + 5min Q&A
 - **Weight in final grade**: 60% (extra 7.5% for the presentation)
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
-- **Deadline** Tuesday, April 5. (Grace period until April 8).
+- **Deadline** Friday, March 31. (Grace period until April 14).
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p2). **⭐️(new)**
+
  
 
 ## Further reading (optional)
@@ -169,10 +171,10 @@ Below the description of each project.
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/Pl4cZqf3U9RE8Ql
 [slides07]: https://surfdrive.surf.nl/files/index.php/s/HMfPCQswv7SAAFS
 [slides08]: https://surfdrive.surf.nl/files/index.php/s/jxaZHa793YUWOZA
-[slides09]: / 
-[slides12]: /
-[slides14]: /
-[slides15]: /
+[slides10]: https://surfdrive.surf.nl/files/index.php/s/0lQu5cEMEJinEaA
+[slides11]: https://surfdrive.surf.nl/files/index.php/s/uWkwTjtU0EB7pCC
+[slides12]: https://surfdrive.surf.nl/files/index.php/s/5gqMQvB8nhUHqch
+[slides14]: https://surfdrive.surf.nl/files/index.php/s/VWEzPMppnh9351U
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
@@ -180,6 +182,6 @@ Below the description of each project.
 [recording05]: https://surfdrive.surf.nl/files/index.php/s/o9MgZqbKYlR1uuT
 [recording07]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
 [recording08]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
-[recording11]: /
-[recording12]: /
-[recording14]: /
+[recording10]: https://surfdrive.surf.nl/files/index.php/s/YyqYDXK0bsfG6yW
+[recording11]: https://surfdrive.surf.nl/files/index.php/s/tcA4oMzTXG2GFoD
+[recording14]: https://surfdrive.surf.nl/files/index.php/s/i8UWJtppBamFi6P
