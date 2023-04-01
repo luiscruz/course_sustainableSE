@@ -1,9 +1,9 @@
 ---
-author: Rutger Doting, Nils van den Honert, Zeger Mouw
-title: "An web app for understanding energy metrics"
+author: Student1 first and last name, Student2, Student3
+title: "Title of the project"
 image: "img/p2_hacking_sustainability/gX_template/cover.png"
-summary: "There are plenty of tools that can convert between different units of measurement, but none that demonstrate the context of what this unit of measurement means. Therefore, we have built a web app for that purpose."
+summary: "This is a summary with a max of 200 characters; Lorem ipsum dolor sit amet, consectetur adipisicing elit, dos eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
 paper: "papers/gX_template.pdf"
-source: "https://github.com/zegermouw/EnergyConversion"
-website: https://zegermouw.github.io/EnergyConversion/
+source: "https://github.com/luiscruz/course_sustainableSE"
+website: https://luiscruz.github.io/course_sustainableSE/2023/
 ---
