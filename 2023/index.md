@@ -129,7 +129,7 @@ Below the description of each project.
 - **Weight in final grade**: 60% (extra 7.5% for the presentation)
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
 - **Deadline** Friday, March 31. (Grace period until April 14).
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p2). **⭐️(new)**
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p2_hacking_sustainability/). **⭐️(new)**
 
  
 
