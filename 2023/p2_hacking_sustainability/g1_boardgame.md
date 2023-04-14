@@ -1,7 +1,7 @@
 ---
 author: Otto Kaaij, Sara Op den Orth, Cathrine Paulsen, Michelle Schifferstein
-title: "Ticket to Sustainability"
-summary: "This is a summary with a max of 200 characters; Lorem ipsum dolor sit amet, consectetur adipisicing elit, dos eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
-paper: "https://ticket-to-sustainability.tiiny.site/"
-source: "https://github.com/OttoKaaij/Ticket-To-Sustainability/"
+title: "Ticket to Sustainability: A Board Game About Sustainable Software Engineering"
+summary: "Ticket to Sustainability is a board game extension for Ticket to Ride that teaches developers about environmentally sustainable software engineering practices for a variety of areas within computer science. It is both informative and discussion-promoting in nature."
+paper: "https://github.com/OttoKaaij/Ticket-To-Sustainability/blob/main/Report.pdf"
+source: https://github.com/OttoKaaij/Ticket-To-Sustainability/
 ---
