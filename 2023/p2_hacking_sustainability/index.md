@@ -11,10 +11,10 @@ exclude: False
 {% if article.image %}
 <img class="p2-img" src="{{article.image}}"/>
 {% endif %}
-  <strong>{{ article.title }}</strong><br/>
+  <strong><a href="{{ article.url | relative_url }}">{{ article.title }}</a></strong><br/>
 <small>_By {{ article.author }}_.</small>
 <br/>
-<small>{{ article.summary | truncate: 200 }}</small>
+<small>{{ article.summary | truncate: 350 }}</small>
 <br/>
 <small>[Paper]({{article.paper}}).</small>
 {%- if article.website %}
