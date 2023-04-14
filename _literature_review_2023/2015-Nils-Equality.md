@@ -5,7 +5,7 @@ journal: "2015 IEEE fifth international workshop on requirement patterns"
 paper_author: Maryam Al Hinai, Ruzanna Chitchyan
 paper_title: "Building Social Sustainability into Software: Case of Equality"
 year: 2015
-doi: [doi.id](https://doi.org/10.1109/RePa.2015.7407735)
+doi: 10.1109/RePa.2015.7407735
 website: https://ieeexplore.ieee.org/abstract/document/7407735
 abstract: |-
   Equality is an important aspect in todays diverse communities, which plays a significant role in communities social sustainability. This paper looks into modeling equality as a social sustainability dimension using a generic model of sustainability. Patterns of equality requirements are identified in this generic model. This model and respective patterns are then used in software requirements elicitation of a case study.
