@@ -7,6 +7,9 @@ summary: |
     model, the tool automatically tracks the energy consumption of your
     model's training and generates graphs and plots to gain in-depth
     insights into the energy consumption of your model.
+image: "../img/p2_hacking_sustainability/g6_GATorch/thumbnail.png"
+paper: "../paper/g6_GAtorch.pdf"
+website: ""
 source: "https://github.com/GreenAITorch/GATorch"
 documentation: "https://gatorch.readthedocs.io/en/latest/"
 ---
@@ -63,8 +66,7 @@ Related Work
 ============
 
 There is increasing effort in raising awareness for best environmental
-practices in **Green AI**, such as loose estimators like **ML CO2
-Impact** [6] or static analysis plugins like **EcoCode**. Here, we
+practices in [Green AI](https://github.com/daviddao/green-ai), such as loose estimators like [ML CO2 Impact](https://github.com/mlco2/impact/) [6] or static analysis plugins like [EcoCode](https://github.com/green-code-initiative/ecoCode). Here, we
 present a more in-depth measuring tool that seamlessly integrates with
 an existing ML framework. To understand the architectural design choices
 we needed to make for our proposed solutions, we investigated existing
@@ -72,8 +74,7 @@ related work. This section briefly describes the existing popular ML
 frameworks and the different types of energy consumption measurement
 tools it can use. Finally, we identified a gap in the current methods.
 
-Many ML frameworks exist today, but PyTorch is arguably the **most
-commonly used**. **PyTorch 2.0** was recently released and introduces
+Many ML frameworks exist today, but PyTorch is arguably the [most commonly used](https://trends.google.com/trends/explore?geo=US&q=tensorflow,pytorch,scikit-learn). [PyTorch 2.0](https://pytorch.org/get-started/pytorch-2.0/) was recently released and introduces
 module hooks that allow for code injection into the different layers and
 passes of a user's model. TensorFlow is a direct competitor but does not
 offer the same functionality, which increases the difficulty of
@@ -83,19 +84,19 @@ extensibility as Pytorch.
 
 There also exist several energy consumption measuring applications, but
 most rely on the same features such as using Intel's RAPL and NVIDIA's
-NVML for their data. Firstly, **CodeCarbon** is a complete application
+NVML for their data. Firstly, [CodeCarbon](https://github.com/mlco2/codecarbon) is a complete application
 for measuring applications with longer run times and provides a large
 dashboard with much information about the overall consumption.
-**Eco2AI** provides similar measurements and estimates its equivalent
+[Eco2AI](https://github.com/sb-ai-lab/Eco2AI) provides similar measurements and estimates its equivalent
 carbon emissions and saves this data to a file [2].
-**Carbontracker** is specifically designed for tracking and predicting
+[Carbontracker](https://github.com/lfwa/carbontracker) is specifically designed for tracking and predicting
 the energy consumption of the training of deep learning models and can
 measure the consumption per epoch [1]. This permits the
 plotting of energy usage in relation to the loss value. However, this
 has not yet been implemented, and each of the beforementioned measuring
 applications introduces a large time overhead when starting or stopping
 measurements and can therefore not be used for smaller measurements.
-**PyJoules** is simply a small wrapper around RAPL and NVML, which means
+[PyJoules](https://github.com/powerapi-ng/pyJoules) is simply a small wrapper around RAPL and NVML, which means
 this application can be used for smaller measurements [9].
 
 We identified in this related work that the current efforts into Green
@@ -134,7 +135,7 @@ other energy profilers.
 Lastly, the library's main goal is to inform ML developers of the energy
 consumption of their model's training. GATorch does this by showing
 relevant visualizations and aggregated scores in a dashboard. GATorch
-exports the graphs and aggregations to **Tensorboard**, which is a
+exports the graphs and aggregations to [Tensorboard](https://www.tensorflow.org/tensorboard), which is a
 commonly used visualization dashboard for ML workflows. We chose this
 tool as ML developers might already use it for plotting other metrics of
 their models and this would then seamlessly integrate with those metrics
@@ -149,7 +150,7 @@ energy consumption per layer and make choices with that information.
 Another plot GATorch generates is the energy consumption compared to the
 loss value. This could indicate to a developer that the model at a
 certain point does not gain as much performance, while continuously
-using energy. Lastly, for completeness GATorch displays an overall power
+using energy. Lastly, for completeness, GATorch displays an overall power
 consumption value.
 
 Results
@@ -210,7 +211,7 @@ significant performance drop while using tools other than PyJoules such
 as CodeCarbon, which seems to be an inherent architectural problem as it
 is not designed for single-function measurements.
 
-At the time this paper was written, **PyTorch 2.0.0** had just been
+At the time this paper was written, [PyTorch 2.0.0](https://pytorch.org/get-started/pytorch-2.0/) had just been
 released, which introduced the built-in backward pre-hook. This allowed
 the solution to independently measure the forward and backward passes of
 each layer. Currently, layers with the same name are aggregated, while
@@ -222,14 +223,14 @@ learn any of this in-depth information. For instance, the various
 dependencies for energy consumption measurement libraries per system
 components could limit the accuracy of the overall results.
 
-Furthermore the results obtained indicated that during training a model
+Furthermore, the results obtained indicated that during training a model
 consumes the most energy at the start and seems to drop in its
 consumption towards the end of training. Since a more stable energy use
 was expected, future work might investigate this behaviour further in
 order to understand if it is determined by how PyTorch is implemented or
 if it generalizes to all models trained under specific systems.
 
-As mentioned before, **PyTorch 2.0.0** is a recent release and it may
+As mentioned before, [PyTorch 2.0.0](https://pytorch.org/get-started/pytorch-2.0/) is a recent release and it may
 take some time before every ML developer upgrades to this version.
 GATorch relies on functionality released in this version and is
 therefore not compatible with older versions of PyTorch.
