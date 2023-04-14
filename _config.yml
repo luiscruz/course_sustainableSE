@@ -37,7 +37,7 @@ collections:
     directory: 2022/literature_review
   literature_review_2023:
     output: true
-    directory: 2022/literature_review
+    directory: 2023/literature_review
     
 defaults:
   -
@@ -47,6 +47,19 @@ defaults:
       identifier: "p1_measuring_software_2022"
       exclude: true
       layout: blog_post
+  -
+    scope:
+      path: "2023/p1_measuring_software"
+    values:
+      identifier: "p1_measuring_software_2023"
+      exclude: true
+      layout: blog_post
+  -
+    scope:
+      path: "2023/p2_hacking_sustainability"
+    values:
+      identifier: "p2_2023"
+      exclude: true
   -
     scope:
       path: ""
