@@ -9,7 +9,6 @@ summary: |
     insights into the energy consumption of your model.
 image: "../img/p2_hacking_sustainability/g6_GATorch/thumbnail.png"
 paper: "../papers/g6_GATorch.pdf"
-website: ""
 source: "https://github.com/GreenAITorch/GATorch"
 documentation: "https://gatorch.readthedocs.io/en/latest/"
 ---
