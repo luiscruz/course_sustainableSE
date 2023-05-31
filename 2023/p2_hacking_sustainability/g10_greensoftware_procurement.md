@@ -14,5 +14,4 @@ company itself. Additionally, we provide a basic implementation of our framework
 that can already be used for sustainable software procurement."
 paper: "../papers/g10_paper.pdf"
 source: "https://github.com/leondeklerk/SSE/tree/master/project_2"
-website: https://luiscruz.github.io/course_sustainableSE/2023/
 ---
