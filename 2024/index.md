@@ -29,14 +29,14 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 ## Organisation
 
 **Course code**       | [CS4415]
-**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/499381>
+**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/595278>
 **Instructors**       | [Luís Cruz], [June Sallou]
 **Schedule**          |	Mondays 10:45, Wednesdays 13:45, Thursdays 8:45. 🔗 [MyTimetable].
-**Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=nob1cyhto3nstp7muqhahs95nh)
-**Zoom link**        | Link shared on [Brightspace](https://brightspace.tudelft.nl/d2l/home/499381).
+**Mattermost**        | Link shared on [Brightspace](https://brightspace.tudelft.nl/d2l/home/595278).
+**Zoom link**         | Link shared on Mattermost.
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
-**Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in most classes.
+**Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in a case by case scenario.
 **Examination type**  | Group Project 1 (40%); Group Project 2 (60%).
 **Target audience**   |	Students of the [M.Sc. in Computer Science].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
@@ -75,8 +75,8 @@ By the end of this course you will be able to:
        | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
        | 6   | **Project 2 - steering meeting 2.** {% include tag.html name="hybrid" %}
        | 7   | **Project 2 - steering meeting 3.** {% include tag.html name="online" %}
- 19    | 7   | March 28 Final Deadline (Apr 14).
- 20    | 8   | Presentation. (April 4)
+ 19    | 7   | Deadline project 2 – March 28.
+ 20    | 8   | Presentation project 2 – April 4.
  
 ## Assignments
 
@@ -142,7 +142,7 @@ Below the description of each project.
 [MSc in Computer Science]: https://www.tudelft.nl/onderwijs/opleidingen/masters/cs/msc-computer-science
 [Luís Cruz]: https://luiscruz.github.io
 [June Sallou]: https://jnsll.github.io
-[CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=61596
+[CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=64344
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
