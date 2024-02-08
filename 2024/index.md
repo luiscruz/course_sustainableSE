@@ -1,11 +1,13 @@
 ---
 layout: default
 hide_from_navbar: false
-title: 2023
+redirect_from:
+  - /
+title: 2024
 ---
 
 # Sustainable Software Engineering 🌱
-Edition of 2022/23<br/>
+Edition of 2023/24<br/>
 [MSc in Computer Science], [Delft University of Technology]
 
 
@@ -29,13 +31,13 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Course code**       | [CS4415]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/499381>
 **Instructors**       | [Luís Cruz], [June Sallou]
-**Schedule**          |	Tuesdays 8:45, Thursdays 8:45, Fridays 10:45. 🔗 [MyTimetable].
+**Schedule**          |	Mondays 10:45, Wednesdays 13:45, Thursdays 8:45. 🔗 [MyTimetable].
 **Mattermost**        | 🔗 [Sign-up link](https://mattermost.tudelft.nl/signup_user_complete/?id=nob1cyhto3nstp7muqhahs95nh)
 **Zoom link**        | Link shared on [Brightspace](https://brightspace.tudelft.nl/d2l/home/499381).
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in most classes.
-**Examination type**  | Project 1 - Essay (30%); Project 2 - Software Repository and Essay (60%); Presentations (15%).
+**Examination type**  | Group Project 1 (40%); Group Project 2 (60%).
 **Target audience**   |	Students of the [M.Sc. in Computer Science].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
 
@@ -57,45 +59,30 @@ By the end of this course you will be able to:
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01] [🎥Recording][recording01] {% include tag.html name="hybrid" %}
- 2     | 1   | **Lecture.** Social and Individual Sustainability in SE. {% include tag.html name="hybrid" %} [📊Slides][slides02] [🎥Recording][recording02]
- 3     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).  [📊Slides][slides03] {% include tag.html name="hybrid" %}
- 4     | 2   | **Presentation.** Present a summary of a research paper on Social and Individual SE Sustainability. {% include tag.html name="in-person" %}
- 5     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy. [📊Slides][slides05] [🎥Recording][recording05] {% include tag.html name="hybrid" %}
- 6     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
- 7     | 3   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.  [📊Slides][slides07] <!--[🎥Recording part2][recording08] --> {% include tag.html name="hybrid" %}
- 8     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.[📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="hybrid" %}
- 9     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
- 10    | 4   | **Lecture.** Approximate Computing for Green Software. [📊Slides][slides10]. [🎥Recording][recording10] {% include tag.html name="hybrid" %}
- 11    | 4   | **Lecture.** Green AI. [📊Slides][slides11]. [🎥Recording][recording11] {% include tag.html name="hybrid" %}
- 12    | 4   | **Project.** Project 2 - Description and kick-off. [Slides][slides12] {% include tag.html name="hybrid" %}
- 13    | 5   | **No class (Mar 14)**
- 14    | 5   | **Guest Lecture (Mar 16).** The GAISSA project. Towards green AI-based software systems: an architecture-centric approach – [Silverio Martínez-Fernández](https://silverio-martinez.staff.upc.edu), UPC-BarcelonaTech. [📊Slides][slides14]. [🎥Recording][recording14]. {% include tag.html name="hybrid" %} 
- 15    | 5   | **Steering Meeting 1.** {% include tag.html name="hybrid" %}
- 16    | 6   | **Steering Meeting 2.** {% include tag.html name="hybrid" %}
- 17    | 7   | **Steering Meeting 3.** {% include tag.html name="online" %} Project 2 1st Deadline (Mar 31).
- 18    | 8   | Holidays
- 19    | 9   | Project 2 Final Deadline (Apr 14).
- 20    | 10  | Presentation. (April 19)
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>  {% include tag.html name="hybrid" %}
+ 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).   {% include tag.html name="hybrid" %}
+ 3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy. {% include tag.html name="hybrid" %}
+ 4     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
+ 5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. {% include tag.html name="hybrid" %}
+ 6     | 2   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="hybrid" %}
+ 7     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="online/in-person" %}
+ 8     | 3   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
+ 9     | 3   | **Guest Lecture (Feb 28).** Green Fintech, Roberto Vergallo. {% include tag.html name="hybrid" %} 
+       | 3   | Deadline for project 1 Friday, March 1.
+ 10    | 4   | **Project.** Project 2 - Description and kick-off. [Slides][slides12] {% include tag.html name="hybrid" %}
+ 11    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
+ 12    | 4   | **Guest Lecture (Mar 7).**  {% include tag.html name="in-person" %}  
+       | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
+       | 6   | **Project 2 - steering meeting 2.** {% include tag.html name="hybrid" %}
+       | 7   | **Project 2 - steering meeting 3.** {% include tag.html name="online" %}
+ 19    | 7   | March 28 Final Deadline (Apr 14).
+ 20    | 8   | Presentation. (April 4)
  
 ## Assignments
 
 Below the description of each project.
 
-### 📚 Literature Review
-
-- Groups of `TBD`
-- Select 1 academic paper that talks about social or individual sustainability in the context of software engineering.
-  - Google Scholar, DBLP
-- Double check with the lecturer whether your selected paper is good enough (use mattermost).
-- Write a short summary about it (min 200 words; max 500).
-- Prepare a presentation for class 4 (Feb 21).
-  - 7 min + 3 min Q&A.
-- Presentation is 7.5% of the grade. (But you can recover in the presentation of project 2)
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/literature_review.html).
-- **Deadline** Tuesday, Feb 21.
-
-### 🛠 **Project 1** Measuring Software Energy Consumption
+<!-- ### 🛠 **Project 1** Measuring Software Energy Consumption
 {: #project1}
 
 - Goal: Compare energy consumption in common software use cases.
@@ -107,7 +94,7 @@ Below the description of each project.
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
 - Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p1_measuring_software/).
-- **Weight in final grade**: 30%
+- **Weight in final grade**: 40%
 - **Steering meeting/formative assessment**: Tuesday, Feb 22
 - **Deadline** Friday, Mar 3
 
@@ -124,12 +111,12 @@ Below the description of each project.
   - Paper-like article. (Min 4 pages, max 10)
   - Online git repo with open source codebase and/or replication package.
   - Presentation: 7 min + 5min Q&A
-- **Weight in final grade**: 60% (extra 7.5% for the presentation)
+- **Weight in final grade**: 60%
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
 - **Deadline** Friday, March 31. (Grace period until April 14).
 - Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p2_hacking_sustainability/). **⭐️(new)**
 
- 
+  -->
 
 ## Further reading (optional)
 
@@ -156,10 +143,6 @@ Below the description of each project.
 [Luís Cruz]: https://luiscruz.github.io
 [June Sallou]: https://jnsll.github.io
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=61596
-[Stefanos Georgiou]: https://twitter.com/stefanosgeorgi1/
-[Daniel Feitosa]: https://feitosa-daniel.github.io
-[Tim Yarally]: https://www.linkedin.com/in/tim-yarally-64b77412b/?originalSubdomain=nl
-
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
