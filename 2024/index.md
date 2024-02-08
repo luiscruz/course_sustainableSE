@@ -69,9 +69,9 @@ By the end of this course you will be able to:
  8     | 3   | **Lecture.** Green AI. {% include tag.html name="hybrid" %}
  9     | 3   | **Guest Lecture (Feb 28).** Green Fintech, Roberto Vergallo. {% include tag.html name="hybrid" %} 
        | 3   | Deadline for project 1 Friday, March 1.
- 10    | 4   | **Project.** Project 2 - Description and kick-off. [Slides][slides12] {% include tag.html name="hybrid" %}
- 11    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
- 12    | 4   | **Guest Lecture (Mar 7).**  {% include tag.html name="in-person" %}  
+ 10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="hybrid" %}
+ 11    | 4   | **Guest Lecture (Mar 6).**  {% include tag.html name="in-person" %}  
+ 12    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
        | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
        | 6   | **Project 2 - steering meeting 2.** {% include tag.html name="hybrid" %}
        | 7   | **Project 2 - steering meeting 3.** {% include tag.html name="online" %}
