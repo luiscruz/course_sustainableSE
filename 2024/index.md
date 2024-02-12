@@ -59,7 +59,7 @@ By the end of this course you will be able to:
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>  {% include tag.html name="hybrid" %}
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]  {% include tag.html name="in-person" %}
  2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).   {% include tag.html name="hybrid" %}
  3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy. {% include tag.html name="hybrid" %}
  4     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
@@ -146,23 +146,6 @@ Below the description of each project.
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
-[slides01]: https://surfdrive.surf.nl/files/index.php/s/29VP8FSestOunF5
-[slides02]: https://surfdrive.surf.nl/files/index.php/s/VY8Qo5y1sCxA36f
-[slides03]: https://surfdrive.surf.nl/files/index.php/s/BiUcTquF78BG8NT
-[slides05]: https://surfdrive.surf.nl/files/index.php/s/Pl4cZqf3U9RE8Ql
-[slides07]: https://surfdrive.surf.nl/files/index.php/s/HMfPCQswv7SAAFS
-[slides08]: https://surfdrive.surf.nl/files/index.php/s/jxaZHa793YUWOZA
-[slides10]: https://surfdrive.surf.nl/files/index.php/s/0lQu5cEMEJinEaA
-[slides11]: https://surfdrive.surf.nl/files/index.php/s/uWkwTjtU0EB7pCC
-[slides12]: https://surfdrive.surf.nl/files/index.php/s/5gqMQvB8nhUHqch
-[slides14]: https://surfdrive.surf.nl/files/index.php/s/VWEzPMppnh9351U
+[slides01]: https://surfdrive.surf.nl/files/index.php/s/BzIZs5KzJVlTnfu
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
-[recording02]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
-[recording03]: https://surfdrive.surf.nl/files/index.php/s/lj2sR93vwLfvGHn
-[recording05]: https://surfdrive.surf.nl/files/index.php/s/o9MgZqbKYlR1uuT
-[recording07]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
-[recording08]: https://surfdrive.surf.nl/files/index.php/s/gOPVeKlcrehDVJF
-[recording10]: https://surfdrive.surf.nl/files/index.php/s/YyqYDXK0bsfG6yW
-[recording11]: https://surfdrive.surf.nl/files/index.php/s/tcA4oMzTXG2GFoD
-[recording14]: https://surfdrive.surf.nl/files/index.php/s/i8UWJtppBamFi6P
