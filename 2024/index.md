@@ -128,6 +128,7 @@ Below the description of each project.
 
 ## Interesting pointers
 
+- [EnergiBridge](https://github.com/tdurieux/energibridge) - Tool to measure energy consumption from almost any device.
 - [Principles of Sustainable Software Engineering](https://principles.green)
 - [CAT community](https://ClimateAction.tech)
 - [Energy Patterns for Mobile Apps](https://tqrg.github.io/energy-patterns/).
