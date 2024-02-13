@@ -60,7 +60,7 @@ By the end of this course you will be able to:
  Class | Week| Summary
 -------| ----|----------|
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]  {% include tag.html name="in-person" %}
- 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).   {% include tag.html name="hybrid" %}
+ 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]   {% include tag.html name="hybrid" %}
  3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy. {% include tag.html name="hybrid" %}
  4     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. {% include tag.html name="hybrid" %}
@@ -148,5 +148,6 @@ Below the description of each project.
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/S5mhezqxTcxwRuo
+[slides02]: https://surfdrive.surf.nl/files/index.php/s/pbNRKD1bhwrO4M8
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
