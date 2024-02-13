@@ -146,6 +146,6 @@ Below the description of each project.
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
-[slides01]: https://surfdrive.surf.nl/files/index.php/s/ihtE8wXkdph1Npj
+[slides01]: https://surfdrive.surf.nl/files/index.php/s/S5mhezqxTcxwRuo
 
 [recording01]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
