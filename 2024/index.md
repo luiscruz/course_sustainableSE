@@ -62,15 +62,15 @@ By the end of this course you will be able to:
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]  {% include tag.html name="in-person" %}
  2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02] [🎥Recording][recording02]  {% include tag.html name="in-person" %}
  3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy.<br/>[📊Slides][slides03] {% include tag.html name="in-person" %}
- 4     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
+ 4     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. {% include tag.html name="in-person" %}
  6     | 2   | **Guest Lecture (Feb 22).** Green Fintech, Roberto Vergallo. {% include tag.html name="in-person" %} 
- 7     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="in-person" %}
+ 7     | 3   | **Project.** [Project 1](#project1) - steering meeting. {% include tag.html name="in-person" %}
  8     | 3   | **Lecture.** Green AI. {% include tag.html name="in-person" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="in-person" %}
        | 3   | Deadline for project 1 Friday, March 1.
  10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="hybrid" %}
- 11    | 4   | **Guest Lecture (Mar 6).**  {% include tag.html name="in-person" %}  
+ 11    | 4   | **Guest Lecture (Mar 6).** Energy-aware hardware, [Nergis Tömen]. {% include tag.html name="in-person" %}  
  12    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
        | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
        | 6   | **Project 2 - steering meeting 2.** {% include tag.html name="hybrid" %}
@@ -82,7 +82,7 @@ By the end of this course you will be able to:
 
 Below the description of each project.
 
-<!-- ### 🛠 **Project 1** Measuring Software Energy Consumption
+### 🛠 **Project 1** Measuring Software Energy Consumption
 {: #project1}
 
 - Goal: Compare energy consumption in common software use cases.
@@ -93,12 +93,14 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p1_measuring_software/).
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2024/p1_measuring_software/).
+  - Blog-style report (markdown, approx 2500 words).
+  - Replication package.
 - **Weight in final grade**: 40%
-- **Steering meeting/formative assessment**: Tuesday, Feb 22
-- **Deadline** Friday, Mar 3
+- **Deadline** Friday, Mar 1
 
 
+<!--
 ### 🛠 Project 2 – Hacking Sustainability
 
 - **Goal:** Solve a Sustainable Software Engineering problem.
@@ -144,6 +146,8 @@ Below the description of each project.
 [Luís Cruz]: https://luiscruz.github.io
 [June Sallou]: https://jnsll.github.io
 [CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=64344
+
+[Nergis Tömen]:https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/people/nergis-toemen
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
 
