@@ -60,14 +60,14 @@ By the end of this course you will be able to:
  Class | Week| Summary
 -------| ----|----------|
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]  {% include tag.html name="in-person" %}
- 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]   {% include tag.html name="in-person" %}
+ 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02] [🎥Recording][recording02]  {% include tag.html name="in-person" %}
  3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy.<br/>[📊Slides][slides03] {% include tag.html name="in-person" %}
  4     | 2   | **Project.** Project 1 - steering meeting and formative assessment. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. {% include tag.html name="in-person" %}
- 6     | 2   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="in-person" %}
+ 6     | 2   | **Guest Lecture (Feb 22).** Green Fintech, Roberto Vergallo. {% include tag.html name="in-person" %} 
  7     | 3   | **Project.** Project 1 - steering meeting. {% include tag.html name="in-person" %}
  8     | 3   | **Lecture.** Green AI. {% include tag.html name="in-person" %}
- 9     | 3   | **Guest Lecture (Feb 28).** Green Fintech, Roberto Vergallo. {% include tag.html name="hybrid" %} 
+ 9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="in-person" %}
        | 3   | Deadline for project 1 Friday, March 1.
  10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="hybrid" %}
  11    | 4   | **Guest Lecture (Mar 6).**  {% include tag.html name="in-person" %}  
@@ -151,4 +151,5 @@ Below the description of each project.
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/pbNRKD1bhwrO4M8
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/2MA4dOqfkkh0ahZ
 
-[recording02]: https://surfdrive.surf.nl/files/index.php/s/n0D3PW0sLJ3Sk3K
+[recording02]: https://surfdrive.surf.nl/files/index.php/s/KMHng2kLIfJZckB
+[recording03]: https://surfdrive.surf.nl/files/index.php/s/ahRF66cM1ZnW1k9
