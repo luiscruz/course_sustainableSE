@@ -3,15 +3,14 @@ author: Student1 first and last name, Student2, Student3
 title: "Title of the template blog"
 image: "img/blog/2021-08-20/og_image.png"
 date: 03/03/2022
-summary: "abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-bibtex: |-
-  @misc{cruz2021green,
-    title = {Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments},
-    author = {Lu\'{i}s Cruz},
-    year = {2021},
-    howpublished={\url{http://luiscruz.github.io/2021/10/10/scientific-guide.html}},
-    note = {Blog post.}
-  }
+summary: |-
+  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+  culpa qui officia deserunt mollit anim id est laborum.
 ---
 
 Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
