@@ -61,7 +61,7 @@ By the end of this course you will be able to:
 -------| ----|----------|
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]  {% include tag.html name="in-person" %}
  2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02] [🎥Recording][recording02]  {% include tag.html name="in-person" %}
- 3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy.<br/>[📊Slides][slides03] {% include tag.html name="in-person" %}
+ 3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy.<br/>[📊Slides][slides03] [🎥Recording][recording03]  {% include tag.html name="in-person" %}
  4     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. {% include tag.html name="in-person" %}
  6     | 2   | **Guest Lecture (Feb 22).** Green Fintech, Roberto Vergallo. {% include tag.html name="in-person" %} 
