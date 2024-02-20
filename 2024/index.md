@@ -122,6 +122,7 @@ Below the description of each project.
 
 ## Further reading (optional)
 
+- Cruz, L., de Bekker, P. (2023) [All you need to know about Energy Metrics in Software Engineering](https://luiscruz.github.io/2023/05/13/energy-units.html).
 - Wohlin, C., Runeson, P., Höst, M., Ohlsson, M. C., Regnell, B., & Wesslén, A. (2012). Experimentation in software engineering. Springer Science & Business Media.
 - Cruz, L., & Abreu, R. (2017, May). Performance-based guidelines for energy efficient mobile applications. In 2017 IEEE/ACM 4th International Conference on Mobile Software Engineering and Systems (MOBILESoft) (pp. 46-57). IEEE.
 - Cruz, L., & Abreu, R. (2019). [Catalog of energy patterns for mobile applications](https://arxiv.org/abs/1901.03302). Empirical Software Engineering, 24(4), 2209-2235.
