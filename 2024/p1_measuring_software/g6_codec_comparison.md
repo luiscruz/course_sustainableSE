@@ -65,3 +65,11 @@ The `test.ps1` script automates the process of measuring energy consumption for 
 - **OS**: Microsoft Windows 10 Home
 - **Architecture**: 64-bit
 - **Version**: 10.0.19045
+
+## Addressing Experimental Variance in Codec Energy Consumption Analysis
+
+During the first execution of our experiment, we encountered challenges that led to inconclusive data. The experiment included playing 1 minute of video followed by a 1-minute cooldown period, across 90 iterations—30 for each codec, shuffled to prevent systematic bias. However, analysis revealed excessive variance with negligible differences in mean energy consumption between codecs.
+
+Investigating the data, we found out that the 1-minute cooldown was not enough. Consecutive iterations began on the elevated energy consumption of the previous test, skewing results. To mitigate this, we considered extending the cooldown to 5 minutes. This change would have increased the total experiment duration to approximately 9 hours, which we believed to be not feasible for the scope of this project.
+
+In the end, we decided for a modified approach: 1 minute of video playback followed by a 5-minute cooldown, done 10 times for each codec. This resulted in a total of 30 iterations and an overall experiment duration of 3 hours. While this adjustment significantly reduced the variance, it also introduced a limitation due to the reduced number of measurements per codec. We acknowledge this trade-off as a constraint of the project. Future research with less time limitations could expand on our findings by conducting a more extensive experiment over a longer period.
