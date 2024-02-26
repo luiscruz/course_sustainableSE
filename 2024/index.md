@@ -64,7 +64,7 @@ By the end of this course you will be able to:
  3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy.<br/>[📊Slides][slides03] [🎥Recording][recording03]  {% include tag.html name="in-person" %}
  4     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment. {% include tag.html name="in-person" %}
  5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides05]  {% include tag.html name="in-person" %}
- 6     | 2   | **Guest Lecture (Feb 22).** Green Fintech, Roberto Vergallo. {% include tag.html name="in-person" %} 
+ 6     | 2   | **Guest Lecture (Feb 22).** "Following the Sun" to Mitigate the Carbon Footprint of Training AI Algorithms: is it Worth the Price?. [📊Slides][slides06] {% include tag.html name="in-person" %} 
  7     | 3   | **Project.** [Project 1](#project1) - steering meeting. {% include tag.html name="in-person" %}
  8     | 3   | **Lecture.** Green AI. {% include tag.html name="in-person" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="in-person" %}
@@ -156,6 +156,7 @@ Below the description of each project.
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/pbNRKD1bhwrO4M8
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/2MA4dOqfkkh0ahZ
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/yF5xeUhKwswqTgf
+[slides06]: https://surfdrive.surf.nl/files/index.php/s/92ccqZvWuaKiBnG
 
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/KMHng2kLIfJZckB
 [recording03]: https://surfdrive.surf.nl/files/index.php/s/ahRF66cM1ZnW1k9
