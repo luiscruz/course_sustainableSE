@@ -1,6 +1,6 @@
 ---
-author: Student1 first and last name, Student2, Student3
-title: "Title of the template blog"
+author: Mitali Patil, Pia A, David Vos
+title: "Is Notion "Greener" on Web browser or Desktop?"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 03/03/2022
 summary: |-
