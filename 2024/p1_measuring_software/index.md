@@ -6,7 +6,7 @@ exclude: False
 # Measuring Software Energy Consumption
 
 {% for article in site.pages %}
-    {% if article.identifier == 'p1_measuring_software_2023' %}
+    {% if article.identifier == 'p1_measuring_software_2024' %}
     {% if article != page %}
   <strong><a href="{{ article.url | relative_url }}">{{ article.title }}</a></strong><br/>
 <!-- <small>Posted on {{article.date | date_to_string}}.</small><br/> -->
@@ -41,7 +41,7 @@ To add a new article, follow the instructions below:
 
 Before submitting the pull request, you should test whether your file is rendering properly in the website. The easiest way to check it is by running the docker container, as instructed in the Github Readme.
 
-Your page should be listed here: http://localhost:4000/course_sustainableSE/2023/literature_review
+Your page should be listed here: http://localhost:4000/course_sustainableSE/2024/p1_measuring_software
 
 If you don't want to deal with jekyll, you can do it the slow and expensive way: 1) enable *github pages* in your fork repo 2) check your the deployed page. (I don't recommend it, though)
 
