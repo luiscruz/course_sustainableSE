@@ -1,7 +1,7 @@
 ---
 author: Student1 first and last name, Student2, Student3
 title: "Title of the template blog"
-image: "img/blog/2021-08-20/og_image.png"
+image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 03/03/2022
 summary: |-
   abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,

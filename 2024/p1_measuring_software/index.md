@@ -34,7 +34,7 @@ To add a new article, follow the instructions below:
 1. Fork the repo of the website on Github: <https://github.com/luiscruz/course_sustainableSE/>
 2. Create a new markdown file inside the directory `2024/p1_measuring_software`
   - Use the following filename format: `g<group_number>_<1/2meaningful_keywords>.md`
-  - Use the file `g8_template.md` has a template
+  - Use the file `gX_template.md` has a template
   - If you want to add images, add it to `2024/img/p1_measuring_software/g<group_number>_<1/2meaningful_keywords>/`
 3. Commit, Push.
 4. Submit a pull request.
