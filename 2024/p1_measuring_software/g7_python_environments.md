@@ -83,7 +83,7 @@ Total Number of Cores: 8 (4 performance and 4 efficiency)
 Type: Built-In Retina LCD \
 Resolution: 2560x1600 Retina  
 
-**Steps to obtain unbiased data**
+**Steps to obtain unbiased data** \
 In order to minimize competing tasks, the following steps are taken:
 * All other applications are closed. It is also ensured that no background tasks are running.
 * Notifications are turned off
@@ -94,7 +94,7 @@ In order to minimize competing tasks, the following steps are taken:
 * Order of execution is shuffled
 * There is one minute of sleep time between executions
 
-**Experiment Automation**
+**Experiment Automation** \
 Automation is done using a shell script found [here](<insert github link> "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Prerequisites for running the experiment are given below:
 * Energibridge setup
 * Python version : 
@@ -103,7 +103,7 @@ Automation is done using a shell script found [here](<insert github link> "exec.
 * Open project in pycharm and add ```main.py``` to Pycharm > Preferences > Tools > Startup tasks
 This step is required to ensure that the code runs on startup in PyCharm.
 
-**Energy Measurement**
+**Energy Measurement** \
 EnergiBridge is used to collect resource usage data. It uses LibreHardwareMonitor and measures CPU frequency, CPU usage, System power and Memory usage.
 
 ## Future Work
