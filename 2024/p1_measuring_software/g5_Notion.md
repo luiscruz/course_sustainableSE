@@ -1,54 +1,78 @@
 ---
 author: Mitali Patil, Pia A, David Vos
-title: "Is Notion "Greener" on Web browser or Desktop?"
-image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 03/03/2022
+title: Is Notion "Greener" on Web browser or Desktop?
+date: 27/02/2024
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
+Primarily we see if its energy-efficient to use Notion on desktop or on Web Browser. 
 ---
 
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+As students we use various note taking softwares often, but which software is an environmantally conscious choice? In this blogpost we answer this question by comparing the energy consumption between the desktop version and the web version of notion. We present arguments on why one might be a better choice than the other.
 
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
+At TU Delft many students create, collaborate and organise their notes on Notion. This can be attributed to the fact that Notion allows for creating databases, integration with google drive, github and its use of KaTeX library to render math equations.
+
+While sustainiabilty might not be the integral aspect of the Notion software we can make it an afterthought and use it in a manner where we reduce overall energy consumption or save your laptops energy.
+
+RQ : Is there a diffrence in energy consumption of Notion on desktop vs browser.
+
+Methodology :
+We conducted the same experiment (login to logout and just making a database/creating an empty page) on two different modes of operation of notion, one mode being desktop and the other mode being notions web application on chrome web browser. We are using the cornell note system template as a use case for both the modes. We have tried to include all the basic features that users usually use on notion in the workflow pipeline.
+The experiment flow for notion is :
+open Desktop app on fullscreen -> login using google sign in option(we created a dummy account for this experiment) -> create a new page using the cornell system template -> write a page title with some basic text -> make a todo list -> ..............#fill it up#...-> write a math equation -> write a piece of code -> check a todo -> logout
+
+We ran an automated script to open notion on desktop and the web version on chrome.
+Each of it was run 30 times and to prevent the order of experiments influencing the resulting measurements, the experiments were randomly shuffled.
+For each experiment, we took the following measurements:.............
+
+In addition to the experiment measurements, we also provide a baseline measurement to give an idea of how background processes impact the measurements. The baseline measurement is a 60 second measurement with the same settings as in the experimental setup but with no programs open except background processes.
+
+Experimental set up :
+We conducted the experiments on MacBook Air M1 Laptop with 8GB RAM running macOS Sanoma 14.2.1 (23C71). The specific software used for the experiment is:
+| Software      | Vesrion |
+|---------------|---------|
+| Notion Desktop| 3.2.1     |
+| Google Chrome Browser| 122.0.6261.69     |
+
+The energy consumption was measured using [EnergiBridge](https://github.com/tdurieux/EnergiBridge)
+
+Before executing the experiments it is important to record the state of the system under test so that the state can be kept as consistent as possible between experiments. In addition to the hardware and software specifications above, we made sure that the laptop was in the following state to minimize confounding factors:
+
+* Stable Wifi6 Connection with average throughput of 250mbps.
+* Notifications turned off 
+* Power cable plugged in 
+* Screen brightness set to 100 %
+* No applications/programs/services running in the background. 
+
+Since hardware temperature affects the energy consumption among the experiment runs which impacts the results, we set up a warm up routine with a dummy task of calculating fibonnaci sequence for 30 seconds to minimise the temperature difference. 
+The experiment structure was as follows :
+
+1. warm up CPU
+2. Shuffle and run 60 iterations(30 for desktop experiment and 30 for chrome broswer experiment each)
+    1. Start measuring 
+    2. Start Notion Workflow (mentioned above) using an automated script 
+    3. Stop Notion Workflow and Logout(also automated)
+    4. Stop Measuring
+    5. Wait for 30 seconds
+    6. Delete the current created note page
+    7. Wait for 30 seconds
+
+Experiment :
+assumed that login id and passowrd is already set up 
 
 
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
 
---- 
-#### 👉 Note 1:
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
+Results :
+graphs
 
---- 
+Replication:
+link to personal repo
+everything is automated ****
 
-## Unbiased Energy Data ⚖️
+discussion:
+practical implications.
 
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
+Limitation:
+worth noting the response time on web vs desktop ,
+accesibililty to online vs offline features
 
-### Zen mode 🧘🏾‍♀️
-
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
-
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
-
-### Freeze your settings 🥶
-
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
-
----
-
-### 
-
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
-
+Conclusion
