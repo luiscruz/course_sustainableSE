@@ -106,6 +106,8 @@ This step is required to ensure that the code runs on startup in PyCharm.
 **Energy Measurement**
 EnergiBridge is used to collect resource usage data. It uses LibreHardwareMonitor and measures CPU frequency, CPU usage, System power and Memory usage.
 
+## Future Work
+As part of future work, bigger datasets can be used for data analysis to emulate real world scenarios. In this experiment, we only used smaller datasets of sizes ranging approximately from 1 to 5 GB. Moreover, we have only used the pandas library in the Python code. In the future, the energy consumption of a wider variety of libraries and operations could be measured and compared. These steps would give us a more accurate picture of the energy consumption of data analysis scenarios that are employed in real-world software use cases. The code can also be run on different machines to investigate if that impacts the results. Lastly, one could argue that running code is not the only action a software engineer performs. A substantial amount of time is spent in developing and debugging software systems. Thus, in the future, the entire process of writing, debugging, and running the code can be simulated to measure energy consumption.
 
 ### References
 [1]:[TIOBE Index](https://www.tiobe.com/tiobe-index/) \
