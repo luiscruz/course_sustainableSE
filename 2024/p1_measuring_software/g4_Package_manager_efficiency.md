@@ -29,7 +29,16 @@ Although npm and yarn have a lot of overlap in functionality, they each have the
 
 ### Docker containers for isolated experimentation
 
+In the context of comparing power consumption during package installation with different package managers, the use of an isolated environment is crutial. The isolated environment that provides reliability since it ensures that the environment is consistent across runs. Additionally, since difference package managers can rely on different versions of dependencies, an isolated environment helps to avoid conflicts between the different requirements and dependencies.
+
+Docker Containers provide a lightweight and isolated environment for running the experiments. Each package manager (npm and yarn) is installed within a separate Docker container to ensure independence and avoid interference. Experiments involve installing and uninstalling packages using npm and yarn.
+This process involves specifying a package, initiating the installation process, and recording relevant metrics such as the time taken for installation and uninstallation, the energy and the power consumption for the procedure.The experiments are run 30 times for each package manager. Running the experiment 30 times provides more robust results and helps account for variability. The process repetition result reliability by encompassing average performance and revealing potential patterns or trends.
+
+
 ### Shell script for automated experimentation
+
+The experiment runs using the build.sh file (or windows-build.bat for Windows). This script has been created to automate the experimentation by buulding the docker images and running the experiments for both package managers. Automating experiments using scripts ensures consistency since all the experiments are guaranteed to conduct with the same set of instructions and parameters. Additionally, it is efficient because it allows us to run a large number of trials without manual intervention. For the same reason it also time-saving when there is need for a lot of trials.
+
 
 ## **Results**
 
@@ -77,6 +86,6 @@ In this experiment, the normal distribution test showed that the time and energy
 
 The results of the test show that there is a statistically significant difference between npm and yarn in terms of time and energy consumption, implying that the two perform differently in these areas and that this difference is statistically significant. However, in terms of power usage, the difference between the two is not statistically significant, indicating that as far as power consumption is concerned, they perform similarly and there is no significant difference.
 
-### Are teh differences practically significant?
+### Are the differences practically significant?
 
 ## **Conclusion**
