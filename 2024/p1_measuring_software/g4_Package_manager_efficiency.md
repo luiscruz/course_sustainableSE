@@ -37,8 +37,8 @@ This process involves specifying a package, initiating the installation process,
 
 ### Shell script for automated experimentation
 
-The experiment runs using the build.sh file (or windows-build.bat for Windows). This script has been created to automate the experimentation by buulding the docker images and running the experiments for both package managers. Automating experiments using scripts ensures consistency since all the experiments are guaranteed to conduct with the same set of instructions and parameters. Additionally, it is efficient because it allows us to run a large number of trials without manual intervention. For the same reason it also time-saving when there is need for a lot of trials.
-
+The experiment runs using the build.sh file (or windows-build.bat for Windows). This script has been created to automate the experimentation by buulding the docker images and running the experiments for both package managers. Additionally, the script runs the images using '.json' files that contain the dependencies ensuring consistency across different machines and environments minimizing issues related to dependencies or system variations.
+ Automating experiments using scripts ensures consistency since all the experiments are guaranteed to conduct with the same set of instructions and parameters. Additionally, it is efficient because it allows us to run a large number of trials without manual intervention. Finally, the script writes a '.csv' file for each of the two experiments outputs (one for npm and one for yarn), which resuces the probability of human error if this procedure was to be executed manually.
 
 ## **Results**
 
