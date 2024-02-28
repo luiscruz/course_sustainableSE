@@ -14,7 +14,7 @@ summary: |-
 
 Software systems are becoming larger and more complex as time passes, however, so does the energy consumption of these ever-growing systems. Software development accounted for 150 TWh of energy use in 2023 ([Sharma, 2023]), representing an increase of approximately 23% each year. In our endeavour to have a more environmentally sustainable IT sector, we must also take a look at it's energy consumption through development computation.
 
-In this project, we tackled what is some of the most used functionality in software development, package installation, and compare two different tools on their energy efficiency. When it comes to software development, no language is more used (and ironically despised) than JavaScript ([Vailshery, 2024]). The most popular package managers for JavaScript are [`npm`] and [`yarn`]. We ran package installation experiments to determine which of the two is more energy efficient. 
+In this project, we tackled what is some of the most used functionality in software development, package installation, and compare two different tools on their energy efficiency. When it comes to software development, no language is more used (and ironically despised) than JavaScript ([Vailshery, 2024]). The most popular package managers for JavaScript are [`npm`] and [`yarn`]. We ran package installation experiments to determine which of the two is more energy efficient. The setup for the automated experiment can be found in the following [repository].
 
 We have found that ... TODO
 
@@ -105,3 +105,5 @@ The results of the test show that there is a statistically significant differenc
 [`yarn`]: <https://yarnpkg.com/>
 
 [Shapiro-Wilk]: <10.1093/biomet/52.3-4.591>
+
+[repository]: <https://github.com/MissingCurlyBracket/npm-VS-yarn-Energy-Efficiency-Experiment>
