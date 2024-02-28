@@ -72,7 +72,7 @@ Name: MacBook Air (Model Identifier: MacBookAir10,1) \
 System Firmware Version: 7459.121.3 \
 OS Loader Version: 7459.121.3 \
 Chipset Model: Apple M1 \
-Total Number of Cores: 7 \ 
+Total Number of Cores: 7 \
 Vendor: Apple (0x106b) \
 Metal Family: Supported, Metal GPUFamily Apple 7 \
 RAM: 8 GB LPDDR4 
@@ -80,7 +80,7 @@ RAM: 8 GB LPDDR4
 Type: Built-In \
 Total Number of Cores: 8 (4 performance and 4 efficiency) 
 * **Display** \
-Type: Built-In Retina LCD \ 
+Type: Built-In Retina LCD \
 Resolution: 2560x1600 Retina  
 
 **Steps to obtain unbiased data**
