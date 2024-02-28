@@ -69,7 +69,7 @@ By the end of this course you will be able to:
  8     | 3   | **Lecture.** Green AI. [📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="in-person" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="in-person" %}
        | 3   | Deadline for project 1 Friday, March 1.
- 10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="hybrid" %}
+ 10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="in-person" %}
  11    | 4   | **Guest Lecture (Mar 6).** Energy-aware hardware, [Nergis Tömen]. {% include tag.html name="in-person" %}  
  12    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
        | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
