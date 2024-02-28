@@ -23,7 +23,7 @@ The Python code is run on 3 environments:
 * PyCharm
 * Jupyter Notebook
 
-<img src="../img/p1_measuring_software/g7_python_environments/python_logo.png" alt="Python Logo" width="150"/><img src="../img/p1_measuring_software/g7_python_environments/pycharm_logo.png" alt="Pycharm Logo" width="150"/><img src="../img/p1_measuring_software/g7_python_environments/jupyter_logo.png" alt="Jupyter Logo" width="150"/>
+<img src="../img/p1_measuring_software/g7_python_environments/python_logo.png" alt="Python Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/pycharm_logo.png" alt="Pycharm Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/jupyter_logo.png" alt="Jupyter Logo" width="180"/>
 
 
 The motivation is to find which of the environment is most energy efficient for data processing and while keeping in mind the trade-offs of functionalities they offer. Link to the repository can be found [here](<insert github link> "code_repository").
@@ -67,7 +67,7 @@ Python code can be found [here](<insert github link> "main.py").
 **Machine Specifications** \
 The experiment was run on a MacBook Air. 
 
-* **Model** 
+* **Model**  \
 Name: MacBook Air (Model Identifier: MacBookAir10,1) \
 System Firmware Version: 7459.121.3 \
 OS Loader Version: 7459.121.3 \
@@ -75,13 +75,13 @@ Chipset Model: Apple M1 \
 Total Number of Cores: 7 \ 
 Vendor: Apple (0x106b) \
 Metal Family: Supported, Metal GPUFamily Apple 7 \
-RAM: 8 GB LPDDR4 \
-* **Graphics Processing Unit (GPU)**
+RAM: 8 GB LPDDR4 
+* **Graphics Processing Unit (GPU)** \
 Type: Built-In \
-Total Number of Cores: 8 (4 performance and 4 efficiency) \
-* **Display**
+Total Number of Cores: 8 (4 performance and 4 efficiency) 
+* **Display** \
 Type: Built-In Retina LCD \ 
-Resolution: 2560x1600 Retina \ 
+Resolution: 2560x1600 Retina  
 
 **Steps to obtain unbiased data**
 In order to minimize competing tasks, the following steps are taken:
