@@ -66,10 +66,10 @@ By the end of this course you will be able to:
  5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides05]  {% include tag.html name="in-person" %}
  6     | 2   | **Guest Lecture (Feb 22).** "Following the Sun" to Mitigate the Carbon Footprint of Training AI Algorithms: is it Worth the Price?. [📊Slides][slides06] {% include tag.html name="in-person" %} 
  7     | 3   | **Project.** [Project 1](#project1) - steering meeting. {% include tag.html name="in-person" %}
- 8     | 3   | **Lecture.** Green AI. {% include tag.html name="in-person" %}
+ 8     | 3   | **Lecture.** Green AI. [📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="in-person" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.  {% include tag.html name="in-person" %}
        | 3   | Deadline for project 1 Friday, March 1.
- 10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="hybrid" %}
+ 10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="in-person" %}
  11    | 4   | **Guest Lecture (Mar 6).** Energy-aware hardware, [Nergis Tömen]. {% include tag.html name="in-person" %}  
  12    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
        | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
@@ -157,6 +157,9 @@ Below the description of each project.
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/2MA4dOqfkkh0ahZ
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/yF5xeUhKwswqTgf
 [slides06]: https://surfdrive.surf.nl/files/index.php/s/92ccqZvWuaKiBnG
+[slides08]: https://surfdrive.surf.nl/files/index.php/s/7MGFZTYjKsPEtvm
+[slides09]: https://surfdrive.surf.nl/files/index.php/s/8J8V9gLTtHIQsJZ
 
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/KMHng2kLIfJZckB
 [recording03]: https://surfdrive.surf.nl/files/index.php/s/ahRF66cM1ZnW1k9
+[recording08]: https://surfdrive.surf.nl/files/index.php/s/GEk7GXs6PWl4wka
