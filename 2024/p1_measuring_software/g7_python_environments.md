@@ -3,7 +3,7 @@ author: Smruti Kshirsagar, Esha Dutta, Giovanni Fincato de Loureiro
 title: "Comparing Energy Consumptions of Python Execution Environments"
 date: 28/02/2024
 summary: |-
-  abstract 
+  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools allowing for comprehensive data analysis workflows. Additionally, both have extensive documentation and tutorials available online, and integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc.), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to actually run the Python code on. We delve into this matter by comparing energy usage of Python CLI, PyCharm using virtual environment and Jupyter Notebook. We find that .... 
 ---
 
 ## Introduction
