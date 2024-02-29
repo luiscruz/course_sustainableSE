@@ -111,7 +111,6 @@ EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMo
 ## Results
 
 We have created three violin plots for our results which correspond to the three data sizes. These plots visualize the power consumption for each run in Watts for each of the three environments. \
-
 <img src="../img/p1_measuring_software/g7_python_environments/eighth_violin_plot.png" alt="Violin Plot 1"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_violin_plot.png" alt="Violin Plot 2"/>
 <img src="../img/p1_measuring_software/g7_python_environments/half_violin_plot.png" alt="Violin Plot 3"/>
 
@@ -120,25 +119,22 @@ We have also created bar graphs to compare the mean power consumption. \
 <img src="../img/p1_measuring_software/g7_python_environments/half_bar_chart.png" alt="Bar Plot 3"/>
 
 
-In each of the following sections, we will discuss the power consumption of the three environments. \
+In each of the following sections, we will discuss the power consumption of the three environments. 
 
 ### PyCharm
 
 On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.866, 0.721, and 0.793 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. PyCharm consistently consumes highest power while analysing data for all the three data sizes. \
-
 PyCharm, like many integrated development environments (IDEs), runs multiple background processes such as indexing and version control integration. These processes can consume CPU, memory, and disk I/O, contributing to higher energy consumption. PyCharm also performs various code analysis and inspections in real-time to provide features like code completion, error highlighting, and code suggestions. These features require computational resources and can contribute to increased energy consumption.
 
 ### Jupyter Notebook
 
 On performing Shapiro-Wilk tests for the data collected for Jupyter Notebook for the three data sizes, we get p-values of 0.08, 0.069 and 0.167 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. Jupyter Notebook consumes significantly less power than PyCharm for all three data sizes. \
-
 In the Jupyter notebook, Jupyter Notebook runs a Python kernel in the background, which executes code cells and manages the session. The interface runs on Google Chrome. Jupyter also does not facilitate debugging and there are fewer tools on the interface. We can infer from the visualizations that this consumes less energy than PyCharm.
 
 ### Terminal
 
 On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.077, 0.105, and 0.134 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. \
-
-Terminal consistently uses the lowest amount of power. While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption. \
+Terminal consistently uses the lowest amount of power. While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption.
 
 
 ## Discussion and Conclusion
