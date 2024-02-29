@@ -131,16 +131,17 @@ Below one can see the values for Cohen’s D for all energy types. As the mean d
 
 We have shown that new releases of the React framework significantly reduce the power consumption of an application that loads a large dataset into a table. This remains true for all facets of the processor, the dram_energy and package_energy. 
 
-It not only led to a decrease in power demand, but the latest version of React also resulted in lower runtimes, as can be seen in the graphs relating to the EDP. 
+It not only led to a decrease in power consumption, but the latest version of React also resulted in lower runtimes, as can be seen in the graphs relating to the EDP, by increasing the w (weight) of the runtime. 
 
 This can be attributed to the fact that legacy React uses class components in contrast to modern React's functional components. These perform the same calculations but get to this point by fundamentally different processes. These changes can also be attributed to the internal changes React made to its core rendering model in React 18. This included Concurrent React, which allows for multiple versions of the same UI running in the background. 
-This could be an indication that it could be very worthwhile for developers to quickly upgrade their applications to the newest React versions. Not only for the sake of being able to use the newest feature but also for environmental and financial reasons. 
 
-For smaller websites, these small differences in power consumption may not make all the difference, but for large highly tracked websites, these small changes could mean huge environmental and financial gains. 
+This could be an indication that it could be very worthwhile for developers to quickly upgrade their applications to the newest React versions. Not only for the sake of being able to use the newest feature but also for environmental and financial reasons. For smaller websites, these small differences in power consumption may not make all the difference, but for large highly tracked websites, small improvements in loading large datasets could mean huge improvements in power consumption. Which not only for environmental reasons but also for financial reasons can be extremely beneficial. 
 
 ### Further research & limitations
-Our research was currently only conducted on one machine, for one operating system. This makes it harder to generalize the results of this research. Furthermore, a single laptop does not necessarily accurately describe the way websites are hosted.
+Our research was currently only conducted on one machine, for one operating system. This makes it harder to generalize the results of this research. Furthermore, a single laptop does not necessarily accurately describe the way most websites are hosted.
 
-One of the big obstacles is keeping external factors constant whilst running the experiment. Whilst we tried to keep those to a minimum, there are data points corrupted by external factors taking on power consumption. This could be due to connectivity issues, or other programs running in the background, pinpointing the exact issue, remains extremely hard in this field of research. 
+One of the big obstacles is keeping external factors constant whilst running the experiment. Whilst we tried to keep those to a minimum, there are data points corrupted by external factors creating extra power consumption. This could be due to connectivity issues, or other programs running in the background, pinpointing the exact issue, remains extremely hard in this field of research. 
 
 Further research should look into different forms of web applications, and the effect of power consumption between those versions. Other Javascript frameworks should in this case also be included in this research. As a benchmark vanilla Javascript could also be researched to further investigate the degree of overhead these Javascript frameworks produce. 
+
+Further research should also look into different features of websites. Currently, we only looked into loading large datasets into tables. It would be interesting to look into other power-consumption-heavy tasks, such as loading videos and images. It would also be interesting to look into more recent versions of React, such as React 15, which is more widely used than React 14, and whether or not there are huge changes between this version and the latest version.  
