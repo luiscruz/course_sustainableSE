@@ -108,6 +108,46 @@ This step is required to ensure that the code runs on startup in PyCharm.
 **Energy Measurement** \
 EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMonitor and measures CPU frequency, CPU usage, System power and Memory usage.
 
+## Results
+
+We have created three violin plots for our results which correspond to the three data sizes. These plots visualize the power consumption for each run in Watts for each of the three environments. 
+
+<img src=>
+<img src=>
+<img src=>
+
+In each of the following sections, we will discuss the power consumption of the three environments.
+
+###PyCharm
+
+On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.329, 0.721, and 0.866 for data sizes x, y, and z respectively. This indicates that the data is normally distributed.
+
+PyCharm consistently consumes highest power while analysing data for all the three data sizes. 
+
+PyCharm, like many integrated development environments (IDEs), runs multiple background processes such as indexing and version control integration. These processes can consume CPU, memory, and disk I/O, contributing to higher energy consumption. PyCharm also performs various code analysis and inspections in real-time to provide features like code completion, error highlighting, and code suggestions. These features require computational resources and can contribute to increased energy consumption.
+
+CHECK AFTER DATA -> diff between pycharm and jupyter reduces as data size increases
+
+### Jupyter Notebook
+
+On performing Shapiro-Wilk tests for the data collected for Jupyter Notebook for the three data sizes, we get p-values of x, y, and z for data sizes x, y, and z respectively. This indicates that the data is normally distributed.
+
+Jupyter Notebook consumes significantly less power than PyCharm for all three data sizes.
+
+In the Jupyter notebook, Jupyter Notebook runs a Python kernel in the background, which executes code cells and manages the session. The interface runs on Google Chrome. Jupyter also does not facilitate debugging and there are fewer tools on the interface. We can infer from the visualizations that this consumes less energy than PyCharm.
+
+### Terminal
+
+On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.144, 0.105, and 0.077 for data sizes x, y, and z respectively. This indicates that the data is normally distributed.
+
+Terminal consistently uses the lowest amount of power.
+
+While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption. 
+
+
+## Discussion and Conclusion
+
+
 ## Limitations
 Comparison of Python environments is difficult as the usage of the various platforms is specific to the requirement. Depending on the use case, either of the options can be preferable. The readings are taken on a single computer with particular versions of the various softwares as mentioned above, making it difficult to generalize the results. Additionally, this experiment is done on the same code using only ```pandas``` transformations. There is scope for a more diverse analysis to find the most energy-efficient environment.
 We are not able to separate the application startup energy consumption from the energy consumption of the actual execution of code. This is especially evident in case of Pycharm. Steps are taken to cut down the bias of external factors and background processes, but it is not possible to eliminate this bias.
