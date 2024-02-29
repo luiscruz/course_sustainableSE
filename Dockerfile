@@ -4,7 +4,7 @@ WORKDIR /myapp
 COPY . /myapp
 
 # We usually run this every time we add a new dependency
-RUN gem install bundler
+RUN gem install bundler -v 2.4.22
 RUN gem install jekyll -v 3.9.3
 RUN bundle install
 
