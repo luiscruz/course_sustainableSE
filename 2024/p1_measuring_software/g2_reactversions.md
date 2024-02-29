@@ -1,16 +1,10 @@
 ---
-author: Student1 first and last name, Student2, Student3
-title: "Title of the template blog"
+author: Thijs Nulle, Harmen Kroon, Petter Reijalt 
+title: "Comparing Energy Consumption of React Framework Versions"
 image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 03/03/2022
+date: 29/02/2024
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+ Javascript Frameworks play a fundamental in current-day website development. Major releases are rolled out yearly and add new improvements over previous versions. This research shows significant developments in terms of power consumption related to loading large datasets between different versions of the React Framework 
 ---
 
 Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
