@@ -23,7 +23,7 @@ The Python code is run on 3 environments:
 * PyCharm
 * Jupyter Notebook
 
-<img src="../img/p1_measuring_software/g7_python_environments/python_logo.png" alt="Python Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/PyCharm_logo.png" alt="PyCharm Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/jupyter_logo.png" alt="Jupyter Logo" width="180"/>
+<img src="../img/p1_measuring_software/g7_python_environments/python_logo.png" alt="Python Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/pycharm_logo.png" alt="PyCharm Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/jupyter_logo.png" alt="Jupyter Logo" width="180"/>
 
 
 The motivation is to find which of the environment is most energy efficient for data processing and while keeping in mind the trade-offs of functionalities they offer. Link to the repository can be found [here](<insert github link> "code_repository").
@@ -100,27 +100,27 @@ In order to minimize competing tasks, the following steps are taken:
 Automation is done using a shell script found [here](<insert github link> "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Details for running the experiment are given below:
 * Energibridge setup with LibreHardwareMonitor
 * Python version: 3.9 
-* Jupyter notebook version: , IPython: 
+* Jupyter notebook version: 6.5.4 , IPython: 8.15.0
 * PyCharm version: 2023.3 
 * Open project in PyCharm and add ```main.py``` to PyCharm > Preferences > Tools > Startup tasks
 This step is required to ensure that the code runs on startup in PyCharm.
 
 **Energy Measurement** \
-EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMonitor and measures CPU frequency, CPU usage, System power and Memory usage.
+EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMonitor and measures CPU frequency, CPU usage, System power and Memory usage. 
 
 ## Results
 
-We have created three violin plots for our results which correspond to the three data sizes. These plots visualize the power consumption for each run in Watts for each of the three environments. 
+We have created three violin plots for our results which correspond to the three data sizes. These plots visualize the power consumption for each run in Watts for each of the three environments. \
 
 <img src="../img/p1_measuring_software/g7_python_environments/eighth_violin_plot.png" alt="Violin Plot 1"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_violin_plot.png" alt="Violin Plot 2"/>
 <img src="../img/p1_measuring_software/g7_python_environments/half_violin_plot.png" alt="Violin Plot 3"/>
 
-We have also created bar graphs to compare the mean power consumption.
+We have also created bar graphs to compare the mean power consumption. \
 <img src="../img/p1_measuring_software/g7_python_environments/eighth_bar_chart.png" alt="Bar Plot 1"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_bar_chart.png" alt="Violin Plot 2"/>
 <img src="../img/p1_measuring_software/g7_python_environments/half_bar_chart.png" alt="Bar Plot 3"/>
 
 
-In each of the following sections, we will discuss the power consumption of the three environments.
+In each of the following sections, we will discuss the power consumption of the three environments. \
 
 ### PyCharm
 
