@@ -69,113 +69,78 @@ The results of our experiment can be found on our [Github repository](https://gi
 ### Energy & Power
 To determine the difference in energy consumption between both versions, we calculated the energy consumption for different components of the computer system. We computed the following violin graph, to show the distribution of 30 data points over the 2 versions across 4 categories. This shows us that distributions of the dram_energy, package_energy and pp0_energy significantly differ from one another. The latest version of React in this case requires significantly less energy across these 4 categories. In most graphs, we have a few upward outliers that can be attributed to external processes simultaneously running on the computer. 
 
-| ![python CPU/GPU boxplot](./../img/p1_measuring_software/g2_react/violin_react.jpeg) | 
-|:--:|
-|Figure 1: CPU/GPU comparison for Python code|
+<img src="https://i.imgur.com/JIEQ21k.jpeg" alt="drawing" width="600"/>
 
-| ![python DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/python%20DRAM.png) | 
-|:--:|
-|Figure 2: DRAM comparison for Python code|
+###### Figure 1: Violin plots on energy and power consumption
 
 
+### Energy Delay Product
+To also account for the runtime in combination with the energy consumption, we computed the Energy Delay Product, which resulted in the following graph. It shows a big difference between the two distributions. These differences become more profound by correcting more harshly for higher runtimes, using a w = 10.
+
+<div style="display: flex;">
+    <img src="https://i.imgur.com/MiJ2g02.png" alt="drawing" width="400"/>
+    <img src="https://i.imgur.com/hR1sfru.png" alt="drawing" width="400"/>
+</div>
+
+###### Figure 2: Bar plots showing Energy Delay Product (EDP), for w=1 & w=10
+
+### Analysis
+During the exploratory data analysis phase, we perform the Shapiro-Wilk test to determine whether the data is distributed normally. Due to outliers not all metrics resulted in normally distributed data, this can be seen in the table below.  
+
+|  | dram_energy         | package_energy | pp0_energy | power |
+|--------|--------|--------|--------|--------|
+| react-legacy | 0.447544 | 0.000195 | 0.000187 | 0.001806 |
+| react-latest | 0.000001 | 0.995079 | 0.736521 | 0.090655 | 
+###### Table 1: P-values for Shapiro-Wilk test (p < 0.05: not normally distributed)
+
+After removing the outliers, which often occur during the measurement of energy consumption, the Shapiro-Wilk test returned values above 0.05 for **all** metrics. We used these datasets without outliers in the experiments below. 
+
+The next step is to determine if a statistical significance exists between the energy measurements, for which we use Welch’s t-test. This returns two different values; the t-statistic and a p-value. The t-statistic measures the size of the difference between groups relative to the variability within groups. The p-value quantifies the probability of observing said difference (or more extreme) between groups if there is no true difference in the population.
 
 
 
+|  | dram_energy         | package_energy | pp0_energy | power |
+|--------|--------|--------|--------|--------|
+| t-statistic | 91.0856 | 75.1750 | 69.7902 | 12.2920 | 
+| p-value | 1.075e-57 | 9.091e-42 | 9.892e-40 | 2.914e-17 | 
+###### Table 2: P-values for Welch’s t-test (p < 0.05: unequal means). 
 
-### Python
 
-| ![python CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/python%20usage.png) | 
-|:--:|
-|Figure 1: CPU/GPU comparison for Python code|
+As one can see within the table above, the t-statistic values imply a significant difference in the means of the samples, which is visible within the violin plots. As t-statistics don’t necessarily say anything by themselves, the p-values indicate the probability for this data distribution to occur, given that both samples are drawn from the same distribution. As the p-values correspond directly to a probability, one can assume that these near-zero p-values indicate that a significant difference exists between the two sets of data points.
 
-| ![python DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/python%20DRAM.png) | 
-|:--:|
-|Figure 2: DRAM comparison for Python code|
+The next step is to measure the difference between the two samples, for which we will calculate a percentage change of means and Cohen’s D. In the table below one can see the changes in mean between the different energy types when comparing the legacy version and the latest version. For all energy types, a steep decrease in energy usage occurred of roughly 20%, compared to a decrease of 2% when considering power.
 
-#### Visual Studio Code
+|  | react-legacy         | react-latest | %-change |
+|--------|--------|--------|--------|
+| dram_energy | 259313 | 219867 | -17.94% | 
+| package_energy | 4142773 | 3495200 | -18.52% |
+| pp0_energy | 3752091 | 3166475 | -18.49% |
+| power | 218288 | 213782 | -2.107% |
+###### Table 3: Percentual change in mean 
 
-The boxplot of running a Python application in Visual Studio Code shows no outliers and exhibits a pattern that indicates a normal distribution as well. If we perform a Shapiro-Wilk test, we get a p-value of 0.875, which confirms our theory that the data is normally distributed. That means we can expect a program to use 239 J of energy for a run on average. Energy usage typically ranges from 230 to 245.
+Below one can see the values for Cohen’s D for all energy types. As the mean differences are significantly large for each energy type and a difference exists between the mean power, one can assume that the values of the Cohen’s D will reflect this. As Cohen’s D increases, the relative difference between the samples increases as well, and thus the high values indicate that a significant change occurred between the two data distributions.
 
-With the GPU energy consumption, we see a similar pattern. The boxplot shows a similar distribution of values, although the scale is different on the y-axis. This indicates that the data that we have collected matches a normal distribution. This is confirmed by our Shapiro-Wilk test, which returns a p-value of 0.840. While this does not guarantee that the data is a normal distribution, all the signs we look for are pointing in this direction. The average energy usage is roughly 212 Joules.
+|  | dram_energy         | package_energy | pp0_energy | power |
+|--------|--------|--------|--------|--------|
+| Cohen’s D | 24.79 | 20.46 | 18.99 | 2.416 | 
+###### Table 4: Cohens' D, between react-legacy and react-latest
 
-Lastly, we can observe the RAM energy usage over the different runs. Here, the average is more centered within the box plot. This still seems like valid distribution and could be considered normal. Upon running the Shapiro-Wilk test, we get a p-value of 0.430, which does not disprove our hypothesis. So we consider this to be a normal distribution, which averages our energy consumption at 25.5 J.
 
-#### IntelliJ
-
-Upon examining the IntelliJ CPU energy usage for the Python application, we see that the distribution shape is a bit different. The boxplot contains an outlier. If we look at the data, there is one outlier that is significantly higher than the others. This run has a value of over 500 J. Since this only happens in the first run, it could be that some other process happened to interfere at the first run of the distribution. Upon further inspection of the data, the application seems to run longer on the first run than on other runs. It took 48 seconds for its first run, where other runs average around 42 seconds. The stalling of this run seems to explain its higher energy consumption quite well, so it is best excluded from our estimation. However, running the statistical analysis shows us that the p-value still reaches 0.083, which means the statistical test still does not reject the hypothesis that this is a normal distribution, even with the outlier. So while the outlier could be removed, we still include it in our average, which would result in an expected energy consumption of 422 J per run for the CPU.
-
-For the GPU, we can see it is also influenced by the first run as an outlier. Here, the difference is more apparent. This, the Shapiro-Wilk test does not reject the hypothesis at a value of 0.107. We can still assume this data to be normal. The shape does however still match a normal distribution, even though we can only see one tail. This graph shows us the average consumption would be around 370 Joules per run done for the GPU.
-
-For its DRAM energy consumption, we see something different happening. The first run again seems to influence the results strongly. Once we remove this run from the data, we get an even lower p-value of 0.02 versus 0.04 with the outlier. It seems that the DRAM behaviour is not centered around a normal distribution.
-
-### Java
-
-| ![Java CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/java%20usage.png) | 
-|:--:|
-|Figure 3: CPU/GPU comparison for Java code|
-
-| ![Java DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/java%20DRAM.png) | 
-|:--:|
-|Figure 4: DRAM comparison for Java code|
-
-#### Visual Studio Code
-
-For the Java experiment in Visual Studio Code, we can again see an outlier in the boxplot. If we take a look at the runs, we can see that there are two values that are significantly higher than the others, which are 273 and 241. These do not happen at the start of the run, but seems to happen in runs that are neither close to the first or last experiment. What these do have in common is that they run for a lot longer than other runs, both upwards of 20 seconds compared to 15 seconds for other executions. If we exclude these runs, the data does seems to behave according to a normal distribution. The average however with these is 160 J for the CPU.
-
-If we evaluate the GPU data for Visual Studio Code for the Java experiment, it matches the pattern we observe in the CPU data. The Shapiro-Wilk test reject the hypothesis as well, with a p-value of 0.02. The same data points that heavily influence the CPU data are also different in the GPU data. In these runs the GPU consumes upwards of 200 J of energy, versus around 130 J for the runs that finish earlier than 20 seconds. On average however, they consume 133 J of energy.
-
-This again holds for the DRAM data. Here the outliers are distinctly present on the boxplot, with values at 48 J and 44 J. The Shapiro-Wilk also reject the normal distribution with a p-value of 0.01. The average ends up with the outliers at around 26 J.
-
-#### IntelliJ
-
-In IntelliJ, the data is not indicative of anything other than a normal distribution. This is also seen in the p-value, which is returned to be 0.39. This means that an expected energy consumption of 322 J on average is a consistent measurement over our runs, with little variation to be seen in both distributions.
-
-### JavaScript
-
-| ![JavaScript CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/javascript%20usgae.png) | 
-|:--:|
-|Figure 5: CPU/GPU comparison for JavaScript code|
-
-| ![JavaScript DRAM boxplot](./../img/p1_measuring_software/g8_energy_IDE/javascript%20DRAM.png) | 
-|:--:|
-|Figure 6: DRAM comparison for JavaScript code|
-
-#### Visual Studio Code
-
-Based on the boxplot, which shows no outliers and has its mean in the center of the distribution, we assume that the data is distributed normally. This is confirmed by the p-value from the Shapiro-Wilk test, which returns a value of 0.74. These factors indicate that the program has a predictable average energy consumption, which hovers around 168 J for the CPU.
-
-For the GPU, the p-value of the Shapiro-Wilk test does not reject the hypothesis. This would make it acceptable for us to assume the data is distributed normally, which would in turn indicate that the experiment has run successfully. The average value we would get is around 149 J.
-
-Lastly, for the DRAM, we get a p-value of 0.97, which would indicate that the distribution is normal. This on average takes about 20 J of energy. The boxplot confirms together with the test that it is okay to assume a normal distribution on the data.
-
-#### IntelliJ
-
-For the CPU, we can see a clear outlier in the data. This also results in a rejection of the hypothesis, since we get a value of 0.0004. Without this outlier, the data gets a p-value of 0.46 on the Shapiro-Wilk test. If we remove the outlier, this results in an average energy consumption of 360 J.
-
-A similar situation can be detected in the GPU, where we can see that the hypothesis of a normal distribution is rejected as well, because of this outlier. It also returns a p-value lower than our alpha threshold, with a p-value of 0.0007. The average ends up at around 320 J.
-
-Finally, for the DRAM, we can see that the outlier has a reduced impact on our hypothesis. There is a smaller difference when we compare this outlier to the outliers of the CPU and GPU. This also allows for the hypothesis to not be rejected, since p = 0.057. However, this value still increases the average significantly to 51 J.
 
 ## Discussion
 
-In all plots shown above, it can be seen that the average energy consumption of Visual Studio Code is lower than IntelliJ. This is seen very clearly for the CPU and GPU energy consumption, where the difference is typically over 100 J over this time span. In order to validate that these results are statistically significant, we decided to run a Student's t-test in order to ensure that the results are valid. 
+We have shown that new releases of the React framework significantly reduce the power consumption of an application that loads a large dataset into a table. This remains true for all facets of the processor, the dram_energy and package_energy. 
 
-The results of these tests are all clear of the alpha threshold, ranging from 5.0e-6 to 1.1e-20, which show that the distributions are different Its practical significance is clear. Even in terms of DRAM, the result show that the relative consumption of IntelliJ is higher than its Visual Studio Code usage. While 100 J does not seems large, these experiments are run over short time spans, typically less than 30 seconds. If we extrapolate the 100 J difference, which is multiplied by 2 since both the CPU and GPU usage exhibit this difference, it would equate to 200 J / 0.5 m = 6 W. With this particular laptop, which has a battery of 45 Whr, this means that a 6 W difference has great benefits for the developer, as it contributes to less battery usage. Thus, we can conclude that the energy consumption of Visual Studio Code is lower, which is what we hypothesised in our original proposal for the experiment.
+It not only led to a decrease in power demand, but the latest version of React also resulted in lower runtimes, as can be seen in the graphs relating to the EDP. 
 
-### Limitations and future research
+This can be attributed to the fact that legacy React uses class components in contrast to modern React's functional components. These perform the same calculations but get to this point by fundamentally different processes. These changes can also be attributed to the internal changes React made to its core rendering model in React 18. This included Concurrent React, which allows for multiple versions of the same UI running in the background. 
+This could be an indication that it could be very worthwhile for developers to quickly upgrade their applications to the newest React versions. Not only for the sake of being able to use the newest feature but also for environmental and financial reasons. 
 
-Our research had a few limitations, which we will briefly discuss in this section.
+For smaller websites, these small differences in power consumption may not make all the difference, but for large highly tracked websites, these small changes could mean huge environmental and financial gains. 
 
-One possible limitation of our research is the fact that the tests were only performed on one system, as specified in the [hardware set-up section](#hardware-set-up) above. While this ensures that the results of the different tests are easily comparable, it also makes it harder to generalize our results. 
+### Further research & limitations
+Our research was currently only conducted on one machine, for one operating system. This makes it harder to generalize the results of this research. Furthermore, a single laptop does not necessarily accurately describe the way websites are hosted.
 
-This project had a time span of a week. Therefore, the software may not be perfectly optimised. For example, it is possible that the code that closes Intellij and Visual Studio Code only closes the window, but not the background processes of the software. This could have influenced the speed of the next start up.
+One of the big obstacles is keeping external factors constant whilst running the experiment. Whilst we tried to keep those to a minimum, there are data points corrupted by external factors taking on power consumption. This could be due to connectivity issues, or other programs running in the background, pinpointing the exact issue, remains extremely hard in this field of research. 
 
-For each program/software combination, we executed the experiment 10 times. However, these 10 similar experiments were executed in a row. This could result in e.g. IntelliJ closing down and immediately starting back up. This could have influenced the results since data from the software could still be active in the RAM.
-
-Furthermore, we tried to execute the experiments as humanlike as possible. This means that the experiments were run in a normal Microsoft Windows environment with background processes on. These background processes could have influenced the final outcomes. 
-
-Lastly, one could argue that running code is not the only thing a developer does with an IDE. A substantial amount of time is spent writing, reading and debugging. In future research, one could expand on this knowledge by testing an idle mode or simulating a developer that writes code.
-
-## Conclusion
-
-In this blog, we analysed and compared the energy consumption of two of the most popular IDEs, Visual Studio Code and IntelliJ. We tested the energy consumption by running a Python application a Java application, and a Node.js server. These tests simulated real life user behaviour using an automated script that mimics user clicks and keyboard usage. Based on the results of our tests, we found that Visual Studio Code uses significantly less energy than IntelliJ. Therefore, the recommendation is to use Visual Studio Code for reduced battery usage and a reduced carbon footprint.
+Further research should look into different forms of web applications, and the effect of power consumption between those versions. Other Javascript frameworks should in this case also be included in this research. As a benchmark vanilla Javascript could also be researched to further investigate the degree of overhead these Javascript frameworks produce. 
