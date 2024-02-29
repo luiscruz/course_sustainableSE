@@ -14,9 +14,9 @@ In this article, we will begin by introducing each execution environment and dis
 ## Methodology
 
 We use the Python library ```Pandas``` for data analysis. ```Pandas``` is selected since it offers a wide range of functionalities that make it a powerful tool for working with structured data. We perform operations such as read, groupby, sort and unique on the data. These operations are performed on a large dataset for different file sizes: 
-* Full data size: 5,67 GB
-* Half data size: 2,83 GB
-* Quarter data size: 1,42 GB
+* Full data size: 2,83 GB
+* Half data size: GB 1,42
+* Quarter data size: 0,71 GB
  
 The Python code is run on 3 environments:
 * Terminal using CLI command
@@ -112,15 +112,14 @@ EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMo
 
 We have created three violin plots for our results which correspond to the three data sizes. These plots visualize the power consumption for each run in Watts for each of the three environments. 
 
-<img src=>
-<img src=>
-<img src=>
+<img src="../img/p1_measuring_software/g7_python_environments/eighth_violin_plot.png" alt="Violin Plot 2" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_violin_plot.png" alt="Violin Plot 2" width="180"/>
+<img src="../img/p1_measuring_software/g7_python_environments/half_violin_plot.png" alt="Violin Plot 2" width="180"/>
 
 In each of the following sections, we will discuss the power consumption of the three environments.
 
-###PyCharm
+### PyCharm
 
-On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.329, 0.721, and 0.866 for data sizes x, y, and z respectively. This indicates that the data is normally distributed.
+On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.866, 0.721, and 0.329 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
 
 PyCharm consistently consumes highest power while analysing data for all the three data sizes. 
 
@@ -130,7 +129,7 @@ CHECK AFTER DATA -> diff between pycharm and jupyter reduces as data size increa
 
 ### Jupyter Notebook
 
-On performing Shapiro-Wilk tests for the data collected for Jupyter Notebook for the three data sizes, we get p-values of x, y, and z for data sizes x, y, and z respectively. This indicates that the data is normally distributed.
+On performing Shapiro-Wilk tests for the data collected for Jupyter Notebook for the three data sizes, we get p-values of 0.08, 0.069 and 0.637 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
 
 Jupyter Notebook consumes significantly less power than PyCharm for all three data sizes.
 
@@ -138,11 +137,9 @@ In the Jupyter notebook, Jupyter Notebook runs a Python kernel in the background
 
 ### Terminal
 
-On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.144, 0.105, and 0.077 for data sizes x, y, and z respectively. This indicates that the data is normally distributed.
+On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.077, 0.105, and 0.144 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
 
-Terminal consistently uses the lowest amount of power.
-
-While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption. 
+Terminal consistently uses the lowest amount of power. While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption. 
 
 
 ## Discussion and Conclusion
