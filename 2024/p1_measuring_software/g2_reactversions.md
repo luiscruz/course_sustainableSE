@@ -31,38 +31,48 @@ We researched whether or not over time changes in the React framework have led t
 [^4]: [Green and Sustainable JavaScript a study into the impact of framework usage](https://www.diva-portal.org/smash/get/diva2:1768632/FULLTEXT01.pdf)
 [^5]: [w3techs](https://w3techs.com/technologies/details/js-react)
 [^6]: [w3techs](https://w3techs.com/technologies/details/js-react/15)
-## Measurement set-up
 
-### Testing process
+## Methodology
 
-To determine the differences between IntelliJ and Visual Studio Code, we set up an experiment where both programs had to run the same software. For this experiment, we use a Python and Java application that makes an array with random numbers and then sorts that array. Furthermore, both programs had to run a Node.js server for 10 seconds.
+### Experiment
+To compare the evolution of energy consumption within the React framework, we propose two implementations of the same website, using both a legacy version and a modern version. The website contains a simple, CPU-intensive task in loading a large dataset, rendering the dataset inside a table and performing several operations on the dataset, which we will highlight later. In essence, we compare the energy usage of the framework’s state management and rendering process.
 
-To ensure we could test the differences between the programs, we used the same environment during the tests. This means that there are no other programs open, the laptop is connected to a power source and the parameters of the experiment are the same.
+For this article, we used React version 0.18.2 (modern version) versus the last beta release 0.14 (legacy version). The main difference between the legacy version and the modern version of React is the style in which one writes components to use within a website; legacy React uses class components, whereas modern React uses functional components. Inherently, these can perform the same operations, but under the hood, they are functionally different and their performance might differ. The largest difference between class- and functional components is regarding the state management, where the legacy version utilises the class-based `this.setState` functionality, and the modern version utilises the `useState` hook. Essentially, these two functions have the same outcome but are implemented differently under the hood, and thus also perform differently on energy usage.
 
-The experiments are run through a bat file. This bat file executes the Intel Power Log 10 times for each program-software pair. This results in 60 experiments. Each run calls the following function:
+As loading a large dataset, and subsequently rendering the data inside a table, is not necessarily an interesting benchmark, we opted to add CPU-intensive tasks to perform on the dataset. The dataset consists of 10k rows consisting of an identifier (integer between 1 and 100), name (random string of 50 characters), age (integer between 1 and 100) and a comma-separated list of hobbies (random selection of 30 hobbies). After each operation we perform, we take the resulting data and store it as a local variable inside the component using the method as advised by the version of the framework. The operations we perform in order are:
 
-`PowerLog3.0.exe" -file (program)_(software)%loop%.csv -cmd python main.py (program) (software)`
+1. Filter all rows that have an identifier greater than 90
+2. Filter all rows that do not contain the letter K inside the name
+3. Filter all rows that have an age less than 21
+4. Filter all rows that do not contain swimming as a hobby
+5. Reverse all rows
+6. Randomise the order of all rows
+7. Increase the age by 1 for all rows
+   
+Each CPU-intensive task is linked to a dedicated button for direct invocation. This minimalist user interface ensures simplicity and isolates table rendering, minimising potential overhead. This approach prioritises accurate energy consumption measurements and enables a focused comparison between the legacy and modern versions of React.
 
-The PowerLog keeps track of the energy consumption while the command `main.py (program) (language)` runs. The main.py starts the program (IntelliJ / Visual Studio Code) with the file with the corresponding language. Since running the software from an external command prompt is not possible, main.py waits till the program has started and then simulates key presses. IntelliJ and Visual Studio Code use diffent keyboard shortcuts. The software in Visual Studio Code can be run by pressing `Ctrl` + `Alt` + `N`. This is possible because of the extension Code Runner. In IntelliJ, this is not possible. In IntelliJ, the terminal can be opened by pressing `Alt` + `F12`. This is done after IntelliJ has loaded the file. When a confirmation has reached the main.py, the command for running the file is pasted in the terminal and enter is pressed. 
 
-The Python, Java, and JavaScript files execute two sorting algorithms and a simple Node.js server. The code in these files closes the program automatically. This finishes the main.py, and therefore, the Powerlog stops monitoring. The results of the PowerLog are saved in a CSV file. 
 
-The code for these automated experiments can be found on the [Github repository](https://github.com/zegermouw/energy_intellij_VS).
+### Tools
+Our experiment is automated using Python and can be found [here](https://github.com/thijsnulle/sse-project1/tree/script). Tasks are double shuffled - both react version as well as browser - and alternated with 50 seconds of sleep to mitigate tail energy consumption. Before energibridge measurements, the React server is initialised and once the server is up and running the browser-specific webdriver is opened with [Selenium](https://www.selenium.dev/). During a task, the exact same order of button presses is performed and the energibridge measurement will end once the browser window is terminated automatically.
+
 
 ### Hardware set-up
+The experiment is performed on an Intel Core i7-6700HQ CPU running no non-windows services and incorporating extra tasks up front for warm-up. External factors are accounted for by connecting to the internet via ethernet and having the room controlled at room temperature.
 
-The experiments were run on a laptop with the following specifications:
 
-| Laptop | Lenovo ThinkPad E15          |
-|--------|------------------------------|
-| CPU    | Intel(R) Core(TM) i7-10510U  |
-| RAM    | 16 GB                        |
-| GPU    | AMD Radeon (TM) RX 640       |
-| OS     | Microsoft Windows 11 Pro     |
 
 ## Results 
 
-The experiments can be found on the [Github repository](https://github.com/zegermouw/energy_intellij_VS). We have split our energy consumption into three parts: the energy used by the CPU, the energy consumed by the GPU and the energy used for our RAM. The result per category for a specific language can be found below in the boxplots. In each section of the results a combination of an IDE and a language is explored. There we check whether the distribution is normal using a boxplot and the Shapiro-Wilk test.
+The results of our experiment can be found on our [Github repository](https://github.com/thijsnulle/sse-project1/tree/script/experiment/win32). Here 2 different experiments, can be found. For this section we used the last experiment we ran. Here 2 folders can be found with 32 iterations of the experiment for both the modern version and the legacy version. 
+
+### Energy & Power
+To determine the difference in energy consumption between both versions, we calculated the energy consumption for different components of the computer system. We computed the following violin graph, to show the distribution of 30 data points over the 2 versions across 4 categories. This shows us that distributions of the dram_energy, package_energy and pp0_energy significantly differ from one another. The latest version of React in this case requires significantly less energy across these 4 categories. In most graphs, we have a few upward outliers that can be attributed to external processes simultaneously running on the computer. 
+
+
+
+
+
 
 ### Python
 
