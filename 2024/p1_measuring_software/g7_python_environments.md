@@ -61,7 +61,7 @@ The python code performs the following operations:
 * Computes the number of brands purchased by each user
 * Computes number of distinct user ids, product ids, category ids and brands
 
-Python code can be found [here](<insert github link> "main.py").
+Python code can be found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/main.py "main.py").
 
 ### Experiment Setup 
 **Machine Specifications** \
@@ -97,7 +97,7 @@ In order to minimize competing tasks, the following steps are taken:
 * PyCharm is used out-of-the-box, without any additional plugins and settings
 
 **Experiment Automation** \
-Automation is done using a shell script found [here](<insert github link> "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Details for running the experiment are given below:
+Automation is done using a shell script found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/exec.sh "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Details for running the experiment are given below:
 * Energibridge setup with LibreHardwareMonitor
 * Python version: 3.9 
 * Jupyter notebook version: 6.5.4 , IPython: 8.15.0
@@ -119,7 +119,7 @@ We have also created bar graphs to compare the mean power consumption. \
 <img src="../img/p1_measuring_software/g7_python_environments/half_bar_chart.png" alt="Bar Plot 3" width="750"/>
 
 
-In each of the following sections, we will discuss the power consumption of the three environments. 
+In each of the following sections, we will discuss the power consumption of the three environments. The code for processing the results can be found [here](<insert analysis ipynb> "analysis").
 
 ### PyCharm
 
