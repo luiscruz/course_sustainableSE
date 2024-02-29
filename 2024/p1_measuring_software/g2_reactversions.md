@@ -69,7 +69,7 @@ The results of our experiment can be found on our [Github repository](https://gi
 ### Energy & Power
 To determine the difference in energy consumption between both versions, we calculated the energy consumption for different components of the computer system. We computed the following violin graph, to show the distribution of 30 data points over the 2 versions across 4 categories. This shows us that distributions of the dram_energy, package_energy and pp0_energy significantly differ from one another. The latest version of React in this case requires significantly less energy across these 4 categories. In most graphs, we have a few upward outliers that can be attributed to external processes simultaneously running on the computer. 
 
-| ![python CPU/GPU boxplot](./../img/p1_measuring_software/g8_energy_IDE/python%20usage.png) | 
+| ![python CPU/GPU boxplot](./../img/p1_measuring_software/g2_react/violin_react.jpeg) | 
 |:--:|
 |Figure 1: CPU/GPU comparison for Python code|
 
