@@ -111,12 +111,12 @@ EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMo
 ## Results
 
 We have created three violin plots for our results which correspond to the three data sizes. These plots visualize the power consumption for each run in Watts for each of the three environments. \
-<img src="../img/p1_measuring_software/g7_python_environments/eighth_violin_plot.png" alt="Violin Plot 1" width="300"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_violin_plot.png" alt="Violin Plot 2" width="300"/>
-<img src="../img/p1_measuring_software/g7_python_environments/half_violin_plot.png" alt="Violin Plot 3" width="300"/>
+<img src="../img/p1_measuring_software/g7_python_environments/eighth_violin_plot.png" alt="Violin Plot 1" width="750"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_violin_plot.png" alt="Violin Plot 2" width="750"/>
+<img src="../img/p1_measuring_software/g7_python_environments/half_violin_plot.png" alt="Violin Plot 3" width="750"/>
 
 We have also created bar graphs to compare the mean power consumption. \
-<img src="../img/p1_measuring_software/g7_python_environments/eighth_bar_chart.png" alt="Bar Plot 1" width="300"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_bar_chart.png" alt="Violin Plot 2" width="300"/>
-<img src="../img/p1_measuring_software/g7_python_environments/half_bar_chart.png" alt="Bar Plot 3" width="300"/>
+<img src="../img/p1_measuring_software/g7_python_environments/eighth_bar_chart.png" alt="Bar Plot 1" width="750"/><img src="../img/p1_measuring_software/g7_python_environments/quarter_bar_chart.png" alt="Violin Plot 2" width="750"/>
+<img src="../img/p1_measuring_software/g7_python_environments/half_bar_chart.png" alt="Bar Plot 3" width="750"/>
 
 
 In each of the following sections, we will discuss the power consumption of the three environments. 
