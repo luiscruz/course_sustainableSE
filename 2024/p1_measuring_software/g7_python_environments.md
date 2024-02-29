@@ -119,7 +119,7 @@ In each of the following sections, we will discuss the power consumption of the 
 
 ### PyCharm
 
-On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.866, 0.721, and 0.329 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
+On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.866, 0.721, and 0.793 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
 
 PyCharm consistently consumes highest power while analysing data for all the three data sizes. 
 
@@ -129,7 +129,7 @@ CHECK AFTER DATA -> diff between pycharm and jupyter reduces as data size increa
 
 ### Jupyter Notebook
 
-On performing Shapiro-Wilk tests for the data collected for Jupyter Notebook for the three data sizes, we get p-values of 0.08, 0.069 and 0.637 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
+On performing Shapiro-Wilk tests for the data collected for Jupyter Notebook for the three data sizes, we get p-values of 0.08, 0.069 and 0.167 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
 
 Jupyter Notebook consumes significantly less power than PyCharm for all three data sizes.
 
@@ -137,7 +137,7 @@ In the Jupyter notebook, Jupyter Notebook runs a Python kernel in the background
 
 ### Terminal
 
-On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.077, 0.105, and 0.144 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
+On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.077, 0.105, and 0.134 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed.
 
 Terminal consistently uses the lowest amount of power. While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption. 
 
