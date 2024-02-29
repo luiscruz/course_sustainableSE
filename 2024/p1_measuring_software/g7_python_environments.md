@@ -91,20 +91,26 @@ In order to minimize competing tasks, the following steps are taken:
 * Laptop is put in flight mode
 * Laptop is plugged in to charge
 * Brightness is kept at a minimum
-* Order of execution is shuffled
+* Order of execution is shuffled in the automation
 * There is one minute of sleep time between executions
+* All readings are taken during the night to minimise temperature fluctuations
+* Pycharm is used out-of-the-box, without any additional plugins and settings
 
 **Experiment Automation** \
-Automation is done using a shell script found [here](<insert github link> "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Prerequisites for running the experiment are given below:
-* Energibridge setup
-* Python version : 
-* Jupyter notebook version : 
-* PyCharm version : 
+Automation is done using a shell script found [here](<insert github link> "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Details for running the experiment are given below:
+* Energibridge setup with LibreHardwareMonitor
+* Python version: 3.9 
+* Jupyter notebook version: , IPython: 
+* PyCharm version: 2023.3 
 * Open project in pycharm and add ```main.py``` to Pycharm > Preferences > Tools > Startup tasks
 This step is required to ensure that the code runs on startup in PyCharm.
 
 **Energy Measurement** \
 EnergiBridge[^3] is used to collect resource usage data. It uses LibreHardwareMonitor and measures CPU frequency, CPU usage, System power and Memory usage.
+
+## Limitations
+Comparison of Python environments is difficult as the usage of the various platforms is specific to the requirement. Depending on the use case, either of the options can be preferable. The readings are taken on a single computer with particular versions of the various softwares as mentioned above, making it difficult to generalize the results. Additionally, this experiment is done on the same code using only ```pandas``` transformations. There is scope for a more diverse analysis to find the most energy-efficient environment.
+We are not able to separate the application startup energy consumption from the energy consumption of the actual execution of code. This is especially evident in case of Pycharm. Steps are taken to cut down the bias of external factors and background processes, but it is not possible to eliminate this bias.
 
 ## Future Work
 As part of future work, bigger datasets can be used for data analysis to emulate real world scenarios. In this experiment, we only used smaller datasets of sizes ranging approximately from 1 to 5 GB. Moreover, we have only used the pandas library in the Python code. In the future, the energy consumption of a wider variety of libraries and operations could be measured and compared. These steps would give us a more accurate picture of the energy consumption of data analysis scenarios that are employed in real-world software use cases. The code can also be run on different machines to investigate if that impacts the results. Lastly, one could argue that running code is not the only action a software engineer performs. A substantial amount of time is spent in developing and debugging software systems. Thus, in the future, the entire process of writing, debugging, and running the code can be simulated to measure energy consumption.
