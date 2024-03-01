@@ -5,7 +5,7 @@ With sustainability becoming a more conversed about topic each day, this also re
 
 AKCP conducted an experiment focusing on energy forecasts within the Information and Communication Technology (ICT) sector [6]. The outcome of is visually represented in the graph below:
 
-![image](https://hackmd.io/_uploads/ryR6SFOnp.png)
+![image](../img/p1_measuring_software/g3_energy_consumption_ides/graph.png)
 Figure 1: Trends in energy consumption in the ICT sector. [6]
 
 
