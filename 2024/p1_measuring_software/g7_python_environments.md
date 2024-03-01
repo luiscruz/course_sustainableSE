@@ -1,6 +1,6 @@
 ---
 author: Smruti Kshirsagar, Esha Dutta, Giovanni Fincato de Loureiro
-title: "Comparing Energy Consumptions of Python Execution Environments"
+title: "Comparing Power Consumptions of Python Execution Environments"
 date: 28/02/2024
 summary: |-
   Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools that allow comprehensive data analysis workflows, coupled with extensive documentation and tutorials available online. Further, they integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to run the Python code on. We delve into this matter by comparing power usage of Python from Terminal, PyCharm using Virtual Environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed.
