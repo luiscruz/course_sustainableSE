@@ -114,7 +114,7 @@ Our metrics confirm what was already clear from the plots. The desktop applicati
 
 Moreover, after comparing the calculations with a Welch t-test with a p-value < 0.05, we get the following results:
 t= 43.1496, standard error of difference = 3.716 with p-value < 0.0001 which means that the difference is not by chance and is extremely statistically significant. 
-Thus we can reject our null hypothesis and conclude that the desktop is way less energy-efficient than the web version. 
+Thus we can reject our null hypothesis and conclude that the desktop is way less energy-efficient than the web version.
 
 
 ## Discussion 
@@ -126,6 +126,12 @@ The differences are pretty overwhelming for the same use case. Because our distr
 
 After we remove the outliers we can see a large interquartile range for the desktop box plot which implies a significant variability in the energy consumption and less consistency in energy usage across different runs.
 This could stem from syncing and background processes such as syncing data across devices (Note: Notion run on desktop was Online). It can also be attributed to the software code, performance optimisation can lead to fluctuations in energy usage. 
+
+Most native desktop applications tend to be energy efficient compared to their web counterparts as the code leverages platform specific resource optimisations potentailly leading to lower energy consumption. For example: local caching mechanisms as against frequent network requests, conserve more energy.  
+
+We deduce that Notion's desktop app is just a wrapper for the website and is not truly a "native" application. This severely affects its performace on desktop causing it to be resource intensive and heavy due to added runtime bundles for a full web browser(like Chromium). 
+
+Although our results seem contradictory to the expectation, a anectodal experience in the form of a [redditThread] (https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
 
 
 ## Limitations and Issues
