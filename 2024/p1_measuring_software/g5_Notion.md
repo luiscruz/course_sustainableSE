@@ -13,7 +13,7 @@ At TU Delft many students create, collaborate and organise their notes on Notion
 
 While sustainiabilty might not be the integral aspect of the Notion software we can make it an afterthought and use it in a manner where we reduce overall energy consumption or save our laptops energy.
 
-Methodology :
+## Methodology :
 We conducted the same experiment (login to logout) on two different modes of operation of notion, one mode being desktop and the other mode being notions web application on chrome web browser. We are using the cornell note system template as a use case for both the modes. We have tried to include all the basic features that we think users usually use on notion in the workflow pipeline.
 The experiment flow for interaction with Notion is as follows:
 open Desktop app on fullscreen -> login using google sign in option(we created a dummy account for this experiment) -> create a new page using the cornell system template -> write a page title with some basic text -> make a todo list -> write some notes-> write a math equation -> write a piece of code -> check a todo -> logout
@@ -26,7 +26,7 @@ Each of it was run 30 times and to prevent the order of experiments influencing 
 For each experiment, we took the following measurements: 
 elapsed measurement time(ms) and System_Power(Watts) which we convereted to Joules. 
 
-Hardware set up :
+## Hardware set up :
 We conducted the experiments on MacBook Air M1 Laptop with 8GB RAM running macOS Sanoma 14.2.1 (23C71). The specific software used for the experiment is:
 | Software      | Vesrion |
 |---------------|---------|
@@ -57,7 +57,7 @@ The experiment structure was as follows :
     7. Wait for 30 seconds
 
 
-Replication:
+## Replication:
 The code to replicate the experiments can be setup using [GithubNotionSSE] (https://github.com/mitalipatil99/SSE_notion)
 For the setup we have created a dummy google account for Notion login , the details of which are in the GitHub repository.
 To get the set up running on a Mac: 
@@ -67,29 +67,7 @@ To get the set up running on a Mac:
 4. Run the main python file 
 
 
-
-Results :
-The tables and Graphs below show the reported measurements.
-
-| Cummulative Energy(Joules)  | Web | Desktop |
-|-----------------------------|-----|---------|
-| mean                        | 1633.39| 1793.73 |
-| Variance                    | 34.05  | 380.55
-| Max                         | 1652.62  |1820.61
-
-The Web App on Chrome has lesser average energy consumption compared to the desktop app. The variability on the desktop app is also alot higher compared to Web. 
-The following graphs give a visual oversight of how the measurement is distributed per mode of operation. 
-
-##add Graphs
-
-
-
-Our test results have significant statistical difference  (Welch T-test p-value <0.05) 
-
-
-Discussion:
-
-## Outliers
+## Results 
 
 The data produced from the experiments was analyzed by plotting the energy consumption for each experiment. The data was plotted using a violin plot to show the distribution of the data and a time series plot to show the energy consumption over time.
 After producing the violin plot, it was observed that there were some outliers in the data for the web experiment (seen in Figure 1). 
@@ -132,10 +110,13 @@ Our metrics confirm what was already clear from the plots. The desktop applicati
 
 
 
-practical implications.
+## Discussion 
 
-Limitation:
+
+
+## Limitations 
+
 worth noting the response time on web vs desktop ,
 accesibililty to online vs offline features
 
-Conclusion:
+## Conclusion:
