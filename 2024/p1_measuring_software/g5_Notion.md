@@ -115,12 +115,13 @@ Thus we can reject our null hypothesis and conclude that desktop is way less ene
 
 ## Discussion 
 
-Because our distribution is not normal we cannot confidently say that the errors that affected the desktop measurements were equally affecting the web measurements. Some of the potenial reasons could be:
+The differnces are pretty overwhelming for the same use case. Because our distribution is not normal we cannot confidently say that the errors that affected the desktop measurements were equally affecting the web measurements. Some of the potenial reasons could be:
 1. Error in automated experimental  execution
 2. Unusal task being run by the system despite all background process and notifications being turned off 
 3. Since we are relying on a third party software(Energibridge) to collect the data , we cannot ensure its accuracy.
 
-
+After we remove the outliers we can see a large interquartile range for the desktop box plot which implies a significant variability in the energy consumption and less conistency in energy usage across different runs.
+This could possibly stem from syncing and background process such as syncing data across devices (Note : Notion run on desktop was Online). It can also be attributed to the softwares code, performance optimisation can lead to fluctuations in the energy usage. 
 
 
 ## Limitations and Issues
@@ -129,3 +130,4 @@ worth noting the response time on web vs desktop ,
 accesibililty to online vs offline features
 
 ## Conclusion:
+could be better to use web , only works when online , data is synched and stored automatically. 
