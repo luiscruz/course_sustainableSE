@@ -55,18 +55,20 @@ Each CPU-intensive task is linked to a dedicated button for direct invocation. T
 
 ### Tools
 
-Our experiment is automated using Python and can be found [here](https://github.com/thijsnulle/sse-project1/tree/script). Tasks are double shuffled - both react version as well as browser - and alternated with 50 seconds of sleep to mitigate tail energy consumption. Before energibridge measurements, the React server is initialised and once the server is up and running the browser-specific webdriver is opened with [Selenium](https://www.selenium.dev/). During a task, the exact same order of button presses is performed and the energibridge measurement will end once the browser window is terminated automatically.
+Our experiment is automated using Python and can be found [in our repo](https://github.com/thijsnulle/sse-project1/tree/script). Tasks are double shuffled - both react version as well as browser - and alternated with 50 seconds of sleep to mitigate tail energy consumption. 
+The energy consumption is measured using [EnergiBridge v0.0.4](https://github.com/tdurieux/EnergiBridge) at 200 ms intervals. Before EnergiBridge measurements, the React server is initialised and once the server is up and running the browser-specific webdriver is opened with [Selenium](https://www.selenium.dev/). During a task, the exact same order of button presses is performed and the EnergiBridge measurement ends once the browser window is terminated automatically.
 
 ### Hardware set-up
 
-The experiment is performed on an Intel Core i7-6700HQ CPU running no non-windows services and incorporating extra tasks up front for warm-up. External factors are accounted for by connecting to the internet via ethernet and having the room controlled at room temperature.
+The experiment is performed on a Windows laptop - see table below - running no non-Windows services and warmed up by issuing extra tasks up front. External factors are accounted for by connecting to the internet via ethernet and having the room controlled at room temperature.
 
 | Laptop | HP ZBook Studio G3 |
 | ------ | ------------------ |
-| CPU    | Intel Core i7-6700HQ |
-| RAM    | 8 GB               |
-| GPU    | Intel HD Graphics 530 |
+| CPU    | Intel Core i7-6700HQ @ 2.6GHz |
+| RAM    | 8 GB 2133MT/s      |
+| GPU    | Intel HD Graphics 530/NVIDIA Quadro M1000M |
 | OS     | Windows 10 Home    |
+##### Table 1: Laptop specifications used in our experiment
 
 ## Results
 
@@ -100,7 +102,7 @@ During the exploratory data analysis phase, we perform the Shapiro-Wilk test to 
 | react-legacy | 0.447544    | 0.000195       | 0.000187   | 0.001806 |
 | react-latest | 0.000001    | 0.995079       | 0.736521   | 0.090655 |
 
-###### Table 1: P-values for Shapiro-Wilk test (p < 0.05: not normally distributed)
+###### Table 2: P-values for Shapiro-Wilk test (p < 0.05: not normally distributed)
 
 After removing the outliers, which often occur during the measurement of energy consumption, the Shapiro-Wilk test returned values above 0.05 for **all** metrics. We used these datasets without outliers in the experiments below.
 
@@ -111,7 +113,7 @@ The next step is to determine if a statistical significance exists between the e
 | t-statistic | 91.0856     | 75.1750        | 69.7902    | 12.2920   |
 | p-value     | 1.075e-57   | 9.091e-42      | 9.892e-40  | 2.914e-17 |
 
-###### Table 2: P-values for Welch’s t-test (p < 0.05: unequal means).
+###### Table 3: P-values for Welch’s t-test (p < 0.05: unequal means).
 
 As one can see within the table above, the t-statistic values imply a significant difference in the means of the samples, which is visible within the violin plots. As t-statistics don’t necessarily say anything by themselves, the p-values indicate the probability for this data distribution to occur, given that both samples are drawn from the same distribution. As the p-values correspond directly to a probability, one can assume that these near-zero p-values indicate that a significant difference exists between the two sets of data points.
 
@@ -124,7 +126,7 @@ The next step is to measure the difference between the two samples, for which we
 | pp0_energy     | 3752091      | 3166475      | -18.49%  |
 | power          | 218288       | 213782       | -2.107%  |
 
-###### Table 3: Percentual change in mean
+###### Table 4: Percentual change in mean
 
 Below one can see the values for Cohen’s D for all energy types. As the mean differences are significantly large for each energy type and a difference exists between the mean power, one can assume that the values of the Cohen’s D will reflect this. As Cohen’s D increases, the relative difference between the samples increases as well, and thus the high values indicate that a significant change occurred between the two data distributions.
 
@@ -132,7 +134,7 @@ Below one can see the values for Cohen’s D for all energy types. As the mean d
 | --------- | ----------- | -------------- | ---------- | ----- |
 | Cohen’s D | 24.79       | 20.46          | 18.99      | 2.416 |
 
-###### Table 4: Cohens' D, between react-legacy and react-latest
+###### Table 5: Cohens' D, between react-legacy and react-latest
 
 ## Discussion
 
