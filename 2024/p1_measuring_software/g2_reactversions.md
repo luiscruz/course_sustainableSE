@@ -26,12 +26,12 @@ Changes in React can cause huge changes downstream, with millions of websites be
 
 We researched whether or not over time changes in the React framework have led to more efficient code and thereby less power consumption. We looked at the fact whether or not upgrading to the newest React version can benefit companies, from an environmental point of view.
 
-[^1]: [Allianz Research](https://www.allianz.com/en/economic_research/insights/publications/specials_fmo/decarbonizing-information-technologies.html#:~:text=The%20information%20and%20communications%20technologies,1.8%20to%202.8%25%20in%202020)
-[^2]: [Zifera](https://zifera.io/blog/why-you-should-care-about-the-co2-emissions-of-your-website=)
-[^3]: [Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks#introductory_guides)
+[^1]: [Allianz Research - More emissions than meet the eye: Decarbonizing the ICT sector](https://www.allianz.com/en/economic_research/insights/publications/specials_fmo/decarbonizing-information-technologies.html#:~:text=The%20information%20and%20communications%20technologies,1.8%20to%202.8%25%20in%202020)
+[^2]: [Zifera - Why you should care about the CO2 emissions of your website?](https://zifera.io/blog/why-you-should-care-about-the-co2-emissions-of-your-website)
+[^3]: [Mozilla - Understanding client-side JavaScript frameworks](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks#introductory_guides)
 [^4]: [Green and Sustainable JavaScript a study into the impact of framework usage](https://www.diva-portal.org/smash/get/diva2:1768632/FULLTEXT01.pdf)
-[^5]: [w3techs](https://w3techs.com/technologies/details/js-react)
-[^6]: [w3techs](https://w3techs.com/technologies/details/js-react/15)
+[^5]: [w3techs - Usage statistics and market share of React for websites](https://w3techs.com/technologies/details/js-react)
+[^6]: [w3techs - Usage statistics and market share of React Version 15 for websites](https://w3techs.com/technologies/details/js-react/15)
 
 ## Methodology
 
@@ -55,12 +55,14 @@ Each CPU-intensive task is linked to a dedicated button for direct invocation. T
 
 ### Tools
 
-Our experiment is automated using Python and can be found [in our repo](https://github.com/thijsnulle/sse-project1/tree/script). Tasks are double shuffled - both react version as well as browser - and alternated with 50 seconds of sleep to mitigate tail energy consumption. 
-The energy consumption is measured using [EnergiBridge v0.0.4](https://github.com/tdurieux/EnergiBridge) at 200 ms intervals. Before EnergiBridge measurements, the React server is initialised and once the server is up and running the browser-specific webdriver is opened with [Selenium](https://www.selenium.dev/). During a task, the exact same order of button presses is performed and the EnergiBridge measurement ends once the browser window is terminated automatically.
+Our experiment is automated using Python and can be found in our [Github repository](https://github.com/thijsnulle/sse-project1/tree/script). Tasks are shuffled such that React versions are tested in random order and alternated with 50 seconds of sleep to mitigate tail energy consumption. 
+The energy consumption is measured using [EnergiBridge v0.0.4](https://github.com/tdurieux/EnergiBridge) at 200 ms intervals. 
+
+Before EnergiBridge measurements, the React server is initialised and once the server is up and running the browser-specific webdriver is opened with [Selenium](https://www.selenium.dev/). We used the Chrome webdriver in our experiment, which provides a clean environment for interacting with the Chrome browser. During a task, the exact same order of button presses is performed and each EnergiBridge measurement ends once the browser window is terminated automatically.
 
 ### Hardware set-up
 
-The experiment is performed on a Windows laptop - see table below - running no non-Windows services and warmed up by issuing extra tasks up front. External factors are accounted for by connecting to the internet via ethernet and having the room controlled at room temperature.
+The experiment is performed on a Windows laptop - see table below - running no non-Windows services and warmed up by issuing extra tasks up front. External factors are accounted for by connecting to the internet via ethernet, having the room controlled at room temperature and keeping the laptop plugged into to the power supply at all times.
 
 | Laptop | HP ZBook Studio G3 |
 | ------ | ------------------ |
@@ -68,6 +70,8 @@ The experiment is performed on a Windows laptop - see table below - running no n
 | RAM    | 8 GB 2133MT/s      |
 | GPU    | Intel HD Graphics 530/NVIDIA Quadro M1000M |
 | OS     | Windows 10 Home    |
+| Battery | HP Li-ion 32.057/63.992 mWh |
+| Power supply | KFD A190 19.5V 7.7A |
 ##### Table 1: Laptop specifications used in our experiment
 
 ## Results
@@ -149,6 +153,7 @@ This could be an indication that it could be very worthwhile for developers to q
 ### Further research & limitations
 
 Our research was currently only conducted on one machine, for one operating system. This makes it harder to generalize the results of this research. Furthermore, a single laptop does not necessarily accurately describe the way most websites are hosted.
+Additionaly only one webbrowser was evaluated which influences the results due to the browser specific handling of each webpage.
 
 One of the big obstacles is keeping external factors constant whilst running the experiment. Whilst we tried to keep those to a minimum, there are data points corrupted by external factors creating extra power consumption. This could be due to connectivity issues, or other programs running in the background, pinpointing the exact issue, remains extremely hard in this field of research.
 
