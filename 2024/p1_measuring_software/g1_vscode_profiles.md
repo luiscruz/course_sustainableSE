@@ -38,7 +38,7 @@ For the experiment, we need an input file to dictate what the simulation will ty
 
 ### Experiment
 
-With our “Zen Mode” enabled, we can run our experiment. The experiment emulates a user writing code in VS Code by sending keystrokes to the system. Using the library _pynput_[^pynput] to automate keystrokes, we simulated a user opening VS Code (with the provided profile), opening a new file, writing the pre-defined lines of the Django file, and closing down the application. The code in the Django file causes the Python-related plugins to actively make suggestions based on what the simulation is typing. The effect on energy consumption is what this experiment is set to measure. To account for potential external factors, we ran our simulation 30 times for both the _None _and _Python _profiles. We shuffle the individual runs randomly to reduce the risk of external factors introducing a bias. 
+With our “Zen Mode” enabled, we can run our experiment. The experiment[^repo] emulates a user writing code in VS Code by sending keystrokes to the system. Using the library _pynput_[^pynput] to automate keystrokes, we simulated a user opening VS Code (with the provided profile), opening a new file, writing the pre-defined lines of the Django file, and closing down the application. The code in the Django file causes the Python-related plugins to actively make suggestions based on what the simulation is typing. The effect on energy consumption is what this experiment is set to measure. To account for potential external factors, we ran our simulation 30 times for both the _None _and _Python _profiles. We shuffle the individual runs randomly to reduce the risk of external factors introducing a bias. 
 
 The energy consumption of each run is measured using EnergiBridge[^energibridge]. EnergiBridge is a cross-platform tool which allows us to measure the resource usage and energy consumption of the entire system during the execution of a specific command. EnergiBridge makes estimates of the used energy by querying multiple tools and therefore the reported values are not the actual values. The whole experiment was run in one go, to reduce potential fluctuation in external temperature or time-dependent influences. We ran VS Code with the GPU disabled so all measurements are done on the CPU.
 
@@ -204,3 +204,5 @@ Pylance plugin version: v2024.2.105 (pre-release)
 [^pynput]: [https://pypi.org/project/pynput/1.6.8/](https://pypi.org/project/pynput/1.6.8/)
 
 [^inputsrc]: [https://github.com/django/django/blob/bcccea3ef31c777b73cba41a6255cd866bf87237/django/db/migrations/executor.py](https://github.com/django/django/blob/bcccea3ef31c777b73cba41a6255cd866bf87237/django/db/migrations/executor.py)
+
+[^repo]: https://gitlab.com/RodinHaker/energibridge-plotter/
