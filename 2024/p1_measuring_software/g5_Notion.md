@@ -62,7 +62,7 @@ The code to replicate the experiments can be set up using [GithubNotionSSE] (htt
 For the setup, we have created a dummy Google account for Notion login, the details of which are in the GitHub repository.
 To get the set up running on a Mac: 
 1. Install Notion on Desktop
-2. Set up the dummy Google account on chrome, each experiment will log in and logout using that ID. 
+2. Set up the dummy Google account on chrome, each experiment will log in and logout using those credentials.  
 3. Set up [EnergiBridge](https://github.com/tdurieux/EnergiBridge)
 4. Run the main Python file 
 
@@ -112,10 +112,6 @@ discussion:
 
 Our metrics confirm what was already clear from the plots. The desktop application has a higher energy consumption, while at the same time having a vastly larger variance.
 
-Moreover, after comparing the calculations with a Welch t-test with a p-value < 0.05, we get the following results:
-t= 43.1496, standard error of difference = 3.716 with p-value < 0.0001 which means that the difference is not by chance and is extremely statistically significant. 
-Thus we can reject our null hypothesis and conclude that the desktop is way less energy-efficient than the web version.
-
 
 ## Discussion 
 
@@ -125,13 +121,12 @@ The differences are pretty overwhelming for the same use case. Because our distr
 3. Since we are relying on third-party software(Energibridge) to collect the data, we cannot ensure its accuracy.
 
 After we remove the outliers we can see a large interquartile range for the desktop box plot which implies a significant variability in the energy consumption and less consistency in energy usage across different runs.
+The variance on the desktop version is more than 10 times the variance of the web. 
 This could stem from syncing and background processes such as syncing data across devices (Note: Notion run on desktop was Online). It can also be attributed to the software code, performance optimisation can lead to fluctuations in energy usage. 
 
 Most native desktop applications tend to be energy efficient compared to their web counterparts as the code leverages platform specific resource optimisations potentailly leading to lower energy consumption. For example: local caching mechanisms as against frequent network requests, conserve more energy.  
 
 We deduce that Notion's desktop app is just a wrapper for the website and is not truly a "native" application. This severely affects its performace on desktop causing it to be resource intensive and heavy due to added runtime bundles for a full web browser(like Chromium). 
-
-Although our results seem contradictory to the expectation, a anectodal experience in the form of a [redditThread] (https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
 
 
 ## Limitations and Issues
@@ -139,9 +134,18 @@ Although our results seem contradictory to the expectation, a anectodal experien
 Limitations present themselves in these experiments in various forms.
 
 1. The Notion software interacts with a remote system, making the power measurements non-deterministic.
-2. Outliers present themselves in the data in the form of two data sets with very consistent power consumption, albeit with a higher and lower consumption than the other experiments. How these outliers came to be is not clear, as it could be due to a variety of reasons (e.g. powerBridge software).
+2. Outliers present themselves in the data in the form of two data sets with very consistent power consumption, albeit with a higher and lower consumption than the other experiments. How these outliers came to be is not clear, as it could be due to a variety of reasons (e.g. Energibridge software).
 3. As the application has to interact via the internet it is subject to network latency and throughput. Creating variations in the energy consumption.
+
+There are also other limitations to our research question and experiment namely :
+1. Wether the scenario we implemnted is realistic , we determined the flow based on popular features used on Notion. Of course real life scenarios differ quite a lot.
+2. Although the whole experiment is automated, accurately pointing out which part of the energy measurement pipleine consumes the most energy is difficult unless we isolate and measure each part of the Notion workflow set up.
+3. The distribution of data is not Normal even when we remove the outliers. 
+
+
 
 
 ## Conclusion:
-could be better to use web , only works when online , data is synched and stored automatically. 
+The results indicate that Notion web is energy-efficient compared to the desktop application. 
+It is also important to note that this experiment is accompanied with some limitations in terms of measurement accuracy and given the scope we cannot dive into the details of what causes the data distribution to be not normal. Again isolating which part of the workflow consumes most energy can be part of the future work. 
+Although our results seem contradictory to the expectation, an anectodal experience in the form of a [redditThread] (https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
