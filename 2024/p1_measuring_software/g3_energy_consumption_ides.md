@@ -1,5 +1,11 @@
-# Comparing energy consumption between code editors and integrated development environments
-By Maria Khakimova, Christina Vogel and Jurriaan Buitenweg
+---
+author: Maria Khakimova, Christina Vogel and Jurriaan Buitenweg
+title: "Comparing energy consumption between code editors and integrated development environments"
+image: "../img/p1_measuring_software/gX_template/cover.png"
+date: 01/03/2024
+summary: |-
+  This blog explores the energy consumption between IDE's and code editors when executing complex software.
+---
 ## Introduction
 With sustainability becoming a more conversed about topic each day, this also reaches the software engineering branch. Big five companies Microsoft, Google and Meta already claimed to be carbon free in 2030 [2,3,4]. Principles of sustainable software engineering have been written [5], explaining in what way software should be built to make it more energy efficient. But what about the programs this software is written in, how does this impact overall energy consumption?
 
@@ -11,7 +17,7 @@ Figure 1: Trends in energy consumption in the ICT sector. [6]
 
 Data centers and networks will  be the primary consumers of energy, but the production of ICT still has a significant influence. This specific sector is notably impacted by the software and the programs used in its development. The efficiency and sustainability of these production tools play a crucial role in shaping the overall energy consumption for this specific sector.
 
-Software can be written in an Integrated Development Environment like Eclipse and code editors like VSCode. IDE's provide more extended capabilities and work out of the box with complex projects requiring build tools like Gradle or Maven. Code editors on the other end are more lightweight and offer more freedom, but might be harder to setup with complex projects. Programmers often work on the go and battery life plays an important role. and are the extended capabilities of an IDE worth the possible increase in energy consumption? 
+Software can be written in an Integrated Development Environment like Eclipse and code editors like VSCode. IDE's provide more extended capabilities and work out of the box with complex projects requiring build tools like Gradle or Maven. Code editors on the other end are more lightweight and offer more freedom, but might be harder to setup with complex projects. Programmers often work on the go and battery life plays an important role. Are the extended capabilities of an IDE worth the possible increase in energy consumption? 
 
 In this blog post, we aim to address a pivotal question: how do two of the most used IDEs measure up in terms of energy consumption against the world's most popular code editor: VS Code, when tasked with running a package-intensive program named "JabRef" [7]? The significance of using Jabref for our project lies in its open-source nature, utilization of a build tool, and being entirely written in Java. Through a comparative analysis, we'll explore the performance and suitability of different development environments in handling the complexities posed by JabRef.
 
@@ -20,8 +26,6 @@ This experiment is done by a group of 3 students from the TU Delft, for a course
 
 ## Comparing the IDEs
 This blog post will conduct a comparative analysis of two IDEs to Visual Studio Code, assessing their energy consumption through the utilization of EnergiBridge [8]. To gauge the performance of these software platforms, we will be executing JabRef within this software, utilizing their import and debug systems.
-
-Why are we using this specific testing setup.
 
 ### Testing setup
 Below, the testing setup is described. This includes all software used together with tools and computer setups. Other environmental factors which might impact the energy consumption is noted as well.
@@ -88,12 +92,7 @@ Finally, room temperature will be held stable at 21 degrees celsius during these
 9. Clear cache
 10. Close IDE/Editor
 
-The experiments are repeated 30 times to reduce overall flakiness using Ranorex automation software.
-- Shuffling!!
-    - Random - talk about how this is done?
-        - Set up some random number generator to dictate order?
-        - Shuffle a list where each item represents if it is Intellij or Eclipse (or VSCode)
-- Repeated 30 times _each_ (for Intellij, Eclipse and VSCode + Docker)
+The experiments are repeated 30 times to reduce overall flakiness using Ranorex automation software. The order of the executed tests was randomized by using a random number generator and ordering the tests with our automation software accordingly.
 
 
 The total consumed energy will be measured as follows:
@@ -101,8 +100,34 @@ The total consumed energy will be measured as follows:
 - $E_f$ = Energy consumed at the final energibridge timestamp measured in joules.
 - $E_c$ = $E_f - E_s$ : Energy consumed during the experiment.
 
-## Results
-## Code editor or IDE does it matter?
+## Results (These are only preliminary as we could not run the tests with the Code editor VS Code. These will be changed for the submission on Monday.)
+Results of 30 test runs of IntelliJ and Eclipse after outlier removal using isolation forest:
+Boxplot:
+![Boxplot_after_outlier_removal](../img/p1_measuring_software/g3_energy_consumption_ides/Boxplot_after_outlier_removal.PNG)
+The mean value of the energy consumption of IntelliJ was 156588.87 Joules, while the mean value for Eclipse was 183500.52 Jule. The median value for IntelliJ is 83652 Joules, while it is 118290 Jule for Eclipse.
+This suggests, that IntelliJ is more energy efficient than Eclipse.
+
+Violin plots:
+![Violinplot_after_outlier_removal](../img/p1_measuring_software/g3_energy_consumption_ides/Violinplot_after_outlier_removal.PNG)
+Our results are not normal distributed. We tried to find possible reasons and solutions for this but even after re-running the experiment multiple times where each test runs under the same conditions, this could not be mitigated. 
+
+## Discussion (preliminary)
+
+- Intellij more efficient than Eclipse: why?
+  - Gradle project handling?
+  - Differences in debuggers?
+- Relevance of this: Should people switch to Intellij?
+  - Arguments against switch:
+    - Differences do not seem too significant
+    - Intellij community version does not give complete functionality, whilst Eclipse is free by default
+      - Intellij community vs ultimate does not appear to be too relevant to Jabref
+      - Money / paying for subscriptipn is not something all developers can afford
+    - Eclipse is opensource
+  - Arguments for switch:
+    - Even a small difference in energy consumption can add up over time - this experiment was only held for [time] each
+    - (for jabref) the project was a lot simpler to get running in Intellij
+
+## Code editor or IDE does it matter? (Not yet done as VS Code is still missing.)
 
 ## Limitations of our study and future work
 ### Generalization
@@ -129,19 +154,33 @@ Although the outside temperature was kept constant, it was done so on a room lev
 Additionally, Energibridge was not able to give us CPU temperature readings. Thus, although we incorporated a warmup before the start of the experiment, it is difficult to tell if the warmup was adequate. This means that there is a chance that the initial readings cannot be compared to later readings due to differences in resistence.
 
 ## Conclusion
+(Final conclusion will be added for the Monday submission as the results for VS Code are still missing. So no statement about the difference between IDEs and code editors can be made yet.)
+
+
+# Reproducibility
+Ranorex files can be downloaded at: https://drive.google.com/drive/folders/1J7W0fQ8qG5YB0njX0k3-Fn-O0gcF42d9?usp=sharing
+
 
 ## References
 
 
 [1] (2024), "Gradle Build Tool". February, 2024.
+
 [2] Google (2022), "Net Zero Carbon".
+
 [3] Facebook (2020), "Facebook's net zero commitment". November, 2020.
+
 [4] Smith B (), "Microsoft will be carbon negative by 2030"
-[5] Zimmergren (), "The Principles of Sustainable Software Engineering - Training".
+
+[5] Zimmergren (), "The Principles of Sustainable Software 
+Engineering - Training".
+
 [6] Garcia C (2023), "Data Center Energy Use - AKCP Monitoring". July, 2023.
 
 [7] "JabRef - Free Reference Manager - Stay on top of your Literature".
+
 [8] "tdurieux/EnergiBridge".
 
 [9] "Test Automation for GUI Testing textbar Ranorex".
+
 [10] Haywood A, Sherbeck J, Phelan P, Varsamopoulos G and Sandeep K (2015), "The relationship among CPU utilization, temperature, and thermal power for waste heat utilization", Energy Conversion and Management., May, 2015. Vol. 95
