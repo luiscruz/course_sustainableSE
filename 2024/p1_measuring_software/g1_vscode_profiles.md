@@ -1,7 +1,7 @@
 ---
 author: Aron Hoogeveen, Delano Flipse, Rodin Haker
 title: "Measuring the Energy Consumption of Different Profiles in Visual Studio Code"
-image: "../img/p1_measuring_software/g1/cover.png"
+image: "../img/p1_measuring_software/g1_vscode_profiles/cover.png"
 date: 01/03/2024
 summary: |-
   We quantify the energy consumption variance between two distinct profiles within Visual Studio Code (VS Code). We compare a profile devoid of any extensions against the default Python profile integrated with Python-related extensions. We show that on average, the plugins account for an 8.0% increase in energy consumption with the inclusion of plugins.
@@ -51,17 +51,17 @@ During the run of our 4+ hour-long experiment, we sadly experienced some unexpec
 
 The data from the experiment has been plotted in combined box-, violin-plots in the figures below. From the plot for the runs _without_ the Python extensions, it can be assumed that the energy data has a normal distribution. This is backed up by the shape of the plot in combination with the Shapiro-Wilk test’s p-value (see appendix). However, the data from the runs _with_ the Python extensions does not share this property. We expect that this non-normal distribution is due to the lack of data points. As its p-value from the Shapiro-Wilk test does not explicitly rule out a normal distribution we will assume a normal distribution of the data.
 
-![CPU Energy (J) (zoomed in)](../img/p1_measuring_software/g1/image2.png)
+![CPU Energy (J) (zoomed in)](../img/p1_measuring_software/g1_vscode_profiles/image2.png)
 
-![CPU Energy (J)](../img/p1_measuring_software/g1/image1.png)
+![CPU Energy (J)](../img/p1_measuring_software/g1_vscode_profiles/image1.png)
 
 Including all 30 data points will result in the plots as shown below. The data is clearly not normal in either version, which is likely the result of the simulation not typing in the designated window. The energy consumption is also much higher: likely the result of the simulation not closing the VS Code windows, increasing the number of windows open at the same time for every iteration. 
 
 Another interesting observation during the execution of the experiment is that some outliers in terms of CPU temperature have been measured during the runs of the version without the Python extensions. However, according to our z_score test with a threshold of 3 standard deviations, these values are not outliers in our distribution, and as such the data generated during these runs have been incorporated into our final results.
 
-![CPU starting temp](../img/p1_measuring_software/g1/image6.png)
+![CPU starting temp](../img/p1_measuring_software/g1_vscode_profiles/image6.png)
 
-![CPU energy (J)](../img/p1_measuring_software/g1/image5.png)
+![CPU energy (J)](../img/p1_measuring_software/g1_vscode_profiles/image5.png)
 
 The findings do reveal a notable contrast in energy consumption between the two versions of VS Code. Specifically, the version integrated with Python extensions exhibits an average energy consumption that is 8.0% higher compared to the version lacking these extensions. This discrepancy is further supported by the results of a t-test, which yields a p-value of 6.1e-8. Such a low p-value underscores the statistical significance of the observed difference, indicating that it is highly unlikely to have occurred by random chance.
 
@@ -178,9 +178,9 @@ Outliers for sim 2:
 
 ## Appendix: Additional Figures
 
-![alt_text](../img/p1_measuring_software/g1/image3.png)
-![alt_text](../img/p1_measuring_software/g1/image4.png)
-![alt_text](../img/p1_measuring_software/g1/image7.png)
+![alt_text](../img/p1_measuring_software/g1_vscode_profiles/image3.png)
+![alt_text](../img/p1_measuring_software/g1_vscode_profiles/image4.png)
+![alt_text](../img/p1_measuring_software/g1_vscode_profiles/image7.png)
 
 
 
