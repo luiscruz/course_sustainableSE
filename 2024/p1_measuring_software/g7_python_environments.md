@@ -119,7 +119,7 @@ We have also created bar graphs to compare the mean power consumption. \
 <img src="../img/p1_measuring_software/g7_python_environments/half_bar_chart.png" alt="Bar Plot 3" width="750"/>
 
 
-In each of the following sections, we will discuss the power consumption of the three environments. The code for processing the results can be found [here](<insert analysis ipynb> "analysis").
+In each of the following sections, we will discuss the power consumption of the three environments. The code for processing the results can be found [here](https://github.com/GiovanniLoureiro/sse32/tree/main/visualization%20notebooks "analysis").
 
 ### PyCharm
 
