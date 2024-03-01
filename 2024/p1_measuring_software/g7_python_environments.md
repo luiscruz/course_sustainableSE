@@ -3,7 +3,7 @@ author: Smruti Kshirsagar, Esha Dutta, Giovanni Fincato de Loureiro
 title: "Comparing Energy Consumptions of Python Execution Environments"
 date: 28/02/2024
 summary: |-
-  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools allowing for comprehensive data analysis workflows. Additionally, both have extensive documentation and tutorials available online. Further, they integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc.), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to run the Python code on. We delve into this matter by comparing power usage of Python from Terminal, PyCharm using Virtual Environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed. 
+  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools allowing for comprehensive data analysis workflows, coupled with extensive documentation and tutorials available online. Further, they integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc.), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to run the Python code on. We delve into this matter by comparing power usage of Python from Terminal, PyCharm using Virtual Environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed. 
 ---
 
 ## Introduction
@@ -83,7 +83,7 @@ Total Number of Cores: 8 (4 performance and 4 efficiency)
 Type: Built-In Retina LCD \
 Resolution: 2560x1600 Retina  
 
-**Steps to obtain unbiased data** \
+**Steps taken to obtain unbiased data** \
 In order to minimize competing tasks, the following steps are taken:
 * All other applications are closed. It is also ensured that no background tasks are running.
 * Notifications are turned off
@@ -97,12 +97,12 @@ In order to minimize competing tasks, the following steps are taken:
 * PyCharm is used out-of-the-box, without any additional plugins and settings
 
 **Experiment Automation** \
-Automation is done using a shell script found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/exec.sh "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is randomized. Details for running the experiment are given below:
+Automation is done using a shell script found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/exec.sh "exec.sh"). Twenty readings are taken for each of the environments and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is randomized. Details for running the experiment are given below:
 * Energibridge setup with LibreHardwareMonitor
 * Python version: 3.9 
 * Jupyter notebook version: 6.5.4 , IPython: 8.15.0
 * PyCharm version: 2023.3 
-* Open project in PyCharm and add ```main.py``` to PyCharm > Preferences > Tools > Startup tasks
+* Open project in PyCharm and add ```main.py``` to PyCharm > Preferences > Tools > Startup tasks \
 This step is required to ensure that the code runs on startup in PyCharm.
 
 **Energy Measurement** \
