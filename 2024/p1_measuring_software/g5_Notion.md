@@ -1,6 +1,7 @@
 ---
 author: Mitali P, Pia A, David Vos
-title: Is Notion "Greener" on Web browser or Desktop?
+title: Is Notion "Greener" on Web browser or Desk
+   top?
 date: 27/02/2024
 summary: |-
 Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
@@ -72,11 +73,51 @@ Results :
 From the Results we see that the energy consumption on desktop is far higher than on the web browser. This is surprising as Native applications are seen to use less energy. 
 
 
-Graphs:
+# Results
 
+## Outliers
 
+The data produced from the experiments was analyzed by plotting the energy consumption for each experiment. The data was plotted using a violin plot to show the distribution of the data and a time series plot to show the energy consumption over time.
+After producing the violin plot, it was observed that there were some outliers in the data for the web experiment (seen in Figure 1). 
 
+![violin_plot_with_outliers.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot_with_outliers.png)
+*Figure 1: Violin plot of energy consumption (J) with outlier data.*
+
+The time series plot (seen in Figure 2) also showed the presence of outliers in the data.
+
+![time_series_with_outliers.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Ftime_series_with_outliers.png)
+*Figure 2: Time series plot of power consumption(W) with outlier data sets*
+
+The outlier data sets appear to have a near constant energy consumption over time, which is not consistent with the rest of the data. 
+Furthermore, the energy consumption of the outlier data sets is significantly higher than the rest of the data for one of the outliers and lower for the other one.
+//TODO: better reason for why outliers exist? 
+Why these outliers are present in the data is not clear, especially as the power usage reported by the outliers has very low variance.
+
+## Without Outliers
+After removing the outliers from the data, the violin plot (seen in Figure 3) and time series plot (seen in Figure 4) were produced again.
+Furthermore, the min, max, average and variance was calculated for both experiments. The results are shown in Figure 5.
+
+![violin_plot.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot.png)
+*Figure 3: Violin plot of energy consumption (J) without outlier data.*
+
+The violin plot for the web experiment shows a normal distribution, albeit with a very low variance.
+The violin plot for the desktop experiment appears to show a corrupted distribution, with a very high variance.
+We observe that from a first glance it is very clear that the desktop version of Notion consumes more energy than the web version.
+
+![time_series.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Ftime_series.png)
+*Figure 4: Time series plot of power consumption(W) without outlier data.*
+
+The time series plots for both experiments show a correlated pattern, where the first 50 seconds experience a large oscillation in power consumption.
+We also observe a peak around the 105 sec mark for both experiments. Lastly there also appears to be a peak at the end of every experiment run.
+
+![notion_metrics.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fnotion_metrics.png)
+*Figure 5: Metrics for the Notion experiments without outliers.*
 discussion:
+
+Our metrics confirm what was already clear from the plots. The desktop application has a higher power consumption, while at the same time having a vastly larger variance.
+
+
+
 practical implications.
 
 Limitation:
