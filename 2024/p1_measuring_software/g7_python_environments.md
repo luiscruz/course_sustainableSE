@@ -3,7 +3,7 @@ author: Smruti Kshirsagar, Esha Dutta, Giovanni Fincato de Loureiro
 title: "Comparing Energy Consumptions of Python Execution Environments"
 date: 28/02/2024
 summary: |-
-  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools that allow comprehensive data analysis workflows. Additionally, both have extensive documentation and tutorials available online. Further, they integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to run the Python code on. We delve into this matter by comparing power usage of Python from Terminal, PyCharm using Virtual Environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed.
+  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools that allow comprehensive data analysis workflows, coupled with extensive documentation and tutorials available online. Further, they integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to run the Python code on. We delve into this matter by comparing power usage of Python from Terminal, PyCharm using Virtual Environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed.
 ---
 
 ## Introduction
@@ -13,7 +13,7 @@ In this article, we will begin by introducing each execution environment and dis
 
 ## Methodology
 
-We use the Python library ```Pandas``` for data analysis. ```Pandas``` is selected as it is a powerful tool for working with structured data. It offers offers a wide range of functionalities. We perform operations such as read, groupby, sort and unique on the data. These operations are performed on a large dataset for different file sizes:
+We use the Python library ```Pandas``` for data analysis. ```Pandas``` is selected as it is a powerful tool for working with structured data. It offers a wide range of functionalities. We perform operations such as read, groupby, sort and unique on the data. These operations are performed on a large dataset for different file sizes:
 * Full data size: 2,83 GB
 * Half data size: 1,42 GB
 * Quarter data size: 0,71 GB
@@ -94,6 +94,7 @@ The following steps are taken to minimize competing tasks while executing the co
 * Order of execution is shuffled in the automation
 * There is one minute of sleep time between executions
 * All readings are taken during the night to minimize temperature fluctuations
+* PyCharm is used out-of-the-box, without any additional plugins
 
 **Experiment Automation** \
 The experiment is automated using a shell script that can be found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/exec.sh "exec.sh"). Twenty readings are taken for each of the environments and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is randomized. Details for running the experiment can be found below:
@@ -142,7 +143,7 @@ Moreover, power consumption does not increase linearly with the file size, espec
 We infer that PyCharm should only be used when operations such as debugging and refactoring are necessary, i.e., for larger projects. Thus, we conclude that Jupyter is an optimal option for data processing using Python. It is a greener platform compared to PyCharm, and it also provides many useful features of an IDE.
 
 ## Limitations
-Comparison of Python environments is difficult as the usage of the various platforms is specific to the requirement. Depending on the use case, either of the options can be preferable. The readings are taken on a single computer with particular versions of the various softwares as mentioned above, making it difficult to generalize the results. Additionally, this experiment is done on the same code using only ```pandas``` transformations. There is scope for a more diverse analysis with various libraries and operation to find the most energy-efficient environment. \
+Comparison of Python environments is difficult as the usage of the various platforms is specific to the requirement. Depending on the use case, either of the options can be preferable. The readings are taken on a single computer with particular versions of the various softwares as mentioned above, making it difficult to generalize the results. Additionally, this experiment is done on the same code using only ```Pandas``` transformations. There is scope for a more diverse analysis with various libraries and operation to find the most energy-efficient environment. \
 In this experiment, we have not been able to separate the application startup energy consumption from the energy consumption of the actual execution of code. This is especially evident in the case of PyCharm. Steps have been taken to cut down the bias of external factors and background processes, but it is not possible to eliminate this bias.
 
 ## Future Work
