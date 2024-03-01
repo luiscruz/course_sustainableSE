@@ -4,7 +4,7 @@ title: "Comparing Energy Consumption of React Framework Versions"
 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"
 date: 29/02/2024
 summary: |-
-  Javascript Frameworks play a fundamental in current-day website development. Major releases are rolled out yearly and add new improvements over previous versions. This research shows significant developments in terms of power consumption related to loading large datasets between different versions of the React Framework
+  Javascript Frameworks play a fundamental role in current-day website development. Major releases are rolled out yearly and add new improvements over previous versions. This research shows significant developments in terms of power consumption related to loading large datasets between different versions of the React Framework
 ---
 
 # Comparing Energy Consumption of React Framework Versions
@@ -61,9 +61,16 @@ Our experiment is automated using Python and can be found [here](https://github.
 
 The experiment is performed on an Intel Core i7-6700HQ CPU running no non-windows services and incorporating extra tasks up front for warm-up. External factors are accounted for by connecting to the internet via ethernet and having the room controlled at room temperature.
 
+| Laptop | HP ZBook Studio G3 |
+| ------ | ------------------ |
+| CPU    | Intel Core i7-6700HQ |
+| RAM    | 8 GB               |
+| GPU    | Intel HD Graphics 530 |
+| OS     | Windows 10 Home    |
+
 ## Results
 
-The results of our experiment can be found on our [Github repository](https://github.com/thijsnulle/sse-project1/tree/script/experiment/win32). Here 2 different experiments, can be found. For this section we used the last experiment we ran. Here 2 folders can be found with 32 iterations of the experiment for both the modern version and the legacy version.
+The results of our experiment can be found on our [Github repository](https://github.com/thijsnulle/sse-project1/tree/script/experiment/win32). Here two different experiments, can be found. For this section we used the last experiment we ran. Here two folders can be found with 32 iterations of the experiment for both the modern version and the legacy version.
 
 ### Energy & Power
 
