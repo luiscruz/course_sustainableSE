@@ -13,7 +13,7 @@ At TU Delft many students create, collaborate and organise their notes on Notion
 
 While sustainiabilty might not be the integral aspect of the Notion software we can make it an afterthought and use it in a manner where we reduce overall energy consumption or save our laptops energy.
 
-## Methodology :
+## Methodology 
 We conducted the same experiment (login to logout) on two different modes of operation of notion, one mode being desktop and the other mode being notions web application on chrome web browser. We are using the cornell note system template as a use case for both the modes. We have tried to include all the basic features that we think users usually use on notion in the workflow pipeline.
 The experiment flow for interaction with Notion is as follows:
 open Desktop app on fullscreen -> login using google sign in option(we created a dummy account for this experiment) -> create a new page using the cornell system template -> write a page title with some basic text -> make a todo list -> write some notes-> write a math equation -> write a piece of code -> check a todo -> logout
@@ -26,7 +26,7 @@ Each of it was run 30 times and to prevent the order of experiments influencing 
 For each experiment, we took the following measurements: 
 elapsed measurement time(ms) and System_Power(Watts) which we convereted to Joules. 
 
-## Hardware set up :
+## Hardware set up 
 We conducted the experiments on MacBook Air M1 Laptop with 8GB RAM running macOS Sanoma 14.2.1 (23C71). The specific software used for the experiment is:
 | Software      | Vesrion |
 |---------------|---------|
@@ -57,7 +57,7 @@ The experiment structure was as follows :
     7. Wait for 30 seconds
 
 
-## Replication:
+## Replication
 The code to replicate the experiments can be setup using [GithubNotionSSE] (https://github.com/mitalipatil99/SSE_notion)
 For the setup we have created a dummy google account for Notion login , the details of which are in the GitHub repository.
 To get the set up running on a Mac: 
@@ -85,7 +85,7 @@ Furthermore, the energy consumption of the outlier data sets is significantly hi
 //TODO: better reason for why outliers exist? 
 Why these outliers are present in the data is not clear, especially as the power usage reported by the outliers has very low variance.
 
-## Without Outliers
+### Without Outliers
 After removing the outliers from the data, the violin plot (seen in Figure 3) and time series plot (seen in Figure 4) were produced again.
 Furthermore, the min, max, average and variance was calculated for both experiments. The results are shown in Figure 5.
 
@@ -106,15 +106,24 @@ We also observe a peak around the 105 sec mark for both experiments. Lastly ther
 *Figure 5: Metrics for the Notion experiments without outliers.*
 discussion:
 
-Our metrics confirm what was already clear from the plots. The desktop application has a higher power consumption, while at the same time having a vastly larger variance.
+Our metrics confirm what was already clear from the plots. The desktop application has a higher energy consumption, while at the same time having a vastly larger variance.
 
+Moreover after comparing the calculations with a Welch t-test with p-value < 0.05 we get the following results:
+t= 43.1496, standard error of difference = 3.716 with p value < 0.0001 which means that the difference is not by chance and  is extremely statistically significant. 
+Thus we can reject our null hypothesis and conclude that desktop is way less energy efficent than the web version. 
 
 
 ## Discussion 
 
+Because our distribution is not normal we cannot confidently say that the errors that affected the desktop measurements were equally affecting the web measurements. Some of the potenial reasons could be:
+1. Error in automated experimental  execution
+2. Unusal task being run by the system despite all background process and notifications being turned off 
+3. Since we are relying on a third party software(Energibridge) to collect the data , we cannot ensure its accuracy.
 
 
-## Limitations 
+
+
+## Limitations and Issues
 
 worth noting the response time on web vs desktop ,
 accesibililty to online vs offline features
