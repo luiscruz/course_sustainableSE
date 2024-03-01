@@ -1,7 +1,6 @@
 ---
-author: Mitali P, Pia A, David Vos
-title: Is Notion "Greener" on Web browser or Desk
-   top?
+author: Mitali P, Pia A, David V
+title: Is Notion "Greener" on Web browser or Desktop?
 date: 27/02/2024
 summary: |-
 Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
@@ -27,7 +26,7 @@ Each of it was run 30 times and to prevent the order of experiments influencing 
 For each experiment, we took the following measurements: 
 elapsed measurement time(ms) and System_Power(Watts) which we convereted to Joules. 
 
-Experimental set up :
+Hardware set up :
 We conducted the experiments on MacBook Air M1 Laptop with 8GB RAM running macOS Sanoma 14.2.1 (23C71). The specific software used for the experiment is:
 | Software      | Vesrion |
 |---------------|---------|
@@ -70,10 +69,25 @@ To get the set up running on a Mac:
 
 
 Results :
-From the Results we see that the energy consumption on desktop is far higher than on the web browser. This is surprising as Native applications are seen to use less energy. 
+The tables and Graphs below show the reported measurements.
+
+| Cummulative Energy(Joules)  | Web | Desktop |
+|-----------------------------|-----|---------|
+| mean                        | 1633.39| 1793.73 |
+| Variance                    | 34.05  | 380.55
+| Max                         | 1652.62  |1820.61
+
+The Web App on Chrome has lesser average energy consumption compared to the desktop app. The variability on the desktop app is also alot higher compared to Web. 
+The following graphs give a visual oversight of how the measurement is distributed per mode of operation. 
+
+##add Graphs
 
 
-# Results
+
+Our test results have significant statistical difference  (Welch T-test p-value <0.05) 
+
+
+Discussion:
 
 ## Outliers
 
