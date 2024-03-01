@@ -130,10 +130,13 @@ We deduce that Notion's desktop app is just a wrapper for the website and is not
 Although our results seem contradictory to the expectation, a anectodal experience in the form of a [redditThread] (https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
 
 
-## Limitations and Issues
+git add ## Limitations and Issues
 
-worth noting the response time on web vs desktop ,
-accesibililty to online vs offline features
+Limitations present themselves in these experiments in various forms.
+
+1. The Notion software interacts with a remote system, making the power measurements non-deterministic.
+2. Outliers present themselves in the data in the form of two data sets with very consistent power consumption, albeit with a higher and lower consumption than the other experiments. How these outliers came to be is not clear, as it could be due to a variety of reasons (e.g powerBridge software).
+3. As the application has to interact via internet it is subject to network latency and throughput. Creating variations in the energy consumption.
 
 ## Conclusion:
 could be better to use web , only works when online , data is synched and stored automatically. 
