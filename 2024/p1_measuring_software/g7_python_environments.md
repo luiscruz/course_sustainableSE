@@ -3,13 +3,13 @@ author: Smruti Kshirsagar, Esha Dutta, Giovanni Fincato de Loureiro
 title: "Comparing Energy Consumptions of Python Execution Environments"
 date: 28/02/2024
 summary: |-
-  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools allowing for comprehensive data analysis workflows. Additionally, both have extensive documentation and tutorials available online, and integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc.), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to actually run the Python code on. We delve into this matter by comparing power usage of Python CLI, PyCharm using virtual environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed. 
+  Pandas and Python are commonly used for data analysis as they have a vast ecosystem of libraries and tools allowing for comprehensive data analysis workflows. Additionally, both have extensive documentation and tutorials available online. Further, they integrate seamlessly with technologies such as databases, file formats (CSV, Excel, JSON, etc.), web APIs, and cloud services. The sustainability factor is often overlooked while choosing which platform to run the Python code on. We delve into this matter by comparing power usage of Python from Terminal, PyCharm using Virtual Environment and Jupyter Notebook. We find that Jupyter is the most suitable platform in terms of functionalities provided and power consumed. 
 ---
 
 ## Introduction
-The TIOBE index, which is an indicator of the popularity of programming languages, shows that Python is currently ranked as the top programming language in 2024[^1]. It is vastly used in various software projects all around the world and executed through various environments. Python also remains a popular choice for data analysis and data science use cases due to its flexibility, scalability, and a wide range of libraries and tools which facilitate data manipulation easily. Its popularity can also be attributed to the fact that it is easy to learn and simple to use. \
+The TIOBE index, which is an indicator of the popularity of programming languages, shows that Python is currently ranked as the top programming language in 2024[^1]. It is widely used in various software projects all around the world and executed through various environments. Python also remains a popular choice for data analysis and data science use cases due to its flexibility, scalability, and a wide range of libraries and tools which facilitate data manipulation easily. Its popularity can also be attributed to the fact that it is easy to learn and simple to use. \
 However, very little is known about the energy consumption of the environments in which Python code is executed. In this experiment, we have chosen three ways to run a Python code which performs data analysis on a dataset; Jupyter notebook, PyCharm IDE, and through Python's command line interface. The Python code uses Pandas[^2] to read and perform some analysis queries on three e-commerce user behaviour datasets of sizes 2,83 GB, 1,42 GB, and 0,71 GB. \
-In this article, we will begin by introducing each execution environment and discuss their strengths and weaknesses. Then, we will describe the methodology used to compare the energy consumption of each environment. Finally, we will present the results of our comparison and draw conclusions about the energy efficiency of each library. Overall, this report aims to provide valuable insights into the energy consumption of executing python code in different environments and how they can be run in a more sustainable way.
+In this article, we will begin by introducing each execution environment and discuss its strengths and weaknesses. Then, we will describe the methodology used to compare the energy consumption of each environment. Finally, we will present the results of our comparison and draw conclusions about the energy efficiency of each library. Overall, this report aims to provide valuable insights into the energy consumption of executing Python code in different environments and how they can be run more sustainably.
 
 ## Methodology
 
@@ -26,7 +26,7 @@ The Python code is run on 3 environments:
 <img src="../img/p1_measuring_software/g7_python_environments/python_logo.png" alt="Python Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/pycharm_logo.png" alt="PyCharm Logo" width="180"/><img src="../img/p1_measuring_software/g7_python_environments/jupyter_logo.png" alt="Jupyter Logo" width="180"/>
 
 
-The motivation is to find which of the environment is most energy efficient for data processing and while keeping in mind the trade-offs of functionalities they offer. Link to the repository can be found [here](https://github.com/GiovanniLoureiro/sse32/tree/main/project "code_repository").
+The motivation is to find which of the environments is most energy efficient for data processing and while keeping in mind the trade-offs of functionalities they offer. Link to the code repository can be found [here](https://github.com/GiovanniLoureiro/sse32/tree/main/project "code_repository").
 
 **Python CLI** \
 Python from the Command Line Interface (CLI) using the terminal allows you to execute Python code and interact with Python's interpreter directly from the command line or terminal. Running Python from the terminal gives flexibility and control over Python scripts and allows user to interact with the system seamlessly.
@@ -38,7 +38,7 @@ PyCharm is a powerful integrated development environment (IDE) specifically desi
 Jupyter is an open-source web-based application that allows users to create and share documents containing live code, equations, visualizations, and narrative text. Notebooks consist of cells that can contain code, Markdown text, or raw content. Users can execute code cells interactively and see the results immediately within the notebook. Jupyter notebooks are widely used for data analysis, scientific computing, research, education, and collaborative projects. They enable reproducible research and facilitate the creation of interactive data-driven narratives.
 
 ### Dataset
-We selected a dataset from Kaggle for the experiment . Link to the data can be found [here](https://www.kaggle.com/datasets/mkechinov/ecommerce-behavior-data-from-multi-category-store/data "Kaggle Dataset"). \
+We selected a dataset from Kaggle for the experiment. Link to the data can be found [here](https://www.kaggle.com/datasets/mkechinov/ecommerce-behavior-data-from-multi-category-store/data "Kaggle Dataset"). \
 It contains behavior data for 7 months (from October 2019 to April 2020) from a large multi-category online store. Each row in the file represents an event. All events are related to products and users. Each event is like many-to-many relation between products and users. The description of the columns is given below.
 
 
@@ -65,7 +65,7 @@ Python code can be found [here](https://github.com/GiovanniLoureiro/sse32/blob/m
 
 ### Experiment Setup 
 **Machine Specifications** \
-The experiment was run on a MacBook Air. 
+The experiment is run on a MacBook Air. 
 
 * **Model**  \
 Name: MacBook Air (Model Identifier: MacBookAir10,1) \
@@ -97,7 +97,7 @@ In order to minimize competing tasks, the following steps are taken:
 * PyCharm is used out-of-the-box, without any additional plugins and settings
 
 **Experiment Automation** \
-Automation is done using a shell script found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/exec.sh "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is shuffled. Details for running the experiment are given below:
+Automation is done using a shell script found [here](https://github.com/GiovanniLoureiro/sse32/blob/main/project/exec.sh "exec.sh"). Twenty readings are taken for each of the environment and file sizes. For each execution, the environment is launched, code is executed and energy readings for this process are stored to a CSV file. The order of execution is randomized. Details for running the experiment are given below:
 * Energibridge setup with LibreHardwareMonitor
 * Python version: 3.9 
 * Jupyter notebook version: 6.5.4 , IPython: 8.15.0
@@ -123,7 +123,7 @@ In each of the following sections, we will discuss the power consumption of the 
 
 ### PyCharm
 
-On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.866, 0.721, and 0.793 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. PyCharm consistently consumes highest power while analysing data for all the three data sizes. \
+On performing Shapiro-Wilk tests for the data collected for PyCharm for the three data sizes, we get p-values of 0.866, 0.721, and 0.793 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. PyCharm consistently consumes highest power based on the results for all the three data sizes. \
 PyCharm, like many integrated development environments (IDEs), runs multiple background processes such as indexing and version control integration. These processes can consume CPU, memory, and disk I/O, contributing to higher energy consumption. PyCharm also performs various code analysis and inspections in real-time to provide features like code completion, error highlighting, and code suggestions. These features require computational resources and can contribute to increased energy consumption.
 
 ### Jupyter Notebook
@@ -133,7 +133,7 @@ In the Jupyter notebook, Jupyter Notebook runs a Python kernel in the background
 
 ### Terminal
 
-On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.077, 0.105, and 0.134 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. \
+On performing Shapiro-Wilk tests for Terminal the data collected for the three data sizes, we get p-values of 0.077, 0.105, and 0.134 for data sizes 2.83 GB, 1.42 GB, and 0.71 GB respectively. This indicates that the data is normally distributed. The data is quite consistent, with low variance for the different data sizes. \
 Terminal consistently uses the lowest amount of power. While running a python code from the terminal, no software is started and no functionalities are present on the command line interface. This leads to the lowest energy consumption.
 
 
@@ -146,7 +146,7 @@ Comparison of Python environments is difficult as the usage of the various platf
 We are not able to separate the application startup energy consumption from the energy consumption of the actual execution of code. This is especially evident in case of PyCharm. Steps are taken to cut down the bias of external factors and background processes, but it is not possible to eliminate this bias.
 
 ## Future Work
-As part of future work, bigger datasets can be used for data analysis to emulate real world scenarios. In this experiment, we only used smaller datasets of sizes ranging approximately from 500 MB to 3 GB. Moreover, we have only used the pandas library in the Python code. In the future, the energy consumption of a wider variety of libraries and operations could be measured and compared. These steps would give us a more accurate picture of the energy consumption of data analysis scenarios that are employed in real-world software use cases. The code can also be run on different machines to investigate if that impacts the results. Lastly, one could argue that running code is not the only action a software engineer performs. A substantial amount of time is spent in developing and debugging software systems. Thus, in the future, the entire process of writing, debugging, and running the code can be simulated to measure energy consumption.
+As part of future work, bigger datasets can be used for data analysis to emulate real world scenarios. In this experiment, we only use smaller datasets of sizes ranging approximately from 500 MB to 3 GB. Moreover, we have only used the pandas library in the Python code. In the future, the energy consumption of a wider variety of libraries and operations could be measured and compared. These steps would give us a more accurate picture of the energy consumption of data analysis scenarios that are employed in real-world software use cases. The code can also be run on different machines to investigate if that impacts the results. Lastly, one could argue that running code is not the only action a software engineer performs. A substantial amount of time is spent in developing and debugging software systems. Thus, in the future, the entire process of writing, debugging, and running the code can be simulated to measure energy consumption.
 
 ### References
 [1]:[TIOBE Index](https://www.tiobe.com/tiobe-index/) \
