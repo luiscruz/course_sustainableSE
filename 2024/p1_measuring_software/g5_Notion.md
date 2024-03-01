@@ -124,10 +124,13 @@ After we remove the outliers we can see a large interquartile range for the desk
 This could possibly stem from syncing and background process such as syncing data across devices (Note : Notion run on desktop was Online). It can also be attributed to the softwares code, performance optimisation can lead to fluctuations in the energy usage. 
 
 
-## Limitations and Issues
+git add ## Limitations and Issues
 
-worth noting the response time on web vs desktop ,
-accesibililty to online vs offline features
+Limitations present themselves in these experiments in various forms.
+
+1. The Notion software interacts with a remote system, making the power measurements non-deterministic.
+2. Outliers present themselves in the data in the form of two data sets with very consistent power consumption, albeit with a higher and lower consumption than the other experiments. How these outliers came to be is not clear, as it could be due to a variety of reasons (e.g powerBridge software).
+3. As the application has to interact via internet it is subject to network latency and throughput. Creating variations in the energy consumption.
 
 ## Conclusion:
 could be better to use web , only works when online , data is synched and stored automatically. 
