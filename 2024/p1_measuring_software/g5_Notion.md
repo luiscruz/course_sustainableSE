@@ -69,18 +69,20 @@ To get the set up running on a Mac:
 
 ## Results 
 
+### First run
+
 The data produced from the experiments was analyzed by plotting the energy consumption for each experiment. The data was plotted using a violin plot to show the distribution of the data and a time series plot to show the energy consumption over time.
 After producing the violin plot, it was observed that there were some outliers in the data for the web experiment (seen in Figure 1). 
 
 ![violin_plot_with_outliers.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot_with_outliers.png)
 
-*Figure 1: Violin plot of energy consumption (J) with outlier data.*
+*Figure 1: Violin plot of energy consumption (J) with outlier data (first run).*
 
 The time series plot (seen in Figure 2) also showed the presence of outliers in the data.
 
 ![time_series_with_outliers.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Ftime_series_with_outliers.png)
 
-*Figure 2: Time series plot of power consumption(W) with outlier data sets*
+*Figure 2: Time series plot of power consumption(W) with outlier data sets (first run)*
 
 The outlier data sets appear to have a near-constant energy consumption over time, which is not consistent with the rest of the data. 
 Furthermore, the energy consumption of the outlier data sets is significantly higher than the rest of the data for one of the outliers and lower for the other one.
@@ -90,28 +92,48 @@ Why these outliers are present in the data is not clear, especially as the power
 After removing the outliers from the data, the violin plot (seen in Figure 3) and time series plot (seen in Figure 4) were produced again.
 Furthermore, the min, max, average and variance were calculated for both experiments. The results are shown in Figure 5.
 
-![violin_plot.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot.png)
+![violin_plot1.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot1.png)
 
-*Figure 3: Violin plot of energy consumption (J) without outlier data.*
+*Figure 3: Violin plot of energy consumption (J) without outlier data (first run).*
 
 The violin plot for the web experiment shows a normal distribution, albeit with a very low variance.
 The violin plot for the desktop experiment appears to show a corrupted distribution, with a very high variance.
 We observe that from a first glance, it is very clear that the desktop version of Notion consumes more energy than the web version.
 
-![time_series.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Ftime_series.png)
+![time_series1.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Ftime_series1.png)
 
-*Figure 4: Time series plot of power consumption(W) without outlier data.*
+*Figure 4: Time series plot of power consumption(W) without outlier data (first run).*
 
 The time series plots for both experiments show a correlated pattern, where the first 50 seconds experience a large oscillation in power consumption.
 We also observe a peak around the 105 sec mark for both experiments. Lastly, there also appears to be a peak at the end of every experiment run.
 
 ![notion_metrics.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fnotion_metrics.png)
 
-*Figure 5: Metrics for the Notion experiments without outliers.*
+*Figure 5: Metrics for the Notion experiment (first run).*
 discussion:
 
 Our metrics confirm what was already clear from the plots. The desktop application has a higher energy consumption, while at the same time having a vastly larger variance.
 
+### Second Run
+
+Even after removing the outliers, the distribution of the web desktop data is not normal. 
+Therefore, we decided to rerun the experiment under more stringent conditions.
+Only one outlier was present in the new dataset, but after analyzin the size of the dataset we concluded that energiBrige had stopped measuring prematurely.
+We decided to remove the outlier and continue with the analysis.
+
+![violin_plot2.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot2.png)
+
+*Figure 6: Violin plot of energy consumption (J) (second run).*
+
+as can be seen the distribution of the data for the desktop experiment is more normal than in the first run, meaning the variation should be smaller.
+Secondly the web experiment has a significantly increased variance compared to the first run.
+
+![notion_metrics2.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fnotion_metrics2.png)
+
+*Figure 7: Metrics for the Notion experiment (second run).*
+
+We can see in the metrics of the second run that the variance of the desktop experiment has decreased significantly, while the variance of the web experiment has increased.
+The average has increased for both cases by 1.2% and 3% respectively.
 
 ## Discussion 
 
@@ -121,7 +143,8 @@ The differences are pretty overwhelming for the same use case. Because our distr
 3. Since we are relying on third-party software(Energibridge) to collect the data, we cannot ensure its accuracy.
 
 After we remove the outliers we can see a large interquartile range for the desktop box plot which implies a significant variability in the energy consumption and less consistency in energy usage across different runs.
-The variance on the desktop version is more than 10 times the variance of the web. 
+The variance on the desktop version is more than 10 times the variance of the web for the first run. 
+For the second run the variances are on a similar order of magnitude, but the desktop variance is still significantly larger than the web variance.
 This could stem from syncing and background processes such as syncing data across devices (Note: Notion run on desktop was Online). It can also be attributed to the software code, performance optimisation can lead to fluctuations in energy usage. 
 
 Most native desktop applications tend to be energy efficient compared to their web counterparts as the code leverages platform specific resource optimisations potentailly leading to lower energy consumption. For example: local caching mechanisms as against frequent network requests, conserve more energy.  
@@ -137,7 +160,7 @@ Limitations present themselves in these experiments in various forms.
 2. Outliers present themselves in the data in the form of two data sets with very consistent power consumption, albeit with a higher and lower consumption than the other experiments. How these outliers came to be is not clear, as it could be due to a variety of reasons (e.g. Energibridge software).
 3. As the application has to interact via the internet it is subject to network latency and throughput. Creating variations in the energy consumption.
 
-There are also other limitations to our research question and experiment namely :
+There are also limitations to our research question and experiment namely :
 1. Wether the scenario we implemnted is realistic , we determined the flow based on popular features used on Notion. Of course real life scenarios differ quite a lot.
 2. Although the whole experiment is automated, accurately pointing out which part of the energy measurement pipleine consumes the most energy is difficult unless we isolate and measure each part of the Notion workflow set up.
 3. The distribution of data is not Normal even when we remove the outliers. 
