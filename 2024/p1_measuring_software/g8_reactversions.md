@@ -82,7 +82,7 @@ The results of our experiment can be found on our [Github repository](https://gi
 
 To determine the difference in energy consumption between both versions, we calculated the energy consumption for different components of the computer system. We computed the following violin graph, to show the distribution of 30 data points over the 2 versions across 4 categories. This shows us that distributions of the dram_energy, package_energy and pp0_energy significantly differ from one another. The latest version of React in this case requires significantly less energy across these 4 categories. In most graphs, we have a few upward outliers that can be attributed to external processes simultaneously running on the computer.
 
-<img src="https://i.imgur.com/JIEQ21k.jpeg" alt="drawing" width="600"/>
+<img src="./../img/p1_measuring_software/g8_reactversions/violin_react.jpeg" alt="drawing" width="600"/>
 
 ###### Figure 1: Violin plots on energy and power consumption
 
@@ -91,8 +91,8 @@ To determine the difference in energy consumption between both versions, we calc
 To also account for the runtime in combination with the energy consumption, we computed the Energy Delay Product, which resulted in the following graph. It shows a big difference between the two distributions. These differences become more profound by correcting more harshly for higher runtimes, using a w = 10.
 
 <div style="display: flex;">
-    <img src="https://i.imgur.com/MiJ2g02.png" alt="drawing" width="400"/>
-    <img src="https://i.imgur.com/hR1sfru.png" alt="drawing" width="400"/>
+    <img src="./../img/p1_measuring_software/g8_reactversions/edp_react.png" alt="drawing" width="400"/>
+    <img src="./../img/p1_measuring_software/g8_reactversions/edp2_react.png" alt="drawing" width="400"/>
 </div>
 
 ###### Figure 2: Bar plots showing Energy Delay Product (EDP), for w=1 & w=10
