@@ -126,7 +126,7 @@ We decided to remove the outlier and continue with the analysis.
 
 *Figure 6: Violin plot of energy consumption (J) (second run).*
 
-as can be seen the distribution of the data for the desktop experiment is more normal than in the first run, meaning the variation should be smaller.
+as can be seen the distribution of the data for the desktop experiment is more "normal" than in the first run, meaning the variation should be smaller.
 Secondly the web experiment has a significantly increased variance compared to the first run.
 
 ![notion_metrics2.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fnotion_metrics2.png)
