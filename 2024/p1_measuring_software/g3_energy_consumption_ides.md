@@ -19,18 +19,16 @@ Data centers and networks will  be the primary consumers of energy, but the prod
 
 Software can be written in an Integrated Development Environment like Eclipse and code editors like VSCode. IDE's provide more extended capabilities and work out of the box with complex projects requiring build tools like Gradle or Maven. Code editors on the other end are more lightweight and offer more freedom, but might be harder to setup with complex projects. Programmers often work on the go and battery life plays an important role. Are the extended capabilities of an IDE worth the possible increase in energy consumption? 
 
-In this blog post, we aim to address a pivotal question: how do two of the most used IDEs measure up in terms of energy consumption against the world's most popular code editor: VS Code, when tasked with running a package-intensive program named "JabRef" [7]? The significance of using Jabref for our project lies in its open-source nature, utilization of a build tool, and being entirely written in Java. Through a comparative analysis, we'll explore the performance and suitability of different development environments in handling the complexities posed by JabRef.
+In this blog post, we aim to address a pivotal question: how do two of the most used IDEs measure up in terms of energy consumption against the world's most popular code editor: VS Code, when tasked with running a simple Java program named "Notemaker" [7]? The significance of using Notemaker for our project lies in its open-source nature and being entirely written in Java. Through a comparative analysis, we'll explore the performance and suitability of different development environments.
 
 This experiment is done by a group of 3 students from the TU Delft, for a course that is focused on sustainable software engineering. 
 
 
 ## Comparing the IDEs
-This blog post will conduct a comparative analysis of two IDEs to Visual Studio Code, assessing their energy consumption through the utilization of EnergiBridge [8]. To gauge the performance of these software platforms, we will be executing JabRef within this software, utilizing their import and debug systems.
+This blog post will conduct a comparative analysis of two IDEs to Visual Studio Code, assessing their energy consumption through the utilization of EnergiBridge [8]. To gauge the performance of these software platforms, we will be executing Notemaker within this software, utilizing their import and debug systems.
 
 ### Testing setup
 Below, the testing setup is described. This includes all software used together with tools and computer setups. Other environmental factors which might impact the energy consumption is noted as well.
-
-- set up ide using jabref recommendations [7]
 
 #### IDE's
 For each IDE, community versions are used.
@@ -42,17 +40,12 @@ For each IDE, community versions are used.
     - Might require more intervention to make projects work which use build tools.
 
 #### Code editors
-**NOTE:** we have not been able to get jabref running with VS Code and Docker. This section will be removed if we do not manage it by Monday, otherwise will be elaborated.
-
 - VS Code : The worlds most used code editor, capable of having IDE-like features by using plugins
-    - We will be using the JAVA VS code plugin for running JabRef
-    - JabRef needs a docker container to run with vs code. - link to instructions
+    - We will be using the JAVA VS code plugin for running NoteMaker
 
 #### Projects
-- Jabref: Java software for managing scientific references [7]
+- NoteMaker: Java software for writing text documents [7]
     - Opensource
-    - Uses Gradle as build tool
-        - Projects using build tools really show the easy-to-setup functionality of IDEs.
 
 #### Tools
 - EnergiBridge : Command line tool which is capable of measuring the energy consumption measured in joules, while executing a set of tasks.
@@ -85,9 +78,9 @@ Finally, room temperature will be held stable at 21 degrees celsius during these
 2. Open IDE/Editor
 3. Let IDE/Editor index
 4. Set breakpoint
-5. Debug program
+5. Debug NoteMaker
 6. Step into/out 5 times
-7. Continue program (20 seconds)
+7. Continue NoteMaker (20 seconds)
 8. Stop energibridge
 9. Clear cache
 10. Close IDE/Editor
@@ -100,15 +93,24 @@ The total consumed energy will be measured as follows:
 - $E_f$ = Energy consumed at the final energibridge timestamp measured in joules.
 - $E_c$ = $E_f - E_s$ : Energy consumed during the experiment.
 
-## Results (These are only preliminary as we could not run the tests with the Code editor VS Code. These will be changed for the submission on Monday.)
+After executing the experiments, outlier removal will be performed.
+
+## Results
+
 Results of 30 test runs of IntelliJ and Eclipse after outlier removal using isolation forest:
-Boxplot:
-![Boxplot_after_outlier_removal](../img/p1_measuring_software/g3_energy_consumption_ides/Boxplot_after_outlier_removal.PNG)
+
+![Horizontal boxplots](../img/p1_measuring_software/g3_energy_consumption_ides/joules.jpeg)
+It is clear that the IDEs use significantly more energy compared to VS Code. The difference between the two IDEs is not significant. The mean value for vscode was approximatly 
+$ M_v =  38167585 $ joules, while the mean value for the "most energy efficient IDE" eclipse was $ M_e = 41923746 $ joules. 
+
+
+![Violinplot_after_outlier_removal](../img/p1_measuring_software/g3_energy_consumption_ides/violin_joules.jpeg)
+
 The mean value of the energy consumption of IntelliJ was 156588.87 Joules, while the mean value for Eclipse was 183500.52 Jule. The median value for IntelliJ is 83652 Joules, while it is 118290 Jule for Eclipse.
 This suggests, that IntelliJ is more energy efficient than Eclipse.
 
 Violin plots:
-![Violinplot_after_outlier_removal](../img/p1_measuring_software/g3_energy_consumption_ides/Violinplot_after_outlier_removal.PNG)
+![Violinplot_after_outlier_removal](../img/p1_measuring_software/g3_energy_consumption_ides/scatter.jpeg)
 Our results are not normal distributed. We tried to find possible reasons and solutions for this but even after re-running the experiment multiple times where each test runs under the same conditions, this could not be mitigated. 
 
 ## Discussion (preliminary)
