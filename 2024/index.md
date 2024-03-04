@@ -69,7 +69,7 @@ By the end of this course you will be able to:
  8     | 3   | **Lecture.** Green AI. [📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="in-person" %}
  9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. [📊Slides][slides09] [🎥Recording][recording09]  {% include tag.html name="in-person" %}
        | 3   | Deadline for project 1 Friday, March 1.
- 10    | 4   | **Project.** [Project 2] - Description and kick-off. {% include tag.html name="in-person" %}
+ 10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off. [📊Slides][slides10] {% include tag.html name="in-person" %}
  11    | 4   | **Guest Lecture (Mar 6).** Energy-aware hardware, [Nergis Tömen]. {% include tag.html name="in-person" %}  
  12    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
        | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
@@ -82,7 +82,7 @@ By the end of this course you will be able to:
 
 Below the description of each project.
 
-### 🛠 **Project 1** Measuring Software Energy Consumption
+### 🛠 **Project 1** – Measuring Software Energy Consumption
 {: #project1}
 
 - Goal: Compare energy consumption in common software use cases.
@@ -100,25 +100,27 @@ Below the description of each project.
 - **Deadline** Friday, Mar 1
 
 
-<!--
-### 🛠 Project 2 – Hacking Sustainability
+
+### 🛠 **Project 2** – Hacking Sustainability
+{: #project2}
 
 - **Goal:** Solve a Sustainable Software Engineering problem.
-  - Identify/Describe 1 problem that should be fixed to help enabling sustainability in the software engineering industry/community.
+  - Identify/Describe 1 problem that should be fixed to help enabling sustainability in the software engineering industry/community. You can reuse ideas from the slides.
   - Propose a solution. It can be a tool, framework, guidelines, etc.
   - Implement the solution.
-  - Validation. (Depending on the idea) (side note: the cancelled class was all about this)
-  - Dissemination/social impact. (Solution should be open source, welcome contributors, post on twitter, hacker news, reddit? Tool website?)
+  - Validation. (Depending on the idea)
+  - Dissemination/social impact. (E.g., solution should be open source, welcome contributors, post on social media, tool website, available in package managers, etc.)
 - **Deliverables.**
   - Paper-like article. (Min 4 pages, max 10)
   - Online git repo with open source codebase and/or replication package.
-  - Presentation: 7 min + 5min Q&A
+  - Presentation: 5 min + 5min Q&A
 - **Weight in final grade**: 60%
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
-- **Deadline** Friday, March 31. (Grace period until April 14).
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2023/p2_hacking_sustainability/). **⭐️(new)**
+- **Deadline** Thursday, March 28.
+- **Presentation** Thursday, April 4.
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2024/p2_hacking_sustainability/).
 
-  -->
+
 
 ## Further reading (optional)
 
