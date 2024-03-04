@@ -16,10 +16,9 @@ While sustainability might not be the integral aspect of the Notion software we 
 ## Methodology 
 We conducted the same experiment (login to logout) on two different modes of operation of notion, one mode being desktop and the other mode being notions web application on Chrome web browser. We are using the Cornell note system template as a use case for both modes. We have tried to include all the basic features that we think users usually use on Notion in the workflow pipeline.
 The experiment flow for interaction with Notion is as follows:
-open Desktop app on fullscreen -> login using google sign in option(we created a dummy account for this experiment) -> create a new page using the Cornell system template -> write a page title with some basic text -> make a todo list -> write some notes-> write a math equation -> write a piece of code -> check a todo -> logout
-A similar flow was followed for the web application too.
-Each iteration of the experiment is around 3 minutes. 
-So the total time for the whole experiment is about 3 hours. 
+open Desktop app on fullscreen -> login using google sign in option(we created a dummy account for this experiment) -> create a new page using the Cornell system template -> write a page title with some basic text -> write some notes-> make a todo list -> upload a PDF -> create new (linked) "page-in-page" -> write a math equation -> write a piece of code -> check a todo -> logout
+A same flow was followed for the web application too.
+Each iteration of the experiment is around 3 minutes, with a 60s wait inbetween each run, resulting in a total run time for the whole experiment of about 4h. 
 
 We ran an automated script to open Notion on the desktop and the web version on Chrome.
 Each of them was run 30 times and to prevent the order of experiments influencing the resulting measurements, the experiments were randomly shuffled.
@@ -52,9 +51,9 @@ The experiment structure was as follows :
     2. Start Notion Workflow (mentioned above) using an automated script 
     3. Stop Notion Workflow and Logout(also automated)
     4. Stop Measuring
-    5. Wait for 30 seconds
+    5. Wait for aprox. 10 seconds
     6. Delete the current created note page
-    7. Wait for 30 seconds
+    7. Wait for 60 seconds
 
 
 ## Replication
