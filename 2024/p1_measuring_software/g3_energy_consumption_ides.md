@@ -4,7 +4,7 @@ title: "Comparing energy consumption between code editors and integrated develop
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 01/03/2024
 summary: |-
-  This blog explores the energy consumption between IDEs and code editors when executing complex software.
+  This blog explores the energy consumption between IDEs and code editors when executing simple Java software.
 ---
 ## Introduction
 With sustainability becoming a more discussed topic each day, this also reaches the software engineering branch. Big Five companies Microsoft, Google and Meta already claimed to be carbon-free in 2030 [2,3,4]. Principles of sustainable software engineering have been written [5], explaining in what way software should be developed to make it more energy efficient. However, it raises a question: how does the choice of programming environment impact overall energy consumption?
