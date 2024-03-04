@@ -118,7 +118,8 @@ Our metrics confirm what was already clear from the plots. The desktop applicati
 
 Even after removing the outliers, the distribution of the web desktop data is not normal. 
 Therefore, we decided to rerun the experiment under more stringent conditions.
-In the first run chrome would be needed to log in for the web experiment. In the second run we added an extra step to the experiment to ensure that the browser was closed immediately after log in was complete.
+In the first run, we used chrome to log in for the desktop experiment. In the second run we added an extra step to the experiment to ensure that the browser was closed immediately after log in was complete. We assumed that it could have been a source of randomness in the data collection for first run. 
+However, in the new dataset even after quitting chrome in the bachround for desktop , the data is not normally distributed. 
 Only one outlier was present in the new dataset, but after analysing the size of the dataset we concluded that energiBrige had stopped measuring prematurely.
 We decided to remove the outlier and continue with the analysis.
 
