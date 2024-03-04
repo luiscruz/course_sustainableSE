@@ -58,7 +58,7 @@ The experiment structure was as follows :
 
 
 ## Replication
-The code to replicate the experiments can be set up using [GithubNotionSSE] (https://github.com/mitalipatil99/SSE_notion)
+The code to replicate the experiments can be set up using [GithubNotionSSE](https://github.com/mitalipatil99/SSE_notion)
 For the setup, we have created a dummy Google account for Notion login, the details of which are in the GitHub repository.
 To get the set up running on a Mac: 
 1. Install Notion on Desktop
@@ -118,7 +118,7 @@ Our metrics confirm what was already clear from the plots. The desktop applicati
 
 Even after removing the outliers, the distribution of the web desktop data is not normal. 
 Therefore, we decided to rerun the experiment under more stringent conditions.
-Only one outlier was present in the new dataset, but after analyzin the size of the dataset we concluded that energiBrige had stopped measuring prematurely.
+Only one outlier was present in the new dataset, but after analysing the size of the dataset we concluded that energiBrige had stopped measuring prematurely.
 We decided to remove the outlier and continue with the analysis.
 
 ![violin_plot2.png](..%2Fimg%2Fp1_measuring_software%2Fg5_Notion%2Fviolin_plot2.png)
@@ -171,4 +171,4 @@ There are also limitations to our research question and experiment namely :
 ## Conclusion:
 The results indicate that Notion web is energy-efficient compared to the desktop application. 
 It is also important to note that this experiment is accompanied with some limitations in terms of measurement accuracy and given the scope we cannot dive into the details of what causes the data distribution to be not normal. Again isolating which part of the workflow consumes most energy can be part of the future work. 
-Although our results seem contradictory to the expectation, an anectodal experience in the form of a [redditThread] (https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
+Although our results seem contradictory to the expectation, an anectodal experience in the form of a [redditThread](https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
