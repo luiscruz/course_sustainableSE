@@ -161,6 +161,7 @@ Below the description of each project.
 [slides06]: https://surfdrive.surf.nl/files/index.php/s/92ccqZvWuaKiBnG
 [slides08]: https://surfdrive.surf.nl/files/index.php/s/7MGFZTYjKsPEtvm
 [slides09]: https://surfdrive.surf.nl/files/index.php/s/8J8V9gLTtHIQsJZ
+[slides10]: https://surfdrive.surf.nl/files/index.php/s/GHHuuv4hEDA5NNW
 
 [recording02]: https://surfdrive.surf.nl/files/index.php/s/KMHng2kLIfJZckB
 [recording03]: https://surfdrive.surf.nl/files/index.php/s/ahRF66cM1ZnW1k9
