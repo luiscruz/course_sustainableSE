@@ -1,7 +1,7 @@
 ---
-Authors: Jan-Hendrik Schneider, Daniel Chou Rainho, Filip Gunnarsson
-Title: "Comparing Video Codecs on Energy Consumption"
-Date: 01/03/2024
+author: Jan-Hendrik Schneider, Daniel Chou Rainho, Filip Gunnarsson
+title: "Comparing Video Codecs on Energy Consumption"
+date: 01/03/2024
 ---
 
 ## 1. Introduction
