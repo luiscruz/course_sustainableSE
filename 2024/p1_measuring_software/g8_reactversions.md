@@ -72,6 +72,7 @@ The experiment is performed on a Windows laptop - see table below - running no n
 | OS     | Windows 10 Home    |
 | Battery | HP Li-ion 32.057/63.992 mWh |
 | Power supply | KFD A190 19.5V 7.7A |
+
 ##### Table 1: Laptop specifications used in our experiment
 
 ## Results
