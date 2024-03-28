@@ -129,7 +129,7 @@ In this report, we have investigated the energy efficiency of the two most popul
 
 This energy efficiency can be attributed to yarn's ability to install packages in parallel and – although not relevant in our experiment setup – its ability to cache installed packages. 
 
-While the difference may not be statistically significant, we have argued as to why we consider it practically significant in the context of achieving a more environmentally sustainable IT sector. We have published the experiment in the following [respository], and encourage future work to be done on more package managers, more complex package dependencies, and more benchmarks.
+While the difference may not be statistically significant, we have argued as to why we consider it practically significant in the context of achieving a more environmentally sustainable IT sector. We have published the experiment in the following [repository], and encourage future work to be done on more package managers, more complex package dependencies, and more benchmarks.
 
 
 [Vailshery, 2024]: <https://www.statista.com/statistics/793628/worldwide-developer-survey-most-used-languages/>

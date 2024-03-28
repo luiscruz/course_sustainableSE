@@ -14,8 +14,8 @@ docker docker-buildx` should do the trick.
 Once you have Docker installed, run the following from the project folder:
 
 ```
-docker build . -t web
-docker run -p 4000:4000 web
+docker build . -t sse-site
+docker run -p 4000:4000 -v $(pwd):/myapp -it sse-site
 ```
 
 The website should then be available at <http://localhost:4000/course_sustainableSE/>.

@@ -229,6 +229,8 @@ GEM
       jekyll-seo-tag (~> 2.1)
     minitest (5.15.0)
     multipart-post (2.1.1)
+    nokogiri (1.14.2-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.2-x86_64-darwin)
@@ -271,6 +273,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
+  aarch64-linux
   universal-darwin-22
   x86_64-linux
 
@@ -279,4 +282,4 @@ DEPENDENCIES
   jekyll-redirect-from
 
 BUNDLED WITH
-   2.2.15
+   2.4.22
