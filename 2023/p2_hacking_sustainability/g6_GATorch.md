@@ -13,6 +13,8 @@ source: "https://github.com/GreenAITorch/GATorch"
 documentation: "https://gatorch.readthedocs.io/en/latest/"
 ---
 
+By *[Rover van der Noort], Dajt Mullaj, Martijn Smits, Remy Duijsens*.
+
 Introduction
 ============
 
@@ -324,3 +326,5 @@ Parallel and Distributed Computing, 134:75–88, 2019.
 [9] PowerAPI: A Software Library to Monitor the Energy Consumed at the Process-Level: A. Bourdon, A. Noureddine, R. Rouvoy, L. Seinturier. ERCIM
 News, Special Theme: Smart Energy Systems, 92, pp.43-44. ERCIM, 2013.
 
+
+[Rover van der Noort]: https://www.linkedin.com/in/rover-van-der-noort-35bb64190/
