@@ -6,7 +6,7 @@ exclude: False
 # Hacking Sustainability
 
 {% for article in site.pages %}
-    {% if article.identifier == 'p2_2023' %}
+    {% if article.identifier == 'p2_2024' %}
     {% if article != page %}
 {% if article.image %}
 <img class="p2-img" src="{{article.image}}"/>
@@ -41,10 +41,10 @@ exclude: False
 To add a new article, follow the instructions below:
 
 1. Fork the repo of the website on Github: <https://github.com/luiscruz/course_sustainableSE/>
-2. Create a new markdown file inside the directory `2023/p2_hacking_sustainability`
+2. Create a new markdown file inside the directory `2024/p2_hacking_sustainability`
   - Use the following filename format: `g<group_number>_<1/2meaningful_keywords>.md`
   - Use the file `gX_template.md` has a template
-  - If you want to add images, add it to `2023/img/p2_hacking_sustainability/g<group_number>_<1/2meaningful_keywords>/`
+  - If you want to add images, add it to `2024/img/p2_hacking_sustainability/g<group_number>_<1/2meaningful_keywords>/`
 3. Commit, Push.
 4. Submit a pull request.
 
@@ -52,7 +52,7 @@ To add a new article, follow the instructions below:
 
 Before submitting the pull request, you should test whether your file is rendering properly in the website. The easiest way to check it is by running the docker container, as instructed in the Github Readme.
 
-Your page should be listed here: http://localhost:4000/course_sustainableSE/2023/p2_hacking_sustainability
+Your page should be listed here: http://localhost:4000/course_sustainableSE/2024/p2_hacking_sustainability
 
 If you don't want to deal with jekyll, you can do it the slow and expensive way: 1) enable *github pages* in your fork repo 2) check your the deployed page. (I don't recommend it, though)
 
