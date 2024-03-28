@@ -73,6 +73,7 @@ defaults:
     values:
       identifier: "p2_2024"
       exclude: true
+      layout: project_page
   -
     scope:
       path: ""
