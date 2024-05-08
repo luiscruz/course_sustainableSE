@@ -3,8 +3,8 @@ author: Mitali P, Pia A, David V
 title: Is Notion "Greener" on Web browser or Desktop?
 date: 27/02/2024
 summary: |-
-  Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
-  Primarily we see if its energy-efficient to use Notion on desktop or on Web Browser. 
+Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
+Primarily we see if its energy-efficient to use Notion on desktop or on Web Browser. 
 ---
 Note-taking software is becoming increasingly feature-packed. We use various note-taking software often, but are we saving more energy by using it on the desktop version or running it on the web? Even though Notion provides similar features to the end user, using their native version or Web counterpart might lead to different levels of energy consumption and performance. 
 In this blog post, we asses the energy consumption between the desktop version and the web version of Notion.
@@ -18,7 +18,8 @@ We conducted the same experiment (login to logout) on two different modes of ope
 The experiment flow for interaction with Notion is as follows:
 open Desktop app on fullscreen -> login using google sign in option(we created a dummy account for this experiment) -> create a new page using the Cornell system template -> write a page title with some basic text -> write some notes-> make a todo list -> upload a PDF -> create new (linked) "page-in-page" -> write a math equation -> write a piece of code -> check a todo -> logout
 A same flow was followed for the web application too.
-Each iteration of the experiment is around 3 minutes, with a 60s wait between each run, resulting in a total run time for the whole experiment of about 4h. 
+
+Each iteration of the experiment is around 3 minutes, with a 60s wait inbetween each run, resulting in a total run time for the whole experiment of about 4h. 
 
 We ran an automated script to open Notion on the desktop and the web version on Chrome.
 Each of them was run 30 times and to prevent the order of experiments influencing the resulting measurements, the experiments were randomly shuffled.
@@ -52,13 +53,13 @@ The experiment structure was as follows :
     2. Start Notion Workflow (mentioned above) using an automated script 
     3. Stop Notion Workflow and Logout(also automated)
     4. Stop Measuring
-    5. Wait for approx. 10 seconds
+    5. Wait for aprox. 10 seconds
     6. Delete the current created note page
     7. Wait for 60 seconds
 
 
 ## Replication
-The code to replicate the experiments can be set up using [GithubNotionSSE](https://github.com/mitalipatil99/SSE_notion).
+The code to replicate the experiments can be set up using [GithubNotionSSE](https://github.com/mitalipatil99/SSE_notion)
 For the setup, we have created a dummy Google account for Notion login, the details of which are in the GitHub repository.
 To get the set up running on a Mac: 
 1. Install Notion on Desktop
@@ -119,7 +120,7 @@ Our metrics confirm what was already clear from the plots. The desktop applicati
 Even after removing the outliers, the distribution of the web desktop data is not normal. 
 Therefore, we decided to rerun the experiment under more stringent conditions.
 In the first run, we used chrome to log in for the desktop experiment. In the second run we added an extra step to the experiment to ensure that the browser was closed immediately after log in was complete. We assumed that it could have been a source of randomness in the data collection for first run. 
-However, in the new dataset even after quitting chrome in the background for desktop, the data is not normally distributed. 
+However, in the new dataset even after quitting chrome in the bachround for desktop , the data is not normally distributed. 
 Only one outlier was present in the new dataset, but after analysing the size of the dataset we concluded that energiBrige had stopped measuring prematurely.
 We decided to remove the outlier and continue with the analysis.
 
@@ -149,9 +150,11 @@ The variance on the desktop version is more than 10 times the variance of the we
 For the second run the variances are on a similar order of magnitude, but the desktop variance is still significantly larger than the web variance.
 This could stem from syncing and background processes such as syncing data across devices (Note: Notion run on desktop was Online). It can also be attributed to the software code, performance optimisation can lead to fluctuations in energy usage. 
 
+
 Most native desktop applications tend to be energy efficient compared to their web counterparts as the code leverages platform specific resource optimisations potentially leading to lower energy consumption. For example: local caching mechanisms as against frequent network requests, conserve more energy.  
 
 We deduce that Notion's desktop app is just a wrapper for the website and is not truly a "native" application. This severely affects its performance on desktop causing it to be resource intensive and heavy due to added runtime bundles for a full web browser(like Chromium). 
+
 
 
 ## Limitations and Issues
@@ -163,15 +166,18 @@ Limitations present themselves in these experiments in various forms.
 3. As the application has to interact via the internet it is subject to network latency and throughput. Creating variations in the energy consumption.
 
 There are also limitations to our research question and experiment namely :
-1. Whether the scenario we implemented is realistic, we determined the flow based on popular features used on Notion. Of course real life scenarios differ quite a lot.
-2. Although the whole experiment is automated, accurately pointing out which part of the energy measurement pipeline consumes the most energy is difficult unless we isolate and measure each part of the Notion workflow set up.
+
+1. Wether the scenario we implemnted is realistic , we determined the flow based on popular features used on Notion. Of course real life scenarios differ quite a lot.
+2. Although the whole experiment is automated, accurately pointing out which part of the energy measurement pipleine consumes the most energy is difficult unless we isolate and measure each part of the Notion workflow set up.
 3. The distribution of data is not Normal even when we remove the outliers. 
 
 
 
 
-## Conclusion
 
+## Conclusion:
 The results indicate that Notion web is energy-efficient compared to the desktop application. 
 It is also important to note that this experiment is accompanied with some limitations in terms of measurement accuracy and given the scope we cannot dive into the details of what causes the data distribution to be not normal. Again isolating which part of the workflow consumes most energy can be part of the future work. 
-Although our results seem contradictory to the expectation, an anecdotal experience in the form of a [redditThread](https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
+Although our results seem contradictory to the expectation, an anectodal experience in the form of a [redditThread](https://www.reddit.com/r/Notion/comments/jn6vcm/battery_drain/) and [anotherRedditThread](https://www.reddit.com/r/Notion/comments/pr0nip/why_is_the_notion_app_so_inefficient/) seems to offer the same conclusion.
+
+
