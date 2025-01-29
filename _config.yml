@@ -80,6 +80,9 @@ defaults:
     values:
       hide_from_navbar: true
       
+exclude:
+  - "2023"
+  - "2022"
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

@@ -2,12 +2,18 @@
 layout: default
 hide_from_navbar: false
 redirect_from:
-title: 2024
+  - /
+title: 2025
+project-1:
+  deadline: 28-02-2025
+project-2:
+  deadline: 04-04-2025
+  presentation: 11-04-2025
 ---
 
 # Sustainable Software Engineering 🌱
-Edition of 2023/24<br/>
-[MSc in Computer Science], [Delft University of Technology]
+Edition of 2024/25<br/>
+[MSc Computer Science] and [MSc Data Science and Artificial Intelligence Technology], [Delft University of Technology]
 
 
 **Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
@@ -27,55 +33,57 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 
 ## Organisation
 
+-------|----------|
 **Course code**       | [CS4415]
-**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/595278>
-**Instructors**       | [Luís Cruz], [June Sallou]
-**Schedule**          |	Mondays 10:45, Wednesdays 13:45, Thursdays 8:45. 🔗 [MyTimetable].
-**Mattermost**        | Link shared on [Brightspace](https://brightspace.tudelft.nl/d2l/home/595278).
-**Zoom link**         | Link shared on Mattermost.
+**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
+**Instructors**       | [Luís Cruz], [Carolin Brandt]
+**Schedule**          |	Mondays 8:45, Wednesdays 10:45, Thursdays 10:45. 🔗 [MyTimetable].
+**Mattermost**        | [Sign Up Link].
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
-**Format**            | Classes are optimised for in-person attendance;<br/>Online attendance is allowed in a case by case scenario.
+**Format**            | Classes are optimised for in-person attendance.
 **Examination type**  | Group Project 1 (40%); Group Project 2 (60%).
-**Target audience**   |	Students of the [M.Sc. in Computer Science].
+**Target audience**   |	Students of the [MSc in Computer Science] and the [MSc Data Science and Artificial Intelligence Technology].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
+
+[CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 
 ## Learning Objectives
 
 By the end of this course you will be able to:
 
-- LO1. Measure software energy consumption.
-- LO2. Automate carbon-awareness in software development.
-- LO3. Discuss sustainability principles.
-- LO4. Solve sustainability issues in real software projects.
-- LO5. Propose innovative strategies to monitor software sustainability.
+- LO1. Explain the fundamental sustainability principles and their relevance to software engineering.
+- LO2. Assess the energy consumption of software systems using measurement and testing techniques.
+- LO3. Create actionable strategies to address sustainability issues within software organisations.
+- LO4. Evaluate and compare different solutions for sustainable software systems based on their effectiveness in achieving sustainability goals and their potential impact on various stakeholders.
 
 ## Outline
 
-**⚠️ Please note:** **Recordings are only available to the students** because they are not edited and may include students' interactions.
+**⚠️ Please note:** The following outline is subject to changes; Recordings are available through Collegerama.
 
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]  {% include tag.html name="in-person" %}
- 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02] [🎥Recording][recording02]  {% include tag.html name="in-person" %}
- 3     | 1   | **Lecture.** Green Software Engineering — Part I: units of energy.<br/>[📊Slides][slides03] [🎥Recording][recording03]  {% include tag.html name="in-person" %}
- 4     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment. {% include tag.html name="in-person" %}
- 5     | 2   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements. [📊Slides][slides05]  {% include tag.html name="in-person" %}
- 6     | 2   | **Guest Lecture (Feb 22).** "Following the Sun" to Mitigate the Carbon Footprint of Training AI Algorithms: is it Worth the Price?. [📊Slides][slides06] {% include tag.html name="in-person" %} 
- 7     | 3   | **Project.** [Project 1](#project1) - steering meeting. {% include tag.html name="in-person" %}
- 8     | 3   | **Lecture.** Green AI. [📊Slides][slides08] [🎥Recording][recording08] {% include tag.html name="in-person" %}
- 9     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. [📊Slides][slides09] [🎥Recording][recording09]  {% include tag.html name="in-person" %}
-       | 3   | Deadline for project 1 Friday, March 1.
- 10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off. [📊Slides][slides10] {% include tag.html name="in-person" %}
- 11    | 4   | **Guest Lecture (Mar 6).** Energy-aware hardware, [Nergis Tömen]. {% include tag.html name="in-person" %}  
- 12    | 4   | **Lecture.** Approximate Computing for Green Software. {% include tag.html name="in-person" %}
-       | 5   | **Project 2 - steering meeting 1.** {% include tag.html name="hybrid" %}
-       | 6   | **Project 2 - steering meeting 2.** {% include tag.html name="hybrid" %}
-       | 7   | **Project 2 - steering meeting 3.** {% include tag.html name="online" %}
- 19    | 7   | Deadline project 2 – March 28.
- 20    | 8   | Presentation project 2 – April 4.
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.
+ 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).
+ 3     | 1   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.
+ 4     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy.
+ 5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
+ 6     | 2   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.
+ 7     | 3   | **Lecture.** Green AI.
+ 8     | 3   | **Project.** [Project 1](#project1) - steering meeting.
+ 9     | 3   | **Lecture.** 
+       | 3   | Deadline for project 1 Friday, Feb 28.
+ 10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.
+ 11    | 4   | **Guest Lecture (Mar 6).** Neuromorphic Computing, [Nergis Tömen].  
+ 12    | 4   | **Lecture.** Approximate Computing for Green Software.
+       | 5   | **Project 2 - steering meeting 1.**
+       | 6   | **Project 2 - steering meeting 2.**
+       | 7   | **Project 2 - steering meeting 3.**
+       | 8   | **Project 2 - steering meeting 4.**
+ 19    | 8   | Deadline project 2 – April 4.
+ 20    | 9   | Presentation project 2 – April 11.
  
 ## Assignments
 
@@ -96,7 +104,7 @@ Below the description of each project.
   - Blog-style report (markdown, approx 2500 words).
   - Replication package.
 - **Weight in final grade**: 40%
-- **Deadline** Friday, Mar 1
+- **Deadline** Friday, Feb 28
 
 
 
@@ -115,8 +123,8 @@ Below the description of each project.
   - Presentation: 5 min + 5min Q&A
 - **Weight in final grade**: 60%
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
-- **Deadline** Thursday, March 28.
-- **Presentation** Thursday, April 4.
+- **Deadline** Friday, April 4.
+- **Presentation** Friday, April 11.
 - Submission by pull request to the website. Instructions [here](/course_sustainableSE/2024/p2_hacking_sustainability/).
 
 
@@ -144,14 +152,15 @@ Below the description of each project.
 - [Green TU](https://www.tudelft.nl/sustainability/get-involved/greentu/)
 
 [Delft University of Technology]: https://www.tudelft.nl
-[MSc in Computer Science]: https://www.tudelft.nl/onderwijs/opleidingen/masters/cs/msc-computer-science
+[MSc Computer Science]: https://www.tudelft.nl/onderwijs/opleidingen/masters/cs/msc-computer-science
+[MSc Data Science and Artificial Intelligence Technology]: https://www.tudelft.nl/onderwijs/opleidingen/masters/dsait/msc-data-science-and-artificial-intelligence-technology
 [Luís Cruz]: https://luiscruz.github.io
-[June Sallou]: https://jnsll.github.io
-[CS4415]: https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=64344
+[Carolin Brandt]: https://carolin-brandt.de
+[CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 [Nergis Tömen]:https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/people/nergis-toemen
 
-[MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=2021!module!01CD7133098AD9A864150E64E74F6D7F
+[MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=TimeEdit!timeedit_module!INJTINBRGU
 
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/S5mhezqxTcxwRuo
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/pbNRKD1bhwrO4M8
