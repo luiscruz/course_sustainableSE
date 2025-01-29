@@ -67,23 +67,23 @@ By the end of this course you will be able to:
 -------| ----|----------|
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.
  2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).
- 3     | 1   | **Lecture.** Green Software Engineering — Part II: Scientific guide for reliable energy measurements.
- 4     | 2   | **Lecture.** Green Software Engineering — Part I: units of energy.
+ 3     | 1   | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.
+ 4     | 2   | **Lecture.** Social and Individual Sustainability.
  5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
- 6     | 2   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.
- 7     | 3   | **Lecture.** Green AI.
+ 6     | 2   | **Lecture.** Green Software Engineering — Part II: units of energy.
+ 7     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.
  8     | 3   | **Project.** [Project 1](#project1) - steering meeting.
- 9     | 3   | **Lecture.** 
-       | 3   | Deadline for project 1 Friday, Feb 28.
+ 9     | 3   | **Lecture.** Green AI.
+       | 3   | ⏰ Deadline for [Project 1](#project1) Friday, Feb 28.
  10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.
- 11    | 4   | **Guest Lecture (Mar 6).** Neuromorphic Computing, [Nergis Tömen].  
- 12    | 4   | **Lecture.** Approximate Computing for Green Software.
+ 11    | 4   | **Guest Lecture (Mar 5).** Neuromorphic Computing, [Nergis Tömen].  
+ 12    | 4   | **Lecture.** Approximate Computing for Green Software, [June Sallou] - To be confirmed.
        | 5   | **Project 2 - steering meeting 1.**
        | 6   | **Project 2 - steering meeting 2.**
        | 7   | **Project 2 - steering meeting 3.**
        | 8   | **Project 2 - steering meeting 4.**
- 19    | 8   | Deadline project 2 – April 4.
- 20    | 9   | Presentation project 2 – April 11.
+ 19    | 8   | ⏰ Deadline [Project 2](#project2) – April 4.
+ 20    | 9   | Presentation [Project 2](#project2) – April 11.
  
 ## Assignments
 
@@ -163,15 +163,4 @@ Below the description of each project.
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=TimeEdit!timeedit_module!INJTINBRGU
 
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/S5mhezqxTcxwRuo
-[slides02]: https://surfdrive.surf.nl/files/index.php/s/pbNRKD1bhwrO4M8
-[slides03]: https://surfdrive.surf.nl/files/index.php/s/2MA4dOqfkkh0ahZ
-[slides05]: https://surfdrive.surf.nl/files/index.php/s/yF5xeUhKwswqTgf
-[slides06]: https://surfdrive.surf.nl/files/index.php/s/92ccqZvWuaKiBnG
-[slides08]: https://surfdrive.surf.nl/files/index.php/s/7MGFZTYjKsPEtvm
-[slides09]: https://surfdrive.surf.nl/files/index.php/s/8J8V9gLTtHIQsJZ
-[slides10]: https://surfdrive.surf.nl/files/index.php/s/GHHuuv4hEDA5NNW
 
-[recording02]: https://surfdrive.surf.nl/files/index.php/s/KMHng2kLIfJZckB
-[recording03]: https://surfdrive.surf.nl/files/index.php/s/ahRF66cM1ZnW1k9
-[recording08]: https://surfdrive.surf.nl/files/index.php/s/GEk7GXs6PWl4wka
-[recording09]: https://surfdrive.surf.nl/files/index.php/s/D7wRgEU5MzjUmqz
