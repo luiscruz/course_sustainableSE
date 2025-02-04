@@ -34,7 +34,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 ## Organisation
 
 -------|----------|
-**Course code**       | [CS4415]
+**Course code**       | [CS4575]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
 **Instructors**       | [Luís Cruz], [Carolin Brandt], [Enrique Barba Roque]
 **Schedule**          |	Mondays 8:45, Wednesdays 10:45, Thursdays 10:45. 🔗 [MyTimetable].
@@ -46,7 +46,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Target audience**   |	Students of the [MSc in Computer Science] and the [MSc Data Science and Artificial Intelligence Technology].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
 
-[CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
+[CS4575]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 
 ## Learning Objectives
@@ -157,7 +157,7 @@ Below the description of each project.
 [Luís Cruz]: https://luiscruz.github.io
 [Carolin Brandt]: https://carolin-brandt.de
 [Enrique Barba Roque]: https://ebarba.com
-[CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
+[CS4575]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 [Nergis Tömen]:https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/people/nergis-toemen
 
