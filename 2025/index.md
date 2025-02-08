@@ -36,7 +36,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 -------|----------|
 **Course code**       | [CS4415]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
-**Instructors**       | [Luís Cruz], [Carolin Brandt]
+**Instructors**       | [Luís Cruz], [Carolin Brandt], [Enrique Barba Roque]
 **Schedule**          |	Mondays 8:45, Wednesdays 10:45, Thursdays 10:45. 🔗 [MyTimetable].
 **Mattermost**        | [Sign Up Link](https://mattermost.tudelft.nl/signup_user_complete/?id=1nj9tk6usjf8xmsws8wpq3s5uy&md=link&sbr=su).
 **ECTS** 	            | 5.0
@@ -156,6 +156,7 @@ Below the description of each project.
 [MSc Data Science and Artificial Intelligence Technology]: https://www.tudelft.nl/onderwijs/opleidingen/masters/dsait/msc-data-science-and-artificial-intelligence-technology
 [Luís Cruz]: https://luiscruz.github.io
 [Carolin Brandt]: https://carolin-brandt.de
+[Enrique Barba Roque]: https://ebarba.com
 [CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 [Nergis Tömen]:https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/people/nergis-toemen
