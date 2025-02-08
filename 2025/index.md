@@ -38,7 +38,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
 **Instructors**       | [Luís Cruz], [Carolin Brandt]
 **Schedule**          |	Mondays 8:45, Wednesdays 10:45, Thursdays 10:45. 🔗 [MyTimetable].
-**Mattermost**        | [Sign Up Link].
+**Mattermost**        | [Sign Up Link](https://mattermost.tudelft.nl/signup_user_complete/?id=1nj9tk6usjf8xmsws8wpq3s5uy&md=link&sbr=su).
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance.
