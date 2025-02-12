@@ -34,7 +34,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 ## Organisation
 
 -------|----------|
-**Course code**       | [CS4415]
+**Course code**       | [CS4575]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
 **Instructors**       | [Luís Cruz], [Carolin Brandt], [Enrique Barba Roque]
 **Schedule**          |	Mondays 8:45, Wednesdays 10:45, Thursdays 10:45. 🔗 [MyTimetable].
@@ -46,7 +46,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Target audience**   |	Students of the [MSc in Computer Science] and the [MSc Data Science and Artificial Intelligence Technology].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
 
-[CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
+[CS4575]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 
 ## Learning Objectives
@@ -65,8 +65,8 @@ By the end of this course you will be able to:
 
  Class | Week| Summary
 -------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.
- 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).
+ 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]
+ 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]
  3     | 1   | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.
  4     | 2   | **Lecture.** Social and Individual Sustainability.
  5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
@@ -77,7 +77,6 @@ By the end of this course you will be able to:
        | 3   | ⏰ Deadline for [Project 1](#project1) Friday, Feb 28.
  10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.
  11    | 4   | **Guest Lecture (Mar 5).** Neuromorphic Computing, [Nergis Tömen].  
- 12    | 4   | **Lecture.** Approximate Computing for Green Software, [June Sallou] - To be confirmed.
        | 5   | **Project 2 - steering meeting 1.**
        | 6   | **Project 2 - steering meeting 2.**
        | 7   | **Project 2 - steering meeting 3.**
@@ -157,11 +156,12 @@ Below the description of each project.
 [Luís Cruz]: https://luiscruz.github.io
 [Carolin Brandt]: https://carolin-brandt.de
 [Enrique Barba Roque]: https://ebarba.com
-[CS4415]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
+[CS4575]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
 
 [Nergis Tömen]:https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/people/nergis-toemen
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=TimeEdit!timeedit_module!INJTINBRGU
 
-[slides01]: https://surfdrive.surf.nl/files/index.php/s/S5mhezqxTcxwRuo
+[slides01]: https://surfdrive.surf.nl/files/index.php/s/wzc2rUchVG2MQrK
+[slides02]: https://surfdrive.surf.nl/files/index.php/s/mQpQ7XoIYPqjlun
 
