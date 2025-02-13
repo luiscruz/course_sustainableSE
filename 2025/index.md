@@ -43,7 +43,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance.
 **Examination type**  | Group Project 1 (40%); Group Project 2 (60%).
-**Target audience**   |	Students of the [MSc in Computer Science] and the [MSc Data Science and Artificial Intelligence Technology].
+**Target audience**   |	Students of the [MSc Computer Science] and the [MSc Data Science and Artificial Intelligence Technology].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
 
 [CS4575]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
@@ -99,7 +99,7 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2024/p1_measuring_software/).
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2025/p1_measuring_software/).
   - Blog-style report (markdown, approx 2500 words).
   - Replication package.
 - **Weight in final grade**: 40%
@@ -124,7 +124,7 @@ Below the description of each project.
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
 - **Deadline** Friday, April 4.
 - **Presentation** Friday, April 11.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2024/p2_hacking_sustainability/).
+- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2025/p2_hacking_sustainability/).
 
 
 
