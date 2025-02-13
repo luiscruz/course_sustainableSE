@@ -69,11 +69,11 @@ By the end of this course you will be able to:
  2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]
  3     | 1   | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.
  4     | 2   | **Lecture.** Social and Individual Sustainability.
- 5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
  6     | 2   | **Lecture.** Green Software Engineering — Part II: units of energy.
+ 5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
  7     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.
- 8     | 3   | **Project.** [Project 1](#project1) - steering meeting.
  9     | 3   | **Lecture.** Green AI.
+ 8     | 3   | **Project.** [Project 1](#project1) - steering meeting.
        | 3   | ⏰ Deadline for [Project 1](#project1) Friday, Feb 28.
  10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.
  11    | 4   | **Guest Lecture (Mar 5).** Neuromorphic Computing, [Nergis Tömen].  
