@@ -68,7 +68,7 @@ By the end of this course you will be able to:
  1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]
  2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]
  3     | 1   | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.<br/>[📊Slides][slides03]
- 4     | 2   | **Lecture.** Social and Individual Sustainability.
+ 4     | 2   | **Lecture.** Social and Individual Sustainability.<br/>[📊Slides][slides04]<br/>[Workbook][susafwb]
  6     | 2   | **Lecture.** Green Software Engineering — Part II: units of energy.
  5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
  7     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.
@@ -165,4 +165,5 @@ Below the description of each project.
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/wzc2rUchVG2MQrK
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/mQpQ7XoIYPqjlun
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/V8f66pd7V7sQYx6
-
+[slides04]: https://surfdrive.surf.nl/files/index.php/s/3ZNl75feJ4Oa91e
+[susafwb]: https://www.suso.academy/en/sustainability-awareness-framework-susaf/
