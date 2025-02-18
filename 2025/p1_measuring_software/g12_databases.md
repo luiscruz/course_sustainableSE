@@ -26,3 +26,5 @@ The plan is to run a version of the SQL database and make about 100(?) requests,
 ## Future Work
 
 ## References
+
+[^dataset] [https://github.com/MaximShidlovski23/imdbpy](https://github.com/MaximShidlovski23/imdbpy)
