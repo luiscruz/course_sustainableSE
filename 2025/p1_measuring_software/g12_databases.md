@@ -6,3 +6,13 @@ date: 03/03/2022
 summary: |-
   Summary of our paper
 ---
+
+# Measuring the Energy Consumption of SQL vs NoSQL
+
+# Experimental Setup
+
+# Results
+
+# Conclusion
+
+# Future Work
