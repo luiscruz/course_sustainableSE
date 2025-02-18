@@ -1,18 +1,22 @@
 ---
 author: Simon Biennier, Jasper Heijne, Paul Lindhorst, Huib Sprangers
-title: "Title of the template blog"
+title: "Measuring the Energy Consumption of SQL vs NoSQL"
 image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 03/03/2022
+date: 28/02/2025
 summary: |-
   Summary of our paper
 ---
 
 # Measuring the Energy Consumption of SQL vs NoSQL
 
-# Experimental Setup
+For our project, we decided to try measuring the difference between the energy consumption between SQL and NoSQL. Specifically, we want to know if there is a significant difference between the two when making many simple requests.
 
-# Results
+## Experimental Setup
 
-# Conclusion
+### Hardware/Software Specifications
 
-# Future Work
+## Results
+
+## Conclusion
+
+## Future Work
