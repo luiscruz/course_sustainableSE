@@ -9,12 +9,12 @@ summary: |-
 
 # Comparing Energy Consumption of Note-Taking Applications
 ## Introduction
+### Problem statement
 
 ## Methodology
 In this experiment we test the energy consumptions of various text editors while simulating natural typing behavior. 
 To perform this experiment we set up an automated test script which starts up a text editor, types 200 characters while simulating human behavior, saves the file, and then proceeds to close the text editor. 
 The energy consumption is measured through the entirety of this script.
-
 
 ### Tooling
 We use EnergiBridge to monitor the energy consumption during this experiment.
@@ -36,6 +36,9 @@ The order of measurements was shuffled to reduce systematic impact between measu
 ## Results
 ### Analysis
 
-
 ## Discussion
+### Implication
 ### Further research & limitations
+
+## References
+## Replication
