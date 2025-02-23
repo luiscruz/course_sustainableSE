@@ -22,6 +22,16 @@ This study evaluates how LLMs for code perform across two different backends. In
 
 ### Methodology
 
+To evaluate the energy efficiency of Large Language Models (LLMs) for code, we designed an experiment involving six distinct configurations. Our study examines three models, Ollama [cite], Deepseek [cite], and Mistral [cite], each executed on two different backend setups [actually mention]. The selection of these models is motivated by their parameter parity (approximately 7B parameters) and open-source availability. By limiting our experiments to these combinations, we aim to isolate the effects of model architecture and backend processing on energy consumption.
+
+To reduce confounding variables, all experiments were executed on the same device under identical conditions [insert device specifications maybe??? and actual conditions]. This controlled environment ensures that differences in energy consumption can be attributed primarily to the model and backend characteristics rather than hardware or system optimizations.
+
+Our primary metric is energy consumption measured as energy per token generated, in order to differentiate between single-token and multi-token settings. We used the measurement tool provided in the lab [insert footnote/link to the tool] to capture the energy metric.
+
+The HumanEval benchmark [insert link to github or whatever else source] was selected as the dataset to evaluate the models on code generation tasks. This benchmark provides standardized test cases to assess correctness and also enables us to quantify energy consumption per generated token in a reproducible manner.
+
+After conducting the experiment, both descriptive and inferential statistical analyses [actually mention which statistics but elaborate upon in the following section] were performed on the collected data. Descriptive statistics summarize the tendencies and variability of energy consumption across different configurations, while inferential statistics assess the significance of differences observed between models and backend types.
+
 ### Results
 
 ### Discussion
