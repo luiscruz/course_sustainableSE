@@ -33,7 +33,7 @@ sustainable choices when selecting a ML framework. The results will be valuable
 for researchers, developers, and organizations seeking to balance model 
 performance with environmental responsibility and associated costs.
 
-For this experiment we aim to compare the energy consumption of Tensorflow (keras), PyTorch and JAX when training a Convolutional Neural Network (CNN).
+For this experiment we aim to compare the energy consumption of Tensorflow (using Keras), PyTorch and JAX when training a Convolutional Neural Network (CNN).
 We have implemented the same exact CNN architecture for each framework and then we measure energy usage of each.
 
 
@@ -73,7 +73,7 @@ Some other settings under which the experiment runs (Zen mode):
 - Internet connection is disabled
 
 ### Energy measurement
-Energy measurement was done by using the tool [EnergiBridge](https://github.com/tdurieux/EnergiBridge).
+Energy measurement was done by using the tool [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is able to measure the CPU energy used in joules at a specific timestamp. Using the timestamps and the CPU energy, we can calculate the average power used during an experiment, we use the following formula: $P_{avg} = \frac{E}{\Delta t}$, where $E$ is the CPU energy (in Joules) used in the timespan $\Delta t$, which is the difference between the begin and end time of the experiment in seconds.
 
 
 ### Dataset
