@@ -1,15 +1,15 @@
 ---
 author: Reinier Schep, Maosheng Jiang, Razvan Loghin, Alex Zheng
-title: "Tensorflow, Torch and JAX energy consumption comparison for convolutional neural networks on MNIST"
+title: "TensorFlow, Torch and JAX energy consumption comparison for convolutional neural networks on MNIST"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
 summary: |-
-    Tensorflow, Torch and JAX energy 
+    TensorFlow, Torch and JAX energy 
     consumption comparison for convolutional neural networks on MNIST dataset.
 ---
 
 ## Introduction
-As machine learning (ML) models become complexer and operate on a larger scale, 
+As machine learning (ML) models become more complex and operate on a larger scale, 
 their computational demands have increased, leading to increased 
 energy consumption. Training large-scale deep learning models 
 can require as much energy as powering multiple households for
@@ -17,16 +17,19 @@ weeks, with some studies estimating that training a single deep
 learning model can emit as much carbon as five cars over their 
 lifetime [Strubell et al., 2019](https://aclanthology.org/P19-1355/). Given the rapid expansion of AI applications across industries, optimizing the energy efficiency of ML frameworks is critical for reducing both operational costs and environmental impact.
 
-This paper investigates the energy efficiency of three widely 
+This report investigates the energy efficiency of three widely 
 used ML frameworks: Keras, PyTorch, and JAX. Each of these 
 frameworks offers distinct design philosophies and computational 
 optimizations which may significantly impact their 
 energy consumption. While extensive research has been done to compare these frameworks in terms 
 of training speed and model accuracy, fewer studies have focused on their power
-consumption and energy efficiency. Given the scale at which these ML libraries can be deployed in the real world, 
+consumption and energy efficiency. Moreover, research has also highlighted inconsistencies in ML implementations 
+across libraries, showing that even the same conceptually identical ML method can yield different results depending on the library used [Liem & Panichella, 2020](https://arxiv.org/abs/2012.08387). 
+While such discrepancies affect correctness and reproducibility, another critical but often overlooked aspect is the sustainability of these ML frameworks. 
+Given the scale at which these ML libraries can be deployed in the real world, 
 small differences could quickly lead to significant practical differences in energy consumption.
 
-By systematically measuring energy usage for the same exact workload across 
+By systematically measuring energy usage for the exact same workload across 
 different frameworks for multiple iterations, 
 this study aims to provide insights into how ML engineers can make more 
 sustainable choices when selecting a ML framework. The results will be valuable 
@@ -34,7 +37,7 @@ for researchers, developers, and organizations seeking to balance model
 performance with environmental responsibility and associated costs.
 
 For this experiment we aim to compare the energy consumption of Keras (using TensorFlow), PyTorch and JAX when training a Convolutional Neural Network (CNN).
-We have implemented the same exact CNN architecture for each framework and then we measure energy usage of each.
+We have implemented the exact same CNN architecture for each framework, and then we measure energy usage of each.
 
 
 ## Methodology
@@ -60,10 +63,10 @@ The experiment was conducted on a computer with the following hardware/software:
 - GPU: NVIDIA RTX 2060 Super
 - Python 3.11.8
 - Poetry 1.8.3 (dependency management)
-- Tensorflow (keras) 2.18.0
+- TensorFlow (keras) 2.18.0
 - Torch 2.6.0
 - Jax  0.5.0
-- Other dependencies can be found in the Github repository used to carry out the [experiment](https://github.com/flazedd/cs4575-project1) 
+- Other dependencies can be found in the GitHub repository used to carry out the [experiment](https://github.com/flazedd/cs4575-project1) 
 - [EnergiBridge 0.0.7](https://github.com/tdurieux/EnergiBridge/releases/tag/v0.0.7) is used and the necessary files are already included in the repository
 
 Other important settings which have been changed on the machine under which the experiment runs (Zen mode):
@@ -73,7 +76,7 @@ Other important settings which have been changed on the machine under which the 
 - Internet connection is disabled
 
 ### Energy measurement
-Energy measurement was done by using the tool [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is able to measure the CPU energy used in joules at a specific timestamp. Using the timestamps and the CPU energy, we can calculate the average power used during an experiment, we use the following formula: $P_{avg} = \frac{E}{\Delta t}$, where $E$ is the CPU energy (in Joules) used in the timespan $\Delta t$, which is the difference between the begin and end time of the experiment in seconds.
+Energy measurement was done by using the tool [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is able to measure the CPU energy used in joules at a specific timestamp. Using the timestamps and the CPU energy, we can calculate the average power used during an experiment, we use the following formula: $P_{avg} = \frac{E}{\Delta t}$, where $E$ is the CPU energy (in Joules) used in the timespan $\Delta t$, which is the difference between the beginning and the end time of the experiment in seconds.
 
 
 ### Dataset
@@ -83,7 +86,7 @@ The [MNIST dataset](https://www.kaggle.com/datasets/hojjatk/mnist-dataset) was u
 - JAX: PyTorch tensor -> NumPy array -> JAX array
 - PyTorch: PyTorch tensor
 
-We assume that the energy usage in the actual training of the CNN is far more significant than the energy usage in the datatype transformation, and thus consider this a neglectable difference for the energy measurement results. However, for larger datasets a similar datatype transformation pipeline has to be used to ensure the reliability of the experiments.
+We assume that the energy usage in the actual training of the CNN is far more significant than the energy usage in the datatype transformation, and thus consider this a negligible difference for the energy measurement results. However, for larger datasets a similar datatype transformation pipeline has to be used to ensure the reliability of the experiments.
 
 
 ### Evaluation
@@ -100,7 +103,7 @@ the energy measurements for each framework which will be used for further analys
 
 ## Results
 ### Time
-The violin plot below shows for each framework the distribution of the obtained execution times in seconds. We see that Tensorflow (Keras) has the fastest execution time on average followed by PyTorch and JAX since the distributions do not overlap. We can also observe that Keras and JAX have similar widths of their distribution, while PyTorch has a wider distribution indicating more variability in its runtimes.
+The violin plot below shows for each framework the distribution of the obtained execution times in seconds. We see that TensorFlow (Keras) has the fastest execution time on average followed by PyTorch and JAX since the distributions do not overlap. We can also observe that Keras and JAX have similar widths of their distribution, while PyTorch has a wider distribution indicating more variability in its runtimes.
 
 ![Violin plot of time used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/time_plot.png)
 
@@ -110,12 +113,12 @@ The violin plot below shows the distribution of the energy consumed by the diffe
 ![Violin plot of energy used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/energy_plot.png)
 
 ### Power 
-The violin plot below shows the distribution of the average power used by each framework over the span of its execution time. It should come as no surprise that Keras performs best here as well since we previously saw it performed the fastest and using the least energy. Here, it also has the narrowest distribution followed by Pytorch and then JAX. 
+The violin plot below shows the distribution of the average power used by each framework over the span of its execution time. It should come as no surprise that Keras performs best here as well since we previously saw it performed the fastest and using the least energy. Here, it also has the narrowest distribution followed by PyTorch and then JAX. 
 
 ![Violin plot of power used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/power_plot.png)
 
 
-To summarize, Tensorflow (Keras) has the overall lowest execution time and least amount of energy consumed. Then Pytorch follows on both metrics and JAX comes in last place on both metrics.
+To summarize, TensorFlow (Keras) has the overall lowest execution time and least amount of energy consumed. Then PyTorch follows on both metrics and JAX comes in last place on both metrics.
 
 <!-- Show some violin box plots for each framework here...
 Some p-values etc.
@@ -124,24 +127,24 @@ Effect size analysis -->
 
 ## Analysis
 ### Statistical significance
-This section answers the question if the differences in performance are statistically significant. First we need to determine if the distributions follow a normal distribution before we can compare them. 
-- For the time data a p-value far less than 0.05 is observed for each framework, indicating that execution times are not normally distributed.
-- For the energy data a p-value far less than 0.05 is observed for each framework, indicating that energy consumption is not normally distributed.
-- For the power data a p-value significantly above 0.05 (0.35, 0.88 and ? respectively for Keras, PyTorch and JAX) is observed for each framework. This  indicates that we cannot statistically reject the hypothesis that power data is normally distributed. 
+This section answers the question if the differences in performance are statistically significant. First, we assess the distribution of the data using the Shapiro-Wilk test, which tests for normality:
+- For the Time data, the Shapiro-Wilk test produced p-values of **0.00148** (Keras), **1.07e-05** (PyTorch), and **1.41e-06** (JAX), all of which are below 0.05. This indicates that the execution times are not normally distributed.
+- For the Energy data, the Shapiro-Wilk test yielded p-values of **1.53e-06** (Keras), **1.04e-05** (PyTorch), and **2.67e-06** (JAX), also below 0.05, indicating that the energy consumption data is not normally distributed.
+- For the Power data, the Shapiro-Wilk test produced p-values of **0.354** (Keras), **0.881** (PyTorch), and **2.26e-09** (JAX). Since the p-values for Keras and PyTorch are above 0.05, we cannot reject the hypothesis that power data follows a normal distribution, but for JAX, the low p-value suggests it is not normally distributed.
 
-Considering that not all data can be assumed to be normally distributed, we resort to the non-parametrical Mann-Whitney U test for which normality of data is not a requirement. 
+Given these results, we apply different statistical tests:
+- For time and energy data, which are not normally distributed, we use the Mann-Whitney U test.
+- For power data, since it follows a normal distribution for Keras and PyTorch, we apply the t-test for these comparisons. However, since JAX's power data is not normally distributed, we use the Mann-Whitney U test when comparing it with other frameworks.
 
-The table below contains the p-value for the Mann-Whitney U which compares the distribution of 2 frameworks across some metric (time, energy and power). 
+The table below presents the p-values for the respective statistical tests comparing the distributions of each framework across time, energy, and power metrics.
 
+| Metric  | Keras vs PyTorch | Keras vs JAX | PyTorch vs JAX |
+|---------|------------------|-------------|----------------|
+| Time    | 3.11e-13         | 3.11e-13 | 1.42e-13       |
+| Energy  | 3.11e-13         | 3.11e-13 | 1.54e-13       |
+| Power   | 8.09e-21         | 5.38e-12 | 1.68e-04       |
 
-| Metric  | Keras vs Torch | Keras vs JAX | Torch vs JAX |
-|---------|--------------|--------------|--------------|
-| Time    | 3.11e-13    | 3.11e-13    | 1.42e-13    |
-| Energy  | 3.11e-13    | 3.11e-13    | 1.54e-13    |
-| Power   | 8.09e-21    | 5.38e-12    | 1.68e-04    |
-
-As can be observed, each p-value is far less than 0.05 which tells us that the distributions of the frameworks across all metrics is indeed statistically signficant.
-
+As can be observed, each p-value is significantly below 0.05, confirming that the observed differences between frameworks in time, energy, and power consumption are statistically significant.
 
 
 ### Practical significance
@@ -180,12 +183,20 @@ The tables below show the percentage increase for the different metrics time, en
 
 
 ## Discussion
-It should come as no surprise that Tensorflow (keras) is the most efficient framework, since its design philosophy
-is to prioritize performance and scalability for large-scale models. PyTorch is more geared towards small-scale models
-and prioritizes simplicity and adaptability [^1]. The JAX framework coming in last might be because experiments were executed
-on the CPU, and a key feature of JAX is that it uses Accelerated Linear Algebra (XLA) and just-in-time (JIT) compilation
-to achieve better performance on GPUs and TPUs [^2]. However, the JAX framework might not have come to full fruition in
-this experiment since only CPU performance is considered here.
+It should come as no surprise that TensorFlow (Keras) is the most efficient framework, since its design philosophy 
+is to prioritize performance and scalability for large-scale models. As shown in [Table 1](#table-1-keras-vs-torch), 
+Keras completes the task in 122.432 seconds, whereas PyTorch takes 146.843 seconds, a **20% increase** in execution time. 
+Similarly, energy consumption for PyTorch is 8372.7679 J, which is **22.34% higher** than Keras. The power consumption difference is marginal at **2.54%**, indicating that the increased 
+energy usage is primarily due to the longer execution time rather than significantly higher power draw.
+
+PyTorch is more geared towards small-scale models and prioritizes simplicity and adaptability [^1]. 
+This aligns with the results in [Table 2](#table-2-torch-vs-jax), where PyTorch outperforms JAX in both time and energy consumption.
+PyTorch completes the task in 146.843 seconds, while JAX takes 169.074 seconds, marking a **15.14% increase**. 
+The energy consumption follows a similar pattern, with JAX consuming 9733.5067 J, a **16.26% increase** compared to PyTorch.
+
+The JAX framework coming in last might be because experiments were executed on the CPU, and a key feature of JAX is that it uses Accelerated Linear Algebra (XLA) and just-in-time (JIT) compilation to achieve better performance on GPUs and TPUs [^2].
+This is further emphasized in [Table 3](#table-3-keras-vs-jax), where JAX performs significantly worse than Keras. JAX takes 169.074 seconds, which is **38.06% longer** than Keras, and consumes 9733.5067 J, a **42.37% increase** in energy consumption. 
+However, the JAX framework might not have come to full fruition in this experiment since only CPU performance is considered here.
 
 [^1]: https://www.simplilearn.com/keras-vs-tensorflow-vs-pytorch-article
 [^2]: https://github.com/jax-ml/jax
@@ -209,10 +220,10 @@ to the test.
 
 ## Conclusion
 In this report, we conducted an experiment to assess the energy efficiency of the popular ML 
-frameworks Tensorflow (keras), PyTorch and JAX. We found that Tensorflow (keras) had the fastest execution time
+frameworks TensorFlow (keras), PyTorch and JAX. We found that TensorFlow (keras) had the fastest execution time
 and consumed the least amount of energy when tasked with training a convolutional neural network 
 for 3 epochs and evaluating its accuracy. The next fastest and most energy efficient framework was PyTorch, but it already
-took 20% more time and consumed 22.34% more energy compared to Tensorflow (keras). The JAX framework performed worst, 
+took 20% more time and consumed 22.34% more energy compared to TensorFlow (keras). The JAX framework performed worst, 
 it took 15.14% more time and consumed 16.26% more energy compared to the PyTorch framework (which already came in second).
 Given the large scale at which ML frameworks are usually deployed, these relative differences in energy consumption can 
 lead to monumental differences in practice.
