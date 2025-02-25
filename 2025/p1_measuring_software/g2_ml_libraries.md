@@ -66,7 +66,7 @@ The experiment was conducted on a computer with the following hardware/software:
 - Other dependencies can be found in the Github repository used to carry out the [experiment](https://github.com/flazedd/cs4575-project1) 
 - [EnergiBridge 0.0.7](https://github.com/tdurieux/EnergiBridge/releases/tag/v0.0.7) is used and the necessary files are already included in the repository
 
-Other important settings which have been changed on the machine under which the experiment runs (we call this Zen mode):
+Other important settings which have been changed on the machine under which the experiment runs (Zen mode):
 - All applications are closed in task manager, except an Administrator Powershell which executes the experiment
 - Notifications are turned off
 - A single monitor is connected
