@@ -33,7 +33,7 @@ sustainable choices when selecting a ML framework. The results will be valuable
 for researchers, developers, and organizations seeking to balance model 
 performance with environmental responsibility and associated costs.
 
-For this experiment we aim to compare the energy consumption of Tensorflow (using Keras), PyTorch and JAX when training a Convolutional Neural Network (CNN).
+For this experiment we aim to compare the energy consumption of Keras (using TensorFlow), PyTorch and JAX when training a Convolutional Neural Network (CNN).
 We have implemented the same exact CNN architecture for each framework and then we measure energy usage of each.
 
 
@@ -66,7 +66,7 @@ The experiment was conducted on a computer with the following hardware/software:
 - Other dependencies can be found in the Github repository used to carry out the [experiment](https://github.com/flazedd/cs4575-project1) 
 - [EnergiBridge 0.0.7](https://github.com/tdurieux/EnergiBridge/releases/tag/v0.0.7) is used and the necessary files are already included in the repository
 
-Some other settings under which the experiment runs (Zen mode):
+Other important settings which have been changed on the machine under which the experiment runs (we call this Zen mode):
 - All applications are closed in task manager, except an Administrator Powershell which executes the experiment
 - Notifications are turned off
 - A single monitor is connected
@@ -77,7 +77,13 @@ Energy measurement was done by using the tool [EnergiBridge](https://github.com/
 
 
 ### Dataset
-The [MNIST dataset](https://www.kaggle.com/datasets/hojjatk/mnist-dataset) was used for training and evaluating the CNN described earlier.
+The [MNIST dataset](https://www.kaggle.com/datasets/hojjatk/mnist-dataset) was used for training and evaluating the CNN described earlier. It has to be mentioned that the datatype transformation pipeline differs per framework, in our implementations the execution flow is as follows:
+
+- Keras: PyTorch tensor -> NumPy array
+- JAX: PyTorch tensor -> NumPy array -> JAX array
+- PyTorch: PyTorch tensor
+
+We assume that the energy usage in the actual training of the CNN is far more significant than the energy usage in the datatype transformation, and thus consider this a neglectable difference for the energy measurement results. However, for larger datasets a similar datatype transformation pipeline has to be used to ensure the reliability of the experiments.
 
 
 ### Evaluation
