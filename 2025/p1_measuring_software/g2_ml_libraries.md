@@ -229,3 +229,177 @@ Given the large scale at which ML frameworks are usually deployed, these relativ
 lead to monumental differences in practice.
 
 
+## Appendix - Raw data
+```
+Results for keras
+    Computed Metrics:
+        Time metrics:
+           - Shapiro Wilk P-Value: 0.0014803026570007205
+           - Mean: 123.002
+           - Median: 122.432
+           - Variance: 1.788742176470587
+           - Standard Deviation: 1.3374386626947
+           - Minimum Value: 120.963
+           - Maximum Value: 127.216
+        Energy metrics:
+           - Shapiro Wilk P-Value: 1.5384083553726668e-06
+           - Mean: 6845.649355207171
+           - Median: 6835.5718994140625
+           - Variance: 3710.765857599451
+           - Standard Deviation: 60.916055827667066
+           - Minimum Value: 6775.3468170166
+           - Maximum Value: 7123.433639526367
+        Power metrics:
+           - Shapiro Wilk P-Value: 0.3542410135269165
+           - Mean: 55.65677862440097
+           - Median: 55.68238838296795
+           - Variance: 0.10700652647108559
+           - Standard Deviation: 0.3271185205259488
+           - Minimum Value: 55.0263478861252
+           - Maximum Value: 56.31315321942131
+        EDP metrics:
+           - Shapiro Wilk P-Value: 2.8950482374057174e-05
+           - Mean: 842095.0584529366
+           - Median: 836058.799017334
+           - Variance: 259804798.2829092
+           - Standard Deviation: 16118.461411775916
+           - Minimum Value: 823976.7254043274
+           - Maximum Value: 906214.7338859863
+
+Results for torch
+    Computed Metrics:
+        Time metrics:
+           - Shapiro Wilk P-Value: 1.067574521584902e-05
+           - Mean: 148.58786486486488
+           - Median: 146.843
+           - Variance: 12.362340897897887
+           - Standard Deviation: 3.5160120730591764
+           - Minimum Value: 145.029
+           - Maximum Value: 157.444
+        Energy metrics:
+           - Shapiro Wilk P-Value: 1.0490580280020367e-05
+           - Mean: 8474.958240405933
+           - Median: 8372.767913818361
+           - Variance: 57020.00269249967
+           - Standard Deviation: 238.78861508141395
+           - Minimum Value: 8203.943466186527
+           - Maximum Value: 9077.440338134766
+        Power metrics:
+           - Shapiro Wilk P-Value: 0.881283164024353
+           - Mean: 57.03249311925684
+           - Median: 57.08597323577703
+           - Variance: 0.2483396088482403
+           - Standard Deviation: 0.49833684275622275
+           - Minimum Value: 55.64636414696145
+           - Maximum Value: 58.08655018725248
+        EDP metrics:
+           - Shapiro Wilk P-Value: 7.465992553079559e-07
+           - Mean: 1260058.7796568878
+           - Median: 1225637.7454837947
+           - Variance: 4306742280.254107
+           - Standard Deviation: 65625.77451165134
+           - Minimum Value: 1208924.9736053469
+           - Maximum Value: 1429188.5165972898
+
+Results for jaxx
+    Computed Metrics:
+        Time metrics:
+           - Shapiro Wilk P-Value: 1.4070428733248264e-06
+           - Mean: 169.12454054054055
+           - Median: 169.074
+           - Variance: 2.4534184774774763
+           - Standard Deviation: 1.5663391961760633
+           - Minimum Value: 166.871
+           - Maximum Value: 176.49
+        Energy metrics:
+           - Shapiro Wilk P-Value: 2.6666066332836635e-06
+           - Mean: 9705.295853898331
+           - Median: 9733.506744384766
+           - Variance: 22396.322025863778
+           - Standard Deviation: 149.65400771734707
+           - Minimum Value: 9015.234390258789
+           - Maximum Value: 9889.344192504883
+        Power metrics:
+           - Shapiro Wilk P-Value: 2.2558599432898063e-09
+           - Mean: 57.39366244169991
+           - Median: 57.63466348940825
+           - Variance: 1.4035393622125207
+           - Standard Deviation: 1.1847106660330702
+           - Minimum Value: 51.08070933343979
+           - Maximum Value: 58.527327191178756
+        EDP metrics:
+           - Shapiro Wilk P-Value: 0.9578214883804321
+           - Mean: 1641298.258073566
+           - Median: 1639171.4396193086
+           - Variance: 530707755.768724
+           - Standard Deviation: 23037.09521117461
+           - Minimum Value: 1591098.7175367738
+           - Maximum Value: 1692066.7913375853
+           
+Comparison between libraries keras and torch
+    Statistical comparsion for Time
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 3.109392573549192e-13
+        Mean difference: -25.585864864864888
+        Median difference: -24.410999999999987
+    Statistical comparsion for Power
+        Test Used: Independent T-test
+        t-test p-value: 8.094416047488892e-21
+        Mean difference: -1.3757144948558704
+        Median difference: -1.4035848528090824
+    Statistical comparsion for Energy
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 3.110745274579672e-13
+        Mean difference: -1629.3088851987623
+        Median difference: -1537.1960144042987
+    Statistical comparsion for EDP
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 3.110745274579672e-13
+        Mean difference: -417963.72120395117
+        Median difference: -389578.9464664607
+---
+Comparison between libraries keras and jaxx
+    Statistical comparsion for Time
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 3.105337740391047e-13
+        Mean difference: -46.122540540540555
+        Median difference: -46.64200000000001
+    Statistical comparsion for Power
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 5.379590301036822e-12
+        Mean difference: -1.7368838172989385
+        Median difference: -1.9522751064402968
+    Statistical comparsion for Energy
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 3.110745274579672e-13
+        Mean difference: -2859.6464986911606
+        Median difference: -2897.934844970703
+    Statistical comparsion for EDP
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 3.110745274579672e-13
+        Mean difference: -799203.1996206294
+        Median difference: -803112.6406019746
+---
+Comparison between libraries torch and jaxx
+    Statistical comparsion for Time
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 1.4154840872576973e-13
+        Mean difference: -20.536675675675667
+        Median difference: -22.231000000000023
+    Statistical comparsion for Power
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 0.00016845076564589394
+        Mean difference: -0.3611693224430681
+        Median difference: -0.5486902536312144
+    Statistical comparsion for Energy
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 1.5385322563477485e-13
+        Mean difference: -1230.3376134923983
+        Median difference: -1360.7388305664044
+    Statistical comparsion for EDP
+        Test Used: Mann-Whitney U Test
+        t-test p-value: 1.4184035096127283e-13
+        Mean difference: -381239.47841667826
+        Median difference: -413533.69413551386
+---
+```
