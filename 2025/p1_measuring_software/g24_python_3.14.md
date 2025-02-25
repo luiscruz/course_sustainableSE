@@ -1,25 +1,16 @@
 ---
-author: Student1 first and last name, Student2, Student3
-title: "Title of the template blog"
+author: Luc Dop, Sabina Grădinariu, Nawmi Nujhat, Vincent van Vliet
+title: "Energy Consumption Comparison: Python 3.14 vs Python 3.11"
 image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 03/03/2022
+date: 24/02/2025
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+   This study explores the energy consumption differences between Python 3.14 and Python 3.11, testing the claim that Python 3.14 has a 30% speed improvement over previous versions. We run the same computational tasks in controlled environments and measure power usage, execution time, and efficiency. Our setup includes automation, Docker containers, and system configurations to ensure replicability.
 ---
+We decide to investigate the claim that python 3.14 has an improvements of up to 30% in speed and how that impacts the energy consumption. To investigate this idea is to use the prerelease version of 3.14 python interpreter and compare the energy consumption for a code snippet of this interpreter vs an older interpreter, to see whether faster speeds impact energy consumption
 
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+[//]: # (This article is divided into two main parts: 1&#41; how to set up energy measurements with minimum bias, and 2&#41; how to analyse and take scientific conclusions from your energy measurements.)
 
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
-
-
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
+[//]: # (Read on so that we can get your paper accepted in the best scientific conference.)
 
 --- 
 #### 👉 Note 1:
