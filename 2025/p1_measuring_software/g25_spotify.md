@@ -37,15 +37,27 @@ The goal for designing the revised experiment was to minimize any biases by othe
 
 For the final experiment, we have decided to have 30 runs per application. The runs itself are randomly shuffeled. For one single run, we first open the respective application (i.e. web or desktop). Next, we wait for a few seconds such that the application is fully loaded and the opening does not have an influence on the energy measurement. We did not want to include the starting of the application in this measurement, because we wanted to solely focus on the use case of playing music. Next, the energy measurement is started and four songs are played in a random order. Each song is played for 20 seconds. Including the delays for starting and searching for the songs, one run takes approximately 2 minutes. After the run, the application is closed and we do a pause of 1 minute. Thus, the whole experiment takes about 3 hours.
 
+
 ## Experiment setup
-<!-- TODO: describe what we did as setup -->
-<!-- TODO: also describe why energy measurements are so difficult and what the ZEN mode is-->
-<!-- TODO: how to set up energy measurements with minimum bias -->
-<!-- TODO: also write about the warm up and initialization somewhere. Either here or in the experiment design-->
+In general, testing the power consumption of applications is difficult because multiple runs can give different results. For this reason, we have chosen to perform 30 runs per application. However, there are several other factors that can affect the measurement. To reduce any bias as much as possible, we did the following before starting the experiment:
+
+- Let the device run for at least one hour to warm it up.
+- Charge the device's battery to 100% and plug it in.
+- Close all applications (except the console running the automated test script).
+- Disable all unnecessary background services (e.g. cloud sync, software updater, ...).
+- Turn off all notifications.
+- Ensure that no additional hardware is connected to the device (e.g. remove USB mouse).
+- Establish a stable internet connection - preferably a wired connection.
+- Turn off automatic brightness.
+- Disable any power saving modes on the device.
+- Log in to the Spotify desktop and web application beforehand and ensure that the volume in both applications is set to 100%. Close applications before starting the experiment.
+- Ensure that the room temperature remains approximately the same throughout the experiment.
+
 
 ## Experiment execution
-<!-- TODO: write about how we automated the tests and why this is important-->
-<!-- TODO: Also write about how we do the energy measuremt somewhere. Explain and link EnergiBridge-->
+Since it would be impossible to manually run 60 experiments without introducing bias from user input, we automated the testing process using a _Python_ script. The Spotify apps are mostly controlled via keyboard shortcuts using the _pyautogui_ library. The energy measurements are done using [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is a cross-platform energy measurement utility.[^energi_bridge]
+
+The script starts with an initialisation and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To wam up, a simple Fibonacci sequence is computed for three minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
 
 ## Replication
 To replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as instructions on how to set up the experiment.[^sse_github_repo]
@@ -53,6 +65,10 @@ To replicate this experiment, check out our public [GitHub repository](https://g
 
 # Hardware setup
 <!-- TODO: write hardware setup-->
+<!-- TODO: also write about the 2 free spotify accounts we created and any settings that were changed in any of the applications-->
+<!-- TODO: also state the specific versions of Spotify and Chrome that have been used-->
+<!-- TODO: state that Chrome has been used as browser, since the script only uses the default browser-->
+<!-- TODO: also mention that Wi-Fi instead of a wired internet connection has been used-->
 
 # Results 
 
@@ -117,4 +133,5 @@ To get an insight into the effect size of our experiments we computed multiple v
 [^global_music_report]: [IFPI - Global Music Report](https://www.ifpi.org/wp-content/uploads/2024/04/GMR_2024_State_of_the_Industry.pdf)
 [^spotify_report]: [2024 Earnings](https://newsroom.spotify.com/2025-02-04/spotify-reports-fourth-quarter-2024-earnings/?utm_source=chatgpt.com)
 [^streaming_stats]: [Music Streaming Services Stats (2025)](https://explodingtopics.com/blog/music-streaming-stats)
+[^energi_bridge]: [EnergiBridge GitHub](https://github.com/tdurieux/EnergiBridge)
 [^sse_github_repo]: [GitHub repository with source code of experiment](https://github.com/famulenz-pkrumpl/SSE_Spotify)
