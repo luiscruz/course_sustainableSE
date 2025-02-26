@@ -12,13 +12,14 @@ summary: |-
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
   culpa qui officia deserunt mollit anim id est laborum.
 ---
+TODO: write abstract
 
 # Introduction
-The last few decades have seen a dramatic shift in the way music is distributed and consumed. The rise of digital streaming platforms such as Spotify have transformed music into an on-demand service, replacing the need to purchase physical formats such as CDs or vinyl. [^music_industry_shift] 
+The way music is consumed and distributed has changed dramatically over the past few decades. The rise of digital streaming platforms such as Spotify has transformed music into an on-demand service, replacing the need to purchase physical products such as CDs or vinyl. [^music_industry_shift] 
 
-Today, streaming generates over 67% of global music revenues [^global_music_report], consolidating its dominance in the industry. With 675 million monthly active users [^spotify_report] and a market share of over 30% [^streaming_stats], Spotify is the undisputed leader in the music streaming market. While this shift has made music more accessible than ever, it also poses questions about its environmental impact, since streaming requires a service provider, constant network data transmission, and device power.
+Today, streaming generates over 67% of global music revenues [^global_music_report], confirming its dominance in the industry. With 675 million monthly active users [^spotify_report] and a market share of over 30% [^streaming_stats], Spotify is the clear leader in the music streaming market. While this shift has made music more accessible than ever, it also poses questions about its environmental impact, since streaming requires a service provider, constant network data transmission, and device power.
 
-In recent years, web-based streaming has become increasingly popular as it eliminates the need for users to install additional applications on their devices. While web applications are often favoured for their accessibility and convenience, they can come with trade-offs in terms of energy efficiency. In this article, we compare the energy consumption of Spotify's web and desktop applications. By analysing these differences, we aim to provide valuable insights to help users make more informed choices about their streaming habits.
+In recent years, web-based streaming has become more and more popular as it eliminates the need for users to install additional applications on their devices. While web applications are often favoured for their accessibility and convenience, desktop applications often offer more features to the user. In this article, we compare the energy consumption of Spotify's web and desktop applications. By analysing these differences, we aim to provide valuable insights to help users make better decisions about their streaming habits.
 
 
 TODO: At link to our github
@@ -73,7 +74,7 @@ To get an insight into the effect size of our experiments we computed multiple v
 
 # Discussion
 
-# limations and Issues
+# Limations and Issues
 
 # Conclusion
 
