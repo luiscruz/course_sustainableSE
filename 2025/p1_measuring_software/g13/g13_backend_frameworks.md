@@ -1,5 +1,5 @@
 ---
-author: Sofia Konovalova, Rafaël Labbé, Kaijen Lee, Violeta Macsim
+author: Sofia Konovalova, Kaijen Lee, Violeta Macsim
 title: "Sustainable Servers: Benchmarking energy consumption of various backend frameworks"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
@@ -34,15 +34,27 @@ When a user interacts with a website or app, for example, by submitting a form, 
 ### Express.js
 **[Express.js](https://expressjs.com/)** is a _Node.js_ framework that simplifies server-side application development with its lightweight skeleton and customizable routing via middleware modules for both web and mobile applications. Its design enables developers to quickly create APIs and online apps by drawing on JavaScript's asynchronous event-driven architecture. Its adaptability allows it to work with a wide range of libraries, making it a popular choice for scalable, real-time applications.
 
-### Flask
-**[Flask](https://flask.palletsprojects.com/en/latest/)** is a simple _Python_ [microframework](https://medium.com/codex/what-are-microframeworks-best-ones-you-should-consider-using-f77eacc44dcb#9873) that offers the necessary tools for building a web app without any strict structure. Because of its lightweight nature, it is compatible with a wide range of other database management, form validation, and user authentication extensions. Flask's considerate design and ease of implementation make it an ideal choice for both small and rapidly evolving projects. 
+## Flask
+**[Flask](https://flask.palletsprojects.com/en/latest/)** is a simple _Python_ [microframework](https://medium.com/codex/what-are-microframeworks-best-ones-you-should-consider-using-f77eacc44dcb#9873) that offers the necessary tools for building a web app without any strict structure. Because of its lightweight nature, it is compatible with a wide range of other database management, form validation, and user authentication extensions. Flask's considerate design and ease of implementation make it an ideal choice for both small and rapidly evolving projects. 
 
-### SpringBoot
+## SpringBoot
+[**SpringBoot**](https://spring.io/projects/spring-boot) is a powerful open-source Java framework included in the Spring package that provides solutions for various products. This framework automatically configures the boilerplate, giving you the freedom to add whatever extensions you want. It provides support for database connections, authentication services, and web servers. Spring enables developers to build scalable, production-ready applications with minimal setup time.
 
-# Methodology
+# How we tested energy efficiency
 
-## Experiment
-- describe what steps are run in the automation script
+To measure the energy consumption of **Flask**, **Express.js**, and **Springboot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
+
+## Energy measuring
+[**Energibridge**](https://github.com/tdurieux/energibridge) is a command-line tool for measuring the energy consumption of computer processes that can be integrated into a containerized development pipeline. In our case, the process would be the currently running server. The tool outputs the values as `.csv` files, allowing you to track your operations' "energy footprint". 
+
+## Server-side experimental setup 
+
+We created a containerized Docker environment for each framework, resulting in three isolated server instances. Using Docker containers, we eliminate unnecessary local processes and ensure that energy measurements reflect only the server's activity. Each container runs solely on developer-supplied resources, leading to more consistent data. When the experiment concludes, we simply stop the container, recording energy consumption only during the test as Energibridge is connected to the server-process and provides measurements back when operations are halted.
+
+To simplify the setup, we extracted two `.csv` files` from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), each containing 50,000 movies and industry professionals. Instead of connecting to an external database, the data is loaded directly into each server during startup, simplifying configuration and accelerating deployment. This practice also mitigates any potential caching, as data is erased when the container is deleted.
+
+To simulate a realistic scenario, we stress test each server with [Artilery](https://www.artillery.io/), which allows us to control concurrent requests and achieve a 100% API success rate while using measurable energy. We will carry out 30 iterations of stress testing in which we will make 100 requests that require data processing, putting additional strain on the server. Each server will be tested individually in isolation (i.e. only one will be running). 
+
 - elaborate in the report how representative our experiment is, how does it simulate or reflect real-world use cases
 - Docker + any other preparation steps are done _before_ energibridge begins collecting data in order to not take in data from trhe overhead generated by initialising a docker container
 
