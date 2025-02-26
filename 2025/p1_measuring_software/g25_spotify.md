@@ -29,16 +29,26 @@ This chapter describes the methodology used to compare the energy consumption of
 ## Design of the experiment
 <!-- TODO: write about how it was designed -->
 <!-- TODO: also talk about our first setup without closing and opening the app. You can refer to  "Results initial setup without closing and opening (web)app"-->
+The first thing to do when before conducting the experiment is designing it. Therefore, a specific use case of the application, in our case Spotify's web and desktop application, has to be determined. It is also important to design the experiment in such a way, that it mimics actual user behaviour and is realistic.
 
-## Automated measurements
-<!-- TODO: write about how we automated the tests and why this is important-->
+First, we designed and conducted an experiment with both applications (desktop and web) opened at the same time. We switched between the windows and played exactly one song randomly in each test run. However, the disadvantages of this kind of experiment were that the other window that was opened in the background influences the accuracy of the measurement. Moreover, playing a random song also has an influence on the energy consumption. Thus, the data was not really normally distributed.
+
+The goal for designing the revised experiment was to minimize any biases by other applications and only focus on the application that is being executed. Moreover, we still wanted to play more than one song to mimic realistic user behaviour, but also wanted the data to be normally distributed amongst the experiment. Thus, we hab to design the single runs similarily, while also integrating some randomness.
+
+For the final experiment, we have decided to have 30 runs per application. The runs itself are randomly shuffeled. For one single run, we first open the respective application (i.e. web or desktop). Next, we wait for a few seconds such that the application is fully loaded and the opening does not have an influence on the energy measurement. We did not want to include the starting of the application in this measurement, because we wanted to solely focus on the use case of playing music. Next, the energy measurement is started and four songs are played in a random order. Each song is played for 20 seconds. Including the delays for starting and searching for the songs, one run takes approximately 2 minutes. After the run, the application is closed and we do a pause of 1 minute. Thus, the whole experiment takes about 3 hours.
 
 ## Experiment setup
 <!-- TODO: describe what we did as setup -->
 <!-- TODO: also describe why energy measurements are so difficult and what the ZEN mode is-->
+<!-- TODO: how to set up energy measurements with minimum bias -->
+<!-- TODO: also write about the warm up and initialization somewhere. Either here or in the experiment design-->
+
+## Experiment execution
+<!-- TODO: write about how we automated the tests and why this is important-->
+<!-- TODO: Also write about how we do the energy measuremt somewhere. Explain and link EnergiBridge-->
 
 ## Replication
-In order to replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as an instruction on how to set up the experiment.[^sse_github_repo]
+To replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as instructions on how to set up the experiment.[^sse_github_repo]
 
 
 # Hardware setup
@@ -88,6 +98,8 @@ To get an insight into the effect size of our experiments we computed multiple v
 *Table 2: Effect size analysis.*
 
 # Discussion
+<!-- TODO: Mention that the desktop version has more features than the web verions, that might consume more energy. But the desktop version has caching, which does not improve it -->
+<!-- TODO: also mention the paper https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf and mention that on Android, it is opposite -->
 
 # Limations and Issues
 
