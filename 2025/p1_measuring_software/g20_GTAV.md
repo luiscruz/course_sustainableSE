@@ -42,40 +42,53 @@ On each computer, we ran the benchmark test 15 times for both the low and high s
 Initially, we considered running a higher number of tests per setting, but given that each benchmark test takes approximately 3 minutes per run, we realized this would require a significant amount of time.
 To ensure reliable results, we conducted the same experiments on different PCs.
 This allowed us to compare the results and determine whether the difference in energy consumption between low and high settings on a single PC was consistent across multiple systems.  
-
-vsync
+For this experiment Vsync was turned on for both graphic settings. This setting caps the framerate at the monitor refresh rate, 60hz in this case for the computers. If this setting is left off, the game will try to render as many frames as possible, which means the GPU will be at or near maximum utilization regardless of graphic settings.
 
 ## Graphics Settings
 The number of available options for each graphics setting varies, ranging from 2 to 6 choices.
 Most settings have options such as *Normal*, *High*, and *Very High*, while some also include *Ultra* and others are limited to simple *On-Off* options.  
 
 To ensure a clear difference between runs, settings with *On-Off* options were set to *Off* for the low graphics run and *On* for the high graphics run.
-For settings with more than two options, we selected the lowest computationally demanding option (*Normal*) for the low run and increased it by two levels for the high run, which was typically *Very High*.  
+For settings with more than two options, we selected the lowest computationally demanding option (*Normal*) for the low run and increased it by two levels for the high run, which was typically *Very High*. 
 
 This selection method was designed to create a noticeable difference in power consumption that could be reliably detected.
-The specific settings used will be included in the appendix to ensure the replicability of our results.  
-**To Do** 
-Add screenshot/table of our settings for different runs.
+The specific settings used are included in appendix A to ensure the replicability of our results.  
 
 ## Experiment procedure
- **To Do**
- Write this section with the information below.
-1. Everything closed except for GTAV and GPU-Z
-2. Notifications off
-3. Keyboard, mouse, monitors and ethernet are the only connected devices (someone said GTAV needs an internet connection to launch)
-4. Background services (indicated by taskbar icons) are only windows defender, the nvidia app, epic games launcher, rockstar launcher and my audio driver
+Our experiment procedure is outlined below, to ensure the results are reproducable. The experiment first has a startup procedure, followed by a segment to be repeated 15 times for each setting to take the measurements.
+
+1. Ensure notifications are turned off
+2. Everything closed (including background applications) except for the Rockstar Launcher and GPU-Z. Running background services (indicated by taskbar icons) are limited to Windows Defender, the Nvidia app and the audio driver
+3. Only connected devices are a keyboard, mouse and a monitor
+4. The computer is connected to the internet using an ethernet cable (GTA V needs an internet connection to launch)
 5. Power mode set to "best performance" in windows
-6. One benchmark without any measurement as a warm-up run
-7. Pause/sleep between executions achieved by having to restart GTAV after a benchmark and setting GPU-Z to log to a new file
+6. Start GTA V
+7. Run Benchmark test without measurement
+8. GTA V closes automatically after benchmark
+Repeat 15 times for low settings and 15 times for high settings:
+9. Start a new logging file in GPU-Z with appropriate naming
+10. GTA V restarts automatically after benchmark
+11. Run benchmark test
+12. GTA V closes automatically after benchmark
 
 
 ## Data collection
- **To Do**
- Explain that we have used gpu-z and why we used it? 
+
 
 ## Hardware/Software Details
- **To Do**
- Explain that the used computers had different specifications. We can shortly mention the specification of each computer here. If the rapport exceeds the word count than this section can be replaced to appendix.
+The trials were run on two different computer to ensure our findings are consistent. The results of both computers were compared and combined to achieve our final results
+
+### Computer 1: 
+- Intel Core i5-9600k
+- 16GB DDR4 RAM
+- Nvidia GeForce RTX 2060
+- Samsung 970 Evo Plus M.2 SSD
+
+### Computer 2: 
+- Intel Core i7-7700k
+- 16GB DDR4 RAM
+- EVGA GeForce GTX 1070
+- Samsung 970 Evo Plus M.2 SSD
 
 ## Evaluation
 **To Do**
@@ -111,7 +124,7 @@ Explain that this experient can be extended to mac, playstation, xbox etc. Cloud
 
 # Appendix
 
-## Graphics Settings
+## A: Graphics Settings
 
 ### Low Run
 | Name | Setting | 
