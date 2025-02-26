@@ -33,47 +33,84 @@ A background program that significantly affects energy consumption in one test m
 To achieve this, we closed all unnecessary programs, keeping only essential background services running.
 These were indicated by taskbar icons and included Windows Defender, the NVIDIA app, Epic Games Launcher, Rockstar Launcher, and the audio driver.  
 
-
-Furthermore, we placed emphasis on warming up the system before starting the experiment and allowing cooldown periods between each run. This was achieved by running a non-recorded warm-up benchmark test before data collection and restarting the game between runs, which takes about a minute to ensure proper cooldown.  
-
+Furthermore, we placed emphasis on warming up the system before starting the experiment and allowing cooldown periods between each run.
+This was achieved by running a non-recorded warm-up benchmark test before data collection and restarting the game between runs, which takes about a minute to ensure proper cooldown.  
 
 We compared two different graphics settings, classified as a low graphics quality run and a high graphics quality run.
 On each computer, we ran the benchmark test 15 times for both the low and high settings, totaling 30 runs per PC.
 Initially, we considered running a higher number of tests per setting, but given that each benchmark test takes approximately 3 minutes per run, we realized this would require a significant amount of time.
-To ensure reliable results, we conducted the same experiments on different PCs. This allowed us to compare the results and determine whether the difference in energy consumption between low and high settings on a single PC was consistent across multiple systems.  
-
-
-
-
-
-
+To ensure reliable results, we conducted the same experiments on different PCs.
+This allowed us to compare the results and determine whether the difference in energy consumption between low and high settings on a single PC was consistent across multiple systems.  
 
 ## Graphics Settings
+The number of available options for each graphics setting varies, ranging from 2 to 6 choices.
+Most settings have options such as *Normal*, *High*, and *Very High*, while some also include *Ultra* and others are limited to simple *On-Off* options.  
 
+To ensure a clear difference between runs, settings with *On-Off* options were set to *Off* for the low graphics run and *On* for the high graphics run.
+For settings with more than two options, we selected the lowest computationally demanding option (*Normal*) for the low run and increased it by two levels for the high run, which was typically *Very High*.  
+
+This selection method was designed to create a noticeable difference in power consumption that could be reliably detected.
+The specific settings used will be included in the appendix to ensure the replicability of our results.  
+**To Do** 
+Add screenshot/table of our settings for different runs.
 
 ## Experiment procedure
+ **To Do**
+ Write this section with the information below.
+1. Everything closed except for GTAV and GPU-Z
+2. Notifications off
+3. Keyboard, mouse, monitors and ethernet are the only connected devices (someone said GTAV needs an internet connection to launch)
+4. Background services (indicated by taskbar icons) are only windows defender, the nvidia app, epic games launcher, rockstar launcher and my audio driver
+5. Power mode set to "best performance" in windows
+6. One benchmark without any measurement as a warm-up run
+7. Pause/sleep between executions achieved by having to restart GTAV after a benchmark and setting GPU-Z to log to a new file
+
 
 ## Data collection
+ **To Do**
+ Explain that we have used gpu-z and why we used it? 
 
 ## Hardware/Software Details
+ **To Do**
+ Explain that the used computers had different specifications. We can shortly mention the specification of each computer here. If the rapport exceeds the word count than this section can be replaced to appendix.
 
 ## Evaluation
+**To Do**
+Explain which formula and variables are used to calculate power consumption and why these were used. If it is possible, refer to sources.
 
 # Results
+**To Do**
+Add results in different graphs
 
 # Analysis
+**To Do**
+Explain shortly the difference in statistical and practical significance.
 
 ## Statistical significance
+**To Do**
+Is there a statistical significant difference in power consumption between the runs?
 
 ## Practical significance
+**To Do**
+Is this difference in power consumption big enough that it is also significant in real life? For example, when it is compared to average/total energy consumption of the game/pc?
 
 # Discussion
-
 ##
+**To Do**
+Do the results show a significant difference in energy consumption and do we think that game industry should strive for more energy efficient games?
 
 ## Limitations & future work
+**To Do**
+Explain that this experient can be extended to mac, playstation, xbox etc. Cloud gaming can be included etc.
 
 # Conclusion
 
+
 # Appendix
+
+## Graphics Settings
+
+### Low Run
+
+### High Run
 
