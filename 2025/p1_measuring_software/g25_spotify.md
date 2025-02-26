@@ -12,7 +12,7 @@ summary: |-
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
   culpa qui officia deserunt mollit anim id est laborum.
 ---
-TODO: write abstract
+<!-- TODO: write abstract -->
 
 # Introduction
 The way music is consumed and distributed has changed dramatically over the past few decades. The rise of digital streaming platforms such as Spotify has transformed music into an on-demand service, replacing the need to purchase physical products such as CDs or vinyl. [^music_industry_shift] 
@@ -22,12 +22,27 @@ Today, streaming generates over 67% of global music revenues [^global_music_repo
 In recent years, web-based streaming has become more and more popular as it eliminates the need for users to install additional applications on their devices. While web applications are often favoured for their accessibility and convenience, desktop applications often offer more features to the user. In this article, we compare the energy consumption of Spotify's web and desktop applications. By analysing these differences, we aim to provide valuable insights to help users make better decisions about their streaming habits.
 
 
-TODO: At link to our github
-TODO: We could add plots of the timeline
-# Hardware setup
-
+<!-- TODO: We could add plots of the timeline -->
 # Methodology
-<!-- TODO also talk about our first setup without closing and opening the app. You can refer to  "Results initial setup without closing and opening (web)app"-->
+This chapter describes the methodology used to compare the energy consumption of Spotify's web and desktop applications. It covers the design of the experiment and how the experiment itself was conducted, including the automation and setup of the experiment.
+
+## Design of the experiment
+<!-- TODO: write about how it was designed -->
+<!-- TODO: also talk about our first setup without closing and opening the app. You can refer to  "Results initial setup without closing and opening (web)app"-->
+
+## Automated measurements
+<!-- TODO: write about how we automated the tests and why this is important-->
+
+## Experiment setup
+<!-- TODO: describe what we did as setup -->
+<!-- TODO: also describe why energy measurements are so difficult and what the ZEN mode is-->
+
+## Replication
+In order to replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as an instruction on how to set up the experiment.[^sse_github_repo]
+
+
+# Hardware setup
+<!-- TODO: write hardware setup-->
 
 # Results 
 
@@ -86,3 +101,4 @@ To get an insight into the effect size of our experiments we computed multiple v
 [^global_music_report]: [IFPI - Global Music Report](https://www.ifpi.org/wp-content/uploads/2024/04/GMR_2024_State_of_the_Industry.pdf)
 [^spotify_report]: [2024 Earnings](https://newsroom.spotify.com/2025-02-04/spotify-reports-fourth-quarter-2024-earnings/?utm_source=chatgpt.com)
 [^streaming_stats]: [Music Streaming Services Stats (2025)](https://explodingtopics.com/blog/music-streaming-stats)
+[^sse_github_repo]: [GitHub repository with source code of experiment](https://github.com/famulenz-pkrumpl/SSE_Spotify)
