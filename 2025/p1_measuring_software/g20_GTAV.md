@@ -1,54 +1,54 @@
 ---
-author: Student1 first and last name, Student2, Student3
-title: "Title of the template blog"
+author: Seyidali Bulut, Student2, Student3
+title: "Energy consumption comparison between different graphics settings in GTA V "
 image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 03/03/2022
+date: 26/02/2025
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+  This experiment analyses the energy consumption of GTA V under different graphics settings to determine the increase in energy usage from low to high settings. To ensure our results are not dependent on a single computer, we use multiple machines to run the in-game integrated benchmark test 15 times for each graphics setting. The collected data highlights the differences in energy consumption across various graphical configurations.
 ---
 
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
+# Introduction
 
 
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
+The increased use of computers has led to a rise in global energy consumption. It is estimated that software will account for 51% of all electricity usage as early as 2030. This means that software will be responsible for 23% of global greenhouse gas emissions in the coming decades [(Andrae & Edler, 2015)](https://www.mdpi.com/2078-1547/6/1/117).  As a result, software companies are placing greater emphasis on sustainability to create long-term value without harming the environment.
 
---- 
-#### 👉 Note 1:
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
 
---- 
+A branch of existing software systems that is constantly growing is the gaming industry, with about 2.6 billion global gamers and gaming titles available on almost every digital device, making video games one of the most popular and enduring hobbies worldwide [(Topic: Video Gaming Worldwide, 2024)](https://www.statista.com/topics/1680/gaming/#topicOverview). To satisfy this massive player base, companies strive to develop games with greater realism, improved physics engines, and enhanced graphics, all of which require more computational power. This is evident in the gaming industry, where new games demand increasingly advanced GPUs as minimum requirements. Despite this vast player base, the gaming industry has not been as proactive in addressing environmental sustainability compared to other computing technology sectors [(Pérez et al., 2024)](https://arxiv.org/abs/2402.06346).  
 
-## Unbiased Energy Data ⚖️
 
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
+To examine whether higher graphics settings lead to increased energy consumption, we decided to measure the difference in energy usage within a single game at different graphic settings. For this study, we selected *GTA V*, which still has 30 million active monthly players 12 years after its release [(Xoob & Xoob, 2024)](https://activeplayer.io/grand-theft-auto-v/). To ensure the reproducibility of the experiment, we used the game's built-in benchmark test across multiple computers. Our results show that...............
 
-### Zen mode 🧘🏾‍♀️
 
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
+# Methodology
 
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
 
-### Freeze your settings 🥶
 
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
 
----
+## Graphics Settings
 
-### 
+## Experiment procedure
 
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
+## Data collection
+
+## Hardware/Software Details
+
+## Evaluation
+
+# Results
+
+# Analysis
+
+## Statistical significance
+
+## Practical significance
+
+# Discussion
+
+##
+
+## Limitations & future work
+
+# Conclusion
+
+# Appendix
 
