@@ -78,7 +78,7 @@ Repeat 15 times for low settings and 15 times for high settings:
 During the course the software EnergiBridge was recommended for use during the project. We found EnergiBridge to be unsuitable for our purposes as it is less focused on measuring GPU power consumption and therefore started looking for alternative software. We decided instead to use GPU-Z, which records GPU statistics, this fits our purposes as we are running a GPU intensive task and less a CPU intensive task. 
 
 ## Hardware/Software Details
-The trials were run on two different computer to ensure our findings are consistent. The results of both computers were compared and combined to achieve our final results
+The trials were run on two different computer to ensure our findings are consistent. The results of both computers were compared and combined to achieve our final results. The specifications of both computers are listed below.
 
 ### Computer 1: 
 - Intel Core i5-9600k
