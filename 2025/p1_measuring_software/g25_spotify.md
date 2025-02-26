@@ -26,14 +26,22 @@ TODO: We could add plots of the timeline
 # Hardware setup
 
 # Methodology
+<!-- TODO also talk about our first setup without closing and opening the app. You can refer to  "Results initial setup without closing and opening (web)app"-->
 
 # Results 
 
+## Results initial setup without closing and opening (web)app
+As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefitted from internal cashing. This lead us to change our setup to open and close the (web)app for every run.
+
+![Violin Plot](box_without_closing_setup.png)
+*Figure 1: Violin and Box plots of energy consumption (J) without outliers.*
+
+## Results improved setup
 ### Violin and Box Plots and Outliers Removal
-We have plotted the data<!--[^github]--> collected from the experiment into two violin and box plots, as can be seen in Figure 1. It is clear from the plots that both the result for the web and native version contain outliers. We used Shapiro-Wilk test to check if our results are normal, the results from this test can be seen in Table 1. The p-value for the web version (2.1 × 10<sup>-8</sup>) and for the native version (5.0 × 10<sup>-4</sup>) reported by the Shapiro-Wilk are smaller than 0.05 and thus the data is not normally distrubted. We therefore used z-score outlier removal to remove outliers, we had to apply this twice before the p-value of the Shapiro-Wilk test was larger than 0.05, as can be seen in Table 2. The violin and box plots for the data without outliners can be seen in Figure 2. We removed three data points, two from the web version (129.5J and 788.4J) and one from the native version (814.3J).
+We have plotted the data[^github] collected from the experiment into two violin and box plots, as can be seen in Figure 2. It is clear from the plots that both the result for the web and native version contain outliers. We used Shapiro-Wilk test to check if our results are normal, the results from this test can be seen in Table 1. The p-value for the web version (2.1 × 10<sup>-8</sup>) and for the native version (5.0 × 10<sup>-4</sup>) reported by the Shapiro-Wilk are smaller than 0.05 and thus the data is not normally distributed. We therefore used z-score outlier removal to remove outliers, we had to apply this twice before the p-value of the Shapiro-Wilk test was larger than 0.05, as can be seen in Table 2. The violin and box plots for the data without outliers can be seen in Figure 3. We removed three data points, two from the web version (129.5J and 788.4J) and one from the native version (814.3J).
 
 ![Violin Plot](box_outliers.png)
-*Figure 1: Violin and Box plots of energy consumption (J) with outliers.*
+*Figure 2: Violin and Box plots of energy consumption (J) with outliers.*
 
 | Shapiro-Wilk            	| W      	| p-value     	|
 |-------------------------	|--------	|-------------	|
@@ -45,10 +53,10 @@ We have plotted the data<!--[^github]--> collected from the experiment into two 
 *Table 1: Values reported by Shapiro-Wilk with and without outliers.*
 
 ![Violin Plot](box_no_outliers.png)
-*Figure 2: Violin and Box plots of energy consumption (J) without outliers.*
+*Figure 3: Violin and Box plots of energy consumption (J) without outliers.*
 
 ### Welch's t_test and Significance
-To determine the significance of our results we used Welch’s t-test, which reported a t-statistic of -9.3 and a p-value of 3.21 × 10<sup>-12</sup>. Since p < 0.05 we conlcude that there is a statistically significant difference. From the t-statistic we conclude that the native version consumes significantly more energy.
+To determine the significance of our results we used Welch’s t-test, which reported a t-statistic of -9.3 and a p-value of 3.21 × 10<sup>-12</sup>. Since p < 0.05 we conclude that there is a statistically significant difference. From the t-statistic we conclude that the native version consumes significantly more energy.
 
 ### Effect Size
 To get an insight into the effect size of our experiments we computed multiple values, including the average difference, percent change and cohan's d, these can be seen in Table 2.
