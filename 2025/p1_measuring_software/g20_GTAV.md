@@ -73,7 +73,7 @@ Repeat 15 times for low settings and 15 times for high settings:
 
 
 ## Data collection
-
+During the course the software EnergiBridge was recommended for use during the project. We found EnergiBridge to be unsuitable for our purposes as it is less focused on measuring GPU power consumption and therefore started looking for alternative software. We decided instead to use GPU-Z, which records GPU statistics, this fits our purposes as we are running a GPU intensive task and less a CPU intensive task. 
 
 ## Hardware/Software Details
 The trials were run on two different computer to ensure our findings are consistent. The results of both computers were compared and combined to achieve our final results
@@ -116,8 +116,12 @@ Is this difference in power consumption big enough that it is also significant i
 Do the results show a significant difference in energy consumption and do we think that game industry should strive for more energy efficient games?
 
 ## Limitations & future work
-**To Do**
-Explain that this experient can be extended to mac, playstation, xbox etc. Cloud gaming can be included etc.
+
+### Low number of experiments
+For optimal results it would be desirable to have more than two computers run the experiments. In practice this is not achievable as computers capable of running GTA V come at great cost and we were therefore limited to the amount of capable systems available to us.  
+
+### Only measuring GPU power consumption
+To get a more realistic picture of the total power consumption of a game it is desirable to measure the energy consumption of the entire computer while running the game. However, doing so would require a physical device to measure the power consumed by the computer at the wall outlet. This kind of equipment is beyond the scope of this project and therefore it was decided to only measure GPU power consumption, as this is possible using software tools and the GPU is the most strained component while running the game.
 
 # Conclusion
 
