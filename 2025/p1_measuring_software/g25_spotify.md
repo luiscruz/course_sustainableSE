@@ -62,11 +62,47 @@ To replicate this experiment, check out our public [GitHub repository](https://g
 
 
 # Hardware setup
-<!-- TODO: write hardware setup-->
-<!-- TODO: also write about the 2 free spotify accounts we created and any settings that were changed in any of the applications-->
-<!-- TODO: also state the specific versions of Spotify and Chrome that have been used-->
-<!-- TODO: state that Chrome has been used as browser, since the script only uses the default browser-->
-<!-- TODO: also mention that Wi-Fi instead of a wired internet connection has been used-->
+
+For our comparison, we used the following two software applications:
+
+| Software                     | Version        |
+|------------------------------|----------------|
+| Spotify - Music and Podcasts | 1.257.463.0    |
+| Google Chrome                | 133.0.6943.128 |
+
+The experiments were conducted on a DELL XPS 15 9560 with 16GB RAM and Windows 10 Pro Version 22H2.
+
+### Hardware Settings
+To have consistent experiment results, our test script automatically set the brightness and the volume of the system to the level specified in the `.env` file.
+Our hardware settings were as followed:
+
+ - Brightness 50%
+ - Volume 10%
+ - Internet connection via Wifi
+ - Google Chrome was used as browser
+
+
+### Spotify Settings
+To make sure, the experiments are as consistent as possible we adjusted the following settings in the Spotify native app:
+
+ - Auto adjust quality should be disabled
+ - Streaming quality: Normal
+ - Download [quality]: Normal
+ - Clear cache
+
+And this settings should be *ENABLED* at both, the native and the web app:
+
+ - Show the now-playing panel on click of play
+ - Display short, looping visuals on tracks (Canvas)
+
+### Spotify Accounts
+For our experiment, we used two separate Spotify accounts, one for the native app and one for the web app.
+This was done to prevent previously saved songs from being displayed and interfering with the experiment.
+It is also important to use a non-premium Spotify account for the experiments, because the audio quality of premium accounts is higher and thus, more energy will be consumed ([more information](#limitations-and-issues)).
+
+
+
+
 
 # Results 
 
@@ -112,12 +148,19 @@ To get an insight into the effect size of our experiments we computed multiple v
 *Table 2: Effect size analysis.*
 
 # Discussion
-<!-- TODO: Mention that the desktop version has more features than the web verions, that might consume more energy. But the desktop version has caching, which does not improve it -->
+<!-- TODO: Mention that the desktop version has more features than the web versions, that might consume more energy. But the desktop version has caching, which does not improve it -->
 <!-- TODO: also mention the paper https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf and mention that on Android, it is opposite -->
 
-# Limations and Issues
-<!-- TODO: mention that the experiment does not cover all use cases-->
-<!-- TODO: mention that the app have different settings (e.g. audio quality, video playback, caching ...) that also influences the energy consumption and that the desktop app has in general more setting-->
+# Limitations and Issues
+
+The used energy of the application depends a lot on the quality of the audio stream. This quality depends on various factors; one of them is the quality setting of the native app. In our experiments, we set it to *Normal*, corresponding to an AAC bitrate of approximately 96 kbit/s. It is not possible to adjust the audio quality in the web app, which means the music will be played with an AAC bitrate of 128 kbit/s for non-premium Spotify accounts and 256 kbit/s for premium accounts.
+For more information about the Spotify audio quality, see [this page](https://support.spotify.com/uk/article/audio-quality/).
+
+Not all use cases are covered in our experiments. The native app, in particular, offers more configuration options, which may further impact the results. For example, offline mode is not considered in our experiments. This mode could lead to lower energy consumption since no data transfer is required.
+
+The native app also lacks the option to turn off caching. This eventually leads to automatic downloads of some music and therefore, less data needs to be transferred and the energy consumption may decrease.
+
+
 
 # Conclusion
 
@@ -133,3 +176,4 @@ To get an insight into the effect size of our experiments we computed multiple v
 [^streaming_stats]: [Music Streaming Services Stats (2025)](https://explodingtopics.com/blog/music-streaming-stats)
 [^energi_bridge]: [EnergiBridge GitHub](https://github.com/tdurieux/EnergiBridge)
 [^sse_github_repo]: [GitHub repository with source code of experiment](https://github.com/famulenz-pkrumpl/SSE_Spotify)
+[^spotify_audio_quality]: [Spotify Audio Quality](https://support.spotify.com/uk/article/audio-quality/)
