@@ -56,10 +56,9 @@ The experiment is performed by running the automation bash script on a Linux lap
 | Laptop | Dell XPS13 |
 | ------ | ------------------ |
 | CPU    | Intel Core i7-6700HQ @ 2.6GHz |
-| RAM    | 8 GB 2133MT/s      |
-| GPU    | Intel HD Graphics 530/NVIDIA Quadro M1000M |
+| RAM    | 8 GB      |
+| GPU    | Intel TigerLake-LP GT2  |
 | OS     | Pop_OS! 22.04 Jammy    |
-| Battery | HP Li-ion 32.057/63.992 mWh |
 
 ##### Table 1: Laptop specifications used in our experiment
 
