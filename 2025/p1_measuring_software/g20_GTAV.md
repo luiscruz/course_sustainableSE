@@ -65,7 +65,9 @@ Our experiment procedure is outlined below, to ensure the results are reproducab
 6. Start GTA V
 7. Run Benchmark test without measurement
 8. GTA V closes automatically after benchmark
+
 Repeat 15 times for low settings and 15 times for high settings:
+
 9. Start a new logging file in GPU-Z with appropriate naming
 10. GTA V restarts automatically after benchmark
 11. Run benchmark test
