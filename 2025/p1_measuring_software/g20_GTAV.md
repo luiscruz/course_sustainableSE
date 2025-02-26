@@ -1,7 +1,7 @@
 ---
 author: Seyidali Bulut, Student2, Student3
 title: "Energy consumption comparison between different graphics settings in GTA V "
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "../img/p1_measuring_software/gX_template/gtavlogo.png"
 date: 26/02/2025
 summary: |-
   This experiment analyses the energy consumption of GTA V under different graphics settings to determine the increase in energy usage from low to high settings. To ensure our results are not dependent on a single computer, we use multiple machines to run the in-game integrated benchmark test 15 times for each graphics setting. The collected data highlights the differences in energy consumption across various graphical configurations.
