@@ -6,7 +6,9 @@ date: 24/02/2025
 summary: |-
    This study explores the energy consumption differences between Python 3.14 and Python 3.11, testing the claim that Python 3.14 has a 30% speed improvement over previous versions. We run the same computational tasks in controlled environments and measure power usage, execution time, and efficiency. Our setup includes automation, Docker containers, and system configurations to ensure replicability.
 ---
-We decide to investigate the claim that python 3.14 has an improvements of up to 30% in speed and how that impacts the energy consumption. To investigate this idea is to use the prerelease version of 3.14 python interpreter and compare the energy consumption for a code snippet of this interpreter vs an older interpreter, to see whether faster speeds impact energy consumption
+With the introduction of Python version 3.14, the documentation states that it utilizes a new type of interpreter that should provide significantly better performance. To be precise, preliminary numbers indicate anyway from '-3% to 30% faster Python code' [**TODO add source**]. With this performance improvement kept in mind, we have decided to investigate this claim to see how the performance increase impacts the energy consumption. [**TODO: write about tail call interp**]
+
+To this end, the idea is to use the prerelease version of the Python 3.14 interpreter and compare the energy consumption for the same code snippet [**TODO: write about code snippet (check which)**] for both the new interpreter as well as an older Python interpreter (3.11.9). This should allow us to see whether the supposed faster speeds of the new interpreter impact energy consumption.
 
 [//]: # (This article is divided into two main parts: 1&#41; how to set up energy measurements with minimum bias, and 2&#41; how to analyse and take scientific conclusions from your energy measurements.)
 
