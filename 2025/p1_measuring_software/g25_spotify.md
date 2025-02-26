@@ -102,10 +102,14 @@ To get an insight into the effect size of our experiments we computed multiple v
 <!-- TODO: also mention the paper https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf and mention that on Android, it is opposite -->
 
 # Limations and Issues
+<!-- TODO: mention that the experiment does not cover all use cases-->
+<!-- TODO: mention that the app have different settings (e.g. audio quality, video playback, caching ...) that also influences the energy consumption and that the desktop app has in general more setting-->
 
 # Conclusion
 
 # Future Work
+<!-- TODO: what could maybe be added here: compare more use cases, compare different browsers, compare different settings for audio quality, disable video, ...-->
+
 
 ---
 
