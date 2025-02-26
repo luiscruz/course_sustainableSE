@@ -13,13 +13,6 @@ summary: |-
   culpa qui officia deserunt mollit anim id est laborum.
 ---
 
-- Problem statement - why is our project important/relevant, real-world examples
-- datacenters are very big energy consumptors -> can a frameworks make it slightly better?
-- Relevant/useful things to read:
-  - https://greensoftware.foundation/articles/how-to-measure-the-energy-consumption-of-your-backend-service
-  - https://greenlab.di.uminho.pt/wp-content/uploads/2017/09/paperSLE.pdf
-  - https://datacenters.lbl.gov/sites/default/files/Masanet_et_al_Science_2020.full_.pdf
-
 # Introduction
 
 With more people spending time online than ever before, the world generates nearly 400 million terabytes of data per day ([Statista, 2024](https://www.statista.com/statistics/871513/worldwide-data-created/)). As technological demands rise, backend servers must handle complex data streams, from video and audio to AI-powered applications, while maintaining low latency and high reliability. However, this increasing demand comes at a cost: in 2022, European data centers consumed **2.6% of global energy** ([European Commission, 2024](https://publications.jrc.ec.europa.eu/repository/handle/JRC135926)), and in 2023, US-based data centers consumed **4.4% of national energy expenditures**([Shehabi et. al., 2024](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf)). While a significant portion of this energy is used to cool servers  ([Jin et. al., 2020](https://www.sciencedirect.com/science/article/abs/pii/S0306261920303184)), the computational overhead of processing millions of backend requests per second also contributes significantly to their power consumption.
@@ -34,35 +27,41 @@ When a user interacts with a website or app, for example, by submitting a form, 
 ### Express.js
 **[Express.js](https://expressjs.com/)** is a _Node.js_ framework that simplifies server-side application development with its lightweight skeleton and customizable routing via middleware modules for both web and mobile applications. Its design enables developers to quickly create APIs and online apps by drawing on JavaScript's asynchronous event-driven architecture. Its adaptability allows it to work with a wide range of libraries, making it a popular choice for scalable, real-time applications.
 
-## Flask
+### Flask
 **[Flask](https://flask.palletsprojects.com/en/latest/)** is a simple _Python_ [microframework](https://medium.com/codex/what-are-microframeworks-best-ones-you-should-consider-using-f77eacc44dcb#9873) that offers the necessary tools for building a web app without any strict structure. Because of its lightweight nature, it is compatible with a wide range of other database management, form validation, and user authentication extensions. Flask's considerate design and ease of implementation make it an ideal choice for both small and rapidly evolving projects. 
 
-## SpringBoot
+### SpringBoot
 [**SpringBoot**](https://spring.io/projects/spring-boot) is a powerful open-source Java framework included in the Spring package that provides solutions for various products. This framework automatically configures the boilerplate, giving you the freedom to add whatever extensions you want. It provides support for database connections, authentication services, and web servers. Spring enables developers to build scalable, production-ready applications with minimal setup time.
 
-# How we tested energy efficiency
 
-To measure the energy consumption of **Flask**, **Express.js**, and **Springboot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
+# Methodology 
 
-## Energy measuring
-[**Energibridge**](https://github.com/tdurieux/energibridge) is a command-line tool for measuring the energy consumption of computer processes that can be integrated into a containerized development pipeline. In our case, the process would be the currently running server. The tool outputs the values as `.csv` files, allowing you to track your operations' "energy footprint". 
+We created a containerized Docker environment for each framework, resulting in three isolated server instances. Using Docker containers, we eliminate unnecessary local processes and ensure that energy measurements reflect only the server's activity. Each container runs solely on developer-supplied resources, leading to more consistent data.
 
-## Server-side experimental setup 
-
-We created a containerized Docker environment for each framework, resulting in three isolated server instances. Using Docker containers, we eliminate unnecessary local processes and ensure that energy measurements reflect only the server's activity. Each container runs solely on developer-supplied resources, leading to more consistent data. When the experiment concludes, we simply stop the container, recording energy consumption only during the test as Energibridge is connected to the server-process and provides measurements back when operations are halted.
-
-To simplify the setup, we extracted two `.csv` files` from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), each containing 50,000 movies and industry professionals. Instead of connecting to an external database, the data is loaded directly into each server during startup, simplifying configuration and accelerating deployment. This practice also mitigates any potential caching, as data is erased when the container is deleted.
-
-To simulate a realistic scenario, we stress test each server with [Artilery](https://www.artillery.io/), which allows us to control concurrent requests and achieve a 100% API success rate while using measurable energy. We will carry out 30 iterations of stress testing in which we will make 100 requests that require data processing, putting additional strain on the server. Each server will be tested individually in isolation (i.e. only one will be running). 
-
-- elaborate in the report how representative our experiment is, how does it simulate or reflect real-world use cases
-- Docker + any other preparation steps are done _before_ energibridge begins collecting data in order to not take in data from trhe overhead generated by initialising a docker container
+To simplify the setup, we extracted two `.tsv` files` from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), each containing 50,000 movies and industry professionals. Instead of connecting to an external database, the data is loaded directly into each server during startup, simplifying configuration and accelerating deployment. This practice also mitigates any potential caching, as data is erased when the container is deleted.
 
 ## Tools
-- energibridge
+To measure the energy consumption of **Flask**, **Express.js**, and **Springboot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
+
+[**Energibridge**](https://github.com/tdurieux/energibridge) is a command-line tool for measuring the energy consumption of computer processes that can be integrated into a containerized development pipeline. In our case, the process would be the currently running server. The tool outputs the values as `.csv` files, allowing you to track your operations' "energy footprint".
+
+For each framework, we use the [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html) as it is lightweight and comes installed in most Unix systems. Using this benchmarking tool, we can specify the amount of requests we want to be made concurrently. In our case, we make 10,000 requests with 150 concurrent requests.
+
+The experiment was automated with the use of a bash script. Before any measurements are taken, the script builds the necessary Docker containers, waits 15 seconds, and then begins energy measurements as the benchmarking tool is run. At the end of the run, the docker container is torn down and the script waits for 60 seconds before continuing on with the next iteration or framework in order to prevent as much tail energy consumption as possible.
 
 ## Hardware Specifications
-- hardware specifications of the machine running the experiment
+
+The experiment is performed by running the automation bash script on a Linux laptop, running no other services and warmed up before the script is run by running some intensive tasks. The laptop was kept in a room-temperature room, with the laptop plugged in to a power supply throughout the whole experiment. The only external package in use during this experiment was a package called "caffeine" which disabled sleep after a period of inactivity.
+
+| Laptop | Dell XPS13 |
+| ------ | ------------------ |
+| CPU    | Intel Core i7-6700HQ @ 2.6GHz |
+| RAM    | 8 GB 2133MT/s      |
+| GPU    | Intel HD Graphics 530/NVIDIA Quadro M1000M |
+| OS     | Pop_OS! 22.04 Jammy    |
+| Battery | HP Li-ion 32.057/63.992 mWh |
+
+##### Table 1: Laptop specifications used in our experiment
 
 # Results
 - Energy data analysis - how we draw conclusion for our result
