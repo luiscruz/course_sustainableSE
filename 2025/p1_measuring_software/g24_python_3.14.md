@@ -12,7 +12,6 @@ To this end, the idea is to use the prerelease version of the Python 3.14 interp
 
 [//]: # (This article is divided into two main parts: 1&#41; how to set up energy measurements with minimum bias, and 2&#41; how to analyse and take scientific conclusions from your energy measurements.)
 
-[//]: # (Read on so that we can get your paper accepted in the best scientific conference.)
 
 --- 
 #### 👉 Note 1:
