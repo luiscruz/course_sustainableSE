@@ -1,17 +1,17 @@
 ---
 author: Simon Biennier, Jasper Heijne, Paul Lindhorst, Huib Sprangers
 title: "Measuring the Energy Consumption of SQL vs SQLite"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "https://miro.medium.com/v2/resize:fit:1200/1*VDoCtgMoTijXbq1P73PuFg.jpeg"
 date: 28/02/2025
 summary: |-
-  Summary of our paper
+  In this paper we analyse the difference in energy consumption between usage of SQL and SQLite. After running our experiments and analysing the results, we find that the distribution is not as expected, and discuss why this might have been. Even still, we can see that the difference between the two is significant enough to conclude that SQLite is more energy efficient under the presented circumstances.
 ---
 
 # Measuring energy consumption of SQL databases
 
 For our project, we decided to try measuring the difference between the energy consumption between SQL and SQLite. Specifically, we want to know if there is a significant difference between the two when making join operations. Specifically, we want to know which is more efficient for local testing for a single user. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
 
-The 'Structured Query Language'[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
+The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database. For the standard SQL database, we made use of mySQL[^mysql].
 
 The plan for our experiment is to run select queries on these two versions of SQL, namely MySQL and SQLite. Due to both SQL variants making use the same kinds of requests, we can reuse the same operations, purely comparing the server based structure against the file based structure.
 
@@ -64,7 +64,14 @@ Considering the server running in the background can also use up energy, it is r
 
 ## References
 
+[^github]: [https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code](https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code)
+
 [^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
+
+[^mysql]: [https://www.mysql.com/](https://www.mysql.com/)
+
 [^sqlite]: [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
+
 [^dataset]: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
 [^energibridge]: [https://github.com/tdurieux/EnergiBridge](https://github.com/tdurieux/EnergiBridge)
