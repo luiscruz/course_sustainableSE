@@ -73,9 +73,27 @@ The results from our experiments are illustrated in the violin plot below:
 
 The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.
 
-In order to make our data 
+This violin plot was created after the rejecting outliers using the z-score. After performing the outlier rejection, we kept all the runs except for one run of the Visual Studio Code. Thus we kept 29 runs for Visual Studio Code and 30  runs for the rest of the editors.
+
+After conducting the Shapiro-Wilks test to test for data normality, we get the following results: 
+
+| Editor             | Is Data Normal? | P-Value |
+|--------------------|-----------------|---------|
+| NotePad            | False           | 0.00085 |
+| NotePad++          | False           | 0.00012 |
+| Microsoft Word     | False           | 0.012   |
+| Visual Studio Code | True            | 0.067   |
 
 
+Finally, we conducted the Welch's t-test to test for significance. The results of the Welch's t-test that we conducted are illustrated in the table below:
+
+| Test                            | Is it Significant? | P-Value |
+|---------------------------------|--------------------|---------|
+| NotePad vs NotePad++            | ✅                  | 0.0003  |
+| NotePad vs Visual Studio Code   | ✅                  | 0.0000  |
+| NotePad vs MS Word              | ✅                  | 0.0000  |
+| NotePad++ vs Visual Studio Code | ✅                  | 0.0000  |
+| Visual Studio Code vs MS Word   | ✅                  | 0.0000  |
 
 ### Analysis
 ## Discussion
