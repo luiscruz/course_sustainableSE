@@ -105,7 +105,7 @@ We find that Notepad++ performs the best amongst the text editors we have tested
 
 ### Analysis
 
-After conducting the Shapiro-Wilks test to test for data normality, we get the following results: 
+The first step in our analysis would be to check if our data is normally distributed. This is required as it would inform which test we would need to use to test for statistical significance. To ascertain if our data is normally distributed, we employed the Shapiro-Wilks test. The results of the Shapiro-Wilks test is described in the table below:
 
 | Editor             | Is Data Normal? | P-Value |
 |--------------------|-----------------|---------|
@@ -114,8 +114,9 @@ After conducting the Shapiro-Wilks test to test for data normality, we get the f
 | Microsoft Word     | False           | 0.012   |
 | Visual Studio Code | True            | 0.067   |
 
+We find that after the z-score outlier rejection, we find that only the data from Visual Studio Code is normally distributed. The data for Notepad, Notepad++ and Microsoft Word are not normally distributed. This could be due to...
 
-Finally, we conducted the Mann Whitney to test for significance. The results of the Mann Whitney 's that we conducted are illustrated in the table below:
+Since the data of three out of four text editors are not normally distributed, we opted for the Mann-Whitney U test to test for statistical significance. The results for the Mann-Whitney t-test are below. 
 
 | Test                            | Is it Significant? | P-Value |
 |---------------------------------|--------------------|---------|
@@ -124,6 +125,8 @@ Finally, we conducted the Mann Whitney to test for significance. The results of 
 | NotePad vs MS Word              | ✅                  | 0.0000  |
 | NotePad++ vs Visual Studio Code | ✅                  | 0.0000  |
 | Visual Studio Code vs MS Word   | ✅                  | 0.0002  |
+
+We observe that all pairings of our data are statistically significant. 
 
 ## Discussion
 ### Implication
