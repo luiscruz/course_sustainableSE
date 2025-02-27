@@ -23,7 +23,7 @@ This report aims to evaluate the energy consumption of several widely-used text 
 
 ## Methodology
 In this experiment we test the energy consumptions of various text editors while simulating natural typing behavior. 
-To perform this experiment we set up an automated test script which starts up a text editor, types 50 characters while simulating human behavior, saves the file, and then proceeds to close the text editor. 
+To perform this experiment we set up an automated test script which starts up a text editor, types 50 characters while simulating human behavior and then proceeds to close the text editor. 
 The energy consumption measurment begins after we launch the text editor and ends after we close it.
 
 ### Setup
@@ -128,7 +128,8 @@ Finally, we conducted the Mann Whitney to test for significance. The results of 
 ## Discussion
 ### Implication
 From our experiments we can see a clear difference in the energy consumption of the more lightweight text editors (Notepad, Notepad++) compared to the heavier text editors. 
-We do have to note the fact that data was not normally distributed. This could potentially be caused by processes running in the background with a variable amount of energy consumption.
+We do have to note the fact that data was not normally distributed. This could potentially be caused by processes running in the background with a variable amount of energy consumption such as garbage collection.
+
 Of course heavier text editors include functionalities that the more lightweight editors do not possess, such as spelling and grammar checking, syntax highlighting for programming and more.
 Our hypothesis was that these extended features could lead to a higher energy consumption. Our results prove this, with a p value < 0.005 for all comparisons when executing the Welch's t-test.
 It is interesting that the energy consumption of Notepad++ is lower than Notepad. Notepad++ has a more extensive feature set than Notepad, but consumes less energy. 
@@ -147,6 +148,9 @@ Further research could take into accounts these additional actions.
 
 While our experimental setup aimed to reduce external influences, the non-normal distributed data suggests this might not have been entirely effective.
 Future research might be able to isolate the experiment even further, leading to more accurate results.
+
+Our study only involved typing 50 characters, to reduce the runtime of the experiment. However, due to this shorter time, the experiment is more vulnerable to variance. 
+Furthermore, it might be the case that some editors have an increased energy consumption when more is written in the file. Future research could look into the effects of longer text being typed on the different editor's energy consumption.
 ## Conclusion
 We aimed to determine which text editor is most energy efficient for note taking on windows computers. This was done by comparing the four popular text editors Word, Notepad, Notepad++ and Visual studio code.
 Our results indicate that Notepad++ has the lowest energy consumption, with Notepad following closely behind. Both of these text editors are considerably more lightweight, with a much smaller feature set.
