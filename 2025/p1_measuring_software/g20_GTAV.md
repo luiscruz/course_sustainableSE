@@ -83,11 +83,12 @@ Assuming that capacitance is an inherent property of a GPU and therefore constan
 The experiment will be run on two high performance systems on which it is possible to play GTA V. Interesting to note is that we will also run the experiment on one system on which the game is not playable due to the absence of a dedicated GPU, but on which the game will run. The results of all computers will be compared and combined to achieve our final results. The specifications of the computers are listed below.
 
 ### Computer 1: 
-- Desktop PC
-- Intel Core i7-7700k
-- 16GB DDR4 RAM
-- EVGA GeForce GTX 1070
-- Samsung 970 Evo Plus M.2 SSD
+|---|---|
+|Type | Desktop PC |
+| Processor | Intel Core i7-7700k |
+| RAM | 16GB DDR4 |
+| GPU | EVGA GeForce GTX 1070 |
+| Storage | Samsung 970 Evo Plus M.2 SSD |
 
 ### Computer 2: 
 - Desktop PC
@@ -164,13 +165,13 @@ Some limitations of our experiments are discussed briefly in this section.
 It would be better to run experiments using different games, as this would give a more complete overview of differences in energy consumption between low and high settings across different games. However, due to time constraints this was not possible and this is left as future work.
 
 ### Low number of experiments
-For optimal results it would be desirable to have more than three computers run the experiments, but we were limited to the hardware available to us. Additionally, for optimal experiments you would want to run the experiment using only systems capable of running GTA V in a manner in which it is playable, however in practice this is not achievable as computers capable of running GTA V come at great cost. This is desired as this better represents the actual use case of the software and not just one in an experimental setting.
+For optimal results it would be desirable to have more than three computers run the experiments. Additionally, for optimal experiments you would want to run the experiment using only systems capable of running GTA V in a manner in which it is playable, as this better represents the actual use case of the software and not just one in an experimental setting.
 
 ### Only measuring GPU power consumption
-To get a more realistic picture of the total power consumption of a game it is desirable to measure the energy consumption of the entire computer while running the game. However, doing so would require a physical device to measure the power consumed by the computer at the wall outlet. This kind of equipment is beyond the scope of this project and therefore it was decided to only measure GPU power consumption, as this is possible using software tools and the GPU is the most strained component while running the game.
+To get a more realistic picture of the total power consumption of a game it is desirable to measure the energy consumption of the entire computer while running the game. However, doing so would require a physical device to measure the power consumed by the computer at the wall outlet. This was not available to us and therefore it was decided to only measure GPU power consumption.
 
 # Future work
-For additional research it would be interesting to learn more about the environmental impact of gaming by conducting our experiment across different games. Conducting such experiments will help us understand the environmental impact of the gaming industry better and could inspire game studios to take such research into account when developing their games. Additionally, it would be interesting to see whether the increase is roughly the same across different games or vastly differs. If a large increase is found for a single game this could lead to an improvement in efficiency of the game in question.
+For additional research it would be interesting to learn more about the environmental impact of gaming by conducting our experiment across different games. Conducting such experiments will help us understand the environmental impact of the gaming industry better and could inspire game studios to take such research into account when developing their games.
 
 # Conclusion
 The GPU power consumption of GTA V was tested and analysed in this project. The tests were conducted using 3 computers, two desktops with a dedicated GPU and one with an integrated GPU. On all systems the built in benchmark test was run 15 times for both low settings and high settings. From this experiment we found that for systems capable of running beyond both graphic settings the power consumption either doubled or quadrupled for high settings compared to low settings. Therefore, we recommend using lower graphic settings in combination with vsync to limit the framerate for gaming with as little environmental impact as possible.
