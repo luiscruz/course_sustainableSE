@@ -23,6 +23,8 @@ The plan for our experiment is to run a version of the SQL database and make abo
 
 The dataset we use for our experiment is a brazilian ecommerce record of around 100 thousand orders made to the Olist store[^dataset]. The software we use to measure the energy consumption will be energibridge[^energibridge], a cross-platform energy measurement program.
 
+The code and setup we used, as well as instructions for how to run it, can be found on a specific branch for our github repository[^github].
+
 ### Hardware/Software Specifications
 
 ## Results
@@ -44,6 +46,8 @@ And finally, we show the result of our SQLite runs, also normalized with severe 
 ## Future Work
 
 ## References
+
+[^github]: [https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code](https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code)
 
 [^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
 
