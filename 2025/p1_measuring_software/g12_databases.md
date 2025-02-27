@@ -92,11 +92,13 @@ Not normally distributed, but still signifcant diff
 
 ### Future work
 
-As stated previously, the experiments might not be resource-intensive enough to have a significant impact on the energy consumption. Therefore, it would be interesting to enhance the experiment by running more SQL queries in succession, resulting in a higher energy profile.
+As stated previously, the experiments might not have been run for a long enough time to properly create a normalized distribution while accounting for any background noise in the energy consumption. Therefore, it would be interesting to enhance the experiment by running more SQL queries in succession. If the distribution were to continue to be abnormal, this may then indicate a flaw in our setup.
 
-Moreover, the MySQL server is a service running permanently in the background, and to remove any noise from this process it would be better to run the standard SQL variant first and quit the server after, so it doesn't affect the energy consumption of the SQLite experiment.
+Moreover, the MySQL server is a service running permanently in the background, and to remove any noise from this process it would be better to run the standard SQL variant first and quit the server after, so it doesn't affect the energy consumption of the SQLite experiment. At the same time, running the two programs seperately instead of randomly switching between them might taint the data. At the same time, while stopping and restarting the server for each run of MySQL might also serve as an alternative, this would most definitely increase its energy profile in a non-representative way, since the MySQL server would be kept running in the background in any realistic usage scenario. Perhaps running the server on a separate device would solve this issue, but even in that case, any sort of connection between the devices, whether wireless or over a cable, would presumably still create noise in the energy profile. Finding the ideal scenario to be albe to compare the energy profile of a serverless profile against one that does use a server could be a subject of interest all on its own.
 
 ## Conclusion
+
+To summarize, while our results clearly show that SQLite is more efficient than MySQL for the given task, this may not be the case for all use cases for SQL databases. In addition, our experiment could be rerun with some changes in order to eliminate remaining outliers and further normalize the data. We don't presume that this would affect our prior conclusion about SQLite being more efficient, but for the sake of ensuring our experiment is done properly, we determine that further research is required.
 
 ## References
 
