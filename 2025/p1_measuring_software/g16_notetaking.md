@@ -9,7 +9,9 @@ summary: |-
 
 # Comparing Energy Consumption of Note-Taking Applications
 ## Introduction
+Everyone has to take notes sometime; university classes, business meetings, grocery lists, etc. Many people will start up their favorite text editor and start typing. Considering that just about everyone takes notes at least once a day, minor improvements in energy consumption can be cumulatively massive. Therefore, this report researches the energy consumption of several text editors which may be used to quickly take notes on windows machines. We hope this will result in recommendations regarding software which may be used to take quick notes in an energy efficient manner.
 ### Problem statement
+
 
 ## Methodology
 In this experiment we test the energy consumptions of various text editors while simulating natural typing behavior. 
