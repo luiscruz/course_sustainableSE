@@ -80,7 +80,7 @@ This expression is seemingly based on the [equation for dynamic power consumptio
 Assuming that capacitance is an inherent property of a GPU and therefore constant, we estimated power consumption using $\alpha V^2 f$, since all underlying quantites are measured by GPU-Z. This is equivalent to $P/C$, which should be directly proportional to $P$ assuming constant $C$. We refer to this $P/C$ quantity as the "power scalar", and report relative differences between low and high settings per computer.
 
 ## Hardware/Software Details
-The experiment will be run on two high performance systems on which it is possible to play GTA V. Interesting to note is that we will also run the experiment on one system on which the game is not playable due to the absence of a dedicated GPU, but on which the game will run. The results of all computers will be compared and combined to achieve our final results. The specifications of the computers are listed below.
+The specifications of the computers used in the experiments are listed below.
 
 ### Computer 1: 
 | Component | Value |
