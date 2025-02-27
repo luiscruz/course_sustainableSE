@@ -131,7 +131,7 @@ From our experiments we can see a clear difference in the energy consumption of 
 We do have to note the fact that data was not normally distributed. This could potentially be caused by processes running in the background with a variable amount of energy consumption such as garbage collection.
 
 Of course heavier text editors include functionalities that the more lightweight editors do not possess, such as spelling and grammar checking, syntax highlighting for programming and more.
-Our hypothesis was that these extended features could lead to a higher energy consumption. Our results prove this, with a p value < 0.005 for all comparisons when executing the Welch's t-test.
+Our hypothesis was that these extended features could lead to a higher energy consumption. Our results prove this, with a p value < 0.005 for all comparisons when executing the Mann whitney test.
 It is interesting that the energy consumption of Notepad++ is lower than Notepad. Notepad++ has a more extensive feature set than Notepad, but consumes less energy. 
 This does indicate that more features does not necessarily indicate a higher energy consumption.
 Furthermore, there is a small caveat. While additional features might lead to a higher power consumption, it might also allow the user to more quickly write their notes.
