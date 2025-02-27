@@ -103,5 +103,9 @@ Finally, we simply measured the energy consumption of the code generation itself
 
 ### Conclusion
 
+For this project we investigated the power consumption of several code LLMs, namely, Codellama, Mistral, Deepseek and Qwen. We ran the HumanEval benchmark and recorded energy metrics throughout by using EnergiBridge. Our results indicate that Codellama demonstrated best results in both total energy consumption as well as energy per token. Qwen followed, consuming 21% more total energy, and 30% more energy per token compared to Codellama. Deepseek and Mistral were approximately on par in total energy consumption, with 40% and 39%, however Deepseek produced better results in energy per token at 51% greater energy consumption than Codellama, whereas Mistral performed significantly worse at 78% more energy per token. From these results we recommend the usage of Codellama in energy sensitive applications. 
+
+Although we are currently unable to determine exactly what factors may have contributed to these results, our findings highlight the necessity of further research to improve understanding of  energy efficiency trade-offs and optimization for code LLMs, as there is relevance for both developers and users.
+
 ### Reproducibility
 
