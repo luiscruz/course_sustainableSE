@@ -3,7 +3,7 @@ author: Julian Hirschler, Patrick Krumpl, Shantanu Jare, Sven Butzelaar, Thomas 
 title: "Native vs. Web: Analyzing the Energy Consumption of Spotify Apps"
 image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg"
 date: 28/02/2025
-summary: In this project we compare the spotify native and web app by looking at the energy consumption when playing songs. Spotify has 675 million monthly active users and thus has a significant environmental impact. From our result we conclude that the native app uses 11% more energy, possible caused by ....(add main discussion point here). Our project does have some limitations such as only using one browser and operating system. However with this project we do provide valuable insights to users and developers about the difference in energy consumption for native and web apps.
+summary: In this project we compare the spotify native and web app by looking at the energy consumption when playing songs. Spotify has 675 million monthly active users and thus has a significant environmental impact. From our result we conclude that the native app uses 11% more energy, possibly caused by different technical implementations. Our project does have some limitations such as only using one browser and operating system. However with this project we do provide valuable insights to users and developers about the difference in energy consumption for native and web apps.
 ---
 
 # Native vs. Web: Analyzing the Energy Consumption of Spotify Apps
