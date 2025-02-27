@@ -110,6 +110,8 @@ The GPU-Z log files gave us time-series data, from which we calculated the power
 
 ![Time series of power scalars](./time-series-power-scalar.svg)
 
+Notable is the fact that the graph does not show the high settings benchmark on computer 3 until the end, this is because the computer crashed at this point in the benchmark with these settings. This was not completely unexpected as this game was not made to run on systems without a dedicated GPU.
+
 To isolate the distrbutions of the high power scalar values, we aggregated the measurements from all 15 runs per computer per settings configuration, and plotted their histograms. Below is an example of two such histograms. One corresponds to low settings and shows a bimodal distribution - one peak corresponds to low power scalar measurements when the GPU was inactive between benchmark scenes, and the other peak corresponds to high power scalar measurements when the GPU was active during the benchmark scenes. The histogram corresponding to high settings tells a similar story, except the second peak is at a higher power scalar value, since the GPU was consuming more power rendering the game at a higher graphics quality.
 
 ![Bimodal power scalar distributions](./power-scalar-dist.svg)
