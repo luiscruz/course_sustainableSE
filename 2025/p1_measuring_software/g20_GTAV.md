@@ -1,5 +1,5 @@
 ---
-author: Seyidali Bulut, Johan van den Berg, Student3
+author: Seyidali Bulut, Johan van den Berg, Michal Kuchar, Artin Sanaye
 title: "Energy consumption comparison between different graphics settings in GTA V "
 image: "../img/p1_measuring_software/g20_GTAV/cover.png"
 date: 28/02/2025
@@ -39,7 +39,7 @@ This was achieved by running a non-recorded warm-up benchmark test before data c
 
 We compared two different graphics settings, classified as a low graphics quality run and a high graphics quality run.
 On each computer, we ran the benchmark test 15 times for both the low and high settings, totaling 30 runs per PC.
-Initially, we considered running a higher number of tests per setting, but given that each benchmark test takes approximately 3 minutes per run, we realized this would require a significant amount of time.
+Initially, we considered running a higher number of tests per setting, but given that each benchmark test takes approximately 3 minutes per run, we realized this would require a significant amount of time, and we were unable to find a way to automate the measurements. Fortunately, our measurement software captured samples every second during the 3 minute benchmark, so this can be seen as 15 sets of hundreds of measurements per case, rather than just 15 measurements per case.
 To ensure reliable results, we conducted the same experiments on different PCs.
 This allowed us to compare the results and determine whether the difference in energy consumption between low and high settings on a single PC was consistent across multiple systems.  
 For this experiment Vsync was turned on for both graphic settings. This setting caps the framerate at the monitor refresh rate, 60hz in this case for the computers. If this setting is left off, the game will try to render as many frames as possible, which means the GPU will be at or near maximum utilization regardless of graphic settings.
@@ -58,24 +58,29 @@ The specific settings used are included in appendix A to ensure the replicabilit
 Our experiment procedure is outlined below, to ensure the results are reproducable. The experiment first has a startup procedure, followed by a segment to be repeated 15 times for each setting to take the measurements.
 
 1. Ensure notifications are turned off
-2. Everything closed (including background applications) except for the Rockstar Launcher and GPU-Z. Running background services (indicated by taskbar icons) are limited to Windows Defender, the Nvidia app and the audio driver
-3. Only connected devices are a keyboard, mouse and a monitor
-4. The computer is connected to the internet using an ethernet cable (GTA V needs an internet connection to launch)
-5. Power mode set to "best performance" in windows
+2. Everything closed (including background applications) except for the Rockstar Launcher and GPU-Z. Running background services (indicated by taskbar icons) are limited to Windows Defender, the Nvidia app and the audio driver.
+3. Only connected devices are a keyboard, mouse and a monitor.
+4. The computer is connected to the internet using an ethernet cable (GTA V needs an internet connection to launch).
+5. Power mode set to "best performance" in Windows.
 6. Start GTA V
-7. Run Benchmark test without measurement
-8. GTA V closes automatically after benchmark
+7. Run benchmark test without measurement for warm-up
 
 Repeat 15 times for low settings and 15 times for high settings:
 
-9. Start a new logging file in GPU-Z with appropriate naming
-10. GTA V restarts automatically after benchmark
-11. Run benchmark test
-12. GTA V closes automatically after benchmark
+8. Start a new logging file in GPU-Z with appropriate naming
+9. Run benchmark test
+10. GTA V restarts automatically after benchmark, allowing for a cooldown period
 
 
 ## Data collection
-During the course the software EnergiBridge was recommended for use during the project. We found EnergiBridge to be unsuitable for our purposes as it is less focused on measuring GPU power consumption and therefore started looking for alternative software. We decided instead to use GPU-Z, which records GPU statistics, this fits our purposes as we are running a GPU intensive task and less a CPU intensive task. 
+During the course the software EnergiBridge was recommended for use during the project. We found EnergiBridge to be unsuitable for our purposes as it is less focused on measuring GPU power consumption and therefore started looking for alternative software. We decided instead to use GPU-Z, which records GPU metrics, this fits our purposes as we are running a GPU intensive task and less a CPU intensive task. While GPU-Z did not seem to be giving accurate measurements of GPU power consumption, it did provide other values from which we were able to estimate power consumption.
+
+[According to Reddit user Blandbl on the /r/overclocking forum](https://www.reddit.com/r/overclocking/comments/gnwshv/how_cpugpu_power_consumption_behaves_example_rx/), the equation that describes power consumption of a GPU is given by
+$P = \alpha C V^2 f$, where $P$ is power in Watts, $\alpha$ is the activity factor (GPU utilization percentage), $V$ is the voltage, $f$ is the frequency (clock speed) of the GPU, and $C$ is capacitance.
+
+This expression is seemingly based on the [equation for dynamic power consumption of a CPU](https://en.wikipedia.org/wiki/Processor_power_dissipation). It assumes all transistors are active at the same time. The GPU version with the activity factor $\alpha$ takes transistor activity into account.
+
+Assuming that capacitance is an inherent property of a GPU and therefore constant, we estimated power consumption using $\alpha V^2 f$, since all underlying quantites are measured by GPU-Z. This is equivalent to $P/C$, which should be directly proportional to $P$ assuming constant $C$. We refer to this $P/C$ quantity as the "power scalar", and report relative differences between low and high settings per computer.
 
 ## Hardware/Software Details
 The trials were run on two different computer to ensure our findings are consistent. The results of both computers were compared and combined to achieve our final results. The specifications of both computers are listed below.
@@ -93,20 +98,29 @@ The trials were run on two different computer to ensure our findings are consist
 - Samsung 970 Evo Plus M.2 SSD
 
 ## Evaluation
-**To Do**
-Explain which formula and variables are used to calculate power consumption and why these were used. If it is possible, refer to sources.
 
 # Results
-**To Do**
-Add results in different graphs
+The GPU-Z log files gave us time-series data, from which we calculated the power scalar over time, using the [expression stated earlier](#data-collection). The figure below shows an example measurement from several runs of the benchmark. The jumps between low and high power scalar values between scenes of the benchmark can be clearly seen.
+
+TODO: add figure
+
+To isolate the distrbutions of the high power scalar values, we aggregated the measurements from all 15 runs per computer per settings configuration, and plotted their histograms. Below is an example of two such histograms. One corresponds to low settings and shows a bimodal distribution - one peak corresponds to low power scalar measurements when the GPU was inactive between benchmark scenes, and the other peak corresponds to high power scalar measurements when the GPU was active during the benchmark scenes. The histogram corresponding to high settings tells a similar story, except the second peak is at a higher power scalar value, since the GPU was consuming more power rendering the game at a higher graphics quality.
+
+TODO: add figure
+
+Since this bimodal trend emerged in measurements from all computers, we decided to use this histogram technique to isolate the distrbutions where the GPU was active. Below is an example of a histogram, zoomed in on the active GPU distribution.
+
+TODO: add figure
+
+Notably, none of the measurements appeared normally distributed, despite a large number of samples. This was confirmed for all distributions using the Shapiro-Wilk test - the figure above has a p-value of TODO. This is not surprising, because we observed our GPUs quickly trending towards specific frequency, voltage and utilization combinations under load, and deviating only slightly higher during more intense parts of the benchmark. In a following section, we will use the Mann-Whitney (which does not assume normal distributions) test to evaluate statistical significance between low and high settings.
 
 # Analysis
 **To Do**
-Explain shortly the difference in statistical and practical significance.
+ - Add figure with means and error bars comparing low and high settings per computer
 
 ## Statistical significance
 **To Do**
-Is there a statistical significant difference in power consumption between the runs?
+ - State results of the Mann-Whitney test per computer
 
 ## Practical significance
 **To Do**
