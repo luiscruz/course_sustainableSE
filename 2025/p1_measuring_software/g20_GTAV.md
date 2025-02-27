@@ -97,7 +97,7 @@ The trials were run on two different computer to ensure our findings are consist
 - Samsung 970 Evo Plus M.2 SSD
 
 ### Computer 3:
-- Laptop
+- Desktop PC
 - Intel Core i5-9400
 - 16GB DDR4 RAM
 - Intel UHD Graphics 630
