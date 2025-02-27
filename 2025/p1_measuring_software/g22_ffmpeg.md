@@ -1,8 +1,8 @@
 ---
 author: Student1 first and last name, Student2, Student3
-title: "Title of the template blog"
+title: "Comparing H.264 and H.265 video decoding energy consumption"
 image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 03/03/2022
+date: 28/02/2025
 summary: |-
   abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -13,18 +13,74 @@ summary: |-
   culpa qui officia deserunt mollit anim id est laborum.
 ---
 
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Introduction
+Video decoding is a process that occurs almost constantly in everyday digital life. Whether watching videos on streaming platforms like YouTube or Netflix, participating in video calls,  or scrolling through social media, video decoding happens continuously across billions of devices worldwide. 
 
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
+As video streaming and high-definition content become increasingly prevalent, the energy efficiency of video decoding has become a critical concern. With the rise of mobile devices, cloud-based streaming services, and embedded systems, understanding the power consumption of video decoding is essential for minimizing environmental impact, reducing overall energy costs, and optimizing battery life.
+
+Two widely used video compression standards, H.264 (AVC) and H.265 (HEVC), dominate modern video encoding. H.265, the newer standard, promises superior compression efficiency, reducing bandwidth usage while maintaining visual quality. However, its increased computational complexity raises questions about its energy efficiency during decoding. While H.265 is more efficient in terms of storage and transmission, its impact on energy consumption during playback remains an open question.
+
+By measuring and comparing the energy consumption of H.264 and H.265 video decoding on different CPU's, this study aims to provide insights into the sustainability of modern video technologies. The findings could help software developers, hardware manufacturers, and content distributors make informed decisions about choosing the optimal codec for energy-conscious and environmentally responsible applications.
+
+### Research Question  
+
+How does the energy consumption of video decoding compare between the H.264 and H.265 formats,  
+and what are the implications for device efficiency and environmental sustainability?
+
+## Experiment Setup
+### Hardware & Software
+We will conduct tests on:
+<!--computer, fixed environment settings, CPU, RAM and etc-->
+
+### Tools & Methods
+To measure energy consumption, we will use:
+
+### Metrics <!--Data Collection-->
+We will measure:
+- **Encoding Power Consumption:** 
+- **Decoding Power Consumption:** 
+
+## Decoding Experiment
+### Methodology
+
+### Metrics Collected
+- **Energy Consumption:** 
+- **Decoding Time:** Time taken to decode each format.
+
+### Results
+<!-- A comparison of energy consumption when decoding both formats. -->
+
+### Discussion
+<!-- - Does H.265’s complexity increase playback power consumption?
+- What are the implications for streaming platforms like YouTube? -->
 
 
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
+## Summary & Key Takeaways
+### Recap of Findings
+
+
+### Trade-offs Between Compression Efficiency and Decoding Energy
+<!-- - Efficient compression saves storage and bandwidth.
+- Higher computational complexity may increase device power consumption. -->
+
+### Impact on Global Energy Consumption
+- Streaming billions of hours of video significantly contributes to energy usage.
+- Optimizing codecs can reduce power demand in video streaming.
+
+### Potential Improvements
+<!-- if decoding H.265 is similar to H.264 and the file size is smaller and this the network transmission will consume less energy then H.265 should become a new standard. (Devices also should support this compression method) -->
+
+---
+
+## Replication Package
+### How to Reproduce the Experiment
+
+
+### Resources Provided
 
 --- 
 #### 👉 Note 1:
 If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
-
 --- 
 
 ## Unbiased Energy Data ⚖️
