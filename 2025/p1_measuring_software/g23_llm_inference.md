@@ -16,9 +16,6 @@ Generally, meaningfully tackling the topic of LLM sustainability is a two-step p
 
 This study evaluates the energy consumption of local LLM inference. In particular, we test the inference process of [Qwen2.5-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct), [DeepSeek-R1-Distill-Qwen-7B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B), [CodeLlama-7b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-7b-Instruct-hf), and [Mistral-7B-Instruct-v0.3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), with [llama.cpp](https://github.com/ggml-org/llama.cpp) as backend. We run these models against the HumanEval dataset, measuring their energy consumption per token for every query. The primary argument for choosing these models is that they are open source. Moreover, we deemed it essential to include DeepSeek in our research due to two assumptions: (1) given the current political landscape, Western users exhibit increased privacy concerns for technology originating from China, making them more likely to run Deepseek locally, and (2) DeepSeek's public research suggests that this model was cheaper to develop, a fact which motivates us to investigate if it is also more energy efficient.
 
-
-### Relevant Literature
-
 ### Methodology
 
 To evaluate the energy efficiency of Large Language Models (LLMs) for code, we designed an experiment involving four models, Codellama [cite], Deepseek [cite], Gwen [cite] and Mistral [cite]. The selection of these models is motivated by their parameter parity (approximately 7B parameters) and open-source availability. By limiting our experiments to these models, we aim to isolate the effects of model architecture on energy consumption.
