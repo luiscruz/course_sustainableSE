@@ -83,6 +83,7 @@ Assuming that capacitance is an inherent property of a GPU and therefore constan
 The experiment will be run on two high performance systems on which it is possible to play GTA V. Interesting to note is that we will also run the experiment on one system on which the game is not playable due to the absence of a dedicated GPU, but on which the game will run. The results of all computers will be compared and combined to achieve our final results. The specifications of the computers are listed below.
 
 ### Computer 1: 
+| Component | Value |
 |---|---|
 |Type | Desktop PC |
 | Processor | Intel Core i7-7700k |
@@ -91,18 +92,22 @@ The experiment will be run on two high performance systems on which it is possib
 | Storage | Samsung 970 Evo Plus M.2 SSD |
 
 ### Computer 2: 
-- Desktop PC
-- Intel Core i5-9600k
-- 16GB DDR4 RAM
-- Nvidia GeForce RTX 2060
-- Samsung 970 Evo Plus M.2 SSD
+| Component | Value |
+|---|---|
+|Type | Desktop PC |
+| Processor | Intel Core i5-9600k |
+| RAM | 16GB DDR4 |
+| GPU | EVGA GeForce RTX 2060 |
+| Storage | Samsung 970 Evo Plus M.2 SSD |
 
 ### Computer 3:
-- Desktop PC
-- Intel Core i5-9400
-- 16GB DDR4 RAM
-- Intel UHD Graphics 630
-- Seagate ST2000VN000 HDD
+| Component | Value |
+|---|---|
+|Type | Desktop PC |
+| Processor | Intel Core i5-9400 |
+| RAM | 16GB DDR4 |
+| GPU | Intel UHD Graphics 630 |
+| Storage | Seagate ST2000VN000 HDD |
 
 # Results
 The GPU-Z log files gave us time-series data, from which we calculated the power scalar over time, using the [expression stated earlier](#data-collection). The figure below shows an example measurement from several runs of the benchmark. The jumps between low and high power scalar values between scenes of the benchmark can be clearly seen.
