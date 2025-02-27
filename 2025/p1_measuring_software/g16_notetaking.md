@@ -100,11 +100,11 @@ Finally, we conducted the Welch's t-test to test for significance. The results o
 ### Implication
 From our experiments we can see a clear difference in the energy consumption of the more lightweight text editors (Notepad, Notepad++) compared to the heavier text editors. 
 We do have to note the fact that data was not normally distributed. This could potentially be caused by processes running in the background with a variable amount of energy consumption.
-Ofcourse heavier text editors include functionalities that the more lightweight editors do not posess, such as spelling and grammar checking, syntax highlighting for programming and more.
+Of course heavier text editors include functionalities that the more lightweight editors do not possess, such as spelling and grammar checking, syntax highlighting for programming and more.
 Our hypothesis was that these extended features could lead to a higher energy consumption. Our results prove this, with a p value < 0.005 for all comparisons when executing the Welch's t-test.
 It is interesting that the energy consumption of Notepad++ is lower than Notepad. Notepad++ has a more extensive feature set than Notepad, but consumes less energy. 
-This does indicate that more features does not necessiraly indicate a higher energy consumption.
-Furthermore, there is a small caveat. While additonal features might lead to a higher power consumption, it might also allow the user to more quickly write their notes.
+This does indicate that more features does not necessarily indicate a higher energy consumption.
+Furthermore, there is a small caveat. While additional features might lead to a higher power consumption, it might also allow the user to more quickly write their notes.
 Features such as grammar and spelling checkers, table creation or even image insertion could cause a student to be able to save a lot of time writing their notes, leading to a smaller total energy consumption.
 
 ### Further research & limitations
@@ -123,8 +123,8 @@ We aimed to determine which text editor is most energy efficient for note taking
 Our results indicate that Notepad++ has the lowest energy consumption, with Notepad following closely behind. Both of these text editors are considerably more lightweight, with a much smaller feature set.
 Both Word and Visual Studio Code used a lot more energy, with Visual Studio Code using the most of all text editors investigated.
 
-While the more heavy weight editors consume more energy, their additional functionallity might be worth their increased energy consumption. 
-Selecting the best editor to use is thus highly dependent on if a user needs these exteded capabilities. 
-Thus our reccommendation is that if the additonal features of the more heavy text editors are unneccesary, to use one of the more lightweight editors, preferably Notepad++.
+While the more heavy weight editors consume more energy, their additional functionality might be worth their increased energy consumption. 
+Selecting the best editor to use is thus highly dependent on if a user needs these extended capabilities. 
+Thus our recommendation is that if the additional features of the more heavy text editors are unnecessary, to use one of the more lightweight editors, preferably Notepad++.
 ## References
 ## Replication
