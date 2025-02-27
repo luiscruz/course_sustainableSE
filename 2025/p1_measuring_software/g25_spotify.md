@@ -141,10 +141,14 @@ To get an insight into the effect size of our experiments we computed multiple v
 *Table 2: Effect size analysis.*
 
 # Discussion
-The first interesting data point that can be observed is the higher energy consumption in the native desktop version of around 10.78%. There could be several reasons for this firstly, the Spotify native desktop application has many more features when compared to the web app. Some of these features are a higher audio quality, an offline mode which might require additional processing and an equalizer which leads to additional processing overhead[^spotify_WebApp_vs_Native]. In addition, the desktop version of Spotify uses a cache which further increases the energy consumption. The difference in peak power consumption is 29.8 J. This suggests that under peak workloads the power consumption is similar despite the desktop version having more features. This also ties in with the higher baseline or minimum power consumption of the native desktop by 80.8 J. This implies that these additional features require background processes to run even when the song is not played which consumes additional energy. The Android version of the app which was tested against the web version on the same mobile platform performed with better energy efficiency.  [^Android_vs_WebApp]
-<!-- TODO: Mention that the desktop version has more features than the web versions, which might consume more energy. But the desktop version has caching, which does not improve it -->
+In a similar paper published in 2023, R. Horn et al. compared native and web applications on Android devices in terms of energy consumption, including Spotify, and concluded that web applications consumed 53% more energy than their native counterparts.[^Android_vs_WebApp] We also assumed something similar for our experiment on a Windows machine. However, the [results](#results) show that the opposite is true. The native version of Spotify consumes about 10.78% more energy than the web counterpart.
 
-<!-- TODO: also mention the paper https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf and mention that on Android, it is opposite -->
+To understand where these differences come from, we looked at the differences between the applications. First, the two applications differ in terms of functionality. The web application only offers one bitrate that automatically adjusts the streaming quality. In the native application, on the other hand, you can choose between different audio qualities and also switch off the automatic quality adjustment. Moreover, the native application also implements caching.
+
+However, the most significant difference between the web and native versions of Spotify is the technical implementation. Browsers are highly optimised these days as there is a lot of competition between different companies. Chrome's V8 JavaScript engine is written in C++ and compiles the code directly into machine code as the program runs, which is very efficient.[^chrome_v8_engine] On the other hand, Spotify's native version uses the same codebase as the web version, but uses the [Chromium Embedded Framework](https://bitbucket.org/chromiumembedded/cef/src/master/) to run the code natively.[^spotify_architecture]
+
+For companies like Spotify, using the same code base for both web and native apps saves a lot of money. However, the frameworks used to transform web applications into native applications happen to be less efficient than running the application directly in the browser. 
+
 
 # Limations and Issues
 The experiment methodology has a few issues such as being unable to cover all the use cases. The experiment only collects data for a maximum of 2 minutes per data point but this can be increased to around 5-10 minutes. Not all of the features were tested within this short time frame only the playing of a song. The native and the web app versions also have different audio qualities, video playback, and UI which might affect measurements. Another issue with testing the web app version was it was done only on one browser that is Chrome. In addition to this, only one operating system was tested. It could be the case that a native app runs more efficiently on a different operating system and architecture. This method doesn't identify which features or which processes are consuming the most energy in the web app. This is a more useful insight for developing a more sustainable software product.
@@ -159,6 +163,7 @@ The native app also lacks the option to turn off caching. This eventually leads 
 
 
 # Conclusion
+<!-- TODO: also sum up the experiment (like in the paper)-->
 Few findings can be concluded from this study. Firstly the efficiency of native desktops isn't always guaranteed over web apps on browsers such as Chrome. This is clearly shown by the results of this study. Feature availability and the presence of background jobs in desktop applications make an application like Spotify which relies on these more inefficient in its native desktop form. However, considering the difference in the peak power consumption was not very different it could be said barring these factors of higher quality and a more feature-rich environment the desktop is still pretty efficient at providing peak usage with similar energy consumption. The downside is only the resources consumed during the idling or the lower intense workloads in which case the web app is more efficient. However, this could be a more interesting case to further examine.
 
 
@@ -177,7 +182,8 @@ The future work would involve looking at covering more use cases of the Spotify 
 
 [^spotify_WebApp_vs_Native]: [Spotify Desktop vs Web Player: Which Spotify Has Better Features?](https://softwarekeep.com/blogs/comparisons/spotify-desktop-vs-spotify-web-player)
 
-[^Android_vs_WebApp]: [Native vs Web Apps: Comparing the Energy
-Consumption and Performance of Android Apps
-and their Web Counterparts](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)
+[^chrome_v8_engine]: [The V8 JavaScript Engine | JIT, Compilation, and More: What Makes V8 a JavaScript Powerhouse](https://noncodersuccess.medium.com/the-v8-javascript-engine-jit-compilation-and-more-what-makes-v8-a-javascript-powerhouse-da54f310373a)
+[^spotify_architecture]: [Spotify R&D Engineering - Building the Future of Our Desktop Apps](https://engineering.atspotify.com/2021/04/building-the-future-of-our-desktop-apps/)
+
+[^Android_vs_WebApp]: [R. Horn et al., "Native vs Web Apps: Comparing the Energy Consumption and Performance of Android Apps and their Web Counterparts," 2023 IEEE/ACM 10th International Conference on Mobile Software Engineering and Systems (MOBILESoft), Melbourne, Australia, 2023, pp. 44-54](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)
 [^spotify_audio_quality]: [Spotify Audio Quality](https://support.spotify.com/uk/article/audio-quality/)
