@@ -150,8 +150,7 @@ The first interesting data point that can be observed is the higher energy consu
 The experiment methodology has a few issues such as being unable to cover all the use cases. The experiment only collects data for a maximum of 2 minutes per data point but this can be increased to around 5-10 minutes. Not all of the features were tested within this short time frame only the playing of a song. The native and the web app versions also have different audio qualities, video playback, and UI which might affect measurements. Another issue with testing the web app version was it was done only on one browser that is Chrome. In addition to this, only one operating system was tested. It could be the case that a native app runs more efficiently on a different operating system and architecture. This method doesn't identify which features or which processes are consuming the most energy in the web app. This is a more useful insight for developing a more sustainable software product.
 # Limitations and Issues
 
-The used energy of the application depends a lot on the quality of the audio stream. This quality depends on various factors; one of them is the quality setting of the native app. In our experiments, we set it to *Normal*, corresponding to an AAC bitrate of approximately 96 kbit/s. It is not possible to adjust the audio quality in the web app, which means the music will be played with an AAC bitrate of 128 kbit/s for non-premium Spotify accounts and 256 kbit/s for premium accounts.
-For more information about the Spotify audio quality, see [this page](https://support.spotify.com/uk/article/audio-quality/).
+The used energy of the application depends a lot on the quality of the audio stream. This quality depends on various factors; one of them is the quality setting of the native app. In our experiments, we set it to *Normal*, corresponding to an AAC bitrate of approximately 96 kbit/s. It is not possible to adjust the audio quality in the web app, which means the music will be played with an AAC bitrate of 128 kbit/s for non-premium Spotify accounts and 256 kbit/s for premium accounts.[^spotify_audio_quality]
 
 Not all use cases are covered in our experiments. The native app, in particular, offers more configuration options, which may further impact the results. For example, offline mode is not considered in our experiments. This mode could lead to lower energy consumption since no data transfer is required.
 
@@ -180,4 +179,5 @@ The future work would involve looking at covering more use cases of the Spotify 
 
 [^Android_vs_WebApp]: [Native vs Web Apps: Comparing the Energy
 Consumption and Performance of Android Apps
-and their Web Counterparts](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)[^spotify_audio_quality]: [Spotify Audio Quality](https://support.spotify.com/uk/article/audio-quality/)
+and their Web Counterparts](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)
+[^spotify_audio_quality]: [Spotify Audio Quality](https://support.spotify.com/uk/article/audio-quality/)
