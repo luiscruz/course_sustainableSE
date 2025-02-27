@@ -67,6 +67,15 @@ These results suggest that while Codellama maintains the lowest energy footprint
 
 ### Discussion
 
+Our results of the analysis of energy consumption across the four models provide valuable insights into their energy efficiency characteristics. These findings are relevant for both developers and users of LLMs, as we [ i need to sleep ]
+
+Codellama emerged as the most energy-efficient model, both in terms of total energy consumption and energy per token. This suggests Codellama could result in reduced environmental impact and cost savings in large-scale deployments. However, its wide range of total energy consumption (36.27–216.62 J) indicates that its efficiency can vary significantly depending on the task. This variability may come from differences in task complexity or the model's adaptability to specific tasks.  This suggests it may require careful monitoring to avoid energy spikes in practice.
+
+In contrast, Deepseek and Mistral demonstrated consistency, although higher energy consumption overall. Our results suggest that Deepseek operates with a high but predictable energy demand, which could be advantageous in environments predictability is valued over efficiency, especially if Deepseek gives a performance advantage (eg higher accuracy of response) on certain tasks. Mistral, on the other hand, not only consumed a similar amount of total to Deepseek, but also had the highest energy per token. This makes Mistral the least efficient model on a per-token basis, which could be a significant drawback in applications requiring extensive text generation. Deepseek seems to be a better alternative in this case.
+
+Qwen occupied an intermediate position, with moderate scores for both metrics. Its balanced performance makes it a viable option for users seeking a compromise between efficiency and capability. However, its moderate variability suggests that its energy demands can still fluctuate depending on the task at hand.
+
+
 ### Limitations
 
 Initially, we wanted to compare the energy consumption across different models, but with different backends. LLaMa, MistralRS and vLLM were considered, as [ some motivation ]. However, we found MistralRS’ documentation to be lacking and could not get it to work on time.  [ also saw in notes that deepseek not supported– on which one? ] For vLLM, since it does not support GPU acceleration on Mac, we could not run LLaMa on it [ or is it just slow? unclear ]. Due to time constraints, we opted for using just the LLaMa.cpp backend for all four models, instead of spending more time trying to get the backends working on Linux/Windows. [ mention hardware eg using just one laptop as a limitation explicitly? kind of inferred frmo here ]
