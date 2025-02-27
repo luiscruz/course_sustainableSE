@@ -1,5 +1,5 @@
 ---
-author: Sofia Konovalova, Kaijen Lee, Violeta Macsim
+author: Sofia Konovalova, Kaijen Lee (5100887), Violeta Macsim
 title: "Sustainable Servers: Benchmarking energy consumption of various backend frameworks"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
@@ -35,10 +35,7 @@ When a user interacts with a website or app, for example, by submitting a form, 
 
 
 # Methodology 
-
-We created a containerized Docker environment for each framework, resulting in three isolated server instances. Using Docker containers, we eliminate unnecessary local processes and ensure that energy measurements reflect only the server's activity. Each container runs solely on developer-supplied resources, leading to more consistent data.
-
-To simplify the setup, we extracted two `.tsv` files` from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), each containing 50,000 movies and industry professionals. Instead of connecting to an external database, the data is loaded directly into each server during startup, simplifying configuration and accelerating deployment. This practice also mitigates any potential caching, as data is erased when the container is deleted.
+In this section, the tools utilized to carried out the experiments, the experimental setup and procedure, and the hardware we used to derive our results are elaborated.
 
 ## Tools
 To measure the energy consumption of **Flask**, **Express.js**, and **Springboot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
@@ -47,6 +44,15 @@ To measure the energy consumption of **Flask**, **Express.js**, and **Springboot
 
 For each framework, we use the [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html) as it is lightweight and comes installed in most Unix systems. Using this benchmarking tool, we can specify the amount of requests we want to be made concurrently. In our case, we make 10,000 requests with 150 concurrent requests.
 
+## Experimental Setup
+
+We created a containerized Docker environment for each framework, resulting in three isolated server instances. Using Docker containers, we eliminate unnecessary local processes and ensure that energy measurements reflect only the server's activity. Each container runs solely on developer-supplied resources, leading to more consistent data.
+
+For the dataset the frameworks will use for querying, we based it on three `.tsv` files from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), namely `title.basics.tsv`, `title.ratings.tsv`, and `name.basics.tsv`. We reduced the size of the original dataset by considering only the first 50,000 entries from each of the `.tsv` files.
+
+Subsequently, for each framework, we store the entries of the `.tsv` files in-memory within three Map (or equivalent) data structures with the key as the primary key and the value as the object representation of the entries. This results in three Maps representing the basic information of movies, ratings of movies, and basic information of industry professionals. This is done when the docker container of each framework are instantiated. We followed this approach instead of connecting to an external database to mitigate the effects of database connection towards the energy consumption measurement for each framework. 
+
+## Experimental Procedure
 The experiment was automated with the use of a bash script. Before any measurements are taken, the script builds the necessary Docker containers, waits 15 seconds, and then begins energy measurements as the benchmarking tool is run. At the end of the run, the docker container is torn down and the script waits for 60 seconds before continuing on with the next iteration or framework in order to prevent as much tail energy consumption as possible.
 
 ## Hardware Specifications
