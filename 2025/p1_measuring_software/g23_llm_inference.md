@@ -69,6 +69,16 @@ These results suggest that while Codellama maintains the lowest energy footprint
 
 ### Limitations
 
+Initially, we wanted to compare the energy consumption across different models, but with different backends. LLaMa, MistralRS and vLLM were considered, as [ some motivation ]. However, we found MistralRS’ documentation to be lacking and could not get it to work on time.  [ also saw in notes that deepseek not supported– on which one? ] For vLLM, since it does not support GPU acceleration on Mac, we could not run LLaMa on it [ or is it just slow? unclear ]. Due to time constraints, we opted for using just the LLaMa.cpp backend for all four models, instead of spending more time trying to get the backends working on Linux/Windows. [ mention hardware eg using just one laptop as a limitation explicitly? kind of inferred frmo here ]
+
+Another limitation is the fact that our analysis is based on a specific set of tasks, namely HumanEval, and the results may not generalize over other datasets. Therefore, our results might be different for another set of tasks, and we cannot conclude which model is generally most energy efficient, but just within this given context.
+
+[ One other limitation is that we used an external tool, namely EnergiBridge, to calculate energy consumption while running the models. Thus, energy consumption of the models was measured in isolation, which might have resulted in imprecise results and slightly higher measurements. However, for the scope of this study and comparing the different models, the precision of numerical results can be neglected. ]
+
+Additionally, our study focuses solely on energy efficiency and does not take into consideration performance metrics, such as accuracy of generated code or speed of generation. This way, we can only reason about which model uses the least amount of energy to generate its responses, but not whether the response is relevant or correct and the trade-off between correctness and energy efficiency.
+
+[ temperature of computer ? ]
+
 ### Future work
 Since we solely compared the power output of 3 models there is a large variety of options that could be available for future work. The first is the most straightforward, namely, comparing a larger variety of models, with more varied parameters as well. The models we looked at gave a good idea of their power usage, however, 7 billion parameter models are used in much smaller quantities, as their performance typically does not measure up to their larger counterparts in exchange for their efficiency. Additionally, there are models such as ChatGPT and Gemini which may be more commonly used, compared to the open-source alternatives we investigated.
 
