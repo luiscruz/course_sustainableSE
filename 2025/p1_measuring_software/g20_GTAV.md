@@ -110,7 +110,7 @@ The GPU-Z log files gave us time-series data, from which we calculated the power
 
 ![Time series of power scalars](./time-series-power-scalar.svg)
 
-Notable is the fact that the graph does not show the high settings benchmark on computer 3 until the end, this is because the computer crashed at this point in the benchmark with these settings. This was not completely unexpected as this game was not made to run on systems without a dedicated GPU.
+Notable is the fact that the graph for computer 3 does not show the high settings benchmark until the end, this is because the computer crashed at this point in the benchmark with these settings. This was not completely unexpected as this game was not made to run on systems without a dedicated GPU.
 
 To isolate the distrbutions of the high power scalar values, we aggregated the measurements from all 15 runs per computer per settings configuration, and plotted their histograms. Below is an example of two such histograms. One corresponds to low settings and shows a bimodal distribution - one peak corresponds to low power scalar measurements when the GPU was inactive between benchmark scenes, and the other peak corresponds to high power scalar measurements when the GPU was active during the benchmark scenes. The histogram corresponding to high settings tells a similar story, except the second peak is at a higher power scalar value, since the GPU was consuming more power rendering the game at a higher graphics quality.
 
@@ -153,11 +153,18 @@ Is this difference in power consumption big enough that it is also significant i
 Comment on how power consumption is almost double for Computer 1 and almost quadruple for Computer 2 for an improvement in graphics quality that cannot really be called "double" quality. Computer 3 is an exception.
 
 # Discussion
-##
-**To Do**
+In the analysis a clear statistical difference between power consumption at high and low settings was found for all computers. Interesting to note is that even though the integrated graphics card of computer 3 was already running basically at maximum capacity on low settings, there was still a statistical difference with the experiments at high settings, the higher settings consuming more power. Most relevant to real-life usage of GTA V are computers 1 and 2. The tests on these systems have shown that high settings consumes between double and quadruple the power of lower graphic settings. The higher power consumption of the 2060 in comparison to the 1070 in our results align with those of a test (also with vsync on) at [techpowerup.com](https://www.techpowerup.com/review/msi-radeon-rx-6800-xt-gaming-x-trio/35.html), where the 2060 also used more power.
+
+These results lead us to conclude that 
+
+Lastly, in the gaming world there is a big dislike for using vsync (try looking up "vsync on or off"), which is interesting as it stops screen tearing and you cannot see any frames produced above the refresh rate of your monitor anyway. If vsync is not used power consumption in most cases will increase dramatically, since the computer will try to render as many frames as possible. For more sustainable gaming vsync should be turned on, as in most cases it does not affect gameplay, but does affect power consumption.
 Do the results show a significant difference in energy consumption and do we think that game industry should strive for more energy efficient games?
 
-## Limitations & future work
+# Limitations
+Some limitations of our experiments are discussed briefly in this section.
+
+### Experiments limited to a single game
+It would be better to run experiments using different games, as this would give a more complete overview of differences in energy consumption between low and high settings across different games. However, due to time constraints this was not possible and this is left as future work.
 
 ### Low number of experiments
 For optimal results it would be desirable to have more than three computers run the experiments, but we were limited to the hardware available to us. Additionally, for optimal experiments you would want to run the experiment using only systems capable of running GTA V in a manner in which it is playable, however in practice this is not achievable as computers capable of running GTA V come at great cost. This is desired as this better represents the actual use case of the software and not just one in an experimental setting.
@@ -165,8 +172,11 @@ For optimal results it would be desirable to have more than three computers run 
 ### Only measuring GPU power consumption
 To get a more realistic picture of the total power consumption of a game it is desirable to measure the energy consumption of the entire computer while running the game. However, doing so would require a physical device to measure the power consumed by the computer at the wall outlet. This kind of equipment is beyond the scope of this project and therefore it was decided to only measure GPU power consumption, as this is possible using software tools and the GPU is the most strained component while running the game.
 
-# Conclusion
+# Future work
+For additional research it would be interesting to learn more about the environmental impact of gaming by conducting our experiment across different games. Conducting such experiments will help us understand the environmental impact of the gaming industry better and could inspire game studios to take such research into account when developing their games. Additionally, it would be interesting to see whether the increase is roughly the same across different games or vastly differs. If a large increase is found for a single game this could lead to an improvement in efficiency of the game in question.
 
+# Conclusion
+The GPU power consumption of GTA V was tested and analysed in this project. The tests were conducted using 3 computers, two desktops with a dedicated GPU and one with an integrated GPU. On all systems the built in benchmark test was run 15 times for both low settings and high settings. From this experiment we found that for systems capable of running beyond both graphic settings the power consumption either doubled or quadrupled for high settings compared to low settings. Therefore, we recommend using lower graphic settings in combination with vsync to limit the framerate for gaming with as little environmental impact as possible.
 
 # Appendix
 
