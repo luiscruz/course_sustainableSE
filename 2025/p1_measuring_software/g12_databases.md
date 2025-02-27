@@ -17,11 +17,9 @@ By focusing on these two widely adopted databases, our comparison aims to provid
 
 ## Rationale
 
-TODO: Rewrite
+Large-scale database production systems typically place a higher priority on concurrency, scalability, and performance than on energy usage. Additionally, as a significant portion of the internet relies on databases for storing and managing data, optimizing their energy efficiency is crucial for building a more sustainable digital infrastructure. Indeed, using an energy-efficient database system can help cut power usage, extend device battery life, and reduce overall environmental impact.
 
-Specifically, we want to market to local testing for a single user on a machine. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
-
-The plan for our experiment is to run select queries on these two versions of SQL, namely MySQL and SQLite. Due to both SQL variants making use the same kinds of requests, we can reuse the same operations, purely comparing the server based structure against the file based structure.
+By comparing SQLite, which uses a file-based structure, with MySQL, which functions as a server-based RDBMS, we hope to see whether or not the lack of a dedicated database server has a substantial effect on energy usage. Our results may be helpful to researchers, developers, and organizations who want to improve their databases for more energy-efficient projects.
 
 ## Experimental setup
 
