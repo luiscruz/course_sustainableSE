@@ -67,7 +67,7 @@ These results suggest that while Codellama maintains the lowest energy footprint
 
 ### Discussion
 
-Our results of the analysis of energy consumption across the four models provide valuable insights into their energy efficiency characteristics. These findings are relevant for both developers and users of LLMs, as it can help people align with sustainability goals due to regulatory pressures to minimize environmental impact. Users, particularly organizations, may prioritize environmentally responsible technologies to meet social responsibility objectives. Additionally, energy efficiency correlates with lower operational costs.
+Our results of the analysis of energy consumption across the four models provide valuable insights into their energy efficiency characteristics. These findings are relevant for both developers and users of LLMs, as we strive to align with sustainability goals and minimize environmental impact. Users, particularly organizations, may prioritize environmentally responsible technologies to meet social responsibility objectives. Additionally, energy efficiency correlates with lower operational costs.
 
 Codellama emerged as the most energy-efficient model, both in terms of total energy consumption and energy per token. This suggests Codellama could result in reduced environmental impact and cost savings in large-scale deployments. However, its wide range of total energy consumption (36.27–216.62 J) indicates that its efficiency can vary significantly depending on the task. This variability may come from differences in task complexity or the model's adaptability to specific tasks.  This suggests it may require careful monitoring to avoid energy spikes in practice.
 
