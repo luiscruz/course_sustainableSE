@@ -29,10 +29,14 @@ To make sure that the comparison is a meaningful one, we used computationally in
 
 ## Future work 
 
+Although Python 3.14 showed no significant performance or energy efficiency gains over Python 3.11 in our tests, future research should revisit this comparison when the *tail-call-interpreter* becomes functional.
+To identify potential optimization opportunities in Python 3.14, we could also run demanding I/O scenarios and multi-threading executions.
 
 ---
 
 ##  Conclusion 
-Our study examined the energy consumption and performance differences between Python 3.14 and Python 3.11, assessing if Python 3.14’s 30% speed improvement can be seen in energy efficiency. Using EnergiBridge, we measured power usage and execution time across computationally intensive operations.
-Our results indicate that there is no statistically significant difference in energy consumption or execution time between Python 3.14 (in its default configuration) and Python 3.11. Given this, we see no convincing motivation to switch from the more stable and well-supported Python 3.11 to Python 3.14 (at this time). The experimental tail call interpreter, which could provide further optimizations, remains non-functional, limiting Python 3.14’s potential benefits.
+Our study examined the energy consumption and performance differences between Python 3.14 and Python 3.11. We assess if Python 3.14’s allegedly 30% speed improvement can be seen in energy efficiency. Using EnergiBridge, we measured power usage and execution time across computationally intensive operations.
+Our results indicate that there is no statistically significant difference in energy consumption or execution time between Python 3.14 (in its default configuration) and Python 3.11. 
+
+Given this, we see no convincing motivation to switch from the more stable and well-supported Python 3.11 to Python 3.14 (at this time). The experimental tail call interpreter, which could provide further optimizations, remains non-functional, limiting Python 3.14’s potential benefits.
 
