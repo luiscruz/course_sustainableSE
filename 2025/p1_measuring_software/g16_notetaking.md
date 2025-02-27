@@ -9,16 +9,12 @@ summary: |-
 
 # Comparing Energy Consumption of Note-Taking Applications
 ## Introduction
-Everyone has to take notes sometime; university classes, business meetings, grocery lists, etc. Many people will start up their favorite text editor and start typing without giving it much further thought. Considering that just about everyone takes notes at least once a day, minor improvements in energy consumption can be cumulatively massive, which justifies looking into the energy consumption of different text editors. Therefore, this report researches the energy consumption of several text editors which may be used to quickly take notes on windows machines. We hope this will result in recommendations regarding software which may be used to take quick notes in an energy efficient manner.
+Everyone has to take notes sometime; university classes, business meetings, grocery lists, etc. Many people will start up their favorite text editor and start typing without giving it much further thought. Considering that just about everyone takes notes at least once a day, minor improvements in energy consumption can be cumulatively massive, which justifies looking into the energy consumption of different text editors. Therefore, this report researches the energy consumption of several text editors which may be used to quickly take notes on windows machines. The energy consumption of each text editor was measured in Joules using Energibridge while given the task of taking a short 50 character note in the editor. We hope this will result in recommendations regarding software which may be used to take quick notes in an energy efficient manner.
 
 For this study, we selected text editors commonly used by EEMCS students. The selected text editors are:
-
 - Notepad: A minimalist text editor that comes pre-installed on Windows. Its simplicity and lack of advanced features makes it a likely candidate for low energy consumption.
-
 - Notepad++: An open-source text editor that offers more functionality than Notepad, such as syntax highlighting and plugin support. While still relatively lightweight, it may have a higher energy footprint compared to Notepad.
-
 - Microsoft Word: A well known text editor that offers a wide range of advanced features for document creation, formatting, and collaboration. Its extensive feature set should cause it to be more energy-intensive than simpler editors.
-
 - Visual Studio Code: A highly customizable code editor that is popular among developers. It is packed with features such as plugins, debugging tools, and interface customized to write software, making it likely to consume significantly more energy than simpler editors.
 
 ### Problem statement
