@@ -61,9 +61,21 @@ When normalizing energy consumption by the number of tokens generated, **Codella
 **Mistral** has the **highest average energy per token**, at **0.684 J/token** (SD = 0.123), although its total energy is similar to Deepseek’s.  
 **Qwen** requires **0.499 J/token** (SD = 0.097), placing it between Codellama and Deepseek in terms of per-token consumption.
 
-Hence, **Codellama** is consistently the most energy-efficient model—both in total energy and energy per token. **Mistral** stands out for having the highest per-token usage, and **Deepseek** ranks slightly below Mistral on that metric but shows the highest total energy consumption. **Qwen** tends to cluster between the extremes.
+Hence, **Codellama** is consistently the most energy-efficient model, both in total energy and energy per token. **Mistral** stands out for having the highest per-token usage, and **Deepseek** ranks slightly below Mistral on that metric but shows the highest total energy consumption. **Qwen** tends to cluster between the extremes.
 
-These results suggest that while Codellama maintains the lowest energy footprint overall, there can be task-level variability (as indicated by its wide range). Deepseek and Mistral consistently draw higher power, whether measured as total energy or on a per-token basis, with Mistral being the least efficient per token. Qwen generally remains in an intermediate position, as it balances moderate total consumption and moderate per-token usage.
+These results suggest that while **Codellama** maintains the lowest energy footprint overall, there can be task-level variability (as indicated by its wide range). **Deepseek** and **Mistral** consistently draw higher power, whether measured as total energy or on a per-token basis, with **Mistral** being the least efficient per token. **Qwen** generally remains in an intermediate position, as it balances moderate total consumption and moderate per-token usage.
+
+To further contextualize these results, we compared the percentage differences between the models relative to Codellama, as it was the most energy-efficient model:
+
+For total energy consumption:
+- **Deepseek**: ((175.44 J - 125.45 J) / 125.45 J) × 100 ≈ 40% higher than Codellama.
+- **Mistral**: ((174.30 J - 125.45 J) / 125.45 J) × 100 ≈ 39% higher than Codellama.
+- **Qwen**: ((151.57 J - 125.45 J) / 125.45 J) × 100 ≈ 21% higher than Codellama.
+
+For energy per token:
+- **Deepseek**: ((0.582 J/token - 0.385 J/token) / 0.385 J/token) × 100 ≈ 51% more energy per token than Codellama.
+- **Mistral**: ((0.684 J/token - 0.385 J/token) / 0.385 J/token) × 100 ≈ 78% more energy per token than Codellama.
+- **Qwen**: ((0.499 J/token - 0.385 J/token) / 0.385 J/token) × 100 ≈ 30% more energy per token than Codellama.
 
 ### Discussion
 
