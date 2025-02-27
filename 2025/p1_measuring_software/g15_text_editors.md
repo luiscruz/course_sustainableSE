@@ -113,7 +113,7 @@ To analyze the energy consumption of different command-line text editors, we exe
   Neovim not only has the highest median but also reaches the highest peak energy consumption, around 94,500 J. This upper bound suggests that Neovim occasionally spikes in energy usage, possibly due to additional background operations. Vim remains within a tighter range, not exceeding 90,000 J, meaning its power consumption is relatively predictable. Notepad++ maintains the lowest energy range, rarely surpassing 86,000 J, which confirms its efficiency.
 
 
-**Histogram and KDE Analysis**
+**Histogram and Kernel Density Estimation Analysis**
 
 <img src="../img/p1_measuring_software/g15_text_editors/histogram.jpeg" width="400">
 
