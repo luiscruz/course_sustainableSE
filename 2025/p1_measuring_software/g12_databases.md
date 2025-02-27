@@ -68,9 +68,9 @@ Not normally distributed, but still signifcant diff
 
 ### Future work
 
-A since a single operation would likely have too small of an energy profile by itself, more would have been better
+As stated previously, the experiments might not be resource-intensive enough to have a significant impact on the energy consumption. Therefore, it would be interesting to enhance the experiment by running more SQL queries in succession, resulting in a higher energy profile.
 
-Considering the server running in the background can also use up energy, it is recommended this server is process is ended while the SQLite process is running, by finishing the experiments on the standard SQL variant first.
+Moreover, the MySQL server is a service running permanently in the background, and to remove any noise from this process it would be better to run the standard SQL variant first and quit the server after, so it doesn't affect the energy consumption of the SQLite experiment.
 
 ## Conclusion
 
