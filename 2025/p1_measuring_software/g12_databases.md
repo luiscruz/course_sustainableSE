@@ -11,7 +11,7 @@ summary: |-
 
 For our project, we decided to try measuring the difference between the energy consumption between SQL and SQLite. Specifically, we want to know if there is a significant difference between the two when making join operations. Specifically, we want to know which is more efficient for local testing for a single user. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
 
-The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
+The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database. For the standard SQL database, we made use of mySQL[^mysql].
 
 ## Experimental Setup
 
@@ -34,6 +34,8 @@ The dataset we use for our experiment is a brazilian ecommerce record of around 
 ## References
 
 [^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
+
+[^mysql]: [https://www.mysql.com/](https://www.mysql.com/)
 
 [^sqlite]: [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
 
