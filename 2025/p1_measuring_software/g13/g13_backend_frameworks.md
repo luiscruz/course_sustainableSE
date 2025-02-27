@@ -57,27 +57,48 @@ The experiment was automated with the use of a bash script. Before any measureme
 
 ## Hardware Specifications
 
-The experiment is performed by running the automation bash script on a Linux laptop, running no other services and warmed up before the script is run by running some intensive tasks. The laptop was kept in a room-temperature room, with the laptop plugged in to a power supply throughout the whole experiment. The only external package in use during this experiment was a package called "caffeine" which disabled sleep after a period of inactivity.
+The experiment is performed by running the automated batch script on a **Windows 11 Home** laptop that is not running any other services (except for NVIDIA-related ones) and has been warmed up by running one iteration of the experiment. Throughout the experiment, the PC was kept at room temperature and the laptop was plugged into a non-fast-charging power supply.
 
-| Laptop | Dell XPS13 |
+| Laptop | Lenovo Yoga Pro 9 |
 | ------ | ------------------ |
-| CPU    | Intel Core i7-6700HQ @ 2.6GHz |
-| RAM    | 8 GB      |
-| GPU    | Intel TigerLake-LP GT2  |
-| OS     | Pop_OS! 22.04 Jammy    |
-
+| CPU    | Intel(R) Core(TM) Ultra 9 185H   2.30 GHz |
+| RAM    | 32 GB      |
+| GPU    | NVIDIA GeForce RTX4060 Laptop  |
+| OS     | Windows 11 Home 24H2    |
 ##### Table 1: Laptop specifications used in our experiment
 
 # Results
-- Energy data analysis - how we draw conclusion for our result
-- Violin box plot
-- Simple joules over time comparison
-- data significance with p-testin
+After running the experiment, we collected 30 data samples for each framework. With these, we **removed outliers** and began comparing.
+
+The diagram below shows the power consumption in Joules of each framework across all the runs. To better visualize the values, we have removed a section of the Y axis that didn't contain any data.
+
+![Power consumption diagram of the 3 frameworks](power-consumption-diagram.png)
+
+**SpringBoot** had the most consistent and low power consumption of the three frameworks, despite the common belief that JavaScript-based frameworks would perform better due to their lightweight nature. Additionally, it consumed nearly **90% less energy** than _Flask_! This could be attributed to Java's execution in the [Java Virtual Machine](https://docs.oracle.com/en/java/javase/22/vm/java-virtual-machine-technology-overview.html) (JVM), which supports advanced just-in-time (JIT) compilation and multi-threading. In contrast, Flask (Python) and Express (Node.js) run in interpreted or event-driven environments, which can result in more volatile resource usage. Furthermore, Spring Boot benefits from extensive optimizations within the Spring ecosystem, which contribute to its consistent and efficient power consumption. The combination of both environments also explains the little variance in Spring's consumption.
+
+Then, let's analyze the combination of energy efficency and computation time. This is being shown in the diagram below, displaying the distribution of the Energy Delay Product (EDP).
+
+![Energy delay diagram of the 3 frameworks](energy-delay-diagram.png)
+
+Again, we see how much better performing _SpringBoot_ is compared to the others. Java's JVM might play a big role into how energy is being consumed for running the code.
+
+# Is the data reliable?
+
+Considering how many extra steps were performed before running the experiment, are these values just pure coincidence? Will another person be able to obtain the same clear differences? 
+
+We will use the Shapiro-Wilk method to conduct a statistical significance test on energy consumption. For _Springboot_, _Express.js_, and _Flask_, we get **0.58**, **0.36**, and **0.18** respectively, indicating that the data is normally distributed. This leads to the conclusion that our experimental data is not significantly skewed by any external factors and that further runs of the same experiment will provide the same conclusions.
+
+To support our findings, the conclusions are consistent with what other blogs have said (see [Node.js vs SpringBoot: "Hello World" performance comparison](https://medium.com/deno-the-complete-reference/node-js-vs-springboot-hello-world-performance-comparison-59b4d461526c) or [How fast is Spring?](https://spring.io/blog/2018/12/12/how-fast-is-spring)).
+
 
 ## Limitations
-- discuss limitations
+Our experiment aimed to be as close to a real-life setting as feasible. This meant that rather than using a basic request answer body, we chose data processing, which is handled differently by each computer language's internals. This may result in a difference in the amount of energy utilized by each framework, which could be related to Flask's slower response time to the 1000 API calls compared to the other two.
+
+Furthermore, _Flask_ has the most variability in data, which can be linked to the Apache Benchmark crashing the local server in a couple of cases. 
 
 # Conclusions
+
+ - Java performs well on a continuous environment, however think of how taiored it is for your application's goals
 
 # Replication Package
 If you would like to run the experiments and view the raw data used in the analysis, check out our [repository](ADD LINK HERE).
