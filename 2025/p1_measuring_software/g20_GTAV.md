@@ -84,16 +84,16 @@ The trials were run on two different computer to ensure our findings are consist
 
 ### Computer 1: 
 - Desktop PC
-- Intel Core i5-9600k
+- Intel Core i7-7700k
 - 16GB DDR4 RAM
-- Nvidia GeForce RTX 2060
+- EVGA GeForce GTX 1070
 - Samsung 970 Evo Plus M.2 SSD
 
 ### Computer 2: 
 - Desktop PC
-- Intel Core i7-7700k
+- Intel Core i5-9600k
 - 16GB DDR4 RAM
-- EVGA GeForce GTX 1070
+- Nvidia GeForce RTX 2060
 - Samsung 970 Evo Plus M.2 SSD
 
 ### Computer 3:
