@@ -62,11 +62,47 @@ To replicate this experiment, check out our public [GitHub repository](https://g
 
 
 # Hardware setup
-<!-- TODO: write hardware setup-->
-<!-- TODO: also write about the 2 free spotify accounts we created and any settings that were changed in any of the applications-->
-<!-- TODO: also state the specific versions of Spotify and Chrome that have been used-->
-<!-- TODO: state that Chrome has been used as browser, since the script only uses the default browser-->
-<!-- TODO: also mention that Wi-Fi instead of a wired internet connection has been used-->
+
+For our comparison, we used the following two software applications:
+
+| Software                     | Version        |
+|------------------------------|----------------|
+| Spotify - Music and Podcasts | 1.257.463.0    |
+| Google Chrome                | 133.0.6943.128 |
+
+The experiments were conducted on a DELL XPS 15 9560 with 16GB RAM and Windows 10 Pro Version 22H2.
+
+### Hardware Settings
+To have consistent experiment results, our test script automatically set the brightness and the volume of the system to the level specified in the `.env` file.
+Our hardware settings were as followed:
+
+ - Brightness 50%
+ - Volume 10%
+ - Internet connection via Wifi
+ - Google Chrome was used as browser
+
+
+### Spotify Settings
+To make sure, the experiments are as consistent as possible we adjusted the following settings in the Spotify native app:
+
+ - Auto adjust quality should be disabled
+ - Streaming quality: Normal
+ - Download [quality]: Normal
+ - Clear cache
+
+And this settings should be *ENABLED* at both, the native and the web app:
+
+ - Show the now-playing panel on click of play
+ - Display short, looping visuals on tracks (Canvas)
+
+### Spotify Accounts
+For our experiment, we used two separate Spotify accounts, one for the native app and one for the web app.
+This was done to prevent previously saved songs from being displayed and interfering with the experiment.
+It is also important to use a non-premium Spotify account for the experiments, because the audio quality of premium accounts is higher and thus, more energy will be consumed ([more information](#limitations-and-issues)).
+
+
+
+
 
 # Results 
 
@@ -113,12 +149,22 @@ To get an insight into the effect size of our experiments we computed multiple v
 
 # Discussion
 he first interesting data point that can be observed is the higher energy consumption in the native desktop version of around 10.78%. There could be several reasons for this firstly, the Spotify native desktop application has many more features when compared to the web app. Some of these features are a higher audio quality, an offline mode which might require additional processing and an equalizer which leads to additional processing overhead[^spotify_WebApp_vs_Native]. In addition, the desktop version of Spotify uses a cache which further increases the energy consumption. The difference in peak power consumption is 29.8 J. This suggests that under peak workloads the power consumption is similar despite the desktop version having more features. This also ties in with the higher baseline or minimum power consumption of the native desktop by 80.8 J. This implies that these additional features require background processes to run even when the song is not played which consume additional energy. The Android version of the app which was tested against the web version on the same mobile platform performed with better energy efficiency.  [^Android_vs_WebApp]
-<!-- TODO: Mention that the desktop version has more features than the web verions, that might consume more energy. But the desktop version has caching, which does not improve it -->
+<!-- TODO: Mention that the desktop version has more features than the web versions, that might consume more energy. But the desktop version has caching, which does not improve it -->
 
 <!-- TODO: also mention the paper https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf and mention that on Android, it is opposite -->
 
 # Limations and Issues
 The experiment methodology has a few issues such as being unable to cover all the use cases. The experiment only collects data for a maximum of 2 minutes per data point but this can be increased to around 5-10 minutes. Not all of the features were tested within this short time frame only the playing of a song. The native and the web app versions also have different audio qualities, video playback, and UI which might affect measurements. Another issue with testing the web app version was it was done only on one browser that is Chrome. In addition to this, only one operating system was tested. It could be the case that a native app runs more efficiently on a different operating system and architecture. This method doesn't identify which features or which processes are consuming the most energy in the web app. This is a more useful insight for developing a more sustainable software product.
+# Limitations and Issues
+
+The used energy of the application depends a lot on the quality of the audio stream. This quality depends on various factors; one of them is the quality setting of the native app. In our experiments, we set it to *Normal*, corresponding to an AAC bitrate of approximately 96 kbit/s. It is not possible to adjust the audio quality in the web app, which means the music will be played with an AAC bitrate of 128 kbit/s for non-premium Spotify accounts and 256 kbit/s for premium accounts.
+For more information about the Spotify audio quality, see [this page](https://support.spotify.com/uk/article/audio-quality/).
+
+Not all use cases are covered in our experiments. The native app, in particular, offers more configuration options, which may further impact the results. For example, offline mode is not considered in our experiments. This mode could lead to lower energy consumption since no data transfer is required.
+
+The native app also lacks the option to turn off caching. This eventually leads to automatic downloads of some music and therefore, less data needs to be transferred and the energy consumption may decrease.
+
+
 
 # Conclusion
 Few findings can be concluded from this study. Firstly the efficiency of native desktops isn't always guaranteed over web apps on browsers such as Chrome. This is clearly shown by the results of this study. Feature availability and the presence of background jobs in desktop applications make an application like Spotify which relies on these more inefficient in its native desktop form. However, considering the difference in the peak power consumption was not very different it could be said barring these factors of higher quality and a more feature-rich environment the desktop is still pretty efficient at providing peak usage with similar energy consumption. The downside is only the resources consumed during the idling or the lower intense workloads in which case the web app is more efficient. However, this could be a more interesting case to further examine.
@@ -141,4 +187,4 @@ The future work would involve looking at covering more use cases of the Spotify 
 
 [^Android_vs_WebApp]: [Native vs Web Apps: Comparing the Energy
 Consumption and Performance of Android Apps
-and their Web Counterparts](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)
+and their Web Counterparts](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)[^spotify_audio_quality]: [Spotify Audio Quality](https://support.spotify.com/uk/article/audio-quality/)
