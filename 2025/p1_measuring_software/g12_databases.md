@@ -9,9 +9,17 @@ summary: |-
 
 # Measuring energy consumption of SQL databases
 
-For our project, we decided to try measuring the difference between the energy consumption between SQL and SQLite. Specifically, we want to know if there is a significant difference between the two when making join operations. Specifically, we want to know which is more efficient for local testing for a single user. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
+In this report, we will investigate and measure the differences between energy consumptions of two SQL relational database management systems (RDBMS). The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
 
-The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database. For the standard SQL database, we made use of mySQL[^mysql].
+For the standard SQL database, we will make use of mySQL[^mysql], as it has been the most popular open-source relational database according to the DB-Engines ranking[^dbengine]. As for SQLite, we chose it because it is the most widely deployed database engine in the world today and is, according to them, "used by literally millions of applications with literally billions and billions of deployments"[^sqlite_users].
+
+By focusing on these two widely adopted databases, our comparison aims to provide insights that are relevant to real-world scenarios.
+
+## Rationale
+
+TODO: Rewrite
+
+Specifically, we want to market to local testing for a single user on a machine. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
 
 The plan for our experiment is to run select queries on these two versions of SQL, namely MySQL and SQLite. Due to both SQL variants making use the same kinds of requests, we can reuse the same operations, purely comparing the server based structure against the file based structure.
 
@@ -46,7 +54,7 @@ As for software, we used:
 - MySQL 8.0.41 (Windows x86, 32-bit)
 - SQLite 3.49.1 (Windows x64, 64-bit).
 
-To measure energy consumption EnergiBridge[^energibridge], a cross-platform energy measurement program, was used.
+To measure energy consumption EnergiBridge[^energibridge] (v0.0.7), a cross-platform energy measurement program, was used.
 
 ## Results
 
@@ -76,9 +84,11 @@ Considering the server running in the background can also use up energy, it is r
 
 ## References
 
-[^github]: [https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code](https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code)
-[^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
-[^mysql]: [https://www.mysql.com/](https://www.mysql.com/)
-[^sqlite]: [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
 [^dataset]: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+[^dbengine]: [https://db-engines.com/en/ranking](https://db-engines.com/en/ranking)
 [^energibridge]: [https://github.com/tdurieux/EnergiBridge](https://github.com/tdurieux/EnergiBridge)
+[^github]: [https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code](https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code)
+[^mysql]: [https://www.mysql.com/](https://www.mysql.com/)
+[^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
+[^sqlite]: [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
+[^sqlite_users]: [https://www.sqlite.org/mostdeployed.html](https://www.sqlite.org/famous.html)
