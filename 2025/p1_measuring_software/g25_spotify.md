@@ -3,15 +3,7 @@ author: Julian Hirschler, Patrick Krumpl, Shantanu Jare, Sven Butzelaar, Thomas 
 title: "Native vs. Web: Analyzing the Energy Consumption of Spotify Apps"
 image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg"
 date: 28/02/2025
-summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
----
+summary: 
 <!-- TODO: write abstract -->
 
 # Introduction
@@ -29,7 +21,7 @@ This chapter describes the methodology used to compare the energy consumption of
 ## Design of the experiment
 The first thing to do before conducting the experiment is to design it. This involves identifying a specific use case for the application, in our case Spotify's web and desktop application. It is also important to design the experiment in such a way that it mimics actual user behaviour and is realistic.
 
-First, we designed and conducted an experiment with both applications (desktop and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantages of this type of experiment were that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results initial setup without closing and opening (web)app](#results-initial-setup-without-closing-and-opening-webapp).
+First, we designed and conducted an experiment with both applications (desktop and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantage of this type of experiment was that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results  frominitial setup without closing and opening (web)app](#results-initial-setup-without-closing-and-opening-webapp).
 
 The aim in designing the revised experiment was to minimise any bias from other applications and to focus only on the application being run. In addition, we still wanted to play more than one song to mimic realistic user behaviour, but we also wanted the data to be normally distributed across the experiment. So we had to design the individual runs to be similar, but with a certain degree of randomness built in.
 
@@ -47,7 +39,7 @@ In general, testing the power consumption of applications is difficult because m
 - Ensure that no additional hardware is connected to the device (e.g. remove USB mouse).
 - Establish a stable internet connection - preferably a wired connection.
 - Turn off automatic brightness.
-- Disable any power saving modes on the device.
+- Disable any power-saving modes on the device.
 - Log in to the Spotify desktop and web application beforehand and ensure that the volume in both applications is set to 100%. Close applications before starting the experiment.
 - Ensure that the room temperature remains approximately the same throughout the experiment.
 
@@ -55,7 +47,7 @@ In general, testing the power consumption of applications is difficult because m
 ## Experiment execution
 Since it would be impossible to manually run 60 experiments without introducing bias from user input, we automated the testing process using a _Python_ script. The Spotify apps are mostly controlled via keyboard shortcuts using the _pyautogui_ library. The energy measurements are done using [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is a cross-platform energy measurement utility.[^energi_bridge]
 
-The script starts with an initialisation and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To wam up, a simple Fibonacci sequence is computed for three minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
+The script starts with an initialisation and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To warm up, a simple Fibonacci sequence is computed for three minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
 
 ## Replication
 To replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as instructions on how to set up the experiment.[^sse_github_repo]
@@ -74,12 +66,12 @@ The experiments were conducted on a DELL XPS 15 9560 with 16GB RAM and Windows 1
 
 ### Hardware Settings
 To have consistent experiment results, our test script automatically set the brightness and the volume of the system to the level specified in the `.env` file.
-Our hardware settings were as followed:
+Our hardware settings were as follows:
 
  - Brightness 50%
  - Volume 10%
  - Internet connection via Wifi
- - Google Chrome was used as browser
+ - Google Chrome was used as the browser
 
 
 ### Spotify Settings
@@ -90,7 +82,7 @@ To make sure, the experiments are as consistent as possible we adjusted the foll
  - Download [quality]: Normal
  - Clear cache
 
-And this settings should be *ENABLED* at both, the native and the web app:
+And these settings should be *ENABLED* at both, the native and the web app:
 
  - Show the now-playing panel on click of play
  - Display short, looping visuals on tracks (Canvas)
@@ -98,7 +90,7 @@ And this settings should be *ENABLED* at both, the native and the web app:
 ### Spotify Accounts
 For our experiment, we used two separate Spotify accounts, one for the native app and one for the web app.
 This was done to prevent previously saved songs from being displayed and interfering with the experiment.
-It is also important to use a non-premium Spotify account for the experiments, because the audio quality of premium accounts is higher and thus, more energy will be consumed ([more information](#limitations-and-issues)).
+It is also important to use a non-premium Spotify account for the experiments because the audio quality of premium accounts is higher and thus, more energy will be consumed ([more information](#limitations-and-issues)).
 
 
 
@@ -106,15 +98,15 @@ It is also important to use a non-premium Spotify account for the experiments, b
 
 # Results 
 
-## Results initial setup without closing and opening (web)app
-As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefitted from internal cashing. This lead us to change our setup to open and close the (web)app for every run.
+## Results in initial setup without closing and opening (web)app
+As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefitted from internal cashing. This led us to change our setup to open and close the (web)app for every run.
 
 ![Violin Plot](../img/p1_measuring_software/g25_spotify/box_without_closing_setup.png)
 *Figure 1: Violin and Box plots of energy consumption (J) without outliers.*
 
 ## Results improved setup
 ### Violin and Box Plots and Outliers Removal
-We have plotted the data[^github] collected from the experiment into two violin and box plots, as can be seen in Figure 2. It is clear from the plots that both the result for the web and native version contain outliers. We used Shapiro-Wilk test to check if our results are normal, the results from this test can be seen in Table 1. The p-value for the web version (2.1 × 10<sup>-8</sup>) and for the native version (5.0 × 10<sup>-4</sup>) reported by the Shapiro-Wilk are smaller than 0.05 and thus the data is not normally distributed. We therefore used z-score outlier removal to remove outliers, we had to apply this twice before the p-value of the Shapiro-Wilk test was larger than 0.05, as can be seen in Table 2. The violin and box plots for the data without outliers can be seen in Figure 3. We removed three data points, two from the web version (129.5J and 788.4J) and one from the native version (814.3J).
+We have plotted the data[^github] collected from the experiment into two violin and box plots, as can be seen in Figure 2. It is clear from the plots that both the results for the web and native version contain outliers. We used the Shapiro-Wilk test to check if our results are normal, the results from this test can be seen in Table 1. The p-values for the web version (2.1 × 10<sup>-8</sup>) and for the native version (5.0 × 10<sup>-4</sup>) reported by the Shapiro-Wilk are smaller than 0.05 and thus the data is not normally distributed. We therefore used z-score outlier removal to remove outliers, we had to apply this twice before the p-value of the Shapiro-Wilk test was larger than 0.05, as can be seen in Table 2. The violin and box plots for the data without outliers can be seen in Figure 3. We removed three data points, two from the web version (129.5J and 788.4J) and one from the native version (814.3J).
 
 ![Violin Plot](../img/p1_measuring_software/g25_spotify/box_outliers.png)
 *Figure 2: Violin and Box plots of energy consumption (J) with outliers.*
@@ -132,10 +124,10 @@ We have plotted the data[^github] collected from the experiment into two violin 
 *Figure 3: Violin and Box plots of energy consumption (J) without outliers.*
 
 ### Welch's t_test and Significance
-To determine the significance of our results we used Welch’s t-test, which reported a t-statistic of -9.3 and a p-value of 3.21 × 10<sup>-12</sup>. Since p < 0.05 we conclude that there is a statistically significant difference. From the t-statistic we conclude that the native version consumes significantly more energy.
+To determine the significance of our results we used Welch’s t-test, which reported a t-statistic of -9.3 and a p-value of 3.21 × 10<sup>-12</sup>. Since p < 0.05 we conclude that there is a statistically significant difference. From the t-statistic, we conclude that the native version consumes significantly more energy.
 
 ### Effect Size
-To get an insight into the effect size of our experiments we computed multiple values, including the average difference, percent change and cohan's d, these can be seen in Table 2.
+To get an insight into the effect size of our experiments we computed multiple values, including the average difference, per cent change and Cohan's d, these can be seen in Table 2.
 
 |                	| Web   	| Native 	| Difference 	|
 |----------------	|-------	|--------	|------------	|
@@ -148,8 +140,8 @@ To get an insight into the effect size of our experiments we computed multiple v
 *Table 2: Effect size analysis.*
 
 # Discussion
-he first interesting data point that can be observed is the higher energy consumption in the native desktop version of around 10.78%. There could be several reasons for this firstly, the Spotify native desktop application has many more features when compared to the web app. Some of these features are a higher audio quality, an offline mode which might require additional processing and an equalizer which leads to additional processing overhead[^spotify_WebApp_vs_Native]. In addition, the desktop version of Spotify uses a cache which further increases the energy consumption. The difference in peak power consumption is 29.8 J. This suggests that under peak workloads the power consumption is similar despite the desktop version having more features. This also ties in with the higher baseline or minimum power consumption of the native desktop by 80.8 J. This implies that these additional features require background processes to run even when the song is not played which consume additional energy. The Android version of the app which was tested against the web version on the same mobile platform performed with better energy efficiency.  [^Android_vs_WebApp]
-<!-- TODO: Mention that the desktop version has more features than the web versions, that might consume more energy. But the desktop version has caching, which does not improve it -->
+The first interesting data point that can be observed is the higher energy consumption in the native desktop version of around 10.78%. There could be several reasons for this firstly, the Spotify native desktop application has many more features when compared to the web app. Some of these features are a higher audio quality, an offline mode which might require additional processing and an equalizer which leads to additional processing overhead[^spotify_WebApp_vs_Native]. In addition, the desktop version of Spotify uses a cache which further increases the energy consumption. The difference in peak power consumption is 29.8 J. This suggests that under peak workloads the power consumption is similar despite the desktop version having more features. This also ties in with the higher baseline or minimum power consumption of the native desktop by 80.8 J. This implies that these additional features require background processes to run even when the song is not played which consumes additional energy. The Android version of the app which was tested against the web version on the same mobile platform performed with better energy efficiency.  [^Android_vs_WebApp]
+<!-- TODO: Mention that the desktop version has more features than the web versions, which might consume more energy. But the desktop version has caching, which does not improve it -->
 
 <!-- TODO: also mention the paper https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf and mention that on Android, it is opposite -->
 
