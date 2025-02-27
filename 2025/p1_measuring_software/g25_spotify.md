@@ -5,17 +5,15 @@ image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_te
 date: 28/02/2025
 summary: |-
 ---
-<!-- TODO: write abstract -->
+In this project we compare the spotify native and web app by looking at the energy consumption when playing songs. Spotify has 675 million monthly active users and thus has a significant environmental impact. From our result we conclude that the native app uses 11% more energy, possible caused by ....(add main discussion point here). Our project does have some limitations such as only using one browser and operating system. However with this project we do provide valuable insights to users and developers about the difference in energy consumption for native and web apps.
 
 # Introduction
 The way music is consumed and distributed has changed dramatically over the past few decades. The rise of digital streaming platforms such as Spotify has transformed music into an on-demand service, replacing the need to purchase physical products such as CDs or vinyl. [^music_industry_shift] 
 
 Today, streaming generates over 67% of global music revenues [^global_music_report], confirming its dominance in the industry. With 675 million monthly active users [^spotify_report] and a market share of over 30% [^streaming_stats], Spotify is the clear leader in the music streaming market. While this shift has made music more accessible than ever, it also poses questions about its environmental impact, since streaming requires a service provider, constant network data transmission, and device power.
 
-In recent years, web-based streaming has become more and more popular as it eliminates the need for users to install additional applications on their devices. While web applications are often favoured for their accessibility and convenience, desktop applications often offer more features to the user. In this article, we compare the energy consumption of Spotify's web and desktop applications. By analysing these differences, we aim to provide valuable insights to help users make better decisions about their streaming habits.
+In recent years, web-based streaming has become more and more popular as it eliminates the need for users to install additional applications on their devices. While web applications are often favoured for their accessibility and convenience, desktop applications often offer more features to the user. In this article, we compare the energy consumption of Spotify's web and desktop applications. By analysing these differences, we aim to provide valuable insights to help users make better decisions about their streaming habits and to help developers choose between developing native and web apps.
 
-
-<!-- TODO: We could add plots of the timeline -->
 # Methodology
 This chapter describes the methodology used to compare the energy consumption of Spotify's web and desktop applications. It covers the design of the experiment and how the experiment itself was conducted, including the automation and setup of the experiment.
 
