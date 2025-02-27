@@ -13,7 +13,7 @@ We started by analyzing Python 3.14 default configuration, without any additiona
 
 --- 
 ## Methodology 
-To this end, the idea is to use the prerelease version of the Python 3.14 interpreter and compare the energy consumption for the same code snippet [**TODO: write about code snippet (check which)**] for both the new interpreter as well as an older Python interpreter (3.11.9). This should allow us to see whether the supposed faster speeds of the new interpreter impact energy consumption. 
+To this end, the idea is to use the prerelease version of the Python 3.14 interpreter and compare the energy consumption for the same code snippet for both the new interpreter as well as an older Python interpreter (3.11.9). This should allow us to see whether the supposed faster speeds of the new interpreter impact energy consumption. 
 To assess the energy consuption we used [EnergiBridge](https://github.com/tdurieux/EnergiBridge) as suggested in the [lectures](https://luiscruz.github.io/course_sustainableSE/2025/).
 
 ### Code Snippet Selection 
@@ -33,5 +33,6 @@ To make sure that the comparison is a meaningful one, we used computationally in
 ---
 
 ##  Conclusion 
-
+Our study examined the energy consumption and performance differences between Python 3.14 and Python 3.11, assessing if Python 3.14’s 30% speed improvement can be seen in energy efficiency. Using EnergiBridge, we measured power usage and execution time across computationally intensive operations.
+Our results indicate that there is no statistically significant difference in energy consumption or execution time between Python 3.14 (in its default configuration) and Python 3.11. Given this, we see no convincing motivation to switch from the more stable and well-supported Python 3.11 to Python 3.14 (at this time). The experimental tail call interpreter, which could provide further optimizations, remains non-functional, limiting Python 3.14’s potential benefits.
 
