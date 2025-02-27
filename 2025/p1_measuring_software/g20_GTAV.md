@@ -156,7 +156,6 @@ In the analysis a clear statistical difference between power consumption at high
 These results lead us to conclude that gaming at higher settings has a higher environmental impact than gaming at lower settings. Therefore we would like to urge gamers to use the lowest graphic settings acceptable to them to limit their carbon footprint. Having said this, the best thing to do is to not buy the pc at all, since only around [15%](https://www.it.ox.ac.uk/article/environment-and-it#:~:text=For%20our%20standard%20desktop%20PC,electricity%20consumption%20while%20in%20use.) of the emissions actually come from the usage of a pc over a 6 year period and a staggering 85% from manufacture.
 
 Lastly, in the gaming world there is a big dislike for using vsync (try looking up "vsync on or off"), which is interesting as it stops screen tearing and you cannot see any frames produced above the refresh rate of your monitor anyway. If vsync is not used power consumption in most cases will increase dramatically, since the computer will try to render as many frames as possible. For more sustainable gaming vsync should be turned on, as in most cases it does not affect gameplay, but does affect power consumption.
-Do the results show a significant difference in energy consumption and do we think that game industry should strive for more energy efficient games?
 
 # Limitations
 Some limitations of our experiments are discussed briefly in this section.
