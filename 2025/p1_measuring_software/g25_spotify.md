@@ -3,7 +3,8 @@ author: Julian Hirschler, Patrick Krumpl, Shantanu Jare, Sven Butzelaar, Thomas 
 title: "Native vs. Web: Analyzing the Energy Consumption of Spotify Apps"
 image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg"
 date: 28/02/2025
-summary: 
+summary: |-
+---
 <!-- TODO: write abstract -->
 
 # Introduction
