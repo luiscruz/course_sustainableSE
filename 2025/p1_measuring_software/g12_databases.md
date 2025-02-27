@@ -25,7 +25,7 @@ For our setup, we made use of 'zen mode' in order to minimise superfluous energy
 
 The experiment follows the magic number of experiments, repeating 30 times for each database (for a total of 60), with 1 select-all query to each of the 5 tables per experiment.
 
-One experiment, i.e. the queries to all tables, would take approximately 2-3 seconds each. As such, we incorporated 20 seconds (slightly lower than the usual 1 minute) of rest after each test run, which we thought should be enough in order to prevent tail energy consumption from previous runs from overflowing into the next. We considered several factors, namely the fact that the experiments are relatively low resource-intensive and we also open and close connections each time to mitigate caching effects.
+One experiment, i.e. the queries to all tables, would take approximately 2-3 seconds each. As such, we incorporated 20 seconds (slightly lower than the usual 1 minute) of rest after each test run, which we thought should be enough in order to prevent tail energy consumption from previous runs from overflowing into the next. We considered several factors, namely the fact that the experiments are not extremely resource-intensive and we also open and close connections each time to mitigate caching effects.
 
 Finally, of note is that the order of testing the databases was shuffled in order to try and circumvent any confounding factors as much as possible.
 
@@ -50,6 +50,18 @@ To measure energy consumption EnergiBridge[^energibridge], a cross-platform ener
 
 ## Results
 
+The following are the results of our experiment. First, we show the raw energy consumption by both forms of SQL:
+
+![Raw Energy Consumption](../img/p1_measuring_software/g12_databases/Raw_energy.png)
+
+Next, we show the result of our mySQL runs, normalized with any glaring outliers removed:
+
+![mySQL](../img/p1_measuring_software/g12_databases/mysql.png)
+
+And finally, we show the result of our SQLite runs, also normalized with severe outliers removed:
+
+![SQLite](../img/p1_measuring_software/g12_databases/sqlite.png)
+
 ## Discussion
 
 Not normally distributed, but still signifcant diff
@@ -65,13 +77,8 @@ Considering the server running in the background can also use up energy, it is r
 ## References
 
 [^github]: [https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code](https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code)
-
 [^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
-
 [^mysql]: [https://www.mysql.com/](https://www.mysql.com/)
-
 [^sqlite]: [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
-
 [^dataset]: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-
 [^energibridge]: [https://github.com/tdurieux/EnergiBridge](https://github.com/tdurieux/EnergiBridge)
