@@ -101,14 +101,58 @@ The results from our experiments are illustrated in the violin plot below:
 
 The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.
 
-In order to make our data 
+This violin plot was created after the rejecting outliers using the z-score. After performing the outlier rejection, we kept all the runs except for one run of the Visual Studio Code. Thus we kept 29 runs for Visual Studio Code and 30  runs for the rest of the editors.
+
+After conducting the Shapiro-Wilks test to test for data normality, we get the following results: 
+
+| Editor             | Is Data Normal? | P-Value |
+|--------------------|-----------------|---------|
+| NotePad            | False           | 0.00085 |
+| NotePad++          | False           | 0.00012 |
+| Microsoft Word     | False           | 0.012   |
+| Visual Studio Code | True            | 0.067   |
 
 
+Finally, we conducted the Welch's t-test to test for significance. The results of the Welch's t-test that we conducted are illustrated in the table below:
+
+| Test                            | Is it Significant? | P-Value |
+|---------------------------------|--------------------|---------|
+| NotePad vs NotePad++            | ✅                  | 0.0003  |
+| NotePad vs Visual Studio Code   | ✅                  | 0.0000  |
+| NotePad vs MS Word              | ✅                  | 0.0000  |
+| NotePad++ vs Visual Studio Code | ✅                  | 0.0000  |
+| Visual Studio Code vs MS Word   | ✅                  | 0.0000  |
 
 ### Analysis
 ## Discussion
 ### Implication
-### Further research & limitations
+From our experiments we can see a clear difference in the energy consumption of the more lightweight text editors (Notepad, Notepad++) compared to the heavier text editors. 
+We do have to note the fact that data was not normally distributed. This could potentially be caused by processes running in the background with a variable amount of energy consumption.
+Of course heavier text editors include functionalities that the more lightweight editors do not possess, such as spelling and grammar checking, syntax highlighting for programming and more.
+Our hypothesis was that these extended features could lead to a higher energy consumption. Our results prove this, with a p value < 0.005 for all comparisons when executing the Welch's t-test.
+It is interesting that the energy consumption of Notepad++ is lower than Notepad. Notepad++ has a more extensive feature set than Notepad, but consumes less energy. 
+This does indicate that more features does not necessarily indicate a higher energy consumption.
+Furthermore, there is a small caveat. While additional features might lead to a higher power consumption, it might also allow the user to more quickly write their notes.
+Features such as grammar and spelling checkers, table creation or even image insertion could cause a student to be able to save a lot of time writing their notes, leading to a smaller total energy consumption.
 
+### Further research & limitations
+While our study investigated the energy consumption of 4 text editors that are commonly used at EEMCS, there are many more text editors used. 
+Further studies could investigate the energy consumption of other text editors, potentially also including web based editors.
+
+Our experiment does not cover an entire workflow, which would also include opening the application and saving the file. 
+The reason for the exclusion of these actions were the high variability of opening applications and difficulty with saving files using autohotkeys.
+It could be the case that a much larger amount of energy is used when performing one of these actions compared to the typing part. 
+Further research could take into accounts these additional actions.
+
+While our experimental setup aimed to reduce external influences, the non-normal distributed data suggests this might not have been entirely effective.
+Future research might be able to isolate the experiment even further, leading to more accurate results.
+## Conclusion
+We aimed to determine which text editor is most energy efficient for note taking on windows computers. This was done by comparing the four popular text editors Word, Notepad, Notepad++ and Visual studio code.
+Our results indicate that Notepad++ has the lowest energy consumption, with Notepad following closely behind. Both of these text editors are considerably more lightweight, with a much smaller feature set.
+Both Word and Visual Studio Code used a lot more energy, with Visual Studio Code using the most of all text editors investigated.
+
+While the more heavy weight editors consume more energy, their additional functionality might be worth their increased energy consumption. 
+Selecting the best editor to use is thus highly dependent on if a user needs these extended capabilities. 
+Thus our recommendation is that if the additional features of the more heavy text editors are unnecessary, to use one of the more lightweight editors, preferably Notepad++.
 ## References
 ## Replication

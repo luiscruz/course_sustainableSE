@@ -76,6 +76,20 @@ defaults:
       layout: project_page
   -
     scope:
+      path: "2025/p1_measuring_software"
+    values:
+      identifier: "p1_measuring_software_2025"
+      exclude: true
+      layout: blog_post
+  -
+    scope:
+      path: "2025/p2_hacking_sustainability"
+    values:
+      identifier: "p2_2025"
+      exclude: true
+      layout: project_page
+  -
+    scope:
       path: ""
     values:
       hide_from_navbar: true
