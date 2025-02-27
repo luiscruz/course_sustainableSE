@@ -88,7 +88,12 @@ To further quantify the effect size, we computed Cohen's d, which measures the s
 
 ## Discussion
 
-Not normally distributed, but still signifcant diff
+We see that the energy usage of the queries to the SQL database is significantly larger than for the SQLite database. 
+- the goal: provide insight for developers in testing
+- smaller queries and one user -> SQLite
+- SQLite is also easier in use -> also good for testing
+- but besides easier -> also more energy efficient
+- for testing instances use SQLite
 
 ### Future work
 
