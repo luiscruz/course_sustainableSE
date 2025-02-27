@@ -1,10 +1,10 @@
 ---
 author: Simon Biennier, Jasper Heijne, Paul Lindhorst, Huib Sprangers
 title: "Measuring the Energy Consumption of SQL vs SQLite"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "https://miro.medium.com/v2/resize:fit:1200/1*VDoCtgMoTijXbq1P73PuFg.jpeg"
 date: 28/02/2025
 summary: |-
-  Summary of our paper
+  In this paper we analyse the difference in energy consumption between usage of SQL and SQLite. After running our experiments and analysing the results, we find that the distribution is not as expected, and discuss why this might have been. Even still, we can see that the difference between the two is significant enough to conclude that SQLite is more energy efficient under the presented circumstances.
 ---
 
 # Measuring the Energy Consumption of SQL vs SQLite
