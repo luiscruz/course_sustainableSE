@@ -7,37 +7,64 @@ summary: |-
   Summary of our paper
 ---
 
-# Measuring the Energy Consumption of SQL vs SQLite
+# Measuring energy consumption of SQL databases
 
 For our project, we decided to try measuring the difference between the energy consumption between SQL and SQLite. Specifically, we want to know if there is a significant difference between the two when making join operations. Specifically, we want to know which is more efficient for local testing for a single user. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
 
-The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
+The 'Structured Query Language'[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
 
-## Experimental Setup
+The plan for our experiment is to run select queries on these two versions of SQL, namely MySQL and SQLite. Due to both SQL variants making use the same kinds of requests, we can reuse the same operations, purely comparing the server based structure against the file based structure.
 
-For our setup, we make use of Zen Mode in order to minimize superfluous energy usage. This means shutting off all processes not associated with the experiment. In addition, the screen brightness needs to be set as low as possible, bluetooth and wifi need to be turned off, airplane mode needs to be turned on and the battery consumption needs to be set to prioritize perfomance. In addition, to prevent the processor from needing to warm up during our experiment, offsetting the energy consumption results, we first run calculations on the CPU for about 1.5(?) minutes. 
+## Experimental setup
 
-In our experiment, we follow the magic number of repeating the experiment 30 times, pausing the process about a minute between each run in order to prevent tail energy consumption from previous runs from overflowing into the next. For consistency, the charger needs to either be connected or disconnected throughout the entire process. All this is in service to ensuring that as little energy as possible is used by applications that are not relevant to our experiment, and ensuring as little fluctuation in the power usage as possible, in order to most accurately be able to measure the energy consumption of making database requests.
+This project will use a Brazilian ecommerce public dataset of orders made at Olist Store, containing real world commercial data which has been anonymised. "The dataset has information of 100k orders from 2016 to 2018 made at multiple marketplaces in Brazil. Its features allows viewing an order from multiple dimensions: from order status, price, payment and freight performance to customer location, product attributes and finally reviews written by customers."[^dataset]
 
-The plan for our experiment is to run a version of the SQL database and make about 100(?) join requests, since a single operation would likely have too small of an energy profile by itself. This way, the energy profile of the requests should become clearer. After making these requests for the SQL database, we duplicate the experiment with the SQLite database. Due to both SQL variants making use the same kinds of requests, we can reuse the same operations, purely comparing the server based structure against the file based structure. Considering the server running in the background can also use up energy, it is recommended this server is process is ended while the SQLite process is running, by finishing the experiments on the standard SQL variant first.
+From this dataset, we used 5 tables, namely 'customers' (99441 rows), 'geolocation' (1000163 rows), orders (99441 rows), 'products' (32951 rows), 'sellers' (3095 rows).
 
-The dataset we use for our experiment is a brazilian ecommerce record of around 100 thousand orders made to the Olist store[^dataset]. The software we use to measure the energy consumption will be energibridge[^energibridge], a cross-platform energy measurement program.
+For our setup, we made use of 'zen mode' in order to minimise superfluous energy usage, not relevant to the measurements. This meant shutting off all processes not associated with the experiment, connecting only required hardware, turning off notifications, setting screen brightness to a (fixed) minimum, turning off bluetooth and wifi. Moreover, for consistency and accuracy, we disconnected power from the computer during the whole experiment. Finally, to warm up the system (and thus the processor) during our experiment, we first ran five queries to both databases totaling about 100 seconds.
 
-### Hardware/Software Specifications
+The experiment follows the magic number of experiments, repeating 30 times for each database (for a total of 60), with 1 select-all query to each of the 5 tables per experiment.
+
+One experiment, i.e. the queries to all tables, would take approximately 2-3 seconds each. As such, we incorporated 20 seconds (slightly lower than the usual 1 minute) of rest after each test run, which we thought should be enough in order to prevent tail energy consumption from previous runs from overflowing into the next. We considered several factors, namely the fact that the experiments are relatively low resource-intensive and we also open and close connections each time to mitigate caching effects.
+
+Finally, of note is that the order of testing the databases was shuffled in order to try and circumvent any confounding factors as much as possible.
+
+### Specifications
+
+The experiment was conducted at a temperature of 18.5 degrees Celsius.
+
+The hardware used to run the experiments was as follows:
+
+- OS: Windows 11
+- CPU: Intel Core i7-10750H @ 2.60GHz
+- RAM: 16GB
+- Storage: 512GB SSD
+
+As for software, we used:
+
+- Python 3.10.0
+- MySQL 8.0.41 (Windows x86, 32-bit)
+- SQLite 3.49.1 (Windows x64, 64-bit).
+
+To measure energy consumption EnergiBridge[^energibridge], a cross-platform energy measurement program, was used.
 
 ## Results
 
-## Conclusion
+## Discussion
 
-## Future Work
+Not normally distributed, but still signifcant diff
+
+### Future work
+
+A since a single operation would likely have too small of an energy profile by itself, more would have been better
+
+Considering the server running in the background can also use up energy, it is recommended this server is process is ended while the SQLite process is running, by finishing the experiments on the standard SQL variant first.
+
+## Conclusion
 
 ## References
 
 [^sql]: [https://www.iso.org/standard/76583.html](https://www.iso.org/standard/76583.html)
-
 [^sqlite]: [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
-
 [^dataset]: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-
 [^energibridge]: [https://github.com/tdurieux/EnergiBridge](https://github.com/tdurieux/EnergiBridge)
-
