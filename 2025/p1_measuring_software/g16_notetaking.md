@@ -17,6 +17,7 @@ For this study, we selected text editors commonly used by EEMCS students. The se
 - Microsoft Word: A well known text editor that offers a wide range of advanced features for document creation, formatting, and collaboration. Its extensive feature set should cause it to be more energy-intensive than simpler editors.
 - Visual Studio Code: A highly customizable code editor that is popular among developers. It is packed with features such as plugins, debugging tools, and interface customized to write software, making it likely to consume significantly more energy than simpler editors.
 
+
 ### Problem statement
 This report aims to evaluate the energy consumption of several widely-used text editors on Windows machines, with the goal of identifying which software options are most energy-efficient for everyday note-taking. By understanding the energy demands of different text editors, we hope to provide recommendations that will help users, particularly students and professionals, make informed choices about which software to use based on its energy efficiency.
 
@@ -65,8 +66,18 @@ In practice this is impossible, but we can limit the effect of background proces
 - disconnect the computer from the internet since it's not required for our experiment
 
 ## Results
-### Analysis
 
+The results from our experiments are illustrated in the violin plot below:
+
+![image](violinplotfinal.png)
+
+The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.
+
+In order to make our data 
+
+
+
+### Analysis
 ## Discussion
 ### Implication
 ### Further research & limitations
