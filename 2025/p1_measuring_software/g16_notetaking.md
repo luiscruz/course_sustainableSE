@@ -97,11 +97,13 @@ The aforementioned sequence is repeated 30 times for each of the four editors we
 
 The results from our experiments are illustrated in the violin plot below:
 
-![image](violinplotfinal.png)
+![image](images/violinplotfinal.png)
 
-The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.
+The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.This violin plot was created after the rejecting outliers using the z-score. After performing the outlier rejection, we kept all the runs except for one run of the Visual Studio Code. Thus we kept 29 runs for Visual Studio Code and 30 runs for the rest of the editors.
 
-This violin plot was created after the rejecting outliers using the z-score. After performing the outlier rejection, we kept all the runs except for one run of the Visual Studio Code. Thus we kept 29 runs for Visual Studio Code and 30  runs for the rest of the editors.
+We find that Notepad++ performs the best amongst the text editors we have tested with an average energy consumption of 188.87 J. The next best performing text editor is Notepad with an average energy consumption of 178.33J, which is an 5.91% increase from the average energy usage of Notepad++. Furthermore, Microsoft Word has an average energy consumption of 233.62J in our tests, which is an increase of 23.69% compared to Notepad. Lastly, Visual Studio Code consumes the most energy in our test with an average energy consumption of 255.07J. This is an increase 9.18% from Microsoft Word. It is also noteworthy that the most energy intensive editor in our test, Visual Studio Code, consumes 43.03% more energy than our most efficient text editor i.e. Notepad++.
+
+### Analysis
 
 After conducting the Shapiro-Wilks test to test for data normality, we get the following results: 
 
@@ -113,17 +115,16 @@ After conducting the Shapiro-Wilks test to test for data normality, we get the f
 | Visual Studio Code | True            | 0.067   |
 
 
-Finally, we conducted the Welch's t-test to test for significance. The results of the Welch's t-test that we conducted are illustrated in the table below:
+Finally, we conducted the Mann Whitney to test for significance. The results of the Mann Whitney 's that we conducted are illustrated in the table below:
 
 | Test                            | Is it Significant? | P-Value |
 |---------------------------------|--------------------|---------|
-| NotePad vs NotePad++            | ✅                  | 0.0003  |
+| NotePad vs NotePad++            | ✅                  | 0.0000  |
 | NotePad vs Visual Studio Code   | ✅                  | 0.0000  |
 | NotePad vs MS Word              | ✅                  | 0.0000  |
 | NotePad++ vs Visual Studio Code | ✅                  | 0.0000  |
-| Visual Studio Code vs MS Word   | ✅                  | 0.0000  |
+| Visual Studio Code vs MS Word   | ✅                  | 0.0002  |
 
-### Analysis
 ## Discussion
 ### Implication
 From our experiments we can see a clear difference in the energy consumption of the more lightweight text editors (Notepad, Notepad++) compared to the heavier text editors. 
