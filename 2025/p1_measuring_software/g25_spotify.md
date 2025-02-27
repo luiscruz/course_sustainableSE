@@ -70,7 +70,7 @@ Our settings were as follows:
 
  - Brightness 50%
  - Volume 10%
- - Internet connection via Wifi
+ - Internet connection via Wi-Fi
  - Google Chrome was used as the browser
 
 
@@ -161,7 +161,7 @@ In conclusion, users are better off using Spotify's web implementation rather th
 
 ## Future Work
 <!-- TODO: what could maybe be added here: compare more use cases, compare different browsers, compare different settings for audio quality, disable video, ...-->
-The future work would involve looking at covering more use cases of the Spotify app. This would involve testing different features within the app and how they affect the energy consumption both in the native vs web app version. In addition for different video qualities, the energy consumption of the native vs Web App can be compared. This can be extended for different browsers as well. In addition to this comparing different desktop versions of Spotify across different operating systems and architectures can be done as well. Other similar music players such as Apple Music / Youtube Music can be examined to see how well they perform in terms of energy consumption when compared to Spotify. The song selection could also be improved currently a single song is being tested for 2 minutes. The better approach would involve testing for longer periods with songs from multiple genres. The user experience between Spotify's desktop and web app versions can be collected to see if it is worth the extra energy. Spotify might consider removing features that very few users use that might be consuming a lot of energy in the desktop or web app. The network connection also affects the energy consumption so using a web app with wired internet/wifi.
+The future work would involve looking at covering more use cases of the Spotify app. This would involve testing different features within the app and how they affect the energy consumption both in the native vs web app version. In addition for different video qualities, the energy consumption of the native vs Web App can be compared. This can be extended for different browsers as well. In addition to this comparing different desktop versions of Spotify across different operating systems and architectures can be done as well. Other similar music players such as Apple Music / Youtube Music can be examined to see how well they perform in terms of energy consumption when compared to Spotify. The song selection could also be improved currently a single song is being tested for 2 minutes. The better approach would involve testing for longer periods with songs from multiple genres. The user experience between Spotify's desktop and web app versions can be collected to see if it is worth the extra energy. Spotify might consider removing features that very few users use that might be consuming a lot of energy in the desktop or web app. The network connection also affects the energy consumption so using a web app with wired internet/Wi-Fi.
 
 
 [^music_industry_shift]: [An Economic Analysis of the Effects of Streaming on the Music Industry in Response to Criticism from Taylor Swift](https://scholarworks.uni.edu/cgi/viewcontent.cgi?params=/context/mtie/article/1154/&path_info=05_Zehr_music_streaming.pdf)
@@ -174,7 +174,7 @@ The future work would involve looking at covering more use cases of the Spotify 
 
 [^spotify_WebApp_vs_Native]: [Spotify Desktop vs Web Player: Which Spotify Has Better Features?](https://softwarekeep.com/blogs/comparisons/spotify-desktop-vs-spotify-web-player)
 
-[^chrome_v8_engine]: [The V8 JavaScript Engine | JIT, Compilation, and More: What Makes V8 a JavaScript Powerhouse](https://noncodersuccess.medium.com/the-v8-javascript-engine-jit-compilation-and-more-what-makes-v8-a-javascript-powerhouse-da54f310373a)
+[^chrome_v8_engine]: [The V8 JavaScript Engine \| JIT, Compilation, and More: What Makes V8 a JavaScript Powerhouse](https://noncodersuccess.medium.com/the-v8-javascript-engine-jit-compilation-and-more-what-makes-v8-a-javascript-powerhouse-da54f310373a)
 [^spotify_architecture]: [Spotify R&D Engineering - Building the Future of Our Desktop Apps](https://engineering.atspotify.com/2021/04/building-the-future-of-our-desktop-apps/)
 
 [^Android_vs_WebApp]: [R. Horn et al., "Native vs Web Apps: Comparing the Energy Consumption and Performance of Android Apps and their Web Counterparts," 2023 IEEE/ACM 10th International Conference on Mobile Software Engineering and Systems (MOBILESoft), Melbourne, Australia, 2023, pp. 44-54](https://www.ivanomalavolta.com/files/papers/MOBILESoft_2023.pdf)
