@@ -14,16 +14,16 @@ Today, streaming generates over 67% of global music revenues [^global_music_repo
 In recent years, web-based streaming has become more and more popular as it eliminates the need for users to install additional applications on their devices. While web applications are often favoured for their accessibility and convenience, desktop applications often offer more features to the user. In this article, we compare the energy consumption of Spotify's web and desktop applications. By analysing these differences, we aim to provide valuable insights to help users make better decisions about their streaming habits and to help developers choose between developing native and web apps.
 
 # Methodology
-This chapter describes the methodology used to compare the energy consumption of Spotify's web and desktop applications. It covers the design of the experiment and how the experiment itself was conducted, including the automation and setup of the experiment.
+This chapter describes the methodology used to compare the energy consumption of Spotify's web and native applications. It covers the design of the experiment and how the experiment itself was conducted, including the automation and setup of the experiment.
 
 ## Design of the experiment
-The first thing to do before conducting the experiment is to design it. This involves identifying a specific use case for the application, in our case Spotify's web and desktop application. It is also important to design the experiment in such a way that it mimics actual user behaviour and is realistic.
+The first thing to do before conducting the experiment is to design it. This involves identifying a specific use case for the application, in our case Spotify's web and native application. It is also important to design the experiment in such a way that it mimics actual user behaviour and is realistic.
 
-First, we designed and conducted an experiment with both applications (desktop and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantage of this type of experiment was that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results  from initial setup without closing and opening (web)app](#results-initial-setup-without-closing-and-opening-webapp).
+First, we designed and conducted an experiment with both applications (native and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantage of this type of experiment was that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results  from initial setup without closing and opening (web)app](#results-initial-setup-without-closing-and-opening-webapp).
 
 The aim in designing the revised experiment was to minimise any bias from other applications and to focus only on the application being run. In addition, we still wanted to play more than one song to mimic realistic user behaviour, but we also wanted the data to be normally distributed across the experiment. So we had to design the individual runs to be similar, but with a certain degree of randomness built in.
 
-For the final experiment, we decided to have 30 runs per application. The runs themselves are randomly mixed. For a single run, we first open the application (i.e. web or desktop). We then wait a few seconds for the application to fully load so that the opening has no effect on the energy measurement. We did not want to include the start of the application in this measurement as we only wanted to focus on the use case of playing music. Next, the energy measurement is started and four songs are played in random order. Each song is played for 20 seconds. Including the delays for starting and searching for the songs, a run takes about 2 minutes. After the run, the application is closed and we pause for 1 minute. So the whole experiment takes about 3 hours.
+For the final experiment, we decided to have 30 runs per application. The runs themselves are randomly mixed. For a single run, we first open the application (i.e. web or native). We then wait a few seconds for the application to fully load so that the opening has no effect on the energy measurement. We did not want to include the start of the application in this measurement as we only wanted to focus on the use case of playing music. Next, the energy measurement is started and four songs are played in random order. Each song is played for 20 seconds. Including the delays for starting and searching for the songs, a run takes about 2 minutes. After the run, the application is closed and we pause for 1 minute. So the whole experiment takes about 3 hours.
 
 
 ## Experiment setup
@@ -45,7 +45,7 @@ In general, testing the power consumption of applications is difficult because m
 ## Experiment execution
 Since it would be impossible to manually run 60 experiments without introducing bias from user input, we automated the testing process using a _Python_ script. The Spotify apps are mostly controlled via keyboard shortcuts using the _pyautogui_ library. The energy measurements are done using [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is a cross-platform energy measurement utility.[^energi_bridge]
 
-The script starts with an initialisation and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To warm up, a simple Fibonacci sequence is computed for three minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
+The script starts with an initialisation and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To warm up, a simple Fibonacci sequence is computed for five minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
 
 ## Replication
 To replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as instructions on how to set up the experiment.[^sse_github_repo]
@@ -64,7 +64,7 @@ The experiments were conducted on a DELL XPS 15 9560 with 16GB RAM and Windows 1
 
 ### Hardware Settings
 To have consistent experiment results, our test script automatically set the brightness and the volume of the system to the level specified in the `.env` file.
-Our hardware settings were as follows:
+Our settings were as follows:
 
  - Brightness 50%
  - Volume 10%
