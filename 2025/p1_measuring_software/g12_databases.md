@@ -86,14 +86,18 @@ The mean energy consumption for MySQL and SQLite was 75.38 and 38.09, respective
 
 To further quantify the effect size, we computed Cohen's d, which measures the standardized difference between the two means. The resulting value of 31.77 again indicates a large effect size. These findings will be discussed in further detail in the next section.
 
+Besides the difference in energy consumption we also measure the duration of the experiments. We observe an mean runtime of 5.00 seconds for the SQL databse and a mean runtime of 3.20 seconds for the SQLite database. This mean difference effect size of 1.80 seconds (percentage reduction of 56.25%) also indicates a relevant difference in time.
+
 ## Discussion
 
-We see that the energy usage of the queries to the SQL database is significantly larger than for the SQLite database. 
-- the goal: provide insight for developers in testing
-- smaller queries and one user -> SQLite
-- SQLite is also easier in use -> also good for testing
-- but besides easier -> also more energy efficient
-- for testing instances use SQLite
+<!-- - the goal: provide insight for developers in testing
+- smaller queries and one user -> SQLite -->
+We see that the energy usage of the queries to the SQL database is significantly larger than for the SQLite database. With this experiment our aim was to provide insights for developers in the testing phase of a database. These results are based on smaller databases with queries that are not overly complex to follow the general usecase when testing databases. These results are also aimed at a single user making requests and should not be translated to large databases with many users. Under these conditions we show that based on energy efficiency the SQLite database is superior over the SQL database.
+
+<!-- - SQLite is also easier in use -> also good for testing
+- but besides easier -> also more energy efficient and faster
+- for testing instances use SQLite -->
+The advantages SQLite has in usability over an SQL database already make it favorable to use during the testing phase of a system. Hearby we also show that SQLite is favorable in time and energy efficiency. Therefore, our advise for developers is to opt for SQLite in the development stages of the database to improve the developers time efficiency and reduce the impact of energy usage during development.
 
 ### Future work
 
