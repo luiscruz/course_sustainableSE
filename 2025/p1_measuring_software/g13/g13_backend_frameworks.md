@@ -73,4 +73,7 @@ The experiment is performed by running the automation bash script on a Linux lap
 
 # Conclusions
 
+# Replication Package
+If you would like to run the experiments and view the raw data used in the analysis, check out our [repository](ADD LINK HERE).
+
 
