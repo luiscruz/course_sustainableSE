@@ -4,7 +4,7 @@ title: "Comparing Energy Consumption of Note-Taking Applications"
 image: 
 date: 28/02/2024
 summary: |-
- TODO SUMMARY
+In this experiment we compared the energy efficiency of different text-editing applications to evaluate which common text-editor is most efficient. We have found that notepad++ is significantly more efficient than alternatives like word and vs-code and recommend taking short notes in notepad++ when possible to reduce energy consumption.
 ---
 
 # Comparing Energy Consumption of Note-Taking Applications
