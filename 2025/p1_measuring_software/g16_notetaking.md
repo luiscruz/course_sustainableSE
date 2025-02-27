@@ -26,34 +26,40 @@ In this experiment we test the energy consumptions of various text editors while
 To perform this experiment we set up an automated test script which starts up a text editor, types 50 characters while simulating human behavior, saves the file, and then proceeds to close the text editor. 
 The energy consumption measurment begins after we launch the text editor and ends after we close it.
 
-### Hardware
+### Setup
+
+#### Hardware
 We run the experiment on a single computer witht he following specifications:
 
 1. Processor: AMD Ryzen 7 5800H 
 2. Graphics Card: Nvidia RTX 3070
 3. RAM: 16GB
 4. Storage: 1TB SSD
-5. Operating System: Windows 11
+
+#### Software
+The following text editors will be tested:
+1. VS Code
+2. Notepad
+3. Notepad++
+4. Word
+
+We have chosen these editors as they are widely available and very commonly used by students.
+Each editor is installed with default settings and are running on Windows 11.
 
 ### Tooling
-We use EnergiBridge to monitor the energy consumption during this experiment.
-Additionally, AutoHotkey is used to simulate typing behavior.
-
-### Text editors
-We decided to test the following text editors as they are popular options when a quick document is needed.
-VS Code
-Notepad
-Notepad++
-Word
+EnergiBridge will be used to measure the energy consumption of the computer during the experiment. In addition, we will use Autohotkey scripts to simulate launch and close the editors as well as to simulate keystrokes.
 
 ### Controlled Variables
-We warm up the CPU by running a fibonacci sequence for 5 minutes. 
-After every measurement we wait 1 minute to allow the CPU to cool down.
-We ran the experiment 30 times per text editor to account for variability.
-The order of measurements was shuffled to reduce systematic impact between measurements.
 
-### Setup
-Before running the experiment we needed to ensure that the computer was in "Zen mode". This means that the only software that is running on our computer is the software whose energy consumption we want to measure.
+CPU temperature must be similar for all measurments to avoid skewing the results. This is ensured by letting the CPU cool down for 1 minute between measurments.
+The experiment will be run 30 times per editor to account for variability in measurments.
+The order of measurements will be random to reduce systematic impact between measurmenets.
+There will be no interaction with the computer while running the computer to ensure
+
+### Experiment
+
+#### Setup
+Before running the experiment we need to ensure that the computer is in "Zen mode". This means that the only software that is running on our computer is the software whose energy consumption we want to measure.
 In practice this is impossible, but we can limit the effect of background processes by ensuring the following:
 
 - all applications are closed;
@@ -64,6 +70,28 @@ In practice this is impossible, but we can limit the effect of background proces
 - turn off notifications;
 - remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
 - disconnect the computer from the internet since it's not required for our experiment
+
+#### Warmup 
+
+Before beginning the experiment we perform a warmup procedure. This procedure is used to warmup the CPU to ensure fairness throughout the experiment as starting with a cool CPU which later warms up can skew the results.
+This is because having heat increases the resistance of an electrical circuit meaning more energy is required for the same amount of work. Therefore beginning with an already hot CPU helps prevent this.
+
+Our warmup procedure consists of running multiple fibonacci sequences for 5 minutes on all CPU cores.
+
+
+#### Running the experiement
+
+After ensuring the computer is in "Zen mode" and that our CPU is warm we can begin running our experiment. The experiment performs the following actions:
+
+1. Launches an editor
+2. Begins measuring energy consumption using Energi Bridge
+3. Types 50 characters
+4. Closes the editor
+5. Stops measuring energy consumption
+6. Wait for 1 minute
+7. Repeat
+
+The aforementioned sequence is repeated 30 times for each of the four editors we selected making a total of 120 measuremenets.
 
 ## Results
 
