@@ -83,13 +83,17 @@ Energy measurement was done by using the tool [EnergiBridge](https://github.com/
 
 ### Dataset
 
-The [MNIST dataset](https://www.kaggle.com/datasets/hojjatk/mnist-dataset) was used for training and evaluating the CNN described earlier. It has to be mentioned that the datatype transformation pipeline differs per framework, in our implementations the execution flow is as follows:
+The [MNIST dataset](https://www.kaggle.com/datasets/hojjatk/mnist-dataset) was used for training and
+ evaluating the CNN described earlier. 
+ 
+ <!-- It has to be mentioned that the datatype transformation 
+ pipeline differs per framework, in our implementations the execution flow is as follows:
 
 - Keras: PyTorch tensor -> NumPy array
 - JAX: PyTorch tensor -> NumPy array -> JAX array
-- PyTorch: PyTorch tensor
+- PyTorch: PyTorch tensor -->
 
-We assume that the energy usage in the actual training of the CNN is far more significant than the energy usage in the datatype transformation, and thus consider this a negligible difference for the energy measurement results. However, for larger datasets a similar datatype transformation pipeline has to be used to ensure the reliability of the experiments.
+<!-- We assume that the energy usage in the actual training of the CNN is far more significant than the energy usage in the datatype transformation, and thus consider this a negligible difference for the energy measurement results. However, for larger datasets a similar datatype transformation pipeline has to be used to ensure the reliability of the experiments. -->
 
 ### Evaluation
 
@@ -107,23 +111,47 @@ the energy measurements for each framework which will be used for further analys
 
 ### Time
 
-The violin plot below shows for each framework the distribution of the obtained execution times in seconds. We see that TensorFlow (Keras) has the fastest execution time on average followed by PyTorch and JAX since the distributions do not overlap. We can also observe that Keras and JAX have similar widths of their distribution, while PyTorch has a wider distribution indicating more variability in its runtimes.
+The violin plot below shows for each framework the distribution of the obtained execution times in seconds. 
+We see that TensorFlow (Keras) has the fastest execution time on average followed by PyTorch and JAX since 
+the distributions do not overlap. We can also observe that Keras and PyTorch have similar distribution shapes, 
+while JAX has a wider distribution indicating more variability in its runtimes. Also, JAX is roughly 3 times as slow on average than PyTorch.
 
 ![Violin plot of time used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/time_plot.png)
 
 ### Energy
 
-The violin plot below shows the distribution of the energy consumed by the different frameworks. We observe that Keras has the lowest energy consumption and the smallest width in distribution compared to PyTorch and and JAX. This indicates that Keras is the most efficient framework and has the least variability in the energy consumed.
+The violin plot below shows the distribution of the energy consumed by the different frameworks. 
+We observe that Keras has the lowest energy consumption and the smallest width in distribution, closely followed by PyTorch and then JAX.
+This indicates that Keras is the most efficient framework and has the least variability 
+in the energy consumed which makes it the most consistent of these three.
 
 ![Violin plot of energy used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/energy_plot.png)
 
 ### Power
 
-The violin plot below shows the distribution of the average power used by each framework over the span of its execution time. It should come as no surprise that Keras performs best here as well since we previously saw it performed the fastest and using the least energy. Here, it also has the narrowest distribution followed by PyTorch and then JAX.
+The violin plot below shows the distribution of the average power used by each framework over the span of its
+ execution time. On average, Keras has the highest power consumption, followed by PyTorch and then JAX. 
+ Also, Keras has to largest distribution width, followed by PyTorch and then JAX.
 
 ![Violin plot of power used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/power_plot.png)
 
-To summarize, TensorFlow (Keras) has the overall lowest execution time and least amount of energy consumed. Then PyTorch follows on both metrics and JAX comes in last place on both metrics.
+
+### Energy-Delay Product
+The Energy-Delay Product is given by the following formula
+$$ EDP = \Delta P \times t^2 $$
+
+It punishes implementations which have low average power, but which take long to complete by squaring the time taken to complete. 
+JAX has both of these properties as seen in previous plots. Therfore it should be no surprise that JAX scores
+worst on the EDP metric. Keras performs best, followed by PyTorch.
+
+![Violin plot of power used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/edp_plot.png)
+
+
+
+To summarize, TensorFlow (Keras) has the overall lowest execution time and least amount of energy consumed. 
+Then PyTorch follows on both metrics and JAX comes in last place on both metrics. 
+For average power, JAX performed best, followed by PyTorch and then Keras. 
+Keras scored best on the EDP metrics, followed by PyTorch and then JAX.
 
 <!-- Show some violin box plots for each framework here...
 Some p-values etc.
@@ -134,80 +162,99 @@ Effect size analysis -->
 
 ### Statistical significance
 
-This section answers the question if the differences in performance are statistically significant. First, we assess the distribution of the data using the Shapiro-Wilk test, which tests for normality:
+This section answers the question if the differences in performance are statistically significant. 
+First, we assess the distribution of the data using the Shapiro-Wilk test, which tests for normality:
 
-- For the Time data, the Shapiro-Wilk test produced p-values of **0.00148** (Keras), **1.07e-05** (PyTorch), and **1.41e-06** (JAX), all of which are below 0.05. This indicates that the execution times are not normally distributed.
-- For the Energy data, the Shapiro-Wilk test yielded p-values of **1.53e-06** (Keras), **1.04e-05** (PyTorch), and **2.67e-06** (JAX), also below 0.05, indicating that the energy consumption data is not normally distributed.
-- For the Power data, the Shapiro-Wilk test produced p-values of **0.354** (Keras), **0.881** (PyTorch), and **2.26e-09** (JAX). Since the p-values for Keras and PyTorch are above 0.05, we cannot reject the hypothesis that power data follows a normal distribution, but for JAX, the low p-value suggests it is not normally distributed.
+| Metric    | Keras  | PyTorch | JAX   |
+|-----------|--------|---------|-------|
+| **Time**  | 0.0000 | 0.0000  | 0.0045 |
+| **Energy** | 0.0000 | 0.0000  | 0.0066 |
+| **Power**  | 0.0000 | 0.0001  | 0.0003 |
+| **EDP**    | 0.0000 | 0.0000  | 0.0051 |
 
-Given these results, we apply different statistical tests:
 
-- For time and energy data, which are not normally distributed, we use the Mann-Whitney U test.
-- For power data, since it follows a normal distribution for Keras and PyTorch, we apply the t-test for these comparisons. However, since JAX's power data is not normally distributed, we use the Mann-Whitney U test when comparing it with other frameworks.
+Each cell is the p-value of the Shapiro-Wilk test for certain combination of metric and framework.
+Since all p-values are significantly below 0.05, we need to reject the hypothesis that this data follows a normal distribution.
+Therefore, the Mann-Whitney U test will be used to compare the distributions.
+
 
 The table below presents the p-values for the respective statistical tests comparing the distributions of each framework across time, energy, and power metrics.
 
 | Metric | Keras vs PyTorch | Keras vs JAX | PyTorch vs JAX |
-| ------ | ---------------- | ------------ | -------------- |
-| Time   | 3.11e-13         | 3.11e-13     | 1.42e-13       |
-| Energy | 3.11e-13         | 3.11e-13     | 1.54e-13       |
-| Power  | 8.09e-21         | 5.38e-12     | 1.68e-04       |
+|--------|-----------------|--------------|----------------|
+| Time   | 1.43e-14        | 1.10e-13     | 1.09e-13       |
+| Energy | 1.44e-14        | 1.10e-13     | 1.10e-13       |
+| Power  | 3.90e-05        | 1.10e-13     | 1.10e-13       |
+| EDP    | 1.44e-14        | 1.10e-13     | 1.10e-13       |
 
-As can be observed, each p-value is significantly below 0.05, confirming that the observed differences between frameworks in time, energy, and power consumption are statistically significant.
+
+As can be observed, each p-value is significantly below 0.05, 
+confirming that the observed differences between frameworks in time, energy, power consumption
+and EPD are statistically significant.
 
 ### Practical significance
 
 Machine learning applications benefit from a vast amount of data processing and many training iterations, this process is notorious for consuming large amounts of energy. For example, it is estimated that it took about 10 gigawatt-hour (GWh) of energy consumption to train ChatGPT-3, which is equivalent to the yearly electricity consumption of a 1000 U.S. households according to the [University of Washington](https://www.washington.edu/news/2023/07/27/how-much-energy-does-chatgpt-use/). ChatGPT-3 received hundreds of millions of queries per day which used up around 1 GWh which equals the daily energy consumption of about 33,000 US households. Therefore, any slight difference in energy consumption of ML frameworks can already have a huge impact.
 
-The tables below show the percentage increase for the different metrics time, energy and power. This highlights the significant relative differences between frameworks. For example, in table 1 it can be seen that PyTorch needs about 20% more time to complete the same task and consumes 22.34% more energy. If we apply this to the ChatGPT-3 example it would mean that you could either choose to use PyTorch or you could choose to use Keras and give 223 US households a year of free electricity. This highlights how big of a difference the choice in ML framework can make.
+The tables below show the percentage increase for the different metrics time, 
+energy, power and EPD. This highlights the significant relative differences between
+ frameworks. For example, in table 1 it can be seen that PyTorch needs about 47.11% more
+  time to complete the same task and consumes 41.07% more energy. If we apply this to
+   a large machine learing task like the ChatGPT-3 example, it would mean that you 
+   could either choose to use PyTorch 
+   or you could choose to use Keras and give about 410 US households free 
+   electricity for a year. This highlights how big of a difference the choice in ML framework 
+   can make.
 
 ### Table 1: Keras vs. Torch
 
 | Metric     | Keras (Median) | Torch (Median) | Percentage Increase/Decrease |
-| ---------- | -------------- | -------------- | ---------------------------- |
-| **Time**   | 122.4320 s     | 146.8430 s     | **+20.00%**                  |
-| **Energy** | 6835.5719 J    | 8372.7679 J    | **+22.34%**                  |
-| **Power**  | 55.6824 W      | 57.0860 W      | **+2.54%**                   |
+|------------|---------------|---------------|----------------------------|
+| **Time**   | 34.8795 s     | 51.2845 s     | **+47.03%**                |
+| **Energy** | 2244.1858 J   | 3165.7848 J   | **+41.07%**                |
+| **Power**  | 64.1953 W     | 61.6155 W     | **-4.02%**                 |
+| **EDP**    | 78221.6761    | 161881.9898   | **+106.95%**               |
 
 ---
 
 ### Table 2: Torch vs. JAX
 
-| Metric     | Torch (Median) | JAX (Median) | Percentage Increase/Decrease |
-| ---------- | -------------- | ------------ | ---------------------------- |
-| **Time**   | 146.8430 s     | 169.0740 s   | **+15.14%**                  |
-| **Energy** | 8372.7679 J    | 9733.5067 J  | **+16.26%**                  |
-| **Power**  | 57.0860 W      | 57.6347 W    | **+0.96%**                   |
+| Metric     | Torch (Median) | JAX (Median)  | Percentage Increase/Decrease |
+|------------|---------------|--------------|----------------------------|
+| **Time**   | 51.2845 s     | 188.3840 s   | **+267.33%**               |
+| **Energy** | 3165.7848 J   | 10605.8137 J | **+235.01%**               |
+| **Power**  | 61.6155 W     | 56.2227 W    | **-8.75%**                 |
+| **EDP**    | 161881.9898   | 1976934.6552 | **+1121.22%**              |
+
 
 ---
 
 ### Table 3: Keras vs. JAX
 
-| Metric     | Keras (Median) | JAX (Median) | Percentage Increase/Decrease |
-| ---------- | -------------- | ------------ | ---------------------------- |
-| **Time**   | 122.4320 s     | 169.0740 s   | **+38.06%**                  |
-| **Energy** | 6835.5719 J    | 9733.5067 J  | **+42.37%**                  |
-| **Power**  | 55.6824 W      | 57.6347 W    | **+3.51%**                   |
+| Metric     | Keras (Median) | JAX (Median)  | Percentage Increase/Decrease |
+|------------|---------------|--------------|----------------------------|
+| **Time**   | 34.8795 s     | 188.3840 s   | **+440.1%**               |
+| **Energy** | 2244.1858 J   | 10605.8137 J | **+372.59%**               |
+| **Power**  | 64.1953 W     | 56.2227 W    | **-12.42%**                |
+| **EDP**    | 78221.6761    | 1976934.6552 | **+2427.35%**              |
+
 
 ## Discussion
 
-It should come as no surprise that TensorFlow (Keras) is the most efficient framework, since its design philosophy
-is to prioritize performance and scalability for large-scale models. As shown in [Table 1](#table-1-keras-vs-torch),
-Keras completes the task in 122.432 seconds, whereas PyTorch takes 146.843 seconds, a **20% increase** in execution time.
-Similarly, energy consumption for PyTorch is 8372.7679 J, which is **22.34% higher** than Keras. The power consumption difference is marginal at **2.54%**, indicating that the increased
-energy usage is primarily due to the longer execution time rather than significantly higher power draw.
+It should come as no surprise that TensorFlow (Keras) is the most efficient framework, since its design philosophy is to prioritize performance and scalability for large-scale models. As shown in [Table 1](#table-1-keras-vs-torch), Keras completes the task in 34.8795 seconds, whereas PyTorch takes 51.2845 seconds, a **47.03% increase** in execution time. Similarly, energy consumption for PyTorch is 3165.7848 J, which is **41.07% higher** than Keras. The power consumption difference is marginal at **-4.02%**, indicating that the increased energy usage is primarily due to the longer execution time rather than significantly higher power draw.
 
-PyTorch is more geared towards small-scale models and prioritizes simplicity and adaptability [^1].
-This aligns with the results in [Table 2](#table-2-torch-vs-jax), where PyTorch outperforms JAX in both time and energy consumption.
-PyTorch completes the task in 146.843 seconds, while JAX takes 169.074 seconds, marking a **15.14% increase**.
-The energy consumption follows a similar pattern, with JAX consuming 9733.5067 J, a **16.26% increase** compared to PyTorch.
+PyTorch is more geared towards small-scale models and prioritizes simplicity and adaptability according to [Simplilearn]. This aligns with the results in [Table 2](#table-2-torch-vs-jax), where PyTorch outperforms JAX in both time and energy consumption. PyTorch completes the task in 51.2845 seconds, while JAX takes 188.3840 seconds, marking a **267.33% increase**. The energy consumption follows a similar pattern, with JAX consuming 10605.8137 J, a **235.01% increase** compared to PyTorch.
 
-The JAX framework coming in last might be because experiments were executed on the CPU, and a key feature of JAX is that it uses Accelerated Linear Algebra (XLA) and just-in-time (JIT) compilation to achieve better performance on GPUs and TPUs [^2].
-This is further emphasized in [Table 3](#table-3-keras-vs-jax), where JAX performs significantly worse than Keras. JAX takes 169.074 seconds, which is **38.06% longer** than Keras, and consumes 9733.5067 J, a **42.37% increase** in energy consumption.
-However, the JAX framework might not have come to full fruition in this experiment since only CPU performance is considered here.
+The JAX framework coming in last might be because experiments were executed on the CPU, and a key 
+feature of JAX is that it uses Accelerated Linear Algebra (XLA) and just-in-time (JIT) compilation to 
+achieve better performance on GPUs and TPUs according to their [Github]. This is further emphasized in 
+[Table 3](#table-3-keras-vs-jax), where JAX performs significantly worse than Keras. 
+JAX takes 188.3840 seconds, which is **440.1% longer** than Keras, and consumes 10605.8137 J,
+ a **372.59% increase** in energy consumption. However, the JAX framework might not have come to full 
+ fruition in this experiment since only CPU performance is considered here.
 
-[^1]: https://www.simplilearn.com/keras-vs-tensorflow-vs-pytorch-article
-[^2]: https://github.com/jax-ml/jax
+[Simplilearn]: https://www.simplilearn.com/keras-vs-tensorflow-vs-pytorch-article
+[Github]: https://github.com/jax-ml/jax
 
 ## Limitations & future work
 
@@ -226,187 +273,190 @@ to the test.
 
 ## Conclusion
 
-In this report, we conducted an experiment to assess the energy efficiency of the popular ML
-frameworks TensorFlow (keras), PyTorch and JAX. We found that TensorFlow (keras) had the fastest execution time
-and consumed the least amount of energy when tasked with training a convolutional neural network
-for 3 epochs and evaluating its accuracy. The next fastest and most energy efficient framework was PyTorch, but it already
-took 20% more time and consumed 22.34% more energy compared to TensorFlow (keras). The JAX framework performed worst,
-it took 15.14% more time and consumed 16.26% more energy compared to the PyTorch framework (which already came in second).
-Given the large scale at which ML frameworks are usually deployed, these relative differences in energy consumption can
-lead to monumental differences in practice.
+In this report, we conducted an experiment to assess the energy efficiency of the popular ML 
+frameworks TensorFlow (Keras), PyTorch, and JAX. We found that TensorFlow (Keras) had the fastest 
+execution time and consumed the least amount of energy when tasked with training a convolutional 
+neural network for 1 epoch and evaluating its accuracy. The next fastest and most energy-efficient
+ framework was PyTorch, but it already took 47.03% more time and consumed 41.07% more energy compared
+  to TensorFlow (Keras). The JAX framework performed worst, taking 267.33% more time and consuming
+   235.01% more energy compared to the PyTorch framework (which already came in second). 
+   Given the large scale at which ML frameworks are usually deployed, these relative differences 
+   in energy consumption can lead to monumental differences in practice.
 
 ## Appendix - Raw data
 
 ```
-Results for keras
-    Computed Metrics:
-        Time metrics:
-           - Shapiro Wilk P-Value: 0.0014803026570007205
-           - Mean: 123.002
-           - Median: 122.432
-           - Variance: 1.788742176470587
-           - Standard Deviation: 1.3374386626947
-           - Minimum Value: 120.963
-           - Maximum Value: 127.216
-        Energy metrics:
-           - Shapiro Wilk P-Value: 1.5384083553726668e-06
-           - Mean: 6845.649355207171
-           - Median: 6835.5718994140625
-           - Variance: 3710.765857599451
-           - Standard Deviation: 60.916055827667066
-           - Minimum Value: 6775.3468170166
-           - Maximum Value: 7123.433639526367
-        Power metrics:
-           - Shapiro Wilk P-Value: 0.3542410135269165
-           - Mean: 55.65677862440097
-           - Median: 55.68238838296795
-           - Variance: 0.10700652647108559
-           - Standard Deviation: 0.3271185205259488
-           - Minimum Value: 55.0263478861252
-           - Maximum Value: 56.31315321942131
-        EDP metrics:
-           - Shapiro Wilk P-Value: 2.8950482374057174e-05
-           - Mean: 842095.0584529366
-           - Median: 836058.799017334
-           - Variance: 259804798.2829092
-           - Standard Deviation: 16118.461411775916
-           - Minimum Value: 823976.7254043274
-           - Maximum Value: 906214.7338859863
+ Results for keras
 
-Results for torch
-    Computed Metrics:
-        Time metrics:
-           - Shapiro Wilk P-Value: 1.067574521584902e-05
-           - Mean: 148.58786486486488
-           - Median: 146.843
-           - Variance: 12.362340897897887
-           - Standard Deviation: 3.5160120730591764
-           - Minimum Value: 145.029
-           - Maximum Value: 157.444
-        Energy metrics:
-           - Shapiro Wilk P-Value: 1.0490580280020367e-05
-           - Mean: 8474.958240405933
-           - Median: 8372.767913818361
-           - Variance: 57020.00269249967
-           - Standard Deviation: 238.78861508141395
-           - Minimum Value: 8203.943466186527
-           - Maximum Value: 9077.440338134766
-        Power metrics:
-           - Shapiro Wilk P-Value: 0.881283164024353
-           - Mean: 57.03249311925684
-           - Median: 57.08597323577703
-           - Variance: 0.2483396088482403
-           - Standard Deviation: 0.49833684275622275
-           - Minimum Value: 55.64636414696145
-           - Maximum Value: 58.08655018725248
-        EDP metrics:
-           - Shapiro Wilk P-Value: 7.465992553079559e-07
-           - Mean: 1260058.7796568878
-           - Median: 1225637.7454837947
-           - Variance: 4306742280.254107
-           - Standard Deviation: 65625.77451165134
-           - Minimum Value: 1208924.9736053469
-           - Maximum Value: 1429188.5165972898
+Computed Metrics:
+Time metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 36.2505
+   - Median: 34.8795
+   - Variance: 4.5214
+   - Standard Deviation: 2.1264
+   - Minimum Value: 34.4310
+   - Maximum Value: 39.6740
+Energy metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 2280.8008
+   - Median: 2244.1858
+   - Variance: 3447.2364
+   - Standard Deviation: 58.7132
+   - Minimum Value: 2228.1145
+   - Maximum Value: 2391.7502
+Power metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 63.0329
+   - Median: 64.1953
+   - Variance: 4.1178
+   - Standard Deviation: 2.0292
+   - Minimum Value: 59.5871
+   - Maximum Value: 65.0524
+EDP metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 82800.4633
+   - Median: 78221.6761
+   - Variance: 49644450.0919
+   - Standard Deviation: 7045.8818
+   - Minimum Value: 76818.9476
+   - Maximum Value: 94890.2980
 
-Results for jaxx
-    Computed Metrics:
-        Time metrics:
-           - Shapiro Wilk P-Value: 1.4070428733248264e-06
-           - Mean: 169.12454054054055
-           - Median: 169.074
-           - Variance: 2.4534184774774763
-           - Standard Deviation: 1.5663391961760633
-           - Minimum Value: 166.871
-           - Maximum Value: 176.49
-        Energy metrics:
-           - Shapiro Wilk P-Value: 2.6666066332836635e-06
-           - Mean: 9705.295853898331
-           - Median: 9733.506744384766
-           - Variance: 22396.322025863778
-           - Standard Deviation: 149.65400771734707
-           - Minimum Value: 9015.234390258789
-           - Maximum Value: 9889.344192504883
-        Power metrics:
-           - Shapiro Wilk P-Value: 2.2558599432898063e-09
-           - Mean: 57.39366244169991
-           - Median: 57.63466348940825
-           - Variance: 1.4035393622125207
-           - Standard Deviation: 1.1847106660330702
-           - Minimum Value: 51.08070933343979
-           - Maximum Value: 58.527327191178756
-        EDP metrics:
-           - Shapiro Wilk P-Value: 0.9578214883804321
-           - Mean: 1641298.258073566
-           - Median: 1639171.4396193086
-           - Variance: 530707755.768724
-           - Standard Deviation: 23037.09521117461
-           - Minimum Value: 1591098.7175367738
-           - Maximum Value: 1692066.7913375853
+ Results for torch
 
+Computed Metrics:
+Time metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 53.0967
+   - Median: 51.2845
+   - Variance: 10.7275
+   - Standard Deviation: 3.2753
+   - Minimum Value: 50.2790
+   - Maximum Value: 59.4990
+Energy metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 3243.1234
+   - Median: 3165.7848
+   - Variance: 19852.0582
+   - Standard Deviation: 140.8973
+   - Minimum Value: 3113.2096
+   - Maximum Value: 3523.2371
+Power metrics:
+   - Shapiro Wilk P-Value: 0.0001
+   - Mean: 61.1454
+   - Median: 61.6155
+   - Variance: 1.3523
+   - Standard Deviation: 1.1629
+   - Minimum Value: 58.9696
+   - Maximum Value: 62.9612
+EDP metrics:
+   - Shapiro Wilk P-Value: 0.0000
+   - Mean: 172644.3010
+   - Median: 161881.9898
+   - Variance: 341157133.9347
+   - Standard Deviation: 18470.4395
+   - Minimum Value: 157161.0491
+   - Maximum Value: 209212.5008
+
+ Results for jax
+
+Computed Metrics:
+Time metrics:
+   - Shapiro Wilk P-Value: 0.0045
+   - Mean: 189.3094
+   - Median: 188.3840
+   - Variance: 24.6799
+   - Standard Deviation: 4.9679
+   - Minimum Value: 182.8080
+   - Maximum Value: 198.9250
+Energy metrics:
+   - Shapiro Wilk P-Value: 0.0066
+   - Mean: 10646.4496
+   - Median: 10605.8137
+   - Variance: 100134.6492
+   - Standard Deviation: 316.4406
+   - Minimum Value: 10213.5692
+   - Maximum Value: 11224.4220
+Power metrics:
+   - Shapiro Wilk P-Value: 0.0003
+   - Mean: 56.2342
+   - Median: 56.2227
+   - Variance: 0.1376
+   - Standard Deviation: 0.3709
+   - Minimum Value: 55.7063
+   - Maximum Value: 57.6958
+EDP metrics:
+   - Shapiro Wilk P-Value: 0.0051
+   - Mean: 2016970.2339
+   - Median: 1976934.6552
+   - Variance: 12721490671.5248
+   - Standard Deviation: 112789.5858
+   - Minimum Value: 1867122.1636
+   - Maximum Value: 2232818.1397
 Comparison between libraries keras and torch
-    Statistical comparsion for Time
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 3.109392573549192e-13
-        Mean difference: -25.585864864864888
-        Median difference: -24.410999999999987
-    Statistical comparsion for Power
-        Test Used: Independent T-test
-        t-test p-value: 8.094416047488892e-21
-        Mean difference: -1.3757144948558704
-        Median difference: -1.4035848528090824
-    Statistical comparsion for Energy
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 3.110745274579672e-13
-        Mean difference: -1629.3088851987623
-        Median difference: -1537.1960144042987
-    Statistical comparsion for EDP
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 3.110745274579672e-13
-        Mean difference: -417963.72120395117
-        Median difference: -389578.9464664607
+Statistical comparsion for Time
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.431043465585207e-14
+    Mean difference: -16.84615
+    Median difference: -16.404999999999994
+Statistical comparsion for Power
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 3.895012892950288e-05
+    Mean difference: 1.8874427142707404
+    Median difference: 2.579774947563898
+Statistical comparsion for Energy
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.435085306393668e-14
+    Mean difference: -962.3226577758796
+    Median difference: -921.5989837646484
+Statistical comparsion for EDP
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.435085306393668e-14
+    Mean difference: -89843.83762622911
+    Median difference: -83660.31374945049
 ---
-Comparison between libraries keras and jaxx
-    Statistical comparsion for Time
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 3.105337740391047e-13
-        Mean difference: -46.122540540540555
-        Median difference: -46.64200000000001
-    Statistical comparsion for Power
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 5.379590301036822e-12
-        Mean difference: -1.7368838172989385
-        Median difference: -1.9522751064402968
-    Statistical comparsion for Energy
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 3.110745274579672e-13
-        Mean difference: -2859.6464986911606
-        Median difference: -2897.934844970703
-    Statistical comparsion for EDP
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 3.110745274579672e-13
-        Mean difference: -799203.1996206294
-        Median difference: -803112.6406019746
+Comparison between libraries keras and jax
+Statistical comparsion for Time
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0965760742430788e-13
+    Mean difference: -153.0588214285714
+    Median difference: -153.50449999999998
+Statistical comparsion for Power
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0974523199407617e-13
+    Mean difference: 6.798626303680386
+    Median difference: 7.9726290566429725
+Statistical comparsion for Energy
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0974523199407617e-13
+    Mean difference: -8365.648763765606
+    Median difference: -8361.627891540527
+Statistical comparsion for EDP
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0974523199407617e-13
+    Mean difference: -1934169.770596946
+    Median difference: -1898712.9790588988
 ---
-Comparison between libraries torch and jaxx
-    Statistical comparsion for Time
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 1.4154840872576973e-13
-        Mean difference: -20.536675675675667
-        Median difference: -22.231000000000023
-    Statistical comparsion for Power
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 0.00016845076564589394
-        Mean difference: -0.3611693224430681
-        Median difference: -0.5486902536312144
-    Statistical comparsion for Energy
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 1.5385322563477485e-13
-        Mean difference: -1230.3376134923983
-        Median difference: -1360.7388305664044
-    Statistical comparsion for EDP
-        Test Used: Mann-Whitney U Test
-        t-test p-value: 1.4184035096127283e-13
-        Mean difference: -381239.47841667826
-        Median difference: -413533.69413551386
+Comparison between libraries torch and jax
+Statistical comparsion for Time
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0948255331253563e-13
+    Mean difference: -136.2126714285714
+    Median difference: -137.09949999999998
+Statistical comparsion for Power
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0974523199407617e-13
+    Mean difference: 4.911183589409646
+    Median difference: 5.3928541090790745
+Statistical comparsion for Energy
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0974523199407617e-13
+    Mean difference: -7403.326105989727
+    Median difference: -7440.028907775879
+Statistical comparsion for EDP
+    Test Used: Mann-Whitney U Test
+    t-test p-value: 1.0974523199407617e-13
+    Mean difference: -1844325.9329707169
+    Median difference: -1815052.6653094483
 ---
 ```
