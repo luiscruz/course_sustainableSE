@@ -42,7 +42,12 @@ In total, we ran 164 HumanEval tasks per model, collecting two primary measures:
 1. **Total Energy (in Joules) per task**  
 2. **Energy per Token (in Joules) per task**  
 
-[The detailed energy report can be found here.](resources/aggregated_energy.html) Figures 1–4 [the bar and box plots] summarize the findings.
+[The detailed energy report can be found here.](resources/aggregated_energy.html) The following figures summarize the findings:
+
+![image](../img/p1_measuring_software/g23_llm_inference/bar_energy_per_token.png)
+![image](../img/p1_measuring_software/g23_llm_inference/bar_total_energy.png)
+![image](../img/p1_measuring_software/g23_llm_inference/box_energy_per_token.png)
+![image](../img/p1_measuring_software/g23_llm_inference/box_total_energy.png)
 
 **Codellama** recorded the **lowest mean total energy** at approximately **125.45 J** (SD = 44.60). Its distribution ranged widely (36.27–216.62 J), indicating that while it often consumed low energy, some tasks required substantially more.  
 **Deepseek** had the **highest mean total energy** of about **175.44 J** (SD = 14.32), with values ranging from 150.71 J to 226.70 J. Notably, its narrower range suggests more consistent consumption, albeit at a higher level.  
