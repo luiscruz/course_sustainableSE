@@ -83,18 +83,27 @@ Assuming that capacitance is an inherent property of a GPU and therefore constan
 The trials were run on two different computer to ensure our findings are consistent. The results of both computers were compared and combined to achieve our final results. The specifications of both computers are listed below.
 
 ### Computer 1: 
+- Desktop PC
 - Intel Core i5-9600k
 - 16GB DDR4 RAM
 - Nvidia GeForce RTX 2060
 - Samsung 970 Evo Plus M.2 SSD
 
 ### Computer 2: 
+- Desktop PC
 - Intel Core i7-7700k
 - 16GB DDR4 RAM
 - EVGA GeForce GTX 1070
 - Samsung 970 Evo Plus M.2 SSD
 
-TODO: add computer 3
+### Computer 3:
+- Laptop
+- Intel Core i5-9400
+- 16GB DDR4 RAM
+- Intel UHD Graphics 630
+- Seagate ST2000VN000 HDD
+
+The experiment will be run on two high performance systems on which it is possible to play GTA V. Interesting to note is that we will also run the experiment on one system on which the game is not playable due to the absence of a dedicated GPU, but on which the game will run.
 
 # Results
 The GPU-Z log files gave us time-series data, from which we calculated the power scalar over time, using the [expression stated earlier](#data-collection). The figure below shows an example measurement from several runs of the benchmark. The jumps between low and high power scalar values between scenes of the benchmark can be clearly seen.
@@ -149,7 +158,7 @@ Do the results show a significant difference in energy consumption and do we thi
 ## Limitations & future work
 
 ### Low number of experiments
-For optimal results it would be desirable to have more than two computers run the experiments. In practice this is not achievable as computers capable of running GTA V come at great cost and we were therefore limited to the amount of capable systems available to us.  
+For optimal results it would be desirable to have more than three computers run the experiments, but we were limited to the hardware available to us. Additionally, for optimal experiments you would want to run the experiment using only systems capable of running GTA V in a manner in which it is playable, however in practice this is not achievable as computers capable of running GTA V come at great cost. This is desired as this better represents the actual use case of the software and not just one in an experimental setting.
 
 ### Only measuring GPU power consumption
 To get a more realistic picture of the total power consumption of a game it is desirable to measure the energy consumption of the entire computer while running the game. However, doing so would require a physical device to measure the power consumed by the computer at the wall outlet. This kind of equipment is beyond the scope of this project and therefore it was decided to only measure GPU power consumption, as this is possible using software tools and the GPU is the most strained component while running the game.
