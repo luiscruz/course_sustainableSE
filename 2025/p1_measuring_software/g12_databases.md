@@ -17,11 +17,9 @@ By focusing on these two widely adopted databases, our comparison aims to provid
 
 ## Rationale
 
-TODO: Rewrite
+Large-scale database production systems typically place a higher priority on concurrency, scalability, and performance than on energy usage. Additionally, as a significant portion of the internet relies on databases for storing and managing data, optimizing their energy efficiency is crucial for building a more sustainable digital infrastructure. Indeed, using an energy-efficient database system can help cut power usage, extend device battery life, and reduce overall environmental impact.
 
-Specifically, we want to market to local testing for a single user on a machine. This experiment does not aim to find out which is more efficient for a production environment or at a larger scale. An example of a use case would be a developer who wants to locally run a testing set using SQL on a particular application, and wishes to find out if SQL or SQLite would be more energy efficient for this test.
-
-The plan for our experiment is to run select queries on these two versions of SQL, namely MySQL and SQLite. Due to both SQL variants making use the same kinds of requests, we can reuse the same operations, purely comparing the server based structure against the file based structure.
+By comparing SQLite, which uses a file-based structure, with MySQL, which functions as a server-based RDBMS, we hope to see whether or not the lack of a dedicated database server has a substantial effect on energy usage. Our results may be helpful to researchers, developers, and organizations who want to improve their databases for more energy-efficient projects.
 
 ## Experimental setup
 
@@ -86,9 +84,18 @@ The mean energy consumption for MySQL and SQLite was 75.38 and 38.09, respective
 
 To further quantify the effect size, we computed Cohen's d, which measures the standardized difference between the two means. The resulting value of 31.77 again indicates a large effect size. These findings will be discussed in further detail in the next section.
 
+Besides the difference in energy consumption we also measure the duration of the experiments. We observe an mean runtime of 5.00 seconds for the SQL databse and a mean runtime of 3.20 seconds for the SQLite database. This mean difference effect size of 1.80 seconds (percentage reduction of 56.25%) also indicates a relevant difference in time.
+
 ## Discussion
 
-Not normally distributed, but still signifcant diff
+<!-- - the goal: provide insight for developers in testing
+- smaller queries and one user -> SQLite -->
+We see that the energy usage of the queries to the SQL database is significantly larger than for the SQLite database. With this experiment our aim was to provide insights for developers in the testing phase of a database. These results are based on smaller databases with queries that are not overly complex to follow the general usecase when testing databases. These results are also aimed at a single user making requests and should not be translated to large databases with many users. Under these conditions we show that based on energy efficiency the SQLite database is superior over the SQL database.
+
+<!-- - SQLite is also easier in use -> also good for testing
+- but besides easier -> also more energy efficient and faster
+- for testing instances use SQLite -->
+The advantages SQLite has in usability over an SQL database already make it favorable to use during the testing phase of a system. Hearby we also show that SQLite is favorable in time and energy efficiency. Therefore, our advise for developers is to opt for SQLite in the development stages of the database to improve the developers time efficiency and reduce the impact of energy usage during development.
 
 ### Future work
 
