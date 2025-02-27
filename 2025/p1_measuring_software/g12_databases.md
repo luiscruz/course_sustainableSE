@@ -27,6 +27,18 @@ The dataset we use for our experiment is a brazilian ecommerce record of around 
 
 ## Results
 
+The following are the results of our experiment. First, we show the raw energy consumption by both forms of SQL:
+
+![Raw Energy Consumption](../img/p1_measuring_software/g12_databases/Raw_energy.png)
+
+Next, we show the result of our mySQL runs, normalized with any glaring outliers removed:
+
+![mySQL](../img/p1_measuring_software/g12_databases/mysql.png)
+
+And finally, we show the result of our SQLite runs, also normalized with severe outliers removed:
+
+![SQLite](../img/p1_measuring_software/g12_databases/sqlite.png)
+
 ## Conclusion
 
 ## Future Work
