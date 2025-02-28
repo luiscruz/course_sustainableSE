@@ -29,7 +29,7 @@ The energy consumption measurment begins after we launch the text editor and end
 ### Setup
 
 #### Hardware
-We run the experiment on a single computer witht he following specifications:
+We run the experiment on a single computer with the following specifications:
 
 1. Processor: AMD Ryzen 7 5800H 
 2. Graphics Card: Nvidia RTX 3070
@@ -44,7 +44,7 @@ The following text editors will be tested:
 4. Word
 
 We have chosen these editors as they are widely available and very commonly used by students.
-Each editor is installed with default settings and are running on Windows 11.
+Each editor is installed with default settings and the experiment was ran on Windows 11.
 
 ### Tooling
 EnergiBridge will be used to measure the energy consumption of the computer during the experiment. In addition, we will use Autohotkey scripts to simulate launch and close the editors as well as to simulate keystrokes.
@@ -54,10 +54,9 @@ EnergiBridge will be used to measure the energy consumption of the computer duri
 CPU temperature must be similar for all measurments to avoid skewing the results. This is ensured by letting the CPU cool down for 1 minute between measurments.
 The experiment will be run 30 times per editor to account for variability in measurments.
 The order of measurements will be random to reduce systematic impact between measurmenets.
-There will be no interaction with the computer while running the computer to ensure
+There will be no interaction with the computer while running the computer to minimize variability.
 
 ### Experiment
-
 #### Setup
 Before running the experiment we need to ensure that the computer is in "Zen mode". This means that the only software that is running on our computer is the software whose energy consumption we want to measure.
 In practice this is impossible, but we can limit the effect of background processes by ensuring the following:
@@ -72,12 +71,10 @@ In practice this is impossible, but we can limit the effect of background proces
 - disconnect the computer from the internet since it's not required for our experiment
 
 #### Warmup 
-
 Before beginning the experiment we perform a warmup procedure. This procedure is used to warmup the CPU to ensure fairness throughout the experiment as starting with a cool CPU which later warms up can skew the results.
 This is because having heat increases the resistance of an electrical circuit meaning more energy is required for the same amount of work. Therefore beginning with an already hot CPU helps prevent this.
 
 Our warmup procedure consists of running multiple fibonacci sequences for 5 minutes on all CPU cores.
-
 
 #### Running the experiement
 
@@ -97,7 +94,7 @@ The aforementioned sequence is repeated 30 times for each of the four editors we
 
 The results from our experiments are illustrated in the violin plot below:
 
-![image](images/violinplotfinal.png)
+![image](../img/p1_measuring_software/g16_notetaking/violinplotfinal.png)
 
 The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.This violin plot was created after the rejecting outliers using the z-score. After performing the outlier rejection, we kept all the runs except for one run of the Visual Studio Code. Thus we kept 29 runs for Visual Studio Code and 30 runs for the rest of the editors.
 
@@ -152,8 +149,9 @@ Further research could take into accounts these additional actions.
 While our experimental setup aimed to reduce external influences, the non-normal distributed data suggests this might not have been entirely effective.
 Future research might be able to isolate the experiment even further, leading to more accurate results.
 
-Our study only involved typing 50 characters, to reduce the runtime of the experiment. However, due to this shorter time, the experiment is more vulnerable to variance. 
+Our study only involved typing 50 characters to reduce the runtime of the experiment. However, due to this shorter time, the experiment is more vulnerable to variance. 
 Furthermore, it might be the case that some editors have an increased energy consumption when more is written in the file. Future research could look into the effects of longer text being typed on the different editor's energy consumption.
+
 ## Conclusion
 We aimed to determine which text editor is most energy efficient for note taking on windows computers. This was done by comparing the four popular text editors Word, Notepad, Notepad++ and Visual studio code.
 Our results indicate that Notepad++ has the lowest energy consumption, with Notepad following closely behind. Both of these text editors are considerably more lightweight, with a much smaller feature set.
@@ -162,14 +160,22 @@ Both Word and Visual Studio Code used a lot more energy, with Visual Studio Code
 While the more heavy weight editors consume more energy, their additional functionality might be worth their increased energy consumption. 
 Selecting the best editor to use is thus highly dependent on if a user needs these extended capabilities. 
 Thus our recommendation is that if the additional features of the more heavy text editors are unnecessary, to use one of the more lightweight editors, preferably Notepad++.
-## References
+
+### References
+[EnergiBridge](https://github.com/tdurieux/EnergiBridge)
+[AutoHotKey](https://www.autohotkey.com/)
+[Notepad++](https://notepad-plus-plus.org/downloads/)
+[Word](https://www.microsoft.com/nl-nl/microsoft-365/get-office-and-microsoft-365-oem-download-page)
+[Visual Studio Code](https://code.visualstudio.com/)
+
 ## Replication
 To replicate the results, follow these steps:
 
 ### Prerequisites
 Ensure you have:
-- Python installed (`python --version` to check)
 - Administrator privileges on your system
+- Python installed (`python --version` to check)
+- EnergiBridge installed
 - AutoHotkey installed
 
 ### Steps to Run
@@ -180,7 +186,7 @@ Ensure you have:
    ```sh
    cd path\to\your\project
 
-To replicae our experiment you can run the following:
+To replicate our experiment you can run the following:
 
 ```sh
 python python_script.py
