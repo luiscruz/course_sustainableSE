@@ -8,20 +8,20 @@ summary: |-
    Our setup includes automation for both Linux and MacOS with system parameters that can be tweaked according to the need, ensuring replicability. Future work will involve the  --with-tail-call-interp flag once it is working.
 --- 
 ## Introduction
-As programmers, we use programming languages daily, often forgetting how much impact the chosen language, and sometimes even its version, can have on energy consumption and implicitly on the environment ( [check]( https://arxiv.org/html/2410.05460v1) ). Python is known to be one of the most used languages, but also, according to previous studies such as [Ranking programming languages by energy efficiency](https://www.sciencedirect.com/science/article/abs/pii/S0167642321000022?via%3Dihub), it is amongst the least green (energy efficient) due to its interpreted execution and dynamic typing.
+As programmers, we use programming languages daily, often forgetting how much impact the chosen language, and sometimes even its version, can have on energy consumption and implicitly on the environment [[1](#references)]. Python is known to be one of the most used languages, but also, according to previous studies such as [[2](#references)], it is amongst the least green (energy efficient) due to its interpreted execution and dynamic typing.
 
-With the introduction of Python version 3.14, the documentation states that it utilizes a new type of interpreter that should provide significantly better performance. To be precise, preliminary numbers indicate anywhere from '-3% to 30% faster' [Python](https://docs.python.org/3.14/whatsnew/3.14.html) code. With this performance improvement kept in mind, we have decided to investigate this claim to see how the performance increase impacts the energy consumption.
+With the introduction of Python version 3.14, the documentation states that it utilizes a new type of interpreter that should provide significantly better performance. To be precise, preliminary numbers indicate anywhere from '-3% to 30% faster' Python code [[3](#references)]. With this performance improvement kept in mind, we have decided to investigate this claim to see how the performance increase impacts the energy consumption.
 
-We started by analyzing Python 3.14 default configuration, without any additional optimizations. The documentation also mentions an experimental feature called the tail call interpreter, which is expected to enhance performance further when enabled. [Tail call-interp](https://docs.python.org/3.14/using/configure.html#cmdoption-with-tail-call-interp) should not be confused with [tail call optimization](https://en.wikipedia.org/wiki/Tail_call) of Python functions. 
+We started by analyzing Python 3.14 default configuration, without any additional optimizations. The documentation also mentions an experimental feature called the tail call interpreter, which is expected to enhance performance further when enabled. The new tail-call interpretation [[4](#references)] should not be confused with tail call optimization of Python functions [[5](#references)]. 
 
-However, this feature is opt-in, requires specific compiler versions (Clang 19+ on x86-64 and AArch64 architectures), and remains unavailable in the default build. Despite our efforts, we could not enable it, because it is not working yet. Therefore, our current study concentrates on benchmarking Python 3.14’s default interpreter against Python 3.11 to assess energy efficiency under highly demanding tasks.
+However, this feature is opt-in, requires specific compiler versions (Clang 19+ on x86-64 and AArch64 architectures), and remains unavailable in the default build. Despite our efforts, we could not enable it, because it is not working yet. Therefore, our current study concentrates on benchmarking Python 3.14's default interpreter against Python 3.11 to assess energy efficiency under highly demanding tasks.
 
 ## Methodology 
 To this end, the idea is to use the prerelease version of the Python 3.14 interpreter and compare the energy consumption for the same code snippet for both the new interpreter as well as an older Python interpreter (3.11.9). This should allow us to see whether the supposed faster speeds of the new interpreter impact energy consumption. 
-To assess the energy consumption we used [EnergiBridge](https://github.com/tdurieux/EnergiBridge) as suggested in the [lectures](https://luiscruz.github.io/course_sustainableSE/2025/).
+To assess the energy consumption we used [EnergiBridge](https://github.com/tdurieux/EnergiBridge) as suggested in the lectures [[6](#references)].
 
 ### Code Snippet Selection 
-To make sure that the comparison is a meaningful one, we used computationally intensive code that will stress the CPU. We create multiple snippets that can be seen on [GitLab](https://github.com/vincentvvliet/sse-project-group-24). 
+To make sure that the comparison is a meaningful one, we used computationally intensive code that will stress the CPU. We create multiple snippets that can be seen on [Github](https://github.com/vincentvvliet/sse-project-group-24). 
 
 ### Hardware 
 For the experiment on Windows we used an ASUS Vivobook with the following specifications:
@@ -52,6 +52,7 @@ The replication package of the experiments can be found [in this repository](htt
 For the Windows experiment we analyze the 'PACKAGE_ENERGY (J)' value generated by Energibridge. This is a cumulative value, where we specifically look at the difference between the value at the start of a run and at the end of a run. To try and normalize the data we perform z-score outlier removal.
 
 Before analyzing our results, we first check to see if they have a normal distribution. Performing the Shapiro-Wilk test, we see that Python 3.11 has a p-value of 0.091, while Python 3.14 has a p-value of 0.007. This means that while Python 3.11 can be considered normal, Python 3.14 cannot. For this reason, we will look at the median difference between the two sets of results. To graph the difference in median energy consumption between Python 3.11 and Python 3.14, we create a bar plot that uses half of the interquartile range (IQR) as error bars.
+
 ![Median_energy_comparison.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fmedian_energy_comparison.png)
 
 Looking at the graph, we see that Python 3.11 has a median energy consumption of 20.01, while Python 3.14 has a slightly lower mean of 19.05. This is a difference of 0.96 J. While this is not a large difference, it could suggest Python 3.14 is slightly more energy efficient. The error bars seem to overlap significantly in both versions however, which could indicate that the difference in median energy consumption between Python 3.11 and 3.14 could be due to normal fluctuations.
@@ -61,6 +62,7 @@ To get more insight into the distribution, spread and shape of the data, we crea
 ![Box+violinplot.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fenergy_comparison.png)
 
 Looking at the plot, we see that the results of both versions of python have a relatively wide distribution at the center, showing that for both versions the values are mostly concentrated around 18-20 J. Python 3.14 seems to have broader spread than Python 3.11, with lower outliers extending to ~15 J and higher ones beyond 26 J. This greater number of outliers is consistent with the p-value we found earlier. To check for statistical significance between the two datasets, we use the Mann-Whitney U test, from which we determine a p-score of ~0.15. Since p > 0.05 there is no strong evidence that Python 3.11 and 3.14 have different energy consumption distributions. When calculating the percentage of pairs supporting a conclusion, we see that 61.03% of all possible pairwise comparisons show that Python 3.11 consumes more energy than Python 3.14. This means that in the majority of cases, Python 3.14 is more efficient but not overwhelmingly so. In terms of common language effect size, this is a score of 0.613.
+
 ### Analysis of Results on macOS
 As a preliminary step, we check if the data has a normal distribution for both unoptimized and optimized versions of Python 3.11 and Python 3.14 respectively. Through the Shapiro-Wilk test of the unoptimized versions, we see that Python 3.11 has a p-value of 0.142, while Python 3.14 has a p-value of 0.0655, implying that both of the unoptimized versions of Python 3.11 and Python 3.14 can be considered normal. The observed outcome steers towards the use of Welch’s t‐test and comparison of mean energy between the unoptimized versions of Python 3.11 and Python 3.14.
 
@@ -89,14 +91,14 @@ From the graph, it is visible that the optimized version of Python 3.11 has a br
 Thus, it can be concluded Python 3.14 is more efficient than Python 3.11 in terms of energy efficiency, with or without the optimizations. 
 
 ## Implications
-As previously mentioned, Python’s recent development efforts have been heavily focused on performance improvements. Beyond the optimizations mentioned in Python 3.14, there are other proposals underway such as [PEP 703](https://peps.python.org/pep-0703/), which aims to remove the Global Interpreter Lock (GIL) for better multi-threaded performance. These efforts indicate a clear trend: Python is increasingly prioritizing execution speed and efficiency.
+As previously mentioned, Python's recent development efforts have been heavily focused on performance improvements. Beyond the optimizations mentioned in Python 3.14, there are other proposals underway such as PEP 703 [7](#references), which aims to remove the Global Interpreter Lock (GIL) for better multi-threaded performance. These efforts indicate a clear trend: Python is increasingly prioritizing execution speed and efficiency.
 
-However, as the focus shifts towards performance, it is important to also consider energy consumption and sustainability. A common misunderstanding when it comes to sustainable software engineering is the idea that improving the performance of a program reduces the amount of energy used, as this is not necessarily always the case [Folklore Confirmed: Compiling for Speed = Compiling for Energy](https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10). In some cases, faster execution could mean higher energy consumption per second, but a shorter runtime, as optimizations that improve speed might increase power draw, leading to higher overall consumption [Energy-aware software: Challenges, opportunities and strategies](https://www.sciencedirect.com/science/article/pii/S1877750313000173). These notions should be kept in mind during the further development of Python, as hyperfocusing on performance could lead the language in an unsustainable direction.
+However, as the focus shifts towards performance, it is important to also consider energy consumption and sustainability. A common misunderstanding when it comes to sustainable software engineering is the idea that improving the performance of a program reduces the amount of energy used, as this is not necessarily always the case [[8](#references)]. In some cases, faster execution could mean higher energy consumption per second, but a shorter runtime, as optimizations that improve speed might increase power draw, leading to higher overall consumption [9](#references). These notions should be kept in mind during the further development of Python, as hyperfocusing on performance could lead the language in an unsustainable direction.
 
 An important aspect that is relflected through our study is that computational expense of runtime optimizations can be significantly higher (as seen in Python 3.14) than unoptimized versions. This does not indicate that Python's optimizations are inefficient, rather they prioritize execution speed over energy-savings for runtime benchmarks. This aligns with the typical behavior in CPU-bound workloads and consolidates our observation that optimizations don't necessarily mean energy-efficiency. 
 
 Another crucial observation was the significant difference between energy consumptions of experiments in different operating systems. For Windows, matrix multiplication of two matrices having dimensions 1000x1000 had significantly lower energy consumption (approximately 75%) in comparison to the matrix multiplication of two matrices with dimensions 300x300 in macOS. The execution time of both of these experiments were 20 seconds and similar conditions were provided. Such discrepancy in values can be attributed to the difference in measurement of energy in the two operating systems. For Windows, only the CPU consumption is measured whereas for macOS, the entire system's energy is measured,
-demonstrating a significantly larger value. This trend is consistent in energy consumption of web browsers tested using Energibridge [1].
+demonstrating a significantly larger value. This trend is consistent in energy consumption of web browsers tested using Energibridge [[10](#references)].
 
 With regards to our study, we were interested to know whether the claimed performance increase had a similar improvement on energy consumption or not. When comparing Python 3.14 without tail-call-interp with Python 3.11, there was only little difference in energy consumption. Unfortunately, since the pre-release version of Python 3.14 does not give the possibility of testing with the new interpretation feature, we are unable to determine the energy consumption with this feature enabled. For the current pre-release version, in terms of sustainability, our results would suggest that there is not necessarily a reason to switch at this point in time. 
 
@@ -106,13 +108,56 @@ Although Python 3.14 showed no significant performance or energy efficiency gain
 To identify potential optimization opportunities in Python 3.14, we could also run demanding I/O scenarios and multi-threading executions.
 
 ##  Conclusion 
-Our study examined the energy consumption and performance differences between Python 3.14 and Python 3.11. We assess if Python 3.14’s allegedly 30% speed improvement can be seen in energy efficiency. Using EnergiBridge, we measured power usage and execution time across computationally intensive operations.
+Our study examined the energy consumption and performance differences between Python 3.14 and Python 3.11. We assess if Python 3.14's allegedly 30% speed improvement can be seen in energy efficiency. Using EnergiBridge, we measured power usage and execution time across computationally intensive operations.
 Our results indicate that there is no statistically significant difference in energy consumption or execution time between Python 3.14 (in its default configuration) and Python 3.11. 
 
 Given this, we see no convincing motivation to switch from the more stable and well-supported Python 3.11 to Python 3.14 (at this time). The experimental tail call interpreter, which could provide further optimizations, remains non-functional, limiting Python 3.14’s potential benefits.
 
 ## References
-[1] **June Sallou, Luís Cruz, Thomas Durieux** (2023).
-*EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement*
-arXiv preprint arXiv:2312.13897v1,
-Available at: [https://doi.org/10.48550/arXiv.2312.13897](https://doi.org/10.48550/arXiv.2312.13897)
+
+[1] **van Kempen, N., Kwon, H., Nguyen, D., Berger, E.** (2024). 
+*It's not easy being green: On the energy efficiency of programming languages.* arXiv preprint arXiv:2410.05460. 
+Retrieved from [https://arxiv.org/html/2410.05460v1](https://arxiv.org/html/2410.05460v1)
+
+[2] **Pereira, R., Couto, M., Ribeiro, F., Rua, R., Cunha, J., Fernandes, J., Saraiva, J.** (2021).  
+*Ranking programming languages by energy efficiency.*
+Journal of Systems and Software, Volume 174, Article 110889.  
+Available at: [https://doi.org/10.1016/j.scico.2021.102609](https://doi.org/10.1016/j.scico.2021.102609).   
+
+[3] **Python Software Foundation** (2025).  
+*What's New in Python 3.14?*
+Available at: [https://docs.python.org/3.14/whatsnew/3.14.html](https://docs.python.org/3.14/whatsnew/3.14.html).  
+
+[4] **Python Software Foundation** (2025).  
+*Using and Configuring Python 3.14 - Tail Call Interpreter.*
+Available at: [https://docs.python.org/3.14/using/configure.html#cmdoption-with-tail-call-interp](https://docs.python.org/3.14/using/configure.html#cmdoption-with-tail-call-interp).  
+
+[5] **Wikipedia Contributors** (2024).  
+*Tail Call Optimization.* Wikipedia.  
+Available at: [https://en.wikipedia.org/wiki/Tail_call](https://en.wikipedia.org/wiki/Tail_call). 
+
+[6] **Luis Cruz** (2025).  
+*Course on Sustainable Software Engineering.*
+Lecture materials available at: [https://luiscruz.github.io/course_sustainableSE/2025/](https://luiscruz.github.io/course_sustainableSE/2025/).
+
+[7] **Python Enhancement Proposal (PEP) 703**.  
+*Making the Global Interpreter Lock (GIL) Optional in CPython.*
+Available at: [https://peps.python.org/pep-0703/](https://peps.python.org/pep-0703/).
+
+[8] **Yuki, T., & Rajopadhye, S** (2014).  
+*Folklore Confirmed: Compiling for Speed = Compiling for Energy.*  
+In Proceedings of the 3rd International Workshop on Energy Efficient Supercomputing (E2SC '17).  
+Available at: [https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10](https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10).  
+
+[9] **Anne E. Trefethen, Jeyarajan Thiyagalingam** (2013).  
+*Energy-aware software: Challenges, opportunities and strategies.*  
+Journal of Systems and Software, Volume 88, Pages 256-272.  
+Available at: [https://doi.org/10.1016/j.jocs.2013.01.005](https://doi.org/10.1016/j.jocs.2013.01.005).
+
+[10] **June Sallou, Luís Cruz, Thomas Durieux** (2023).  
+*EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement.*  
+arXiv preprint arXiv:2312.13897v1.  
+Available at: [https://doi.org/10.48550/arXiv.2312.13897](https://doi.org/10.48550/arXiv.2312.13897). 
+
+  
+
