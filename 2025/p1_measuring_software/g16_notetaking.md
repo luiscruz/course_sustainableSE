@@ -101,7 +101,7 @@ The results from our experiments are illustrated in the violin plot below:
 
 The violin plot shows the total energy consumption for NotePad++, NotePad, MS Word and Visual Studio Code.This violin plot was created after the rejecting outliers using the z-score. After performing the outlier rejection, we kept all the runs except for one run of the Visual Studio Code. Thus we kept 29 runs for Visual Studio Code and 30 runs for the rest of the editors.
 
-We find that Notepad++ performs the best amongst the text editors we have tested with an average energy consumption of 188.87 J. The next best performing text editor is Notepad with an average energy consumption of 178.33J, which is an 5.91% increase from the average energy usage of Notepad++. Furthermore, Microsoft Word has an average energy consumption of 233.62J in our tests, which is an increase of 23.69% compared to Notepad. Lastly, Visual Studio Code consumes the most energy in our test with an average energy consumption of 255.07J. This is an increase 9.18% from Microsoft Word. It is also noteworthy that the most energy intensive editor in our test, Visual Studio Code, consumes 43.03% more energy than our most efficient text editor i.e. Notepad++.
+We find that Notepad++ performs the best amongst the text editors we have tested with an average energy consumption of 188.87J. The next best performing text editor is Notepad with an average energy consumption of 178.33J, which is an 5.91% increase from the average energy usage of Notepad++. Furthermore, Microsoft Word has an average energy consumption of 233.62J in our tests, which is an increase of 23.69% compared to Notepad. Lastly, Visual Studio Code consumes the most energy in our test with an average energy consumption of 255.07J. This is an increase 9.18% from Microsoft Word. It is also noteworthy that the most energy intensive editor in our test, Visual Studio Code, consumes 43.03% more energy than our most efficient text editor i.e. Notepad++.
 
 ### Analysis
 
@@ -114,9 +114,9 @@ The first step in our analysis would be to check if our data is normally distrib
 | Microsoft Word     | False           | 0.012   |
 | Visual Studio Code | True            | 0.067   |
 
-We find that after the z-score outlier rejection, we find that only the data from Visual Studio Code is normally distributed. The data for Notepad, Notepad++ and Microsoft Word are not normally distributed. This could be due to...
+We find that after the z-score outlier rejection, we find that only the data from Visual Studio Code is normally distributed. The data for Notepad, Notepad++ and Microsoft Word are not normally distributed. This could be due to a variety of reason. Firstly, it is possible that there is software specific behavior that is periodically executed which changes the distribution of the energy consumption. For example, in Microsoft Word, the spell check or the autosave features may cause spikes in the energy usage. Another explanation for this could be background tasks that are competing for system resources. An example of this could be check for system updates or garbage collection that will increase energy usage, thus causing the distribution of the results to change.
 
-Since the data of three out of four text editors are not normally distributed, we opted for the Mann-Whitney U test to test for statistical significance. The results for the Mann-Whitney t-test are below. 
+Since the data of three out of four text editors are not normally distributed, we opted for the Mann-Whitney U test to test for statistical significance. The Mann-Whitney U test is a non-parametric test, thus it does not assume that the data has a normal distribution. The results for the Mann-Whitney t-test are illustrated in the table below. 
 
 | Test                            | Is it Significant? | P-Value |
 |---------------------------------|--------------------|---------|
@@ -126,7 +126,7 @@ Since the data of three out of four text editors are not normally distributed, w
 | NotePad++ vs Visual Studio Code | ✅                  | 0.0000  |
 | Visual Studio Code vs MS Word   | ✅                  | 0.0002  |
 
-We observe that all pairings of our data are statistically significant. 
+We observe that all pairings of our data are statistically significant, with the P values being either 0 or close to 0. This indicates that there is strong evidence that the distribution of the energy data are different.
 
 ## Discussion
 ### Implication
