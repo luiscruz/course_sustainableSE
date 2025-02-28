@@ -48,7 +48,39 @@ We will measure:
 - **Decoding Time:** Time taken to decode each format.
 
 ### Results
-<!-- A comparison of energy consumption when decoding both formats. -->
+
+# Energy Consumption at 480p: H.264 vs. H.265
+
+## Initial Observations
+We visualized our results using a combination of violin plots and box plots, which provided a clear picture of energy consumption distribution for both codecs. The majority of H.264 decoding instances clustered around 25 J, while H.265 decoding results were centered around 36 J. However, both distributions contained some higher-energy outliers, particularly in H.265, where some values reached 39 J.
+
+![Energy Consumption Violin + Box Plot for H.264 tests](experiment_plots/Gijs_violin_box_decode_480p_h264.png)
+
+![Energy Consumption Violin + Box Plot for H.265 tests](experiment_plots/Gijs_violin_box_decode_480p_h265.png)
+
+
+One immediate takeaway is that H.265 consistently required more energy than H.264 for 480p decoding. 
+
+![Energy Consumption Violin + Box Plot Comparison](experiment_plots/Gijs_combined_violin_box_decode_480p.png)
+
+
+
+But how significant is this difference? To dig deeper, we needed to validate these observations with statistical tests.
+
+## Checking for Normality
+Since our data did not visually appear normally distributed, we conducted the Shapiro-Wilk test to formally test normality:
+
+- **H.264**: W = 0.8023, p-value = 0.0001  
+- **H.265**: W = 0.5708, p-value = 0.0000  
+
+With p-values well below 0.05, both distributions deviate significantly from normality. This confirms our suspicion that a simple parametric test assuming normality wouldn't be appropriate.
+
+## Outlier Removal & Data Distribution
+To ensure extreme values weren’t skewing our results, we applied outlier removal using a Z-score threshold of 3 (within standard deviations). Interestingly, this step had minimal impact—suggesting that most of our data points were valid and not extreme anomalies. We verified this by comparing histograms before and after filtering, which showed no major changes in distribution.
+
+![Energy Consumption Violin + Box Plot Comparison](experiment_plots/Gijs_combined_violin_box_decode_480p_filtered_results.png)
+
+
 
 ### Discussion
 <!-- - Does H.265’s complexity increase playback power consumption?
