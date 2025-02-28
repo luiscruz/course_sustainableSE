@@ -37,7 +37,7 @@ When a user interacts with a website or app, for example, by submitting a form, 
 # Methodology 
 
 ## Tools
-To measure the energy consumption of **Flask**, **Express.js**, and **Springboot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
+To measure the energy consumption of **Flask**, **Express.js**, and **SpringBoot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
 
 [**Energibridge**](https://github.com/tdurieux/energibridge) is a command-line tool for measuring the energy consumption of computer processes that can be integrated into a containerized development pipeline. In our case, the process would be the currently running server. The tool outputs the values as `.csv` files, allowing you to track your operations' "energy footprint".
 
@@ -49,7 +49,7 @@ We created a containerized Docker environment for each framework, resulting in t
 
 For the dataset the frameworks will use for querying, we based it on three `.tsv` files from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), namely `title.basics.tsv`, `title.ratings.tsv`, and `name.basics.tsv`. We reduced the size of the original dataset by considering only the first 50,000 entries from each of the `.tsv` files.
 
-For each framework, the entries of the `.tsv` files were stored in-memory within datastructures that were most appropriate for the programming language -- an array of objects for Express, a list of dictionaries for Flask and a HashMap for Springboot. These data structures are instantiated when the respective docker containers are built. We followed this approach instead of connecting to an externalk datrabase to mitigate the effects of database connection and timeouts towards the energy consumption measurement for each framework.
+For each framework, the entries of the `.tsv` files were stored in-memory within datastructures that were most appropriate for the programming language -- an array of objects for Express, a list of dictionaries for Flask and a HashMap for SpringBoot. These data structures are instantiated when the respective docker containers are built. We followed this approach instead of connecting to an externalk datrabase to mitigate the effects of database connection and timeouts towards the energy consumption measurement for each framework.
 
 ## Experiment Procedure
 
@@ -80,39 +80,42 @@ The experiment is performed by running the automated batch script on a **Windows
 ##### Table 1: Laptop specifications used in our experiment
 
 # Results
-After running the experiment, we collected 30 data samples for each framework. With these, we **removed outliers** and began comparing.
+Before moving to data analysis, we prepared the data that we collected from the 30 iterations of the experiment. Since we are interested in energy consumption and the time elapsed for each experiment, we extract the relevant data (`PACKAGE_ENERGY` and `Time`) from the `.csv` files created by Energibridge. Since `PACKAGE_ENERGY` is cumulative, to get the value for the energy consumption for one iteration (one reading) of the experiment we subtract the first reading for `PACKAGE_ENERGY` made by Energibridge from the very last one. Finally, a z-score test is run against the energy readings, and the data points wich deviate from the mean by more than 2 standard deviations are removed.
 
-The diagram below shows the power consumption in Joules of each framework across all the runs. To better visualize the values, we have removed a section of the Y axis that didn't contain any data.
+To check the distribution of our data, we perform the Shapiro-Wilk test on each of the frameworks. If the p-value from this test is >0.05, we can safely assume that the data is normally distributed.
 
-![Power consumption diagram of the 3 frameworks](power-consumption-diagram.png)
+| **Framework**     | **p-value**                              |
+|-------------------|------------------------------------------|
+| SpringBoot        | 0.365                                    |
+| Express           | 0.182                                    |
+| Flask             | 0.586                                    |
 
-**SpringBoot** had the most consistent and low power consumption of the three frameworks, despite the common belief that JavaScript-based frameworks would perform better due to their lightweight nature. Additionally, it consumed nearly **90% less energy** than _Flask_! This could be attributed to Java's execution in the [Java Virtual Machine](https://docs.oracle.com/en/java/javase/22/vm/java-virtual-machine-technology-overview.html) (JVM), which supports advanced just-in-time (JIT) compilation and multi-threading. In contrast, Flask (Python) and Express (Node.js) run in interpreted or event-driven environments, which can result in more volatile resource usage. Furthermore, Spring Boot benefits from extensive optimizations within the Spring ecosystem, which contribute to its consistent and efficient power consumption. The combination of both environments also explains the little variance in Spring's consumption.
+##### Table 2: p-values per framework.
 
-Then, let's analyze the combination of energy efficency and computation time. This is being shown in the diagram below, displaying the distribution of the Energy Delay Product (EDP).
+After ensuring normal distribution of our data, we can begin to further analyse the data by visualising it. The plot below shows violin plots for each for the framework based on energy consumption. The y-axis of the plot was broken as there was a significant gap in energy readings between the frameworks.
+
+![Energy consumption diagram of the 3 frameworks](power-consumption-diagram.png)
+##### Figure 1: Violin plot for energy consumption distribution per framework.
+
+Springboot had the most consistent and low energy consumption of the three frameworks, despite the common belief that JavaScript-based frameworks would perform better due to their lightweight nature. Additionally, it consumed nearly 90% less energy than _Flask_. This could be attributed to Java's execution in the [Java Virtual Machine](https://docs.oracle.com/en/java/javase/22/vm/java-virtual-machine-technology-overview.html) (JVM), which supports advanced just-in-time (JIT) compilation and multi-threading. In contrast, Flask (Python) and Express (Node.js) run in interpreted or event-driven environments, which can result in more volatile resource usage. Furthermore, Spring Boot benefits from extensive optimizations within the Spring ecosystem, which contribute to its consistent and efficient energy consumption. The combination of both environments also explains the little variance in Spring's consumption.
+
+We also wanted to see the energy delay product distribution for our frameworks, which would penalise slow runs and give more importance to the actual runtime of the application. A low EDP would signal an energy-efficient applicaction, while a high EDP would signal that either the time or energy consumption is relatively high, making for a less efficient application overall. The plot for this can be seen below.
 
 ![Energy delay diagram of the 3 frameworks](energy-delay-diagram.png)
+##### Figure 2: Boxplot for Energy Delay Product distribution per framework
 
-Again, we see how much better performing _SpringBoot_ is compared to the others. Java's JVM might play a big role into how energy is being consumed for running the code.
-
-## Reliability
-
-Considering how many extra steps were performed before running the experiment, are these values just pure coincidence? Will another person be able to obtain the same clear differences? 
-
-We will use the Shapiro-Wilk method to conduct a statistical significance test on energy consumption. For _Springboot_, _Express.js_, and _Flask_, we get **0.58**, **0.36**, and **0.18** respectively, indicating that the data is normally distributed. This leads to the conclusion that our experimental data is not significantly skewed by any external factors and that further runs of the same experiment will provide the same conclusions.
-
-To support our findings, the conclusions are consistent with what other blogs have said (see [Node.js vs SpringBoot: "Hello World" performance comparison](https://medium.com/deno-the-complete-reference/node-js-vs-springboot-hello-world-performance-comparison-59b4d461526c) or [How fast is Spring?](https://spring.io/blog/2018/12/12/how-fast-is-spring)).
-
+From the plot above, we can see that SpringBoot is not only the smallest energy consumer but is also the most efficient. Flask is once again the least efficient framework, given that it tooks more time on average to run the benchmarking test and seeing as it was also the highest energy consumer out of the 3 frameworks. The EDP distribution for Express lies closer to Springboot's. However, if we look back to Figure 1, we can see that the energy consumption for Express is about twice as much as Springboot's, but the energy product distribution is very close. We can conclude from this that while Express is not a large energy consumer, it is slower, thus making for a slightly less efficient framework.
 
 ## Limitations
 Our experiment aimed to be as close to a real-life setting as feasible. This meant that rather than using a basic request answer body, we chose data processing, which is handled differently by each computer language's internals. This may result in a difference in the amount of energy utilized by each framework, which could be related to Flask's slower response time to the 1000 API calls compared to the other two.
 
 Furthermore, _Flask_ has the most variability in data, which can be linked to the Apache Benchmark crashing the local server in a couple of cases. 
 
-# Conclusions
+# Conclusion
 
  - Java performs well on a continuous environment, however think of how taiored it is for your application's goals
 
 # Replication Package
-If you would like to run the experiments and view the raw data used in the analysis, check out our [repository](ADD LINK HERE).
+If you would like to run the experiments and view the raw data used in the analysis, check out our [repository](https://github.com/reglayass/sse-project1).
 
 
