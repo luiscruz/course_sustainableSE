@@ -58,10 +58,10 @@ The CNN architecture used is shown in the figure below
 
 The experiment was conducted on a computer with the following hardware/software:
 
-- OS: Microsoft Windows 11 Pro (10.0.26100 Build 26100)
-- CPU: AMD Ryzen 5 3600 6 cores@3593Mhz, 12 logical cores
+- OS: Microsoft Windows 11 Home (Build 22631.4890)
+- CPU: AMD Ryzen 5 5600H 6 cores@3300Mhz, 12 logical cores
 - RAM: 16GB
-- GPU: NVIDIA RTX 2060 Super
+- GPU: NVIDIA RTX 3060 Laptop
 - Python 3.11.8
 - Poetry 1.8.3 (dependency management)
 - TensorFlow (keras) 2.18.0
@@ -144,7 +144,8 @@ Also, Keras has to largest distribution width, followed by PyTorch and then JAX.
 ![Violin plot of power used by ML libraries](../img/p1_measuring_software/g2_ml_libraries/power_plot.png)
 
 ### Energy-Delay Product
-The EDP punishes implementations which have low average power, but which take long to complete by squaring the time taken to complete. 
+
+The EDP punishes implementations which have low average power, but which take long to complete by squaring the time taken to complete.
 JAX has both of these properties as seen in previous plots. Therfore it should be no surprise that JAX scores
 worst on the EDP metric. Keras performs best, followed by PyTorch.
 
@@ -169,34 +170,32 @@ First, we assess the distribution of the data using the Shapiro-Wilk test, which
 
 ### Table 1: Shapiro Wilk test
 
-| Metric     | Keras        | PyTorch      | JAX     |
-|-----------|-------------|-------------|-------------|
-| **Time**   | 0.7846      | 0.2476      | 1.01e-07    |
-| **Energy** | 0.0006      | 0.3966      | 1.65e-08    |
-| **Power**  | 0.5148      | 0.0261      | 4.02e-08    |
-| **EDP**    | 0.3276      | 0.8744      | 1.72e-08    |
-
+| Metric     | Keras  | PyTorch | JAX      |
+| ---------- | ------ | ------- | -------- |
+| **Time**   | 0.7846 | 0.2476  | 1.01e-07 |
+| **Energy** | 0.0006 | 0.3966  | 1.65e-08 |
+| **Power**  | 0.5148 | 0.0261  | 4.02e-08 |
+| **EDP**    | 0.3276 | 0.8744  | 1.72e-08 |
 
 Each cell in [Table 1](#table-1-shapiro-wilk-test) is the p-value of the Shapiro-Wilk test for certain combination of metric and framework.
-For the p-values which are significantly below 0.05, we need to reject the hypothesis 
+For the p-values which are significantly below 0.05, we need to reject the hypothesis
 that this data follows a normal distribution.
 Therefore, the Mann-Whitney U test will be used to compare those distributions.
-The only pairs of distributions which both have a p-value above 0.05 are Keras and PyTorch 
-on the time and EDP metric, for that comparison the independent t-test 
+The only pairs of distributions which both have a p-value above 0.05 are Keras and PyTorch
+on the time and EDP metric, for that comparison the independent t-test
 will be used since we cannot reject normality of those distributions.
 
-[Table 2](#table-2-distribution-comparison) below presents the p-values for the respective statistical tests comparing 
+[Table 2](#table-2-distribution-comparison) below presents the p-values for the respective statistical tests comparing
 the distributions of each framework across time, energy, power and EDP metrics.
 
 ### Table 2: Distribution comparison
 
-| Metric | Keras vs PyTorch | Keras vs JAX | PyTorch vs JAX |
-| ------ | ---------------- | ------------ | -------------- |
+| Metric | Keras vs PyTorch  | Keras vs JAX   | PyTorch vs JAX |
+| ------ | ----------------- | -------------- | -------------- |
 | Time   | 8.58e-82 (t-test) | 2.01e-12 (MWU) | 2.72e-12 (MWU) |
-| Energy | 2.09e-13 (MWU)  | 2.72e-12 (MWU) | 3.72e-12 (MWU) |
-| Power  | 1.06e-04 (MWU)  | 2.01e-12 (MWU) | 3.72e-12 (MWU) |
+| Energy | 2.09e-13 (MWU)    | 2.72e-12 (MWU) | 3.72e-12 (MWU) |
+| Power  | 1.06e-04 (MWU)    | 2.01e-12 (MWU) | 3.72e-12 (MWU) |
 | EDP    | 1.03e-63 (t-test) | 2.01e-12 (MWU) | 2.72e-12 (MWU) |
-
 
 As can be observed, each p-value is significantly below 0.05,
 confirming that the observed differences between frameworks in time, energy, power consumption
@@ -204,12 +203,12 @@ and EPD are statistically significant.
 
 ### Practical significance
 
-Machine learning applications benefit from a vast amount of data processing and many training iterations, this process is notorious for consuming large amounts of energy. 
-For example, it is estimated that it took about 10 gigawatt-hour (GWh) of energy consumption to train ChatGPT-3, 
+Machine learning applications benefit from a vast amount of data processing and many training iterations, this process is notorious for consuming large amounts of energy.
+For example, it is estimated that it took about 10 gigawatt-hour (GWh) of energy consumption to train ChatGPT-3,
 which is equivalent to the yearly electricity consumption of a 1000 U.S. households according to the
- [University of Washington](https://www.washington.edu/news/2023/07/27/how-much-energy-does-chatgpt-use/). 
- ChatGPT-3 received hundreds of millions of queries per day which used up around 1 GWh which equals the daily energy consumption of 
- about 33,000 US households. Therefore, any slight difference in energy consumption of ML frameworks can already have a huge impact.
+[University of Washington](https://www.washington.edu/news/2023/07/27/how-much-energy-does-chatgpt-use/).
+ChatGPT-3 received hundreds of millions of queries per day which used up around 1 GWh which equals the daily energy consumption of
+about 33,000 US households. Therefore, any slight difference in energy consumption of ML frameworks can already have a huge impact.
 
 The tables below show the percentage increase for the different metrics time,
 energy, power and EPD. This highlights the significant relative differences between
@@ -223,54 +222,53 @@ can make.
 
 ### Table 3: Keras vs. Torch
 
-| Metric     | Keras (Median) | Torch (Median) | Percentage Increase/Decrease |
-|------------|---------------|---------------|----------------------------|
-| **Time**   | 121.512 s     | 196.501 s     | **+61.71%**                |
-| **Energy** | 4910.2352 J   | 7989.4385 J   | **+62.71%**                |
-| **Power**  | 40.4442 W     | 40.5893 W     | **+0.36%**                 |
-| **EDP**    | 597288.5663 J⋅s | 1569504.3747 J⋅s | **+162.77%**               |
+| Metric     | Keras (Median)  | Torch (Median)   | Percentage Increase/Decrease |
+| ---------- | --------------- | ---------------- | ---------------------------- |
+| **Time**   | 121.512 s       | 196.501 s        | **+61.71%**                  |
+| **Energy** | 4910.2352 J     | 7989.4385 J      | **+62.71%**                  |
+| **Power**  | 40.4442 W       | 40.5893 W        | **+0.36%**                   |
+| **EDP**    | 597288.5663 J⋅s | 1569504.3747 J⋅s | **+162.77%**                 |
 
 ---
 
 ### Table 4: Torch vs. JAX
 
-| Metric     | Torch (Median) | JAX (Median)  | Percentage Increase/Decrease |
-|------------|---------------|--------------|----------------------------|
-| **Time**   | 196.501 s     | 521.436 s    | **+165.36%**               |
-| **Energy** | 7989.4385 J   | 15461.0326 J | **+93.52%**                |
-| **Power**  | 40.5893 W     | 29.6987 W    | **-26.83%**                |
-| **EDP**    | 1569504.3747 J⋅s | 8055534.4505 J⋅s | **+413.25%**              |
+| Metric     | Torch (Median)   | JAX (Median)     | Percentage Increase/Decrease |
+| ---------- | ---------------- | ---------------- | ---------------------------- |
+| **Time**   | 196.501 s        | 521.436 s        | **+165.36%**                 |
+| **Energy** | 7989.4385 J      | 15461.0326 J     | **+93.52%**                  |
+| **Power**  | 40.5893 W        | 29.6987 W        | **-26.83%**                  |
+| **EDP**    | 1569504.3747 J⋅s | 8055534.4505 J⋅s | **+413.25%**                 |
 
 ---
 
 ### Table 5: Keras vs. JAX
 
-| Metric     | Keras (Median) | JAX (Median)  | Percentage Increase/Decrease |
-|------------|---------------|--------------|----------------------------|
-| **Time**   | 121.512 s     | 521.436 s    | **+329.12%**               |
-| **Energy** | 4910.2352 J   | 15461.0326 J | **+214.87%**               |
-| **Power**  | 40.4442 W     | 29.6987 W    | **-26.57%**                |
-| **EDP**    | 597288.5663 J⋅s | 8055534.4505 J⋅s | **+1248.68%**              |
-
+| Metric     | Keras (Median)  | JAX (Median)     | Percentage Increase/Decrease |
+| ---------- | --------------- | ---------------- | ---------------------------- |
+| **Time**   | 121.512 s       | 521.436 s        | **+329.12%**                 |
+| **Energy** | 4910.2352 J     | 15461.0326 J     | **+214.87%**                 |
+| **Power**  | 40.4442 W       | 29.6987 W        | **-26.57%**                  |
+| **EDP**    | 597288.5663 J⋅s | 8055534.4505 J⋅s | **+1248.68%**                |
 
 ## Discussion
 
-It should come as no surprise that TensorFlow (Keras) is the most efficient framework, since its design philosophy is to prioritize performance 
-and scalability for large-scale models according to [Simplilearn]. As shown in [Table 3](#table-3-keras-vs-torch), 
-Keras completes the task in **121.512 seconds**, whereas PyTorch takes **196.501 seconds**, a **61.71% increase** in execution time. 
-Similarly, energy consumption for PyTorch is **7989.4385 J**, which is **62.71% higher** than Keras. The power consumption 
+It should come as no surprise that TensorFlow (Keras) is the most efficient framework, since its design philosophy is to prioritize performance
+and scalability for large-scale models according to [Simplilearn]. As shown in [Table 3](#table-3-keras-vs-torch),
+Keras completes the task in **121.512 seconds**, whereas PyTorch takes **196.501 seconds**, a **61.71% increase** in execution time.
+Similarly, energy consumption for PyTorch is **7989.4385 J**, which is **62.71% higher** than Keras. The power consumption
 difference is marginal at **+0.36%**, indicating that the increased energy usage is primarily due to the longer execution time rather than significantly higher power draw.
 
-PyTorch is more geared towards small-scale models and prioritizes simplicity and adaptability according to [Simplilearn]. 
-This aligns with the results in [Table 4](#table-4-torch-vs-jax), where PyTorch outperforms JAX in both time and energy consumption. 
-PyTorch completes the task in **196.501 seconds**, while JAX takes **521.436 seconds**, marking a **165.36% increase**. 
+PyTorch is more geared towards small-scale models and prioritizes simplicity and adaptability according to [Simplilearn].
+This aligns with the results in [Table 4](#table-4-torch-vs-jax), where PyTorch outperforms JAX in both time and energy consumption.
+PyTorch completes the task in **196.501 seconds**, while JAX takes **521.436 seconds**, marking a **165.36% increase**.
 The energy consumption follows a similar pattern, with JAX consuming **15461.0326 J**, a **93.52% increase** compared to PyTorch.
 
 The JAX framework coming in last might be because experiments were executed on the CPU, and a key feature of JAX is that it uses
- Accelerated Linear Algebra (XLA) and just-in-time (JIT) compilation to achieve better performance on GPUs and TPUs according to
-  their [Github]. This is further emphasized in [Table 5](#table-5-keras-vs-jax), where JAX performs significantly worse than Keras.  
+Accelerated Linear Algebra (XLA) and just-in-time (JIT) compilation to achieve better performance on GPUs and TPUs according to
+their [Github]. This is further emphasized in [Table 5](#table-5-keras-vs-jax), where JAX performs significantly worse than Keras.  
 JAX takes **521.436 seconds**, which is **329.12% longer** than Keras, and consumes **15461.0326 J**, a **214.87% increase** in
- energy consumption. However, the JAX framework might not have come to full fruition in this experiment since only CPU performance is considered here.
+energy consumption. However, the JAX framework might not have come to full fruition in this experiment since only CPU performance is considered here.
 
 [Simplilearn]: https://www.simplilearn.com/keras-vs-tensorflow-vs-pytorch-article
 [Github]: https://github.com/jax-ml/
@@ -292,18 +290,17 @@ to the test.
 
 ## Conclusion
 
-In this report, we conducted an experiment to assess the energy efficiency of the popular ML frameworks TensorFlow (Keras), PyTorch, and JAX. 
-We found that TensorFlow (Keras) had the fastest execution time and consumed the least amount of energy when tasked with training a convolutional 
-neural network for 3 epochs and evaluating its accuracy.  
+In this report, we conducted an experiment to assess the energy efficiency of the popular ML frameworks TensorFlow (Keras), PyTorch, and JAX.
+We found that TensorFlow (Keras) had the fastest execution time and consumed the least amount of energy when tasked with training a convolutional
+neural network for 3 epochs and evaluating its accuracy.
 
 The second fastest and most energy-efficient framework was PyTorch,
- but it already took **61.71% more time** and consumed **62.71% more energy** compared to TensorFlow (Keras). 
- The JAX framework performed worst, taking **165.36% more time** and consuming **93.52% more energy** 
- compared to the PyTorch framework (which already came in second).  
+but it already took **61.71% more time** and consumed **62.71% more energy** compared to TensorFlow (Keras).
+The JAX framework performed worst, taking **165.36% more time** and consuming **93.52% more energy**
+compared to the PyTorch framework (which already came in second).
 
-Given the large scale at which ML frameworks are usually deployed, these relative differences in 
+Given the large scale at which ML frameworks are usually deployed, these relative differences in
 energy consumption can lead to monumental differences in practice.
-
 
 ## Appendix - Raw data
 
