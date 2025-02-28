@@ -68,17 +68,6 @@ The video used for the experiment was downloaded from the TU Delft YouTube chann
 
 We observe that H.265 indeed achieves better compression, particularly at higher resolutions. While we cannot guarantee that the video quality of H.264 and H.265 is exactly the same, using a fixed constant rate factor (CRF) and preset ensures that the quality remains comparable across both codecs.
 
-### Metrics <!--Data Collection-->
-We will measure:
-- **Encoding Power Consumption:** 
-- **Decoding Power Consumption:** 
-
-## Decoding Experiment
-### Methodology
-
-### Metrics Collected
-- **Energy Consumption:** 
-- **Decoding Time:** Time taken to decode each format.
 
 ### Results
 
@@ -124,8 +113,11 @@ From the table above we can see that:
 
 
 ### Discussion
-<!-- - Does H.265’s complexity increase playback power consumption?
-- What are the implications for streaming platforms like YouTube? -->
+Our results show that H.264 consumes 19.36% less energy than H.265 during 1080p video decoding. This suggests that while H.265 offers better compression, it does not necessarily result in lower energy consumption during playback. The increased computational complexity of H.265 decoding likely contributes to the higher energy usage, as it requires more processing power to decompress the video compared to H.264.
+
+Interestingly, we observed that the relative difference in energy consumption decreased significantly as the resolution increased. This implies that the higher decoding cost of H.265 may be less of a drawback at higher resolutions, where the benefits of H.265’s compression efficiency are more pronounced. As the resolution increases, H.265's superior compression can offset its decoding complexity, leading to a more balanced trade-off between energy usage and file size.
+
+Given that video decoding is an everyday activity, a 19.36% reduction in energy consumption is highly impactful. While saving 24.8 joules on a single 2 minute video can seem insignificant, considering the vast scale of video consumption—especially on platforms like YouTube—such reductions can lead to substantial energy savings globally. With billions of video views daily, even a small decrease in energy per video can result in millions of joules saved over time, contributing to a reduction in the overall environmental footprint of video streaming.
 
 ## Limitations
 ### **Impact of File Size**
@@ -134,8 +126,8 @@ H.265 offers significantly more efficient compression, resulting in smaller file
 ### **Limited generalization**
 Our study was conducted using a single video, which may limit the generalizability of the results. Additionally, we only tested the default constant rate factor and preset settings, meaning performance and energy consumption may vary under different encoding configurations. Future research should investigate a broader range of videos and encoding parameters to provide more comprehensive insights.
 
-### **Hardware dependant**
-
+### **Single hardware configuration**
+The study was conducted using a single hardware platform. The energy consumption observed may vary across different devices, operating systems, or configurations. Expanding the range of hardware used could provide a more comprehensive view of codec performance in real-world scenarios.
 
 ### **Hardware acceleration**
 This study did not take advantage of hardware acceleration. Utilizing specialized hardware such as GPUs or dedicated video encoding/decoding units could lead to different energy consumption results. Future work could include testing with hardware acceleration to assess its impact on energy efficiency.
@@ -149,7 +141,7 @@ thread 'main' panicked at /rustc/07dca489ac2d933c78d3c5158e3f43beefeb02ce\librar
 ```
 The impact of the error was that EnergiBridge would stop measuring and return control back to our automated script. However, since we used EnergiBridge as a wrapper command for our FFMPEG encoding/decoding, and EnergiBridge would not kill its child process, the encoding/decoding continued. A new experiment would then start, which meant that we had two processes running at the same time. In practice, we experienced that the amount of simultaneous processes could reach well over 10, slowing the computer down significantly, probably because of a lack of enough resources.
 
-The error was encountered on both Intel and AMD processors. RAPL was used to measure energy consumption on Intel hardware. The AMD hardware reports different data, which suggest RAPL was not used in these cases. Furthermore, increasing the sleep time between experiments seemed to reduce the amount of overflows. On the Intel hardware we run our experiments with a sleep time of 150 seconds, which was more than the experiments themselves took. This prevented multiple encoding/decoding processes to be running at the same time. At the same time, the number of overflows seemed to be smaller, indicating that the FFMPEG process might pollute something which leads parallel experiments to fail. Moreover, the overflow was only encountered on experiments where libx264 was used to decode videos into various resolutions.
+The error was encountered on both Intel and AMD processors. RAPL was used to measure energy consumption on Intel hardware. The AMD hardware reports different data, which suggest RAPL was not used in these cases. Furthermore, increasing the sleep time between experiments seemed to reduce the amount of overflows. On the Intel hardware we run our experiments with a sleep time of 150 seconds, which was more than the experiments themselves took. This prevented multiple encoding/decoding processes to be running at the same time. At the same time, the number of overflows seemed to be smaller, indicating that the FFMPEG process might pollute something which leads parallel experiments to fail. Moreover, the overflow was only encountered on experiments where libx264 was used to decode videos into various resolutions. This is suprising as libx264 is less computationally expensive compared to libx265.
 
 ### Corner cases?
 
