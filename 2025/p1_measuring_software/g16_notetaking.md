@@ -9,7 +9,11 @@ summary: |-
 
 # Comparing Energy Consumption of Note-Taking Applications
 ## Introduction
-Everyone has to take notes sometime; university classes, business meetings, grocery lists, etc. Many people will start up their favorite text editor and start typing without giving it much further thought. Considering that just about everyone takes notes at least once a day, minor improvements in energy consumption can be cumulatively massive, which justifies looking into the energy consumption of different text editors. Therefore, this report researches the energy consumption of several text editors which may be used to quickly take notes on windows machines. The energy consumption of each text editor was measured in Joules using Energibridge while given the task of taking a short 50 character note in the editor. We hope this will result in recommendations regarding software which may be used to take quick notes in an energy efficient manner.
+Everyone has to take notes sometimes; university classes, business meetings, grocery lists, etc. Many people will start up their favorite text editor and start typing without giving it much further thought.
+Considering that just about everyone takes notes at least once a day, minor improvements in energy consumption can be cumulatively massive, which justifies looking into the energy consumption of different text editors.
+Therefore, this report researches the energy consumption of several text editors which may be used to quickly take notes on windows machines.
+The energy consumption of each text editor was measured in Joules using Energibridge while given the task of taking a short 50 character note in the editor.
+We hope this will result in recommendations regarding software which may be used to take quick notes in an energy efficient manner.
 
 For this study, we selected text editors commonly used by EEMCS students. The selected text editors are:
 - Notepad: A minimalist text editor that comes pre-installed on Windows. Its simplicity and lack of advanced features makes it a likely candidate for low energy consumption.
@@ -19,7 +23,8 @@ For this study, we selected text editors commonly used by EEMCS students. The se
 
 
 ### Problem statement
-This report aims to evaluate the energy consumption of several widely-used text editors on Windows machines, with the goal of identifying which software options are most energy-efficient for everyday note-taking. By understanding the energy demands of different text editors, we hope to provide recommendations that will help users, particularly students and professionals, make informed choices about which software to use based on its energy efficiency.
+This report aims to evaluate the energy consumption of several widely-used text editors on Windows machines, with the goal of identifying which software options are most energy-efficient for everyday note-taking.
+By understanding the energy demands of different text editors, we hope to provide recommendations that will help users, particularly students and professionals, make informed choices about which software to use based on its energy efficiency.
 
 ## Methodology
 In this experiment we test the energy consumptions of various text editors while simulating natural typing behavior. 
