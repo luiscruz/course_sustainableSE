@@ -95,8 +95,8 @@ It is also important to use a non-premium Spotify account for the experiments be
 
 ## Results 
 
-### Results of the initial setup without closing and opening (web)app
-As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefited from internal cashing. This led us to change our setup to open and close the (web)app for every run.
+### Results in initial setup without closing and opening (web)app
+As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefitted from internal caching. This led us to change our setup to open and close the (web)app for every run
 
 ![Violin Plot](../img/p1_measuring_software/g25_spotify/box_without_closing_setup.png)
 *Figure 1: Violin and Box plots of energy consumption (J) without outliers.*
@@ -124,7 +124,7 @@ We have plotted the data[^sse_github_repo] collected from the experiment into tw
 To determine the significance of our results we used Welch’s t-test, which reported a t-statistic of -9.3 and a p-value of 3.21 × 10<sup>-12</sup>. Since p < 0.05 we conclude that there is a statistically significant difference. From the t-statistic, we conclude that the native version consumes significantly more energy.
 
 #### Effect Size
-To get an insight into the effect size of our experiments we computed multiple values, including the average difference, per cent change and Cohan's d, these can be seen in Table 2.
+To get an insight into the effect size of our experiments we computed multiple values, including the average difference, percent change and Cohan's d, these can be seen in Table 2.
 
 |                	| Web   	| Native 	| Difference 	|
 |----------------	|-------	|--------	|------------	|
@@ -160,7 +160,7 @@ In conclusion, users are better off using Spotify's web implementation rather th
 
 
 ## Future Work
-The future work would involve looking at covering more use cases of the Spotify app. This would involve testing different features within the app and how they affect the energy consumption both in the native vs web app version. In addition for different video qualities, the energy consumption of the native vs Web App can be compared. This can be extended for different browsers as well. In addition to this comparing different native versions of Spotify across different operating systems and architectures can be done as well. Other similar music players such as Apple Music / Youtube Music can be examined to see how well they perform in terms of energy consumption when compared to Spotify. The song selection could also be improved, currently the same four songs are being tested for 20 seconds each per run. The better approach would involve testing for longer periods with a bigger variety of songs from multiple genres. The user experience between Spotify's native and web app versions can be collected to see if it is worth the extra energy. Spotify might consider removing features that very few users use that might be consuming a lot of energy in the native or web app. The network connection also affects the energy consumption so using a web app with wired internet/Wi-Fi.
+The future work would involve looking at covering more use cases of the Spotify app. This would involve testing different features within the app, such as different video qualities, and how they affect the energy consumption both in the native vs web app version. This can be extended for different browsers and for different native versions of Spotify across different operating systems and architectures. Other similar music players such as Apple Music / Youtube Music can be examined to see how well they perform in terms of energy consumption when compared to Spotify. The song selection could also be improved, currently the same four songs are being tested for 20 seconds each per run. The better approach would involve testing for longer periods with a bigger variety of songs from multiple genres. The user experience between Spotify's native and web app versions can be collected to see if it is worth the extra energy. Spotify might consider removing features that very few users use that might be consuming a lot of energy in the native or web app. The network connection also affects the energy consumption so using a web app with wired internet/Wi-Fi.
 
 
 [^music_industry_shift]: [An Economic Analysis of the Effects of Streaming on the Music Industry in Response to Criticism from Taylor Swift](https://scholarworks.uni.edu/cgi/viewcontent.cgi?params=/context/mtie/article/1154/&path_info=05_Zehr_music_streaming.pdf)
