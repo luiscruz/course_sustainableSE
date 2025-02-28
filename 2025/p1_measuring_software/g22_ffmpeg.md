@@ -1,3 +1,4 @@
+
 ---
 author: Student1 first and last name, Student2, Student3
 title: "Comparing H.264 and H.265 video decoding energy consumption"
@@ -24,16 +25,33 @@ By measuring and comparing the energy consumption of H.264 and H.265 video decod
 
 ### Research Question  
 
-How does the energy consumption of video decoding compare between the H.264 and H.265 formats,  
-and what are the implications for device efficiency and environmental sustainability?
+How does the energy consumption of video decoding compare between the H.264 and H.265 codecs,  and what are the implications for device efficiency and environmental sustainability?
 
-## Experiment Setup
-### Hardware & Software
+## Experimental Setup
+We evaluate the energy consumption of the H.264 and H.265 codecs by encoding a single video at three different resolutions—1080p, 720p, and 480p—using both codecs in MP4 format. We then decode the entire video to measure and compare the energy consumption associated with the decoding process for each codec.
+
+### Environment
 We will conduct tests on:
 <!--computer, fixed environment settings, CPU, RAM and etc-->
 
 ### Tools & Methods
-To measure energy consumption, we will use:
+Encoding and decoding are performed using [FFmpeg](https://www.ffmpeg.org/), a free and open-source software suite used for handling multimedia files. The videos are encoded with a constant rate factor (CRF) of 23 and the medium preset. 
+
+We measure energy consumption using [EnergiBridge](https://github.com/tdurieux/EnergiBridge). Each decoding experiment is repeated 30 times, with a 1-minute break between runs to prevent residual CPU activity from affecting subsequent measurements.
+
+### Video specifications
+The video used for the experiment was downloaded from the TU Delft YouTube channel in 4K resolution and can be found [here](https://www.youtube.com/watch?v=rlVE2fivjs4). The video duration was 1 minute and 44 seconds, with a frame rate of 25 fps. Initially encoded in VP9, the video was then transcoded into both H.264 and H.265 formats for the experiment.
+
+| **Encoding** | **Resolution** | **Bitrate** | **File Size** | 
+|----------------|--------------|-------------|---------------| 
+| VP9 (Original)| 3840x2160 |7731 kbps | 95.9 MB |
+| H.264 | &nbsp; 854x480 | 700 &nbsp; kbps | 8.76 MB | 
+| H.264 | 1280x720 | 1291 kbps | 16.0 MB | 
+| H.264 | 1920x1080 | 2689 kbps | 33.4 MB | 
+| H.265 | &nbsp; 854x480 | 619 &nbsp; kbps | 7.76 MB |
+| H.265 | 1280x720 | 1026 kbps | 12.8 MB |
+| H.265 | 1920x1080 | 1853 kbps | 23.0 MB |
+
 
 ### Metrics <!--Data Collection-->
 We will measure:
@@ -53,6 +71,21 @@ We will measure:
 ### Discussion
 <!-- - Does H.265’s complexity increase playback power consumption?
 - What are the implications for streaming platforms like YouTube? -->
+
+## Limitations
+### **Impact of File Size**
+H.265 provides significantly more efficient compression, resulting in smaller file sizes. This reduction lowers energy consumption in areas not measured in our experiments, such as networking and disk access costs in addition to lower storage requirements. Future work could explore these aspects in greater detail.
+
+### **Limited generalization**
+Our study was conducted using a single video, which may limit the generalizability of the results. Additionally, we only tested the default constant rate factor and preset settings, meaning performance and energy consumption may vary under different encoding configurations. Future research should investigate a broader range of videos and encoding parameters to provide more comprehensive insights.
+
+### **Hardware acceleration**
+This study did not take advantage of hardware acceleration. Utilizing specialized hardware such as GPUs or dedicated video encoding/decoding units could lead to different energy consumption results. Future work could include testing with hardware acceleration to assess its impact on energy efficiency.
+
+## Challenges Encountered
+During our experiments, we attempted to measure the energy consumption of the video **encoding** tasks with **EnergiBridge**, but unfortunately, we encountered issues that prevented the tool from functioning as expected. Despite multiple troubleshooting attempts, we were unable to gather reliable data from these trials.
+
+### Corner cases?
 
 
 ## Summary & Key Takeaways
@@ -74,7 +107,7 @@ We will measure:
 
 ## Replication Package
 ### How to Reproduce the Experiment
-
+Instructions on how to reproduce the experiment can be found on our [GitHub Repository](https://github.com/GijsMargadant/course_sustainableSE)
 
 ### Resources Provided
 
