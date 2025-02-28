@@ -137,7 +137,7 @@ To get an insight into the effect size of our experiments we computed multiple v
 *Table 2: Effect size analysis.*
 
 ## Discussion
-In a similar paper published in 2023, R. Horn et al. compared native and web applications on Android devices in terms of energy consumption, including Spotify, and concluded that web applications consumed 53% more energy than their native counterparts.[^Android_vs_WebApp] We also assumed something similar for our experiment on a Windows machine. However, the [results](#results-) show that the opposite is true. The native version of Spotify consumes about 10.78% more energy than the web counterpart.
+In a similar paper published in 2023, R. Horn et al. compared native and web applications on Android devices in terms of energy consumption, including Spotify, and concluded that web applications consumed 53% more energy than their native counterparts.[^Android_vs_WebApp] We also assumed something similar for our experiment on a Windows machine. However, the [results](#results) show that the opposite is true. The native version of Spotify consumes about 10.78% more energy than the web counterpart.
 
 To understand where these differences come from, we looked at the differences between the applications. First, the two applications differ in terms of functionality. The web application only offers one bitrate that automatically adjusts the streaming quality. In the native application, on the other hand, you can choose between different audio qualities and also switch off the automatic quality adjustment. Moreover, the native application also implements caching.
 
