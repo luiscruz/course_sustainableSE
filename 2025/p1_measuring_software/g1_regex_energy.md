@@ -17,7 +17,7 @@ In this blog, we explore the question: **How energy efficient is `CTRL+F` in dif
 
 # Motivation
 
-Pattern matching is a powerful, yet computational expensive tool. The complexity varies depending on the pattern, engine and input size, with worst-case scenarios reaching exponential time $O(2^n)$ [^15], particularly with patterns prone to "catastrophic backtracking" [^21]. This is caused when the engine explores an exponential number of paths to match. Therefore, evaluating RegEx engines across pattern complexities is crucial to identifying inefficiencies and optimising real-world searches.
+Pattern matching is a powerful, yet computational expensive tool. The complexity varies depending on the pattern, engine and input size, with worst-case scenarios reaching exponential time O(2<sup>n</sup>) [^15], particularly with patterns prone to "catastrophic backtracking" [^21]. This is caused when the engine explores an exponential number of paths to match. Therefore, evaluating RegEx engines across pattern complexities is crucial to identifying inefficiencies and optimising real-world searches.
 
 The need for such optimisation is amplified by the rapid growth of code repositories, where research highlights the challenge of navigating repositories expanding in size and complexity [^17]. Tools like `CTRL+F`, powered by RegEx engines, are crucial in enabling developers to efficiently search and navigate these vast code bases.
 
