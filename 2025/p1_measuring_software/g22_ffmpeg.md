@@ -1,4 +1,5 @@
 
+
 ---
 author: Student1 first and last name, Student2, Student3
 title: "Comparing H.264 and H.265 video decoding energy consumption"
@@ -28,22 +29,28 @@ By measuring and comparing the energy consumption of H.264 and H.265 video decod
 How does the energy consumption of video decoding compare between the H.264 and H.265 codecs,  and what are the implications for device efficiency and environmental sustainability?
 
 ## Experimental Setup
-We evaluate the energy consumption of the H.264 and H.265 codecs by encoding a single video at three different resolutions—1080p, 720p, and 480p—using both codecs in MP4 format. We then decode the entire video to measure and compare the energy consumption associated with the decoding process for each codec.
 
 ### Environment
 We will conduct tests on:
 <!--computer, fixed environment settings, CPU, RAM and etc-->
 
 ### Tools & Methods
-Encoding and decoding are performed using [FFmpeg](https://www.ffmpeg.org/), a free and open-source software suite used for handling multimedia files. The videos are encoded with a constant rate factor (CRF) of 23 and the medium preset. 
+We evaluate the energy consumption of the H.264 and H.265 codecs by encoding a single video at different resolutions using both codecs in MP4 format. We then decode the entire video to measure and compare the energy consumption associated with the decoding process for each codec.
+
+Encoding and decoding were performed using [FFmpeg](https://www.ffmpeg.org/), a free and open-source software suite used for handling multimedia files. Both H.264 and H.265 are lossy compression formats, where the Constant Rate Factor (CRF) determines the level of quality loss—lower values retain higher quality at the cost of larger file sizes. Additionally the preset controls the trade-off between encoding speed and compression efficiency. For this experiment, videos were encoded using **CRF 23** and the **medium preset**, which are the default settings in FFmpeg. These values provide a balanced trade-off between compression efficiency, encoding speed, and output quality.
+
 
 We measure energy consumption using [EnergiBridge](https://github.com/tdurieux/EnergiBridge). Each decoding experiment is repeated 30 times, with a 1-minute break between runs to prevent residual CPU activity from affecting subsequent measurements.
 
-### Video specifications
-The video used for the experiment was downloaded from the TU Delft YouTube channel in 4K resolution and can be found [here](https://www.youtube.com/watch?v=rlVE2fivjs4). The video duration was 1 minute and 44 seconds, with a frame rate of 25 fps. Initially encoded in VP9, the video was then transcoded into both H.264 and H.265 formats for the experiment.
+Energy consumption is measured from the start of decoding until completion. To prevent file writing from affecting the results, the decoded video is directed to a null output, avoiding delays caused by writing large uncompressed video files. This approach aligns with real-world use cases, where videos are typically buffered and displayed on-screen rather than written to disk.
+
+We chose this method over playing the actual video to isolate the decoding process. However, in real-world scenarios, video decoding may not always occur all at once, as streaming and playback often involve partial or on-demand decoding.
+
+### Video specifications and encoding results
+The video used for the experiment was downloaded from the TU Delft YouTube channel in 4K resolution and can be found [here](https://www.youtube.com/watch?v=rlVE2fivjs4). It has a duration of 1 minute and 44 seconds with a frame rate of 25 fps. Originally encoded in VP9, the video was transcoded into H.264 and H.265 at three different resolutions: 480p, 720p, and 1080p. This resulted in the following set of videos:
 
 | **Encoding** | **Resolution** | **Bitrate** | **File Size** | 
-|----------------|--------------|-------------|---------------| 
+|-|-|-|-| 
 | VP9 (Original)| 3840x2160 |7731 kbps | 95.9 MB |
 | H.264 | &nbsp; 854x480 | 700 &nbsp; kbps | 8.76 MB | 
 | H.264 | 1280x720 | 1291 kbps | 16.0 MB | 
@@ -52,6 +59,7 @@ The video used for the experiment was downloaded from the TU Delft YouTube chann
 | H.265 | 1280x720 | 1026 kbps | 12.8 MB |
 | H.265 | 1920x1080 | 1853 kbps | 23.0 MB |
 
+We observe that H.265 indeed achieves better compression, particularly at higher resolutions. While we cannot guarantee that the video quality of H.264 and H.265 is exactly the same, using a fixed constant rate factor (CRF) and preset ensures that the quality remains comparable across both codecs.
 
 ### Metrics <!--Data Collection-->
 We will measure:
@@ -74,7 +82,7 @@ We will measure:
 
 ## Limitations
 ### **Impact of File Size**
-H.265 provides significantly more efficient compression, resulting in smaller file sizes. This reduction lowers energy consumption in areas not measured in our experiments, such as networking and disk access costs in addition to lower storage requirements. Future work could explore these aspects in greater detail.
+H.265 offers significantly more efficient compression, resulting in smaller file sizes. This reduction can lower energy consumption in areas not measured in our experiments, such as networking and disk access, beyond just reducing storage requirements. Future research could further investigate these aspects to better understand the overall energy impact and determine the optimal codec choice for different use cases.
 
 ### **Limited generalization**
 Our study was conducted using a single video, which may limit the generalizability of the results. Additionally, we only tested the default constant rate factor and preset settings, meaning performance and energy consumption may vary under different encoding configurations. Future research should investigate a broader range of videos and encoding parameters to provide more comprehensive insights.
@@ -107,7 +115,7 @@ During our experiments, we attempted to measure the energy consumption of the vi
 
 ## Replication Package
 ### How to Reproduce the Experiment
-Instructions on how to reproduce the experiment can be found on our [GitHub Repository](https://github.com/GijsMargadant/course_sustainableSE)
+Instructions on how to reproduce the experiment can be found on our [GitHub Repository](https://github.com/GijsMargadant/course_sustainableSE).
 
 ### Resources Provided
 
