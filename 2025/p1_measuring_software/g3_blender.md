@@ -7,6 +7,8 @@ summary: |-
   In modern digital content creation pipelines, rendering can be a major bottleneck—not only in terms of time but also energy consumption. As sustainability becomes a priority, understanding the energy footprint of different rendering modes in Blender is essential for individuals, studios, and the broader 3D community. In this study, we compare the energy usage of CPU versus GPU rendering on multiple machines using an automated pipeline. We present our experimental setup, discuss our findings, and propose recommendations for more sustainable rendering practices.
 ---
 
+[Project Source GitHub](https://github.com/Matthijs-Vossen/SSE-group3-project1/tree/main) (contains automated scripts for easy replication and a readme explaining how to use them)
+
 # Comparing energy consumption between rendering modes in Blender
 
 *Matthijs Vossen, Melle Koper, Roan Rosema, Scott Jochems*
@@ -99,7 +101,7 @@ To facilitate replication of our results, we provide:
 - Configuration details of the environment (Blender version, hardware specifications, etc.).
 
 ## Results
-In our results, we look at all the experiments that were ran on the 3 different machines. We take a look at the mean and standard deviations and compare the results between CPU and GPU runs. The raw CSV files of our results can be found in the Github (LINK HIER). 
+In our results, we look at all the experiments that were ran on the 3 different machines. We take a look at the mean and standard deviations and compare the results between CPU and GPU runs. The raw CSV files of our results can be found in the [GitHub](https://github.com/Matthijs-Vossen/SSE-group3-project1/tree/main).
 
 To analyze our results further we used the following statistical tests:
 - Shapiro-Wilk test: Checks if a dataset is normally distributed
