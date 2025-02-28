@@ -1,5 +1,5 @@
 ---
-author: Sofia Konovalova, Kaijen Lee (5100887), Violeta Macsim
+author: Sofia Konovalova (6174019), Kaijen Lee (5100887), Violeta Macsim (5498031)
 title: "Sustainable Servers: Benchmarking energy consumption of various backend frameworks"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
@@ -35,14 +35,13 @@ When a user interacts with a website or app, for example, by submitting a form, 
 
 
 # Methodology 
-In this section, the tools utilized to carried out the experiments, the experimental setup and procedure, and the hardware we used to derive our results are elaborated.
 
 ## Tools
 To measure the energy consumption of **Flask**, **Express.js**, and **Springboot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
 
 [**Energibridge**](https://github.com/tdurieux/energibridge) is a command-line tool for measuring the energy consumption of computer processes that can be integrated into a containerized development pipeline. In our case, the process would be the currently running server. The tool outputs the values as `.csv` files, allowing you to track your operations' "energy footprint".
 
-For each framework, we use the [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html) as it is lightweight and comes installed in most Unix systems. Using this benchmarking tool, we can specify the amount of requests we want to be made concurrently. In our case, we make 10,000 requests with 150 concurrent requests.
+For each framework, we use the [**Apache Benchmark**](https://httpd.apache.org/docs/2.4/programs/ab.html) as it is lightweight and comes installed in most Unix systems. Using this benchmarking tool, we can specify the amount of requests we want to be made concurrently. As it is a simple command-line tool, this way we also mitigate the unnecessary overhead that some load-testing frameworks can have which might affect energy readings. in In our case, we make 10,000 requests with 150 concurrent requests.
 
 ## Experimental Setup
 
@@ -50,21 +49,34 @@ We created a containerized Docker environment for each framework, resulting in t
 
 For the dataset the frameworks will use for querying, we based it on three `.tsv` files from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), namely `title.basics.tsv`, `title.ratings.tsv`, and `name.basics.tsv`. We reduced the size of the original dataset by considering only the first 50,000 entries from each of the `.tsv` files.
 
-Subsequently, for each framework, we store the entries of the `.tsv` files in-memory within three Map (or equivalent) data structures with the key as the primary key and the value as the object representation of the entries. This results in three Maps representing the basic information of movies, ratings of movies, and basic information of industry professionals. This is done when the docker container of each framework are instantiated. We followed this approach instead of connecting to an external database to mitigate the effects of database connection towards the energy consumption measurement for each framework. 
+For each framework, the entries of the `.tsv` files were stored in-memory within datastructures that were most appropriate for the programming language -- an array of objects for Express, a list of dictionaries for Flask and a HashMap for Springboot. These data structures are instantiated when the respective docker containers are built. We followed this approach instead of connecting to an externalk datrabase to mitigate the effects of database connection and timeouts towards the energy consumption measurement for each framework.
 
-## Experimental Procedure
-The experiment was automated with the use of a bash script. Before any measurements are taken, the script builds the necessary Docker containers, waits 15 seconds, and then begins energy measurements as the benchmarking tool is run. At the end of the run, the docker container is torn down and the script waits for 60 seconds before continuing on with the next iteration or framework in order to prevent as much tail energy consumption as possible.
+## Experiment Procedure
+
+The experiment was completed with an automation script. 
+
+Before the experiment was conducted, the device on which the experiment was run was prepared in order to not collect any energy consumption data from outside influences. All notifications were shut off, all applications were closed, the device was connected to a power plug at all times and connected to wired internet instead of wireless to ensure consistent energy readings. Furthermore, a warm-up phase of completing just one iteration of the experiment was completed and the results discarded. 
+
+The procedure of one iteration of the experiment (with thirty in total) that the script takes is as follows:
+
+1. The order in which the frameworks are tested are shuffled.
+2. For each framework:
+  - The Docker container for that framework is built.
+  - The Apache benchmark command is run with energibridge to collect energy data while the benchmarking script is running.
+  - The Docker container is torn down after the benchmarking test is complete.
+3. In between each framework, the script sleeps for 60 seconds to ensure no tail energy consumption is recorded.
 
 ## Hardware Specifications
 
 The experiment is performed by running the automated batch script on a **Windows 11 Home** laptop that is not running any other services (except for NVIDIA-related ones) and has been warmed up by running one iteration of the experiment. Throughout the experiment, the PC was kept at room temperature and the laptop was plugged into a non-fast-charging power supply.
 
-| Laptop | Lenovo Yoga Pro 9 |
-| ------ | ------------------ |
-| CPU    | Intel(R) Core(TM) Ultra 9 185H   2.30 GHz |
-| RAM    | 32 GB      |
-| GPU    | NVIDIA GeForce RTX4060 Laptop  |
-| OS     | Windows 11 Home 24H2    |
+| **Laptop** | **Lenovo Yoga Pro 9**                    |
+|------------|------------------------------------------|
+| CPU        | Inter (R) Core(TM) Ultra 9 185H 3.20 GHz |
+| RAM        | 32 GB                                    |
+| GPU        | NVIDIA GeForce RTX4060 Laptop            |
+| OS         | Windows 11 Home 24H2                     |
+
 ##### Table 1: Laptop specifications used in our experiment
 
 # Results
@@ -82,7 +94,7 @@ Then, let's analyze the combination of energy efficency and computation time. Th
 
 Again, we see how much better performing _SpringBoot_ is compared to the others. Java's JVM might play a big role into how energy is being consumed for running the code.
 
-# Is the data reliable?
+## Reliability
 
 Considering how many extra steps were performed before running the experiment, are these values just pure coincidence? Will another person be able to obtain the same clear differences? 
 
