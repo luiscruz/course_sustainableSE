@@ -247,7 +247,7 @@ a **372.59% increase** in energy consumption. However, the JAX framework might n
 fruition in this experiment since only CPU performance is considered here.
 
 [Simplilearn]: https://www.simplilearn.com/keras-vs-tensorflow-vs-pytorch-article
-[Github]: https://github.com/jax-ml/jax
+[Github]: https://github.com/jax-ml/
 
 ## Limitations & future work
 
