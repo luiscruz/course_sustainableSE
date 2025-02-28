@@ -11,7 +11,7 @@ summary: |-
 
 With more people spending time online than ever before, the world generates nearly 400 million terabytes of data per day ([Statista, 2024](https://www.statista.com/statistics/871513/worldwide-data-created/)). As technological demands rise, backend servers must handle complex data streams, from video and audio to AI-powered applications, while maintaining low latency and high reliability. However, this increasing demand comes at a cost: in 2022, European data centers consumed **2.6% of global energy** ([European Commission, 2024](https://publications.jrc.ec.europa.eu/repository/handle/JRC135926)), and in 2023, US-based data centers consumed **4.4% of national energy expenditures**([Shehabi et. al., 2024](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf)). While a significant portion of this energy is used to cool servers  ([Jin et. al., 2020](https://www.sciencedirect.com/science/article/abs/pii/S0306261920303184)), the computational overhead of processing millions of backend requests per second also contributes significantly to their power consumption.
 
-Given the massive energy demands of data centers, even minor improvements to backend frameworks could help reduce overall power consumption. Some frameworks handle requests more efficiently, requiring fewer CPU cycles or better utilizing system resources, resulting in lower energy consumption per request. But how big an impact can a backend framework really have? In this project, we compare the energy consumption of **Express.js**, **Spring Boot**, and **Flask** to see if software choices can help data centers become even more efficient.
+Given the massive energy demands of data centers, even minor improvements to backend frameworks could help reduce overall power consumption. Some frameworks handle requests more efficiently, requiring fewer CPU cycles or better utilizing system resources, resulting in lower energy consumption per request. But how big an impact can a backend framework really have? In this project, we compare the energy consumption of **Express.js**, **SpringBoot**, and **Flask** to see if software choices can help data centers become even more efficient.
 
 ## Backend frameworks
 Backend frameworks are software tools that enable backend functionality in web applications. Their attributions range from server-side logic to database interactions, user authentication, and API communication. They ensure that data is processed between the server and the client.
@@ -19,10 +19,10 @@ Backend frameworks are software tools that enable backend functionality in web a
 When a user interacts with a website or app, for example, by submitting a form, making a purchase, or loading personalized content, the backend framework processes the request, retrieves the necessary data, and sends the response. This enables applications to run smoothly without requiring users to interact directly with the server or database.
 
 ### Express.js
-**[Express.js](https://expressjs.com/)** is a _Node.js_ framework that simplifies server-side application development with its lightweight skeleton and customizable routing via middleware modules for both web and mobile applications. Its design enables developers to quickly create APIs and online apps by drawing on JavaScript's asynchronous event-driven architecture. Its adaptability allows it to work with a wide range of libraries, making it a popular choice for scalable, real-time applications.
+**[Express.js](https://expressjs.com/)** is a Node.js framework that simplifies server-side application development with its lightweight skeleton and customizable routing via middleware modules for both web and mobile applications. Its design enables developers to quickly create APIs and online apps by drawing on JavaScript's asynchronous event-driven architecture. Its adaptability allows it to work with a wide range of libraries, making it a popular choice for scalable, real-time applications.
 
 ### Flask
-**[Flask](https://flask.palletsprojects.com/en/latest/)** is a simple _Python_ [microframework](https://medium.com/codex/what-are-microframeworks-best-ones-you-should-consider-using-f77eacc44dcb#9873) that offers the necessary tools for building a web app without any strict structure. Because of its lightweight nature, it is compatible with a wide range of other database management, form validation, and user authentication extensions. Flask's considerate design and ease of implementation make it an ideal choice for both small and rapidly evolving projects. 
+**[Flask](https://flask.palletsprojects.com/en/latest/)** is a simple Python [microframework](https://medium.com/codex/what-are-microframeworks-best-ones-you-should-consider-using-f77eacc44dcb#9873) that offers the necessary tools for building a web app without any strict structure. Because of its lightweight nature, it is compatible with a wide range of other database management, form validation, and user authentication extensions. Flask's considerate design and ease of implementation make it an ideal choice for both small and rapidly evolving projects. 
 
 ### SpringBoot
 [**SpringBoot**](https://spring.io/projects/spring-boot) is a powerful open-source Java framework included in the Spring package that provides solutions for various products. This framework automatically configures the boilerplate, giving you the freedom to add whatever extensions you want. It provides support for database connections, authentication services, and web servers. Spring enables developers to build scalable, production-ready applications with minimal setup time.
@@ -31,7 +31,7 @@ When a user interacts with a website or app, for example, by submitting a form, 
 # Methodology 
 
 ## Tools
-To measure the energy consumption of **Flask**, **Express.js**, and **SpringBoot**, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
+To measure the energy consumption of Flask, Express.js, and SpringBoot, we set up a reproducible testing repository with minimal external interference. Let's take a closer look at how we organized the experiment!
 
 [**Energibridge**](https://github.com/tdurieux/energibridge) is a command-line tool for measuring the energy consumption of computer processes that can be integrated into a containerized development pipeline. In our case, the process would be the currently running server. The tool outputs the values as `.csv` files, allowing you to track your operations' "energy footprint".
 
@@ -97,11 +97,12 @@ After ensuring normal distribution of our data, we can begin to further analyze 
 
 Additional, we outline the mean energy consumption of each framework measured from our experiments in Table 3.
 
-| **Framework**     | **Mean Energy Consumption (J)**                              |
+| **Framework**     | **Mean Energy Consumption (J)**          |
 |-------------------|------------------------------------------|
-| SpringBoot        | 1385.402                                    |
-| Express           | 2922.147                                   |
+| SpringBoot        | 1385.402                                 |
+| Express           | 2922.147                                 |
 | Flask             | 12873.86                                 |
+
 ##### Table 3: Mean Energy Consumption per framework.
 
 
@@ -114,11 +115,12 @@ We also wanted to observe the energy delay product distribution for our framewor
 ## Statistical Significance between Samples
 To ensure the statistical significance in comparing the readings we took for each framework, we perform Welch’s t-test for each pair of the three frameworks we experimented on. We utilized a threshold of p-value < 0.05 for the comparisons to be statistically significant. Table 4 outlines our results for the Welch's t-tests.
 
-|    | SpringBoot                     | Express | Flask |
-|-------------------|------------------------------------------| --- | ---|
-| SpringBoot        |x                                   | x | x |
-| Express           | 6.657 e-49                                 |x | x|
-| Flask             | 2.430e-56                                    | 1.512e-66| x
+|            | SpringBoot | Express   | Flask |
+|------------|------------|-----------|-------|
+| SpringBoot |            | -         | -     |
+| Express    | 6.657 e-49 | -         | -     |
+| Flask      | 2.430e-56  | 1.512e-66 | -     |
+
 ##### Table 4: P-value from the pairwise Welch's t-tests. Note that the results for each pair is symmetric.
 
 # Discussion
