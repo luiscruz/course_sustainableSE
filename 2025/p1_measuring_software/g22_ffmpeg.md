@@ -1,9 +1,7 @@
-
-
 ---
 author: Michael Chan, Roberto Negro, Jamila Seyidova, Gijs Margadant
 title: "Comparing H.264 and H.265 video decoding energy consumption"
-image: "../img/p1_measuring_software/gX_template/ffmpeg_cover.png"
+image: "ffmpeg_cover.png"
 date: 28/02/2025
 summary: |-
   This study explores the energy consumption of video decoding for H.264 and H.265 across different resolutions. The findings provide insights into the impact of video codecs on device efficiency and sustainability.
