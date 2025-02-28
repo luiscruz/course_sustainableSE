@@ -31,13 +31,22 @@ For the experiment on Windows we used an ASUS Vivobook with the following specif
 - Brightness level of 30
 - Resolution of 1920 x 1200.
 - Wifi turned off.
+For the experiment on macOS we used a MacBook Air with the following specifications:
+- macOS Sonoma 14.6.1
+- Apple M3 chip
+- 16 GB RAM.
+- Full brightness level with auto-adjustment turned off
+- Resolution of 2560 x 1664
+- Power-saving mode turned off
+- Wifi turned off.
 
 ### Experiment Procedure 
-Before the experiment begins, we create a list of 30 instances of Python 3.11 and 30 instances of Python 3.14. We then shuffle this list to determine the order in which they get run. To warm up the hardware, we begin the experiment by performing a CPU intensive task for 5 minutes. In our case, that means repeatedly calculating the squares of the numbers in the range [0, 10^6) for the duration of the 5 minutes. After this is done, we go through the previously created list and pick a version of Python to run. We then create two sub-processes, one for Energibridge to measure the energy consumption and one to run a benchmark script on the picked version of Python. The benchmark script generates two 1000 x 1000 matrices, which then get multiplied. After this is done and energy consumption has been saved, we let the process wait for 1 minute. This is to prevent tail energy consumption from the previous run from influencing the measurement in the next run.
+Before the experiment begins, we create a list of 30 instances of Python 3.11 and 30 instances of Python 3.14. We then shuffle this list to determine the order in which they get run. To warm up the hardware, we begin the experiment by performing a CPU intensive task for 5 minutes. In our case, that means repeatedly calculating the squares of the numbers in the range [0, 10^6) for the duration of the 5 minutes. After this is done, we go through the previously created list and pick a version of Python to run. We then create two sub-processes, one for Energibridge to measure the energy consumption and one to run a benchmark script on the picked version of Python. The benchmark script generates two 1000 x 1000 matrices, which then get multiplied. After this is done and energy consumption has been saved, we let the process wait for 1 minute. This is to prevent tail energy consumption from the previous run from influencing the measurement in the next run. For the experimentation on macOS, the settings varied slightly in terms of instances, warm up time and parameters in benchmark file. In addition to the 30 instances from each of Python 3.11 and Python 3.14, we also tested an optimized mode by setting the PYTHONOPTIMIZE=2 environment variable. This removed assertions and docstrings, allowing execution with minimal overhead and potentially reducing energy consumption. Although it does not make Python code run significantly faster, it serves as a quick optimization for runtime experiments as of our case. We used a warm up time of 1 minute and the benchmark script generated two 300*300 sized matrices for multiplication. Although matrix sizes and warm up time differed between platforms, the focus of our study was the relative energy consumption between Python versions on each OS. Since all Python versions were tested under the same conditions within each OS, the observed trends remain valid.
 
 ### Replication
 The replication package of the experiments can be found [in this repository](https://github.com/vincentvvliet/sse-project-group-24).
 ## Results
+### Analysis of Results on Windows OS
 Before analyzing our results, we first check to see if they have a normal distribution. Performing the Shapiro-Wilk test, we see that Python 3.11 has a p-value of 0.091, while Python 3.14 has a p-value of 0.007. This means that while Python 3.11 can be considered normal, Python 3.14 cannot. For this reason, we will look at the median difference between the two sets of results. To graph the difference in median energy consumption between Python 3.11 and Python 3.14, we create a bar plot that uses half of the interquartile range (IQR) as error bars.
 
 ![Median_energy_comparison.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fmedian_energy_comparison.png)
@@ -48,10 +57,41 @@ To get more insight into the distribution, spread and shape of the data, we crea
 
 ![Box+violinplot.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fenergy_comparison.png)
 
-Looking at the plot, we see that the results of both versions of python have a relatively wide distribution at the center, showing that for both versions the values are mostly concentrated around 18-20 J. Python 3.14 seems to have broader spread than Python 3.11, with lower outliers extending to ~15 J and higher ones beyond 26 J. This greater number of outliers is consistent with the p-value we found earlier. To check for statistical significance between the two datasets, we use the Mann-Whitney U test, from which we determine a p-score of ~0.15. Since p > 0.05 there is no strong evidence that Python 3.11 and 3.14 have different energy consumption distributions. When calculating the percentage of pairs supporting a conclusion, we see that 61.03% of all possible pairwise comparisons show that Python 3.11 consumes more energy than Python 3.14. This means that in the majority of cases, Python 3.14 is more efficient but not overwhelmingly so. In terms of common language effect size, this is a score of 0.613. 
+Looking at the plot, we see that the results of both versions of python have a relatively wide distribution at the center, showing that for both versions the values are mostly concentrated around 18-20 J. Python 3.14 seems to have broader spread than Python 3.11, with lower outliers extending to ~15 J and higher ones beyond 26 J. This greater number of outliers is consistent with the p-value we found earlier. To check for statistical significance between the two datasets, we use the Mann-Whitney U test, from which we determine a p-score of ~0.15. Since p > 0.05 there is no strong evidence that Python 3.11 and 3.14 have different energy consumption distributions. When calculating the percentage of pairs supporting a conclusion, we see that 61.03% of all possible pairwise comparisons show that Python 3.11 consumes more energy than Python 3.14. This means that in the majority of cases, Python 3.14 is more efficient but not overwhelmingly so. In terms of common language effect size, this is a score of 0.613.
+### Analysis of Results on macOS
+As a preliminary step, we check if the data has a normal distribution for both unoptimized and optimized versions of Python 3.11 and Python 3.14 respectively. Through the Shapiro-Wilk test of the unoptimized versions, we see that Python 3.11 has a p-value of 0.142, while Python 3.14 has a p-value of 0.0655, implying that both of the unoptimized versions of Python 3.11 and Python 3.14 can be considered normal. The observed outcome steers towards the use of Welch’s t‐test and comparison of mean energy between the unoptimized versions of Python 3.11 and Python 3.14.
+
+![Mean_energy_comparison_unoptimized.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fmean_energy_comparison_normal.png)
+ 
+Looking at the graphs, we can see that Python 3.11 has a mean energy consumption of approximately 90J wherease Python 3.14 has the value of approximately 73J, which is approximately 19% lower for Python 3.14. There also exists a statistically significant difference in energy consumption between Python 3.11 and Python 3.14 (unoptimized versions), which is demonstrated by Welch's t-test. The t-value obtained in this case is around 4.67 and p-value of 0.000000. 
+To get a better insight into the distributions, spread and shape of the data, we created a Violin+box plot.
+
+![Box+violinplot_for_unoptimized.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fviolin_energy_comparison_normal.png)
+
+From the graph, it is visible that both versions display a fairly wide spread of energy consumption. Python 3.11's distribution stretches from roughly 40J to 140J, with median around 85J. The spread indicates that while some runs remain relatively efficient, others are considerably more energy-consuming. Python 3.14 shows a narrower and lower-centered distribution, spanning approximately 50J to 90J. with median near mid 70sJ. Overall, this distribution sugggests that 3.14 tends to be more consistently efficient, with fewer-high consumption outliers. 
+Because Python 3.14 distribution is shifted downward and is more condensed, it implies that on avaerage, Python 3.14 consumes less energy than Python 3.11. The overlap in violin shapes does mean there can be runs where Python 3.11 performs on par with Python 3.14's typical range, but such cases are less common. Moreover, a higher value of Cohen's d (1.211) suggests the difference between two groups to be susbtantially higher. The lower p-value from Welch's t-test complies with the graphs, showcasing significant difference.
+
+Similarly for the runtime-optimized versions of Python 3.11 and Python 3.14, Shapiro-Wilk tests suggested normally distributed data, so Welch's t-test and comparisom of mean energy were used. 
+
+![Mean_energy_comparison_optimized.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fmean_energy_comparison_optimized.png)
+
+From the graph, it is seen that the gap between mean energy levels of Python3.11 and Python3.14 is narrowed compared to normal mode (approximately 4% lower for Python 3.14). Welch's t-test produces t=2.480 and p=0.0165, indicating significant difference in energy consumption even when both interpreters are optimized. A Cohen's d value of 0.651 indicates moderate difference between the two groups. 
+
+For a better insight  into the distributions, spread and shape of the data, we created a Violin+box plot.
+
+![Box+violinplot_for_optimized.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fviolin_energy_comparison_optimized.png)
+
+From the graph, it is visible that the optimized version of Python 3.11 has a broader distribution ranging from 70J to 110J with median at 93J, indicating some variability in energy efficiency. Python 3.14 has a narrower and lower-centered distribution, spanning 80J to 110J with median at 87J. This suggests a greater distribution overlap than unoptimized versions and slightly lower energy consumption. However, Python 3.14 still shows consistent advantage in energy consumption. The higher p-value from Welch's t-test is consistent with the graphs, implying weak differences, yet significant in comparison to unoptimized versions. 
+
+Thus, it can be concluded Python 3.14 is more efficient than Python 3.11 in terms of energy efficiency, with or without the optimizations. 
 
 ## Implications
-A common misunderstanding when it comes to sustainable software engineering is the idea that improving the execution time of a program reduces the amount of energy used, as this is not necessarily always the case [TODO](https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10). In cases where a program improves efficiency with regard to time by utilizing more power-intensive methods, a reduction in time could not have the desired outcome in terms of energy consumption [TODO](https://www.sciencedirect.com/science/article/pii/S1877750313000173). 
+A common misunderstanding when it comes to sustainable software engineering is the idea that improving the execution time of a program reduces the amount of energy used, as this is not necessarily always the case [TODO](https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10). In cases where a program improves efficiency with regard to time by utilizing more power-intensive methods, a reduction in time could not have the desired outcome in terms of energy consumption [TODO](https://www.sciencedirect.com/science/article/pii/S1877750313000173).
+
+An important aspect that is relflected through our study is that computational expense of runtime optimizations can be significantly higher (as seen in Python 3.14) than unoptimized versions. This does not indicate that Python's optimizations are inefficient, rather they prioritize execution speed over energy-savings for runtime benchmarks. This aligns with the typical behavior in CPU-bound workloads and consolidates our observation that optimizations don't necessarily mean energy-efficiency. 
+
+Another crucial observation was the significant difference between energy consumptions of experiments in different operating systems. For Windows, matrix multiplication of two matrices having dimensions 1000*1000 had significantly lower energy consumption (approximately 75%) in comparison to the matrix multiplication of two matrices with dimensions 300*300 in macOS. The execution time of both of these experiments were 20 seconds and similar conditions were provided. Such discrepancy in values can be attributed to the difference in measurement of energy in the two operating systems. For Windows, only the CPU consumption is measured whereas for macOS, the entire system's energy is measured,
+demonstrating a significantly larger value. This trend is consistent in energy consumption of web browsers tested using Energibridge [1].
 
 With regards to our study, we were interested to know whether the claimed performance increase had a similar improvement on energy consumption or not. When comparing Python 3.14 without tail-call-interp with Python 3.11, there was only little difference in energy consumption. Unfortunately, since the pre-release version of Python 3.14 does not give the possibility of testing with the new interpretation feature, we are unable to determine the energy consumption with this feature enabled. For the current pre-release version, in terms of sustainability, our results would suggest that there is not necessarily a reason to switch at this point in time. 
 
@@ -66,3 +106,8 @@ Our results indicate that there is no statistically significant difference in en
 
 Given this, we see no convincing motivation to switch from the more stable and well-supported Python 3.11 to Python 3.14 (at this time). The experimental tail call interpreter, which could provide further optimizations, remains non-functional, limiting Python 3.14’s potential benefits.
 
+## References
+[1] **June Sallou, Luís Cruz, Thomas Durieux** (2023).
+*EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement*
+arXiv preprint arXiv:2312.13897v1,
+Available at: [https://doi.org/10.48550/arXiv.2312.13897](https://doi.org/10.48550/arXiv.2312.13897)
