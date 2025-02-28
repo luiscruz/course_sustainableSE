@@ -10,7 +10,7 @@ summary: "
 
 ## **Introduction**
 
-Modern video games can be surprisingly power-intensive, and how we configure their graphics can greatly influence energy use [1]. For example, a study by Berkeley Labs claims that in California, computer gaming now accounts for about 5% of residential electricity [2]. Additionally, research highlights that gaming is not only one of the most significant plug loads in households, but also among the most complex energy demands to analyze and optimize [2].
+Modern video games can be surprisingly power-intensive, and how we configure their graphics can greatly influence energy use [1]. For example, a study by Berkeley Labs claims that in California, computer gaming now accounts for about 5% of residential electricity [2]. Additionally, research highlights that gaming is not only one of the most significant plug loads in households but also among the most complex energy demands to analyze and optimize [2].
 
 One clear example of this is Minecraft, a widely popular sandbox game, where the addition of shader mods (small modifications which enhance lighting and effects) can transform a mild workload into a demanding one. While these extensive graphical modifications can improve visual fidelity, they also increase power consumption [3]. 
 
@@ -24,21 +24,21 @@ Graphical shaders are programs that run on the GPU (Graphics Processing Unit) to
 
 Early GPUs relied on a fixed-function pipeline, offering developers a limited set of predefined graphical features that could be toggled on or off [4]. While this approach allowed for impressive visuals at the time, it restricted flexibility and creativity in rendering techniques.
 
-To overcome these limitations, modern GPUs have evolved to support programmable shaders, which are custom programs that replace specific stages of the rendering pipeline. Instead of relying on built in blending or lighting methods, developers could now write their own shader programs to achieve precise visual effects.
+To overcome these limitations, modern GPUs have evolved to support programmable shaders, which are custom programs that replace specific stages of the rendering pipeline. Instead of relying on built-in blending or lighting methods, developers could now write their shader programs to achieve precise visual effects.
 
 This shift not only enhanced graphical capabilities but also compatibility across different hardware, paving the way for highly customizable and visually rich graphics in modern games.
 
 ### *Shaders in Minecraft*
 
-Minecraft is a game that has a massive modding scene. Given the customizability of modern GPUs, the usage of shaders have become prevalent amongst the game’s playerbase. They enhance the game’s visuals with realistic lighting, shadows, and textures, and there are a variety of shader-packs to choose from which differ in implementation, fidelity, and design.
+Minecraft is a game that has a massive modding scene. Given the customizability of modern GPUs, the usage of shaders has become prevalent amongst the game’s player base. They enhance the game’s visuals with realistic lighting, shadows, and textures, and there are a variety of shader-packs to choose from which differ in implementation, fidelity, and design.
 
-The rendering of shaders in Minecraft is mainly handled by the GPU (Graphics Processing Unit), as it is designed to process and render graphics quickly and efficiently. The GPU acquires information from the game’s graphics engine and applies the selected shader effects to create a desired improved graphical fidelity.
+The rendering of shaders in Minecraft is mainly handled by the GPU (Graphics Processing Unit), as it is designed to process and render graphics quickly and efficiently. The GPU acquires information from the game’s graphics engine and applies the selected shader effects to create the desired improved graphical fidelity.
 
 Minecraft: Java Edition was developed using OpenGL’s fixed function pipeline, as the graphics were simple and only required basic functionality. Most shaders are therefore run via Iris or Optifine, rather than using built-in shader support, due to its lack of versatility.
 
 Additionally, Minecraft (Java Edition) is a CPU (Central Processing Unit) intensive game due to several factors, such as procedural terrain generation, physics calculations, or general game logic [5]. The CPU is involved in the overall game processing. While shaders generally rely more on the GPU, they also require some processing power from the CPU to handle game calculations and tasks [5].
 
-Enabling a shader-pack in minecraft can therefore push GPU and CPU usage from minimal utilization to high usage, potentially increasing power consumption, calling the need for analyzing it, which will be done in subsequent sections.
+Enabling a shader pack in Minecraft can therefore push GPU and CPU usage from minimal utilization to high usage, potentially increasing power consumption. This raises the need for analysis, which will be done in subsequent sections.
 
 ## **Methodology**
 
@@ -55,7 +55,7 @@ EnergiBridge [7] is a cross-platform software tool for energy measurement. It is
 
 ### *Automation Tool*
 
-pyAutoGUI [8] is a tool allowing for the automation of keyboard/mouse inputs on the machine using python. It also has functionality that detects images on the screen display, which was used in the experiment to navigate and play the game. Screenshots were taken on the machine the experiment was performed on and put in the `/Images` folder. The confidence was set to 70% to allow for some leeway, and clicks were set to 2-5 to ensure that no bugs/mistakes could interfere with the program.
+pyAutoGUI [8] is a tool allowing for the automation of keyboard/mouse inputs on the machine using Python. It also has functionality that detects images on the screen display, which was used in the experiment to navigate and play the game. Screenshots were taken on the machine the experiment was performed on and put in the `/Images` folder. The confidence was set to 70% to allow for some leeway, and clicks were set to 2-5 to ensure that no bugs/mistakes could interfere with the program.
 
 
 ## **Video of the Experiment(Difference between shaders and no shaders in Minecraft)**
@@ -89,7 +89,7 @@ The experiment additionally was conducted in ‘ZEN mode’ to ensure a controll
 - Closing all non-essential applications and non-critical system services to minimize background processes.
 - Disconnected unnecessary hardware peripherals to eliminate external power influences.
 - Set screen brightness to 100% and disable automatic brightness adjustments.
-- Conducting the experiment in a temperature controlled room to prevent thermal variability.
+- Experimenting in a temperature-controlled room to prevent thermal variability.
 
 ### *Hardware Specifications:*
 - **Processor:** Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
@@ -103,7 +103,7 @@ The experiment additionally was conducted in ‘ZEN mode’ to ensure a controll
 ### *Software Setup:*
 - **Minecraft Version:** 1.21.4
 - **Modded Instance:** Iris-Fabric-1.8.8+MC1.21.4
-- **Shaderpack:** Complementary Shaders 4.7.2
+- **Shader pack:** Complementary Shaders 4.7.2
 - **World File:** Lighting World
 
 ## **Replication**
@@ -150,7 +150,7 @@ We will compare the power consumption values collected from running Minecraft wi
 Running Minecraft with shaders significantly increases energy consumption and power usage while only slightly affecting execution time.
 - **Time**: Minimal impact, with only a 0.23% increase in mean execution time and a 0.30% increase in median time when using shaders. The p-value suggests a statistically significant difference, but the effect size is negligible.
 - **Energy**: Shaders caused a 41.08% increase in mean energy consumption and a 43.95% increase in median energy consumption, indicating a substantial rise in power demand.
-- **Power**: The mean power usage rose by 40.76%, and the median power usage increases by 43.52%, reinforcing the conclusion that shaders place a significantly higher load on the system.
+- **Power**: The mean power usage rose by 40.76%, and the median power usage increased by 43.52%, reinforcing the conclusion that shaders place a significantly higher load on the system.
 - **GPU Temperature**: The average GPU temperature rose by approximately 4-5%, confirming that shaders increase the thermal load, although the system’s cooling mechanism appears to handle the added heat efficiently.
 
 While shaders have little effect on performance, they drastically increase resource consumption. The extremely low t-test p-values across all metrics confirm that these differences are statistically significant, making shaders costly in terms of power and energy efficiency.
@@ -166,7 +166,7 @@ While shaders have little effect on performance, they drastically increase resou
 - The consistent oscillations suggest that the cooling system is effectively regulating temperature without excessive spikes.
 
 **GPU Temperature: No Shader Runs**
-- The GPU operates in a more stable manner with fewer fluctuations.
+- The GPU operates more stably with fewer fluctuations.
 - Occasional small variations might be attributed to background tasks or minor system adjustments.
 - The overall steadiness suggests a more predictable workload when shaders are not running.
 
@@ -185,18 +185,37 @@ While shaders have little effect on performance, they drastically increase resou
 - This indicates a **significantly lower workload** when shaders are not running.
 
 ## **Discussion**
-The results from the experiment suggest a noticeable trade-off between graphics quality and energy consumption for Minecraft. Although we observed that adding shader packs only increased the execution time by less than 1%, the additional power required to run the game is much more substantial. In particular, running Minecraft with shaders draws nearly 50% more power and the statistical significance derived from the t-test aligns with this observation. This was to be expected since introducing shaders adds additional overhead/load as the CPU manages the compilation and transfer of shader-related data between the GPU and the rest of the computer at runtime [^shaderanalysis]. 
+The results from the experiment suggest a noticeable trade-off between graphics quality and energy consumption for Minecraft. Although we observed that adding shader packs only increased the execution time by less than 1%, the additional power required to run the game is much more substantial. In particular, running Minecraft with shaders draws nearly 50% more power and the statistical significance derived from the t-test aligns with this observation. This was to be expected since introducing shaders adds additional overhead/load as the CPU manages the compilation and transfer of shader-related data between the GPU and the rest of the computer at runtime [9]. 
 
-This discrepancy highlights an issue for the gaming community as a whole. While the environmental and financial implications of increased energy consumption may not be too noticeable at a personal level, the additional energy demand and emissions produced are remarkable for a game with over 200 million monthly active players. 
+This discrepancy highlights an issue for the gaming community as a whole. While the environmental and financial implications of increased energy consumption may not be too noticeable at a personal level, the additional energy demand and emissions produced are remarkable for a game with over 200 million monthly active players [10]. 
 
-Considering this, gamers should be more conscious of the economic and environmental impact of shader packs. Moreover, developing more computationally efficient shaders and optimizing the game around them would reduce Minecraft’s global environmental footprint while still delivering quality aesthetics for players worldwide[^minecraftplayers].
+Considering this, gamers should be more conscious of the economic and environmental impact of shader packs. Moreover, developing more computationally efficient shaders and optimizing the game around them would reduce Minecraft’s global environmental footprint while still delivering quality aesthetics for players worldwide.
 
 
 ## **Limitations**
 
-- Energy measurements depend on system conditions and may vary slightly.
-- Different shader packs may lead to different power consumption profiles.
-- This experiment does not account for extended gameplay and only considers a limited test duration.
+While our experiment offers extensive insights into the energy impact of shaders in Minecraft, several limitations should be noted:
+
+**Limited shader configurations**
+
+For this experiment, we focused our tests on complementary shaders 4.7.2 only. Given that different shaders make use of varying rendering techniques and optimizations, we would expect the results to differ substantially as well.
+
+**Limited test duration**
+
+The experiment runs only captured the energy consumption over short intervals. This may not fully represent realistic gameplay, where extended runtimes can result in accumulated hardware temperatures and increased computational load.
+
+**Variation in world generation**
+
+Minecraft’s worlds are generated at random from a maximum possible 18 quintillion combinations [11], which can cause inconsistencies in loading times and game performance across different environments. Although we implemented buffer waiting times to mitigate such effects, it may still lead to variations in energy usage in between runs.
+
+**Interference from background processes**
+
+Despite our efforts to eliminate as many background processes as possible during our tests to minimise interference, some system tasks cannot be disabled. Those processes could have had some minor effect on the energy measurements that we obtained.
+
+**Limited hardware configurations**
+
+The experiments were conducted using only one hardware setup. We anticipate that the energy consumption profiles would be noticeably different when using alternative setups that consist of other GPUs from Nvidia or AMD, which may have different architectures and capacities. Future studies should explore these differences in energy efficiency to provide a more comprehensive understanding.
+
 
 ## **Conclusion**
 
@@ -223,6 +242,8 @@ By following proper scientific measurement techniques, we ensure that our result
 
 [8] asweigart. “GitHub - Asweigart/Pyautogui: A Cross-Platform GUI Automation Python Module for Human Beings. Used to Programmatically Control the Mouse & Keyboard.” GitHub, 2025, github.com/asweigart/pyautogui/tree/master. Accessed 27 Feb. 2025.
 
-[^shaderanalysis]: [https://etasr.com/index.php/ETASR/article/view/6695]
-[^minecraftplayers]: [https://www.demandsage.com/minecraft-statistics]
+[9] Konnurmath, G., & Chickerur, S. (2024). GPU Shader Analysis and Power Optimization Model. Engineering Technology & Applied Science Research, 14(1), 12925–12930. https://doi.org/10.48084/etasr.6695
 
+[10] Kumar, N. (2025, January 1). How many people play Minecraft 2025 (Active players). DemandSage. https://www.demandsage.com/minecraft-statistics. Accessed 27 Feb. 2025
+
+[11] World generation – Minecraft Wiki. (n.d.). Minecraft Wiki. https://minecraft.wiki/w/World_generation. Accessed 27 Feb.2025
