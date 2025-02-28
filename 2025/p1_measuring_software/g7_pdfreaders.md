@@ -175,8 +175,8 @@ With a p-value significantly lower than 0.05, the test indicates a **statistical
 
 The following plots illustrate the findings:
 
-1. **Violin Plot of Energy Consumption per Run:** This plot compares the energy consumption distribution for Chrome and Safari. ![](2025/img/p1_measuring_software/g7_pdfreaders/violin_plot_with_outliers.png)
-2.**Time Series Plot of Power Consumption:** Displays power usage patterns over time for both PDF readers. ![](2025/img/p1_measuring_software/g7_pdfreaders/time_series.png)
+1. **Violin Plot of Energy Consumption per Run:** This plot compares the energy consumption distribution for Chrome and Safari. ![](../img/p1_measuring_software/g7_pdfreaders/violin_plot_with_outliers.png)
+2.**Time Series Plot of Power Consumption:** Displays power usage patterns over time for both PDF readers. ![](../img/p1_measuring_software/g7_pdfreaders/time_series.png)
 
 ---
 
