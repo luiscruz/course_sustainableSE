@@ -79,10 +79,10 @@ _Figure 1: The raw energy consumption by the SQL and SQLite databases._
 After running the experiment we compare the energy usage of the SQL and SQLite databases. The results of the exepriment can be found in Figure 1. To compare the distributions, we removed the outliers (using z-scores) (see Figures 2 and 3) and checked whether they were normally distributed. To check for the normality of the distributions we performed the Shapiro-Wilk test, which resulted in a p-value of 0.04153 for the MySQL energy distribution and a p-value of 0.02105 for the SQLite energy distribution. This means we can safely assume that both distributions are not normally distibuted. Therefore, to measure the significance of the difference of the distributions we perforn the Mann–Whitney U test, resulting in a U value of 870.0 and p-value of 4.46175 e-11 << 0.05. This signifies that the difference in distributions is significant.
 
 ![mySQL](../img/p1_measuring_software/g12_databases/mysql.png)\
-_Figure 2: The result of the mySQL runs, normalized with 1 glaring outlier removed._
+_Figure 2: The result of the mySQL runs, normalised with 1 glaring outlier removed._
 
 ![SQLite](../img/p1_measuring_software/g12_databases/sqlite.png)\
-_Figure 3: The results of the SQLite runs, also normalized (no outliers)._
+_Figure 3: The results of the SQLite runs, also normalised (no outliers)._
 
 The mean energy consumption for MySQL and SQLite was 75.38 and 38.09 respectively, with a mean difference of 37.28 and a percentage reduction of 49.46%. This substantial difference suggests a notable reduction in energy consumption when using SQLite over MySQL.
 
@@ -108,7 +108,11 @@ Moreover, the MySQL server is a service running permanently in the background, a
 
 ## Conclusion
 
-To summarise, while our results clearly show that SQLite is more efficient than MySQL for the given task, this may not be the case for all use cases for SQL databases. In addition, our experiment could be rerun with some changes in order to eliminate remaining outliers and further normalize the data. We don't presume that this would affect our prior conclusion about SQLite being more efficient, but for the sake of ensuring our experiment is done properly, we determine that further research is required.
+In this study, we compared the energy consumption of MySQL, a widely used SQL-based relational database management system, and SQLite, a lightweight, serverless database. Our experiments, conducted under controlled conditions, showed a significant reduction in both energy usage and query execution time when using SQLite over MySQL. Specifically, SQLite exhibited a 49.46% reduction in energy consumption and a 56.25% reduction in execution time, reinforcing its suitability for local development environments where energy efficiency and performance are key considerations.
+
+While our study highlights SQLite’s advantages in terms of sustainability and efficiency, we acknowledge the limitations of our experimental setup, such as potential tail energy effects and variability in energy measurements. Future work could refine these experiments by incorporating longer test durations, alternative measurement strategies, and exploring the impact of different query complexities on energy consumption.
+
+Despite these considerations, our findings suggest that developers can benefit from using SQLite during the development and testing phases, where its energy-efficient and lightweight nature offers tangible advantages. For production environments requiring concurrency, scalability, and robustness, MySQL or similar server-based database solutions remain essential. By adopting SQLite during development and transitioning to a larger-scale database for deployment, developers may achieve a balance between efficiency, performance, and environmental sustainability.
 
 ## References
 
