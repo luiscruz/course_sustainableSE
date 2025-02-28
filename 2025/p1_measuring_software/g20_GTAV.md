@@ -112,17 +112,17 @@ The specifications of the computers used in the experiments are listed below.
 # Results
 The GPU-Z log files gave us time-series data, from which we calculated the power scalar over time, using the [expression stated earlier](#data-collection). The figure below shows an example measurement from several runs of the benchmark. The jumps between low and high power scalar values between scenes of the benchmark can be clearly seen.
 
-![Time series of power scalars](./time-series-power-scalar.svg)
+![Time series of power scalars](../img/p1_measuring_software/g20_GTAV/time-series-power-scalar.svg)
 
 Notable is the fact that the graph for computer 3 does not show the high settings benchmark until the end, this is because the computer crashed at this point in the benchmark with these settings. This was not completely unexpected as this game was not made to run on systems without a dedicated GPU.
 
 To isolate the distrbutions of the high power scalar values, we aggregated the measurements from all 15 runs per computer per settings configuration, and plotted their histograms. Below is an example of two such histograms. One corresponds to low settings and shows a bimodal distribution - one peak corresponds to low power scalar measurements when the GPU was inactive between benchmark scenes, and the other peak corresponds to high power scalar measurements when the GPU was active during the benchmark scenes. The histogram corresponding to high settings tells a similar story, except the second peak is at a higher power scalar value, since the GPU was consuming more power rendering the game at a higher graphics quality.
 
-![Bimodal power scalar distributions](./power-scalar-dist.svg)
+![Bimodal power scalar distributions](../img/p1_measuring_software/g20_GTAV/power-scalar-dist.svg)
 
 Since this bimodal trend emerged in measurements from all computers, we decided to use this histogram technique to isolate the distrbutions where the GPU was active. Below is an example - the high settings histogram above zoomed in on the active GPU distribution.
 
-![Power scalar distribution with active GPU](./power-scalar-dist-zoomed.svg)
+![Power scalar distribution with active GPU](../img/p1_measuring_software/g20_GTAV/power-scalar-dist-zoomed.svg)
 
 Notably, none of the measurements appeared normally distributed, despite a large number of samples. This was confirmed for all distributions using the Shapiro-Wilk test - the figure above has a p-value of $3.88 \times 10^{27}$. This is not surprising, because we observed our GPUs quickly trending towards specific frequency, voltage and utilization combinations under load, and deviating only slightly higher during more intense parts of the benchmark. In a following section, we will use the Mann-Whitney (which does not assume normal distributions) test to evaluate statistical significance between low and high settings.
 
@@ -138,13 +138,13 @@ The following table compares means, standard errors, test statistics and relativ
 For a more detailed look, the figures below compare means and spreads of the low settings case vs. the high settings case for each computer.
 
 ## Computer 1
-![Settings comparison PC1](./power-scalar-comparisons-pc1.svg)
+![Settings comparison PC1](../img/p1_measuring_software/g20_GTAV/power-scalar-comparisons-pc1.svg)
 
 ## Computer 2
-![Settings comparison PC2](./power-scalar-comparisons-pc2.svg)
+![Settings comparison PC2](../img/p1_measuring_software/g20_GTAV/power-scalar-comparisons-pc2.svg)
 
 ## Computer 3
-![Settings comparison PC3](./power-scalar-comparisons-pc3.svg)
+![Settings comparison PC3](../img/p1_measuring_software/g20_GTAV/power-scalar-comparisons-pc3.svg)
 
 ## Statistical significance
 **To Do**
