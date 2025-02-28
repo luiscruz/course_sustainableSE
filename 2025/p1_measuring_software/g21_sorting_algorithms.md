@@ -1,7 +1,7 @@
 ---
 author: Wout Burgers, Martijn Frericks, David van der Maas, Thomas Rooskens
 title: "Monitoring energy consumption for sorting algorithms in Java, C++ and Python"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "../img/p1_measuring_software/g21_sorting_algorithms/python-power_consumption.png"
 date: 28/02/2025
 summary: |-
   This study compares the energy consumption, power usage, and execution times of four sorting algorithms—Bubble Sort, Counting Sort, Merge Sort, and Radix Sort—implemented in Python, Java, and C++. Results show that Java achieved the best overall efficiency, balancing low energy consumption, fast execution, and power usage, thanks to its JIT compiler optimizations. C++ was close behind, while Python performed the least efficiently due to its interpreted nature. Bubble Sort was the slowest and most energy-consuming algorithm across all languages. This study highlights the significant impact of both algorithm choice and programming language on energy efficiency, particularly in resource-constrained environments.
@@ -59,13 +59,13 @@ The objective of this study was to measure and compare the power consumption, en
 
 Power consumption refers to the instantaneous rate of energy usage during the execution of the algorithms. The following graphs summarize the power consumption of the four sorting algorithms in Python, Java, and C++:
 
-- **Graph 1**: ![Power Consumption in Python](../img/p1_measuring_software/g21/python-power_consumption.png)
+- **Graph 1**: ![Power Consumption in Python](../img/p1_measuring_software/g21_sorting_algorithms/python-power_consumption.png)
     - In Python, Bubble Sort exhibited the highest power consumption due to its quadratic time complexity. Counting Sort, Merge Sort and Radix Sort showed lower power consumption, likely because they involve fewer comparisons but may require additional memory allocation.
 
-- **Graph 2**: ![Power Consumption in Java](../img/p1_measuring_software/g21/java-power_consumption.png)
+- **Graph 2**: ![Power Consumption in Java](../img/p1_measuring_software/g21_sorting_algorithms/java-power_consumption.png)
     - Java's Just-In-Time (JIT) compiler optimized the execution of Merge Sort, resulting in lower power consumption compared to Bubble Sort, Radix Sort and Counting Sort. The garbage collection mechanism in Java introduced some variability in power usage, particularly for larger datasets.
 
-- **Graph 3**: ![Power Consumption in C++](../img/p1_measuring_software/g21/cpp-power_consumption.png)
+- **Graph 3**: ![Power Consumption in C++](../img/p1_measuring_software/g21_sorting_algorithms/cpp-power_consumption.png)
     - C++ demonstrated the lowest overall power consumption among the three languages. This is attributed to its low-level nature and efficient memory management. Radix Sort performed exceptionally well in C++, consuming significantly less power than the other sorting algorithms.
 
 ---
@@ -74,13 +74,13 @@ Power consumption refers to the instantaneous rate of energy usage during the ex
 
 Energy consumption represents the total amount of energy used during the execution of the algorithms. The following graphs summarize the energy consumption of the four sorting algorithms in Python, Java, and C++:
 
-- **Graph 4**: ![Energy Consumption in Python](../img/p1_measuring_software/g21/python-energy_consumption.png)
+- **Graph 4**: ![Energy Consumption in Python](../img/p1_measuring_software/g21_sorting_algorithms/python-energy_consumption.png)
     - Python consumed the most energy across all algorithms, with Bubble Sort being the least efficient. Counting Sort, Merge Sort and Radix Sort showed moderate energy consumption, but their memory requirements slightly increased the overall energy usage.
 
-- **Graph 5**: ![Energy Consumption in Java](../img/p1_measuring_software/g21/java-energy_consumption.png)
+- **Graph 5**: ![Energy Consumption in Java](../img/p1_measuring_software/g21_sorting_algorithms/java-energy_consumption.png)
     - Java consistently demonstrated the lowest energy consumption for all algorithms. Counting Sort, Merge Sort and Radix Sort were more energy-efficient than Bubble Sort, primarily due to their better time complexity and optimization by the JIT compiler.
 
-- **Graph 6**: ![Energy Consumption in C++](../img/p1_measuring_software/g21/cpp-energy_consumption.png)
+- **Graph 6**: ![Energy Consumption in C++](../img/p1_measuring_software/g21_sorting_algorithms/cpp-energy_consumption.png)
     - C++'s energy consumption fell between Python and Java. Radix Sort stood out as the most energy-efficient algorithm in C++, thanks to its linear time complexity for certain types of data.
 
 ---
@@ -89,13 +89,13 @@ Energy consumption represents the total amount of energy used during the executi
 
 Execution time measures the duration taken by each algorithm to complete the sorting task. The following graphs summarize the execution time of the four sorting algorithms in Python, Java, and C++:
 
-- **Graph 7**: ![Execution Time in Python](../img/p1_measuring_software/g21/python-execution_time.png)
+- **Graph 7**: ![Execution Time in Python](../img/p1_measuring_software/g21_sorting_algorithms/python-execution_time.png)
     - Python had the longest execution times for all algorithms, with Bubble Sort being the slowest. Counting Sort, Merge Sort and Radix Sort performed better due to their optimized logic but the interpreted nature of Python limited their speed.
 
-- **Graph 8**: ![Execution Time in Java](../img/p1_measuring_software/g21/java-execution_time.png)
+- **Graph 8**: ![Execution Time in Java](../img/p1_measuring_software/g21_sorting_algorithms/java-execution_time.png)
     - Java's achieved the shortest execution times for all algorithms, with Counting Sort being the fastest. Merge Sort and Radix Sort showed significant improvements over Bubble Sort, highlighting the benefits of optimized algorithms in compiled languages.
 
-- **Graph 9**: ![Execution Time in C++](../img/p1_measuring_software/g21/cpp-execution_time.png)
+- **Graph 9**: ![Execution Time in C++](../img/p1_measuring_software/g21_sorting_algorithms/cpp-execution_time.png)
     - C++'s execution times were shorter than Python's but longer than Java's. This result aligns with C++'s reputation for high performance and efficient resource utilization.
 
 ---
