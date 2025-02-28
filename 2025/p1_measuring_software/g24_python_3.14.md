@@ -31,6 +31,7 @@ For the experiment on Windows we used an ASUS Vivobook with the following specif
 - Brightness level of 30
 - Resolution of 1920 x 1200.
 - Wifi turned off.
+
 For the experiment on macOS we used a MacBook Air with the following specifications:
 - macOS Sonoma 14.6.1
 - Apple M3 chip
