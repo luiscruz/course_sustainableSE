@@ -104,7 +104,7 @@ The experiment additionally was conducted in ‘ZEN mode’ to ensure a controll
 - **Minecraft Version:** 1.21.4
 - **Modded Instance:** Iris-Fabric-1.8.8+MC1.21.4
 - **Shaderpack:** Complementary Shaders 4.7.2
-- **World File:** Lighting World (TODO: Share file)
+- **World File:** Lighting World
 
 ## Replication
 
@@ -120,20 +120,32 @@ To replicate the experiment, the code for measuring energy consumption in Minecr
 
 We will compare the power consumption values collected from running Minecraft with and without shaders. Data will be presented in tabular and graphical formats to highlight differences in energy usage.
 ### Results averaged over 30 runs
-|                    | Shaders Disabled  | Shaders Enabled  | Relative difference (mean) | t-test p-value |
-|--------------------|-------------------|------------------|----------------------------|----------------|
-| Execution Time (s) |      65.336       |      65.488      |           +0.23%           |   1.538e-08    |
-| CPU Energy (J)     |      533.224      |     752.289      |          +41.08%           |   3.583e-26    |
-| CPU Power (W)      |       8.161       |      11.487      |          +40.76%           |   3.217e-26    |
-| GPU Temp (°C)      |       55.76       |      58.20       |           +4.38%           |      0.0       |
 
-### Results from median of 30 runs
-|                    | Shaders Disabled | Shaders Enabled | Relative difference (mean) | t-test p-value |
-|--------------------|------------------|-----------------|----------------------------|----------------|
-| Execution Time (s) |      65.264      |     65.463      |           +0.30%           |   1.538e-08    |
-| CPU Energy (J)     |     515.039      |     741.409     |          +43.95%           |   3.583e-26    |
-| CPU Power (W)      |      7.881       |     11.310      |          +43.52%           |   3.217e-26    |
-| GPU Temp (°C)      |      56.000      |     59.000      |           +5.36%           |      0.0       |
+| Metric            | Shaders Disabled | Shaders Enabled | Relative Difference (mean) | t-test p-value  |
+|------------------|----------------|----------------|--------------------------|-----------------|
+| Execution Time (s) | 65.336          | 65.488         | +0.23%                   | 1.538e-08      |
+| CPU Energy (J)    | 533.224         | 752.289        | +41.08%                   | 3.583e-26      |
+| CPU Power (W)     | 8.161           | 11.487         | +40.76%                   | 3.217e-26      |
+| GPU Temp (°C)     | 55.76           | 58.20          | +4.38%                    | 0.0            |
+
+
+### Results from Median of 30 Runs
+
+| Metric            | Shaders Disabled | Shaders Enabled | Relative Difference (mean) | t-test p-value  |
+|------------------|----------------|----------------|--------------------------|-----------------|
+| Execution Time (s) | 65.264          | 65.463         | +0.30%                   | 1.538e-08      |
+| CPU Energy (J)    | 515.039         | 741.409        | +43.95%                   | 3.583e-26      |
+| CPU Power (W)     | 7.881           | 11.310         | +43.52%                   | 3.217e-26      |
+| GPU Temp (°C)     | 56.000          | 59.000         | +5.36%                    | 0.0            |
+
+
+| Energy (Normalized) | Power |
+|---------------------|-------|
+| ![Energy (Normalized)](../img/p1_measuring_software/g10_minecraft_shaders/Figure_1.png) | ![Power](../img/p1_measuring_software/g10_minecraft_shaders/Figure_2.png) |
+
+| Energy | Time |
+|--------|------|
+| ![Energy](../img/p1_measuring_software/g10_minecraft_shaders/Figure_3.png) | ![Time](../img/p1_measuring_software/g10_minecraft_shaders/Figure_4.png) |
 
 Running Minecraft with shaders significantly increases energy consumption and power usage while only slightly affecting execution time.
 - **Time**: Minimal impact, with only a 0.23% increase in mean execution time and a 0.30% increase in median time when using shaders. The p-value suggests a statistically significant difference, but the effect size is negligible.
@@ -142,9 +154,11 @@ Running Minecraft with shaders significantly increases energy consumption and po
 - **GPU Temperature**: The average GPU temperature rose by approximately 4-5%, confirming that shaders increase the thermal load, although the system’s cooling mechanism appears to handle the added heat efficiently.
 
 While shaders have little effect on performance, they drastically increase resource consumption. The extremely low t-test p-values across all metrics confirm that these differences are statistically significant, making shaders costly in terms of power and energy efficiency.
+
 | Shader Runs | No Shader Runs |
-|------------|--------------|
-| ![Shader Runs](../img/p1_measuring_software/g10_minecraft_shaders/gpu_1.png) |![No Shader Runs](../img/p1_measuring_software/g10_minecraft_shaders/gpu_2.png)
+|------------|---------------|
+| ![Shader Runs](../img/p1_measuring_software/g10_minecraft_shaders/gpu_1.png) | ![No Shader Runs](../img/p1_measuring_software/g10_minecraft_shaders/gpu_2.png) |
+
 
 **GPU Temperature: Shader Runs**
 - The GPU exhibits noticeable fluctuations, suggesting that shader processing introduces varying workloads.
@@ -156,6 +170,18 @@ While shaders have little effect on performance, they drastically increase resou
 - Occasional small variations might be attributed to background tasks or minor system adjustments.
 - The overall steadiness suggests a more predictable workload when shaders are not running.
 
+# GPU Usage Analysis
+| Shader Runs | No Shader Runs |
+| ---------- |  ------------ | 
+| ![Shader Runs](../img/p1_measuring_software/g10_minecraft_shaders/gpu_usage1.png) | ![No Shader Runs](../img/p1_measuring_software/g10_minecraft_shaders/gpu_usage2.png)
+## GPU Usage with Shader Runs
+- Shows higher GPU usage overall, with frequent spikes reaching around **40%**.  
+- The pattern suggests **repetitive workload execution**, likely from running shader programs.  
+- The usage fluctuates significantly, indicating periods of increased and decreased computation.
+## GPU Usage with No Shader Runs
+- Shows much lower GPU usage, staying mostly below **10%**.  
+- There are still small fluctuations, but they are **minor compared to the first image**.  
+- This indicates a **significantly lower workload** when shaders are not running.
 
 ## Discussion
 The results from the experiment suggest a noticeable trade-off between graphics quality and energy consumption for Minecraft. Although we observed that adding shader packs only increased the execution time by less than 1%, the additional power required to run the game is much more substantial. In particular, running Minecraft with shaders draws nearly 50% more power and the statistical significance derived from the t-test aligns with this observation. This was to be expected since introducing shaders adds additional overhead/load as the CPU manages the compilation and transfer of shader-related data between the GPU and the rest of the computer at runtime [^shaderanalysis]. 
