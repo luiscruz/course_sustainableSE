@@ -80,13 +80,13 @@ Other important settings which have been changed on the machine under which the 
 ### Energy Measurement
 
 Energy measurement was performed using the [EnergiBridge](https://github.com/tdurieux/EnergiBridge) tool, which measures CPU energy consumption in joules at specific timestamps. By recording these timestamps alongside the CPU energy values, we can compute the average power used during an experiment with the formula:
-$$
-P_{avg} = \frac{E}{\Delta t}
-$$
+
+$$P_{avg} = \frac{E}{\Delta t}$$
+
 Here, $E$ denotes the CPU energy consumed (in joules) over the time span $\Delta t$, which is the difference between the experiment's start and end times (in seconds). Additionally, we use the Energy Delay Product (EDP) metric to penalize slower executions by emphasizing runtime. In our case, the EDP is defined as:
-$$
-EDP = E \times \Delta t
-$$
+
+$$EDP = E \times \Delta t$$
+
 The unit for EDP is $J\cdot s$.
 
 ### Dataset
