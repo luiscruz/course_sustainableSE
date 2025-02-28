@@ -20,7 +20,18 @@ This study evaluates the energy consumption of local LLM inference. In particula
 
 To evaluate the energy efficiency of LLMs for code, we designed an experiment involving four models, Codellama, Deepseek, Gwen and Mistral. The selection of these models is motivated by their parameter parity (approximately 7B parameters) and open-source availability. By limiting our experiments to these models, we aim to isolate the effects of model architecture on energy consumption.
 
-To reduce confounding variables, all experiments were executed on the same device under identical conditions using a script: root run check, operating system check, all other applications closed, adaptive screen brightness disabled, screen saver disabled, consistent screen brightness set, Wi-Fi interface turned off, Bluetooth and Airdrop disabled, display sleep disabled. Once the experiment is complete, the script reverts the Wi-Fi and display sleep settings to their original states and reminds the user to re-enable any manually disabled features like adaptive brightness, Bluetooth, and Airdrop. The script can be found in the repository linked at the end of this page. This controlled environment ensures that differences in energy consumption can be attributed primarily to the model characteristics rather than hardware or system optimizations.
+To reduce confounding variables, all experiments were executed on the same device under identical conditions using a script: 
+- root run check
+- operating system check
+- all other applications closed
+- adaptive screen brightness disabled
+- screen saver disabled
+- consistent screen brightness set
+- Wi-Fi interface turned off
+- Bluetooth and Airdrop disabled
+- display sleep disabled
+
+Once the experiment is complete, the script reverts the Wi-Fi and display sleep settings to their original states and reminds the user to re-enable any manually disabled features like adaptive brightness, Bluetooth, and Airdrop. The script can be found in the repository linked at the end of this page. This controlled environment ensures that differences in energy consumption can be attributed primarily to the model characteristics rather than hardware or system optimizations.
 
 The HumanEval benchmark was selected as the dataset to evaluate the models on code generation tasks. This benchmark provides standardized test cases to assess correctness and also enables us to quantify energy consumption per generated token in a reproducible manner.
 
@@ -42,27 +53,70 @@ In total, we ran 164 HumanEval tasks per model, collecting two primary measures:
 1. **Total Energy (in Joules) per task**  
 2. **Energy per Token (in Joules) per task**  
 
-[The detailed energy report can be found here.](resources/aggregated_energy.html) The following figures summarize the findings:
+[The detailed energy report can be found here.](resources/aggregated_energy.html)
 
-![image](../img/p1_measuring_software/g23_llm_inference/bar_energy_per_token.png)
-![image](../img/p1_measuring_software/g23_llm_inference/bar_total_energy.png)
-![image](../img/p1_measuring_software/g23_llm_inference/box_energy_per_token.png)
-![image](../img/p1_measuring_software/g23_llm_inference/box_total_energy.png)
+#### Total Energy Consumption
+[//]: # (![image]&#40;../img/p1_measuring_software/g23_llm_inference/bar_total_energy.png&#41;)
 
-**Codellama** recorded the **lowest mean total energy** at approximately **125.45 J** (SD = 44.60). Its distribution ranged widely (36.27–216.62 J), indicating that while it often consumed low energy, some tasks required substantially more.  
-**Deepseek** had the **highest mean total energy** of about **175.44 J** (SD = 14.32), with values ranging from 150.71 J to 226.70 J. Notably, its narrower range suggests more consistent consumption, albeit at a higher level.  
-**Mistral** (mean = 174.30 J, SD = 16.86) also showed relatively high total energy consumption, comparable to Deepseek but with a slightly broader spread (139.49–242.13 J).  
-**Qwen** fell between Codellama and Deepseek/Mistral in total energy usage (mean = 151.57 J, SD = 35.68), with a range of 48.47–222.113 J.
+[//]: # (![image]&#40;../img/p1_measuring_software/g23_llm_inference/box_total_energy.png&#41;)
+
+[//]: # (![image]&#40;../img/p1_measuring_software/g23_llm_inference/bar_energy_per_token.png&#41;)
+
+[//]: # (![image]&#40;../img/p1_measuring_software/g23_llm_inference/box_energy_per_token.png&#41;)
+When considering the total energy consumption:
+- **Codellama** recorded the **lowest mean total energy** at approximately **125.45 J** (SD = 44.60) ([Figure 1](#fig:bar_total_energy)). Its distribution ranged widely (36.27–216.62 J), indicating that while it often consumed low energy, some tasks required substantially more.  
+
+- **Deepseek** had the **highest mean total energy** of about **175.44 J** (SD = 14.32), with values ranging from 150.71 J to 226.70 J ([Figure 2](#fig:box_total_energy)). Notably, its narrower range suggests more consistent consumption, albeit at a higher level.  
+
+- **Mistral** (mean = 174.30 J, SD = 16.86) also showed relatively high total energy consumption, comparable to Deepseek but with a slightly broader spread (139.49–242.13 J) ([Figure 2](#fig:box_total_energy)).  
+
+- **Qwen** fell between Codellama and Deepseek/Mistral in total energy usage (mean = 151.57 J, SD = 35.68), with a range of 48.47–222.113 J ([Figure 2](#fig:box_total_energy)).
 
 Overall, **Codellama** stands out for **lowest total energy** on average, while **Deepseek** and **Mistral** are at the higher end. **Qwen** remains in an intermediate position but with moderate variability.
 
-When normalizing energy consumption by the number of tokens generated, **Codellama** again appears the most efficient, averaging **0.385 J/token** (SD = 0.086).  
-**Deepseek** uses **0.582 J/token** (SD = 0.073).  
-**Mistral** has the **highest average energy per token**, at **0.684 J/token** (SD = 0.123), although its total energy is similar to Deepseek’s.  
-**Qwen** requires **0.499 J/token** (SD = 0.097), placing it between Codellama and Deepseek in terms of per-token consumption.
+<figure id="fig:bar_total_energy" style="text-align: center;">
+  <img src="../img/p1_measuring_software/g23_llm_inference/bar_total_energy.png"
+       alt="Bar Total Energy"
+       style="display: block; margin: 0 auto; width: 400px;">
+  <figcaption>Figure 1: Bar Total Energy</figcaption>
+</figure>
+
+<figure id="fig:box_total_energy" style="text-align: center;">
+  <img src="../img/p1_measuring_software/g23_llm_inference/box_total_energy.png"
+       alt="Box Total Energy"
+       style="display: block; margin: 0 auto; width: 400px;">
+  <figcaption>Figure 2: Box Total Energy</figcaption>
+</figure>
+
+
+#### Energy per Token
+When normalizing energy consumption by the number of tokens generated:
+- **Codellama** again appears the most efficient, averaging **0.385 J/token** (SD = 0.086) ([Figure 3](#fig:bar_energy_per_token)).  
+
+- **Deepseek** uses **0.582 J/token** (SD = 0.073) ([Figure 3](#fig:bar_energy_per_token)).  
+
+- **Mistral** has the **highest average energy per token**, at **0.684 J/token** (SD = 0.123), although its total energy is similar to Deepseek’s ([Figure 3](#fig:bar_energy_per_token)).
+
+- **Qwen** requires **0.499 J/token** (SD = 0.097), placing it between Codellama and Deepseek in terms of per-token consumption ([Figure 3](#fig:bar_energy_per_token)).
 
 Hence, **Codellama** is consistently the most energy-efficient model, both in total energy and energy per token. **Mistral** stands out for having the highest per-token usage, and **Deepseek** ranks slightly below Mistral on that metric but shows the highest total energy consumption. **Qwen** tends to cluster between the extremes.
 
+<figure style="text-align: center;">
+  <img src="../img/p1_measuring_software/g23_llm_inference/bar_energy_per_token.png" 
+       alt="Bar Energy per Token" 
+       style="display: block; margin: 0 auto; width: 400px;">
+  <figcaption>Figure 3: Bar Energy per Token</figcaption>
+</figure>
+
+<figure style="text-align: center;">
+  <img src="../img/p1_measuring_software/g23_llm_inference/box_energy_per_token.png" 
+       alt="Box Energy per Token" 
+       style="display: block; margin: 0 auto; width: 400px;">
+  <figcaption>Figure 4: Box Energy per Token</figcaption>
+</figure>
+
+
+#### Overall Comparison
 These results suggest that while **Codellama** maintains the lowest energy footprint overall, there can be task-level variability (as indicated by its wide range). **Deepseek** and **Mistral** consistently draw higher power, whether measured as total energy or on a per-token basis, with **Mistral** being the least efficient per token. **Qwen** generally remains in an intermediate position, as it balances moderate total consumption and moderate per-token usage.
 
 To further contextualize these results, we compared the percentage differences between the models relative to Codellama, as it was the most energy-efficient model:
