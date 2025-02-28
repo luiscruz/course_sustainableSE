@@ -24,9 +24,10 @@ To assess the energy consumption we used [EnergiBridge](https://github.com/tduri
 To make sure that the comparison is a meaningful one, we used computationally intensive code that will stress the CPU. We create multiple snippets that can be seen on [GitLab](https://github.com/vincentvvliet/sse-project-group-24). 
 
 ### Hardware 
+For the experiment on Windows we used an ASUS Vivobook running on Windows 11 home. It uses a 12th Gen Intel(R) Core(TM) i7-12650H 2.30 GHz processor with 16 GB Ram. During the experiment it remained at a consistent brightness level of 30, and resolution of 1920 x 1200. Wifi was turned off.
 
 ### Experiment Procedure 
-
+Before the experiment begins we create a list of 30 instances of python 3.11 and 30 instances of python 3.14. We then shuffle this list to determine the order in which they get run. To warm up the hardware we begin the experiment by performing a CPU intensive task for 5 minutes. In our case that means repeatedly calculating the squares of the numbers in the range [0,10^6) for the duration of the 5 minutes. After this is done, we go through the previously created list, and pick a version of python to run. We then create two sub processes, one for Energibridge to measure the energy consumption, and one to run a benchmark script on the picked version of Python. The benchmark script generates two 1000 x 1000 matrices, which then get multiplied. After this is done and energy consumption has been saved we let the process wait for 1 minute. This is to prevent tail energy consumption from the previous run from influencing the measurement in the next run.
 ### Replication
 
 ## Results
