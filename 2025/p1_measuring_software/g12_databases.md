@@ -13,13 +13,13 @@ In this report, we investigate and measure the differences between energy consum
 
 For the standard SQL database, we will make use of mySQL[^mysql], as it is the most popular open-source RDBMS according to the DB-Engines ranking[^dbengine].
 
-We compare it against SQLite, because it is the most widely deployed database engine in the world today and is, according to them, "used by literally millions of applications with literally billions and billions of deployments"[^sqlite_users].
+We compare it against SQLite, because it is the most widely deployed database engine in the world today and is, according to them, "used by literally millions of applications with literally billions and billions of deployments"[^sqlite_famous].
 
 By focusing on these two widely adopted databases, our comparison aims to provide insights that are relevant to real-world scenarios.
 
 ## Rationale
 
-Large-scale database production systems strive to implement a shared repository of enterprise data, typically placing a higher priority on concurrency, scalability, and performance than on energy usage. SQLite strives to provide local data storage for individual applications and devices to promote economy, efficiency, reliability, independence, and simplicity[^sqlite_famous]. As a result, we hypothesise SQLite to be more energy-efficient than MySQL, which is designed for larger-scale applications.
+Large-scale database production systems strive to implement a shared repository of enterprise data, typically placing a higher priority on concurrency, scalability, and performance than on energy usage. SQLite strives to provide local data storage for individual applications and devices to promote economy, efficiency, reliability, independence, and simplicity[^sqlite_whentouse]. As a result, we hypothesise SQLite to be more energy-efficient than MySQL, which is designed for larger-scale applications.
 
 These two databases are directly comparable but SQLite is trying to solve a different problem than SQL database engines such as MySQL. We believe in a world where they can co-exist in the development ecosystem; one where SQLite is used for development and testing locally with a single developer on a single machine, and MySQL would be used for production. To this end, this experiment targets only at the testing phase of the development of an application.
 
@@ -92,13 +92,13 @@ Besides the difference in energy consumption we also measure the duration of the
 
 ## Discussion
 
-Firstly, the rest time between experiment should have been higher. This would have given more accurate results, as the tail energy consumptions of both database types would have been mitigated better. Moreover, running more queries (e.g. running 10 and averaging them) would have given less variable results, which is a possible explanation as to why our data was not normally distributed.
+Firstly, we believe the rest time between experiments should have been higher. This would have given more accurate results, as the tail energy consumptions of both database types would have been mitigated better. Moreover, running more queries (e.g. running 10 and averaging them) would have given less variable results, which is a possible explanation as to why our data was not normally distributed.
 
-While we recognise the issues with the experiments, we see that there is a significant difference in energy consumption between the two databases. The energy usage of the queries to MySQL is significantly larger than for the SQLite database. With this experiment our aim was to provide insights for developers in the testing phase of a database. These results are based on smaller databases with queries that are not overly complex to follow the general usecase when testing databases. These results are also aimed at a single user making requests and should not be translated to large databases with many users. Under these conditions, we show that based on energy efficiency the SQLite database is superior over the SQL database.
+While we recognise the issues with the experiments, we see that there is a significant difference in energy consumption between the two databases. The energy usage of the queries to MySQL is significantly larger than for the SQLite database. With this experiment, our aim was to provide insights for developers in the testing phase of a database. These results are based on smaller databases with queries that are not overly complex to follow the general usecase when testing databases. These results are also aimed at a single user making requests and should not be translated to large databases with many users. Under these conditions, we show that based on energy efficiency the SQLite database is superior over the SQL database.
 
 The advantages SQLite has in usability over an SQL database already make it favorable to use during the testing phase of a system. Hereby, we also show that SQLite is favorable in time and energy efficiency.
 
-As such, an argument could be made for developers to opt for SQLite to test applications (and their databases) locally, at least in the development stages of the database to improve the developers time efficiency and reduce the impact of energy usage during development. Then once deploying the application, the database can be switched to any other SQL database, such as MySQL, to handle the larger scale of the application. Given, this would increase the complexity (as there would be need to migrate), but the benefits (such as the energy-effiency) of using SQLite during development could outweigh this.
+As such, an argument could be made for developers to opt for SQLite to test applications (and their databases) locally, at least in the development stages of the database to improve the developers time efficiency and reduce the impact of energy usage during development. Then once deploying the application, the database can be switched to any other SQL database, such as MySQL, to handle the larger scale of the application. This would increase the complexity (as there would be a need to migrate), but the benefits (such as the energy-effiency) of using SQLite during development could outweigh this.
 
 ### Future work
 
