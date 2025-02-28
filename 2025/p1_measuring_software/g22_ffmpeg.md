@@ -55,6 +55,8 @@ To evaluate the energy efficiency of H.264 and H.265 decoding, we analyzed energ
 
 We visualized our results using a combination of violin plots and box plots, which provided a clear picture of energy consumption distribution for both codecs. 
 
+Here are the Violin + Box Plots of the experiments, with [removed outliers](#outlier-removal)
+
 <img src="experiment_plots/480p/Gijs_combined_violin_box_decode_480p_filtered_results.png" alt="Energy Consumption Violin + Box Plot Comparison for 480p" width="600"/>
 
 <img src="experiment_plots/720p/Gijs_combined_violin_box_decode_720p_filtered_results.png" alt="Energy Consumption Violin + Box Plot Comparison for 720p" width="600"/>
@@ -64,15 +66,16 @@ We visualized our results using a combination of violin plots and box plots, whi
 
 One immediate takeaway is that H.265 consistently required more energy than H.264 for all resolutions. But how significant is this difference? To dig deeper, we needed to validate these observations with statistical tests.
 
-1. Checking Normality
-We used the Shapiro-Wilk test to assess whether the energy consumption data followed a normal distribution. A p-value < 0.05 indicates significant deviation from normality, meaning the data is not normally distributed.
+##### Checking Normality
+We used the **Shapiro-Wilk** test to assess whether the energy consumption data followed a normal distribution. A p-value < 0.05 indicates significant deviation from normality, meaning the data is not normally distributed.
 
-2. Outlier Removal
-To ensure extreme values weren’t skewing our results, we applied outlier removal using a Z-score threshold of 3 (within standard deviations). Interestingly, this step had minimal impact—suggesting that most of our data points were valid and not extreme anomalies. We verified this by comparing results before and after filtering, which showed no major changes in distribution.
+##### Outlier Removal
+To ensure extreme values weren’t skewing our results, we applied outlier removal using a **Z-score** threshold of 3 (within standard deviations). Interestingly, this step had minimal impact—suggesting that most of our data points were valid and not extreme anomalies. We verified this by comparing results before and after filtering, which showed no major changes in distribution.
 
 
-3. Then we chose the Statistical Test
-If both distributions were normal, we applied Welch’s T-test, which compares means while accounting for unequal variances. Otherwise, we used the Mann-Whitney U test, a non-parametric test suitable for comparing medians.
+##### Then we chose the Statistical Test
+
+If both distributions were normal, we applied **Welch’s T-test**, which compares means while accounting for unequal variances. Otherwise, we used the **Mann-Whitney U test**, a non-parametric test suitable for comparing medians.
 
 
 | Resolution | Normality (H.264) | Normality (H.265) | Statistical Test Used | Energy Difference (J) | Relative Difference (%) |  
