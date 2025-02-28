@@ -4,14 +4,16 @@ title: "Measuring the Energy Consumption of SQL vs SQLite"
 image: "https://miro.medium.com/v2/resize:fit:1200/1*VDoCtgMoTijXbq1P73PuFg.jpeg"
 date: 28/02/2025
 summary: |-
-  In this paper we analyse the difference in energy consumption between usage of SQL and SQLite to give insights for developers in the development phase of the database. After running our experiments and analysing the results, we find that the distribution is not as expected, and discuss why this might have been. Even still, we can see that the difference between the two is significant, allowing to conclude that SQLite is more energy efficient under the presented circumstances.
+  In this paper we analyse the difference in energy consumption between usage of MySQL and SQLite to give insights for developers in the development phase of the database. After running our experiments and analysing the results, we find that the distribution is not as expected, and discuss why this might have been. Even still, we can see that the difference between the two is significant, allowing to conclude that SQLite is more energy efficient under the presented circumstances.
 ---
 
 # Measuring energy consumption of SQL databases
 
-In this report, we investigate and measure the differences between energy consumptions of two SQL relational database management systems (RDBMS). The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
+In this report, we investigate and measure the differences between energy consumptions of two SQL relational database management systems (RDBMS), namely MySQL and SQLite.
 
-For the standard SQL database, we will make use of mySQL[^mysql], as it is the most popular open-source RDBMS according to the DB-Engines ranking[^dbengine].
+The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
+
+As mentioned, we will make use of MySQL[^mysql] as the standard SQL database, as it is the most popular open-source RDBMS according to the DB-Engines ranking[^dbengine].
 
 We compare it against SQLite, because it is the most widely deployed database engine in the world today and is, according to them, "used by literally millions of applications with literally billions and billions of deployments"[^sqlite_famous].
 
@@ -78,7 +80,7 @@ _Figure 1: The raw energy consumption by the SQL and SQLite databases._
 
 After running the experiment we compare the energy usage of the SQL and SQLite databases. The results of the exepriment can be found in Figure 1. To compare the distributions, we removed the outliers (using z-scores) (see Figures 2 and 3) and checked whether they were normally distributed. To check for the normality of the distributions we performed the Shapiro-Wilk test, which resulted in a p-value of 0.04153 for the MySQL energy distribution and a p-value of 0.02105 for the SQLite energy distribution. This means we can safely assume that both distributions are not normally distibuted. Therefore, to measure the significance of the difference of the distributions, we perforn the Mann–Whitney U test, resulting in a U value of 870.0 and p-value of 4.46175 e-11 << 0.05. This signifies that the difference in distributions is significant.
 
-![mySQL](../img/p1_measuring_software/g12_databases/mysql.png)\
+![MySQL](../img/p1_measuring_software/g12_databases/mysql.png)\
 _Figure 2: The result of the mySQL runs, normalised with 1 glaring outlier removed._
 
 ![SQLite](../img/p1_measuring_software/g12_databases/sqlite.png)\
