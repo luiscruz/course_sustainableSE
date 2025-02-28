@@ -77,9 +77,17 @@ Other important settings which have been changed on the machine under which the 
 - A single monitor is connected
 - Internet connection is disabled
 
-### Energy measurement
+### Energy Measurement
 
-Energy measurement was done by using the tool [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is able to measure the CPU energy used in joules at a specific timestamp. Using the timestamps and the CPU energy, we can calculate the average power used during an experiment, we use the following formula: $P_{avg} = \frac{E}{\Delta t}$, where $E$ is the CPU energy (in Joules) used in the timespan $\Delta t$, which is the difference between the beginning and the end time of the experiment in seconds.
+Energy measurement was performed using the [EnergiBridge](https://github.com/tdurieux/EnergiBridge) tool, which measures CPU energy consumption in joules at specific timestamps. By recording these timestamps alongside the CPU energy values, we can compute the average power used during an experiment with the formula:
+$$
+P_{avg} = \frac{E}{\Delta t}
+$$
+Here, $E$ denotes the CPU energy consumed (in joules) over the time span $\Delta t$, which is the difference between the experiment's start and end times (in seconds). Additionally, we use the Energy Delay Product (EDP) metric to penalize slower executions by emphasizing runtime. In our case, the EDP is defined as:
+$$
+EDP = E \times \Delta t
+$$
+The unit for EDP is $J\cdot s$.
 
 ### Dataset
 
@@ -137,10 +145,7 @@ The violin plot below shows the distribution of the average power used by each f
 
 
 ### Energy-Delay Product
-The Energy-Delay Product is given by the following formula
-$$ EDP = \Delta P \times t^2 $$
-
-It punishes implementations which have low average power, but which take long to complete by squaring the time taken to complete. 
+The EDP punishes implementations which have low average power, but which take long to complete by squaring the time taken to complete. 
 JAX has both of these properties as seen in previous plots. Therfore it should be no surprise that JAX scores
 worst on the EDP metric. Keras performs best, followed by PyTorch.
 
@@ -213,7 +218,7 @@ energy, power and EPD. This highlights the significant relative differences betw
 | **Time**   | 34.8795 s     | 51.2845 s     | **+47.03%**                |
 | **Energy** | 2244.1858 J   | 3165.7848 J   | **+41.07%**                |
 | **Power**  | 64.1953 W     | 61.6155 W     | **-4.02%**                 |
-| **EDP**    | 78221.6761    | 161881.9898   | **+106.95%**               |
+| **EDP**    | 78221.6761 J⋅s | 161881.9898   | **+106.95%**               |
 
 ---
 
@@ -224,7 +229,7 @@ energy, power and EPD. This highlights the significant relative differences betw
 | **Time**   | 51.2845 s     | 188.3840 s   | **+267.33%**               |
 | **Energy** | 3165.7848 J   | 10605.8137 J | **+235.01%**               |
 | **Power**  | 61.6155 W     | 56.2227 W    | **-8.75%**                 |
-| **EDP**    | 161881.9898   | 1976934.6552 | **+1121.22%**              |
+| **EDP**    | 161881.9898 J⋅s | 1976934.6552 | **+1121.22%**              |
 
 
 ---
@@ -236,7 +241,7 @@ energy, power and EPD. This highlights the significant relative differences betw
 | **Time**   | 34.8795 s     | 188.3840 s   | **+440.1%**               |
 | **Energy** | 2244.1858 J   | 10605.8137 J | **+372.59%**               |
 | **Power**  | 64.1953 W     | 56.2227 W    | **-12.42%**                |
-| **EDP**    | 78221.6761    | 1976934.6552 | **+2427.35%**              |
+| **EDP**    | 78221.6761 J⋅s | 1976934.6552 | **+2427.35%**              |
 
 
 ## Discussion
