@@ -1,14 +1,12 @@
-FROM ruby:2.7.4
+FROM ruby:3.1
 
 WORKDIR /myapp
 COPY . /myapp
 
-# We usually run this every time we add a new dependency
+# Install bundler and required gems using the Gemfile
 RUN gem install bundler -v 2.4.22
-RUN gem install jekyll -v 3.9.3
 RUN bundle install
-
 
 EXPOSE 4000
 
-CMD bundle exec jekyll s --host 0.0.0.0 --safe
+CMD bundle exec jekyll serve --host 0.0.0.0
