@@ -1,7 +1,7 @@
 
 
 ---
-author: Student1 first and last name, Student2, Student3
+author: Michael Chan, Roberto Negro, Jamila Seyidova, Gijs Margadant
 title: "Comparing H.264 and H.265 video decoding energy consumption"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
@@ -31,8 +31,12 @@ How does the energy consumption of video decoding compare between the H.264 and 
 ## Experimental Setup
 
 ### Environment
-We will conduct tests on:
-<!--computer, fixed environment settings, CPU, RAM and etc-->
+We will conduct tests on an Acer laptop with the following hardware specifications:
+- Series: Aspire 5 (A515-54G-59MW)
+- CPU: Intel i5-10210U @ 1.60GHz
+- RAM: 16GM
+- OS: Windows 11, v 24H2
+- Screen resolution: 1920 x 1080
 
 
 During these experiments, we minimized background activity to reduce external interference. Wi-Fi and Bluetooth were disabled, and airplane mode was enabled. The screen was turned off, and the device remained connected to the charger throughout the experiment to ensure consistent power conditions.
@@ -98,6 +102,15 @@ This study did not take advantage of hardware acceleration. Utilizing specialize
 
 ## Challenges Encountered
 During our experiments, we attempted to measure the energy consumption of the video **encoding** tasks with **EnergiBridge**, but unfortunately, we encountered issues that prevented the tool from functioning as expected. Despite multiple troubleshooting attempts, we were unable to gather reliable data from these trials.
+
+Specifically, we somtimes encountered the following error:
+``` shell
+thread 'main' panicked at /rustc/07dca489ac2d933c78d3c5158e3f43beefeb02ce\library\core\src\time.rs:954:31:overflow when subtracting durations
+```
+The impact of the error was that EnergiBridge would stop measuring and return controll back to our automated script. However, sice we used EnergiBridge as a wrapper command for our FFMPEG encoding/decoding, and EnergiBridge would not kill its child process, the encoding/decoding continued. A new experiment would then start, which meant that we had two processes running at the same time. In practice, we experienced that the amount of simultanious processes could  reach well over 10, slowing the computer down significantly, probably because of a lack of enough resources.
+
+The error was encountered on both Intel and AMD processors. RAPL was used to measure energy consumption on Intel hardware. The AMD hardware reports different data, which suggest RAPL was not used in these cases.
+Furthermore, increasing the sleep time between experiments seemed to reduce the amount of overflows. On the Intel hardware we run our experiments with a sleep time of 150 seconds, which was more than the experiments them selves took. This prevented multiple encoding/decoding processes to be running at the same time. At the same time, the number of overflows seemed to be smaller, indicating that the ffmpeg process might polute something which leads parallel experiments to fail. Moreover, the overflow was only encountered on experiments where libx264 was used to decode videos into various resolutions.
 
 ### Corner cases?
 
