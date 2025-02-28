@@ -11,7 +11,9 @@ summary: |-
 
 In this report, we will investigate and measure the differences between energy consumptions of two SQL relational database management systems (RDBMS). The Structured Query Language[^sql], also reffered to as SQL or sequel, is a well-known cross-platform language most commonly used for managing relational databases. It is used to create, query, change, delete, define and control access to data. SQLite[^sqlite] is based on SQL as its parent language, but uses a local file system to store the database instead of a separate server process to run the database.
 
-For the standard SQL database, we will make use of mySQL[^mysql], as it has been the most popular open-source relational database according to the DB-Engines ranking[^dbengine]. As for SQLite, we chose it because it is the most widely deployed database engine in the world today and is, according to them, "used by literally millions of applications with literally billions and billions of deployments"[^sqlite_users].
+For the standard SQL database, we will make use of mySQL[^mysql], as it is the most popular open-source RDBMS according to the DB-Engines ranking[^dbengine].
+
+As for SQLite, we chose it because it is the most widely deployed database engine in the world today and is, according to them, "used by literally millions of applications with literally billions and billions of deployments"[^sqlite_users].
 
 By focusing on these two widely adopted databases, our comparison aims to provide insights that are relevant to real-world scenarios.
 
