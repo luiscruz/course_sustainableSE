@@ -15,7 +15,7 @@ There has been a growing interest in the Artificial Intelligence field over the 
 
 The aim of this project was to showcase an energy consumption comparison in a common software use case. For this we have chosen to compare the same neural network architecture implemented by different machine learning libraries. We deemed this use case to be of significant interest, as we know training AI models is consuming more and more power worldwide, so measuring the energy consumption between libraries could give us a good insight into this issue that is becoming more and more relevant as time goes by.
 
-For our comparison, we chose three distinct popular libraries: PyTorch, TensorFlow and JAX. We chose these libraries because PyTorch and TensorFlow represent the two most widely used deep learning frameworks in both industry and research settings, meanwhile JAX is also growing in popularity. The libraries also use different architectural approaches. We ran the experiment for each of them, keeping the hyperparameters the same so the experiment process would be as representative as possible.
+For our comparison, we chose three distinct popular libraries: [PyTorch](https://pytorch.org/), [TensorFlow](https://www.tensorflow.org/) and [JAX](https://github.com/jax-ml/jax). We chose these libraries because PyTorch and TensorFlow represent the two most widely used deep learning frameworks in both industry and research settings, meanwhile JAX is also growing in popularity. The libraries also use different architectural approaches. We ran the experiment for each of them, keeping the hyperparameters the same so the experiment process would be as representative as possible.
 
 After this introduction section, we will cover our proposed methodology for the experiments in more detail, then we will show the results we obtained. After this, the findings will be analysed and discussed. Finally, we will draw some conclusions from the experiments in the last section and consider future improvements.
 
@@ -52,24 +52,24 @@ Our experimental procedure followed a specific method to ensure reliable and rep
 2. **System Warmup**: Prior to benchmarking, the system was warmed up by running a Fibonacci sequence calculation for 5 minutes.
 3. **Benchmark Execution**: Each framework was tested for 30 times each to obtain statistically significant results. We shuffled the running of the different libraries in order to avoid any potential biases.
 4. **Cool-down Periods**: A 60-second cooldown period was enforced between each framework test.
-5. **Data Collection**: For each run, EnergiBridge recorded total energy consumption in Joules.
+5. **Data Collection**: For each run, [EnergiBridge](https://github.com/tdurieux/EnergiBridge) recorded total energy consumption in Joules.
 
 ### Hardware and Software Configuration
 
 All experiments were conducted under the following conditions:
-- **Hardware**: HP Zbook Power G11 Mobile Workstation with Intel(R) Core(TM) Ultra 7 155H 1.40 GHz
-- **Memory**: RAM 16.0 GB
-- **Operating System**: Windows 11
-- **Python Version**: 3.10
+- **Hardware**: `HP Zbook Power G11 Mobile Workstation with Intel(R) Core(TM) Ultra 7 155H 1.40 GHz`
+- **Memory**: `RAM 16.0 GB`
+- **Operating System**: `Windows 11`
+- **Python Version**: `3.10`
 - **Python Libraries**:
-  - PyTorch 2.6.0
-  - TensorFlow 2.14.0
-  - Jax 0.4.34
-  - Flax 0.10.3
-  - Keras 3.24.0
-  - Pandas 2.2.3
-  - Numpy 2.2.3
-  - Optax 0.2.4
+  - `PyTorch 2.6.0`
+  - `TensorFlow 2.14.0`
+  - `Jax 0.4.34`
+  - `Flax 0.10.3`
+  - `Keras 3.24.0`
+  - `Pandas 2.2.3`
+  - `Numpy 2.2.3`
+  - `Optax 0.2.4`
 - **Environment Variables**: All frameworks configured to use CPU-only processing
 
 By standardizing the hardware and software environment, we eliminated potential variables that could influence the energy consumption measurements.
@@ -164,5 +164,4 @@ It is possible TensorFlow might perform more efficiently in large-scale producti
 This project could be expanded in the future in a number of different ways. One of them would be to test multiple models and architectures, not just a neural network, but maybe other classifying models on different tasks of varying complexity and measure the energy consumption between different library implementations. Another way to improve the validity of the project would be to perform the tests taking into consideration the hardware that the training is running on, with multiple types of machines running the experiments, so the effects of the implementations could be generalized across a range of machines. A final way in which the project can be improved is testing more popular machine learning libraries and comparing them to each other, expanding on the three we have used here.
 
 ## Reproducibility Package
-
-The code for running the experiment and the data analysis can be found here: https://github.com/matteo-fregonara/sse-1.
+The code for running the experiment and the data analysis can be found [here](https://github.com/matteo-fregonara/sse-1).
