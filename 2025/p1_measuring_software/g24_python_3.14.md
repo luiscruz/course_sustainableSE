@@ -16,13 +16,13 @@ We started by analyzing Python 3.14 default configuration, without any additiona
 
 However, this feature is opt-in, requires specific compiler versions (Clang 19+ on x86-64 and AArch64 architectures), and remains unavailable in the default build. Despite our efforts, we could not enable it, because it is not working yet. Therefore, our current study concentrates on benchmarking Python 3.14’s default interpreter against Python 3.11 to assess energy efficiency under highly demanding tasks.
 
---- 
 ## Methodology 
 To this end, the idea is to use the prerelease version of the Python 3.14 interpreter and compare the energy consumption for the same code snippet for both the new interpreter as well as an older Python interpreter (3.11.9). This should allow us to see whether the supposed faster speeds of the new interpreter impact energy consumption. 
 To assess the energy consumption we used [EnergiBridge](https://github.com/tdurieux/EnergiBridge) as suggested in the [lectures](https://luiscruz.github.io/course_sustainableSE/2025/).
 
 ### Code Snippet Selection 
 To make sure that the comparison is a meaningful one, we used computationally intensive code that will stress the CPU. We create multiple snippets that can be seen on [GitLab](https://github.com/vincentvvliet/sse-project-group-24). 
+
 ### Hardware 
 
 ### Experiment Procedure 
@@ -30,11 +30,15 @@ To make sure that the comparison is a meaningful one, we used computationally in
 ### Replication
 
 ## Results
+ 
+## Implications
+A common misunderstanding when it comes to sustainable software engineering is the idea that improving the execution time of a program reduces the amount of energy used, as this is not necessarily always the case [TODO](https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10). In cases where a program improves efficiency with regards to time by utilizing more power intensive methods, a reduction in time could not have the desired outcome in terms of energy consumption [TODO](https://www.sciencedirect.com/science/article/pii/S1877750313000173). With regards to our study, we were interested to know whether the claimed performance increase had a similar improvement on energy consumption or not. When comparing Python 3.14 without tail-call-interp with Python 3.11, there was only little difference in energy consumption. Unfortunately, since the prerelease version of Python 3.14 does not give the possibility of testing with the new interpretation feature, we are unable to determine the energy consumption with this feature enabled. For the current prerelease version, in terms of sustainability, our results would suggest that there is not necessarily a reason to switch at this point in time. 
 
+With the creation of a replication package, our study ensures that replicating the results on the full version of Python 3.14 with the tail-call-interp feature should be simple when the time comes.
 
 ## Future work 
 
-Although Python 3.14 showed no significant performance or energy efficiency gains over Python 3.11 in our tests, future research should revisit this comparison when the *tail-call-interpreter* becomes functional.
+Although Python 3.14 showed no significant performance or energy efficiency gains over Python 3.11 in our tests, future research should revisit this comparison when the *tail-call-interpreter* becomes functional. 
 To identify potential optimization opportunities in Python 3.14, we could also run demanding I/O scenarios and multi-threading executions.
 
 ---
