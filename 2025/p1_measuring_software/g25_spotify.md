@@ -21,7 +21,7 @@ This chapter describes the methodology used to compare the energy consumption of
 ### Design of the experiment
 The first thing to do before conducting the experiment is to design it. This involves identifying a specific use case for the application, in our case Spotify's web and native application. It is also important to design the experiment in such a way that it mimics actual user behaviour and is realistic.
 
-First, we designed and conducted an experiment with both applications (native and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantage of this type of experiment was that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results  of the initial setup without closing and opening (web)app](#results-of-the-initial-setup-without-closing-and-opening-webapp).
+First, we designed and conducted an experiment with both applications (native and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantage of this type of experiment was that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results of the initial setup without closing and opening (web)app](#results-of-the-initial-setup-without-closing-and-opening-webapp).
 
 The aim in designing the revised experiment was to minimise any bias from other applications and to focus only on the application being run. In addition, we still wanted to play more than one song to mimic realistic user behaviour, but we also wanted the data to be normally distributed across the experiment. So we had to design the individual runs to be similar, but with a certain degree of randomness built in.
 
@@ -95,8 +95,8 @@ It is also important to use a non-premium Spotify account for the experiments be
 
 ## Results 
 
-### Results in initial setup without closing and opening (web)app
-As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefitted from internal caching. This led us to change our setup to open and close the (web)app for every run
+### Results of the initial setup without closing and opening (web)app
+As discussed in the methodology, our initial approach was to keep the app and the web browser open during all experiments. The results, as can be seen in Figure 1 show a plot without a normal distribution. We assume that the results with a lower energy consumption might have benefited from internal caching. This led us to change our setup to open and close the (web)app for every run
 
 ![Violin Plot](../img/p1_measuring_software/g25_spotify/box_without_closing_setup.png)
 *Figure 1: Violin and Box plots of energy consumption (J) without outliers.*
