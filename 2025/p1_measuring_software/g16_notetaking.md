@@ -162,13 +162,14 @@ Selecting the best editor to use is thus highly dependent on if a user needs the
 Thus our recommendation is that if the additional features of the more heavy text editors are unnecessary, to use one of the more lightweight editors, preferably Notepad++.
 
 ### References
-[EnergiBridge](https://github.com/tdurieux/EnergiBridge)
-[AutoHotKey](https://www.autohotkey.com/)
-[Notepad++](https://notepad-plus-plus.org/downloads/)
-[Word](https://www.microsoft.com/nl-nl/microsoft-365/get-office-and-microsoft-365-oem-download-page)
-[Visual Studio Code](https://code.visualstudio.com/)
+-[EnergiBridge](https://github.com/tdurieux/EnergiBridge)
+-[AutoHotKey](https://www.autohotkey.com/)
+-[Notepad++](https://notepad-plus-plus.org/downloads/)
+-[Word](https://www.microsoft.com/nl-nl/microsoft-365/get-office-and-microsoft-365-oem-download-page)
+-[Visual Studio Code](https://code.visualstudio.com/)
 
 ## Replication
+Code for this project can be found [HERE](https://github.com/NovoGSP/SustainableSE-Group16)
 To replicate the results, follow these steps:
 
 ### Prerequisites
