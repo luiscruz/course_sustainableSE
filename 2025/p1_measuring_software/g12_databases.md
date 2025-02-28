@@ -29,6 +29,8 @@ Additionally, as a significant portion of the internet relies on databases for s
 
 ## Experimental setup
 
+The code for this experiment can be found in our [GitHub repository](https://github.com/HuibSprangers-leiden/course_sustainableSE/tree/code).
+
 This project will use a Brazilian ecommerce public dataset of orders made at Olist Store, containing real world commercial data which has been anonymised. "The dataset has information of 100k orders from 2016 to 2018 made at multiple marketplaces in Brazil. Its features allows viewing an order from multiple dimensions: from order status, price, payment and freight performance to customer location, product attributes and finally reviews written by customers."[^dataset]. We selected this dataset since it is of relevant size to make informative measurements, but it is not unrealisticaly large for the development/testing phase of a database.
 
 From this dataset, we used 5 tables, namely 'customers' (99441 rows), 'geolocation' (1000163 rows), orders (99441 rows), 'products' (32951 rows), 'sellers' (3095 rows).
@@ -62,20 +64,7 @@ To measure energy consumption EnergiBridge[^energibridge] (v0.0.7), a cross-plat
 
 ## Results
 
-<!-- stat		             	p -->
-<!-- shapiro mysql:	(0.9252632856369019, 	0.04153070226311684) -->
-<!-- shapiro sqlite:	(0.915923535823822, 	0.021052313968539238) -->
-<!-- #non-normal: -->
-<!-- mannwhitneyu:	(870.0, 		            4.461750341666232e-11) -->
-
-<!-- Mean difference: 37.283578806910015 -->
-<!-- Percentage change: 49.46321041252181 -->
-<!-- Cohen's d: 31.75638868642015 -->
-
-<!-- mysql energy usage mean: 75.37638276198814 -->
-<!-- sqlite mean: 38.092803955078125  -->
-
-![Raw Energy Consumption](../img/p1_measuring_software/g12_databases/raw.png)\
+![Raw energy consumption](../img/p1_measuring_software/g12_databases/raw.png)\
 _Figure 1: Violin plots for the raw energy consumption by the MySQL and SQLite databases._
 
 After running the experiment we compare the energy usage of the SQL and SQLite databases. The results of the exepriment can be found in Figure 1. To compare the distributions, we removed the outliers (using z-scores) and checked whether they were normally distributed. To check for the normality of the distributions we performed the Shapiro-Wilk test, which resulted in a p-value of 0.04153 for the MySQL energy distribution and a p-value of 0.02105 for the SQLite energy distribution. This means we can safely assume that both distributions are not normally distibuted. Therefore, to measure the significance of the difference of the distributions, we perforn the Mann–Whitney U test, resulting in a U value of 870.0 and p-value of 4.46175 e-11 << 0.05. This signifies that the difference in distributions is significant.
