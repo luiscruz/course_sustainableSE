@@ -4,8 +4,9 @@ title: "Energy Efficiency of Search Engines"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
 summary: This study examines the energy consumption of various search engines from a user’s perspective, focusing on power usage, response time, and efficiency. By measuring energy consumption during search queries on different platforms, we highlight how search engines vary in their resource demands. The findings reveal that while some engines prioritize speed or privacy, others consume significantly more energy per query. Understanding these differences is crucial for promoting sustainable digital habits and optimizing search engine use for lower environmental impact.
-
+ 
 ---
+
 # Introduction
 
 With search engines becoming an inseparable part of our daily digital routines, their environmental impact extends beyond the servers that power them. While mainstream discussions often spotlight the vast energy demands of server farms, a closer look reveals a hidden cost: every search query triggers energy-intensive processes on your personal device, either through the number of requests made or the content that the search engine loads for each of the query results. Just as sustainable software engineering has sparked debates on the energy efficiency of development tools, this post turns the focus to the user's side of the equation, specifically a developer's.
@@ -14,7 +15,7 @@ Popular search engines such as Google, Bing, and DuckDuckGo are now being evalua
 
 This investigation raises a pivotal question: How does energy consumption vary across different search engines from the user’s perspective? We hypothesize that platforms optimized with sustainability in mind could reduce the energy demands on individual devices, shifting the focus from large-scale infrastructure to everyday digital interactions. This is not about modifying browser settings or visual themes; it’s about measuring the real-world energy impact of each query. Specifically, from the prespective of a student and a developer, we implore you to think which search engine is the best to use so that our energy usage is at a minimal amount while we continue to access accurate, relevant, and timely information without compromising performance or usability.
 
-In this blog post, we outline our rigorous experimental setup—employing controlled devices and precise energy measurement tools—to offer actionable insights into reducing your digital carbon footprint. Join us as we detail our methodology, unveil our findings, and explore the implications for greener software practices and sustainable digital habits. Link to project repo: https://github.com/IlmaJaganjac/sustainableSE_9
+In this blog post, we outline our rigorous experimental setup—employing controlled devices and precise energy measurement tools—to offer actionable insights into reducing your digital carbon footprint. Join us as we detail our methodology, unveil our findings, and explore the implications for greener software practices and sustainable digital habits.
 
 # Methodology
 ### Experimental Overview
@@ -66,7 +67,7 @@ Finally, we employ statistical tests to measure the differences between all the 
 During the initial runs, we observed unexpected variations in the recorded energy consumption. After investigating potential sources of discrepancy, we identified two key factors affecting our measurements:
 
  1. Cookie and Automation Detection: Search engines often modify their behavior when automated scripts perform queries, sometimes loading additional elements, triggering bot detection mechanisms, or introducing CAPTCHAs. Therefore we had to mimic humanlike behaviour by including random sleeps. This introduces variability in response times and energy consumption.
- 2. Baseline Measurement: To differentiate the energy cost of executing a search query from the inherent cost of simply loading the website, we measured the baseline time required to load the search engine's homepage and accept additional cookies without any query search. We then added this baseline time to the start timestamp of our query search experiment so that our results reflects the actual energy consumption solely for executing the query search. 
+ 2. Baseline Measurement: To differentiate the energy cost of executing a search query from the inherent cost of simply loading the website, we measured the baseline time required to load the search engine's homepage and accept additional cookies without any query search for 30 iterations and averaged them. We then added this baseline time to the start timestamp of our query search experiment so that our results reflects the actual energy consumption solely for executing the query search. 
 
 # Results
 In this experiment, we measured energy and power consumption to evaluate the efficiency of various search engines. The distributions of these metrics were analyzed over the 30 iterations—both by calculating their averages and by examining their overall spread. Below is an explanation of how these metrics were derived and a description of their outputs.
@@ -86,14 +87,15 @@ With these metrics we have calculated the following;
 
 **Total Energy consumption** was computed as:   
        
-  Total Energy (J) = `E_end` - `E_begin`  
+   - Total Energy (J) = `E_end` - `E_begin`  
   
   Where `E_begin` and `E_end` are the energy values at the start and end of executing a query. 
 
 **Power** is the rate at which energy is used, measured in watts (`W`), where 1 W = 1 J/s.
   
-  Power (W) = (`ΔEnergy` / `Δt`) * 1000  
-  Here, `ΔEnergy` is the difference between consecutive energy measurements (in joules) and `Δt` is the time difference (in milliseconds) for the duration of the query execution.
+  - Power (W) = (`ΔEnergy` / `Δt`) * 1000
+    
+Here, `ΔEnergy` is the difference between consecutive energy measurements (in joules) and `Δt` is the time difference (in milliseconds) for the duration of the query execution.
 
 
 The plots show the distribution of `Average Power (W)` and `Total Energy (J)` across 30 iterations for each search engine, with violin plots illustrating the density of values.
@@ -115,13 +117,18 @@ To further illustrate how these metrics affect efficiency, we also examined the 
 
 ###### Figure 2: a) Average power over time  b) a histogram for the total energy per search engine 
 
-- **Energy Delay Product (EDP):**
-  
-EDP is a metric that balances energy efficiency and execution speed. It is defined as:
+
+### Energy Delay Product (EDP)
+  As can be seen from figure 2a) time plays an signifcant role in our experiment. That is why we also measured the EDP. It is a metric that balances energy efficiency and execution speed. It is defined as:
 
 EDP = `E` * `t`^`w`
 
+where `E` is the total energy and `t` the duration. `w` is an exponent that emphasizes the impact of execution time on overall efficiency. It represents the weight given to the execution time. It can take on different values depending on the focus of the measurement: 
+   - w = 1: Emphasizes energy efficiency, which is ideal when minimizing energy consumption is the   primary concern.
+   - w = 2: Provides a balanced view, considering both energy consumption and performance.
+   - w = 3: Focuses on performance efficiency, placing greater importance on faster execution times.
 
+We chose w = 1 as our main value to prioritize energy efficiency in our analysis.
 <!-- Energy Delay Product image -->
 This plot illustrates the distribution of EDP values for `w=1` across all iterations per search engine. It highlights the variability and central tendency of EDP, showing how energy efficiency trades off with execution time.
 <div style="margin-top: 20px;">
@@ -130,8 +137,23 @@ This plot illustrates the distribution of EDP values for `w=1` across all iterat
 
 ###### Figure 3: Energy Delay Product per search engine
 
+## Additional Factors
+The bar plot quantifies the percentage of Selenium overhead versus actual query time in raw duration, showing its influence on measurements and the importance of baseline subtraction. The memory plot tracks average used memory over time, providing context on resource utilization alongside energy metrics.
+<!-- Selenium impact image -->
+<div style="margin-top: 20px;">
+  <img src="../img/p1_measuring_software/g9_search_engines/barplot_selenium_metrics.png" style="width:45%;" alt="Selenium Impact">
+<!-- </div>
+<!-- Memory image -->
+<!-- <div style="margin-top: 20px;"> -->
+  <img src="../img/p1_measuring_software/g9_search_engines/memory_across_iterations.png" style="width:45%;" alt="Memory Across Iterations">
+</div>
+
+###### Figure 4: a) Percentage of baseline duration to the total query search duration  b) Memory usage per search engine
+
 ## Analysis
-The analysis leverages statistical tests and pairwise comparisons to evaluate differences in energy and power metrics across search engines. Heatmaps visualize these comparisons:
+The analysis leverages statistical tests and pairwise comparisons to evaluate differences in energy and power metrics across search engines. 
+## Percentage comparison
+Heatmaps visualize these comparisons:
 - These show the percentage change in `Average Power (W)` and `Total Energy (J)` between pairs of search engines, with color intensity indicating the magnitude of difference. Positive values indicate Engine B consumes more than Engine A, and vice versa.
 
 
@@ -142,20 +164,9 @@ The analysis leverages statistical tests and pairwise comparisons to evaluate di
   <img src="../img/p1_measuring_software/g9_search_engines/heatmap_Total_Energy_(J).png" style="width:45%;" alt="Heatmap Total Energy">
 </div>
 
-###### Figure 4: a) Heatmap comparsion of Average Power percentage change  b) Total Energy percentage change
+###### Figure 5: a) Heatmap comparsion of Average Power percentage change  b) Total Energy percentage change
 
-## Additional Factors
-The bar plot quantifies the percentage of Selenium overhead versus actual query time in raw duration, showing its influence on measurements. The memory plot tracks average used memory over time, providing context on resource utilization alongside energy metrics.
-<!-- Selenium impact image -->
-<div style="margin-top: 20px;">
-  <img src="../img/p1_measuring_software/g9_search_engines/barplot_selenium_metrics.png" style="width:45%;" alt="Selenium Impact">
-<!-- </div>
-<!-- Memory image -->
-<!-- <div style="margin-top: 20px;"> -->
-  <img src="../img/p1_measuring_software/g9_search_engines/memory_across_iterations.png" style="width:45%;" alt="Memory Across Iterations">
-</div>
 
-###### Figure 5: a) Percentage of baseline duration to the total query search duration  b) Memory usage per search engine
 
 ## Statistical Evaluation  
 The statistical evaluation of the energy and power metrics provides insight into the differences between search engines and the reliability of these differences.
@@ -167,7 +178,7 @@ For each search engine, the Shapiro–Wilk test was used to determine if the dat
 - **A p-value < 0.05** indicates that the data does not follow a normal distribution.
 - When data is non-normal, it suggests that the underlying distributions have outliers or are skewed, which can impact the choice of statistical tests for further analysis.
 
-The table above summarizes the test statistics and corresponding p-values for each search engine. For instance, some search engines have very low p-values (e.g., DuckDuckGo with p-value 8.72 *10^-6 for Average Power), indicating a significant departure from normality, whereas others like Bing have higher p-values, suggesting the data for those metrics are closer to normally distributed.
+The table below summarizes the test statistics and corresponding p-values for each search engine for the two metrics. For instance, some search engines have very low p-values (e.g., DuckDuckGo with p-value 8.72 *10^-6 for Average Power), indicating a significant departure from normality, whereas others like Bing have higher p-values, suggesting the data for those metrics are closer to normally distributed.
   
 | Metric                         |     Bing |   Brave Search |   DuckDuckGo |     Ecosia |    Google |    Mojeek |   OceanHero |     Qwant |   Startpage |   Swisscows |     You.com |
 |:-------------------------------|---------:|---------------:|-------------:|-----------:|----------:|----------:|------------:|----------:|------------:|------------:|------------:|
@@ -184,7 +195,7 @@ Once normality is assessed, pairwise comparisons between search engines are perf
 - **Welch's t-test** for normally distributed data.
 - **Mann–Whitney U test** for non-normal data.
 
-Along with the significance tests (using a threshold of p < 0.05 to denote statistical significance), effect sizes are calculated to quantify the magnitude of the differences. Effect sizes, such as Cohen's d for normal data or rank-biserial correlations for non-normal data, provide a standardized measure to compare differences across groups. They help answer not just whether a difference is statistically significant, but also how large that difference is in practical terms.
+Along with the significance tests (using a threshold of p < 0.05 to denote statistical significance), effect sizes are calculated to quantify the magnitude of the differences. Effect sizes, such as Cohen's d for normal data or common effect size (U1/(N1*N2) for non-normal data, provide a standardized measure to compare differences across groups. They help answer not just whether a difference is statistically significant, but also how large that difference is in practical terms.
 
 ### Visualizing Effect Size and Significance
 
