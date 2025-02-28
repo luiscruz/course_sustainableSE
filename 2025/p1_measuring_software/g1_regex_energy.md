@@ -83,7 +83,7 @@ Even if, on average, one RegEx engine has lower energy consumption than another,
 
 Effect size metrics are used to quantify the practical significance of differences between RegEx engines:
 
-- **Mean Difference ($\Delta\mu$)**: Measures raw difference in performance between two engines.
+- **Mean Difference (&Delta;&mu;)**: Measures raw difference in performance between two engines.
 - **Percentage Change**: Measures relative difference in performance.
 - **Cohen’s d Effect Size**: Measures magnitude of performance differences.
 
