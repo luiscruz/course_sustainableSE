@@ -196,20 +196,19 @@ and then a more gradual linear increase after the 20-second mark. The model was 
 
 ### Model-Specific Observations
 
-The **Deepseek r1 1.5B** model reaches approximately 700J by the 60-second mark and has relatively narrow confidence intervals, 
+The **Deepseek r1 1.5B** model reaches approximately 800J by the 60-second mark and has relatively narrow confidence intervals, 
 indicating stable performance across runs. The **Qwen 2.5 coder instruct 1.5B q5_0** model follows an almost identical energy profile to Deepseek r1,
-reaching about 700J, with its quantized version (q5_0) not providing significant energy savings over non-quantized models at this scale. The
-**Qwen 2.5 1.5B** model shows slightly lower overall energy consumption, reaching about 600J, with a similar pattern but a less steep curve after the
-initial spike, suggesting it may be more energy-efficient than its specialized coder variant. The **Yi coder 1.5B** model stands out with significantly
-higher energy consumption, reaching approximately 1200J, showing a steeper ongoing increase that suggests less efficient energy use during extended
-operation, and wider confidence intervals in the later stages, indicating more variable performance.
+reaching about 800J, with its quantized version (q5_0) not providing significant energy savings over non-quantized models at this scale. The
+**Qwen 2.5 1.5B** model shows slightly lower overall energy consumption, reaching about 500J, with a similar pattern but a less steep curve after the
+initial spike, suggesting it may be more energy-efficient than its specialized coder variant. However, both Qwen models showcase wide confidence intervals indicating more variability across runs
+The **Yi coder 1.5B** model stands out with significantly higher energy consumption, reaching approximately 1200J, 
+showing a steeper ongoing increase that suggests less efficient energy use during extended operation.
 
 ### Comparative Analysis
 
 - **Most Efficient**: Qwen 2.5 1.5B appears to be the most energy-efficient model
 - **Least Efficient**: Yi coder 1.5B is clearly the least efficient, using nearly twice the energy of the other models
 - **Quantization Impact**: The quantized Qwen model doesn't show substantial energy savings compared to its non-quantized counterpart at this scale
-- **Stability**: Deepseek and both Qwen models show more consistent energy profiles with narrower confidence intervals
 
 ### Energy-Delay Product (EDP) Analysis
 
@@ -217,7 +216,7 @@ operation, and wider confidence intervals in the later stages, indicating more v
 
 The **Deepseek r1 1.5B** model has a relatively wide and high EDP distribution suggesting moderate variability and higher overall energy-delay cost.
 The **Qwen 2.5 coder instruct 1.5B q5_0** model follows a similar trend but appears to have a slightly wider spread, indicating
-greater variation in efficiencyacross different runs. The **Qwen 2.5 1.5B** model shows a much lower EDP, with its distribution heavily
+greater variation in efficiency across different runs. The **Qwen 2.5 1.5B** model shows a much lower EDP, with its distribution heavily
 skewed toward lower values, suggesting significantly better energy efficiency compared to the other models. The **Yi coder 1.5B** model,
 on the other hand, exhibits the highest EDP values, indicating higher energy consumption and delay, and wider variability,
 making it the least efficient in this comparison.  
@@ -256,7 +255,7 @@ particularly between 10-25 seconds, and exhibits a more variable ramp-up phase c
 
 ![EDP for Qwen 2.5](../img/p1_measuring_software/g6_llms_energy_consumption/EDP_Distribution_by_Model_qwen.png)
 
-The **qwen2.5_1.5b** and **qwen2.5_7b** models exhibit the widest distributions, indicating higher variability in their EDP values. In contrast, 
+The **qwen2.5_0.5b** and **qwen2.5_7b** models exhibit the widest distributions, indicating higher variability in their EDP values. In contrast, 
 the **qwen2.5_0.5b** model has the most compact distribution, suggesting lower variance in energy efficiency. The **qwen2.5_3b** model shows a
 relatively uniform spread, implying more consistent performance. The median EDP values appear higher for **qwen2.5_1.5b** and **qwen2.5_7b**, which suggests
 these models may be less energy-efficient. As model size increases from **0.5b to 7b**, there is a noticeable upward trend in EDP values, hinting at reduced efficiency at larger scales.
