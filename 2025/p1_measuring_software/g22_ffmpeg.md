@@ -1,7 +1,7 @@
 ---
 author: Student1 first and last name, Student2, Student3
 title: "Comparing H.264 and H.265 video decoding energy consumption"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "../img/p1_measuring_software/gX_template/ffmpeg_cover.png"
 date: 28/02/2025
 summary: |-
   abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
@@ -55,11 +55,11 @@ To evaluate the energy efficiency of H.264 and H.265 decoding, we analyzed energ
 
 We visualized our results using a combination of violin plots and box plots, which provided a clear picture of energy consumption distribution for both codecs. 
 
-![Energy Consumption Violin + Box Plot Comparison for 480p](experiment_plots/Gijs_combined_violin_box_decode_480p_filtered_results.png)
+<img src="experiment_plots/480p/Gijs_combined_violin_box_decode_480p_filtered_results.png" alt="Energy Consumption Violin + Box Plot Comparison for 480p" width="600"/>
 
-![Energy Consumption Violin + Box Plot Comparison for 720p](experiment_plots/Gijs_combined_violin_box_decode_720p_filtered_results.png)
+<img src="experiment_plots/720p/Gijs_combined_violin_box_decode_720p_filtered_results.png" alt="Energy Consumption Violin + Box Plot Comparison for 720p" width="600"/>
 
-![Energy Consumption Violin + Box Plot Comparison for 1080p](experiment_plots/Gijs_combined_violin_box_decode_1080p_filtered_results.png)
+<img src="experiment_plots/1080p/Gijs_combined_violin_box_decode_1080p_filtered_results.png" alt="[Energy Consumption Violin + Box Plot Comparison for 1080p" width="600"/>
 
 
 One immediate takeaway is that H.265 consistently required more energy than H.264 for all resolutions. But how significant is this difference? To dig deeper, we needed to validate these observations with statistical tests.
