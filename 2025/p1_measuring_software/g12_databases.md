@@ -1,6 +1,6 @@
 ---
 author: Simon Biennier, Jasper Heijne, Paul Lindhorst, Huib Sprangers
-title: "Measuring the Energy Consumption of SQL vs SQLite"
+title: "Measuring energy consumption of SQL databases"
 image: "https://miro.medium.com/v2/resize:fit:1200/1*VDoCtgMoTijXbq1P73PuFg.jpeg"
 date: 28/02/2025
 summary: |-
@@ -75,16 +75,22 @@ To measure energy consumption EnergiBridge[^energibridge] (v0.0.7), a cross-plat
 <!-- mysql energy usage mean: 75.37638276198814 -->
 <!-- sqlite mean: 38.092803955078125  -->
 
-![Raw Energy Consumption](../img/p1_measuring_software/g12_databases/Raw_energy.png)\
-_Figure 1: The raw energy consumption by the SQL and SQLite databases._
+![Raw Energy Consumption](../img/p1_measuring_software/g12_databases/raw.png)\
+_Figure 1: Violin plots for the raw energy consumption by the MySQL and SQLite databases._
 
-After running the experiment we compare the energy usage of the SQL and SQLite databases. The results of the exepriment can be found in Figure 1. To compare the distributions, we removed the outliers (using z-scores) (see Figures 2 and 3) and checked whether they were normally distributed. To check for the normality of the distributions we performed the Shapiro-Wilk test, which resulted in a p-value of 0.04153 for the MySQL energy distribution and a p-value of 0.02105 for the SQLite energy distribution. This means we can safely assume that both distributions are not normally distibuted. Therefore, to measure the significance of the difference of the distributions, we perforn the Mann–Whitney U test, resulting in a U value of 870.0 and p-value of 4.46175 e-11 << 0.05. This signifies that the difference in distributions is significant.
+After running the experiment we compare the energy usage of the SQL and SQLite databases. The results of the exepriment can be found in Figure 1. To compare the distributions, we removed the outliers (using z-scores) and checked whether they were normally distributed. To check for the normality of the distributions we performed the Shapiro-Wilk test, which resulted in a p-value of 0.04153 for the MySQL energy distribution and a p-value of 0.02105 for the SQLite energy distribution. This means we can safely assume that both distributions are not normally distibuted. Therefore, to measure the significance of the difference of the distributions, we perforn the Mann–Whitney U test, resulting in a U value of 870.0 and p-value of 4.46175 e-11 << 0.05. This signifies that the difference in distributions is significant.
 
-![MySQL](../img/p1_measuring_software/g12_databases/mysql.png)\
-_Figure 2: The result of the mySQL runs, normalised with 1 glaring outlier removed._
+![Violin MySQL](../img/p1_measuring_software/g12_databases/violin_mysql.png)\
+_Figure 2: Violin plot for the MySQL runs, with outliers removed (using z-scores)._
 
-![SQLite](../img/p1_measuring_software/g12_databases/sqlite.png)\
-_Figure 3: The results of the SQLite runs, also normalised (no outliers)._
+![Histogram MySQL](../img/p1_measuring_software/g12_databases/hist_mysql.png)\
+_Figure 3: Histogram-density plot for the MySQL runs, with outliers removed (using z-scores)._
+
+![Violin SQLite](../img/p1_measuring_software/g12_databases/violin_sqlite.png)\
+_Figure 4: Violin plot for the SQLite runs, with outliers removed (using z-scores)._
+
+![Histogram SQLite](../img/p1_measuring_software/g12_databases/hist_sqlite.png)\
+_Figure 5: Histogram-density plot for the SQLite runs, with outliers removed (using z-scores)._
 
 The mean energy consumption for MySQL and SQLite was 75.38 and 38.09 respectively, with a mean difference of 37.28 and a percentage reduction of 49.46%. This substantial difference suggests a notable reduction in energy consumption when using SQLite over MySQL.
 
