@@ -9,9 +9,7 @@ summary: |-
 
 # Group 4 - The browser energy efficiency revolution: An empirical study of energy consumption from the perspective of user behavior
 
-<p align="center">
-  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/cover_3.jpg" alt="Cover Image" width="70%">
-</p>
+![Cover Image](../img/p1_measuring_software/g4_Chrome-FireFox/cover_3.jpg)
 
 
 When 3.7 billion browser users scroll through social media feeds, watch videos, or browse the web, they’re often unaware of the hidden energy consumption differences quietly shaping the digital world’s carbon footprint. These differences might seem small on an individual level, but when scaled across billions of users, they add up to significant environmental impacts.
@@ -172,8 +170,8 @@ After cleaning and analyzing the data, we found that the baseline average energy
 After cleaning and analyzing the data, we found that the baseline average energy consumption (post-outlier removal) was **240.68 Joules**. No negative outliers were detected during the data cleaning process. The statistical analysis revealed a **t-statistic of 1.26** and a **p-value of 0.211**. The p-value is above the standard significance threshold of 0.05, suggesting that there is no statistically significant difference between the energy consumption of Chrome and Firefox for YouTube playback. As shown in the figures, the average energy consumption of both browsers is quite similar, making it difficult to conclude which one is more efficient in this scenario.
 
 <div style="display: flex;">
-  <img src="img/AvgPowerConsumptionYoutubeMacOS.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
-   <img src="img/AvgPowerYoutubeMacOS.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/AvgPowerConsumptionYoutubeMacOS.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
+   <img src="../img/p1_measuring_software/g4_Chrome-FireFox/AvgPowerYoutubeMacOS.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
   </div>
 
 ---
@@ -186,8 +184,8 @@ This section summarizes the **Windows** test outcomes for **Chrome** and **Firef
 
 ### Reddit Browsing Task
 <div style="display: flex;">
-  <img src="img/win-reddit.jpg" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
-  <img src="img/win-vio-reddit.jpg" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/win-reddit.jpg" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/win-vio-reddit.jpg" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
 </div>
  
 
@@ -201,8 +199,8 @@ From a sustainability perspective, this means that **using Chrome for Reddit bro
 ### YouTube Playback Task
 
 <div style="display: flex;">
-  <img src="img/win-youtube.jpg" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
-  <img src="img/win-vio-youtube.jpg" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/win-youtube.jpg" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/win-vio-youtube.jpg" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
 </div>
 
 
@@ -219,8 +217,8 @@ After cleaning and analyzing the data, we found that the baseline average energy
 
 
 <div style="display: flex;">
-  <img src="img/reddit_power_hist_linux.png" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
-  <img src="img/reddit_power_violin_linux.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/reddit_power_hist_linux.png" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/reddit_power_violin_linux.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
 </div>
 
 
@@ -230,8 +228,8 @@ The statistical analysis revealed a **t-statistic of -0.96** and a **p-value of 
 
 
 <div style="display: flex;">
-  <img src="img/yt_power_hist_linux.png" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
-  <img src="img/yt_power_violing_linux.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/yt_power_hist_linux.png" alt="Average Power Consumption by Browser (Reddit Task)" style="width: 49%; margin-right: 1%;" />
+  <img src="../img/p1_measuring_software/g4_Chrome-FireFox/yt_power_violing_linux.png" alt="Average Power Consumption by Browser (YouTube Task)" style="width: 49%;" />
 </div>
 
 ---
