@@ -164,3 +164,14 @@ Selecting the best editor to use is thus highly dependent on if a user needs the
 Thus our recommendation is that if the additional features of the more heavy text editors are unnecessary, to use one of the more lightweight editors, preferably Notepad++.
 ## References
 ## Replication
+To replicae our experiment you can run the following on a windows command prompt:
+
+```sh
+python python_script.py
+python warmup.py
+script.bat
+```
+This sequence will create the batch script which runs the experiment, then warmup the CPU and then initiate the experiment.
+Make sure that you run these from an elevated command prompt with administrator rights.
+The experiment does not work on any distribution of linux as they do not support autohotkey.
+
