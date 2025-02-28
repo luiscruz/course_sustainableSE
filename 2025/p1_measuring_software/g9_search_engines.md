@@ -4,9 +4,8 @@ title: "Energy Efficiency of Search Engines"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
 summary: This study examines the energy consumption of various search engines from a user’s perspective, focusing on power usage, response time, and efficiency. By measuring energy consumption during search queries on different platforms, we highlight how search engines vary in their resource demands. The findings reveal that while some engines prioritize speed or privacy, others consume significantly more energy per query. Understanding these differences is crucial for promoting sustainable digital habits and optimizing search engine use for lower environmental impact.
- 
----
 
+---
 # Introduction
 
 With search engines becoming an inseparable part of our daily digital routines, their environmental impact extends beyond the servers that power them. While mainstream discussions often spotlight the vast energy demands of server farms, a closer look reveals a hidden cost: every search query triggers energy-intensive processes on your personal device, either through the number of requests made or the content that the search engine loads for each of the query results. Just as sustainable software engineering has sparked debates on the energy efficiency of development tools, this post turns the focus to the user's side of the equation, specifically a developer's.
@@ -15,7 +14,7 @@ Popular search engines such as Google, Bing, and DuckDuckGo are now being evalua
 
 This investigation raises a pivotal question: How does energy consumption vary across different search engines from the user’s perspective? We hypothesize that platforms optimized with sustainability in mind could reduce the energy demands on individual devices, shifting the focus from large-scale infrastructure to everyday digital interactions. This is not about modifying browser settings or visual themes; it’s about measuring the real-world energy impact of each query. Specifically, from the prespective of a student and a developer, we implore you to think which search engine is the best to use so that our energy usage is at a minimal amount while we continue to access accurate, relevant, and timely information without compromising performance or usability.
 
-In this blog post, we outline our rigorous experimental setup—employing controlled devices and precise energy measurement tools—to offer actionable insights into reducing your digital carbon footprint. Join us as we detail our methodology, unveil our findings, and explore the implications for greener software practices and sustainable digital habits.
+In this blog post, we outline our rigorous experimental setup—employing controlled devices and precise energy measurement tools—to offer actionable insights into reducing your digital carbon footprint. Join us as we detail our methodology, unveil our findings, and explore the implications for greener software practices and sustainable digital habits. Link to project repo: https://github.com/IlmaJaganjac/sustainableSE_9
 
 # Methodology
 ### Experimental Overview
