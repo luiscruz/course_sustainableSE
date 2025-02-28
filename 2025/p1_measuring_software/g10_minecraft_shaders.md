@@ -7,16 +7,17 @@ summary: "
   This article presents a roadmap on how to properly set up a scientific methodology to measure energy consumption in Minecraft with and without shaders. We outline unbiased energy measurement strategies, discuss methodology and replication, and analyze results to draw meaningful conclusions about energy efficiency."
 ---
 
+# Energy Consumption in Gaming: Minecraft Shaders
 
 ## **Introduction**
 
-Modern video games can be surprisingly power-intensive, and how we configure their graphics can greatly influence energy use [1]. For example, a study by Berkeley Labs claims that in California, computer gaming now accounts for about 5% of residential electricity [2]. Additionally, research highlights that gaming is not only one of the most significant plug loads in households but also among the most complex energy demands to analyze and optimize [2].
+Modern video games can be surprisingly power-intensive, and how we configure their graphics can greatly influence energy use [1]. A study by Berkeley Labs claims that in California, computer gaming now accounts for about 5% of residential electricity [2]. Additionally, research highlights that gaming is not only one of the most significant plug loads in households but also among the most complex energy demands to analyze and optimize [2].
 
-One clear example of this is Minecraft, a widely popular sandbox game, where the addition of shader mods (small modifications which enhance lighting and effects) can transform a mild workload into a demanding one. While these extensive graphical modifications can improve visual fidelity, they also increase power consumption [3]. 
+*Minecraft* is a widely popular sandbox game which supports the addition of shaders (small modifications which enhance lighting and effects) that can transform a mild workload into a demanding one. While these extensive graphical modifications can improve visual fidelity, they can also increase power consumption [3]. 
 
-Thus, understanding the relationship between graphical settings and energy consumption is therefore essential for investigating efficiency and minimizing the overall energy footprint of computer gaming.
+Thus, understanding the relationship between graphical settings and energy consumption is essential for investigating energy efficiency and minimizing the overall energy footprint of computer gaming.
 
-This article focuses on comparing the energy consumption of Minecraft when running it with and without shaders. Our goal is to measure how much additional power is required to render advanced lighting effects and reflections provided by shader packs and to discuss the implications for gamers and developers aiming for energy efficiency.
+This article focuses on comparing the energy consumption of Minecraft when running it **with shaders** versus **without shaders**. Our goal is to measure how much additional power is required to render advanced graphical effects provided by shaders, further discussing the implications for gamers and developers aiming for energy efficient gaming.
 
 ### *What are shaders?*
 
@@ -34,18 +35,20 @@ Minecraft is a game that has a massive modding scene. Given the customizability 
 
 The rendering of shaders in Minecraft is mainly handled by the GPU (Graphics Processing Unit), as it is designed to process and render graphics quickly and efficiently. The GPU acquires information from the game’s graphics engine and applies the selected shader effects to create the desired improved graphical fidelity.
 
-Minecraft: Java Edition was developed using OpenGL’s fixed function pipeline, as the graphics were simple and only required basic functionality. Most shaders are therefore run via Iris or Optifine, rather than using built-in shader support, due to its lack of versatility.
+Minecraft (Java Edition) was developed using OpenGL’s fixed function pipeline, as the graphics were simple and only required basic functionality. Most shaders are therefore run with third-party tools such as _Iris_ or _Optifine_, rather than using built-in shader support, due to its lack of versatility [4].
 
-Additionally, Minecraft (Java Edition) is a CPU (Central Processing Unit) intensive game due to several factors, such as procedural terrain generation, physics calculations, or general game logic [5]. The CPU is involved in the overall game processing. While shaders generally rely more on the GPU, they also require some processing power from the CPU to handle game calculations and tasks [5].
+Additionally, Minecraft is a CPU (Central Processing Unit) intensive game due to several factors, such as procedural terrain generation, physics calculations, or general game logic [5]. While shaders generally rely more on the GPU, they also require some processing power from the CPU to handle game tasks and calculations [5].
 
-Enabling a shader pack in Minecraft can therefore push GPU and CPU usage from minimal utilization to high usage, potentially increasing power consumption. This raises the need for analysis, which will be done in subsequent sections.
+Enabling a shader-pack in Minecraft can therefore push GPU and CPU usage from minimal utilization to high usage, potentially increasing power consumption. This raises the need for analysis, which will be done in subsequent sections.
 
 ## **Methodology**
 
 ### *Objective of the Study*
 
 The primary objective of this study is to compare the energy efficiency of playing Minecraft with shaders enabled versus without shaders. The experiment measures power consumption under both conditions to analyze the impact of graphical modifications on system energy use.
-Selection of Shaders
+
+
+### *Selection of Shaders*
 
 The selected shader-pack was Complementary Shaders (version 4.7.2) [6]. The shader-pack enhances lighting, reflections, and textures in Minecraft, and is generally appropriate for lower-end systems given its recommended system requirements.
 
@@ -57,12 +60,8 @@ EnergiBridge [7] is a cross-platform software tool for energy measurement. It is
 
 pyAutoGUI [8] is a tool allowing for the automation of keyboard/mouse inputs on the machine using Python. It also has functionality that detects images on the screen display, which was used in the experiment to navigate and play the game. Screenshots were taken on the machine the experiment was performed on and put in the `/Images` folder. The confidence was set to 70% to allow for some leeway, and clicks were set to 2-5 to ensure that no bugs/mistakes could interfere with the program.
 
-
-## **Video of the Experiment(Difference between shaders and no shaders in Minecraft)**
-[Watch Experiment Video](https://www.youtube.com/watch?v=WmE67KBySDA)
-
-### *Experiment Setup*
-The experiment follows a structured process to measure energy consumption with minimal bias. The methodology includes:
+### *Experiment Setup (`mc_experiment.py`)*
+The experiment starts with Minecraft already launched and running. It then follows a structured process to measure energy consumption with minimal bias. The methodology includes:
 
 - **Warmup Phase:** A Fibonacci sequence warmup function (`warmup.fibonacci_warmup()`) is executed before starting the experiment to ensure system stability and prevent initial spikes in energy consumption.
 - **Iteration-Based Execution:** The experiment consists of 30 iterations per condition (with shaders and without shaders), shuffled randomly to minimize potential external influences.
@@ -70,18 +69,19 @@ The experiment follows a structured process to measure energy consumption with m
 - **Output Logging:** Each test generates an output CSV file containing detailed energy consumption data.
 - **Resting Periods:** A 20-second rest period is included between each iteration to prevent thermal throttling and ensure consistency.
 
-### *Per Iteration Setup*
-- Open Minecraft Launcher (10 seconds).
-- Launch the game (30 seconds).
-- Navigate and load the world (10 seconds).
-- Run player experiment (~40 seconds).
-- Buffer time (5 seconds). Load shaders if enabled.
-- Teleport player to start location. Set time to day (for lighting).
-- Walk forward for ~30 seconds through the map (designed to benchmark shader-lighting).
-- Disable shaders if enabled.
-- Close game via Alt-F4.
-- Rest for 60 seconds.
-- Total experiment time(Per Iteration) averages ~90 seconds.
+### *Per Iteration Setup (`minecraft.py`)*
+
+1. **Navigate and Load the World** (10 seconds)
+2. **Run player experiment** (~40 seconds)  
+   - **Buffer time** (5 seconds): _Load shaders if enabled_  
+   - **Experiment Steps:**  
+     - Teleport player to start location. Set time to day (for consistent lighting)  
+     - Walk forward (~30 seconds) through the map (designed to benchmark shader-lighting) 
+     - _Disable shaders if enabled_  
+3. **Quit the world and navigate back to the title screen** (~10 seconds).  
+4. **Rest period** (20 seconds) 
+
+**Total experiment time per iteration:** ~60 seconds
 
 ### *Zen Mode*
 The experiment additionally was conducted in ‘ZEN mode’ to ensure a controlled environment with reliable results:
@@ -103,8 +103,10 @@ The experiment additionally was conducted in ‘ZEN mode’ to ensure a controll
 ### *Software Setup:*
 - **Minecraft Version:** 1.21.4
 - **Modded Instance:** Iris-Fabric-1.8.8+MC1.21.4
-- **Shader pack:** Complementary Shaders 4.7.2
-- **World File:** Lighting World
+- **Shader-pack:** Complementary Shaders 4.7.2
+
+### **Video of the Experiment**
+The following [video](https://www.youtube.com/watch?v=WmE67KBySDA) demonstrates a side-by-side comparison of both experimental conditions (with and without shaders) in Minecraft.
 
 ## **Replication**
 
@@ -112,7 +114,6 @@ To ensure the experiment is replicable:
 - The **same hardware and software settings** must be maintained across all runs.
 - The **game world must be identical** for all test iterations.
 - **All background processes and unnecessary peripherals must be disabled** to minimize external factors affecting energy consumption.
-- The **GPU power should be logged at fixed intervals** (e.g., 2 seconds after execution and at peak load).
 
 To replicate the experiment, the code for measuring energy consumption in Minecraft on Windows can be found in the **Energy Consumption** repository: [GitHub Link](https://github.com/Ayushkuruvilla/Energy_consumption).
 
@@ -242,8 +243,8 @@ By following proper scientific measurement techniques, we ensure that our result
 
 [8] asweigart. “GitHub - Asweigart/Pyautogui: A Cross-Platform GUI Automation Python Module for Human Beings. Used to Programmatically Control the Mouse & Keyboard.” GitHub, 2025, github.com/asweigart/pyautogui/tree/master. Accessed 27 Feb. 2025.
 
-[9] Konnurmath, G., & Chickerur, S. (2024). GPU Shader Analysis and Power Optimization Model. Engineering Technology & Applied Science Research, 14(1), 12925–12930. https://doi.org/10.48084/etasr.6695
+[9] Konnurmath, G., & Chickerur, S. (2024). GPU Shader Analysis and Power Optimization Model. Engineering Technology & Applied Science Research, 14(1), 12925–12930. doi.org/10.48084/etasr.6695
 
-[10] Kumar, N. (2025, January 1). How many people play Minecraft 2025 (Active players). DemandSage. https://www.demandsage.com/minecraft-statistics. Accessed 27 Feb. 2025
+[10] Kumar, N. (2025, January 1). How many people play Minecraft 2025 (Active players). DemandSage. demandsage.com/minecraft-statistics. Accessed 27 Feb. 2025
 
-[11] World generation – Minecraft Wiki. (n.d.). Minecraft Wiki. https://minecraft.wiki/w/World_generation. Accessed 27 Feb.2025
+[11] World generation – Minecraft Wiki. (n.d.). Minecraft Wiki. minecraft.wiki/w/World_generation. Accessed 27 Feb.2025
