@@ -49,7 +49,7 @@ We created a containerized Docker environment for each framework, resulting in t
 
 For the dataset the frameworks will use for querying, we based it on three `.tsv` files from the [IMDb database](https://developer.imdb.com/non-commercial-datasets/), namely `title.basics.tsv`, `title.ratings.tsv`, and `name.basics.tsv`. We reduced the size of the original dataset by considering only the first 50,000 entries from each of the `.tsv` files.
 
-For each framework, the entries of the `.tsv` files were stored in-memory within datastructures that were most appropriate for the programming language -- an array of objects for Express, a list of dictionaries for Flask and a HashMap for SpringBoot. These data structures are instantiated when the respective docker containers are built. We followed this approach instead of connecting to an externalk datrabase to mitigate the effects of database connection and timeouts towards the energy consumption measurement for each framework.
+For each framework, we store the entries of the .tsv files in-memory within three Map (or equivalent) data structures with the key as the primary key and the value as the object representation of the entries. This results in three Maps representing the basic information of movies, ratings of movies, and basic information of industry professionals. This is done when the docker container of each framework are instantiated. We followed this approach instead of connecting to an external database to mitigate the effects of database connection towards the energy consumption measurement for each framework
 
 ## Experiment Procedure
 
