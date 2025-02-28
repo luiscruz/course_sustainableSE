@@ -30,7 +30,15 @@ To make sure that the comparison is a meaningful one, we used computationally in
 ### Replication
 
 ## Results
- 
+Before analyzing our results we first check to see if they have a normal distribution. Performing the Shapiro-Wilk test we see that Python 3.11 has a p-value of 0.091, while Python 3.14 has a p-value of 0.007. This means that while Python 3.11 can be considered normal, Python 3.14 cannot. For this reason we will look at the median difference between the two sets of results. To graph the difference in median energy consumption between Python 3.11 and Python 3.14 we create a bar plot that uses Half of the interquartile range (IQR) as error bars.
+![Median_energy_comparison.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fmedian_energy_comparison.png)
+
+Looking at the graph, we see that Python 3.11 has a median energy consumption of 20.01, while Python 3.14 has a slightly lower mean of 19.05. This is a difference of 0.96 J. While this is not a large difference, it could suggest Python 3.14 is slightly more energy efficient. The error bars seem to overlap significantly in both versions however, which could indicate that the difference in median energy consumption between Python 3.11 and 3.14 could be due to normal fluctuations.
+
+To get more insight into the distribution spread and shape of the data we created a Violin+box plot. 
+![Box+violinplot.png](..%2Fimg%2Fp1_measuring_software%2Fg24_python_3.14%2Fenergy_comparison.png)
+
+Looking at the plot, we see that the results of both versions of python have a wide relatively wide distribution at the center, showing that for both versions the values are mostly concentrated around 18-20 J. Python 3.14 seems to have broader spread than Python 3.11, with lower outliers extending to ~15 J and larger ones beyond 26 J. This greater number of outliers is consistent with the p-value we found earlier. To check for statistical significance between the two datasets we use the Mann-Whitney U test, from which we determine a p-score of ~0.15. Since p > 0.05 there is no strong evidence that Python 3.11 and 3.14 have different energy consumption distributions. When calculating the percentage of pairs supporting a conclusion we see that 61.03% of all possible pairwise comparisons show that Python 3.11 consumes more energy than Python 3.14. This means that in the majority of cases, Python 3.14 is more efficient, but not overwhelmingly so. In terms of common language effect size this is a score of 0.613. 
 ## Implications
 A common misunderstanding when it comes to sustainable software engineering is the idea that improving the execution time of a program reduces the amount of energy used, as this is not necessarily always the case [TODO](https://link.springer.com/chapter/10.1007/978-3-319-09967-5_10). In cases where a program improves efficiency with regards to time by utilizing more power intensive methods, a reduction in time could not have the desired outcome in terms of energy consumption [TODO](https://www.sciencedirect.com/science/article/pii/S1877750313000173). 
 
