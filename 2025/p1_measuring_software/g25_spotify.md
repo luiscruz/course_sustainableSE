@@ -1,12 +1,12 @@
 ---
 author: Julian Hirschler, Patrick Krumpl, Shantanu Jare, Sven Butzelaar, Thomas Verwaal
-title: "Native vs. Web: Analyzing the Energy Consumption of Spotify Apps"
+title: "Native vs. Web: Analysing the Energy Consumption of Spotify Apps"
 image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg"
 date: 28/02/2025
 summary: In this project we compare the spotify native and web app by looking at the energy consumption when playing songs. Spotify has 675 million monthly active users and thus has a significant environmental impact. From our result we conclude that the native app uses 11% more energy, possibly caused by different technical implementations. Our project does have some limitations such as only using one browser and operating system. However with this project we do provide valuable insights to users and developers about the difference in energy consumption for native and web apps.
 ---
 
-# Native vs. Web: Analyzing the Energy Consumption of Spotify Apps
+# Native vs. Web: Analysing the Energy Consumption of Spotify Apps
 
 ## Introduction
 The way music is consumed and distributed has changed dramatically over the past few decades. The rise of digital streaming platforms such as Spotify has transformed music into an on-demand service, replacing the need to purchase physical products such as CDs or vinyl. [^music_industry_shift] 
@@ -23,7 +23,7 @@ The first thing to do before conducting the experiment is to design it. This inv
 
 First, we designed and conducted an experiment with both applications (native and web) open at the same time. We switched between the windows and randomly played exactly one song in each test run. However, the disadvantage of this type of experiment was that the other window that was open in the background affected the accuracy of the measurement. Also, playing a random song for each run has an effect on energy consumption. Thus, the data were not really normally distributed. The result of this first experiment can be found in the chapter [Results of the initial setup without closing and opening (web)app](#results-of-the-initial-setup-without-closing-and-opening-webapp).
 
-The aim in designing the revised experiment was to minimise any bias from other applications and to focus only on the application being run. In addition, we still wanted to play more than one song to mimic realistic user behaviour, but we also wanted the data to be normally distributed across the experiment. So we had to design the individual runs to be similar, but with a certain degree of randomness built in.
+The aim in designing the revised experiment was to minimize any bias from other applications and to focus only on the application being run. In addition, we still wanted to play more than one song to mimic realistic user behaviour, but we also wanted the data to be normally distributed across the experiment. So we had to design the individual runs to be similar, but with a certain degree of randomness built in.
 
 For the final experiment, we decided to have 30 runs per application. The runs themselves are randomly mixed. For a single run, we first open the application (i.e. web or native). We then wait a few seconds for the application to fully load so that the opening has no effect on the energy measurement. We did not want to include the start of the application in this measurement as we only wanted to focus on the use case of playing music. Next, the energy measurement is started and four songs are played in random order. Each song is played for 20 seconds. Including the delays for starting and searching for the songs, a run takes about 2 minutes. After the run, the application is closed and we pause for 1 minute. So the whole experiment takes about 3 hours.
 
@@ -47,7 +47,7 @@ In general, testing the power consumption of applications is difficult because m
 ### Experiment execution
 Since it would be impossible to manually run 60 experiments without introducing bias from user input, we automated the testing process using a _Python_ script. The Spotify apps are mostly controlled via keyboard shortcuts using the _pyautogui_ library. The energy measurements are done using [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which is a cross-platform energy measurement utility.[^energi_bridge]
 
-The script starts with an initialisation and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To warm up, a simple Fibonacci sequence is computed for five minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
+The script starts with an initialization and warm-up phase before actually running the experiments. During this phase, the brightness of the display and the volume of the speakers are automatically adjusted. To warm up, a simple Fibonacci sequence is computed for five minutes. Afterwards, the experiment is run as described in the [Design of the experiment](#design-of-the-experiment) chapter.
 
 ### Replication
 To replicate this experiment, check out our public [GitHub repository](https://github.com/famulenz-pkrumpl/SSE_Spotify). It contains all the necessary scripts as well as instructions on how to set up the experiment.[^sse_github_repo]
@@ -141,7 +141,7 @@ In a similar paper published in 2023, R. Horn et al. compared native and web app
 
 To understand where these differences come from, we looked at the differences between the applications. First, the two applications differ in terms of functionality. The web application only offers one bitrate that automatically adjusts the streaming quality depending on the internet connection available. In the native application, on the other hand, you can choose between different audio qualities and also switch off the automatic quality adjustment. Moreover, the native application also implements caching.
 
-However, the most significant difference between the web and native versions of Spotify is the technical implementation. Browsers are highly optimised these days as there is a lot of competition between different companies. Chrome's V8 JavaScript engine is written in C++ and compiles the code directly into machine code as the program runs, which is very efficient.[^chrome_v8_engine] On the other hand, Spotify's native version uses the same codebase as the web version, but uses the [Chromium Embedded Framework](https://bitbucket.org/chromiumembedded/cef/src/master/) to run the code natively.[^spotify_architecture]
+However, the most significant difference between the web and native versions of Spotify is the technical implementation. Browsers are highly optimized these days as there is a lot of competition between different companies. Chrome's V8 JavaScript engine is written in C++ and compiles the code directly into machine code as the program runs, which is very efficient.[^chrome_v8_engine] On the other hand, Spotify's native version uses the same codebase as the web version, but uses the [Chromium Embedded Framework](https://bitbucket.org/chromiumembedded/cef/src/master/) to run the code natively.[^spotify_architecture]
 
 For companies like Spotify, using the same code base for both web and native apps saves a lot of money. However, the frameworks used to transform web applications into native applications happen to be less efficient than running the application directly in the browser. 
 
