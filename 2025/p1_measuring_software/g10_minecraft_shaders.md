@@ -205,9 +205,9 @@ For this experiment, we focused our tests on complementary shaders 4.7.2 only. G
 
 The experiment runs only captured the energy consumption over short intervals. This may not fully represent realistic gameplay, where extended runtimes can result in accumulated hardware temperatures and increased computational load. 
 
-**Variation in world generation**
+**Variation in loading times**
 
-Minecraft’s worlds are generated at random from a maximum possible 18 quintillion combinations [11], which can cause inconsistencies in loading times and game performance across different environments. Although we implemented buffer waiting times to mitigate such effects, it may still lead to variations in energy usage in between runs.
+Loading the world, enabling/disabling the shaders, or quitting the world could vary in time due to the implementation of the game or shader mod, which can cause inconsistencies in game performance. Although we implemented buffer waiting times to mitigate such effects, it may still lead to slight variations in time and energy usage in between runs.
 
 **Interference from background processes**
 
@@ -246,5 +246,3 @@ By following proper scientific measurement techniques, we ensure that our result
 [9] Konnurmath, G., & Chickerur, S. (2024). GPU Shader Analysis and Power Optimization Model. Engineering Technology & Applied Science Research, 14(1), 12925–12930. doi.org/10.48084/etasr.6695
 
 [10] Kumar, N. (2025, January 1). How many people play Minecraft 2025 (Active players). DemandSage. demandsage.com/minecraft-statistics. Accessed 27 Feb. 2025
-
-[11] World generation – Minecraft Wiki. (n.d.). Minecraft Wiki. minecraft.wiki/w/World_generation. Accessed 27 Feb.2025
