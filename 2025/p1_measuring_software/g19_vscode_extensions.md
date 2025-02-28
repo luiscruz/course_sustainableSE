@@ -34,15 +34,6 @@ To answer this question, we investigate the following sub-questions:
 1. What is the energy usage of starting Visual Studio Code with and without extensions?
 2. What is the impact of running only extensions relevant to the project on power usage?
 3. What is the impact of running extensions on different-sized repositories?
-<!-- - Are there specific extensions that have a significant impact on power usage on startup? -->
-<!-- 
-> Maybe remove repo size question due to word limit -> results are insignificant anyways -->
-
-<!-- > Check reports of previous year to make sure we have a good structure -->
-
-<!-- > Make sure README is complete with run instructions for experiment and obtaining graphs
-
-> Make sure code is properly commented  -->
 
 ## Experiment setup
 
@@ -83,7 +74,6 @@ More information about how we perform these measurements can be found in the met
 
 ### Ensuring valid results / Controlled Variables
 
-<!-- > Report hardware we run experiments on. -->
 All tests are run on an HP Zbook Power G11 Mobile Workstation. This laptop has an Intel Core Ultra 7 - 155H processor.
 To properly measure the power consumption of running VSCode and the impact of extensions running, we want to keep external factors as consistent as possible.
 To this end we do a few things.
@@ -102,7 +92,6 @@ We also tried to keep the room temperature as stable as possible, by not changin
 ## Methodology
 
 Instructions on how to set up and rerun the experiments can be found in the README.
-<!-- > Add GitHub link/brief run instructions -->
 
 Each combination of an extension configuration and repository was run 30 times to ensure validity.
 Though we tried to keep external factors as consistent as possible, we also decided to shuffle the executions of different combinations.
@@ -131,7 +120,7 @@ In order to answer our research questions, we perform statistical analysis on ou
 First, we check if the results are normally distributed.
 We will test this using the Shapiro-Wilk test.
 For this, we need to calculate the p-value of the results.
-If this value is smaller than $0.05$, the data is not normally distributed. The results of this analysis can be seen in Table 3.
+If this value is smaller than 0.05, the data is not normally distributed. The results of this analysis can be seen in Table 3.
 
 **Table 3**: For each run configuration (repository size and extensions) we check if the power consumption is normally distributed.
 
@@ -149,8 +138,6 @@ Figures 1-2 and Tables 4-5 describe the results of this test.
 Figure 1 shows a histogram of the energy consumption in Joule, when starting the VSCode with or without extension enabled.
 A clear difference between the range of energy consumed between the two configurations can be seen.
 Table 4 also confirms this difference, showing that without extensions enables, an average of 29% less power is used to start up Visual Studio Code.
-
-<!-- > Energy consumption histograms axes are not properly labelled -> do we even need them since we already have the normal test? -->
 
 **Figure 1**: Histograms of energy (J) consumption with versus without extensions.
 ![No extensions vs all extensions](../img/p1_measuring_software/gX_template/g19_vscode_extensions/no-extensions-vs-all-extensions.png)
@@ -198,28 +185,13 @@ The results of this comparison can be seen in Figure 3 and Table 6.
 
 Figure 4 show the power usages over time while starting VSCode.
 A clear peak is shown when starting VSCode at the start, and a second, smaller peak at the end when shutting down VSCode.
-Additionally, there is a third peak (at $t =[18,20]$), when running all extensions.
+Additionally, there is a third peak (at t =\[18,20]), when running all extensions.
 This peak only occurs for that configuration, and not when running only the specific extension set, indicating that this peak must be caused by the non-python extensions.
 This is most likely caused by a non-Python extension starting or running a background process after a set amount of time.
 Outside this third peak, The difference in these configurations do not seem to make much of a difference while the program is idle, as indicated by overlap of all three lines in the graph.
 
-<!-- > Write this part, we do not actually have results for individual extensions so we can just hint towards specific extensions being the cause of this peak in the discussion -->
-
-<!-- CHANGE - choose repo to use -->
-
 **Figure 4**: Average CPU power over time for large repository for each extension configuration.
 ![Means of large repo trials per config](../img/p1_measuring_software/gX_template/g19_vscode_extensions/means_large_repos.png)
-
-<!-- **Figure 5**:
-> Probably remove table with figures below because they are unreadable and data is already contained within figure above
-
-| Without extensions | Relevant extensions | All extensions |
-|--------------------|---------------------|----------------|
-| ![Power usage without extensions](../charts\v2\without_large.png) | ![Power usage with only relevant extensions](../charts\specific_large.png) | ![Power usage all extensions](../charts\with_large.png) | -->
-
-<!-- >The above graphs show the power usage of the CPU ...
-[EXPLAIN WHAT 'RELEVANT' EXTS ARE]
-Most notable is the difference in power usage pattern between the relevant and full set of extensions: Not only is there an extra peak at around $t = [18,20]$ seconds, but the initial -->
 
 ## Conclusions
 
