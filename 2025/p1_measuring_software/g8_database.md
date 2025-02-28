@@ -1,7 +1,7 @@
 ---
 author: Kevin Chen, Tibieru Sabău, Floris van Veen, Kah Ming Wong
 title: "Comparing the Energy Consumption of Different Database Management Systems"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image:
 date: 28/02/2025
 summary: |-
 	This blog aims to compare the energy output between two different database management systems: MySQL and PostgreSQL to find which of the two is more energy efficient, and if this still holds when the amount of data in each increases. If there are consistent differences, users could make a decision of which one to use for their target applications. 
