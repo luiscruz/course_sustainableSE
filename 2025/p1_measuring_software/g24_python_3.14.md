@@ -1,7 +1,7 @@
 ---
 author: Luc Dop, Sabina Grădinariu, Nawmi Nujhat, Vincent van Vliet
 title: "Energy Consumption Comparison: Python 3.14 vs Python 3.11"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "../img/p1_measuring_software/g24_python_3.14/g24.jpg"
 date: 24/02/2025
 summary: |-
    This study explores the energy consumption differences between Python 3.14 and Python 3.11, testing the claim that Python 3.14 has a 30% speed improvement over previous versions. We run the same computational tasks in controlled environments and measure power usage, execution time, and overall efficiency. 
