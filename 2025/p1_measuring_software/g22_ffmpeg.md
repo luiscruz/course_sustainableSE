@@ -36,10 +36,10 @@ During these experiments, we minimized background activity to reduce external in
 ### Tools & Methods
 We evaluate the energy consumption of the H.264 and H.265 codecs by encoding a single video at different resolutions using both codecs in MP4 format. We then decode the entire video to measure and compare the energy consumption associated with the decoding process for each codec.
 
-Encoding and decoding were performed using [FFmpeg](https://www.ffmpeg.org/), a free and open-source software suite used for handling multimedia files. Both H.264 and H.265 are lossy compression formats, where the Constant Rate Factor (CRF) determines the level of quality loss—lower values retain higher quality at the cost of larger file sizes. Additionally the preset controls the trade-off between encoding speed and compression efficiency. For this experiment, videos were encoded using **CRF 23** and the **medium preset**, which are the default settings in FFmpeg. These values provide a balanced trade-off between compression efficiency, encoding speed, and output quality.
+Encoding and decoding were performed using [FFmpeg](https://www.ffmpeg.org/) (version 7.1), a free and open-source software suite used for handling multimedia files. Both H.264 and H.265 are lossy compression formats, where the Constant Rate Factor (CRF) determines the level of quality loss—lower values retain higher quality at the cost of larger file sizes. Additionally the preset controls the trade-off between encoding speed and compression efficiency. For this experiment, videos were encoded using **CRF 23** and the **medium preset**, which are the default settings in FFmpeg. These values provide a balanced trade-off between compression efficiency, encoding speed, and output quality.
 
 
-We measure energy consumption using [EnergiBridge](https://github.com/tdurieux/EnergiBridge). Each decoding experiment is repeated 30 times, with a 1-minute break between runs to prevent residual CPU activity from affecting subsequent measurements.
+We measure energy consumption using [EnergiBridge](https://github.com/tdurieux/EnergiBridge) (version 0.0.7). Each decoding experiment is repeated 30 times, with a 1-minute break between runs to prevent residual CPU activity from affecting subsequent measurements.
 
 Energy consumption is measured from the start of decoding until completion. To prevent file writing from affecting the results, the decoded video is directed to a null output, avoiding delays caused by writing large uncompressed video files. This approach aligns with real-world use cases, where videos are typically buffered and displayed on-screen rather than written to disk.
 
@@ -63,7 +63,7 @@ We observe that H.265 indeed achieves better compression, particularly at higher
 
 ### Results
 
-#### Energy Consumption at 480p: H.264 vs. H.265
+#### Energy Consumption: H.264 vs. H.265
 
 To evaluate the energy efficiency of H.264 and H.265 decoding, we analyzed energy consumption across 480p, 720p, and 1080p resolutions.
 
@@ -112,16 +112,16 @@ Interestingly, we observed that the relative difference in energy consumption de
 Given that video decoding is an everyday activity, a 19.36% reduction in energy consumption is highly impactful. While saving 24.8 joules on a single 2 minute video can seem insignificant, considering the vast scale of video consumption—especially on platforms like YouTube—such reductions can lead to substantial energy savings globally. With billions of video views daily, even a small decrease in energy per video can result in millions of joules saved over time, contributing to a reduction in the overall environmental footprint of video streaming.
 
 ## Limitations
-### **Impact of File Size**
+### Impact of File Size
 H.265 offers significantly more efficient compression, resulting in smaller file sizes. This reduction can lower energy consumption in areas not measured in our experiments, such as networking and disk access, beyond just reducing storage requirements. Future research could further investigate these aspects to better understand the overall energy impact and determine the optimal codec choice for different use cases.
 
-### **Limited generalization**
+### Limited generalization
 Our study was conducted using a single video, which may limit the generalizability of the results. Additionally, we only tested the default constant rate factor and preset settings, meaning performance and energy consumption may vary under different encoding configurations. Future research should investigate a broader range of videos and encoding parameters to provide more comprehensive insights.
 
-### **Single hardware configuration**
+### Single hardware configuration
 The study was conducted using a single hardware platform. The energy consumption observed may vary across different devices, operating systems, or configurations. Expanding the range of hardware used could provide a more comprehensive view of codec performance in real-world scenarios.
 
-### **Hardware acceleration**
+### Hardware acceleration
 This study did not take advantage of hardware acceleration. Utilizing specialized hardware such as GPUs or dedicated video encoding/decoding units could lead to different energy consumption results. Future work could include testing with hardware acceleration to assess its impact on energy efficiency.
 
 ## Challenges Encountered
@@ -135,23 +135,16 @@ The impact of the error was that EnergiBridge would stop measuring and return co
 
 The error was encountered on both Intel and AMD processors. RAPL was used to measure energy consumption on Intel hardware. The AMD hardware reports different data, which suggest RAPL was not used in these cases. Furthermore, increasing the sleep time between experiments seemed to reduce the amount of overflows. On the Intel hardware we run our experiments with a sleep time of 150 seconds, which was more than the experiments themselves took. This prevented multiple encoding/decoding processes to be running at the same time. At the same time, the number of overflows seemed to be smaller, indicating that the FFMPEG process might pollute something which leads parallel experiments to fail. Moreover, the overflow was only encountered on experiments where libx264 was used to decode videos into various resolutions. This is suprising as libx264 is less computationally expensive compared to libx265.
 
-### Corner cases?
-
-
 ## Summary & Key Takeaways
-### Recap of Findings
 
+### Overview of Experimental Findings  
+Our experimental analysis systematically compared the energy consumption of H.264 and H.265 video decoding across different resolutions. Throughout our tests, H.264 consistently demonstrated lower energy consumption compared to H.265. The rigorous statistical analysis confirms that these differences are significant, indicating that the observed variations are not simply due to chance. Our experiments, conducted under controlled conditions, provide clear evidence that, from an energy efficiency standpoint, H.264 outperforms H.265 across all resolutions.
 
-### Trade-offs Between Compression Efficiency and Decoding Energy
-<!-- - Efficient compression saves storage and bandwidth.
-- Higher computational complexity may increase device power consumption. -->
+### Broader Implications and Final Considerations  
+Beyond the immediate results, our study reveals an interesting trend related to video resolution. While the absolute energy difference between the two codecs increases with higher resolutions, the relative percentage difference decreases. This suggests that as the video resolution rises, the advantage of H.264 in terms of energy efficiency becomes proportionally smaller, even though the total energy saved is greater. These findings emphasize that codec selection should consider both the decoding energy and the broader implications, such as storage efficiency and network transmission, which are critical for large-scale and high-resolution video applications.
 
-### Impact on Global Energy Consumption
-- Streaming billions of hours of video significantly contributes to energy usage.
-- Optimizing codecs can reduce power demand in video streaming.
+In conclusion, our study offers a comprehensive overview of how the energy efficiency of video decoding is affected by codec choice and video resolution. While H.264 shows clear benefits in terms of lower energy consumption, the decision between using H.264 or H.265 must also account for factors like compression efficiency and overall system sustainability.
 
-### Potential Improvements
-<!-- if decoding H.265 is similar to H.264 and the file size is smaller and this the network transmission will consume less energy then H.265 should become a new standard. (Devices also should support this compression method) -->
 
 ---
 
@@ -159,4 +152,3 @@ The error was encountered on both Intel and AMD processors. RAPL was used to mea
 ### How to Reproduce the Experiment
 Instructions on how to reproduce the experiment can be found on our [GitHub Repository](https://github.com/JamilaSeyidova/sse-group22).
 
-### Resources Provided
