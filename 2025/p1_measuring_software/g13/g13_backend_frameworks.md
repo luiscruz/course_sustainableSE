@@ -80,7 +80,7 @@ The experiment is performed by running the automated batch script on a **Windows
 ##### Table 1: Laptop specifications used in our experiment
 
 # Results
-Before moving to data analysis, we prepared the data that we collected from the 30 iterations of the experiment. Since we are interested in energy consumption and the time elapsed for each experiment, we extract the relevant data (`PACKAGE_ENERGY` and `Time`) from the `.csv` files created by Energibridge. Since `PACKAGE_ENERGY` is cumulative, to get the value for the energy consumption for one iteration (one reading) of the experiment we subtract the first reading for `PACKAGE_ENERGY` made by Energibridge from the very last one. Finally, a z-score test is run against the energy readings, and the data points wich deviate from the mean by more than 2 standard deviations are removed.
+Before moving to data analysis, we prepared the data that we collected from the 30 iterations of the experiment. Since we are interested in energy consumption and the time elapsed for each experiment, we extract the relevant data (`PACKAGE_ENERGY` and `Time`) from the `.csv` files created by Energibridge. Since `PACKAGE_ENERGY` is cumulative, to get the value for the energy consumption for one iteration (one reading) of the experiment we subtract the first reading for `PACKAGE_ENERGY` made by Energibridge from the very last one. Finally, to remove outliers, a z-score test is run against the energy readings, and the data points wich deviate from the mean by more than 2 standard deviation are removed.
 
 To check the distribution of our data, we perform the Shapiro-Wilk test on each of the frameworks. If the p-value from this test is >0.05, we can safely assume that the data is normally distributed.
 
