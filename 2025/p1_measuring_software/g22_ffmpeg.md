@@ -34,6 +34,9 @@ How does the energy consumption of video decoding compare between the H.264 and 
 We will conduct tests on:
 <!--computer, fixed environment settings, CPU, RAM and etc-->
 
+
+During these experiments, we minimized background activity to reduce external interference. Wi-Fi and Bluetooth were disabled, and airplane mode was enabled. The screen was turned off, and the device remained connected to the charger throughout the experiment to ensure consistent power conditions.
+
 ### Tools & Methods
 We evaluate the energy consumption of the H.264 and H.265 codecs by encoding a single video at different resolutions using both codecs in MP4 format. We then decode the entire video to measure and compare the energy consumption associated with the decoding process for each codec.
 
@@ -87,6 +90,9 @@ H.265 offers significantly more efficient compression, resulting in smaller file
 ### **Limited generalization**
 Our study was conducted using a single video, which may limit the generalizability of the results. Additionally, we only tested the default constant rate factor and preset settings, meaning performance and energy consumption may vary under different encoding configurations. Future research should investigate a broader range of videos and encoding parameters to provide more comprehensive insights.
 
+### **Hardware dependant**
+
+
 ### **Hardware acceleration**
 This study did not take advantage of hardware acceleration. Utilizing specialized hardware such as GPUs or dedicated video encoding/decoding units could lead to different energy consumption results. Future work could include testing with hardware acceleration to assess its impact on energy efficiency.
 
@@ -115,7 +121,7 @@ During our experiments, we attempted to measure the energy consumption of the vi
 
 ## Replication Package
 ### How to Reproduce the Experiment
-Instructions on how to reproduce the experiment can be found on our [GitHub Repository](https://github.com/GijsMargadant/course_sustainableSE).
+Instructions on how to reproduce the experiment can be found on our [GitHub Repository](https://github.com/JamilaSeyidova/sse-group22).
 
 ### Resources Provided
 
