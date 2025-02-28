@@ -103,42 +103,42 @@ Another limitation is that the benchmarking tool used only supports MySQL and Po
 
 ## A - Services we disable in windows before doing the tests with our script.
 
-    # General Services
-    "wuauserv",			# Windows Update
-    "SysMain",			# Superfetch / SysMain
-    "WSearch",			# Windows Search
-    "BITS",				# Background Intelligent Transfer Service
-    "WerSvc",			# Windows Error Reporting
-    "DPS",				# Diagnostic Policy Service
-    "DiagTrack",			# Connected User Experiences and Telemetry
-    "TermService",			# Remote Desktop Services
-    "bthserv",			# Bluetooth Support Service
-    "Spooler",			# Print Spooler
-    "WinDefend",			# Windows Defender
-    "WpnService",			# Windows Push Notifications
-    "Widgets",			# Windows Widgets
-    "edgeupdate",			# Microsoft Edge Updater
-    "edgeupdatem",		# Microsoft Edge Updater
-    "WbioSrvc",			# Windows Hello Biometrics
-    "RemoteRegistry",		# Remote Registry Service
-    "InstallService",		# Microsoft Store Install Service
-    "WaaSMedicSvc"		# Windows Update Medic Service
+	# General Services
+	"wuauserv",			# Windows Update
+	"SysMain",			# Superfetch / SysMain
+	"WSearch",			# Windows Search
+	"BITS",				# Background Intelligent Transfer Service
+	"WerSvc",			# Windows Error Reporting
+	"DPS",				# Diagnostic Policy Service
+	"DiagTrack",			# Connected User Experiences and Telemetry
+	"TermService",			# Remote Desktop Services
+	"bthserv",			# Bluetooth Support Service
+	"Spooler",			# Print Spooler
+	"WinDefend",			# Windows Defender
+	"WpnService",			# Windows Push Notifications
+	"Widgets",			# Windows Widgets
+	"edgeupdate",			# Microsoft Edge Updater
+	"edgeupdatem",		# Microsoft Edge Updater
+	"WbioSrvc",			# Windows Hello Biometrics
+	"RemoteRegistry",		# Remote Registry Service
+	"InstallService",		# Microsoft Store Install Service
+	"WaaSMedicSvc"		# Windows Update Medic Service
 
-    # Internet Services
-    "NlaSvc",			# Network Location Awareness
-    "Netman",			# Network Connections
-    "Dhcp",			# DHCP Client (Disables automatic IP assignment)
-    "Dnscache",			# DNS Client (Prevents domain resolution)
-    "WlanSvc",			# WLAN AutoConfig (Disables Wi-Fi)
-    "LanmanWorkstation",	# Workstation Service (Disables SMB file sharing)
-    "Tcpip",			# TCP/IP Protocol Driver (Kills internet access)
-    "SharedAccess",		# Internet Connection Sharing (ICS)
+	# Internet Services
+	"NlaSvc",			# Network Location Awareness
+	"Netman",			# Network Connections
+	"Dhcp",			# DHCP Client (Disables automatic IP assignment)
+	"Dnscache",			# DNS Client (Prevents domain resolution)
+	"WlanSvc",			# WLAN AutoConfig (Disables Wi-Fi)
+	"LanmanWorkstation",	# Workstation Service (Disables SMB file sharing)
+	"Tcpip",			# TCP/IP Protocol Driver (Kills internet access)
+	"SharedAccess",		# Internet Connection Sharing (ICS)
 
-    # Xbox Services
-    "XblAuthManager",		# Xbox Live Auth
-    "XblGameSave",		# Xbox Game Save
-    "XboxNetApiSvc",		# Xbox Networking
-    "GamingServices"		# Gaming Services
+	# Xbox Services
+	"XblAuthManager",		# Xbox Live Auth
+	"XblGameSave",		# Xbox Game Save
+	"XboxNetApiSvc",		# Xbox Networking
+	"GamingServices"		# Gaming Services
 
 
 
