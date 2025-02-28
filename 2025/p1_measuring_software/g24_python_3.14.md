@@ -36,7 +36,7 @@ For the experiment on Windows we used an ASUS Vivobook with the following specif
 Before the experiment begins we create a list of 30 instances of python 3.11 and 30 instances of python 3.14. We then shuffle this list to determine the order in which they get run. To warm up the hardware we begin the experiment by performing a CPU intensive task for 5 minutes. In our case that means repeatedly calculating the squares of the numbers in the range [0, 10^6) for the duration of the 5 minutes. After this is done, we go through the previously created list, and pick a version of python to run. We then create two sub processes, one for Energibridge to measure the energy consumption, and one to run a benchmark script on the picked version of Python. The benchmark script generates two 1000 x 1000 matrices, which then get multiplied. After this is done and energy consumption has been saved we let the process wait for 1 minute. This is to prevent tail energy consumption from the previous run from influencing the measurement in the next run.
 
 ### Replication
-
+The replication package of the experiments can be found [in this repository](https://github.com/vincentvvliet/sse-project-group-24).
 ## Results
 Before analyzing our results we first check to see if they have a normal distribution. Performing the Shapiro-Wilk test we see that Python 3.11 has a p-value of 0.091, while Python 3.14 has a p-value of 0.007. This means that while Python 3.11 can be considered normal, Python 3.14 cannot. For this reason we will look at the median difference between the two sets of results. To graph the difference in median energy consumption between Python 3.11 and Python 3.14 we create a bar plot that uses half of the interquartile range (IQR) as error bars.
 
