@@ -124,6 +124,8 @@ The findings of this study provide useful insights for developers and system des
 
 The inefficiency of Bubble Sort across all languages highlights the need to avoid using simple algorithms with high time complexities in large-scale applications. Instead, algorithms like Counting Sort, Radix Sort, and Merge Sort, which have better time complexity, should be prioritized for applications requiring efficiency in both energy and performance.
 
+It should also be mentioned that only using the statistical metrics to measure the effect size is not enough. We should also take into account the practical effect size. Developers should consider the specific characteristics of their target environment, such as available memory, processing power, and real-time constraints, when selecting an algorithm. Evaluating both theoretical and practical performance metrics is key to making an informed decision. Ultimately, the choice of algorithm and language should align with the application's requirements to ensure optimal performance, energy efficiency, and scalability.
+
 ## Future work
 
 This study provides a valuable comparison of energy consumption and performance across different sorting algorithms in three programming languages. However, several aspects remain open for further investigation.
