@@ -25,8 +25,8 @@ How does the energy consumption of video decoding compare between the H.264 and 
 ### Environment
 We will conduct tests on an Acer laptop with the following hardware specifications:
 - Series: Aspire 5 (A515-54G-59MW)
-- CPU: Intel i5-10210U @ 1.60GHz
-- RAM: 16GM
+- CPU: Intel i5-10210U @ 1.60 GHz
+- RAM: 16GB DDR4 @ 2400 MHz
 - OS: Windows 11, v 24H2
 - Screen resolution: 1920 x 1080
 
@@ -34,10 +34,9 @@ We will conduct tests on an Acer laptop with the following hardware specificatio
 During these experiments, we minimized background activity to reduce external interference. Wi-Fi and Bluetooth were disabled, and airplane mode was enabled. The screen was turned off, and the device remained connected to the charger throughout the experiment to ensure consistent power conditions.
 
 ### Tools & Methods
-We evaluate the energy consumption of the H.264 and H.265 codecs by encoding a single video at different resolutions using both codecs in MP4 format. We then decode the entire video to measure and compare the energy consumption associated with the decoding process for each codec.
+We evaluate the energy consumption of decoding a video that was previously encoded using the H.264 or H.265 codec. In the following, we will discuss the decoding software and energy measurement software that we used to do our experiments.
 
 Encoding and decoding were performed using [FFmpeg](https://www.ffmpeg.org/) (version 7.1), a free and open-source software suite used for handling multimedia files. Both H.264 and H.265 are lossy compression formats, where the Constant Rate Factor (CRF) determines the level of quality loss—lower values retain higher quality at the cost of larger file sizes. Additionally the preset controls the trade-off between encoding speed and compression efficiency. For this experiment, videos were encoded using **CRF 23** and the **medium preset**, which are the default settings in FFmpeg. These values provide a balanced trade-off between compression efficiency, encoding speed, and output quality.
-
 
 We measure energy consumption using [EnergiBridge](https://github.com/tdurieux/EnergiBridge) (version 0.0.7). Each decoding experiment is repeated 30 times, with a 1-minute break between runs to prevent residual CPU activity from affecting subsequent measurements.
 
@@ -127,13 +126,13 @@ This study did not take advantage of hardware acceleration. Utilizing specialize
 ## Challenges Encountered
 During our experiments, we attempted to measure the energy consumption of the video **encoding** tasks with **EnergiBridge**, but unfortunately, we encountered issues that prevented the tool from functioning as expected. Despite multiple troubleshooting attempts, we were unable to gather reliable data from these trials.
 
-Specifically, we somtimes encountered the following error:
+Specifically, we sometimes encountered the following error:
 ``` shell
 thread 'main' panicked at /rustc/07dca489ac2d933c78d3c5158e3f43beefeb02ce\library\core\src\time.rs:954:31:overflow when subtracting durations
 ```
 The impact of the error was that EnergiBridge would stop measuring and return control back to our automated script. However, since we used EnergiBridge as a wrapper command for our FFMPEG encoding/decoding, and EnergiBridge would not kill its child process, the encoding/decoding continued. A new experiment would then start, which meant that we had two processes running at the same time. In practice, we experienced that the amount of simultaneous processes could reach well over 10, slowing the computer down significantly, probably because of a lack of enough resources.
 
-The error was encountered on both Intel and AMD processors. RAPL was used to measure energy consumption on Intel hardware. The AMD hardware reports different data, which suggest RAPL was not used in these cases. Furthermore, increasing the sleep time between experiments seemed to reduce the amount of overflows. On the Intel hardware we run our experiments with a sleep time of 150 seconds, which was more than the experiments themselves took. This prevented multiple encoding/decoding processes to be running at the same time. At the same time, the number of overflows seemed to be smaller, indicating that the FFMPEG process might pollute something which leads parallel experiments to fail. Moreover, the overflow was only encountered on experiments where libx264 was used to decode videos into various resolutions. This is suprising as libx264 is less computationally expensive compared to libx265.
+The error was encountered on both Intel and AMD processors. RAPL was used to measure energy consumption on Intel hardware. The AMD hardware reports different data, which suggest RAPL was not used in these cases. Furthermore, increasing the sleep time between experiments seemed to reduce the amount of overflows. On the Intel hardware we run our experiments with a sleep time of 150 seconds, which was more than the experiments themselves took. This prevented multiple encoding/decoding processes to be running at the same time. At the same time, the number of overflows seemed to be smaller, indicating that the FFMPEG process might pollute something which leads parallel experiments to fail. Moreover, the overflow was only encountered on experiments where libx264 was used to decode videos into various resolutions. This is surprising as libx264 is less computationally expensive compared to libx265.
 
 ## Summary & Key Takeaways
 
