@@ -164,5 +164,5 @@ However, our approach has limitations. Our experiment was only done on one backe
 Although we are currently unable to determine exactly what factors may have contributed to these results, our findings highlight the necessity of further research to improve understanding of  energy efficiency trade-offs and optimization for code LLMs, as there is relevance for both developers and users.
 
 ### Reproducibility
-
+To reproduce our results, you can access [our repository](https://github.com/emihalache/sse).
 
