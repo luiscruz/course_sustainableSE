@@ -164,7 +164,23 @@ Selecting the best editor to use is thus highly dependent on if a user needs the
 Thus our recommendation is that if the additional features of the more heavy text editors are unnecessary, to use one of the more lightweight editors, preferably Notepad++.
 ## References
 ## Replication
-To replicae our experiment you can run the following on a windows command prompt:
+To replicate the results, follow these steps:
+
+### Prerequisites
+Ensure you have:
+- Python installed (`python --version` to check)
+- Administrator privileges on your system
+- AutoHotkey installed
+
+### Steps to Run
+1. Open **Command Prompt** as Administrator:
+   - Press `Win + S`, type **cmd**, right-click **Command Prompt**, and select **Run as Administrator**.
+   
+2. Navigate to the project directory:
+   ```sh
+   cd path\to\your\project
+
+To replicae our experiment you can run the following:
 
 ```sh
 python python_script.py
