@@ -4,13 +4,7 @@ title: "Sustainable Servers: Benchmarking energy consumption of various backend 
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+  In the emerging digital age, servers consume more energy to provide data to people. While physical components consume the majority of energy, is there anything you can do as a developer to cut back? Thus, we investigate the energy consumption of three different backend frameworks, _Flask_, _Express.js_, and _SpringBoot_, by making concurrent requests to each in a containerized environment and measuring the amount of energy required to provide responses. After running 30 test iterations, the results show that _SpringBoot_ is both fast and energy-efficient, whereas _Flask_ is the worst performer, using nearly double the energy of _Spring. Given these findings, when constraints aren't too limiting, energy consumption should be considered when selecting backend frameworks, in addition to functional goals.
 ---
 
 # Introduction
@@ -109,13 +103,12 @@ From the plot above, we can see that SpringBoot is not only the smallest energy 
 To support our findings, the conclusions are consistent with what other blogs have said (see [Node.js vs SpringBoot: "Hello World" performance comparison](https://medium.com/deno-the-complete-reference/node-js-vs-springboot-hello-world-performance-comparison-59b4d461526c) or [How fast is Spring?](https://spring.io/blog/2018/12/12/how-fast-is-spring)).
 
 ## Limitations
-Our experiment aimed to be as close to a real-life setting as possible. As mentioned previously, for our benchmarking tool we specified 10 thousand requests with 150 concurrent requests. This mimics a real-world usage of an API that connects to a datacenter, as you can have tens of thousands or hundreds of thousands requests per minute. However, we are of course limited by the fact that our Docker containers simulating the datacenters were locally hosted and thus the performance of the containers was dependent on the performance of the testing device. This limitation also meant that using a database connection would result in more time-outs and maximum pooling issues, which led to our decision to use local data for each of the frameworks, which meant the performance of these frameworks hinged on the performance of data processing for each of the frameworks.Furthermore, _Flask_ has the most variability in data, which can be linked to the Apache Benchmark crashing the local server in a couple of cases. 
-
-- Say how this experiment could be run again but with not locally/with a database?
+Our experiment aimed to be as close to a real-life setting as possible. As mentioned previously, for our benchmarking tool we specified 10 thousand requests with 150 concurrent requests. This mimics a real-world usage of an API that connects to a datacenter, as you can have tens of thousands or hundreds of thousands requests per minute. However, we are of course limited by the fact that our Docker containers simulating the datacenters were locally hosted and thus the performance of the containers was dependent on the performance of the testing device. This limitation also meant that using a database connection would result in more time-outs and maximum pooling issues, which led to our decision to use local data for each of the frameworks, which meant the performance of these frameworks hinged on the performance of data processing for each of the frameworks. Furthermore, _Flask_ has the most variability in data, which can be linked to the Apache Benchmark crashing the local server in a couple of cases. 
 
 # Conclusion
+This experiment aimed to determine if a developer could influence server energy consumption by comparing three popular backend frameworks: _Flask_, _Express.js_, and _SpringBoot_. Over the course of 30 trials, we used _Apache Benchmark_ to simulate concurrent API requests while running each framework in its own _Docker_ container. Our findings show that Spring Boot provides the best balance of energy efficiency and processing speed. This advantage is most likely attributed to Java's internal optimizations, such as JIT compilation and multi-threading, which differ significantly from Python and JavaScript execution models.
 
- - Java performs well on a continuous environment, however think of how taiored it is for your application's goals
+Although the way backend communication is implemented may have a minor impact on total energy consumption in data centers, our statistically significant results indicate that even minor optimizations can contribute to significant efficiency gains. As digitalization progresses, energy consumption will become an even more critical factor, making efficient backend decisions increasingly important.
 
 # Replication Package
 If you would like to run the experiments and view the raw data used in the analysis, check out our [repository](https://github.com/reglayass/sse-project1).
