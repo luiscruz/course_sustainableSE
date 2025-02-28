@@ -231,7 +231,7 @@ Java RegEx results indicate the engine is optimised for high complexity queries,
 
 
 ## C++ (Boost) and C# (.NET)
-Both of these engines exhibit similar relationships with complexity of pattern. .NET, clearly the superior of the two, shows particularly impressive results for low and medium complexity patterns. Its RegEx engine benefits from its deep integration within the .NET framework and the [continuous iterative improvments](https://devblogs.microsoft.com/dotnet/regex-performance-improvements-in-net-5/) made over many years.
+Both of these engines exhibit similar relationships with complexity of pattern. .NET, clearly the superior of the two, shows particularly impressive results for low and medium complexity patterns. Its RegEx engine benefits from its deep integration within the .NET framework and the [continuous iterative improvements](https://devblogs.microsoft.com/dotnet/regex-performance-improvements-in-net-5/) made over many years.
 
 When it comes to high complexity patterns, both RegEx engines behave more unpredictably, as reflected in the distributions of time and energy. The leap in energy consumption was expected in high complexity patterns as both search time and memory usage (for storing expanded states) increase due to the inclusion of backtracking.
 
