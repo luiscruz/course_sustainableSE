@@ -117,7 +117,7 @@ To ensure the statistical significance in comparing the readings we took for eac
 
 |            | SpringBoot | Express   | Flask |
 |------------|------------|-----------|-------|
-| SpringBoot |            | -         | -     |
+| SpringBoot |     -      | -         | -     |
 | Express    | 6.657 e-49 | -         | -     |
 | Flask      | 2.430e-56  | 1.512e-66 | -     |
 
