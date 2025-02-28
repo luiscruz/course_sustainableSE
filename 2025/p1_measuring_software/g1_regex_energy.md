@@ -9,19 +9,19 @@ summary: |-
 
 # Introduction
 
-Regular Expessions (**RegEx**) are a powerful tool in software development, allowing for fast pattern matching across text files and code. However, despite their speed, performing RegEx search is CPU-intensive and can lead to unintended matching due to its greedy nature [^1]. As the scale of code repositories grows [^2] and the demand for energy-efficient computing increases [^3], understanding the energy consumption of RegEx engines across different libraries is an important area of study.
+Regular Expessions (**RegEx**) are a powerful tool in software development, allowing for fast pattern matching across text files and code. However, despite their speed, performing RegEx search is CPU-intensive and can lead to unintended matching due to its greedy nature[^1]. As the scale of code repositories grows[^2] and the demand for energy-efficient computing increases[^3], understanding the energy consumption of RegEx engines across different libraries is an important area of study.
 
-RegEx functionality varies across libraries, each with its own engine and energy demands. This experiment explores energy usage across popular RegEx libraries when using the pattern matching functionality **`CTRL+F`** in an IDE (Integrated Development Environment) or text editor. The selected libraries are based on their use in popular IDEs [^13], which commonly rely on RegEx engines from **Java** [^8]<sup>,</sup>[^9]<sup>,</sup>[^10]<sup>,</sup>[^12], **JavaScript** [^7], **.NET** [^14] and **C++** [^11]. This experiment compares their energy usage and impact in controlled searches.
+RegEx functionality varies across libraries, each with its own engine and energy demands. This experiment explores energy usage across popular RegEx libraries when using the pattern matching functionality **`CTRL+F`** in an IDE (Integrated Development Environment) or text editor. The selected libraries are based on their use in popular IDEs[^13], which commonly rely on RegEx engines from **Java**[^8]<sup>,</sup>[^9]<sup>,</sup>[^10]<sup>,</sup>[^12], **JavaScript**[^7], **.NET**[^14] and **C++**[^11]. This experiment compares their energy usage and impact in controlled searches.
 
 In this blog, we explore the question: **How energy efficient is `CTRL+F` in different RegEx engines?** We outline the experiment’s motivation, methodology, implementation, and hardware setup. Our findings aim to guide developers in understanding the energy impact of different RegEx engines and help them make informed choices when using tools for large-scale code searches. 
 
 # Motivation
 
-Pattern matching is a powerful, yet computational expensive tool. The complexity varies depending on the pattern, engine and input size, with worst-case scenarios reaching exponential time O(2<sup>n</sup>) [^15], particularly with patterns prone to "catastrophic backtracking" [^21]. This is caused when the engine explores an exponential number of paths to match. Therefore, evaluating RegEx engines across pattern complexities is crucial to identifying inefficiencies and optimising real-world searches.
+Pattern matching is a powerful, yet computational expensive tool. The complexity varies depending on the pattern, engine and input size, with worst-case scenarios reaching exponential time O(2<sup>n</sup>)[^15], particularly with patterns prone to "catastrophic backtracking"[^21]. This is caused when the engine explores an exponential number of paths to match. Therefore, evaluating RegEx engines across pattern complexities is crucial to identifying inefficiencies and optimising real-world searches.
 
-The need for such optimisation is amplified by the rapid growth of code repositories, where research highlights the challenge of navigating repositories expanding in size and complexity [^17]. Tools like `CTRL+F`, powered by RegEx engines, are crucial in enabling developers to efficiently search and navigate these vast code bases.
+The need for such optimisation is amplified by the rapid growth of code repositories, where research highlights the challenge of navigating repositories expanding in size and complexity[^17]. Tools like `CTRL+F`, powered by RegEx engines, are crucial in enabling developers to efficiently search and navigate these vast code bases.
 
-Finally, optimising RegEx search aligns with the broader goal of creating sustainable software. Research points towards the ICT (Information, Communication and Technology) sector impacting 14% of the global carbon footprint by 2040 [^18], forcing us to acknowledge that improving the efficiency of RegEx search can help reduce unnecessary computational overhead and contribute towards greener development.
+Finally, optimising RegEx search aligns with the broader goal of creating sustainable software. Research points towards the ICT (Information, Communication and Technology) sector impacting 14% of the global carbon footprint by 2040[^18], forcing us to acknowledge that improving the efficiency of RegEx search can help reduce unnecessary computational overhead and contribute towards greener development.
 
 # Methodology
 
@@ -46,7 +46,7 @@ Before conducting experiments, we ensure a controlled environment by setting the
 The laptop warms up by running Fibonacci computations for 300 seconds before any measurement, helping the CPU reach a stable thermal state and reducing fluctuations.
 
 ### 4. Execution of RegEx Search Experiments
-Each RegEx engine undergoes the same testing conditions, ensuring a fair comparison. **Four RegEx libraries** are tested, the choice of which is explained in the [Motivation](#Motivation) section:
+Each RegEx engine undergoes the same testing conditions, ensuring a fair comparison. **Four RegEx libraries** are tested, the choice of which is explained in the [Motivation](#motivation) section:
 - **Java (Pattern Matcher)**
 - **JavaScript (RegExp Object)**
 - **C++ (Boost.RegEx)**
@@ -100,7 +100,7 @@ Furthermore, we run the experiments with the following software versions:
 - `Python 3.12`
 - `energibridge 0.0.7`
 
-The other software requirements regarding employed code libraries can be found in the `requirements.txt` (or `environment.yml` if you are using Conda) in our Github repository, which is linked in the [Reproducibility Package](#Reproducibility-Package) section.
+The other software requirements regarding employed code libraries can be found in the `requirements.txt` (or `environment.yml` if you are using Conda) in our Github repository, which is linked in the [Replication Package](#replication-package) section.
 
 
 # Results
@@ -135,7 +135,7 @@ For **high complexity** RegEx patterns, the results show significant increases i
 
 ### Shapiro-Wilk Normality Tests
 
-Initially, the Shapiro-Wilk Test showed non-normal distributions for both energy and time, which we attributed to the presence of outliers after visually inspecting the plots. After removing outliers using the 1.5 IQR method, we reran the tests. The tables below summarise the Shapiro-Wilk p-values for energy consumption post-outlier removal. The exclusion of time results is justified in the [Discussion](#Discussion) section.
+Initially, the Shapiro-Wilk Test showed non-normal distributions for both energy and time, which we attributed to the presence of outliers after visually inspecting the plots. After removing outliers using the 1.5 IQR method, we reran the tests. The tables below summarise the Shapiro-Wilk p-values for energy consumption post-outlier removal. The exclusion of time results is justified in the [Discussion](#discussion) section.
 
 | Complexity | Engine | Shapiro-p-value |
 |------------|--------|-----------------|
@@ -243,7 +243,7 @@ For developers working in Java, C++, or .NET environments, optimisation strategi
 
 ### Implications on Sustainability
 
-At first glance, the energy consumed by a single RegEx operation (10-400J) appears minuscule compared to daily activities, such as boiling water in a kettle, which takes 165,000 joules [^19], or charging your phone, which could take around 29,000 joules[^20]. However, in large-scale systems where RegEx operations are executed millions of times daily, these small amounts accumulate significantly. For instance:
+At first glance, the energy consumed by a single RegEx operation (10-400J) appears minuscule compared to daily activities, such as boiling water in a kettle, which takes 165,000 joules[^19], or charging your phone, which could take around 29,000 joules[^20]. However, in large-scale systems where RegEx operations are executed millions of times daily, these small amounts accumulate significantly. For instance:
 
 **JavaScript Engine**: 1 million executions x 10 joules = 10 million joules (10 MJ)
 
