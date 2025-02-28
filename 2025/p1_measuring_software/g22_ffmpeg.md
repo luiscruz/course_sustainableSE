@@ -3,7 +3,7 @@
 ---
 author: Michael Chan, Roberto Negro, Jamila Seyidova, Gijs Margadant
 title: "Comparing H.264 and H.265 video decoding energy consumption"
-image: "../img/p1_measuring_software/gX_template/cover.png"
+image: "../img/p1_measuring_software/gX_template/ffmpeg_cover.png"
 date: 28/02/2025
 summary: |-
   abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
@@ -81,7 +81,47 @@ We will measure:
 - **Decoding Time:** Time taken to decode each format.
 
 ### Results
-<!-- A comparison of energy consumption when decoding both formats. -->
+
+#### Energy Consumption at 480p: H.264 vs. H.265
+
+To evaluate the energy efficiency of H.264 and H.265 decoding, we analyzed energy consumption across 480p, 720p, and 1080p resolutions.
+
+We visualized our results using a combination of violin plots and box plots, which provided a clear picture of energy consumption distribution for both codecs. 
+
+Here are the Violin + Box Plots of the experiments, with [removed outliers](#outlier-removal)
+
+<img src="experiment_plots/480p/Gijs_combined_violin_box_decode_480p_filtered_results.png" alt="Energy Consumption Violin + Box Plot Comparison for 480p" width="600"/>
+
+<img src="experiment_plots/720p/Gijs_combined_violin_box_decode_720p_filtered_results.png" alt="Energy Consumption Violin + Box Plot Comparison for 720p" width="600"/>
+
+<img src="experiment_plots/1080p/Gijs_combined_violin_box_decode_1080p_filtered_results.png" alt="[Energy Consumption Violin + Box Plot Comparison for 1080p" width="600"/>
+
+
+One immediate takeaway is that H.265 consistently required more energy than H.264 for all resolutions. But how significant is this difference? To dig deeper, we needed to validate these observations with statistical tests.
+
+##### Checking Normality
+We used the **Shapiro-Wilk** test to assess whether the energy consumption data followed a normal distribution. A p-value < 0.05 indicates significant deviation from normality, meaning the data is not normally distributed.
+
+##### Outlier Removal
+To ensure extreme values weren’t skewing our results, we applied outlier removal using a **Z-score** threshold of 3 (within standard deviations). Interestingly, this step had minimal impact—suggesting that most of our data points were valid and not extreme anomalies. We verified this by comparing results before and after filtering, which showed no major changes in distribution.
+
+
+##### Then we chose the Statistical Test
+
+If both distributions were normal, we applied **Welch’s T-test**, which compares means while accounting for unequal variances. Otherwise, we used the **Mann-Whitney U test**, a non-parametric test suitable for comparing medians.
+
+
+| Resolution | Normality (H.264) | Normality (H.265) | Statistical Test Used | Energy Difference (J) | Relative Difference (%) |  
+|------------|------------------|------------------|--------------------|-----------------|-----------------|  
+| **480p**   | ❌ Non-normal (p = 0.0002) | ❌ Non-normal (p = 0.0000) | **Mann-Whitney U** | 10.72 J | **30.00%** (H.264 more efficient) |  
+| **720p**   | ❌ Non-normal (p = 0.0010) | ✅ Normal (p = 0.6275) | **Mann-Whitney U** | 16.09 J | **25.18%** (H.264 more efficient) |  
+| **1080p**  | ✅ Normal (p = 0.2624) | ✅ Normal (p = 0.9251) | **Welch’s T-test** | 24.58 J | **19.36%** (H.264 more efficient) |  
+
+From the table above we can see that:
+* H.264 is consistently more energy-efficient than H.265 across all tested resolutions.
+* The percentage efficiency gap narrows as resolution increases, but the absolute difference in Joules increases.
+* Statistical tests confirm a significant difference in all cases, proving that H.265 requires more energy to decode.
+
 
 ### Discussion
 <!-- - Does H.265’s complexity increase playback power consumption?
