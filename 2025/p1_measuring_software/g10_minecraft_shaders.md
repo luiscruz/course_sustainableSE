@@ -192,17 +192,17 @@ This discrepancy highlights an issue for the gaming community as a whole. While 
 Considering this, gamers should be more conscious of the economic and environmental impact of shader packs. Moreover, developing more computationally efficient shaders and optimizing the game around them would reduce Minecraft’s global environmental footprint while still delivering quality aesthetics for players worldwide.
 
 
-## **Limitations**
+## **Limitations and future work**
 
 While our experiment offers extensive insights into the energy impact of shaders in Minecraft, several limitations should be noted:
 
 **Limited shader configurations**
 
-For this experiment, we focused our tests on complementary shaders 4.7.2 only. Given that different shaders make use of varying rendering techniques and optimizations, we would expect the results to differ substantially as well.
+For this experiment, we focused our tests on complementary shaders 4.7.2 only. Given that different shaders make use of varying rendering techniques and optimizations, we would expect the results to differ substantially as well. For future work, a wider range of shaders could provide more insight into how their architectures affect energy consumption.
 
 **Limited test duration**
 
-The experiment runs only captured the energy consumption over short intervals. This may not fully represent realistic gameplay, where extended runtimes can result in accumulated hardware temperatures and increased computational load.
+The experiment runs only captured the energy consumption over short intervals. This may not fully represent realistic gameplay, where extended runtimes can result in accumulated hardware temperatures and increased computational load. 
 
 **Variation in world generation**
 
