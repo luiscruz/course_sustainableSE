@@ -57,6 +57,10 @@ EnergiBridge [7] is a cross-platform software tool for energy measurement. It is
 
 pyAutoGUI [8] is a tool allowing for the automation of keyboard/mouse inputs on the machine using python. It also has functionality that detects images on the screen display, which was used in the experiment to navigate and play the game. Screenshots were taken on the machine the experiment was performed on and put in the `/Images` folder. The confidence was set to 70% to allow for some leeway, and clicks were set to 2-5 to ensure that no bugs/mistakes could interfere with the program.
 
+
+## Video of the Experiment(Difference between shaders and no shaders in Minecraft)
+[Watch Experiment Video](https://www.youtube.com/watch?v=WmE67KBySDA)
+
 ### Experiment Setup
 The experiment follows a structured process to measure energy consumption with minimal bias. The methodology includes:
 
