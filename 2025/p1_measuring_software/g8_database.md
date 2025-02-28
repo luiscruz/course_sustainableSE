@@ -4,7 +4,7 @@ title: "Comparing the Energy Consumption of Different Database Management System
 image:
 date: 28/02/2025
 summary: |-
-	This blog aims to compare the energy output between two different database management systems: MySQL and PostgreSQL to find which of the two is more energy efficient, and if this still holds when the amount of data in each increases. If there are consistent differences, users could make a decision of which one to use for their target applications. 
+  This blog aims to compare the energy output between two different database management systems: MySQL and PostgreSQL to find which of the two is more energy efficient, and if this still holds when the amount of data in each increases. If there are consistent differences, users could make a decision of which one to use for their target applications. 
 ---
 
 # Comparing the Energy Consumption of Different Database Management Systems
@@ -103,42 +103,42 @@ Another limitation is that the benchmarking tool used only supports MySQL and Po
 
 ## A - Services we disable in windows before doing the tests with our script.
 
-	# General Services
-	"wuauserv",			# Windows Update
-	"SysMain",			# Superfetch / SysMain
-	"WSearch",			# Windows Search
-	"BITS",				# Background Intelligent Transfer Service
-	"WerSvc",			# Windows Error Reporting
-	"DPS",				# Diagnostic Policy Service
-	"DiagTrack",			# Connected User Experiences and Telemetry
-	"TermService",			# Remote Desktop Services
-	"bthserv",			# Bluetooth Support Service
-	"Spooler",			# Print Spooler
-	"WinDefend",			# Windows Defender
-	"WpnService",			# Windows Push Notifications
-	"Widgets",			# Windows Widgets
-	"edgeupdate",			# Microsoft Edge Updater
-	"edgeupdatem",		# Microsoft Edge Updater
-	"WbioSrvc",			# Windows Hello Biometrics
-	"RemoteRegistry",		# Remote Registry Service
-	"InstallService",		# Microsoft Store Install Service
-	"WaaSMedicSvc"		# Windows Update Medic Service
+    # General Services
+    "wuauserv",			# Windows Update
+    "SysMain",			# Superfetch / SysMain
+    "WSearch",			# Windows Search
+    "BITS",				# Background Intelligent Transfer Service
+    "WerSvc",			# Windows Error Reporting
+    "DPS",				# Diagnostic Policy Service
+    "DiagTrack",			# Connected User Experiences and Telemetry
+    "TermService",			# Remote Desktop Services
+    "bthserv",			# Bluetooth Support Service
+    "Spooler",			# Print Spooler
+    "WinDefend",			# Windows Defender
+    "WpnService",			# Windows Push Notifications
+    "Widgets",			# Windows Widgets
+    "edgeupdate",			# Microsoft Edge Updater
+    "edgeupdatem",		# Microsoft Edge Updater
+    "WbioSrvc",			# Windows Hello Biometrics
+    "RemoteRegistry",		# Remote Registry Service
+    "InstallService",		# Microsoft Store Install Service
+    "WaaSMedicSvc"		# Windows Update Medic Service
 
-	# Internet Services
-	"NlaSvc",			# Network Location Awareness
-	"Netman",			# Network Connections
-	"Dhcp",			# DHCP Client (Disables automatic IP assignment)
-	"Dnscache",			# DNS Client (Prevents domain resolution)
-	"WlanSvc",			# WLAN AutoConfig (Disables Wi-Fi)
-	"LanmanWorkstation",	# Workstation Service (Disables SMB file sharing)
-	"Tcpip",			# TCP/IP Protocol Driver (Kills internet access)
-	"SharedAccess",		# Internet Connection Sharing (ICS)
+    # Internet Services
+    "NlaSvc",			# Network Location Awareness
+    "Netman",			# Network Connections
+    "Dhcp",			# DHCP Client (Disables automatic IP assignment)
+    "Dnscache",			# DNS Client (Prevents domain resolution)
+    "WlanSvc",			# WLAN AutoConfig (Disables Wi-Fi)
+    "LanmanWorkstation",	# Workstation Service (Disables SMB file sharing)
+    "Tcpip",			# TCP/IP Protocol Driver (Kills internet access)
+    "SharedAccess",		# Internet Connection Sharing (ICS)
 
-	# Xbox Services
-	"XblAuthManager",		# Xbox Live Auth
-	"XblGameSave",		# Xbox Game Save
-	"XboxNetApiSvc",		# Xbox Networking
-	"GamingServices"		# Gaming Services
+    # Xbox Services
+    "XblAuthManager",		# Xbox Live Auth
+    "XblGameSave",		# Xbox Game Save
+    "XboxNetApiSvc",		# Xbox Networking
+    "GamingServices"		# Gaming Services
 
 
 
