@@ -71,8 +71,8 @@ By the end of this course you will be able to:
  4     | 2   | **Lecture.** Social and Individual Sustainability.<br/>[📊Slides][slides04],[Workbook][susafwb]
  6     | 2   | **Lecture.** Green Software Engineering — Part II: units of energy.<br/>[📊Slides][slides05]
  5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
- 7     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.
- 9     | 3   | **Lecture.** Green AI.
+ 7     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.<br/>[📊Slides][slides07]
+ 9     | 3   | **Lecture.** Green AI.<br/>[📊Slides][slides08]
  8     | 3   | **Project.** [Project 1](#project1) - steering meeting.
        | 3   | ⏰ Deadline for [Project 1](#project1) Friday, Feb 28.
  10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.
@@ -168,3 +168,5 @@ Below the description of each project.
 [slides04]: https://surfdrive.surf.nl/files/index.php/s/3ZNl75feJ4Oa91e
 [susafwb]: https://www.suso.academy/en/sustainability-awareness-framework-susaf/
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/UXWEHiQl4ntCxzX
+[slides07]: https://surfdrive.surf.nl/files/index.php/s/3XkUS6ozbapMv5u
+[slides08]: https://surfdrive.surf.nl/files/index.php/s/nY86MJyb2NrbBnm
