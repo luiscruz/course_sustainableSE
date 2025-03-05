@@ -19,7 +19,7 @@ description: "TU Delft Course on Sustainable Software Engineering. Responsible s
 baseurl: "/course_sustainableSE" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: luismcruz
-github_username: luiscruz
+github_username:  luiscruz
 
 # Build settings
 markdown: kramdown
@@ -27,10 +27,10 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
-
+  
 whitelist:
   - jekyll-redirect-from
-
+  
 collections:
   literature_review_2022:
     output: true
@@ -38,57 +38,52 @@ collections:
   literature_review_2023:
     output: true
     directory: 2023/literature_review
-
+    
 defaults:
-  - scope:
+  -
+    scope:
       path: "2022/p1_measuring_software"
     values:
       identifier: "p1_measuring_software_2022"
       exclude: true
       layout: blog_post
-  - scope:
+  -
+    scope:
       path: "2023/p1_measuring_software"
     values:
       identifier: "p1_measuring_software_2023"
       exclude: true
       layout: blog_post
-  - scope:
+  -
+    scope:
       path: "2023/p2_hacking_sustainability"
     values:
       identifier: "p2_2023"
       exclude: true
-  - scope:
+  -
+    scope:
       path: "2024/p1_measuring_software"
     values:
       identifier: "p1_measuring_software_2024"
       exclude: true
       layout: blog_post
-  - scope:
+  -
+    scope:
       path: "2024/p2_hacking_sustainability"
     values:
       identifier: "p2_2024"
       exclude: true
       layout: project_page
-  - scope:
-      path: "2025/p1_measuring_software"
-    values:
-      identifier: "p1_measuring_software_2025"
-      exclude: true
-      layout: blog_post
-  - scope:
-      path: "2025/p2_hacking_sustainability"
-    values:
-      identifier: "p2_2025"
-      exclude: true
-      layout: project_page
-  - scope:
+  -
+    scope:
       path: ""
     values:
       hide_from_navbar: true
-
+      
 exclude:
   - "2023"
   - "2022"
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
