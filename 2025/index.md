@@ -76,7 +76,7 @@ By the end of this course you will be able to:
  9     | 3   | **Project.** [Project 1](#project1) - steering meeting.
        | 3   | ⏰ Deadline for [Project 1](#project1) Friday, Feb 28.
  10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.<br/>[📊Slides][slides10]
- 11    | 4   | **Guest Lecture (Mar 5).** Neuromorphic Computing, [Nergis Tömen].  
+ 11    | 4   | **Guest Lecture (Mar 5).** Neuromorphic Computing, [Nergis Tömen]. <br/>[📊Slides][slides11] 
        | 5   | **Project 2 - steering meeting 1.**
        | 6   | **Project 2 - steering meeting 2.**
        | 7   | **Project 2 - steering meeting 3.**
@@ -171,3 +171,4 @@ Below the description of each project.
 [slides07]: https://surfdrive.surf.nl/files/index.php/s/3XkUS6ozbapMv5u
 [slides08]: https://surfdrive.surf.nl/files/index.php/s/nY86MJyb2NrbBnm
 [slides10]: https://surfdrive.surf.nl/files/index.php/s/EFjQtlgHt6tRisi
+[slides11]: https://surfdrive.surf.nl/files/index.php/s/y4aua5CQ8IW7vQL
