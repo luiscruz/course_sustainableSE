@@ -11,6 +11,13 @@ layout: default
 <em>{{ page.author }}.</em>
 {% endif -%}
 </p>
+<p>
+{%- if page.group_number %}
+<em>Group {{ page.group_number }}.</em>
+{% else %}
+<em>{{ page.author }}.</em>
+{% endif -%}
+</p>
 
 <p><em>{{page.summary}}</em></p>
 

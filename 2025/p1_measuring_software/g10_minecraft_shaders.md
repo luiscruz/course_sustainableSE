@@ -1,5 +1,6 @@
 ---
 author: Andrea Onofrei, Ayush Kuruvilla, Sahar Marossi, Yulin Chen
+group_number: 10
 title: "Minecraft Energy Consumption Comparison with and without Shaders"
 image: "../img/p1_measuring_software/g10_minecraft_shaders/cover.png"
 date: 28/02/2025

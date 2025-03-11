@@ -8,7 +8,7 @@ exclude: False
 {% for article in site.pages %}
     {% if article.identifier == 'p1_measuring_software_2025' %}
     {% if article != page %}
-  <strong><a href="{{ article.url | relative_url }}">{{ article.title }}</a></strong><br/>
+  <strong><a href="{{ article.url | relative_url }}">Group {{ article.group_number }}: {{ article.title }}</a></strong><br/>
 <!-- <small>Posted on {{article.date | date_to_string}}.</small><br/> -->
 <small>
 {%- if article.authors %}
