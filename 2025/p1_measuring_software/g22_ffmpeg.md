@@ -1,5 +1,6 @@
 ---
 author: Michael Chan, Roberto Negro, Jamila Seyidova, Gijs Margadant
+group_number: 22
 title: "Comparing H.264 and H.265 video decoding energy consumption"
 image: "ffmpeg_cover.png"
 date: 28/02/2025

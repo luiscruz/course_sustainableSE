@@ -1,5 +1,6 @@
 ---
 author: Jort van Driel, Dorian Erhan, Weicheng Hu, Giannos Rekkas
+group_number: 5
 title: "Investigating how using uBlock Origin affects energy consumption"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

@@ -1,5 +1,6 @@
 ---
 author: Reinier Schep, Maosheng Jiang, Razvan Loghin and Alex Zheng
+group_number: 2
 title: "TensorFlow, Torch and JAX energy consumption comparison for convolutional neural networks on MNIST"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

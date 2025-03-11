@@ -1,5 +1,6 @@
 ---
 author: Gyum Cho, Denis Krylov, Ciprian Bîcă, Matteo Fregonara
+group_number: 18
 title: "Comparing the Energy Consumption of Different Machine Learning Libraries"
 image: "../img/p1_measuring_software/g18_machine_learning_libraries/cover.png"
 date: 28/02/2025

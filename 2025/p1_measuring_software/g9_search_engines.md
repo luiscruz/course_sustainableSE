@@ -1,5 +1,6 @@
 ---
 author: Ilma Jaganjac, Angelos-Ermis Mangos, Marvin Blommestijn, Pravesha Ramsundersingh
+group_number: 9
 title: "Energy Efficiency of Search Engines"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

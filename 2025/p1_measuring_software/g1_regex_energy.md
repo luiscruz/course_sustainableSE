@@ -1,5 +1,6 @@
 ---
 author: Marina Escribano Esteban, Kevin Hoxha, Inaesh Joshi, Todor Mladenović
+group_number: 1
 title: "Comparing Energy Consumption of Popular RegEx Engines in Text Editors and IDEs"
 image: "../img/p1_measuring_software/g1_regex_energy/violin_energy_high.png"
 date: 28/02/2025

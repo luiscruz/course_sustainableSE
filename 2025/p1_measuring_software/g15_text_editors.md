@@ -1,5 +1,6 @@
 ---
 author: Raghav Talwar, Peiyan Liu, Shalakha Rudrapatna Suresh, Konrad Barbers
+group_number: 15
 title: "Energy Efficiency in Text Editors: A Comparative Analysis"
 image: "../img/p1_measuring_software/g15_text_editors/cover.png"
 date: 28/02/2025

@@ -1,5 +1,6 @@
 ---
 author: Victor Hornet, Elena Mihalache, Andreea Mocanu, Alexandru Postu, Kian Sie
+group_number: 23
 title: 'Comparing the energy efficiency of different LLM inference runtimes' #TODO
 image: '../img/p1_measuring_software/g23_llm_inference/cover.png'
 date: 19/02/2025

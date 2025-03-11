@@ -1,5 +1,6 @@
 ---
 author: Ahmed Driouech, Ahmed Ibrahim, Taoufik el Kadi,  Moegiez Bhatti
+group_number: 7
 title: "Energy Consumption in PDF Readers: A Comparative Analysis"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

@@ -5,7 +5,8 @@ exclude: False
 
 # Measuring Software Energy Consumption
 
-{% for article in site.pages %}
+{% assign articles = site.pages | sort: 'group_number' %}
+{% for article in articles %}
     {% if article.identifier == 'p1_measuring_software_2025' %}
     {% if article != page %}
   <strong><a href="{{ article.url | relative_url }}">Group {{ article.group_number }}: {{ article.title }}</a></strong><br/>
