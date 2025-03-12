@@ -1,5 +1,6 @@
 ---
 author: Joaquín Cava, Elena Ibañez, Roelof van der Geest, Jeroen Janssen
+group_number: 14
 title: "Jellyfin: Web Browser vs. Native App Energy Consumption Comparison"
 image: "../img/p1_measuring_software/g14_jellyfin_browser_native/cover.png"
 date: 28/02/2025
