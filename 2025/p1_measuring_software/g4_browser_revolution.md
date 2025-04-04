@@ -1,5 +1,6 @@
 ---
 author: Anyan Huang, Yongcheng Huang, Yiming Chen, Philippe Henry,
+group_number: 4
 title: "The browser energy efficiency revolution"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

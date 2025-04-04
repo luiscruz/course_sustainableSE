@@ -1,5 +1,6 @@
 ---
 author: Seyidali Bulut, Johan van den Berg, Michal Kuchar, Artin Sanaye
+group_number: 20
 title: "Energy consumption comparison between different graphics settings in GTA V "
 image: "../img/p1_measuring_software/g20_GTAV/cover.png"
 date: 28/02/2025

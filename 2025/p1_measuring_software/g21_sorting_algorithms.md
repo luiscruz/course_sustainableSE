@@ -1,5 +1,6 @@
 ---
 author: Wout Burgers, Martijn Frericks, David van der Maas, Thomas Rooskens
+group_number: 21
 title: "Monitoring energy consumption for sorting algorithms in Java, C++ and Python"
 image: "../img/p1_measuring_software/g21_sorting_algorithms/python-power_consumption.png"
 date: 28/02/2025

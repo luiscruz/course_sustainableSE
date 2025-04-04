@@ -1,5 +1,6 @@
 ---
 author: Ana Țerna, Andrei-Iulian Vișoiu, Lucian Toșa, Monica Păun
+group_number: 11
 title: "Comparing Energy Consumption of Spring Boot and Dropwizard"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

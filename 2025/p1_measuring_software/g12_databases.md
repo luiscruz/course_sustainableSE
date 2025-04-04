@@ -1,5 +1,6 @@
 ---
 author: Simon Biennier, Jasper Heijne, Paul Lindhorst, Huib Sprangers
+group_number: 12
 title: "Measuring energy consumption of SQL databases"
 image: "https://miro.medium.com/v2/resize:fit:1200/1*VDoCtgMoTijXbq1P73PuFg.jpeg"
 date: 28/02/2025

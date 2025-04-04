@@ -1,5 +1,6 @@
 ---
 author: Sofia Konovalova (6174019), Kaijen Lee (5100887), Violeta Macsim (5498031)
+group_number: 13
 title: "Sustainable Servers: Benchmarking energy consumption of various backend frameworks"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025

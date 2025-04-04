@@ -1,5 +1,6 @@
 ---
 author: Rafał Owczarski,Lászlo Roovers Athanasios Christopoulos, Zain Fazal
+group_number: 6
 title: "Measuring the Energy Consumption of Large Language Models: A Deep Dive"
 image: ""
 date: 28/02/2025

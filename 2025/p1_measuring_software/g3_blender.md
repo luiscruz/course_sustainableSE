@@ -1,5 +1,6 @@
 ---
 author: Matthijs Vossen, Melle Koper, Scott Jochems, Roan Rosema
+group_number: 3
 title: "Comparing energy consumption between the Cycles rendering engine in Blender"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
