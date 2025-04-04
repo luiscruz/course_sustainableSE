@@ -1,5 +1,6 @@
 ---
 author: Student1 first and last name, Student2, Student3
+group_number: 9000
 title: "Title of the template blog"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 03/03/2022
