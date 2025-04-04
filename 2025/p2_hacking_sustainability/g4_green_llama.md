@@ -3,7 +3,7 @@ author: Anyan Huang, Philippe A. Henry, Yongcheng Huang, Yiming Chen
 title: "Green Llama: A Tool for Monitoring Energy
 Consumption and Sustainability in Local LLMs"
 group_number: 4
-image: "../../img/p2_hacking_sustainability/group-4/green-llama.png"
+image: "../img/p2_hacking_sustainability/group-4/green-llama.png"
 summary: "Large language models (LLMs) have revolutionized
 artificial intelligence by delivering unprecedented performance in
 various applications. However, their substantial computational
@@ -24,5 +24,3 @@ environmentally responsible deployment decisions."
 paper: "../papers/Green-Llama_Report.pdf"
 source: "https://github.com/D4vidHuang/Green_llama"
 ---
-
-![green-llama](../../img/p2_hacking_sustainability/group-4/green-llama.png)
