@@ -1,5 +1,6 @@
 ---
 author: Kevin Chen, Tibieru Sabău, Floris van Veen, Kah Ming Wong
+group_number: 8
 title: "Comparing the Energy Consumption of Different Database Management Systems"
 image:
 date: 28/02/2025

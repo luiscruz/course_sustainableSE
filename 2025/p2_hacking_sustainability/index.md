@@ -5,13 +5,14 @@ exclude: False
 
 # Hacking Sustainability
 
-{% for article in site.pages %}
+{% assign articles = site.pages | sort: 'group_number' %}
+{% for article in articles %}
     {% if article.identifier == 'p2_2025' %}
     {% if article != page %}
 {% if article.image %}
 <img class="p2-img" src="{{article.image}}"/>
 {% endif %}
-  <strong><a href="{{ article.url | relative_url }}">{{ article.title }}</a></strong><br/>
+  <strong><a href="{{ article.url | relative_url }}">Group {{ article.group_number }}: {{ article.title }}</a></strong><br/>
 <small>_By {{ article.author }}_.</small>
 <br/>
 <small>{{ article.summary | truncate: 350 }}</small>

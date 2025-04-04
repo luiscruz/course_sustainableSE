@@ -1,5 +1,6 @@
 ---
 author: Luc Dop, Sabina Grădinariu, Nawmi Nujhat, Vincent van Vliet
+group_number: 24
 title: "Energy Consumption Comparison: Python 3.14 vs Python 3.11"
 image: "../img/p1_measuring_software/g24_python_3.14/g24.jpg"
 date: 24/02/2025

@@ -1,5 +1,6 @@
 ---
 author: Mirko Boon, Reeve Lorena, Gopal-Raj Panchu, Sotiris Vacanas
+group_number: 16
 title: "Comparing Energy Consumption of Note-Taking Applications"
 image: 
 date: 28/02/2024
