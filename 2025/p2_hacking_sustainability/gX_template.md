@@ -1,5 +1,5 @@
 ---
-author: Kevin Yi Chen, Tiberiu Sabău Floris van Veen Kah Ming Wong
+author: Kevin Yi Chen, Tiberiu Sabău, Floris van Veen, Kah Ming Wong
 title: "Hugging Carbon: Visualising the Carbon Emissions of Hugging
 Face’s AI Models"
 group_number: 8
