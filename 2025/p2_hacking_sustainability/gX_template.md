@@ -1,3 +1,4 @@
+---
 author: Kevin Yi Chen, Tiberiu Sabău, Floris van Veen, Kah Ming Wong
 title: "Hugging Carbon: Visualising the Carbon Emissions of Hugging
 Face’s AI Models"
@@ -7,3 +8,4 @@ summary: "Website created to educate users on the carbon emissions of huggingfac
 paper: "./CS4575_Sustainable_Software_Engineering___Project_2_Report.pdf"
 source: "[https://github.com/luiscruz/course_sustainableSE](https://github.com/kahming0/SSE2)"
 website: [https://luiscruz.github.io/course_sustainableSE/](https://kahming0.github.io/SSE2/)
+---
