@@ -11,6 +11,12 @@ layout: default
 <em>{{ page.author }}.</em>
 {% endif -%}
 </p>
+<p>
+{%- if page.group_number %}
+<em>Group {{ page.group_number }}.</em>
+{% else %}
+{% endif -%}
+</p>
 
 {% if page.image %}
 <img class="p2-img" src="{{page.image}}"/>

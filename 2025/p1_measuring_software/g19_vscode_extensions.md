@@ -1,5 +1,6 @@
 ---
 author: Aline Mol, Duyemo Anceaux, Kris van Melis, Max de Groot
+group_number: 19
 title: "Investigating the impact of extensions on power usage of VS Code"
 image: "../img/p1_measuring_software/gX_template/cover.png"
 date: 28/02/2025
