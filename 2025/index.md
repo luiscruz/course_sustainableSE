@@ -165,7 +165,7 @@ Below the description of each project.
 [slides01]: https://surfdrive.surf.nl/files/index.php/s/wzc2rUchVG2MQrK
 [slides02]: https://surfdrive.surf.nl/files/index.php/s/mQpQ7XoIYPqjlun
 [slides03]: https://surfdrive.surf.nl/files/index.php/s/V8f66pd7V7sQYx6
-[slides04]: https://surfdrive.surf.nl/files/index.php/s/3ZNl75feJ4Oa91e
+[slides04]: https://surfdrive.surf.nl/files/index.php/s/ZjIv9xlGLFEQFmP
 [susafwb]: https://www.suso.academy/en/sustainability-awareness-framework-susaf/
 [slides05]: https://surfdrive.surf.nl/files/index.php/s/UXWEHiQl4ntCxzX
 [slides07]: https://surfdrive.surf.nl/files/index.php/s/3XkUS6ozbapMv5u
