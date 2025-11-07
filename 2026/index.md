@@ -3,7 +3,7 @@ layout: default
 hide_from_navbar: false
 redirect_from:
   - /
-title: 2025
+title: 2026
 project-1:
   deadline: 28-02-2025
 project-2:
@@ -12,18 +12,17 @@ project-2:
 ---
 
 # Sustainable Software Engineering 🌱
-Edition of 2024/25<br/>
+Edition of 2025/26<br/>
 [MSc Computer Science] and [MSc Data Science and Artificial Intelligence Technology], [Delft University of Technology]
 
-<!-- [Blogposts comparing energy consumption of various software tools](/course_sustainableSE/2025/p1_measuring_software/)
+**! Page for 2026 edition is still work in progress !**
 
-[Papers reporting on Hacking Sustainability Projects](/course_sustainableSE/2025/p2_hacking_sustainability/) -->
 
 **Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
 
-![Sustainability Domains](./img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="260px" }
+![Sustainability Domains](../assets//img/domains.svg){: style="display:block; margin-left:auto; margin-right:auto" width="260px" }
 
 Software Engineering (SE) has long addressed sustainability by **narrowing it down to economical and technical sustainability**.
 However, our society is facing major sustainability challenges that can no longer be overlooked by software engineers and computer scientists.
@@ -40,7 +39,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Course code**       | [CS4575]
 **Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
 **Instructors**       | [Luís Cruz], [Carolin Brandt], [Enrique Barba Roque]
-**Schedule**          |	Mondays 8:45, Wednesdays 10:45, Thursdays 10:45. 🔗 [MyTimetable].
+**Schedule**          |	Mondays 8:45, Wednesdays 8:45, Thursdays 10:45. 🔗 [MyTimetable].
 **Mattermost**        | [Sign Up Link](https://mattermost.tudelft.nl/signup_user_complete/?id=1nj9tk6usjf8xmsws8wpq3s5uy&md=link&sbr=su).
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
@@ -66,26 +65,26 @@ By the end of this course you will be able to:
 **⚠️ Please note:** The following outline is subject to changes; Recordings are available through Collegerama.
 
 
- Class | Week| Summary
--------| ----|----------|
- 1     | 1   | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]
- 2     | 1   | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]
- 3     | 1   | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.<br/>[📊Slides][slides03]
- 4     | 2   | **Lecture.** Social and Individual Sustainability.<br/>[📊Slides][slides04],[Workbook][susafwb]
- 6     | 2   | **Lecture.** Green Software Engineering — Part II: units of energy.<br/>[📊Slides][slides05]
- 5     | 2   | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
- 7     | 3   | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.<br/>[📊Slides][slides07]
- 8     | 3   | **Lecture.** Green AI.<br/>[📊Slides][slides08]
- 9     | 3   | **Project.** [Project 1](#project1) - steering meeting.
-       | 3   | ⏰ Deadline for [Project 1](#project1) Friday, Feb 28.
- 10    | 4   | **Project.** [Project 2](#project2) - Description and kick-off.<br/>[📊Slides][slides10]
- 11    | 4   | **Guest Lecture (Mar 5).** Neuromorphic Computing, [Nergis Tömen]. <br/>[📊Slides][slides11] 
-       | 5   | **Project 2 - steering meeting 1.**
-       | 6   | **Project 2 - steering meeting 2.**
-       | 7   | **Project 2 - steering meeting 3.**
-       | 8   | **Project 2 - steering meeting 4.**
- 19    | 8   | ⏰ Deadline [Project 2](#project2) – April 4.
- 20    | 9   | Presentation [Project 2](#project2) – April 11.
+ Class | Week| Date | Summary
+-------| ----|--|---------|
+ 1     | 1   | 09-02-2026 | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]
+ 2     | 1   | 11-02-2026 | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]
+ 3     | 1   | 12-02-2026 | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.<br/>[📊Slides][slides03]
+ 4     | 2   | 16-02-2026 | **Lecture.** Social and Individual Sustainability.<br/>[📊Slides][slides04],[Workbook][susafwb]
+ 6     | 2   | 18-02-2026 | **Lecture.** Green Software Engineering — Part II: units of energy.<br/>[📊Slides][slides05]
+ 5     | 2   | 19-02-2026 | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
+ 7     | 3   | 23-02-2026 | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.<br/>[📊Slides][slides07]
+ 8     | 3   | 25-02-2026 | **Lecture.** Green AI.<br/>[📊Slides][slides08]
+ 9     | 3   | 26-02-2026 | **Project.** [Project 1](#project1) - steering meeting.
+       | 3   | 27-02-2026 | ⏰ Deadline for [Project 1](#project1) Friday, Feb 27.
+ 10    | 4   | 02-03-2026 | **Project.** [Project 2](#project2) - Description and kick-off.<br/>[📊Slides][slides10]
+ 11    | x   |  | **Guest Lecture?** (could be in Thursday slot, if good room)
+       | 5   |  | **Project 2 - steering meeting 1.**
+       | 6   |  | **Project 2 - steering meeting 2.**
+       | 7   |  | **Project 2 - steering meeting 3.**
+       | 8   |  | **Project 2 - steering meeting 4.**
+ 19    | 8   | 3-04-2026 | ⏰ Deadline [Project 2](#project2) – April 3.
+ 20    | 9   | 7-04-2026 - 10-04-2026 | Presentation [Project 2](#project2) – April 7 - April 10.
  
 ## Assignments
 

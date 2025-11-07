@@ -26,3 +26,7 @@
 .highlight code{
     font-size: smaller;
 }
+
+.wrapper {
+    max-width: calc(1200px - (30px * 2));
+}

@@ -2,9 +2,8 @@
 author: Mitali P, Pia A, David V
 title: Is Notion "Greener" on Web browser or Desktop?
 date: 27/02/2024
-summary: |-
-Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
-Primarily we see if its energy-efficient to use Notion on desktop or on Web Browser. 
+summary: "Ever wondered how much energy is consumed by some of the softwares that we use often ? We explore the energy consumption of one such software - Notion , something one might find using quite often for organising notes. 
+Primarily we see if its energy-efficient to use Notion on desktop or on Web Browser."
 ---
 Note-taking software is becoming increasingly feature-packed. We use various note-taking software often, but are we saving more energy by using it on the desktop version or running it on the web? Even though Notion provides similar features to the end user, using their native version or Web counterpart might lead to different levels of energy consumption and performance. 
 In this blog post, we asses the energy consumption between the desktop version and the web version of Notion.
