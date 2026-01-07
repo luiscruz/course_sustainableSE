@@ -90,6 +90,20 @@ defaults:
       layout: project_page
   -
     scope:
+      path: "2026/p1_measuring_software"
+    values:
+      # identifier: "p1_measuring_software_2026"
+      exclude: true
+      layout: blog_post
+  -
+    scope:
+      path: "2026/p2_hacking_sustainability"
+    values:
+      # identifier: "p2_hacking_sustainability_2026"
+      exclude: true
+      layout: project_page
+  -
+    scope:
       path: ""
     values:
       hide_from_navbar: true

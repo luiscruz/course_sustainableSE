@@ -101,7 +101,7 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2025/p1_measuring_software/).
+- [Submission by pull request to the website. Instructions for Project 1 here](/course_sustainableSE/2026/p1_measuring_software/).
   - Blog-style report (markdown, approx 2500 words).
   - Replication package.
 - **Weight in final grade**: 40%
@@ -118,15 +118,17 @@ Below the description of each project.
   - Implement the solution.
   - Validation. (Depending on the idea)
   - Dissemination/social impact. (E.g., solution should be open source, welcome contributors, post on social media, tool website, available in package managers, etc.)
-- **Deliverables.**
-  - Paper-like article. (Min 4 pages, max 10)
-  - Online git repo with open source codebase and/or replication package.
-  - Presentation: 5 min + 5min Q&A
-- **Weight in final grade**: 60%
 - **Steering meeting/formative assessments**: Every week from week 5 to 9.
-- **Deadline** Friday, April 4.
-- **Presentation** Friday, April 11.
-- Submission by pull request to the website. Instructions [here](/course_sustainableSE/2025/p2_hacking_sustainability/).
+- [Submission by pull request to the website. Instructions for Project 2 here](/course_sustainableSE/2026/p2_hacking_sustainability/).
+  - **Deliverables.**
+    - Paper-like article. (Min 4 pages, max 10)
+    - Online git repo with open source codebase and/or replication package.
+    - 3 minute vertical video as presentation + 5 min Q&A
+- **Weight in final grade**: 60%
+- **Deadlines** 
+  - Paper Submission: Friday, April 3.
+  - Video Submission (via Brightspace): Monday, April 6.
+  - Presentation & Q&A: Tuesday & Wednesday, April 7 and 8.
 
 
 
