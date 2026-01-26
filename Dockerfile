@@ -4,12 +4,12 @@ WORKDIR /myapp
 COPY . /myapp
 
 # Manually install the last compatible RubyGems version for Ruby 2.7
-RUN gem install rubygems-update -v 3.3.22 && \
+RUN gem install rubygems-update -v 3.4.1 && \
     update_rubygems
 	
 
 # We usually run this every time we add a new dependency
-RUN gem install bundler -v 2.4.22
+RUN gem install bundler -v 2.7.2
 RUN gem install jekyll -v 3.9.3
 RUN bundle install
 
