@@ -39,13 +39,13 @@ To add a new article, follow the instructions below:
 2. Create a new markdown file inside the directory `2026/p1_measuring_software`
   - Use the file `gX_template.md` as a template
   - Use the following filename format: `g<group_number>_<1/2meaningful_keywords>.md`
-  - If you want to add images, add it to `2025/p1_measuring_software/img/g<group_number>_<1/2meaningful_keywords>/`
+  - If you want to add images, add it to `2026/p1_measuring_software/img/g<group_number>_<1/2meaningful_keywords>/`
 3. Commit, Push.
-4. Submit a pull request.
+4. Submit a pull request. Make sure to use the pull request template for project 1.
 
 Before submitting the pull request, you should test whether your file is rendering properly in the website. The easiest way to check it is by running the docker container, as instructed in the Github Readme.
 
-Your page should be listed here: http://localhost:4000/course_sustainableSE/2025/p1_measuring_software
+Your page should be listed here: [http://localhost:4000/course_sustainableSE/2026/p1_measuring_software]
 
 If you don't want to deal with jekyll, you can do it the slow and expensive way: 1) enable *github pages* in your fork repo 2) check your the deployed page. (I don't recommend it, though)
 

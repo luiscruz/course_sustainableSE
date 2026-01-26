@@ -4,11 +4,6 @@ hide_from_navbar: false
 redirect_from:
   - /
 title: 2026
-project-1:
-  deadline: 28-02-2025
-project-2:
-  deadline: 04-04-2025
-  presentation: 11-04-2025
 ---
 
 # Sustainable Software Engineering 🌱

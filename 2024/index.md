@@ -2,6 +2,7 @@
 layout: default
 hide_from_navbar: false
 redirect_from:
+  - /2024
 title: 2024
 ---
 

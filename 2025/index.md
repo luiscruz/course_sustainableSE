@@ -2,7 +2,7 @@
 layout: default
 hide_from_navbar: false
 redirect_from:
-  - /
+  - /2025
 title: 2025
 project-1:
   deadline: 28-02-2025
