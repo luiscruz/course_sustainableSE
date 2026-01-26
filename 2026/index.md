@@ -37,10 +37,10 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 
 -------|----------|
 **Course code**       | [CS4575]
-**Brightspace 🔒**    | <https://brightspace.tudelft.nl/d2l/home/680663>
+**Brightspace 🔒**    | [Brightspace]
 **Instructors**       | [Luís Cruz], [Carolin Brandt], [Enrique Barba Roque]
 **Schedule**          |	Mondays 8:45, Wednesdays 8:45, Thursdays 10:45. 🔗 [MyTimetable].
-**Mattermost**        | [Sign Up Link](https://mattermost.tudelft.nl/signup_user_complete/?id=1nj9tk6usjf8xmsws8wpq3s5uy&md=link&sbr=su).
+**Mattermost**        | [Sign Up Link](https://mattermost.tudelft.nl/signup_user_complete/?id=8yeqaxyhyprdzx1aq38qubjsjo).
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
 **Format**            | Classes are optimised for in-person attendance.
@@ -58,33 +58,35 @@ By the end of this course you will be able to:
 - LO1. Explain the fundamental sustainability principles and their relevance to software engineering.
 - LO2. Assess the energy consumption of software systems using measurement and testing techniques.
 - LO3. Create actionable strategies to address sustainability issues within software organisations.
-- LO4. Evaluate and compare different solutions for sustainable software systems based on their effectiveness in achieving sustainability goals and their potential impact on various stakeholders.
+- LO4. Evaluate solutions for sustainable software systems based on their effectiveness in achieving sustainability goals and their potential impact on various stakeholders.
 
 ## Outline
 
-**⚠️ Please note:** The following outline is subject to changes; Recordings are available through Collegerama.
+**⚠️ Please note:** The following outline is subject to changes; Recordings are available through Collegerama. Please refer to the timetable for times and up-to-date lecture locations.
 
+![Course Schedule Overview](../assets//img/schedule-sse-2026.png){: style="display:block; margin-left:auto; margin-right:auto" width="660px" }
 
- Class | Week| Date | Summary
--------| ----|--|---------|
- 1     | 1   | 09-02-2026 | **Lecture.** Course introduction. Sustainable Software: What, Why and How.<br/>[📊Slides][slides01]
- 2     | 1   | 11-02-2026 | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).<br/>[📊Slides][slides02]
- 3     | 1   | 12-02-2026 | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.<br/>[📊Slides][slides03]
- 4     | 2   | 16-02-2026 | **Lecture.** Social and Individual Sustainability.<br/>[📊Slides][slides04],[Workbook][susafwb]
- 6     | 2   | 18-02-2026 | **Lecture.** Green Software Engineering — Part II: units of energy.<br/>[📊Slides][slides05]
- 5     | 2   | 19-02-2026 | **Project.** [Project 1](#project1) - steering meeting and formative assessment.
- 7     | 3   | 23-02-2026 | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres.<br/>[📊Slides][slides07]
- 8     | 3   | 25-02-2026 | **Lecture.** Green AI.<br/>[📊Slides][slides08]
- 9     | 3   | 26-02-2026 | **Project.** [Project 1](#project1) - steering meeting.
-       | 3   | 27-02-2026 | ⏰ Deadline for [Project 1](#project1) Friday, Feb 27.
- 10    | 4   | 02-03-2026 | **Project.** [Project 2](#project2) - Description and kick-off.<br/>[📊Slides][slides10]
- 11    | x   |  | **Guest Lecture?** (could be in Thursday slot, if good room)
-       | 5   |  | **Project 2 - steering meeting 1.**
-       | 6   |  | **Project 2 - steering meeting 2.**
-       | 7   |  | **Project 2 - steering meeting 3.**
-       | 8   |  | **Project 2 - steering meeting 4.**
- 19    | 8   | 3-04-2026 | ⏰ Deadline [Project 2](#project2) – April 3.
- 20    | 9   | 7-04-2026 - 10-04-2026 | Presentation [Project 2](#project2) – April 7 - April 10.
+| Week | Day | Date                  | Summary                                                                                                               | Slides               |
+|------|-----|-----------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|
+| 1    | Mon | 09-02-2026            | **Lecture.** Course introduction. Sustainable Software: What, Why and How.                                            | [📊Slides][tbd]  |
+| 1    | Wed | 11-02-2026            | **Lecture.** Social and Individual Sustainability.                                                                    | [📊Slides][tbd]  |
+| 1    | Thu | 12-02-2026            | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).                               | [📊Slides][tbd]  |
+| 2    | Mon | 16-02-2026            | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.                  | [📊Slides][tbd]  |
+| 2    | Wed | 18-02-2026            | **Lecture.** Green Software Engineering — Part II: units of energy.                                                   | [📊Slides][tbd]  |
+| 2    | Thu | 19-02-2026            | **Project.** [Project 1](#project1) - steering meeting and formative assessment.                                      |                      |
+| 3    | Mon | 23-02-2026            | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. | [📊Slides][tbd]  |
+| 3    | Wed | 25-02-2026            | **Guest Lecture.** GreenPT                                                                                            |                      |
+| 3    | Thu | 26-02-2026            | **Project.** [Project 1](#project1) - steering meeting.                                                               |                      |
+| 3    | Fri | 27-02-2026            | ⏰ Deadline for [Project 1](#project1) Friday, Feb 27.                                                                |                      |
+| 4    | Mon | 02-03-2026            | **Lecture.** Green AI.                                                                                                | [📊Slides][tbd]  |
+| 4    | Wed | 04-03-2026            | **Hands-on Workshop.** Sustainability Awareness Framework                                                             | [📊Workbook][tbd] |
+| 4    | Thu | 05-03-2026            | **Project.** [Project 2](#project2) - Workshop Topics                                                                 |                      |
+| 5    |     |                       | **Project 2 - steering meeting 1.**                                                                                   |                      |
+| 6    |     |                       | **Project 2 - steering meeting 2.**                                                                                   |                      |
+| 7    |     |                       | **Project 2 - steering meeting 3.**                                                                                   |                      |
+| 8    |     |                       | **Project 2 - steering meeting 4.**                                                                                   |                      |
+| 8    | Thu | 02-04-2026            | ⏰ Submission Deadline [Project 2](#project2) – April 2.                                                              |                      |
+| 9    | Tue/Wed | 07-04-2026/08-04-2026 | Presentations + Q&A [Project 2](#project2) – April 7 + 8.                                                         |                      |
  
 ## Assignments
 
@@ -118,16 +120,16 @@ Below the description of each project.
   - Implement the solution.
   - Validation. (Depending on the idea)
   - Dissemination/social impact. (E.g., solution should be open source, welcome contributors, post on social media, tool website, available in package managers, etc.)
-- **Steering meeting/formative assessments**: Every week from week 5 to 9.
+- **Steering meeting/formative assessments**: Every week from week 5 to 8.
 - [Submission by pull request to the website. Instructions for Project 2 here](/course_sustainableSE/2026/p2_hacking_sustainability/).
   - **Deliverables.**
     - Paper-like article. (Min 4 pages, max 10)
     - Online git repo with open source codebase and/or replication package.
     - 3 minute vertical video as presentation + 5 min Q&A
 - **Weight in final grade**: 60%
-- **Deadlines** 
-  - Paper Submission: Friday, April 3.
-  - Video Submission (via Brightspace): Monday, April 6.
+- **Deadline** Thursday, April 2, 2026
+  - Paper + Artifact Submission (via pull request)
+  - Video Submission (via Brightspace)
   - Presentation & Q&A: Tuesday & Wednesday, April 7 and 8.
 
 
@@ -160,19 +162,20 @@ Below the description of each project.
 [Luís Cruz]: https://luiscruz.github.io
 [Carolin Brandt]: https://carolin-brandt.de
 [Enrique Barba Roque]: https://ebarba.com
-[CS4575]:https://www.studiegids.tudelft.nl/a101_displayCourse.do?course_id=70145
+[CS4575]: https://www.studiegids.tudelft.nl/courses/study-guide/educations/14777
+[Brightspace]: https://brightspace.tudelft.nl/d2l/home/774591
 
 [Nergis Tömen]:https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/people/nergis-toemen
 
 [MyTimetable]: https://mytimetable.tudelft.nl/link?timetable.id=TimeEdit!timeedit_module!INJTINBRGU
 
-[slides01]: https://surfdrive.surf.nl/files/index.php/s/wzc2rUchVG2MQrK
-[slides02]: https://surfdrive.surf.nl/files/index.php/s/mQpQ7XoIYPqjlun
-[slides03]: https://surfdrive.surf.nl/files/index.php/s/V8f66pd7V7sQYx6
-[slides04]: https://surfdrive.surf.nl/files/index.php/s/ZjIv9xlGLFEQFmP
-[susafwb]: https://www.suso.academy/en/sustainability-awareness-framework-susaf/
-[slides05]: https://surfdrive.surf.nl/files/index.php/s/UXWEHiQl4ntCxzX
-[slides07]: https://surfdrive.surf.nl/files/index.php/s/3XkUS6ozbapMv5u
-[slides08]: https://surfdrive.surf.nl/files/index.php/s/nY86MJyb2NrbBnm
-[slides10]: https://surfdrive.surf.nl/files/index.php/s/EFjQtlgHt6tRisi
-[slides11]: https://surfdrive.surf.nl/files/index.php/s/y4aua5CQ8IW7vQL
+<!-- [slides01]:
+[slides02]:
+[slides03]:
+[slides04]:
+[susafwb]: 
+[slides05]:
+[slides07]:
+[slides08]:
+[slides10]:
+[slides11]: -->

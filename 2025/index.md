@@ -44,7 +44,7 @@ Students learn **state-of-the-art practices on energy efficiency** and apply the
 **Mattermost**        | [Sign Up Link](https://mattermost.tudelft.nl/signup_user_complete/?id=1nj9tk6usjf8xmsws8wpq3s5uy&md=link&sbr=su).
 **ECTS** 	            | 5.0
 **Quarter**           | Q3
-**Format**            | Classes are optimised for in-person attendance.
+**Format**            | Lectures, lab steering meetings, group project work.
 **Examination type**  | Group Project 1 (40%); Group Project 2 (60%).
 **Target audience**   |	Students of the [MSc Computer Science] and the [MSc Data Science and Artificial Intelligence Technology].
 **Requirements** 	    | - Intermediate understanding of OOP languages;<br/> - Basic understanding of data analysis techniques.
