@@ -25,6 +25,8 @@ This way your coach can view your progress and give you feedback.
 ## Your topic idea for Project 2:
 *(Discuss your project idea with the course staff **before** submitting this pull request to make sure it is suitable for project 2.)*
 
+*In this project idea, make sure to clearly explain which facet of sustainable SE you are targeting and how your solution will improve it*
+
 <TODO: fill out>
 
 ## Filename of your Project 2 entry in `p2_hacking_sustainability/` (contributed in this pull request): 

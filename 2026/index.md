@@ -10,9 +10,6 @@ title: 2026
 Edition of 2025/26<br/>
 [MSc Computer Science] and [MSc Data Science and Artificial Intelligence Technology], [Delft University of Technology]
 
-**! Page for 2026 edition is still work in progress !**
-
-
 **Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
@@ -98,9 +95,12 @@ Below the description of each project.
       - Same version, same app, but different running environment
 - Blog-style report (markdown, approx 2500 words).
   - Bonus if you can automate the experiment and there is a replication package.
+- Groups of 4, randomly assigned. **Sign up to our Brightspace course until Feb 9 to be assigned a group**
 - [Submission by pull request to the website. Instructions for Project 1 here](/course_sustainableSE/2026/p1_measuring_software/).
+  - **Deadline for initial pull request with topic description:** Feb 12
   - Blog-style report (markdown, approx 2500 words).
   - Replication package.
+  - Buddycheck for P1 (via Brightspace)
 - **Weight in final grade**: 40%
 - **Deadline** Friday, Feb 28
 
@@ -115,9 +115,11 @@ Below the description of each project.
   - Implement the solution.
   - Validation. (Depending on the idea)
   - Dissemination/social impact. (E.g., solution should be open source, welcome contributors, post on social media, tool website, available in package managers, etc.)
+- Groups of 5, self-chosen. Join the Workshop in Week 4 to find / finalize your group and topic idea.
 - **Steering meeting/formative assessments**: Every week from week 5 to 8.
 - [Submission by pull request to the website. Instructions for Project 2 here](/course_sustainableSE/2026/p2_hacking_sustainability/).
-  - **Deliverables.**
+  - **Deadline for initial pull request with topic description:** Mar 5
+  - **Deliverables in final submission.**
     - Paper-like article. (Min 4 pages, max 10)
     - Online git repo with open source codebase and/or replication package.
     - 3 minute vertical video as presentation + 5 min Q&A
@@ -125,7 +127,8 @@ Below the description of each project.
 - **Deadline** Thursday, April 2, 2026
   - Paper + Artifact Submission (via pull request)
   - Video Submission (via Brightspace)
-  - Presentation & Q&A: Tuesday & Wednesday, April 7 and 8.
+  - Buddychcek for P2 (via Brightspace)
+  - Presentation & Q&A: Tuesday & Wednesday, Apr 7 and 8.
 
 
 
