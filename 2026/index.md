@@ -61,7 +61,7 @@ By the end of this course you will be able to:
 | Week | Day | Date                  | Summary                                                                                                               | Slides               |
 |------|-----|-----------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|
 | 1    | Mon | 09-02-2026            | **Lecture.** Course introduction. Sustainable Software: What, Why and How.                                            | [📊Slides](https://surfdrive.surf.nl/s/Knp8Ww2egEti5N7)  |
-| 1    | Wed | 11-02-2026            | **Lecture.** Social and Individual Sustainability.                                                                    | [📊Slides][tbd]  |
+| 1    | Wed | 11-02-2026            | **Lecture.** Social and Individual Sustainability.                                                                    | [📊Slides](https://surfdrive.surf.nl/s/axynqagJJbCkpka)  |
 | 1    | Thu | 12-02-2026            | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).                               | [📊Slides][tbd]  |
 | 2    | Mon | 16-02-2026            | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.                  | [📊Slides][tbd]  |
 | 2    | Wed | 18-02-2026            | **Lecture.** Green Software Engineering — Part II: units of energy.                                                   | [📊Slides][tbd]  |
