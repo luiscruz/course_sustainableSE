@@ -1,26 +1,15 @@
 ---
 author: Emre Çebi, Aadesh Ramai, Noah Tjoen, Andrea Vezzuto
 group_number: 30
-title: "Title of the Template blog"
+title: "Measuring the Energy Impact of GPU Optimisation on Classifier Training"
 image: "img/g30_template/project_cover.png"
-date: 11/02/2026
+date: 12/02/2026
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+  We plan to measure the energy impact of enabling GPU optimisation on classifier training. Specifically, we plan to use an simple classifier (perhaps from an existing notebook on Kaggle) on the MNIST dataset. 
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
-
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
+**Proposed topic description**: We plan to measure the energy impact of enabling GPU optimisation on classifier training. Specifically, we plan to use an simple classifier (perhaps from an existing notebook on Kaggle) on the MNIST dataset. 
 
 ---
 
