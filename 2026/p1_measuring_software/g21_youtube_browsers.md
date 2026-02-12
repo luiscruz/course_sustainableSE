@@ -4,7 +4,7 @@ group_number: 21
 title: "Youtube Energy Consumption on Different Browsers"
 image: "img/gX_template/project_cover.png"
 date: 12/02/2026
-summary: |- For our project 1 we will be analyzing the energy consumption of the CPU when running the same youtube short on two different browsers (firfox & google chrome) on ubuntu24.04.3LTS using AMD Ryzen 7 4800H
+summary: For our project 1 we will be analyzing the energy consumption of the CPU when running the same youtube short on two different browsers (firfox & google chrome) on ubuntu24.04.3LTS using AMD Ryzen 7 4800H
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
