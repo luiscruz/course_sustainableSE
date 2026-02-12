@@ -3,7 +3,7 @@ author: Conall Lynch, Arjun Rajesh Nair, Viktor Shapchev, Coen Werre
 group_number: 19
 title: "Energy Consumption of Sorting Algorithms: Impact of Algorithmic Complexity and Memory Behavior"
 image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+date: 12/02/2026
 summary: |-
   In this project, we propose to measure and compare the energy consumption of different sorting algorithms under varying input sizes and data distributions. Sorting is a fundamental building block in modern software systems, used in databases, analytics pipelines, and backend processing tasks. We will implement multiple sorting strategies (e.g., Bubble Sort, Merge Sort, and Quick Sort) and evaluate how algorithmic complexity (O(n²) vs O(n log n)) and memory behavior (in-place vs additional memory allocation) influence energy consumption.
   Experiments will be conducted using EnergiBridge on controlled workloads with increasing input sizes (e.g., 10³ to 10⁶ elements) and different data distributions (random, sorted, reverse-sorted). For each configuration, we will collect energy consumption and runtime measurements across multiple runs to ensure statistical reliability.
