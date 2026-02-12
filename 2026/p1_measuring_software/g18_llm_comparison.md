@@ -1,7 +1,7 @@
 ---
-author: Medon Abraham, Konstantina Anastasiadou, Wilhelm Marcu 
-group_number: 0
-title: "Title of the Template blog"
+author: Medon Abraham, Konstantina Anastasiadou, Wilhelm Marcu, Mihai Radu Serban 
+group_number: 18
+title: "ML Models Comparison"
 image: "img/gX_template/project_cover.png"
 date: 12/02/2026
 summary: |-
