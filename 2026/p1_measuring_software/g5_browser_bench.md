@@ -1,11 +1,11 @@
 ---
 author: Brewen Couaran, Valantis Andreas, Arnav Biswas, Alex Hautelman
 group_number: 5
-title: "Browser Energy Benchmarking"
+title: "Cross-Platform Browser Energy Benchmarking"
 image: "img/g5_browser_bench/project_cover.png"
 date: 12/02/2026
 summary: |-
-  The aim of this project would be to measure energy consumption between Chrome and Firefox in order to determine which on is more energy efficient. For the purpose of this task we will measure the energy consumption of BrowserBench.org using EnergiBridge in macOs, Windows and Linux in all three benchmarks available.
+  This project examines how operating systems impact browser energy consumption by comparing Google Chrome and Opera on macOS, Windows, and Linux using a standardized BrowserBench workload measured with EnergiBridge.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
