@@ -5,7 +5,7 @@ title: "Cross-Platform Browser Energy Benchmarking"
 image: "img/g5_browser_bench/project_cover.png"
 date: 12/02/2026
 summary: |-
-  This project examines how operating systems impact browser energy consumption by comparing Google Chrome and Opera on macOS, Windows, and Linux using a standardized BrowserBench workload measured with EnergiBridge.
+  This project examines how operating systems impact browser energy consumption by comparing Google Chrome and Firefox on macOS, Windows, and Linux using a standardized BrowserBench workload measured with EnergiBridge.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
