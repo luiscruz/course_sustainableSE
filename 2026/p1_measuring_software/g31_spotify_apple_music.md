@@ -1,9 +1,9 @@
 ---
-author: Student1 first and last name, Student2, Student3
-group_number: 0
-title: "Title of the Template blog"
-image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+author: Abdul Wahab Aiman, Bińkowska Maja, El Khal Miguel, Marin Alexandru
+group_number: 31
+title: "Spotfiy and Apple music energy consumption comparison"
+image: "img/g31_spotify_apple_music/spotify_apple.jpeg"
+date: 12/03/2022
 summary: |-
   Energy consumption comparison based on Spotify and Apple Music platforms across different audio quality settings or actions using EnergiBridge. We aim to determine what influences consumption the most to discover critical painpoints and whether either platform is inherently more energy-efficient. These can include comparison consumption of: 
   - various audio settings (high, low, enhanced bass) to default baseline, 
