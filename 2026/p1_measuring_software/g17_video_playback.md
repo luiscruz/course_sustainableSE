@@ -2,7 +2,7 @@
 author: Preethika Ajaykumar, Yuting Dong, Jayran Duggins, Riya Gupta
 group_number: 17
 title: "Energy Consumption for Online Video Playback"
-image: "img/g17_video_playback/g17_video_playback_cover.png"
+image: "img/g17_video_playback/g17_video_playback_cover.jpg"
 date: 12/02/2026
 summary: |-
   This project investigates how video playback energy consumption varies across different browsers, streaming platforms, hardware configurations, resolutions and playback speeds. We measure system energy usage while playing the same video under controlled conditions, comparing factors such as browser choice, streaming service, video resolution and playback speed (e.g., 1× vs 2×). To ensure fairness, brightness, and playback duration will be kept constant across experiments. Each configuration will be repeated multiple times to account for measurement variability. Energy data will be collected using automated measurement tools to ensure reproducibility. Results will be analysed in terms of total energy (Joules), average power (Watts), and energy per minute of content consumed. The study aims to provide practical insights into the sustainability implications of everyday streaming behaviors.
