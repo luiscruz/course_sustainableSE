@@ -1,17 +1,11 @@
 ---
-author: Student1 first and last name, Student2, Student3
-group_number: 0
-title: "Title of the Template blog"
+author: Norah Elisabeth Milanesi, Nassiri Mohammed, Oei Jimmy, Turanlı Gonenc
+group_number: 9
+title: "Measuring the Energy Cost of Merge Sort: Python vs. JavaScript"
 image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+date: 12/02/2026
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+  This project investigates the energy consumption differences between Python and JavaScript when sorting large datasets using merge sort algorithm. By executing the same algorithm across datasets of varying sizes, we will analyze how programming language runtime characteristics influence energy usage and performance. Through this comparison, the study seeks to provide insights into the sustainability implications of language choice for computationally intensive tasks.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
