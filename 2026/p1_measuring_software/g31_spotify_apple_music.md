@@ -5,13 +5,11 @@ title: "Title of the Template blog"
 image: "img/gX_template/project_cover.png"
 date: 03/03/2022
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+  Energy consumption comparison based on Spotify and Apple Music platforms across different audio quality settings or actions using EnergiBridge. We aim to determine what influences consumption the most to discover critical painpoints and whether either platform is inherently more energy-efficient. These can include comparison consumption of: 
+  - various audio settings (high, low, enhanced bass) to default baseline, 
+  - downloading music for offline vs opened platform, 
+  - lyrics display vs closed view,
+  - video display vs closed view.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
