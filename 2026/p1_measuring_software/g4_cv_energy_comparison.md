@@ -2,7 +2,7 @@
 author: Anhar Al Haydar, Tom Clark, Moniek Tummers, Andriana Tzanidou
 group_number: 4
 title: "Comparing Energy Consumption in Computer Vision Across Different Model Sizes"
-image: "img/g4_cv_energy_comparison/project_cover.png"
+image: "img/g4_cv_energy_comparison/g4_project_cover.png"
 date: 12/02/2026
 summary: |-
   In this project, we aim to investigate how different model sizes of a computer vision AI model affect energy consumption. We want to compare small, medium, large weight variants of the same open-source model such as RF-DETR or YOLOV8 to see how scaling impacts energy usage. Identical use cases will be run across all model sizes while measuring energy consumption with tools like EnergiBridge.  
