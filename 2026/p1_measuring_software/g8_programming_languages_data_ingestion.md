@@ -1,17 +1,13 @@
 ---
-author: Student1 first and last name, Viktor Seršiḱ, Student3
-group_number: 0
-title: "Title of the Template blog"
+author: Yuvraj Singh Pathania, Viktor Seršiḱ, Emils Dzintars, Madhav Chawla
+group_number: 8
+title: "Energy Implications of Language and Runtime Choices in Data Ingestion Pipelines"
 image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+date: 12/02/2026
 summary: |-
-  abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.
+  Energy consumption is becoming an important concern in software engineering, yet developers rarely have concrete guidance on how implementation choices influence energy efficiency. In this study, we investigate how programming language selection affects energy usage in a common data-intensive workload. We design and implement an identical data ingestion pipeline that reads large JSONL datasets, performs schema validation and lightweight transformations, aggregates records, and writes the results to Parquet format. The pipeline is implemented across multiple languages representing different runtime and compilation models, namely Python, Go, Java, and Rust.
+
+  Using EnergiBridge, we systematically measure execution time, energy consumption, and resource utilization under controlled experimental conditions. By analyzing both total energy usage and average power draw, we examine whether observed differences are primarily driven by runtime performance or by variations in power behavior. Our results provide practical insights into the energy-performance trade-offs of language and runtime choices for data processing systems. We further provide a replication package containing implementations, automation scripts, and measurement procedures to support reproducibility and future comparative studies.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
