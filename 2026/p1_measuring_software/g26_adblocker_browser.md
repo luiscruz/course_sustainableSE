@@ -5,10 +5,12 @@ title: "Browser Energy Usage: The Effect of Ad Blocking"
 image: "img/g26_adblocker_browser/project_cover.png"
 date: 12/02/2026
 summary: |-
-  This project measures the energy consumption of different web browsers with and without UBlock Origin ad blocking. Using LibreHardwareMonitor on Windows, we compare power usage across browsers (i.e. Chrome, Firefox, Edge, Brave) and websites (i.e. Youtube, Netflix, Reddit, Nu.nl) to determine whether UBlock increases or decreases overall energy consumption. A working POC can be found at <https://github.com/TheOrange-cmd/course_sustainableSE/tree/adblock/2026/p1_measuring_software/POC>.
+  This project measures the energy consumption of different web browsers with and without UBlock Origin ad blocking. Using LibreHardwareMonitor on Windows, we compare power usage across browsers (i.e. Chrome, Firefox, Edge, Brave) and websites (i.e. Youtube, Netflix, Reddit, Nu.nl) to determine whether UBlock increases or decreases overall energy consumption.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
+
+A working POC can be found [here](https://github.com/TheOrange-cmd/course_sustainableSE/tree/adblock/2026/p1_measuring_software/POC).
 
 Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
