@@ -2,14 +2,14 @@
 author: Emre Çebi, Aadesh Ramai, Noah Tjoen, Andrea Vezzuto
 group_number: 30
 title: "Measuring the Energy Impact of GPU Optimisation on Classifier Training"
-image: "img/g30_template/project_cover.png"
+image: "img/g30_gpu-optimisation-for-classifiers/project_cover.png"
 date: 12/02/2026
 summary: |-
   We plan to measure the energy impact of enabling GPU optimisation on classifier training. Specifically, we plan to use an simple classifier (perhaps from an existing notebook on Kaggle) on the MNIST dataset. 
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-**Proposed topic description**: We plan to measure the energy impact of enabling GPU optimisation on classifier training. Specifically, we plan to use an simple classifier (perhaps from an existing notebook on Kaggle) on the MNIST dataset. 
+**Proposed topic description**: We plan to measure the energy impact of enabling GPU optimisation on classifier training. Specifically, we plan to use an simple classifier (perhaps from an existing notebook on Kaggle) on the MNIST dataset.
 
 ---
 
