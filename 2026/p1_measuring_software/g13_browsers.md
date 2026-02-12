@@ -9,7 +9,7 @@ summary: |-
   yet their energy consumption is rarely considered by end users. This study compares
   the energy consumption of three major browsers: Chrome, Firefox, and
   Brave, while performing the same video streaming task. We aim to identify
-  which browser is the most energy-efficient choice for everyday video streaming, and
+  which browser is the most energy efficient choice for everyday video streaming, and
   quantify the practical impact of that choice.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
