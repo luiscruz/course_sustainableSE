@@ -1,5 +1,5 @@
 ---
-author: Student1 Deon Saji, Student2 Adomas Bagdonas, Ibrahim Badr, Student4 FirstLast
+author: Deon Saji, Adomas Bagdonas, Ibrahim Badr, Student4 FirstLast
 group_number: 13
 title: "Which Browser Consumes the Least Energy? A Comparative Study of Web Browsers During Video Streaming"
 image: "img/g13_browsers/project_cover.png"
