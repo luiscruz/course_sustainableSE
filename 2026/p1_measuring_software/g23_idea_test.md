@@ -1,11 +1,11 @@
 ---
-author: Andrei Paduraru, Antoni Nowakowski, 
+author: Benche Cristian, Alexandru Mititelu, Antoni Nowakowski, Andrei Paduraru 
 group_number: 23
 title: "Comparing the Energy Efficiency of Standard JSON and orjson"
 image: "img/gX_template/project_cover.png"
 date: 27/03/2026
 summary: |-
-  This project comapres the energy conumption of data serialization in Python, namely how the standard json library compares to the orjson alternative. 
+  This project compares the energy conumption of data serialization in Python, namely how the standard json library compares to the orjson alternative. 
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
