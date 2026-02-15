@@ -1,0 +1,13 @@
+[project]
+name = "browser-bench"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyenergibridge",
+    "selenium>=4.40.0",
+]
+
+[tool.uv.sources]
+pyenergibridge = { git = "https://github.com/luiscruz/pyEnergiBridge.git" }
