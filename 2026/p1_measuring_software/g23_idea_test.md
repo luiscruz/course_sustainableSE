@@ -1,5 +1,5 @@
 ---
-author: Benche Cristian, Alexandru Mititelu, Antoni Nowakowski, Andrei Paduraru 
+author: Cristian Benghe, Alexandru Mititelu, Antoni Nowakowski, Andrei Paduraru 
 group_number: 23
 title: "Comparing the Energy Efficiency of Standard JSON and orjson"
 image: "img/gX_template/project_cover.png"
