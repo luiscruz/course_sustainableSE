@@ -1,51 +1,40 @@
 ---
-author: Andrei Paduraru etc
-group_number: 0
-title: "Test title"
+author: Andrei Paduraru, Antoni Nowakowski, 
+group_number: 23
+title: "Comparing the Energy Efficiency of Standard JSON and orjson"
 image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+date: 27/03/2026
 summary: |-
-  Test summary
+  This project comapres the energy conumption of data serialization in Python, namely how the standard json library compares to the orjson alternative. 
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Data serialization is a core operation in modern software as it is used for everything ranging from web APIs to local data storage implementations. In Python, the json library is the default choice; however, it is often considered slow and CPU-intensive, especially when handling large datasets. This study investigates the potential of changing to an alternative called orjson.
 
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
-
-
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
-
---- 
-#### 👉 Note 1:
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
-
---- 
-
-## Unbiased Energy Data ⚖️
-
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
-
-### Zen mode 🧘🏾‍♀️
-
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
-
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
-
-### Freeze your settings 🥶
-
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
+As a high-performance, Rust-powered alternative, orjson is reported to be significantly faster—up to 10 times faster than the built-in module for certain tasks. This speed is achieved through the use of SIMD (Single Instruction, Multiple Data) instructions, which allow a single CPU instruction to process multiple pieces of data simultaneously. This study explores the potential for energy optimization by swapping the standard library for orjson. We aim to determine if this increased computational speed results in a "Race to Sleep"—allowing the CPU to finish its task faster and return to a low-power idle state sooner—thereby reducing the total Joules consumed by the system.
 
 ---
 
-### 
+## Research Questions
 
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
+To define the scope of our analysis, we have formulated the following research questions:
 
+**RQ1.** How does the total energy consumption (in Joules) of the `orjson` library compare to the standard Python `json` library when performing large-scale serialization and deserialization tasks?
+
+**RQ2.** How do the energy-saving benefits of `orjson` scale as the volume of the dataset increases (e.g., comparing 10MB vs. 100MB files)?
+
+---
+
+## Methodology
+
+### Experimental Setup
+The experiment will be conducted on a Windows 11 machine. To access the CPU's energy registers (RAPL), we will utilize **EnergiBridge** in conjunction with an elevated (Administrator) terminal. Because Windows 11 often restricts access to Model Specific Registers (MSRs), we will ensure the necessary hardware drivers are active to allow the profiler to log the **PP0 Energy Consumption** (CPU energy) at a sampling rate of 200ms.
+
+### The Reproducible Scenario
+We have developed a Python-based automated scenario that handles both serialization and deserialization. The script will:
+1. Load a pre-generated 100MB dummy dataset into memory.
+2. **Serialize** the data into a JSON string 50 times to create a measurable load.
+3. **Deserialize** the JSON string back into a Python object 50 times.
+
+We will compare two versions: Version 1 (Baseline) using the standard json library and Version 2 (Improved) using orjson. To ensure statistical significance, we will perform 30 repeated trials for each version.
