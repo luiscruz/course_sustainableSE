@@ -2,9 +2,11 @@ import time
 import random
 import csv
 import os
+from tqdm import tqdm
 from datetime import datetime
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,21 +18,21 @@ OUTPUT_CSV = "experiment_results.csv"
 WARMUP_ROUNDS = 5
 ACTUAL_ROUNDS = 30
 DURATION = 15  # Seconds to measure per test
-BROWSER = "chrome"
+BROWSER = "firefox"
 
 
 # --- SELENIUM SETUP ---
 def get_driver():
-    opts = Options()
-    opts.add_argument("--incognito")
-    # Helper flags for acceleration stability
-    opts.add_argument("--use-fake-ui-for-media-stream")
-    opts.add_argument("--no-sandbox")
-
-    # Initialize Browser
     if BROWSER == "chrome":
+        opts = ChromeOptions()
+        opts.add_argument("--incognito")
+        opts.add_argument("--use-fake-ui-for-media-stream")
+        opts.add_argument("--no-sandbox")
         driver = webdriver.Chrome(options=opts)
     elif BROWSER == "firefox":
+        opts = FirefoxOptions()
+        opts.add_argument("--private")
+        opts.set_preference("media.navigator.permission.disabled", True)
         driver = webdriver.Firefox(options=opts)
     else:
         raise ValueError(f"Unsupported browser: {BROWSER}")
@@ -68,7 +70,7 @@ def run_speedometer(driver, runner, duration):
 def run_jetstream(driver, runner, duration):
     """JetStream 2 Test"""
     driver.get("https://browserbench.org/JetStream/")
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)  # JetStream loads 325 tests before button appears
 
     start_btn = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "button")))
 
@@ -83,7 +85,7 @@ def run_jetstream(driver, runner, duration):
 def run_motionmark(driver, runner, duration):
     """MotionMark 1.3.1 Test"""
     driver.get("https://browserbench.org/MotionMark1.3.1/")
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
 
     # MotionMark requires clicking "Run Benchmark"
     start_btn = wait.until(EC.element_to_be_clickable((By.ID, "start-button")))
@@ -97,6 +99,8 @@ def run_motionmark(driver, runner, duration):
 
 
 # --- MAIN ORCHESTRATOR ---
+
+MAX_RETRIES = 2
 
 def main():
     # 1. Initialize API
@@ -132,57 +136,63 @@ def main():
     print(f"Total runs scheduled: {len(queue)}")
 
     # 4. execution loop
-    for i, (round_type, test_name) in enumerate(queue):
-        print(f"[{i + 1}/{len(queue)}] Running {round_type} -> {test_name}...")
+    for i, (round_type, test_name) in enumerate(tqdm(queue, desc="Benchmarks", unit="test")):
+        tqdm.write(f"[{i + 1}/{len(queue)}] Running {round_type} -> {test_name}...")
 
-        driver = None
-        try:
-            # Fresh browser every time to prevent caching/memory leaks affecting energy
-            driver = get_driver()
-
-            energy = 0.0
-            exec_time = 0.0
-
-            if test_name == "control":
-                energy, exec_time = run_control(driver, runner, DURATION)
-            elif test_name == "speedometer":
-                energy, exec_time = run_speedometer(driver, runner, DURATION)
-            elif test_name == "jetstream":
-                energy, exec_time = run_jetstream(driver, runner, DURATION)
-            elif test_name == "motionmark":
-                energy, exec_time = run_motionmark(driver, runner, DURATION)
-
-            # Calculate Average Power
-            avg_power = energy / exec_time if exec_time > 0 else 0
-
-            # Save to CSV
-            with open(output_file, "a", newline="") as f:
-                writer = csv.writer(f)
-                writer.writerow([
-                    datetime.now().isoformat(),
-                    round_type,
-                    test_name,
-                    energy,
-                    exec_time,
-                    avg_power
-                ])
-
-            print(f"   -> {energy:.2f} J over {exec_time:.2f} s ({avg_power:.2f} W)")
-
-        except Exception as e:
-            print(f"   -> FAILED: {e}")
-            # Ensure EnergiBridge stops if it was left running
+        for attempt in range(1, MAX_RETRIES + 1):
+            driver = None
             try:
-                runner.stop()
-            except:
-                pass
+                driver = get_driver()
 
-        finally:
-            if driver:
-                driver.quit()
+                energy = 0.0
+                exec_time = 0.0
 
-            # 5. Cooldown for Thermal Consistency
-            time.sleep(2)
+                if test_name == "control":
+                    energy, exec_time = run_control(driver, runner, DURATION)
+                elif test_name == "speedometer":
+                    energy, exec_time = run_speedometer(driver, runner, DURATION)
+                elif test_name == "jetstream":
+                    energy, exec_time = run_jetstream(driver, runner, DURATION)
+                elif test_name == "motionmark":
+                    energy, exec_time = run_motionmark(driver, runner, DURATION)
+
+                # Calculate Average Power
+                avg_power = energy / exec_time if exec_time > 0 else 0
+
+                # Save to CSV
+                with open(output_file, "a", newline="") as f:
+                    writer = csv.writer(f)
+                    writer.writerow([
+                        datetime.now().isoformat(),
+                        round_type,
+                        test_name,
+                        energy,
+                        exec_time,
+                        avg_power
+                    ])
+
+                tqdm.write(f"   -> {energy:.2f} J over {exec_time:.2f} s ({avg_power:.2f} W)")
+                break  # Success, move to next test
+
+            except Exception as e:
+                # Ensure EnergiBridge stops if it was left running
+                try:
+                    runner.stop()
+                except:
+                    pass
+
+                if attempt < MAX_RETRIES:
+                    tqdm.write(f"   -> Attempt {attempt} failed, retrying: {e}")
+                    time.sleep(3)
+                else:
+                    tqdm.write(f"   -> FAILED after {MAX_RETRIES} attempts: {e}")
+
+            finally:
+                if driver:
+                    driver.quit()
+
+        # 5. Cooldown for Thermal Consistency
+        time.sleep(2)
 
 
 if __name__ == "__main__":
