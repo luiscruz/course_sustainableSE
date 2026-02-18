@@ -1,16 +1,50 @@
 ---
 author: Maksym Ziemlewski, Frederik van der Els, Piotr Kranendonk
 group_number: 12
-title: "Native vs Web: Measuring Energy Consumption of Desktop and Browser Applications"
+title: "Comparing the Energy Consumption of Single-Threaded and Multi-Threaded Programs"
 image: "img/gX_template/project_cover.png"
 date: 17/02/2022
 summary: |-
-    Our project explores the energy consumption differences between native desktop applications and their browser counterparts. 
-    We measure and compare power usage under controlled and identical usage scenarios (operating system, browser, . 
-    By analysing popular apps such as Spotify and WhatsApp in both desktop and web environments, we aim to determine whether native apps are more energy-efficient than running the same services in a browser.
+  Many tasks lend themselves for parallel programming, which can speed up the execution time of the program. Common ways to achieve this is by using multiple threads, and splitting the task into smaller tasks that can be executed in parallel on the different threads.
+  
+  While this indeed can speed up the execution time, it is very much possible that the overhead of multiple threads increases the energy consumption significantly. That is, despite the program being more efficient (taking less time), it could become more energy consuming.
+  
+  Our project would compare single-threaded and multi-threaded implementations of the same app. We will investigate how the number of threads used affects energy consumption, and what conclusions the developer should draw based on that.
+
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
+
+# Introduction
+Most programs are initially written in a _single-threaded_ fashion. A single-threaded program has only one thread of execution. This means that the program performs one execution at a time, in a sequential matter. This makes developing, debugging and maintaining the program simple, as the program as a whole s easier to reason about. However, many modern operating systems have multi-core processors, which have the capability of executing many tasks in parallel. With single-threaded programs, most of these cores are left unused. This can become especially noticeable if _blocking_ requests are involved, where the execution of the entire program is halted until a task finishes.
+
+A common solution to this program is to make the program _multi-threaded_. Multi-threaded programs run tasks concurrently, or in parallel. Each thread executes its own execution path of the program, allowing the program to execute multiple tasks at a time. Now, a blocking request could be executed on a different thread, allowing to program to continue execution without having to wait for the request to complete.
+
+With many cores being available on modern operating systems, this paradigm becomes increasingly common. The increased efficiency of the program's execution seems like an obvious reason to take advantage of it. However, when making this change, energy consumption is often left out of the equation. In this report, we will investigate how single-threaded and multi-threaded programs compare in energy consumption, and what considerations a developer should take in mind when choosing between the two paradigms.
+
+More specifically, we will investigate the memory usage of the same program differs when given a single-threaded and multi-threaded implementation. For this, we will take into account the transistor density, the overhead of creating a thread, the number of threads used and the effect of reusing threads.
+
+# Methodology
+We will use X/Y/Z as testing language. One should note that in this language, ...
+
+We will measure the energy consumption using A/B/C.
+
+# Implementation
+To measure the differences in energy consumption, we will use the X/Y/Z as test program. This program lends itself well for this experiment because it is not easily optimised by the compiler/CPU, ...
+
+# Hardware setup
+The tests will be performed on Windows, ...
+
+# Results
+After running the tests, ...
+
+# Statistical analysis of the results
+We will use X/Y/Z to draw conclusions, ...
+
+# Conclusion and future work
+A.
+
+# END OF REPORT
 
 Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
