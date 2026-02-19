@@ -2,7 +2,7 @@
 author: Calin Georgescu, Elia Jabbour, Wojciech Mundała, Daniel Rachev
 group_number: 14
 title: "Measuring the Energy Consumption of Python Package Managers: pip, uv, and poetry"
-image: "img/gX_template/project_cover.png"
+image: "img/g14_package_managers/project_cover.png"
 date: 12/02/2026
 summary: |-
   This article investigates the energy consumption of three Python package
