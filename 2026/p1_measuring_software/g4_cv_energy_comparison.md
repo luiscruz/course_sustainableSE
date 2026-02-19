@@ -10,6 +10,17 @@ identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 # Introduction
+
+Object detection using computer vision AI models is becoming increasingly common in modern technologies, including autonomous vehicles, medical imaging systems, warehouse robotics, and traffic monitoring. Continuous improvements to these models have led to higher detection accuracy and overall performance. However, these performance gains come with increased computational cost. Training and deploying large neural networks require substantial energy resources, and as AI adoption continues to scale, understanding the energy implications of model design choices becomes increasingly important.
+
+YOLOv8 is an open-source computer vision model designed for object detection tasks. It is available in multiple parameter sizes, ranging from Nano (3.2 million parameters) to Extra Large (68.2 million parameters). Larger variants containing more parameters achieve higher mean average precision, however, the increased number of parameters also requires more computations and memory access, which will decrease speed and can increase energy consumption. 
+
+RF-DETR is an open-source computer vision model designed for object detection tasks. It is available in multiple parameter sizes, ranging from Nano (30.5 million parameters) to 2XL (126.9 million parameters). Larger variants containing more parameters achieve higher mean average precision, however, the increased number of parameters also requires more computations and memory access, which will decrease speed and can increase energy consumption.  
+
+In this study, energy consumption and detection accuracy will be evaluated using the same set of images to determine how these metrics are affected by differences in parameter size when the model processes images. Comparing different sizes of the same architecture allows us to isolate the impact of model scaling while keeping the underlying design consistent. Energy usage will be measured using EnergiBridge while using the same hardware and keeping software settings the same to ensure a fair comparison across model sizes.
+
+We hypothesize that energy consumption will increase with model size due to the greater computational workload required. However, this relationship may not be perfectly linear. Additionally, although larger models often achieve higher detection accuracy, the performance gains may not always justify the additional energy cost. Therefore, this study will analyze how increases in energy consumption relate to improvements in detection performance, providing insight into the trade-off between accuracy and energy efficiency.
+
 # Methodology
 # Results
 # Discussion
