@@ -1,11 +1,11 @@
 ---
 author: Ayush Khadka, Carolyn Alcaraz, Nicolas Loaiza Atehortua, Benas Pranauskas
 group_number: 35
-title: "Google Meet Vs Zoom"
+title: "Comparing the difference in Power Consumption between Video Conference Applications Microsoft Teams and Zoom"
 image: "img/gX_template/project_cover.png"
 date: 03/03/2022
 summary: |-
-  This project is about comparing the energy usage of Google Meet and Zoom. We will run both applications for 1  minute for 15-30 iterations. We will measure the cpu power over time. We will use Energibridge. 
+  This project is about comparing the energy usage of Microsoft Teams and Zoom. We will run both applications for 1  minute for 15-30 iterations. We will measure the cpu power over time. We will use Energibridge. 
   
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
@@ -49,4 +49,33 @@ It is not possible to shut off the unnecessary things that run in our system. St
 ### 
 
 Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
+
+# Introduction
+## Context and Motivation
+## Research Objectives
+
+# Methodology
+## Hardware and Software Environment
+Include the different hardware and software variables, as well as our energy measurement tools (energibridge)
+## Controlled Testing Environment
+Include zen mode and freeze settings from template
+Any other things to note like consistent screen brightness, or closing non-essential apps, turning off notifications, etc. etc.
+## Testing Protocol
+### Warm up
+### Automated testing procedure
+Include some cool down to allow environment to return to baseline conditions
+
+# Results
+## Experimental results
+## Statistical Analysis
+
+# Discussion
+## Interpretation of Results
+## Implications
+
+# Limitations and Future Work
+
+# Conclusion
+
+# References
 
