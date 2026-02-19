@@ -102,7 +102,7 @@ Below the description of each project.
   - Replication package.
   - Buddycheck for P1 (via Brightspace)
 - **Weight in final grade**: 40%
-- **Deadline** Friday, Feb 28
+- **Deadline** Friday, Feb 27
 
 
 
