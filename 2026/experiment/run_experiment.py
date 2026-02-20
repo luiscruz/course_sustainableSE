@@ -138,8 +138,7 @@ def run_single_iteration(run_index, condition, counter_label):
 def main():
     os.makedirs(RESULTS, exist_ok=True)
 
-    # Refresh sudo timestamp so it doesn't expire mid-run
-    print('Refreshing sudo credentials (keep this terminal alive)...')
+    # Verify sudo access for EnergiBridge (NOPASSWD rule required in sudoers)
     subprocess.run(['sudo', '-v'], check=True)
 
     # Prevent display sleep during unattended run

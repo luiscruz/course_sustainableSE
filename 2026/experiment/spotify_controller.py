@@ -36,9 +36,9 @@ def open_settings():
     """Bring Spotify to front and open its Preferences window."""
     bring_spotify_to_front()
     pyautogui.hotkey('command', ',')
-    time.sleep(1.5)
+    time.sleep(2.0)                     # wait for settings window to fully render
     pyautogui.hotkey('command', 'up')   # normalize scroll → Audio Quality always visible
-    time.sleep(0.3)
+    time.sleep(0.5)
 
 
 def set_audio_quality(condition):
@@ -69,7 +69,7 @@ def set_audio_quality(condition):
         'screenshots/quality_dropdown.png matches the dropdown arrow.'
     )
     pyautogui.click(dropdown)
-    time.sleep(0.7)   # wait for dropdown list to appear
+    time.sleep(1.0)   # wait for dropdown list to appear
 
     # Step 2 — click the desired option
     quality_key = QUALITY_MAP[condition]
@@ -186,9 +186,10 @@ def _scan_canvas_row(label):
     Raises AssertionError if no toggle-coloured pixels are found.
     """
     scan_x = label.left + label.width          # start right of the label text
-    # Cap at 400 logical px — the toggle is ~280px past the label; scanning to
-    # the full screen edge picks up pixels from other apps/windows.
-    scan_w = min(400, pyautogui.size().width - scan_x)
+    # Cap at 600 logical px — on 1920px displays the toggle can be ~490px past
+    # the label right edge; 600 covers that while staying clear of album art
+    # and other app windows that appear further right.
+    scan_w = min(600, pyautogui.size().width - scan_x)
     img    = pyautogui.screenshot(region=(scan_x, label.top, scan_w, label.height))
     scale  = max(1, round(img.height / label.height))   # 2 on Retina, 1 otherwise
     cy     = img.height // 2
@@ -274,9 +275,9 @@ def configure(condition):
     set_audio_quality(condition)
     # Let the dropdown animation finish and re-normalise scroll position so
     # canvas_label.png is in the same position as in the standalone test.
-    time.sleep(0.7)
+    time.sleep(1.0)
     pyautogui.hotkey('command', 'up')
-    time.sleep(0.5)
+    time.sleep(0.8)
     set_canvas(condition)
     close_settings()
 

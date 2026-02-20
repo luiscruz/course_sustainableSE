@@ -17,8 +17,7 @@ venv/
 env/
 ENV/
 
-# Experiment results (raw data — large, tracked separately)
-experiment/results/
+# Experiment results tracked in repo
 
 # Experiment progress tracking
 experiment/progress.json

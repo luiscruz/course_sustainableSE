@@ -15,7 +15,7 @@ Assumes Spotify is already open and a song is loaded/paused at 0:00.
 import subprocess
 import time
 
-MEASUREMENT_SECONDS = 30
+MEASUREMENT_SECONDS = 45
 
 
 def play():

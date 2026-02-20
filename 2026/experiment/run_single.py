@@ -23,7 +23,7 @@ from spotify_controller import configure, prebuffer
 from warmup import fibonacci_warmup
 
 # ── Configuration ────────────────────────────────────────────────────────────
-CONDITION = 'LOW'    # 'LOW' | 'MEDIUM' | 'HIGH'
+CONDITION = 'HIGH'    # 'LOW' | 'MEDIUM' | 'HIGH'
 RUN_ID    = 1
 RESULTS   = 'results'
 BINARY    = '../EnergiBridge/target/release/energibridge'
