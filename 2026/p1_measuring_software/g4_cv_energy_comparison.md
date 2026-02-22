@@ -1,7 +1,7 @@
 ---
 author: Anhar Al Haydar, Tom Clark, Moniek Tummers, Andriana Tzanidou
 group_number: 4
-title: "Comparing Energy Consumption in Computer Vision Across Different Model Sizes"
+title: "Comparing Energy Consumption in Computer Vision Across Different Model Architectures"
 image: "img/g4_cv_energy_comparison/g4_project_cover.png"
 date: 12/02/2026
 summary: |-
@@ -18,6 +18,10 @@ YOLOv8 (You Only Look Once version 8) is an open-source computer vision model de
 RF-DETR (Roboflow Detection Transformer) is an open-source computer vision model designed by Roboflow and introduced in 2026. Similar to the YOLOv8 model, the RF-DETR model has two main parts. The backbone uses DINOv2 pre-trained weights to extract features of the input image.[^4] DINOv2 is a pre-trained self-supervised visual model trained using a Vision Transformer.[^5] The second part is the head, which uses a set of learned query tokens that attend to the features from the backbone through a Transformer decoder. Each query predicts the location of an object, its class, and optionally a segmentation mask.[^4] The model is available in multiple parameter sizes, ranging from Nano (30.5 million parameters) to 2XL (126.9 million parameters).[^3]
 
 In this study, energy consumption will be measured using the same set of images to determine how different model architectures affect energy usage. Comparing RF-DETR and YOLOv8 at similar model sizes allows us to isolate the impact of architectural design on energy efficiency while keeping parameter counts roughly consistent. Energy usage will be measured using EnergiBridge on the same hardware with identical software settings to ensure a fair comparison between the two models.
+
+Based on the experimental setup, we pose the following research questions:
+1. How does model architecture affect energy consumption in object detection under similar model sizes?
+2. Is there a significant difference in energy consumption between CNN-based and transformer-based architectures during inference under identical conditions?
 
 We hypothesize that RF-DETR and YOLOv8 will differ in energy consumption even when their model sizes are similar, due to differences in architectural design and computational patterns.
 
