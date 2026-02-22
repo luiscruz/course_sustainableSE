@@ -1,7 +1,7 @@
 ---
 author: Ocean Wang, Erkin Başol, Yasar Kocdas
 group_number: 20
-title: "Comparing Dutch education apps"
+title: "Comparing Dutch education websites on energy consumption"
 image: "img/gX_template/project_cover.png"
 date: 12/02/2026
 summary: |-
@@ -18,8 +18,6 @@ summary: |-
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-
-## 
 
 ## Project Topic:
 
