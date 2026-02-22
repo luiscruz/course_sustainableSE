@@ -5,7 +5,7 @@ title: "Comparing Energy Consumption in Computer Vision Across Different Model S
 image: "img/g4_cv_energy_comparison/g4_project_cover.png"
 date: 12/02/2026
 summary: |-
-  In this project, we aim to investigate how different model sizes of a computer vision AI model affect energy consumption. We want to compare small, medium, large weight variants of the same open-source model such as RF-DETR or YOLOV8 to see how scaling impacts energy usage. Identical use cases will be run across all model sizes while measuring energy consumption with tools like EnergiBridge.  
+  In this project, we aim to investigate how different computer vision AI architectures affect energy consumption. We want to compare two open-source models, RF-DETR and YOLOv8, to see how transformer-based versus CNN-based designs impact energy usage. Identical use cases will be run across both models while measuring energy consumption with tools like EnergiBridge. 
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
@@ -13,18 +13,30 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 
 Object detection using computer vision AI models is becoming increasingly common in modern technologies, including autonomous vehicles, medical imaging systems, warehouse robotics, and traffic monitoring. Continuous improvements to these models have led to higher detection accuracy and overall performance. However, these performance gains come with increased computational cost. Training and deploying large neural networks require substantial energy resources, and as AI adoption continues to scale, understanding the energy implications of model design choices becomes increasingly important.
 
-YOLOv8 is an open-source computer vision model designed for object detection tasks. It is available in multiple parameter sizes, ranging from Nano (3.2 million parameters) to Extra Large (68.2 million parameters). Larger variants containing more parameters achieve higher mean average precision, however, the increased number of parameters also requires more computations and memory access, which will decrease speed and can increase energy consumption. 
+YOLOv8 (You Only Look Once version 8) is an open-source computer vision model developed by Ultralytics and introduced at the beginning of 2023. It is used for object detection tasks and image classification. The architecture consists of two major parts. The first part is the backbone, which consists of sequential convolutional layers that extract features from the input image. The second part is the head, which uses convolutional layers to estimate bounding boxes and class probabilities using the features extracted by the backbone.[^2] The model is available in multiple parameter sizes, ranging from Nano (3.2 million parameters) to Extra Large (68.2 million parameters).[^1] 
 
-RF-DETR is an open-source computer vision model designed for object detection tasks. It is available in multiple parameter sizes, ranging from Nano (30.5 million parameters) to 2XL (126.9 million parameters). Larger variants containing more parameters achieve higher mean average precision, however, the increased number of parameters also requires more computations and memory access, which will decrease speed and can increase energy consumption.  
+RF-DETR (Roboflow Detection Transformer) is an open-source computer vision model designed by Roboflow and introduced in 2026. Similar to the YOLOv8 model, the RF-DETR model has two main parts. The backbone uses DINOv2 pre-trained weights to extract features of the input image.[^4] DINOv2 is a pre-trained self-supervised visual model trained using a Vision Transformer.[^5] The second part is the head, which uses a set of learned query tokens that attend to the features from the backbone through a Transformer decoder. Each query predicts the location of an object, its class, and optionally a segmentation mask.[^4] The model is available in multiple parameter sizes, ranging from Nano (30.5 million parameters) to 2XL (126.9 million parameters).[^3]
 
-In this study, energy consumption and detection accuracy will be evaluated using the same set of images to determine how these metrics are affected by differences in parameter size when the model processes images. Comparing different sizes of the same architecture allows us to isolate the impact of model scaling while keeping the underlying design consistent. Energy usage will be measured using EnergiBridge while using the same hardware and keeping software settings the same to ensure a fair comparison across model sizes.
+In this study, energy consumption will be measured using the same set of images to determine how different model architectures affect energy usage. Comparing RF-DETR and YOLOv8 at similar model sizes allows us to isolate the impact of architectural design on energy efficiency while keeping parameter counts roughly consistent. Energy usage will be measured using EnergiBridge on the same hardware with identical software settings to ensure a fair comparison between the two models.
 
-We hypothesize that energy consumption will increase with model size due to the greater computational workload required. However, this relationship may not be perfectly linear. Additionally, although larger models often achieve higher detection accuracy, the performance gains may not always justify the additional energy cost. Therefore, this study will analyze how increases in energy consumption relate to improvements in detection performance, providing insight into the trade-off between accuracy and energy efficiency.
+We hypothesize that RF-DETR and YOLOv8 will differ in energy consumption even when their model sizes are similar, due to differences in architectural design and computational patterns.
 
 # Methodology
 # Results
 # Discussion
 # Conclusion
+# References
+
+[^1]: Ultralytics. (n.d.). YOLOv8 models documentation. Retrieved February 22, 2026, from https://docs.ultralytics.com/models/yolov8/
+
+[^2]: Sohan, M., Sai Ram, T., Rami Reddy, C.V. (2024). A Review on YOLOv8 and Its Advancements. In: Jacob, I.J., Piramuthu, S., Falkowski-Gilski, P. (eds) Data Intelligence and Cognitive Informatics. ICDICI 2023. Algorithms for Intelligent Systems. Springer, Singapore. https://doi.org/10.1007/978-981-99-7962-2_39
+
+[^3]: Roboflow. (n.d.). rf-detr [Computer software]. GitHub. Retrieved February 22, 2026, from https://github.com/roboflow/rf-detr
+
+[^4]: Isaac Robinson, P. Robicheaux, M. Popov, Deva Ramanan, & N. Peri. (2026). RF-DETR: Neural architecture search for real-time detection transformers. arXiv. https://arxiv.org/abs/2511.09554
+
+[^5]: Maxime Oquab, T. Darcet, T. Moutakanni, H. Vo, M. Szafraniec, V. Khalidov, P. Fernandez, D. Haziza, F. Massa, A. El-Nouby, M. Assran, N. Ballas, W. Galuba, R. Howes, P.-Y. Huang, S.-W. Li, I. Misra, M. Rabbat, V. Sharma, G. Synnaeve, H. Xu, H. Jégou, J. Mairal, P. Labatut, A. Joulin, & P. Bojanowski. (2024). DINOv2: Learning robust visual features without supervision. arXiv. https://arxiv.org/abs/2304.07193
+
 ---
 
 Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
