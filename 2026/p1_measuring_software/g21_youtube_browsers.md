@@ -41,9 +41,9 @@ Through rigorous automated testing and statistical analysis, we aim to provide c
 
 ## **Methodology**
 
-### Experimental Subjects and Variables
-#### Browser Selection
-This experiment selected three representative web browsers: Google Chrome, Microsoft Edge, and Mozilla Firefox. The selection was based on the following criteria:
+### 1. Experimental Subjects and Variables
+#### 1.1 Browser Selection
+This experiment selected three representative web browsers: Google Chrome, Microsoft Edge, and Firefox. The selection was based on the following criteria:
 
 Kernel Diversity: Chrome and Edge are based on the Chromium engine, while Firefox utilizes the independent Gecko engine. Comparing different engines under identical workloads provides significant scientific insight into energy optimization strategies.
 
@@ -51,7 +51,7 @@ Market Share: These three browsers account for the vast majority of desktop user
 
 Vendor-Specific Optimizations: Since Edge is deeply integrated with the Windows OS and Chrome is the most popular cross-platform browser, comparing them allows us to observe how different vendors optimize hardware acceleration.
 
-#### Hardware Acceleration States
+#### 1.2 Hardware Acceleration States
 For each browser, we tested two distinct configurations:
 
 Hardware Acceleration Enabled: The default browser state where tasks are offloaded to the GPU.
@@ -59,50 +59,50 @@ Hardware Acceleration Enabled: The default browser state where tasks are offload
 Hardware Acceleration Disabled: Forced via Selenium startup arguments (e.g., --disable-gpu and --disable-software-rasterizer), requiring the CPU to handle all video decoding and rendering tasks.
 This comparison aims to quantify the actual energy efficiency gains (or losses) of hardware offloading in video playback scenarios.
 
-#### YouTube Workload
+#### 1.3 YouTube Workload
 We manually selected four YouTube Shorts, each with an average duration of approximately 30 seconds. These videos were organized into a dedicated playlist and played sequentially during each experimental run. Shorts were chosen because their compact nature and frequent rendering changes better reflect the dynamic energy fluctuations of modern web video content.
 
-### Environmental Control and Fairness
-#### Hardware Information
+### 2. Environmental Control and Fairness
+#### 2.1 Hardware Information
 
 
-#### Zen Mode
+#### 2.2 Zen Mode
 
 
-#### Freeze Settings
+#### 2.3 Freeze Settings
 
 
-#### Baseline Collection
+#### 2.4 Baseline Collection
 Baseline energy consumption represents the background power usage of the system in an idle state with the browser open. Subtracting the baseline is essential to isolate the specific energy cost of "video playback" from the energy required to keep the system and browser running.
 
 [How did we collect the baseline data?]
 
-### Measurement Infrastructure
-#### Automation: Selenium
+### 3. Measurement Infrastructure
+#### 3.1 Automation: Selenium
 This experiment utilized Selenium WebDriver for full automation. Compared to manual operation, the key advantages include:
 
-Precise Timing: Ensures that video playback duration is exactly consistent across every run.
+- **Precise Timing:** Ensures that video playback duration is exactly consistent across every run.
 
-Elimination of Human Error: Prevents additional energy spikes caused by unintended mouse movements, clicks, or operational delays.
+- **Elimination of Human Error:** Prevents additional energy spikes caused by unintended mouse movements, clicks, or operational delays.
 
-Fairness: Every browser loads the same set of URLs through identical script logic.
+- **Fairness:** Every browser loads the same set of URLs through identical script logic.
 
-#### Energy Monitoring: Energybridge
+#### 3.2 Energy Monitoring: Energybridge
 We utilized Energybridge for hardware-level data acquisition.
 
-Integration: Energybridge was launched and terminated in synchronization with the Selenium script via a master loop script (.ps1 or .sh).
+**Integration:** Energybridge was launched and terminated in synchronization with the Selenium script via a master loop script (.ps1 or .sh).
 
-Data Source: The tool reads directly from hardware interfaces (such as Intel RAPL) to capture CPU energy counters and instantaneous GPU power draw.
+**Data Source:** The tool reads directly from hardware interfaces (such as Intel RAPL) to capture CPU energy counters and instantaneous GPU power draw.
 
-### Data Acquisition Process
-#### Sampling Strategy and the "N+2" Principle
+### 4. Data Acquisition Process
+#### 4.1 Sampling Strategy and the "N+2" Principle
 For each configuration (e.g., Chrome with GPU enabled), we performed 32 independent runs.
 
 **Why 32 runs?** Hardware energy consumption is subject to unavoidable fluctuations caused by thermal changes and minor background system activities.
 
 **Warmup Logic:** We primarily analyze the data from 30 of these runs. The first two runs are treated as "warmup runs" to allow the hardware to reach a stable operating temperature and ensure all browser components are fully loaded, preventing initial spikes from skewing the statistical accuracy.
 
-#### Data Structure
+#### 4.2 Data Structure
 The resulting CSV files contain several key metrics used for analysis:
 | Metric | Unit | Description | Importance |
 | :--- | :--- | :--- | :--- |
