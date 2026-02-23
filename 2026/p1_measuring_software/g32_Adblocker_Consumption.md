@@ -100,12 +100,6 @@ We collected 30 independent executions for each profile, resulting in two sample
 
 ---
 
-Perfect — then we’ll place them **one under the other**, exactly where they appeared in the LaTeX document (inside the *Exploratory Data Analysis* section, immediately after the explanatory sentence).
-
-Here is the corrected section:
-
----
-
 ### Exploratory Data Analysis
 
 The histogram, boxplot and violin plots obtained from the results are shown below. The two distributions are clearly separated, with Profile 2 exhibiting consistently lower energy values.
@@ -178,4 +172,3 @@ These findings suggest that, in the evaluated scenario, blocking advertisements 
 Future work could extend this analysis to other browsing scenarios, different websites, and additional hardware platforms to assess generalizability.
 
 ---
-
