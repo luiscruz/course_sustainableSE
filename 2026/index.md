@@ -66,7 +66,7 @@ By the end of this course you will be able to:
 | 2    | Mon | 16-02-2026            | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.                  | [📊Slides](https://surfdrive.surf.nl/s/gtzGbBZnkLNHm3e)  |
 | 2    | Wed | 18-02-2026            | **Lecture.** Green Software Engineering — Part II: units of energy.                                                   | [📊Slides](https://surfdrive.surf.nl/s/dFJWtQDMxdrfJXt)  |
 | 2    | Thu | 19-02-2026            | **Project.** [Project 1](#project1) - steering meeting and formative assessment.                                      |                      |
-| 3    | Mon | 23-02-2026            | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. | [📊Slides][tbd]  |
+| 3    | Mon | 23-02-2026            | **Lecture.** Green Software Engineering — Part III: Energy efficiency in mobile computing; carbon-aware data centres. | [📊Slides](https://surfdrive.surf.nl/s/AwibrbwGdk52sr5)  |
 | 3    | Wed | 25-02-2026            | **Guest Lecture.** GreenPT                                                                                            |                      |
 | 3    | Thu | 26-02-2026            | **Project.** [Project 1](#project1) - steering meeting.                                                               |                      |
 | 3    | Fri | 27-02-2026            | ⏰ Deadline for [Project 1](#project1) Friday, Feb 27.                                                                |                      |
