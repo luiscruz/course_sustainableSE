@@ -67,8 +67,11 @@ The prior mobile findings from Wattenbach et al. showed Meet consuming more ener
 
 ### 3.1 Overview
 
-We measure the client-side energy consumed by a single browser participant in a 120-second call, on each platform, repeated 30 times in randomised order.
+We measure the client-side energy consumed by a single browser participant in a 120-second call, on each platform, repeated 30 times in randomised order. 
 
+### 3.2 Experiment Setting
+
+For each platform, we added five additional participant bots to better simulate a real-life environment, resulting in a total of ten additional bots. These bots were deployed using an automation script. To prevent interference with the client-side machine, where the experimental measurements were conducted, we ran the bots on a separate machine. The choice of five bots per platform was based on the hardware capabilities of the machine executing them. On the client machine itself, we only simulated the experiments.
 ### 3.2 Browser Bots
 
 We use Selenium WebDriver to control real Chrome browser instances. Human interaction introduces timing variability that automation removes. Each bot joins the meeting, waits exactly 120 seconds, and leaves. Between runs, the temporary Chrome profile is deleted so no cached state carries over.
@@ -79,24 +82,30 @@ Chrome runs in visible mode. Google Meet rejects headless Chrome outright, so th
 
 ### 3.3 Energy Measurement
 
-EnergiBridge runs as a background process from just before the bot joins to just after it leaves. It writes a high-frequency power time-series to CSV and prints total energy consumed when it exits. Alongside it, a Python thread samples `psutil` every second for CPU%, memory, and network bytes in both directions. Together these give us hardware-level power data at 5 Hz and a complete system-level view at 1 Hz.
+EnergiBridge runs as a background process from just before the bot joins to just after it leaves. It writes a high-frequency power time-series to CSV and prints total energy consumed when it exits. Alongside it, a Python thread samples `psutil` every second for CPU%, memory, and network bytes in both directions. Together, these give us hardware-level power data at 5 Hz and a complete system-level view at 1 Hz.
 
 ### 3.4 Controls
 
-**Randomised run order.** The full sequence of 60 experiments is shuffled before execution. This spreads time-of-day effects, background system activity, and thermal drift evenly across both platforms.
+**Randomised run order.** Due to the one-hour session limit of Google Meet, it was not possible to execute all experiments in a single run. Therefore, the experiments were divided into batches of 8, 9, 9, and 4 runs. Before each batch execution, the full sequence of 60 experiments was shuffled. This randomised ordering helps distribute time-of-day effects, background system activity, and potential thermal drift evenly across both platforms.
 
-**Cooldown between runs.** We wait 60 seconds between experiments so the CPU can return to a resting thermal state before the next measurement starts.
+**Cooldown between runs.** We introduced a 60-second pause between consecutive experiments to allow the CPU to return to a resting thermal state before the next measurement began. Additionally, after each batch of experiments, when the Google Meet session ended, setting up a new session and reconnecting the bots took approximately four minutes. Therefore, an additional waiting period was naturally introduced between batches. All experiments were conducted within a continuous four-hour time window and were not distributed across different times of the day.
 
 **Isolated Chrome profiles.** Each run starts with a clean profile directory that is deleted afterwards, so no browser state accumulates across runs.
 
-**Consistent meeting setup.** A human host stays in the meeting throughout all runs for each platform. The bot always joins an active call.
+**Zen Mode.** All unnecessary applications and background tasks were closed, and all external I/O devices were disconnected from the laptop. Only the Python script responsible for automating the experiments was running. The laptop remained connected to its charger throughout the entire process, with the battery maintained at 100%. After the script was initiated, the laptop was not used or interacted with in any way that could interfere with the experimental measurements. Also, the brightness is kept the same throughout the experiments.
+
+**Warming up the laptop.** Before the initial run, a Fibonacci sequence script was executed for five minutes on the laptop used to conduct the experiments. This ensured that the system reached a stable operating temperature prior to measurement.
+
+**Environment control.** The room temperature was kept constant throughout the experimental process, and the windows remained closed to minimize environmental variations.
+
+**Consistent meeting setup.** A human host created both the Google Meet and Microsoft Teams calls. For each platform, the host and four bots remained in the meeting throughout all experimental runs. During each experiment, an additional bot executed on the experiment laptop joined the already active call. This ensured that every measurement was performed under the same controlled and consistent meeting conditions.
 
 ### 3.5 Experimental Matrix
 
 | Parameter | Value |
 |---|---|
 | Platforms | Google Meet, Microsoft Teams |
-| Participants per call | 1 bot + 1 human host |
+| Participants per call | 1 experiment bot + 5 additional participants (1 host and 4 bots)|
 | Call duration | 120 seconds |
 | Repetitions per platform | 30 |
 | Total runs | 60 |
@@ -105,7 +114,7 @@ EnergiBridge runs as a background process from just before the bot joins to just
 | Media stream | Synthetic (fake device) |
 | Run order | Randomised (fixed seed) |
 | Energy tool | EnergiBridge |
-| OS / Hardware | [INSERT: e.g., macOS 14, Apple M2, 16 GB RAM] |
+| OS / Hardware | [macOS 26.3., Apple M4, 16 GB RAM] |
 
 ### 3.6 Analysis
 
