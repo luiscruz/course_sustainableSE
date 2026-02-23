@@ -112,7 +112,7 @@ EnergiBridge runs as a background process from just before the bot joins to just
 | Cooldown between runs | 60 seconds |
 | Browser | Google Chrome (latest), visible mode |
 | Media stream | Synthetic (fake device) |
-| Run order | Randomised (fixed seed) |
+| Run order | Randomised  |
 | Energy tool | EnergiBridge |
 | OS / Hardware | [macOS 26.3., Apple M4, 16 GB RAM] |
 
