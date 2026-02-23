@@ -1,11 +1,11 @@
 ---
-author: Uddhav Pisharody, Job Stouthart, Vasil Chirov, Georgi Dimitrov
+author: Uddhav Pisharody, Job Stouthart, Vasil Chirov, Georgi Dimitrov, Horia Zaharia
 group_number: 28
-title: "Energy consumption of short-form video playback: Instagram Reels vs TikTok, Chrome vs Firefox"
+title: "Energy Consumption of YouTube Short-Form Video Playback: Auto vs HD720 on Chrome and Firefox"
 image: "img/gX_template/project_cover.png"
-date: 12/02/2022
+date: 27/02/2026
 summary: |-
-  We propose to investigate the energy consumption of short-form video playback across two popular platforms: TikTok and Instagram Reels. We focus on measuring how much energy is consumed when watching the same short video under controlled conditions - TikTok vs Instagram (same video content) and Google Chrome vs Mozilla Firefox (same browser environment comparison). This will result in a 2x2 experimental design of TikTok on Chrome, TikTok on Firefox, Instagram on Chrome, Instagram on Firefox. Our goal is to analyze whether differences in platform implementation and browser rendering engines lead to measurable differences in energy and power usage.
+  We investigate the energy consumption of short-form video playback on YouTube under controlled conditions. Specifically, we analyze how browser choice (Google Chrome vs Mozilla Firefox) and video quality settings (automatic quality selection vs forced 720p playback) affect energy usage. Using the same YouTube Short video across all experiments, we construct a 2×2 experimental design consisting of Chrome–Auto, Chrome–HD720, Firefox–Auto, and Firefox–HD720 configurations. Energy consumption is measured using EnergiBridge at the CPU package level while automating video playback via Playwright. Each configuration is executed 30 times in randomized order to mitigate system noise. Our goal is to assess whether video quality and browser implementation differences lead to measurable differences in energy consumption and efficiency during short-form video playback.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
