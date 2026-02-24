@@ -1,5 +1,5 @@
 ---
-author: Cem Gungor, Rodrigo Montero Gonzalez, Sahana Sahana Ganesh, Poyraz Temiz
+author: Cem Gungor, Rodrigo Montero Gonzalez, Sahana Ganesh, Poyraz Temiz
 group_number: 32
 title: "Adblocker Consumption: Measuring the Energy Usage of Adblockers"
 image: "img/gX_template/project_cover.png"
@@ -53,7 +53,7 @@ We hypothesize that enabling an ad blocker reduces energy consumption by prevent
 * **CPU:** 16 cores
 * **Processor:** Intel(R) Core Ultra 7 255H (2.00 GHz)
 * **RAM:** 32GB
-* **Operating System:** Ubuntu Linux 22.04 LTS
+* **Operating System:** Ubuntu Linux 24.04.3 LTS
 
 ---
 
