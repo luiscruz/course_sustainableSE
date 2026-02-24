@@ -78,15 +78,28 @@ Include the different hardware and software variables, as well as our energy mea
 ## Controlled Testing Environment
 Include zen mode and freeze settings from template
 Any other things to note like consistent screen brightness, or closing non-essential apps, turning off notifications, etc. etc.
+Mention the shuffling!
 ## Testing Protocol
 ### Warm up
 ### Automated testing procedure
 Include some cool down to allow environment to return to baseline conditions
 
 # Results
+
+As mentioned previously, EnergiBridge was used to measure energy consumption. The tool provides the following relevant metrics:
+- Delta
+- SYSTEM_POWER (Watts)
+
+With the metrics above, the key metrics to be calculated per trial were:
+1. Average Power Consumption (W): Calculated by averaging the power readings over the duration of the trial
+2. Total Energy Consumption (J): Calculated by multiplying the power consumption by the delta and summing the results over all the samples in the CSV file. 
+3. Energy Delay Product: Calculated by multiplying energy by the total time
+
+
 ## Experimental results
 
 - Violet and Box Plot
+- Outlier discussion with threshold
 - Violet and Box Plot without outliers
 ## Statistical Analysis
 
