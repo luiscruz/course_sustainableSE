@@ -64,12 +64,15 @@ We manually selected four YouTube Shorts, each with an average duration of appro
 
 ### 2. Environmental Control and Fairness
 #### 2.1 Hardware Information
+The hardware that was used for the experiment is a Windows 11 laptop equipped with an AMD Ryzen 7 4800H CPU and an NVidia GeForce GTX 1650ti GPU.
 
 
 #### 2.2 Zen Mode
+The experiment was conducted with no other (background) applications running other than the ones strictly necessary. The only things running were: A powershell window which was used to launch the automation script, python for running the script which launched a browser with a specific config, energibridge for collecting the energy data, and the browser itself.
 
 
 #### 2.3 Freeze Settings
+To ensure that every test run was conducted under as close as possible to identical conditions, we put the laptop to max brightness, made sure it did not turn of the screen or itself after a certain amount of time, and made sure that the laptop was plugged into both power and ethernet during the entire duration of the experiment. We also tried to keep the room temperature at a constant 18 degrees Celsius to minimize the influence of thermal fluctuations on energy consumption. Finally, all the browsers were set to use the high performance NVidia GPU rather than the integrated one from the CPU.
 
 
 ### 3. Measurement Infrastructure
