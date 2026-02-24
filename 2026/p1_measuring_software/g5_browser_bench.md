@@ -24,7 +24,7 @@ To get concrete numbers, we use **EnergiBridge**, a cross-platform tool that mea
 
 ### **macOS**
 
-The macOS testing phase involved 30 measurement rounds and 5 warmup rounds per benchmark. Warmup rounds ensured hardware temperatures were stabilized and background processes settled, eliminating "tail energy" artifacts that could skew results. Brightness was set to 50% for all tests (auto-brightness disabled) refresh rate was set to 60Hz, with screen saver, auto-lock and display-sleep disabled.
+The macOS testing phase involved 30 measurement rounds and 5 warmup rounds per benchmark. Warmup rounds ensured hardware temperatures were stabilized and background processes settled, eliminating "tail energy" artifacts that could skew results. Brightness was set to 50% for all tests (auto-brightness disabled) refresh rate was set to 60Hz, with screen saver, auto-lock and display-sleep disabled. The order of the actual test rounds was randomized to prevent systematic bias from ordering effects, and a 30-second cooldown period was enforced between consecutive runs to allow the CPU to return to a stable thermal state.
 
 #### **Comparative Results Summary**
 
