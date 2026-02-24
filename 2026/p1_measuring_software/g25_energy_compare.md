@@ -19,10 +19,36 @@ Every swipe has a cost beyond attention. The energy consumed by our devices to l
 If you're going to doomscroll, you might as well do it in an energy-efficient way.
 
 ## Methodology
+### Analysis
+#### Exploratory Analysis
+Violin + Box plots, expect the shape and outliers of the data.
+#### Normality
+After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 3 standard deviations from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
+#### Statistical Significance
+Group differences were evaluated using the Welch’s t-test, which does not assume equal variances between groups. Statistical significance was determined using a α = 0.05.
+#### Effect Size
+
+To evaluate the practical implication of the observed results, mean difference and percent change were calculated.
+Cohen’s d was computed to measure statistical effect size. Effect sizes were interpreted according to conventional benchmarks:
+
+Small effect: d ≈ 0.2
+
+Medium effect: d ≈ 0.5
+
+Large effect: d ≈ 0.8
+
+While statistical difference is unlikely to arise by chance, the practical importance will be further evaluated in the discussion section.
 
 ## Results
 
+### Analysis
+#### Exploratory Analysis
+#### Normality
+#### Statistical Significance
+#### Effect Size
+
 ## Discussion
+### Practical importance
 
 ## Conclusion
 
