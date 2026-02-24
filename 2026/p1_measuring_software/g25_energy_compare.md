@@ -12,7 +12,11 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 
 ## Introduction
 
-Modern software increasingly relies on desktop-based applications that mirror web functionality. This project investigates whether native desktop apps (e.g., Spotify Desktop) consume more energy than their browser-based equivalents under identical usage scenarios (idle, active, background). The study evaluates architectural overhead and its sustainability implications.
+In 2025, people spent on average 141 minutes per day on social media[^time-spent]. That adds up to over 850 hours per person per year, much of it spent watching short-form content. A short break can easily turn into an endless session of watching a stream of recommended videos, a phenomenon known as "doomscrolling."
+
+Every swipe has a cost beyond attention. The energy consumed by our devices to load, decode and play these videos is not something you might think about. In this project, we measure the total system power consumption while doomscrolling Instagram Reels and YouTube Shorts to understand the energy usage of our social media habits.
+
+If you're going to doomscroll, you might as well do it in an energy-efficient way.
 
 ## Methodology
 
@@ -25,3 +29,6 @@ Modern software increasingly relies on desktop-based applications that mirror we
 ## Future work
 
 ## References
+
+[^time-spent]: B. Elad, "Average Time Spent On Social Media By App, Country, Region And Trend (2025)," *ElectroIQ*, Jun. 30, 2025. [Online]. Available: [https://electroiq.com/stats/average-time-spent-on-social-media/](https://electroiq.com/stats/average-time-spent-on-social-media/). [Accessed: Feb. 24, 2026].
+
