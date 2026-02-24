@@ -101,3 +101,7 @@ To be added
 
 ### **Conclusion**
 To be added
+
+**Our Code**
+
+Our code for the replication of the experiments is available at [https://github.com/SSE-Group-5/browser-bench](https://github.com/SSE-Group-5/browser-bench)
