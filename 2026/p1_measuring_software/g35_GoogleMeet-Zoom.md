@@ -84,7 +84,13 @@ Include some cool down to allow environment to return to baseline conditions
 
 # Results
 ## Experimental results
+
+- Violet and Box Plot
+- Violet and Box Plot without outliers
 ## Statistical Analysis
+
+- Shapiro-Wilk
+- Welch’s T Test
 
 # Discussion
 ## Interpretation of Results
@@ -92,7 +98,13 @@ Include some cool down to allow environment to return to baseline conditions
 
 # Limitations and Future Work
 
+There were some limitations that should be addressed which was the limited test duration. In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. Another limitation is the use of wireless connection in which a wired connection would offer a more stable energy reading but this does not reflect real life scenarios since most video conferencing applications work through wireless connections. Another limitation is that this experiment was conducted in a single machine in which results could vary in different machines such as a Mac or Linux computer. 
+
+Some future work can include the experiment being conducted in two devices in order to reduce the bias and provide an intersting analysis of cross platforms. Increasing the duration into longer intervals can demonstrate real life situations. Testing out more applications in demand such as google meet and slack would provide interesting discussions.
+
 # Conclusion
 
 # References
+
+1. Sweigart, Al. “Welcome to PyAutoGUI’s Documentation! — PyAutoGUI 1.0.0 Documentation.” Readthedocs.io, 2014, pyautogui.readthedocs.io/en/latest/.
 
