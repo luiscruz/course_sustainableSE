@@ -90,7 +90,7 @@ Each browser configuration was executed 30 times, resulting in 60 total runs. Th
 
 To further reduce interference between executions, a fixed cooldown period was applied. A 15-second rest period was enforced between the two profiles within a run, and an additional 30-second rest period was applied after completing both profiles before starting the next run. These pauses helped mitigate tail energy effects and thermal carry-over between measurements.
 
-For each execution, total CPU package energy was computed as the difference between the final and initial cumulative `PACKAGE_ENERGY (J)` values. This produced one energy value per run.
+For each execution, total CPU package energy was computed as the difference between the final and initial cumulative `PACKAGE_ENERGY (J)` values. This produced one energy value per run. The `PACKAGE_ENERGY (J)` counter was selected as the primary metric because it directly represents cumulative CPU energy consumption. Since the browsing session is a bounded workload with a clear start and end, total energy consumption is more appropriate than instantaneous power measurements. 
 
 ---
 
@@ -158,6 +158,22 @@ The energy values for the ad blocker profile were also more tightly clustered, s
 Part of the energy reduction may also be explained by differences in runtime. If pages load faster when advertisements are blocked, total execution time decreases, which directly reduces total energy consumption. In this sense, the lower energy usage reflects both reduced computational load and potentially shorter browsing sessions.
 
 While the measurements focus on a single browsing session, the observed energy savings become significant when considered at scale. Web browsing is one of the most frequent daily computing activities, and ad blockers are used by millions of users. A consistent reduction in CPU energy consumption per session suggests that content blocking mechanisms can contribute meaningfully to reducing overall energy demand on end-user devices.
+
+---
+
+## Threats to Validity
+
+Despite efforts to control experimental conditions, several threats to validity remain.
+
+**Internal Validity:** Although background applications were closed and a zen-mode setup was applied, complete isolation of the system cannot be guaranteed. Operating system processes and hardware-level power management mechanisms may introduce minor variability. Additionally, while warm-up and cooldown phases reduce thermal bias, small temperature differences between runs may still influence CPU energy measurements.
+
+**Construct Validity:** The study measures CPU package energy rather than full system energy. Other components such as DRAM, storage, and network interfaces also contribute to total device energy consumption. Therefore, the results specifically reflect CPU-related energy effects and may not fully represent overall device-level energy savings.
+
+**External Validity:** The browsing workload was limited to three selected news websites and a fixed interaction pattern. Different types of websites, such as video streaming platforms, social media applications, or static content pages, may exhibit different energy characteristics. Furthermore, only one ad blocker and one hardware platform were tested. Results may vary across different browsers, filter configurations, operating systems, or processor architectures.
+
+**Ecological Validity:** Although the automated scrolling script simulates reading behavior, it does not capture the full variability of real user interaction patterns. Human browsing behavior includes pauses, clicks, tab switching, and multitasking, which may influence energy consumption differently.
+
+These limitations should be considered when interpreting the results and generalizing the findings beyond the experimental setup.
 
 ---
 
