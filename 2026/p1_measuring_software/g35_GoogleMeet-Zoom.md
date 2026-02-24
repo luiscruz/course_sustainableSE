@@ -72,6 +72,7 @@ The more specific objectives of this study are to:
 - And lastly, identify which of the two applications is more energy-efficient under different feature configurations and provide insights into how specific features affect the energy consumption of of video conference applications and their implications for sustainable work from home practices.
 
 # Methodology
+Include independent and independent variables somewhere
 ## Hardware and Software Environment
 Include the different hardware and software variables, as well as our energy measurement tools (energibridge)
 ## Controlled Testing Environment
