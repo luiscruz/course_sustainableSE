@@ -10,8 +10,6 @@ identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
-# Cross-Platform Browser Energy Benchmarking
-
 ### **Introduction**
 
 Web browsers are among the most widely used software applications today, yet we know surprisingly little about how much energy they actually consume. The ICT sector accounts for roughly 5% of global energy consumption, and browsers sit at the center of that since they run on nearly every device and handle everything from simple pages to complex web applications. Despite this, most energy estimates for software still rely on "constant-power" models that assume hardware draws the same wattage no matter what task is running. These models tend to overestimate actual usage and miss the differences between browser engines and operating systems.
