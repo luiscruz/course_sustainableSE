@@ -59,11 +59,12 @@ We standardize the same algorithm design across all languages. Each implementati
 The C++ implementation directly uses the `zlib` library [9] for compression and decompression, both of which are performed with matching parameters through `deflateInit2` and `inflateInit2`, respectively. Data is processed incrementally, in fixed-size chunks, by feeding the input buffers into the stream and writing the output until the stream ends. We chose to use chunked streaming so that we could avoid loading the entire file into memory, and so manage to keep the memory usage stable across file sizes. This also happens to be a typical design for C++ applications. 
 
 ### Python
+The python implementation uses the built-in `gzip` module, which is a wrapper around the `zlib` library you would find in C++. The API is very straightforward, and is representative of how Python developers would typically perform compression and decompression tasks. The three simple methods `open`, `compress`, and `decompress` are used to read and write files in a streaming fashion. The `gzip` module also allows us to set the compression level, which we fix at 6 to match the other implementations.
 
-### Go
 
 
 ## Metrics
+For this analysis, we focus on the following metrics: time, energy consumption, runtime, compression ratio, and energy per byte. Energy consumption is measured in joules (J) using EnergiBridge. The use of EnergiBridge is not only recommended but also allows us to measure the package energy or CPU energy consumption efficiently without any complex configuration. Runtime is measured in seconds (s) using wall-clock time. Measuring this also opens up the possibility to penalize slow but energy-efficient implementations. Compression ratio is calculated as the size of the compressed file divided by the size of the original file, and energy per byte is calculated as the total energy consumed divided by the number of bytes of the input.
 
 ## Statistical Analysis
 
