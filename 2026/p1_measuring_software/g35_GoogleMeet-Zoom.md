@@ -52,7 +52,24 @@ Nevertheless, using statistical metrics to measure effect size is not enough –
 
 # Introduction
 ## Context and Motivation
+Around six years ago, the COVID-19 pandemic began, prompting nations around the world to enforce a lockdown with the intention of reducing virus transmission. People were strongly advised to stay home and as a consequence, this led to a considerable increase in work from home (WFH) arrangements. 
+
+According to Adrjan et al., WFH job postings have quadrupled across 20 countries from 2020 to 2023, with these kind of postings still remaining popular despite a lifting of pandemic restrictions. Naturally, video conference applications rose in popularity and because of this, it is imperative to consider the energy usages of these applications as the number of people transitioning to remote working during this time increases significantly. 
+
+While this number has recently seemed to stabilized in Europe and in other places around the world, as reported by Eurofound researcher Oscar Vargas Llave, "The possibility of working from home hasn’t [been] sedimented in European workplaces". Thus, research into the energy usages of video conference applications remains relevant in this day and age.
+
+For the purposes of this research, the video conference applications to be investigated for energy usage are Zoom Workplace and Microsoft Teams. Both applications have native apps, and share similar features that will be experimented on, namely, the turning on and off of the camera, the sharing of screens, and the blurring of the background. 
+
 ## Research Objectives
+
+The primary research objective of this piece is to compare the two aforementioned applications in power usage.
+
+The more specific objectives of this study are to:
+- Measure and analyze the baseline power consumption of Zoom Workplace and Microsoft Teams during a video call with the camera turned off. 
+- Compare the difference in power usage of Zoom Workplace and Microsoft Teams with the camera turned off versus with the camera turned on. 
+- Evaluate the impact of screen sharing on the power consumption across the two different platforms. 
+- Evaluate the impact of background blurring on the power consumption across the two different platforms.
+- And lastly, identify which of the two applications is more energy-efficient under different feature configurations and provide insights into how specific features affect the energy consumption of of video conference applications and their implications for sustainable work from home practices.
 
 # Methodology
 ## Hardware and Software Environment
