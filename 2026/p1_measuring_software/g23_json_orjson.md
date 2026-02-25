@@ -105,13 +105,13 @@ This question explores whether the relationship between library choice and energ
 
 The experiment will be conducted on a Windows 11 machine to ensure a controlled and reproducible environment. To access the CPU's energy registers (RAPL), we will utilize **EnergiBridge** in conjunction with an elevated (Administrator) terminal. Windows 11 often restricts access to Model Specific Registers (MSRs) for security reasons; therefore, we will ensure the necessary hardware drivers are active to allow the profiler to log the **PP0 Energy Consumption** (CPU energy) at a sampling rate of 200ms.
 
-### Hardware Configuration
+### Hardware Configuration WHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT IT
 
 The specific hardware configuration will be documented in the final report to ensure reproducibility. Key specifications include:
-- CPU model and frequency
-- RAM capacity and speed
-- Storage type (SSD/NVMe)
-- Operating system version and patch level
+- AMD Ryzen 7 7800X3D 8-Core Processor (16 CPUs), ~ 4.2GHz - processor
+- 32GBs of RAM 4800 MT/s
+- SSD WHAT DO YOU NEED TO KNOW ABOUT IT
+- Windows 11
 
 ### Software Configuration
 
@@ -128,9 +128,9 @@ To minimize external interference with our measurements, we will implement the f
    - Close all unnecessary applications
    - Disable notifications and automatic updates
    - Disconnect non-essential peripherals
-   - Disable network connections during experiments
+   - Disconnect network connection during experiments
    - Set display brightness to a fixed value
-   - Maintain consistent room temperature (approximately 25 degrees Celsius)
+   - Maintain consistent room temperature (approximately 16 degrees Celsius)
 
 2. **System Warm-up**: Before measurements, the system will execute a warm-up routine (Fibonacci computations for 300 seconds) to ensure the CPU reaches a stable thermal state.
 
