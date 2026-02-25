@@ -93,7 +93,7 @@ To guide our investigation and define the scope of our analysis, we have formula
 
 This question addresses the primary objective of our study: determining whether orjson offers measurable energy savings over the standard library. By measuring total energy consumption in Joules, we obtain a direct, hardware-level metric that captures the full energy cost of each operation.
 
-**RQ2.** How do the energy-saving benefits of `orjson` scale as the volume of the dataset increases (e.g., comparing 10MB vs. 100MB files)?
+**RQ2.** How do the energy-saving benefits of `orjson` scale as the volume of the dataset increases (e.g., comparing 1GB vs. 5GB files)?
 
 This question explores whether the relationship between library choice and energy consumption is consistent across different workload sizes. Understanding scaling behavior is crucial for extrapolating our findings to real-world applications, where dataset sizes vary significantly.
 
@@ -105,18 +105,18 @@ This question explores whether the relationship between library choice and energ
 
 The experiment will be conducted on a Windows 11 machine to ensure a controlled and reproducible environment. To access the CPU's energy registers (RAPL), we will utilize **EnergiBridge** in conjunction with an elevated (Administrator) terminal. Windows 11 often restricts access to Model Specific Registers (MSRs) for security reasons; therefore, we will ensure the necessary hardware drivers are active to allow the profiler to log the **PP0 Energy Consumption** (CPU energy) at a sampling rate of 200ms.
 
-### Hardware Configuration WHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT ITWHAT DO YOU NEED TO KNOW ABOUT IT
+### Hardware Configuration
 
 The specific hardware configuration will be documented in the final report to ensure reproducibility. Key specifications include:
-- AMD Ryzen 7 7800X3D 8-Core Processor (16 CPUs), ~ 4.2GHz - processor
-- 32GBs of RAM 4800 MT/s
-- SSD WHAT DO YOU NEED TO KNOW ABOUT IT
-- Windows 11
+- CPU model and frequency
+- RAM capacity and speed
+- Storage type (SSD/NVMe)
+- Operating system version and patch level
 
 ### Software Configuration
 
-- **Python Version**: 3.11+ (to ensure compatibility with orjson optimizations)
-- **orjson Version**: Latest stable release
+- **Python Version**: 3.13 
+- **orjson Version**: 3.11.7
 - **EnergiBridge Version**: 0.0.7 or later
 - **Operating System**: Windows 11
 
@@ -127,14 +127,14 @@ To minimize external interference with our measurements, we will implement the f
 1. **Zen Mode Configuration**:
    - Close all unnecessary applications
    - Disable notifications and automatic updates
-   - Disconnect non-essential peripherals
-   - Disconnect network connection during experiments
+   - Disconnect non-essential peripherals (monitor, mouse)
+   - Disable network connections during experiments
    - Set display brightness to a fixed value
-   - Maintain consistent room temperature (approximately 16 degrees Celsius)
+   - Maintain consistent room temperature (approximately 20 degrees Celsius)
 
 2. **System Warm-up**: Before measurements, the system will execute a warm-up routine (Fibonacci computations for 300 seconds) to ensure the CPU reaches a stable thermal state.
 
-3. **Cooling Period**: Between experimental runs, the system will rest for 60 seconds to allow CPU temperature to stabilize and prevent thermal throttling from affecting subsequent measurements.
+3. **Cooling Period**: Between experimental runs, the system will rest for 2 seconds to allow CPU temperature to stabilize and prevent thermal throttling from affecting subsequent measurements.
 
 ## The Reproducible Scenario
 
@@ -150,8 +150,8 @@ A pre-generated dummy dataset will be used for consistency. The dataset consists
 - Boolean values and null values
 
 Two dataset sizes will be tested:
-- **Small dataset**: 10MB (to represent typical API payloads)
-- **Large dataset**: 100MB (to represent batch processing scenarios)
+- **Small dataset**: 1GB (to represent typical API payloads)
+- **Large dataset**: 5GB (to represent batch processing scenarios)
 
 ### Experimental Procedure
 
