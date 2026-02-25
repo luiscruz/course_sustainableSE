@@ -47,7 +47,7 @@ We examine two workload types, which represent the extremes of the compression s
 
 ## Experimental Setup
 
-This section describes the setup used for the experiments. We took inspiration from the rigorous guide provided by Cruz, who argued that energy measurements are determined by a multitude of factors, and thus require careful bias control and automation [11].
+This section describes the setup used for the experiments. We took inspiration from the rigorous guide provided by L. Cruz (2021), who argued that energy measurements are determined by a multitude of factors, and thus require careful bias control and automation [11].
 
 ### Hardware and Software Environment
 
@@ -73,28 +73,20 @@ All experiments are executed on the same machine and OS. Below is a table summar
 
 ### Experimental Design and Conditions
 
-We evaluate four language implementations (`cpp`, `java`, `go`, `python`) under two dataset types and two operation modes, namely:
+We evaluate four language implementations (`cpp`, `java`, `go`, `python`) under two dataset types and two operation modes, leading to 4 experimental groups:
 
-* **Language:** C++, Java, Go, Python
-* **Dataset type:** compressible, incompressible
-* **Operation:** compress, decompress
+| **Dataset Type**   | **Operation**  | **Description**                                             |
+| ------------------ | -------------- | ----------------------------------------------------------- |
+| **Compressible**   | **Compress**   | Compression of a highly compressible dataset |
+| **Compressible**   | **Decompress** | Decompression of the compressed `.gz` file                  |
+| **Incompressible** | **Compress**   | Compression of an incompressible dataset      |
+| **Incompressible** | **Decompress** | Decompression of the compressed `.gz` file                  |
 
-This results in **4 experiment groups** (dataset × operation):
-
-1. compressible + compress
-2. compressible + decompress
-3. incompressible + compress
-4. incompressible + decompress
 
 
 ### Input Preparation and Decompression Fairness
 
-Input files are generated automatically at the start of each experiment using the existing deterministic generator (`data/generate_input.py`):
-
-* one **compressible** dataset (`.jsonl`)
-* one **incompressible** dataset (`.bin`)
-
-with a fixed size of 256MB.
+Input files are generated automatically at the start of each experiment using the existing deterministic generator (`data/generate_input.py`). We use one **compressible** dataset (`.jsonl`) and one **incompressible** dataset (`.bin`) with a fixed size of 256MB.
 
 For decompression experiments, the script generates a **single reference gzip file per dataset** using **GNU gzip** at compression level 6 with header normalization:
 
@@ -102,11 +94,11 @@ For decompression experiments, the script generates a **single reference gzip fi
 gzip -6 -n -c INPUT > ref.gz
 ```
 
-The `-n` option removes filename and timestamp metadata from the gzip header, thus making reproducibility better. We do this to ensure that all languages decompress the **same exact `.gz` bytes**.
+The `-n` option removes filename and timestamp metadata from the gzip header, thus contributing to the project's reproducibility. We do this to ensure that all languages decompress the **same exact `.gz` bytes**.
 
 ### Measurement Tooling and Execution Procedure
 
-Energy measurements are collected with **EnergiBridge**. For each run, the experiment script invokes EnergiBridge as a wrapper around the language-specific command:
+Energy measurements are collected with **EnergiBridge** [14], as it provides accurate and reliable real-time power consumption data. For each run, the experiment script invokes EnergiBridge as a wrapper around the language-specific command:
 
 ```bash
 energibridge -o <run.csv> -i <interval_us> --summary -- <language_command>
@@ -118,31 +110,27 @@ The script records:
 * stdout/stderr in a log file (`raw/run_k.log`)
 * wall-clock runtime (`wall_time_s`) measured by the Python orchestrator
 
-We use an EnergiBridge sampling interval of 100 µs to capture finer details of energy consumption. 
-After each run, the script parses the EnergiBridge CSV and computes per-column deltas between the first and last recorded values for numeric counters. This helps in eliminating noise from transient power fluctuations and system stabilization effects.
+We use an EnergiBridge sampling interval of 100 µs, which is the default. This interval provides sufficient detail for our short-duration runs, capturing energy fluctuations. After each run, the script parses the EnergiBridge CSV and computes per-column deltas between the first and last recorded values for numeric counters. This helps in eliminating noise from transient power fluctuations and system stabilization effects.
 
 ### Bias Mitigation and Experimental Protocol
 
-A key motivation for our protocol is Cruz’s observation that software energy measurements can be strongly affected by thermal state, background processes, and temporal drift [11]. To reduce these sources of bias, the runner implements the following controls.
+A key motivation for our protocol is the observation made by L. Cruz (2021) [11] that software energy measurements can be strongly affected by thermal state, background processes, and temporal drift [11]. To reduce these sources of bias, the runner implements the following controls.
 
-#### Warm-up runs
+1.  **Warm-up runs**
 
 Before recording measurements, the script performs **3 warm-up runs** for each condition and language. These warm-up runs are discarded their purpose is to reduce **cold-start effects** by allowing the system to stabilize thermally.
 
-#### Repeated measurements
+2. **Repeated measurements**
 
-We measure each condition 30 times, as recommended by Cruz [11], in order to achieve statistically significant results.
+We measure each condition 30 times, as recommended by L. Cruz (2021) [11], in order to achieve statistically significant results.
 
-#### Rest between runs
+3.  **Rest between runs**
 
-We use rest periods of 60 seconds after each measured run, again, as recommended by Cruz [11].
+We use rest periods of 60 seconds after each measured run, again, as recommended by L. Cruz (2021) [11].
 
-#### Shuffled execution order
+4.  **Shuffled execution order**
 
-Within each dataset-operation group, runs are executed in blocks, with each language being run exactly once per block. 
-The language order is shuffled using a deterministic random seed. 
-As Cruz [11] notes, shuffling the order of execution reduces the risk of confounding effects, 
-thus making our comparisons more reliable.
+The language order is shuffled using a deterministic random seed, because, as L. L. Cruz (2021) [11] notes, shuffling the order of execution reduces the risk of confounding effects, thus making our comparisons more reliable.
 
 ### Manual Controls and Remaining Sources of Bias
 
@@ -154,7 +142,7 @@ Before running long experiments, we aim to keep the environment stable by:
 * maintaining fixed screen brightness/resolution and power settings,
 * avoiding unrelated network activity when possible.
 
-These steps correspond to Cruz’s “Zen mode” and “freeze your settings” recommendations [11]. Even with automation, residual noise from background tasks and environmental changes may remain, which is considered in the later analysis and limitations discussion.
+These steps align with Cruz’s "Zen mode" and "freeze your settings" recommendations to reduce the impact of background tasks and environmental changes on energy measurements [11]. As Cruz points out, **“the first thing we need to make sure of is that the only thing running in our system is the software we want to measure”** and to minimize competing tasks, such as background processes and unnecessary hardware [11]. While we do our best to control these factors, residual noise may remain, and its effect is discussed later in the analysis and limitations.
 
 
 ## Implementation Details
@@ -237,3 +225,5 @@ Alternatively, from a narrower perspective, further research could complement ou
 [12] Y. Collet et al., "Zstandard – Fast real-time compression algorithm," GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
 
 [13] J. Alakuijala and Z. Szabadka, "Brotli: A general-purpose data compressor," *Commun.* ACM, vol. 61, no. 4, pp. 86–95, Apr. 2018, doi: 10.1145/3231935.
+
+[14] Sallou, J., Cruz, L., & Durieux, T. (2023). EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement (Version 1.0.0) [Computer software]. https://doi.org/10.48550/arXiv.2312.13897
