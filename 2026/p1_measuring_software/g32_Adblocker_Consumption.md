@@ -159,6 +159,8 @@ Part of the energy reduction may also be explained by differences in runtime. If
 
 While the measurements focus on a single browsing session, the observed energy savings become significant when considered at scale. Web browsing is one of the most frequent daily computing activities, and ad blockers are used by millions of users. A consistent reduction in CPU energy consumption per session suggests that content blocking mechanisms can contribute meaningfully to reducing overall energy demand on end-user devices.
 
+From a sustainable software engineering perspective, this raises broader questions about responsibility and design incentives. While website operators prioritize revenue generation, the resulting energy costs are borne by end users and their devices. Tools such as ad blockers can therefore be seen not only as privacy or usability enhancements, but also as mechanisms that shift software execution toward more energy-efficient behavior under certain workloads.
+
 ---
 
 ## Threats to Validity
@@ -185,6 +187,8 @@ Our results indicate that enabling the ad blocker reduced total CPU energy consu
 
 These findings suggest that, in the evaluated scenario, blocking advertisements and third-party scripts reduces computational work and therefore lowers energy consumption. While the results are specific to the selected websites and experimental setup, they indicate that ad blockers may have energy efficiency implications beyond usability and privacy considerations.
 
-Future work could extend this analysis to other browsing scenarios, different websites, and additional hardware platforms to assess generalizability.
+Future work could extend this study by evaluating different categories of websites, such as video streaming platforms or social media applications, where advertising behavior differs substantially. Additionally, testing multiple ad blockers with varying filter lists, as well as measuring the full system energy consumption including memory and network interfaces, would provide a more comprehensive view of the energy implications. Repeating the experiment on different hardware architectures could further improve generalizability.
 
 ---
+
+All of our scripts and outputs are available in our [GitHub](https://github.com/sg003/sustainable_p1)
