@@ -47,12 +47,124 @@ We examine two workload types, which represent the extremes of the compression s
 
 ## Experimental Setup
 
+This section describes the setup used for the experiments. We took inspiration from the rigorous guide provided by Cruz, who argued that energy measurements are determined by a multitude of factors, and thus require careful bias control and automation [11].
+
+### Hardware and Software Environment
+
+All experiments are executed on the same machine and OS. Below is a table summarizing the specifications of the machine used.
+
+| Category | Specification |
+|---|---|
+| Machine / Laptop model | `<e.g., Lenovo ThinkPad ... / custom desktop>` |
+| CPU | `<e.g., Intel Core i7-12700H / AMD Ryzen ...>` |
+| CPU cores / threads | `<e.g., 14 cores (6P+8E) / 20 threads>` |
+| CPU base / boost frequency | `<if known>` |
+| RAM | `<e.g., 16 GB DDR4>` |
+| Storage | `<e.g., 512 GB NVMe SSD>` |
+| Operating system | `<e.g., Linux Mint 22.x (Ubuntu 24.04 base)>` |
+| Kernel version | `<e.g., Linux 6.x>` |
+| Power mode | `<e.g., plugged in, performance mode / balanced>` |
+| EnergiBridge version | `<version>` |
+| GNU gzip version | `<e.g., gzip 1.12 / 1.13 / 1.14>` |
+| C++ compiler | `<e.g., g++ 13.x>` |
+| Java runtime / compiler | `<e.g., OpenJDK 17.0.x (java/javac)>` |
+| Go version | `<e.g., go1.22.x>` |
+| Python version | `<e.g., Python 3.12.x>` |
+
+### Experimental Design and Conditions
+
+We evaluate four language implementations (`cpp`, `java`, `go`, `python`) under two dataset types and two operation modes, namely:
+
+* **Language:** C++, Java, Go, Python
+* **Dataset type:** compressible, incompressible
+* **Operation:** compress, decompress
+
+This results in **4 experiment groups** (dataset × operation):
+
+1. compressible + compress
+2. compressible + decompress
+3. incompressible + compress
+4. incompressible + decompress
+
+
+### Input Preparation and Decompression Fairness
+
+Input files are generated automatically at the start of each experiment using the existing deterministic generator (`data/generate_input.py`):
+
+* one **compressible** dataset (`.jsonl`)
+* one **incompressible** dataset (`.bin`)
+
+with a fixed size of 256MB.
+
+For decompression experiments, the script generates a **single reference gzip file per dataset** using **GNU gzip** at compression level 6 with header normalization:
+
+```bash
+gzip -6 -n -c INPUT > ref.gz
+```
+
+The `-n` option removes filename and timestamp metadata from the gzip header, thus making reproducibility better. We do this to ensure that all languages decompress the **same exact `.gz` bytes**.
+
+### Measurement Tooling and Execution Procedure
+
+Energy measurements are collected with **EnergiBridge**. For each run, the experiment script invokes EnergiBridge as a wrapper around the language-specific command:
+
+```bash
+energibridge -o <run.csv> -i <interval_us> --summary -- <language_command>
+```
+
+The script records:
+
+* EnergiBridge summary output in a per-run CSV file (`raw/run_k.csv`)
+* stdout/stderr in a log file (`raw/run_k.log`)
+* wall-clock runtime (`wall_time_s`) measured by the Python orchestrator
+
+We use an EnergiBridge sampling interval of 100 µs to capture finer details of energy consumption. 
+After each run, the script parses the EnergiBridge CSV and computes per-column deltas between the first and last recorded values for numeric counters. This helps in eliminating noise from transient power fluctuations and system stabilization effects.
+
+### Bias Mitigation and Experimental Protocol
+
+A key motivation for our protocol is Cruz’s observation that software energy measurements can be strongly affected by thermal state, background processes, and temporal drift [11]. To reduce these sources of bias, the runner implements the following controls.
+
+#### Warm-up runs
+
+Before recording measurements, the script performs **3 warm-up runs** for each condition and language. These warm-up runs are discarded their purpose is to reduce **cold-start effects** by allowing the system to stabilize thermally.
+
+#### Repeated measurements
+
+We measure each condition 30 times, as recommended by Cruz [11], in order to achieve statistically significant results.
+
+#### Rest between runs
+
+We use rest periods of 60 seconds after each measured run, again, as recommended by Cruz [11].
+
+#### Shuffled execution order
+
+Within each dataset-operation group, runs are executed in blocks, with each language being run exactly once per block. 
+The language order is shuffled using a deterministic random seed. 
+As Cruz [11] notes, shuffling the order of execution reduces the risk of confounding effects, 
+thus making our comparisons more reliable.
+
+### Manual Controls and Remaining Sources of Bias
+
+Before running long experiments, we aim to keep the environment stable by:
+
+* closing unnecessary applications and browser tabs,
+* disabling notifications and updates,
+* keeping hardware peripherals constant,
+* maintaining fixed screen brightness/resolution and power settings,
+* avoiding unrelated network activity when possible.
+
+These steps correspond to Cruz’s “Zen mode” and “freeze your settings” recommendations [11]. Even with automation, residual noise from background tasks and environmental changes may remain, which is considered in the later analysis and limitations discussion.
+
+
 ## Implementation Details
 
 We standardize the same algorithm design across all languages. Each implementation provides a small command-line interface of the form `mode input_file output_file`, with the `mode` being either compression or decompression. The `gzip` compression level is fixed at 6 for all languages, which matches the default setting [8]. All files are processed in binary mode, and compression is done using each language's standard library in a streaming fashion, without system calls or external tools, so that the measurements reflect purely the behavior of the language. If applicable, we also use a buffer size of 32 KB to keep memory usage and I/O behavior comparable.
 
 
 ### Java
+
+The Java implementation uses the standard `java.util.zip` package [10], with `GZIPOutputStream` for compression and `GZIPInputStream` for decompression. Files are processed in a streaming manner using buffered I/O and fixed 32 KB chunks, avoiding full-file loads into memory to keep memory usage stable and comparable across input sizes. To enforce **gzip level 6**, we use a small custom subclass of `GZIPOutputStream` that sets the internal `Deflater` level after construction.
 
 ### C++
 
@@ -106,3 +218,7 @@ The C++ implementation directly uses the `zlib` library [9] for compression and 
 [8] J.-L. Gailly and Free Software Foundation, *GNU Gzip Manual*, version 1.14, Feb. 2025. [Online]. Available: https://www.gnu.org/software/gzip/manual/gzip.html.
 
 [9] J.-L. Gailly and M. Adler, *zlib.h -- interface of the 'zlib' general purpose compression library*, version 1.3.2, Feb. 2026. [Online]. Available: https://zlib.net.
+
+[10] M. Grand, J. B. Knudsen, and P. Ferguson, *Java Fundamental Classes Reference*, 1st ed. Sebastopol, CA, USA: O’Reilly & Associates, Inc., 1997.
+
+[11] L. Cruz, “Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments,” blog post, Oct. 10, 2021. [Online]. Available: http://luiscruz.github.io/2021/10/10/scientific-guide.html. doi: 10.6084/m9.figshare.22067846.v1.
