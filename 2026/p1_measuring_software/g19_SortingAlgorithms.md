@@ -12,7 +12,7 @@ identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 ### Introduction
-Algorithmic time complexity is a fundamental aspect of code analysis and a universal measure across computer science, typically depicted using "Big O" notation (we will assume worst case Big O, going forward). While this measurement method should  yeild reliable results, perfect conditions are rarely achievable in the real world. In this article, we will examine how our expected trends will compare to actual measurements taken across a variety of algorithms using implementations in both Rust and Python.
+Algorithmic time complexity is a fundamental aspect of code analysis and a universal measure across computer science, typically depicted using "Big O" notation (we will assume worst case Big O, going forward). While this measurement method should  yield reliable results, perfect conditions are rarely achievable in the real world. In this article, we will examine how our expected trends will compare to actual measurements taken across a variety of algorithms using implementations in both Rust and Python.
 
 
 ---
@@ -32,8 +32,14 @@ The first step was the selection of algorithms to implement for our experiment. 
 #### Experiment Runs
 We created a simple Python CLI tool to perform the experiment by defining arguments for algorithm type, test set size, test set distribution and the number of runs to be performed. We performed **X** runs of each algorithm with a set size of **Y** and a **Z** distribution. The experiment run was automated with a one minute "cool off" period between tests to try account for tail energy consumption. The experiment was performed in one block on a single machine with background tasks minimized.
 
+```bash
+$ python runner.py --algo algorithms/radix_sort.py --size 10000 --runs 5 --distribution reversed
+```
+
+---
+
 ### Data Collection
-We chose to record the energy measurements of our experiment rather than the power as sorting algorithms are specfic instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement so that we can assume a Normal/Gaussian distribution of our data as per the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem).
+We chose to record the energy measurements of our experiment rather than the power as sorting algorithms are specific instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement so that we can assume a Normal/Gaussian distribution of our data as per the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem).
 
 ## Unbiased Energy Data ⚖️
 
