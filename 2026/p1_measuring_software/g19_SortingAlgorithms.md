@@ -11,20 +11,29 @@ summary: |-
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-**TODO: Remove the below as required**
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
+### Introduction
+Algorithmic time complexity is a fundamental aspect of code analysis and a universal measure across computer science, typically depicted using "Big O" notation (we will assume worst case Big O, going forward). While this measurement method should  yeild reliable results, perfect conditions are rarely achievable in the real world. In this article, we will examine how our expected trends will compare to actual measurements taken across a variety of algorithms using implementations in both Rust and Python.
 
 
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
+---
 
---- 
-#### 👉 Note 1:
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
 
---- 
+### Experiment Setup
+
+
+#### Algorithm selection
+The first step was the selection of algorithms to implement for our experiment. We tried to identify a set of algorithms which would span a range of complexities and operational methods. The following are the chosen algorithms for the experiment:
+- **Merge Sort:**  Has a complexity of $O(n log n)$. Implemented in Rust and Python
+- **Quick Sort:** Has a complexity of $O(n^2)$. Implemented in Rust and Python.
+- **Radix Sort:** Has a complexity of $O(n log n)$. Implemented in Python. Chosen as it has a unique operation method where it performs iterative sorting on each significant digit of all values in the set.
+- **Heap Sort:** Has a complexity of $O(n log n)$. Implemented in Python. Also has a unique operation whereby the root of the heap is removed on recursive heapify calls.
+
+
+#### Experiment Runs
+We created a simple Python CLI tool to perform the experiment by defining arguments for algorithm type, test set size, test set distribution and the number of runs to be performed. We performed **X** runs of each algorithm with a set size of **Y** and a **Z** distribution. The experiment run was automated with a one minute "cool off" period between tests to try account for tail energy consumption. The experiment was performed in one block on a single machine with background tasks minimized.
+
+### Data Collection
+We chose to record the energy measurements of our experiment rather than the power as sorting algorithms are specfic instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement so that we can assume a Normal/Gaussian distribution of our data as per the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem).
 
 ## Unbiased Energy Data ⚖️
 
