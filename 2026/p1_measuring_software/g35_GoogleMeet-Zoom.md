@@ -75,10 +75,22 @@ The more specific objectives of this study are to:
 Include independent and independent variables somewhere
 ## Hardware and Software Environment
 Include the different hardware and software variables, as well as our energy measurement tools (energibridge)
+
+Processor: AMD Ryzen 7 7730U with Radeon Graphics (2.00 GHz) 
+Installed RAM: 16.0 GB
+System Type: 64 Bit operating system, x64-based processor
+
+Windows Specification:
+Edition: windows 11 home
+Version: 25H2
+
 ## Controlled Testing Environment
 Include zen mode and freeze settings from template
 Any other things to note like consistent screen brightness, or closing non-essential apps, turning off notifications, etc. etc.
 Mention the shuffling!
+
+And the settings we are using is 100% brightness, volume 30%, using wireless connection, all non essential apps and notifications have been closed. Laptop was left charging. Only thing open is cmd.exe terminal with administrative power.
+
 ## Testing Protocol
 ### Warm up
 ### Automated testing procedure
