@@ -16,6 +16,8 @@ function Invoke-Measurement {
     if ($LASTEXITCODE -ne 0) {
         throw "Energibridge command failed for $ScriptName (exit code: $LASTEXITCODE)"
     }
+
+    Start-Sleep -Seconds 2
 }
 
 if (-not (Test-Path $EnergibridgeExe)) {
