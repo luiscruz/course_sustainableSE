@@ -116,6 +116,6 @@ As a result, the scope of this paper could be expanded to include other compress
 
 [9] J.-L. Gailly and M. Adler, *zlib.h -- interface of the 'zlib' general purpose compression library*, version 1.3.2, Feb. 2026. [Online]. Available: https://zlib.net.
 
-[10] Y. Collet et al., “Zstandard – Fast real-time compression algorithm,” GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
+[10] Y. Collet et al., "Zstandard – Fast real-time compression algorithm," GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
 
 [11] J. Alakuijala and Z. Szabadka, "Brotli: A general-purpose data compressor," *Commun.* ACM, vol. 61, no. 4, pp. 86–95, Apr. 2018, doi: 10.1145/3231935.
