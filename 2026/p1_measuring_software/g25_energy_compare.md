@@ -19,15 +19,34 @@ Every swipe has a cost beyond attention. The energy consumed by our devices to l
 If you're going to doomscroll, you might as well do it in an energy-efficient way.
 
 ## Methodology
+The aim is to quantify and compare the power consumption associated with continuous video scrolling (also colloquially dubbed "Doomscrolling"). Therefore, we designed a comparative experiment analyzing the energy consumed by both TikTok as well as YouTube.
+
+### Test Environment
+All tests were conducted within a standard Linux-based Operating System, using the Google Chrome browser. Capturing the energy spent for each experiment was done using EnergiBridge. EnergiBridge is a cross-platform command-line utility that can analyze the performance directly from our machine's low-level hardware sensors.
+
+The experiments consisted of standardized scrolling sessions with a length of 30 seconds. For both platforms, the experiments were repeated 30 times to ensure generalizability.
+
+For these experiments, the scrolling process was automated. Scrolling frequency was varied between the options of two, five or 10 seconds. This allows us to evaluate the impact of the pace of the content consumption as well.
+
+### Tests
+**TODO: Finalized code blocks for the test cases.**
+
+### Experimental Controls
+Desktop computers often run numerous background processes that could skew our energy measurements. Therefore, we aimed to create a strictly controlled testing environment. To achieve this, we disabled wireless networks in favour of an Ethernet connection. Additionally, we unplugged all non-essential USB peripherals, terminated all background applications and cloud syncing tools, and locked the monitor to a fixed, medium brightness level. With these mitigations, external influences on the stability of the to-be-measured energy consumption of solely the Doomscrolling.
+
+With these controlled experiments, solely the power consumption of video rendering and network requests is measured. Therefore, the expectation is that this will not differ significantly accross platforms.
+
 ### Analysis
 #### Exploratory Analysis
 Violin + Box plots, expect the shape and outliers of the data.
+
 #### Normality
 After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 3 standard deviations from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
+
 #### Statistical Significance
 Group differences were evaluated using the Welch’s t-test, which does not assume equal variances between groups. Statistical significance was determined using a α = 0.05.
-#### Effect Size
 
+#### Effect Size
 To evaluate the practical implication of the observed results, mean difference and percent change were calculated.
 Cohen’s d was computed to measure statistical effect size. Effect sizes were interpreted according to conventional benchmarks:
 
