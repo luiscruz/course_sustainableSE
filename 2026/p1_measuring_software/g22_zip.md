@@ -153,10 +153,23 @@ The Java implementation uses the standard `java.util.zip` package [11], with `GZ
 The C++ implementation directly uses the `zlib` library [12] for compression and decompression, both of which are performed with matching parameters through `deflateInit2` and `inflateInit2`, respectively. Data is processed incrementally, in fixed-size chunks, by feeding the input buffers into the stream and writing the output until the stream ends. We chose to use chunked streaming so that we could avoid loading the entire file into memory, and so manage to keep the memory usage stable across file sizes. This also happens to be a typical design for C++ applications.
 
 ### Python
-
+The python implementation uses the built-in `gzip` module, which is a wrapper around the `zlib` library you would find in C++. The API is very straightforward, and is representative of how Python developers would typically perform compression and decompression tasks. The three simple methods `open`, `compress`, and `decompress` are used to read and write files in a streaming fashion. The `gzip` module also allows us to set the compression level, which we fix at 6 to match the other implementations.
 ### Go
 
 ## Metrics
+To evaluate the sustainability and performance of the selected languages mentioned above, we measure several metrics that capture different aspects of their behavior. These metrics allow us to compare the energy efficiency and runtime performance of the implementations in a comprehensive manner, answering the research questions we posed earlier. 
+
+Energy consumption (E) measured in Joules (J) is the primary metric of interest, as it directly relates to the sustainability implications of software applications. We use EnergiBridge to capture the energy consumption of the entire package. This represents the total work performed by the hardware to execute the compression and decompression tasks, including CPU and integrated graphics package. Minimizing E is the direct goal of reducing carbon footprint of the software. Measuring the energy consumption forms the basis to answer all of our research questions mentioned previously. In our scenario, measuring E is more suitable than measuring power (P) in Watts (W), which represents the rate of energy consumption, because we are interested in the total energy used for a given (de)compression task rather than the continuous power draw. In addition, we will also measure energy per megabyte, in Joules per megabyte (J/MB). This is calculated as the total energy consumed (E) divided by the size of the input file in megabytes. This metric provides a normalized measure of energy efficiency, allowing us to compare the normalized energy efficiency and answer RQ1, 2 and 3. A lower E/MB indicates better energy efficiency per unit of data processed.
+
+
+Execution time (T) is measured in seconds (s) using wall-clock time. This metric captures the performance of the implementations and helps us answer RQ3. It is particulary relevant when considering the trade-off between energy efficiency and runtime, as some implementations may be more energy efficient but take longer to execute. Minimizing T is important for user experience and operational efficiency. We could highlight implementations that are energy efficient but have long runtimes using the Energy Delay Product (EDP) measured in Joule * seconds (J·s), which is calculated as E multiplied by T. This metric captures the trade-off between energy efficiency and runtime performance, and minimizing EDP can lead to more balanced solutions. 
+
+Compression ratio (CR) is a metric calculated as the size of the compressed file divided by the size of the original file. This metric captures the effectiveness of the compression algorithm in reducing file size and helps us answer RQ2. A lower CR indicates better compression efficiency. 
+
+
+
+
+
 
 ## Statistical Analysis
 
