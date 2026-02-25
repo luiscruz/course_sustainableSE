@@ -52,7 +52,7 @@ In November 2022, OpenAI released ChatGPT ([Matt Casey, 2023](https://snorkel.ai
 
 However, with subsequent research into the LLM-production pipeline, LLM developers have received a vast amount of criticism for the negative social and environmental impact that LLMs and their production cause. Arguably the most common criticism of LLMs developers is the unethical and oftentimes illegal sourcing of training data for their models. These claims often touch base on the infringement of copyright or GDPR to prove the wrong-doings of LLM developers. However, another aspect that must be considered is the environmental impact of LLMs - specifically, the energy consumed to both test and train these LLMs. [Jacob Morrison et al.](https://arxiv.org/pdf/2503.05804) found that training a 13 billion parameter model from the OLMo model family consumed an estimated 230 MWh of electricity - which they state is enough to power the average US home for 21 years.
 
-This study will analyse the energy consumption of LLMs. Specifically, it is our goal to address two specific questions - first, we will study how the length of a question input prompt affects the energy consumption of an LLM producing its response. Second, we will compare three different 8 Billion parameter models, rjn-1, Llama 3.1 and Deepseek-r1 (developed by Essential AI, Meta and Deepseek respectively) in terms of their energy efficiency when evaluating on the same prompts.
+This study, on the other hand, will focus on analysing the energy consumption of prompting LLMs. Specifically, it is our goal to address two specific questions - first, we will study how the length of an input prompt affects the energy consumption of an LLM producing a response. Second, we will compare three different 8 Billion parameter models, rjn-1, Llama 3.1 and Deepseek-r1 (developed by Essential AI, Meta and Deepseek respectively) in terms of their energy consumption to study how much variation in energy efficiency there is between different LLM developers.
 
 ## Methodology
 
@@ -109,7 +109,6 @@ Another limitation was the release date of the different LLM compared in part tw
 ## Conclusion
 
 Conclusion goes here.
-
 
 ## Code
 
