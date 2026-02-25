@@ -64,7 +64,19 @@ The python implementation uses the built-in `gzip` module, which is a wrapper ar
 
 
 ## Metrics
-For this analysis, we focus on the following metrics: time, energy consumption, runtime, compression ratio, and energy per byte. Energy consumption is measured in joules (J) using EnergiBridge. The use of EnergiBridge is not only recommended but also allows us to measure the package energy or CPU energy consumption efficiently without any complex configuration. Runtime is measured in seconds (s) using wall-clock time. Measuring this also opens up the possibility to penalize slow but energy-efficient implementations. Compression ratio is calculated as the size of the compressed file divided by the size of the original file, and energy per byte is calculated as the total energy consumed divided by the number of bytes of the input.
+To evaluate the sustainability and performance of the selected languages mentioned above, we measure several metrics that capture different aspects of their behavior. These metrics allow us to compare the energy efficiency and runtime performance of the implementations in a comprehensive manner.
+
+Energy consumption (E) measured in Joules (J) is the primary metric of interest, as it directly relates to the sustainability implications of software applications. We use EnergiBridge to capture the energy consumption of the entire package. This represents the total work performed by the hardware to execute the compression and decompression tasks, including CPU and integrated graphics package. Minimizing E is the direct goal of reducing carbon footprint of the software [10]. In our scenario, measuring E is more suitable than measuring power (P) in Watts (W), which represents the rate of energy consumption, because we are interested in the total energy used for a given task rather than the continuous power draw.
+
+Execution time (T) is measured in seconds (s) using wall-clock time. This metric captures the performance of the implementations. It is particulary relevant when considering the trade-off between energy efficiency and runtime, as some implementations may be more energy efficient but take longer to execute. Minimizing T is important for user experience and operational efficiency. We could also penalize implementations that are energy efficient but have long runtimes using the Energy Delay Product (EDP) measured in Joule * seconds (J·s), which is calculated as E multiplied by T [12]. This metric captures the trade-off between energy efficiency and runtime performance, and minimizing EDP can lead to more balanced solutions.
+
+Compression ratio (CR) is a metric calculated as the size of the compressed file divided by the size of the original file. This metric captures the effectiveness of the compression algorithm in reducing file size. A lower CR indicates better compression efficiency, which can lead to reduced storage requirements and potentially at the cost of increased energy consumption due to more calculations [12][13].
+
+Energy per megabyte measured in Joules per megabyte (J/MB) is calculated as the total energy consumed (E) divided by the size of the input file in megabytes. This metric provides a normalized measure of energy efficiency, allowing us to compare the normalized energy efficiency. A lower E/MB indicates better energy efficiency per unit of data processed.
+
+
+
+
 
 ## Statistical Analysis
 
@@ -107,3 +119,11 @@ For this analysis, we focus on the following metrics: time, energy consumption, 
 [8] J.-L. Gailly and Free Software Foundation, *GNU Gzip Manual*, version 1.14, Feb. 2025. [Online]. Available: https://www.gnu.org/software/gzip/manual/gzip.html.
 
 [9] J.-L. Gailly and M. Adler, *zlib.h -- interface of the 'zlib' general purpose compression library*, version 1.3.2, Feb. 2026. [Online]. Available: https://zlib.net.
+
+[10] Software Improvement Group, “Green IT: How green software development can reduce your carbon footprint,” Software Improvement Group Blog, Nov. 11, 2024. [Online]. Available: https://www.softwareimprovementgroup.com/blog/green-software-development/.
+
+[11] Wikipedia Contributors, “Power–delay product,” Wikipedia, Jun. 27, 2024.
+
+[12] A. C. Fowler, “Energy cost of data compression in sensor networks,” in Proceedings of the IEEE Conference on Information Sciences and Systems (CISS), 2003. [Online]. Available: https://ws.binghamton.edu/fowler/Fowler%20Personal%20Page/Publications_files/Fowler%20CISS%202003%20Sensor%20Net.pdf
+
+[13] “Data compression ratio,” Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Data_compression_ratio 
