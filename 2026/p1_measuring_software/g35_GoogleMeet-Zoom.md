@@ -95,6 +95,10 @@ And the settings we are using is 100% brightness, volume 30%, using wireless con
 ### Warm up
 ### Automated testing procedure
 Include some cool down to allow environment to return to baseline conditions
+### Replication Package
+
+For the experiments, the replication package can be found in the following [repository](https://github.com/ayushhhkha/SSE_TeamsVsZoom).
+
 
 # Results
 
@@ -122,13 +126,27 @@ With the metrics above, the key metrics to be calculated per trial were:
 ## Interpretation of Results
 ## Implications
 
-# Limitations and Future Work
+# Limitations
 
-There were some limitations that should be addressed which was the limited test duration. In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. Another limitation is the use of wireless connection in which a wired connection would offer a more stable energy reading but this does not reflect real life scenarios since most video conferencing applications work through wireless connections. Another limitation is that this experiment was conducted in a single machine in which results could vary in different machines such as a Mac or Linux computer. 
+There are some limitations that will be briefly discussed in this section:
 
-Some future work can include the experiment being conducted in two devices in order to reduce the bias and provide an intersting analysis of cross platforms. Increasing the duration into longer intervals can demonstrate real life situations. Testing out more applications in demand such as google meet and slack would provide interesting discussions.
+### Limited Test Duration: 
+
+In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. 
+
+### Wired Connection: 
+Another limitation is the use of wireless connection in which a wired connection would offer a more stable energy reading but this does not reflect real life scenarios since most video conferencing applications work through wireless connections. 
+
+### Singular Operating System: 
+Another limitation is that this experiment was conducted in a single machine in which results could vary in different machines such as a Mac or Linux computer. 
+
+# Future Work
+
+For additional work, it would be interesting to observe the experimentation being conducted on a Windows laptop and a MacOS which can lead to an interesting analysis of cross platforms and to determine which application is the most energy efficient in both OS. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack in order to effectively analyse each video conferencing application and determine the most energy efficient. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations were video conferencing application are meant for longer usage. With our replication package, the future work can immediately begin.
 
 # Conclusion
+
+Our paper discusses the energy difference between 
 
 # References
 
