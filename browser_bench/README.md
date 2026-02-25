@@ -11,10 +11,30 @@ This tool automates energy consumption measurements for web browsers while runni
    uv sync
    ```
 3. **Install Browser Drivers**:
+
+   ***macOS***
    ```sh
    brew install --cask chromedriver
    # For Firefox: brew install --cask geckodriver
-   ```
+   ``` 
+   ***Windows*** \
+   Chrome:
+   1. Download ChromeDriver: https://developer.chrome.com/docs/chromedriver/downloads
+   2. Extract the .exe
+   3. Add its folder to your PATH OR place it in your project directory
+   
+   Firefox:
+   1. Download GeckoDriver: https://github.com/mozilla/geckodriver/releases
+   2. Extract geckodriver.exe
+   3. Add it to your PATH
+
+   Verify:
+   ```sh
+   chromedriver --version
+   geckodriver --version
+   ``` 
+
+
 4. **Configure EnergiBridge**:
    Update `pyenergibridge_config.json` with the absolute path to your `energibridge` binary.
    ```json
