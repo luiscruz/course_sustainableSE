@@ -154,7 +154,13 @@ The C++ implementation directly uses the `zlib` library [12] for compression and
 
 ### Python
 The python implementation uses the built-in `gzip` module, which is a wrapper around the `zlib` library you would find in C++. The API is very straightforward, and is representative of how Python developers would typically perform compression and decompression tasks. The three simple methods `open`, `compress`, and `decompress` are used to read and write files in a streaming fashion. The `gzip` module also allows us to set the compression level, which we fix at 6 to match the other implementations.
+
 ### Go
+
+The Go implementations utilizes the built-in `compress/gzip` library to (de)compress the input file.
+For compressing, the library creates a writer pointing to the output file.
+The input file is then copied into the writer thereby writing to the output file.
+For decompressing, it takes a similar approach. Here it creates a reader for the input file instead and a regular io writer is used.
 
 ## Metrics
 To evaluate the sustainability and performance of the selected languages mentioned above, we measure several metrics that capture different aspects of their behavior. These metrics allow us to compare the energy efficiency and runtime performance of the implementations in a comprehensive manner, answering the research questions we posed earlier. 
