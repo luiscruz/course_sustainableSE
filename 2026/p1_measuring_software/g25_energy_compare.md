@@ -74,9 +74,85 @@ While statistical difference is unlikely to arise by chance, the practical impor
 
 ## Analysis
 ### Exploratory Analysis
-### Normality
+
+This section presents violin and box plots based on the averages of 30 measurements for each platform on 2, 5 and 10 second intervals of scrolling.
+
+“Raw” plots include all observations, while “clean” plots exclude outliers using the 1.5xIQR rule. We found that for some runs on TikTok, the reels were stuck, and the bot script was unable to scroll. We assume that these occurences represent the outliers on the lower end, providing a justification to remove them.
+
+#### 2 second intervals
+
+![2_raw](img/g25_energy_compare/measurements_2_violin_box_raw.png)
+
+##### Chrome_TikTok
+The distribution is hourglass-shaped, with observations concentrated at the lower and upper ends. It is skewed toward higher values, as the mean is lower than the median. Variability is relatively high.
+
+##### Chrome_YouTube
+The distribution is approximately symmetric and resembles a normal shape. The mean and median are nearly identical, and variability is noticeably lower than TikTok.
+
+##### Comparison
+On average, energy consumption is similar across platforms. However, TikTok shows greater dispersion, indicating a higher probability of elevated energy consumption in individual runs.
+
+![2_clean](img/g25_energy_compare/measurements_2_violin_box_clean.png)
+
+No noticeable difference after outlier removal.
+
+#### 5 second intervals
+
+![5_raw](img/g25_energy_compare/measurements_5_violin_box_raw.png)
+
+##### Chrome_TikTok
+
+As in the 2-second case, variability is higher than YouTube. The distribution is more strongly skewed toward higher values, suggesting a greater likelihood of increased energy consumption.
+
+##### Chrome_YouTube
+
+Variability increases compared to the 2-second interval. The distribution shows slight lower-tail skewness, with the median below the mean.
+
+##### Comparison
+
+Both the mean and median are higher for TikTok, indicating greater overall energy consumption relative to YouTube.
+
+![5_clean](img/g25_energy_compare/measurements_5_violin_box_clean.png)
+
+After removing the outliers, Chrome_tiktok graph appears to attain a normal distribution. Since outliers were on the lower end, both mean and median are higher.
+
+![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
+
+##### Chrome_TikTok
+
+Variability remains higher than YouTube but the distribution is more evenly spread and appears approximately symmetric. No clear outliers are observed.
+
+##### Chrome_YouTube
+
+Variability increases relative to earlier intervals. The mean and median converge, and the distribution appears approximately normal.
+
+##### Comparison
+
+Unlike previous intervals, the minimum energy consumption is roughly the same across platforms. However, TikTok consistently shows higher average consumption across runs.
+
+![10_clean](img/g25_energy_compare/measurements_10_violin_box_clean.png)
+
+##### Conclusion
+
+Accross the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
+
 ### Statistical Significance
+
+The tests were conducted after removing outliers.
+
+| Interval (s) | TikTok Normal |  YouTube Normal | Test Type      | Test Score | Significant  |
+|--------------|---------------|-----------------|----------------|------------|--------------|
+| 2s           | False         | True            | Mann-Whitney U | 0.2719     | No           |
+| 5s           | True          | True            | Welsch's t-test| 1.471e-19  | Yes          |
+| 10s          | True          | True            | Welsch's t-test| 0.0002     | Yes          |
+
 ### Effect Size
+
+| Interval (s) | Mean difference | Percent difference | Cohen's d |
+|--------------|-----------------|--------------------|-----------|
+| 2s           | 3.1293          | 1.31%              | 1.174     |
+| 5s           | 14.7714         | 6.68%              | 4.5612    |
+| 10s          | 3.81185         | 1.81%              | 1.0327    |
 
 ## Discussion
 
