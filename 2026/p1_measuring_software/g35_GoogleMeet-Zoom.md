@@ -146,7 +146,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
 ## Experimental results
 
- After the removal of outliers, the results can be seen illustrated below. 
+ After the removal of outliers, the results can be seen illustrated below. Each figure compares Zoom and Microsoft Teams under the specified feature ON vs OFF conditions. The violin plots show the full distribution of the measurements across the 30 runs, while the embedded box plots indicate the mean and interquartile range. Finally, the dashed horizontal line represents the mean value. 
 
 ### Power and EDP Comparison for camera on vs camera off
 
@@ -154,7 +154,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>Power</strong><br>
-    <img src="img/camera_avg_power_W_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/camera_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 1: Average Power Consumption values for features camera on vs camera off.
     </p>
@@ -162,7 +162,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>EDP</strong><br>
-    <img src="img/camera_EDP_Js_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/camera_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 2: EDP values for features camera on vs camera off.    
     </p>
@@ -170,15 +170,13 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
 </div>
 
-Queue statistics!!
-
 ### Power and EDP Comparison for background blurring on vs off
 
 <div style="display: flex; gap: 20px;">
 
   <div style="flex: 1;">
     <strong>Power</strong><br>
-    <img src="img/blur_avg_power_W_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/blur_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 3: Average Power Consumption values for features background blurring on vs off.
     </p>
@@ -186,14 +184,12 @@ Queue statistics!!
 
   <div style="flex: 1;">
     <strong>EDP</strong><br>
-    <img src="img/blur_EDP_Js_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/blur_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 4: EDP values for features background blurring on vs off.
     </p>
   </div>
 </div>
-
-Queue statistics!!
 
 ### Power and EDP Comparison for screen sharing on vs off
 
@@ -201,7 +197,7 @@ Queue statistics!!
 
   <div style="flex: 1;">
     <strong>Power</strong><br>
-    <img src="img/share_avg_power_W_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/share_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 5: Average Power Consumption values for features screen sharing on vs off.
     </p>
@@ -209,7 +205,7 @@ Queue statistics!!
 
   <div style="flex: 1;">
     <strong>EDP</strong><br>
-    <img src="img/share_EDP_Js_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/share_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 6: EDP values for features screen sharing on vs off.
     </p>
@@ -217,12 +213,41 @@ Queue statistics!!
 
 </div>
 
-Queue statistics!!
+Across all the features, it can be observed that enabling the feature generally results in higher average power consumption compared to disabling it. This effect can be seen for both applications, with the exactl magnitude and variability differing between Zoom and Microsoft Teams. Note that the width and shape of the violins show that feature-enabled conditions often exhibit greater variability, suggesting less stable energy behaviour when additional processing, such as video effects and sharing, is active. 
 
 ## Statistical Analysis
 
-- Shapiro-Wilk
-- Welch’s T Test
+### Normality testing
+To determine the kind of statistical tests to conduct, the normality of the data destribution was evaluated using the Shapiro-Wilk test.
+
+The test was applied separately to each group, with a significance level of `a = 0.05` being used:
+- if `p >= 0.05`: the data was normally distributed
+- if `p < 0.05`: the data was not normally distributed
+
+Generally speaking, most of the groups revealed to have data that is not normally distributed. The groups that were revealed to be normally distributed are: TEAMS_CAM_ON_PW, TEAMS_CAM_OFF_PW, TEAMS_SHARE_ON_PW, ZOOM_CAM_ON_EDP, TEAMS_CAM_ON_EDP, and TEAMS_CAM_OFF_EDP. Note that the first three concern the average power consumption, while the last three concern the energy delay product values. 
+
+Depending on the result, the choice of statistical test was made as described below.
+
+### Significance Testing
+Two independent-sample significance tests were considered in this case. 
+
+#### Welch's t-test
+Welch's t-test was used in the case both groups passed the normality test. This is because this test compares mean differences, making it appropriate for when distributional assumptions are met. 
+
+#### Mann-Whitney U Test
+When at least one group violated the normality assumptions, the Mann-Whitney U test was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
+
+### Effect size estimation
+In addition to statistical significance, effect sizes should be computed to help indicate the practical relevance of an observed difference. 
+
+For Welch's t-test, 'Cohen's d' was used to quantify standardized mean differences. For the Mann-Whitney U test, the 'common language effect size' was computed, representing the probability that a randomly selected observation from one group exceeds an observation from another group. 
+
+These measures are meant to provide insight into the magnitude of observed effects, independent of sample size. 
+
+
+
+(Queue in depth explanation between the applications)
+
 
 # Discussion
 ## Interpretation of Results
