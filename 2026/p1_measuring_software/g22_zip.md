@@ -53,23 +53,24 @@ This section describes the setup used for the experiments. We took inspiration f
 
 All experiments are executed on the same machine and OS. Below is a table summarizing the specifications of the machine used.
 
-| Category | Specification |
-|---|---|
-| Machine / Laptop model | `<e.g., Lenovo ThinkPad ... / custom desktop>` |
-| CPU | `<e.g., Intel Core i7-12700H / AMD Ryzen ...>` |
-| CPU cores / threads | `<e.g., 14 cores (6P+8E) / 20 threads>` |
-| CPU base / boost frequency | `<if known>` |
-| RAM | `<e.g., 16 GB DDR4>` |
-| Storage | `<e.g., 512 GB NVMe SSD>` |
-| Operating system | `<e.g., Linux Mint 22.x (Ubuntu 24.04 base)>` |
-| Kernel version | `<e.g., Linux 6.x>` |
-| Power mode | `<e.g., plugged in, performance mode / balanced>` |
-| EnergiBridge version | `<version>` |
-| GNU gzip version | `<e.g., gzip 1.12 / 1.13 / 1.14>` |
-| C++ compiler | `<e.g., g++ 13.x>` |
-| Java runtime / compiler | `<e.g., OpenJDK 17.0.x (java/javac)>` |
-| Go version | `<e.g., go1.22.x>` |
-| Python version | `<e.g., Python 3.12.x>` |
+| Category | Specification                                                                        |
+|---|--------------------------------------------------------------------------------------|
+| Machine / Laptop model | `HP ZBook Power 15.6 inch G9 Mobile Workstation PC`                                  |
+| CPU | `i7-12700H`                                                                          |
+| CPU cores / threads | `20 cores / 40 threads`                                                              |
+| CPU base / boost frequency | `<if known>`                                                                         |
+| RAM | `16 GB DDR4`                                                                         |
+| Storage | `SAMSUNG MZVL2512HCJQ-00BH1`                                                         |
+| Operating system | `Fedora Linux 43 (Workstation Edition)`                                              |
+| Kernel version | `Linux 8.18.5-200.fc43.x86_64`                                                       |
+| Power mode | `plugged in + Power Saver mode`                                                      |
+| EnergiBridge version | `0.0.7`                                                                              |
+| GNU gzip version | `1.13`                                                                               |
+| C++ compiler | `15.2.1`                                                                             |
+| Java runtime / compiler | `OpenJDK 26-ea`                                                                      |
+| Go version | `1.25.7`                                                                             |
+| Python version | `3.14.2`                                                                             |
+| Aditional notes | `Airplane mode + Dark Style + Night Light + Do Not Disturb + Brightness set to min`  |
 
 ### Experimental Design and Conditions
 
@@ -190,32 +191,32 @@ Compression ratio (CR) is a metric calculated as the size of the compressed file
 ### Percent Change
 
 | compressible - compress | cpp | go      | java   | python |
-| --- |-----|---------|--------|--------|
-| cpp | 0 | +126.2% | +80.8% | +8.7%  |
-| go | - | 0       | -20.1% | -52.0% |
-| java | - | -       | 0      | -39.9% |
-| python | -   | -       | -      | 0      |
+|-------------------------|-----|---------|--------|--------|
+| cpp                     | 0   | +126.2% | +80.8% | +8.7%  |
+| go                      | -   | 0       | -20.1% | -52.0% |
+| java                    | -   | -       | 0      | -39.9% |
+| python                  | -   | -       | -      | 0      |
 
 | compressible - decompress | cpp | go     | java   | python |
-| --- |-----|--------|--------|--------|
-| cpp | 0 | +79.8% | +61.8% | +67.6% |
-| go | - | 0      | -10%   | -6.8%  |
-| java | - | -      | 0      | +3.6%  |
-| python | -   | -      | -      | 0      |
+|---------------------------|-----|--------|--------|--------|
+| cpp                       | 0   | +79.8% | +61.8% | +67.6% |
+| go                        | -   | 0      | -10%   | -6.8%  |
+| java                      | -   | -      | 0      | +3.6%  |
+| python                    | -   | -      | -      | 0      |
 
 | incompressible - compress | cpp | go     | java   | python |
-| --- |-----|--------|--------|--------|
-| cpp | 0 | -0.15% | +40.1% | +15.2% |
-| go | - | 0      | +40.3% | +15.4% |
-| java | - | -      | 0      | -17.9% |
-| python | -   | -      | -      | 0      |
+|---------------------------|-----|--------|--------|--------|
+| cpp                       | 0   | -0.15% | +40.1% | +15.2% |
+| go                        | -   | 0      | +40.3% | +15.4% |
+| java                      | -   | -      | 0      | -17.9% |
+| python                    | -   | -      | -      | 0      |
 
 | incompressible - decompress | cpp | go    | java   | python  |
-| --- |-----|-------|--------|---------|
-| cpp | 0 | +3.9% | +65.4% | +279.2% |
-| go | - | 0     | +59.3% | +265.1% |
-| java | - | -     | 0      | +129.2% |
-| python | -   | -     | -      | 0       |
+|-----------------------------|-----|-------|--------|---------|
+| cpp                         | 0   | +3.9% | +65.4% | +279.2% |
+| go                          | -   | 0     | +59.3% | +265.1% |
+| java                        | -   | -     | 0      | +129.2% |
+| python                      | -   | -     | -      | 0       |
 
 ## Statistical Results
 
@@ -223,24 +224,24 @@ Compression ratio (CR) is a metric calculated as the size of the compressed file
 ![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
 
 ### Shapiro-Wilk
-| Dataset         | Mode        | Lang   | W        | p value      | Normal (α=0.05) |
-|----------------|------------|--------|----------|--------------|----------------|
-| compressible   | compress   | cpp    | 0.941976 | 1.028241e-01 | True           |
-| compressible   | compress   | go     | 0.980313 | 8.338067e-01 | True           |
-| compressible   | compress   | java   | 0.840987 | 4.038257e-04 | False          |
-| compressible   | compress   | python | 0.785829 | 3.655971e-05 | False          |
-| compressible   | decompress | cpp    | 0.861749 | 1.103541e-03 | False          |
-| compressible   | decompress | go     | 0.976164 | 7.170051e-01 | True           |
-| compressible   | decompress | java   | 0.913648 | 1.841219e-02 | False          |
-| compressible   | decompress | python | 0.715353 | 2.630398e-06 | False          |
-| incompressible | compress   | cpp    | 0.973907 | 6.505627e-01 | True           |
-| incompressible | compress   | go     | 0.955466 | 2.362211e-01 | True           |
-| incompressible | compress   | java   | 0.863222 | 1.188030e-03 | False          |
-| incompressible | compress   | python | 0.978161 | 7.748320e-01 | True           |
-| incompressible | decompress | cpp    | 0.887594 | 4.232543e-03 | False          |
-| incompressible | decompress | go     | 0.378395 | 3.433827e-10 | False          |
-| incompressible | decompress | java   | 0.988442 | 9.808026e-01 | True           |
-| incompressible | decompress | python | 0.977920 | 7.679622e-01 | True           |
+| Dataset        | Mode       | Lang   | W     | p value  | Normal (α=0.05) |
+|----------------|------------|--------|-------|----------|-----------------|
+| compressible   | compress   | cpp    | 0.942 | 1.03e-01 | True            |
+| compressible   | compress   | go     | 0.980 | 8.34e-01 | True            |
+| compressible   | compress   | java   | 0.841 | 4.04e-04 | False           |
+| compressible   | compress   | python | 0.786 | 3.66e-05 | False           |
+| compressible   | decompress | cpp    | 0.862 | 1.10e-03 | False           |
+| compressible   | decompress | go     | 0.976 | 7.17e-01 | True            |
+| compressible   | decompress | java   | 0.914 | 1.84e-02 | False           |
+| compressible   | decompress | python | 0.715 | 2.63e-06 | False           |
+| incompressible | compress   | cpp    | 0.974 | 6.51e-01 | True            |
+| incompressible | compress   | go     | 0.955 | 2.36e-01 | True            |
+| incompressible | compress   | java   | 0.863 | 1.19e-03 | False           |
+| incompressible | compress   | python | 0.978 | 7.75e-01 | True            |
+| incompressible | decompress | cpp    | 0.888 | 4.23e-03 | False           |
+| incompressible | decompress | go     | 0.378 | 3.43e-10 | False           |
+| incompressible | decompress | java   | 0.988 | 9.80e-01 | True            |
+| incompressible | decompress | python | 0.978 | 7.68e-01 | True            |
 
 ### Welch's t-test
 ![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
