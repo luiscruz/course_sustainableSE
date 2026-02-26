@@ -76,6 +76,10 @@ gzip -6 -n -c INPUT > ref.gz
 
 The `-n` option removes filename and timestamp metadata from the gzip header, thus contributing to the project's reproducibility. We do this to ensure that all languages decompress the **same exact `.gz` bytes**.
 
+compressible: 353eea1dc2dc6774663338846b8a36c38528d0330d22e9fe35138367c45abbdf
+
+incompressible: 21f4a81500d3e55e6ffdc9b42bcc211da17a9490beb39de0a4917c20ac7ebf7d
+
 ### Measurement Tooling and Execution Procedure
 
 Energy measurements are collected with **EnergiBridge** [9], as it provides accurate and reliable real-time power consumption data. For each run, the experiment script invokes EnergiBridge as a wrapper around the language-specific command:
