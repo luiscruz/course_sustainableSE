@@ -60,7 +60,7 @@ Hardware Acceleration Disabled: Forced via Selenium startup arguments (e.g., --d
 This comparison aims to quantify the actual energy efficiency gains (or losses) of hardware offloading in video playback scenarios.
 
 #### 1.3 YouTube Workload
-We manually selected four YouTube Shorts, each with an average duration of approximately 30 seconds. These videos were organized into a dedicated playlist and played sequentially during each experimental run. Shorts were chosen because their compact nature and frequent rendering changes better reflect the dynamic energy fluctuations of modern web video content.
+We manually selected four YouTube Shorts, each with an average duration of approximately 30 seconds. These videos were organized into a dedicated playlist and played sequentially during each experimental run. Shorts were chosen because their compact nature and frequent rendering changes better reflect the dynamic energy fluctuations of modern web video content. The youtube videos that we used can be found in [this](https://www.youtube.com/watch?v=Ay8lynMZ4mE&list=PLmSezx7vjyA4vpDfHBdetncvcAlNc2IXs&pp=sAgC) playlist, because the YouTube shorts are added to a playlist, they are played in the normal YouTube player rather than the short player. Since the shorts are played in the normal environment, we could also change the resolution. The resolution of all the shorts were set at 1080p.
 
 ### 2. Environmental Control and Fairness
 #### 2.1 Hardware Information
