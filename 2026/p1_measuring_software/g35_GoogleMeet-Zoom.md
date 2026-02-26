@@ -285,6 +285,6 @@ Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft 
 # References
 
 1. Sweigart, Al. “Welcome to PyAutoGUI’s Documentation! — PyAutoGUI 1.0.0 Documentation.” Readthedocs.io, 2014, pyautogui.readthedocs.io/en/latest/.
-2. https://www.dmaic.com/faq/empirical-rule/
-3. https://www.dmaic.com/faq/z-score-standard-score/
+2. “The Empirical Rule (68-95-99.7).” Dmaic.com, 2 Oct. 2025, www.dmaic.com/faq/empirical-rule/. Accessed 26 Feb. 2026.
+3. “Z-Score (Standard Score).” Dmaic.com, 8 Oct. 2025, www.dmaic.com/faq/z-score-standard-score/. Accessed 26 Feb. 2026.
 
