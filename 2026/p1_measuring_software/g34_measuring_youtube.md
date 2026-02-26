@@ -19,7 +19,7 @@ platform attracts approximately 122 million daily active users, collectively wat
 day [1]. This scale of consumption translates into a significant and growing energy footprint, spread across data
 centers, network infrastructure, and the client devices of viewers worldwide.
 
-In addition to the established YouTue settings, such as video quality, playback speed, and subtitles, YouTube has
+In addition to the established YouTube settings, such as video quality, playback speed, and subtitles, YouTube has
 recently
 introduced several optional player features to improve user experience: Ambient Mode, Stable Volume, and Voice Boost.
 Notably, two of these (Ambient Mode and Stable Volume) are enabled by default, regardless of whether the users are
@@ -57,27 +57,27 @@ consumption.
 
 ## Experiment procedure
 
-We defined four conditions (one per setting plus the baseline) and conducted 30 trials per condition, runing 120
+We defined four conditions (one per setting plus the baseline) and conducted 30 trials per condition, running 120
 trials in total. To minimize human error and ensure consistency across trials, the entire experiment was automated using
 Python and Playwright [2]. The Hardware and software details of the machine on which we conducted the
-experiment are provided below in section _Hardware/Software Details_. The video used throughout all trials was a fixed,
-publicly available YouTube video with no ads and streamed at a consistent quality (480p).
-
-Before the start of experiment began, we prepared the machine by closing all non-essential applications, disabling
-notifications,
-and terminating background processes. Display brightness and system volume were both fixed at maximum for the duration
-of the experiment. Although a wired ethernet connection would have been preferable for network stability, it was not
-available to us, so all trials were conducted over Wi-Fi. We acknowledge this as a potential source of variance in our
+experiment are provided below in section [Hardware/Software Details](#hardwaresoftware-details). The video used throughout all trials was a fixed,
+publicly available YouTube video **(TODO: ADD VIDEO)** with no ads and streamed at a consistent quality (480p).
+### Zen Mode
+Before the start of experiment began, we prepared the machine by closing all applications, disabling
+all notifications, disabling brightness adjusting. Display brightness and system volume were both fixed at 30% for the duration
+of the experiment, this is discussed further in the [Limitation section](#limitations). Although a wired ethernet connection would have been preferable for network stability, it was not
+nto feasible throughout the timeline of the project, so all trials were conducted over the same Wi-Fi network. We acknowledge this as a potential source of variance in our
 measurements.
 
+### Workflow
 With our computer in "_zen mode_", we started a 5-minute warm-up phase in which we ran a Fibonacci sequence computation
 to bring the CPU to a stable temperature and avoid cold-start effects in the early trials. After the warm-up,
 we executed 120 trials (30 per condition) in a randomly shuffled order to mitigate any temporal correlations between
 trials.
 
-Between each trial, the system was left idle for 60 seconds to allow it to stabilize before the next measurement began.
+Between each trial, the system was left idle for 30 seconds to allow it to stabilize before the next measurement began.
 
-Each trial proceeded as follows:
+Each trial proceeded the workflow as follows:
 
 1. Opening Chrome browser in incognito mode with dark mode enabled via a pre-set YouTube cookie.
 2. Navigating to the chosen YouTube video, accepting the cookies, and temporarily pausing playback.
@@ -86,8 +86,19 @@ Each trial proceeded as follows:
    EnergiBridge [5] for 60 seconds of video playback.
 5. Closing the browser and waiting 30 seconds before the next trial.
 
-## Hardware/Software Details
+### Hardware/Software Details
+- Model Name:	MacBook Air
+- Model Identifier:	Mac14,2
+- Chip:	Apple M2
+- Total Number of Cores:	8 (4 performance and 4 efficiency)
+- Memory:	8 GB
+- Resolution:	2560x1664 Retina
+- Refresh Rate:	60Hz
 
+## Analysis
+
+## Limitations
+Since the settings are concerned with brightness and sound settings, the initial version of the experiment included highest brightness and volume on to the maximum setting. However ,
 # References
 
 [1] Global Media Insight. YouTube Users
