@@ -118,8 +118,8 @@ The experiment is driven by a single automation script that imports two platform
 1. **Launch**: the selected application opens and joins a pre-configured meeting automatically.
 2. **Baseline measurement**: EnergiBridge records system-level energy consumption for 30 seconds under the baseline condition (e.g., camera off, no blur, no screen share).
 3. **Feature measurement**: the script toggles the feature (e.g., enables camera, blur, or screen sharing) and EnergiBridge records for another 30 seconds.
-4. **Teardown**: the application is force-killed to ensure a clean state for the next iteration.
-5. **Cooldown**: a 60-second waiting period is performed to prevent tail energy consumption between iterations.
+4. **Restart**: the application is force-killed to ensure a clean state for the next iteration.
+5. **Cooldown**: a 60-second waiting period is executed to prevent tail energy consumption between iterations.
 
 
 ### Replication Package
@@ -127,7 +127,7 @@ The experiment is driven by a single automation script that imports two platform
 For the experiments, the replication package can be found in the following [repository](https://github.com/ayushhhkha/SSE_TeamsVsZoom).
 
 ## Data Collection & Processing 
-Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each trace we derive the average power consumption (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
+Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each reading we derive mean power (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
 
 
 # Results
