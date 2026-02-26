@@ -139,7 +139,7 @@ The most striking finding of this study is that enabling hardware acceleration c
 As seen in the graph, while Chrome and Edge show a moderate increase, Firefox displays a significantly wider gap between its "On" and "Off" states.
 
 *Table 2: Statistical Comparison of Total Energy (HW On vs. HW Off)*
-| Browser | Metric | n_off | n_on | p-value | Mean Off (J) | Mean On (J) | Change (%)|
+| Browser | Metric | #_gpu_off | #_gpu_on | p-value | Mean Off (J) | Mean On (J) | Change (%)|
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Chrome | Total Energy | 30 | 30 | 2.44e-09 | 2241.73 | 2419.26 | +7.92% |
 | Edge | Total Energy | 30 | 30 | 6.05e-07 | 2244.28 | 2403.25 | +7.08% |
