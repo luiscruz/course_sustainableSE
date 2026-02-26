@@ -165,16 +165,32 @@ We further conduct an Effect Size analysis by calculating Cohen's *d* [16], alon
 
 ## Evaluation Results
 
-![mean_energy_ci_usage.png](img/g22_zip/mean_energy_ci_usage.png)
-#### Figure 1: Mean Energy with Confidence Intervals
+| Language |     Dataset    |    Mode    | Mean E | Std E |     CI (95%)     |
+| -------- | -------------- | ---------- | ------ | ----- | ---------------- |
+| cpp      | compressible   | compress   | 13.788 | 0.131 | [13.739, 13.837] |
+|          |                | decompress | 2.422  | 0.056 | [2.401, 2.443]   |
+|          | incompressible | compress   | 32.909 | 0.206 | [32.833, 32.986] |
+|          |                | decompress | 1.288  | 0.047 | [1.270, 1.306]   |
+| go       | compressible   | compress   | 31.190 | 0.268 | [31.090, 31.290] |
+|          |                | decompress | 4.354  | 0.097 | [4.318, 4.390]   |
+|          | incompressible | compress   | 32.862 | 0.304 | [32.748, 32.975] |
+|          |                | decompress | 1.338  | 0.187 | [1.268, 1.408]   |
+| java     | compressible   | compress   | 24.928 | 0.611 | [24.700, 25.156] |
+|          |                | decompress | 3.919  | 0.117 | [3.876, 3.963]   |
+|          | incompressible | compress   | 46.094 | 0.366 | [45.957, 46.231] |
+|          |                | decompress | 2.131  | 0.067 | [2.106, 2.156]   |
+| python   | compressible   | compress   | 14.985 | 0.178 | [14.919, 15.051] |
+|          |                | decompress | 4.059  | 0.132 | [4.010, 4.108]   |
+|          | incompressible | compress   | 37.906 | 0.227 | [37.821, 37.991] |
+|          |                | decompress | 4.885  | 0.146 | [4.831, 4.940]   |
+
+#### Table 1: Energy Consumption for Each Language Across Workloads
 
 ![energy_dist.png](img/g22_zip/energy_dist.png)
-#### Figure 2: Energy Distributions
+#### Figure 1: Energy Distributions
 
 ![energy_vs_time.png](img/g22_zip/energy_vs_time.png)
-#### Figure 3: Energy over Runtime
-
-#### Table 1: Energy Percent Change between languages 
+#### Figure 2: Energy over Runtime
 
 | compressible - compress | cpp | go      | java   | python |
 |-------------------------|-----|---------|--------|--------|
@@ -204,40 +220,125 @@ We further conduct an Effect Size analysis by calculating Cohen's *d* [16], alon
 | java                        | -   | -     | 0      | +129.2% |
 | python                      | -   | -     | -      | 0       |
 
-## Statistical Results
+#### Table 2: Energy Percent Change between languages 
 
-#### Table 2: Shapiro-Wilk Energy Consumption Distribution Normality
+|      Dataset       | Language | Mean CR | % Above Best |
+| ------------------ | -------- | ------- | ------------ |
+|    Compressible    | Java     | 9.814   | 0.0%         |
+|                    | C++      | 10.034  | +2.2%        |
+|                    | Python   | 10.034  | +2.2%        |
+|                    | Go       | 10.117  | +3.1%        |
+|   Incompressible   | C++      | 0.99970 | 0.0%         |
+|                    | Go       | 0.99970 | 0.0%         |
+|                    | Java     | 0.99970 | 0.0%         |
+|                    | Python   | 0.99970 | 0.0%         |
+
+#### Table 3: Compression Rate
+
+## Statistical Results
 
 | Dataset        | Mode       | Lang   | W     | p value  | Normal (α<=0.05) |
 |----------------|------------|--------|-------|----------|-----------------|
 | compressible   | compress   | cpp    | 0.942 | 1.03e-01 | True            |
-| compressible   | compress   | go     | 0.980 | 8.34e-01 | True            |
-| compressible   | compress   | java   | 0.841 | 4.04e-04 | False           |
-| compressible   | compress   | python | 0.786 | 3.66e-05 | False           |
-| compressible   | decompress | cpp    | 0.862 | 1.10e-03 | False           |
-| compressible   | decompress | go     | 0.976 | 7.17e-01 | True            |
-| compressible   | decompress | java   | 0.914 | 1.84e-02 | False           |
-| compressible   | decompress | python | 0.715 | 2.63e-06 | False           |
+|    |    | go     | 0.980 | 8.34e-01 | True            |
+|    |    | java   | 0.841 | 4.04e-04 | False           |
+|    |    | python | 0.786 | 3.66e-05 | False           |
+|    | decompress | cpp    | 0.862 | 1.10e-03 | False           |
+|    |  | go     | 0.976 | 7.17e-01 | True            |
+|    |  | java   | 0.914 | 1.84e-02 | False           |
+|    |  | python | 0.715 | 2.63e-06 | False           |
 | incompressible | compress   | cpp    | 0.974 | 6.51e-01 | True            |
-| incompressible | compress   | go     | 0.955 | 2.36e-01 | True            |
-| incompressible | compress   | java   | 0.863 | 1.19e-03 | False           |
-| incompressible | compress   | python | 0.978 | 7.75e-01 | True            |
-| incompressible | decompress | cpp    | 0.888 | 4.23e-03 | False           |
-| incompressible | decompress | go     | 0.378 | 3.43e-10 | False           |
-| incompressible | decompress | java   | 0.988 | 9.80e-01 | True            |
-| incompressible | decompress | python | 0.978 | 7.68e-01 | True            |
+|  |    | go     | 0.955 | 2.36e-01 | True            |
+|  |    | java   | 0.863 | 1.19e-03 | False           |
+|  |    | python | 0.978 | 7.75e-01 | True            |
+|  | decompress | cpp    | 0.888 | 4.23e-03 | False           |
+|  |  | go     | 0.378 | 3.43e-10 | False           |
+|  |  | java   | 0.988 | 9.80e-01 | True            |
+|  |  | python | 0.978 | 7.68e-01 | True            |
 
-![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
+#### Table 4: Shapiro-Wilk Test for Normality (Energy Consumption)
+
+![Welch t-test.png](img/g22_zip/Welch_t_test.png)
 #### Figure 4: Welch's t-test Between Languages per Workload after Holm correction
 
-#### Table 3: Pearson's Correlation Coefficient between Energy Consumption and Time
-| data type      | mode       | pearson r | p value       |
-|----------------|------------|-----------|---------------|
-| compressible   | compress   | 0.995502  | 1.246119e-122 |
-| compressible   | decompress | 0.975349  | 2.738179e-79  |
-| incompressible | compress   | 0.996787  | 3.110406e-131 |
-| incompressible | decompress | 0.996859  | 8.266893e-122 |
+| Dataset        | Mode       | Language A | Language B | p value  | Significant (α=0.05) |
+| -------------- | ---------- | ---------- | ---------- | -------- | -------------------- |
+| Compressible   | Compress   | Go         | Python     | < 1e-80  | Yes                  |
+|                |            | C++        | Go         | < 1e-70  | Yes                  |
+|                |            | Java       | Python     | < 1e-39  | Yes                  |
+|                |            | C++        | Java       | < 1e-39  | Yes                  |
+|                |            | Go         | Java       | < 1e-36  | Yes                  |
+|                |            | C++        | Python     | < 1e-34  | Yes                  |
+|                | Decompress | C++        | Go         | < 1e-53  | Yes                  |
+|                |            | C++        | Java       | < 1e-41  | Yes                  |
+|                |            | C++        | Python     | < 1e-39  | Yes                  |
+|                |            | Go         | Java       | < 1e-20  | Yes                  |
+|                |            | Go         | Python     | < 1e-12  | Yes                  |
+|                |            | Java       | Python     | 5.9e-05  | Yes                  |
+| Incompressible | Compress   | Go         | Java       | < 1e-73  | Yes                  |
+|                |            | C++        | Java       | < 1e-64  | Yes                  |
+|                |            | C++        | Python     | < 1e-61  | Yes                  |
+|                |            | Java       | Python     | < 1e-57  | Yes                  |
+|                |            | Go         | Python     | < 1e-54  | Yes                  |
+|                |            | C++        | Go         | 0.48     | No                   |
+|                | Decompress | Go         | Python     | < 1e-57  | Yes                  |
+|                |            | Java       | Python     | < 1e-47  | Yes                  |
+|                |            | C++        | Java       | < 1e-47  | Yes                  |
+|                |            | C++        | Python     | < 1e-47  | Yes                  |
+|                |            | Go         | Java       | < 1e-21  | Yes                  |
+|                |            | C++        | Go         | 0.16     | No                   |
 
+#### Table 5: Pairwise P-Values after Welch's t-test
+
+| Dataset        | Mode       | Language A | Language B | Cohen’s d | Mean Diff (J) | % Change (B vs A) |
+| -------------- | ---------- | ---------- | ---------- | --------- | ------------- | ----------------- |
+| Compressible   | Compress   | C++        | Go         | 82.52     | +17.403       | +126.2%           |
+|    | Compress   | C++        | Java       | 25.20     | +11.140       | +80.8%            |
+|    |    | C++        | Python     | 7.67      | +1.197        | +8.7%             |
+|    |    | Go         | Java       | -13.27    | -6.262        | -20.1%            |
+|    |    | Go         | Python     | -71.29    | -16.206       | -52.0%            |
+|    |    | Java       | Python     | -22.08    | -9.943        | -39.9%            |
+|    | Decompress | C++        | Go         | 24.29     | +1.932        | +79.8%            |
+|    |  | C++        | Java       | 16.37     | +1.497        | +61.8%            |
+|    |  | C++        | Python     | 16.15     | +1.637        | +67.6%            |
+|    |  | Go         | Java       | -4.05     | -0.435        | -10.0%            |
+|    |  | Go         | Python     | -2.55     | -0.295        | -6.8%             |
+|    |  | Java       | Python     | 1.12      | +0.139        | +3.6%             |
+| Incompressible | Compress   | C++        | Go         | -0.18     | -0.048        | -0.1%             |
+|  |    | C++        | Java       | 44.43     | +13.185       | +40.1%            |
+|  |    | C++        | Python     | 23.05     | +4.997        | +15.2%            |
+|  |    | Go         | Java       | 39.34     | +13.233       | +40.3%            |
+|  |    | Go         | Python     | 18.80     | +5.044        | +15.4%            |
+|  |    | Java       | Python     | -26.88    | -8.188        | -17.8%            |
+|  | Decompress | C++        | Go         | 0.37      | +0.050        | +3.9%             |
+|  |  | C++        | Java       | 14.56     | +0.843        | +65.4%            |
+|  |  | C++        | Python     | 33.09     | +3.597        | +279.2%           |
+|  |  | Go         | Java       | 5.65      | +0.793        | +59.3%            |
+|  |  | Go         | Python     | 21.14     | +3.547        | +265.1%           |
+|  |  | Java       | Python     | 24.23     | +2.754        | +129.2%           |
+
+#### Table 6: Effect Size Analysis
+
+| Dataset        | Mode       | Language | Pearson r | p-value  |
+| -------------- | ---------- | -------- | --------- | -------- |
+| Compressible   | Compress   | C++      | 0.399     | 2.88e-02 |
+|    |    | Go       | 0.063     | 7.41e-01 |
+|    |    | Java     | 0.954     | 3.67e-16 |
+|    |    | Python   | 0.341     | 6.53e-02 |
+|    | Decompress | C++      | 0.597     | 4.96e-04 |
+|    |  | Go       | -0.234    | 2.12e-01 |
+|    |  | Java     | 0.779     | 3.91e-07 |
+|    |  | Python   | 0.609     | 3.55e-04 |
+| Incompressible | Compress   | C++      | 0.671     | 4.97e-05 |
+|  |    | Go       | 0.744     | 2.42e-06 |
+|  |    | Java     | 0.579     | 8.04e-04 |
+|  |    | Python   | 0.670     | 5.09e-05 |
+|  | Decompress | C++      | 0.203     | 2.83e-01 |
+|  |  | Go       | 0.839     | 7.20e-09 |
+|  |  | Java     | 0.416     | 2.23e-02 |
+|  |  | Python   | 0.500     | 4.88e-03 |
+
+#### Table 7: Pearson's Correlation Coefficient between Energy Consumption and Time
 
 ![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
 #### Figure 5: Cohen's d Between Languages per Workload
