@@ -2,7 +2,7 @@
 author: Preethika Ajaykumar, Yuting Dong, Jayran Duggins, Riya Gupta
 group_number: 17
 title: "Energy Consumption for Online Podcast Playback"
-image: "img/g17_podcast_playback/g17_podcast_playback_cover.png"
+image: "img/g17_podcast_playback/g17_podcast_playback_cover.jpg"
 date: 12/02/2026
 summary: |-
   This project investigates how energy consumption varies during podcast playback in web browsers under controlled conditions. We compare different browsers and playback speeds while streaming identical podcast content, ensuring consistent brightness, duration and system settings across all runs. Energy data is collected using automated profiling tools and CPU package-level measurements to ensure reproducibility. Results are analysed in terms of total energy (Joules), average power (Watts) and energy per minute of playback, providing insight into the environmental impact of everyday podcast streaming behaviour.
@@ -37,21 +37,21 @@ All measurements were conducted on a single laptop to eliminate hardware variabi
 
 The experimental framework and platform choices were guided by three main categories: experimental control, reproducibility, and relevance to real-world usage.
 
-#### Selection of Spotify and Apple Podcasts
+#### 2.2.1 Selection of Spotify and Apple Podcasts
 
 Spotify and Apple Podcasts were chosen because they are two of the most widely used podcast platforms globally \[5\]\[6\]. Both platforms support variable playback speed, which is central to our research question. Comparing these two platforms allows us to evaluate whether implementation differences influence energy efficiency under the same playback conditions.
 
-#### Web-Based Platforms vs Native Applications
+#### 2.2.2 Web-Based Platforms vs Native Applications
 
 The web versions of Spotify and Apple Podcasts were selected instead of their desktop applications. While native applications are more commonly used, web-based playback allows for stronger experimental control and automation. Browser automation frameworks such as Playwright allow constant scripting of navigation, playback initiation, and speed adjustment. This ensures that all trials follow an identical structure and can be reproduced reliably.
 
-#### Selection of Chrome and Brave Browsers
+#### 2.2.3 Selection of Chrome and Brave Browsers
 
 Google Chrome and Brave were selected as representative Chromium-based browsers. Google Chrome was selected due to its current global market share \[7\]. To maintain experimental control, a second Chromium-based browser was selected rather than choosing a browser built on a different rendering engine. By selecting two browsers based on the same engine, variability introduced by engine-level architecture is reduced. This allows for a more controlled comparison focused on browser-level implementation differences, background process behaviour, and energy management strategies rather than engine-specific effects.
 
 ### 2.3 Experimental Variables
 
-#### Independent Variables 
+#### 2.3.1 Independent Variables 
 
 The following factors were varied:
 
@@ -221,7 +221,7 @@ Future work could compare web-based players with native applications, extend exp
 
 Each configuration was run 30 times, resulting in a total of 240 measurements across all configs. Energy values were computed using the *CPU\_ENERGY* counter retrieved from EnergiBridge.
 
-Outlier detection was done using the three-standard-deviation rule ($|x − x̄| > 3s$). 
+Outlier detection was done using the three-standard-deviation rule ($\mid x − x̄ \mid > 3s$). 
 
 A total of 1 run was identified as a statistical outlier and removed from further analysis.  The remaining data were used for statistical testing. This outlier was removed from the brave\_apple\_1x configuration. 
 
@@ -238,14 +238,14 @@ A total of 1 run was identified as a statistical outlier and removed from furthe
 | **Brave \- Spotify 1x** | 30 | 716.36 | 11.85 | 715.56 |
 | **Brave \- Spotify 2x** | 30 | 716.83 | 11.16 | 719.50 |
 
-#### Global Box Plot
+#### -> Global Box Plot
 ![](.\img\g17_podcast_playback\plots\box\global_boxplot.png)
 
-#### Global Violin Plot
+#### -> Global Violin Plot
 
 ![](.\img\g17_podcast_playback\plots\violin\global_violinplot.png)
 
-#### Focused 1x versus 2x Box Plots
+#### -> Focused 1x versus 2x Box Plots
 
 <p align="center">
   <img src="./img/g17_podcast_playback/plots/box/brave_apple_1x_vs_brave_apple_2x.png" width="45%" />
