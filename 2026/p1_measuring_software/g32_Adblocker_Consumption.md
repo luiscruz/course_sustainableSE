@@ -5,7 +5,7 @@ title: "Adblocker Consumption: Measuring the Energy Usage of Adblockers"
 image: "img/gX_template/project_cover.png"
 date: 12/02/2026
 summary: |-
-  CS4575 Sustainable Software Engineering (2025/26 Q3) Project 1 Proposal
+  This study compares the energy consumption between two profiles, where one profile has an ad blocker extension and the other one does not. In both profiles we simulate a user reading and browsing content on different newsletters, through an automated script. Our findings aim to highlight the significant energy difference when one uses an adblocker as compared to when one does not.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
@@ -110,7 +110,7 @@ The histogram, boxplot and violin plots obtained from the results are shown belo
 
 ![Violin Plot of Energy Consumption](img/g32_Violin_Plot_Energy_Consumption.png)
 
-**Figure 1.** Comparison of total energy consumption for Profile 1 and Profile 2.
+**Figures** Comparison of total energy consumption for Profile 1 and Profile 2.
 Top: Histogram. Middle: Boxplot. Bottom: Violin plot.
 
 ---
@@ -192,3 +192,10 @@ Future work could extend this study by evaluating different categories of websit
 ---
 
 All of our scripts and outputs are available in our [GitHub](https://github.com/sg003/sustainable_p1)
+
+### Relevant Links:
+
+AdBlocker Used: https://chromewebstore.google.com/detail/ad-blocker-stands-adblock/lgblnfidahcdcjddiepkckcfdhpknnjh?utm_source=ext_app_menu
+
+EnergiBridge GitHub Repo: https://github.com/tdurieux/energibridge
+
