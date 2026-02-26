@@ -88,7 +88,85 @@ In summary, browser choice on macOS should be workload-driven. Firefox is the be
 ---
 
 ### **Windows**
-To be added
+
+The Windows experiments followed the same structure as macOS: 5 warmup rounds and 30 measured rounds per benchmark. Warmup runs were used to stabilize CPU frequency scaling, thermal conditions, and background OS activity. All unnecessary background applications were closed, and system updates, indexing, and power-saving features were disabled where possible to reduce noise.
+
+Unlike macOS, Windows relies on the RAPL (Running Average Power Limit) interface exposed via a kernel driver (used by EnergiBridge). This introduces slightly higher variability due to OS-level scheduling and driver interaction, which is reflected in some of the observed outliers.
+
+
+#### **Comparative Results Summary**
+
+The table below presents the metrics collected across the three BrowserBench benchmarks and the control run. Positive difference values indicate Firefox consumed/scored higher than Chrome, whereas negative values indicate Chrome did. Cohen's D captures practical significance, while Mann–Whitney U and independent t-test p-values indicate statistical significance (p < 0.05).
+
+| Test Category | Metric | Chrome Mean | Firefox Mean | Diff (%) | Cohen's D | Mann-Whitney p | T-Test p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **MotionMark** | Energy (J) | 17721.30 | 17360.92 | -2.03% | 0.448 | 5.57e-10 | 0.0881 |
+|  | Avg Watts | 55.44 | 55.37 | -0.12% | 0.026 | 1.85e-08 | 0.92 |
+|  | Peak Watts | 100520.44 | 87626.17 | -12.83% | 0.577 | 5.09e-06 | 0.0293 |
+|  | Max Temp (°C) | 0.00 | 0.00 | — | 0.000 | 1 | — |
+|  | Avg RAM (GB) | 9.46 | 9.10 | -3.76% | 3.944 | 1.83e-17 | 4.56e-43 |
+|  | Duration (s) | 319.67 | 313.51 | -1.93% | 2.111 | 1.83e-17 | 1.33e-26 |
+| **Speedometer** | Energy (J) | 1232.26 | 1720.69 | +39.64% | -4.934 | 1.83e-17 | 1.69e-40 |
+|  | Avg Watts | 42.19 | 49.22 | +16.65% | -1.982 | 9.76e-16 | 2.97e-25 |
+|  | Peak Watts | 79562.26 | 81280.72 | +2.16% | -0.183 | 0.00537 | 0.441 |
+|  | Max Temp (°C) | 0.00 | 0.00 | — | 0.000 | 1 | — |
+|  | Avg RAM (GB) | 9.52 | 9.73 | +2.16% | -1.212 | 1.91e-07 | 0.000221 |
+|  | Duration (s) | 29.62 | 35.31 | +19.20% | -2.573 | 2.1e-11 | 7.02e-25 |
+| **JetStream 2** | Energy (J) | 2031.55 | 3088.30 | +52.01% | -14.983 | 1.83e-17 | 8.72e-63 |
+|  | Avg Watts | 49.17 | 48.55 | -1.25% | 0.303 | 0.00106 | 0.231 |
+|  | Peak Watts | 114189.52 | 95827.65 | -16.08% | 0.711 | 4.99e-05 | 0.00577 |
+|  | Max Temp (°C) | 0.00 | 0.00 | — | 0.000 | 1 | — |
+|  | Avg RAM (GB) | 9.66 | 9.78 | +1.26% | -0.445 | 4.04e-05 | 0.0434 |
+|  | Duration (s) | 41.31 | 63.18 | +52.93% | -14.847 | 1.83e-17 | 2.63e-61 |
+| **Control** | Energy (J) | 319.01 | 340.64 | +6.78% | -0.401 | 3.35e-06 | 0.112 |
+|  | Avg Watts | 21.23 | 20.95 | -1.32% | 0.457 | 3.61e-11 | 0.0681 |
+|  | Peak Watts | 43337.59 | 46271.79 | +6.77% | -0.316 | 0.00133 | 0.211 |
+|  | Max Temp (°C) | 0.00 | 0.00 | — | 0.000 | 1 | — |
+|  | Avg RAM (GB) | 9.17 | 8.83 | -3.01% | 1.944 | 5.68e-13 | 5.18e-24 |
+|  | Duration (s) | 15.03 | 15.03 | -0.00% | 0.000 | 1 | — |
+> Note: Temperature values are zero due to lack of reliable sensor exposure via EnergiBridge on Windows.
+#### **Visualizations**
+
+![Energy Consumption Comparison](img/g5_browser_bench/energy_joules_comparison_boxplot_windows.png)
+
+Energy usage is consistently higher for Firefox in JetStream and Speedometer. MotionMark is the only benchmark where Firefox slightly outperforms Chrome.
+
+![Average Power Draw Comparison](img/g5_browser_bench/avg_watts_comparison_boxplot_windows.png)
+
+Average wattage is similar across browsers, but Firefox tends to draw slightly more power in Speedometer and control scenarios, indicating less efficient idle and interactive behavior.
+
+![Peak Power Draw Comparison](img/g5_browser_bench/peak_watts_comparison_boxplot_windows.png)
+
+Peak power shows high variance, especially in JetStream and Speedometer. Chrome exhibits larger spikes in some runs, likely due to aggressive boosting behavior from the Windows scheduler.
+
+![Duration Comparison](img/g5_browser_bench/duration_sec_comparison_boxplot_windows.png)
+
+Firefox takes significantly longer in JetStream and Speedometer, which directly explains its higher total energy consumption despite similar average power.
+
+![Metric Difference Heatmap](img/g5_browser_bench/metric_difference_heatmap_windows.png)
+
+The heatmap highlights a clear pattern: Firefox is less efficient in computation-heavy and interactive workloads, while differences in graphics workloads are minimal.
+
+Temperature data is effectively zero due to lack of reliable temperature reporting via EnergiBridge on this setup, so no conclusions can be drawn here.
+
+#### **Analysis**
+
+The Windows results reveal a consistent pattern, that **execution time dominates energy consumption**.
+
+In JetStream, Firefox takes over 50% longer to complete the benchmark, leading to a corresponding ~52% increase in total energy usage. This is the same in the macOS findings but is even more pronounced on Windows. Chrome’s V8 engine benefits from aggressive just-in-time (JIT) optimizations and faster execution pipelines, allowing it to complete workloads quickly and return the CPU to idle sooner.
+
+Speedometer shows a similar trend. Firefox consumes ~40% more energy and runs ~19% longer, while also drawing slightly higher average power. This suggests that Firefox’s event handling and DOM update pipeline is less optimized under Windows, possibly due to differences in how Gecko interacts with the Windows graphics and scheduling subsystems.
+
+MotionMark, however, shows different results. Firefox is slightly more efficient (~2% less energy), indicating that its graphics pipeline performs competitively on Windows. Unlike macOS, where Firefox benefits from Core Animation, Windows relies on DirectX, and both browsers appear similarly optimized for this stack.
+
+The control benchmark reveals that Firefox consumes more power even when idle (~6–7% higher). This suggests higher background activity or less aggressive power-saving behavior compared to Chrome.
+
+Peak power behavior is more erratic on Windows, with large outliers in both browsers. This is likely due to:
+- Windows CPU boosting (Turbo Boost / Precision Boost)
+- OS scheduler variability
+- Driver-level measurement noise from RAPL
+
+In summary, on Windows, Chrome is consistently more energy-efficient for computation-heavy tasks (JetStream), and Interactive workloads (Speedometer). Firefox only shows a marginal advantage in graphics workloads (MotionMark). The results indicate that Windows amplifies performance differences between browser engines. Chrome’s faster execution leads to significantly lower energy consumption, making it the more energy-efficient choice for most workloads on this platform.
 
 ---
 
