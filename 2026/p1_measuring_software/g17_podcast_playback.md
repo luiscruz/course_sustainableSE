@@ -297,6 +297,9 @@ Platform choice had a substantially larger impact on energy consumption than pla
 
 Future work could compare web-based players with native applications, extend experiments to mobile devices, and include additional playback speeds such as 1.5x. Measuring GPU and memory energy separately would provide a more complete system-level view. Further studies could examine offline playback, video podcasts, and other operating systems to improve generalisability.
 
+## **Replication Package**
+For researchers interested in replicating this study, the complete replication package is available at our <a href="https://github.com/riyagupta0701/Podcast-Energy-Experiment">GitHub repository</a>.
+
 ## **References**
 
 <a id="1" style="text-decoration: none;">[1]</a> Podcast Statistics. n.d. *33 Podcast Statistics 2026 (Number of Podcasts & Viewership).* Retrieved February 23, 2026 from [https://podcastatistics.com/](https://podcastatistics.com/)
