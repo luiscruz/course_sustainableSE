@@ -1,13 +1,17 @@
 ---
 author: Cosmin Anton, Jan Kuhta, Ada Turgut, Thomas van der Boon
 group_number: 34
-title: "Effect of video quality and browser type on youtube energy consumption"
+title: "Are YouTube’s Default Features Silently Wasting Energy? An Experimental Evaluation"
 image: "img/g34_measuring_software/project_cover.png"
 date: 12/02/2026
 summary: |-
-  The goal is to measure the effect of video quality and the different types of browsers have on the energy consumption of youtube. 
-  We are planning on using a variety of browsers such as chrome, edge, safari, opera and on each check a variety of qualities ranging from 240px - 4k. 
-  This will also be tested on different laptops to both compare and average out the results to get a less biased view.
+  This study investigates whether YouTube’s optional player features—Ambient Mode, Stable Volume, and Voice Boost—affect 
+  client-side energy consumption. In controlled experiments isolating each feature, we measure energy usage relative to 
+  a baseline with all features disabled. Our results show that Ambient Mode significantly increases energy consumption, 
+  while Stable Volume and Voice Boost do not exhibit a measurable impact under the tested conditions. Since Ambient Mode 
+  and Stable Volume are silently enabled by default, these findings suggest they should be reconsidered or turned off 
+  to reduce energy use at scale.
+
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
@@ -22,15 +26,21 @@ centers, network infrastructure, and the client devices of viewers worldwide.
 In addition to the established YouTube settings, such as video quality, playback speed, and subtitles, YouTube has
 recently
 introduced several optional player features to improve user experience: Ambient Mode, Stable Volume, and Voice Boost.
+However, these features are far less familiar to users than traditional ones.
 Notably, two of these (Ambient Mode and Stable Volume) are enabled by default, regardless of whether the users are
-aware of or want these features.
+aware of or want these features. Many viewers may therefore be consuming additional computational resources without
+consciously opting in.
 
 In this blog post, we investigate whether these non-essential YouTube settings have a measurable effect on client-side
 energy consumption. We conducted a controlled experiment in which each feature was enabled in isolation and energy
 consumption was recorded over repeated trials. Our hypothesis is that each of these features introduces additional
 computational work and therefore increases energy consumption relative to the baseline, where all those features are
-disabled. This raises a broader question about the sustainability of enabling such features by default and whether
-the platform designers should reconsider these defaults in the interest of energy efficiency and sustainability.
+disabled.
+
+If this hypothesis holds, it raises a broader and important question: should non-essential features that increase energy
+consumption be enabled by default — particularly at the scale of billions of viewing hours per day? Even marginal
+increases per device could translate into significant aggregate energy costs. In this case, the platform designers
+should reconsider these defaults in the interest of energy efficiency and sustainability.
 
 # Methodology
 
