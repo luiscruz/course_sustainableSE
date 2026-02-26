@@ -52,27 +52,30 @@ In November 2022, OpenAI released ChatGPT ([Matt Casey, 2023](https://snorkel.ai
 
 However, with subsequent research into the LLM-production pipeline, LLM developers have received a vast amount of criticism for the negative social and environmental impact that LLMs and their production cause. Arguably the most common criticism of LLMs developers is the unethical and oftentimes illegal sourcing of training data for their models. These claims often touch base on the infringement of copyright or GDPR to prove the wrong-doings of LLM developers. However, another aspect that must be considered is the environmental impact of LLMs - specifically, the energy consumed to both test and train these LLMs. [Jacob Morrison et al.](https://arxiv.org/pdf/2503.05804) found that training a 13 billion parameter model from the OLMo model family consumed an estimated 230 MWh of electricity - which they state is enough to power the average US home for 21 years.
 
-This study, on the other hand, will focus on analysing the energy consumption of prompting LLMs. Specifically, it is our goal to address two specific questions - first, we will study how the length of an input prompt affects the energy consumption of an LLM producing a response. Second, we will compare three different 8 Billion parameter models, rjn-1, Llama 3.1 and Deepseek-r1 (developed by Essential AI, Meta and Deepseek respectively) in terms of their energy consumption to study how much variation in energy efficiency there is between different LLM developers.
+This study will focus on analysing the energy consumption of prompting LLMs. Specifically, it is our goal to address two specific questions - first, we will study how the length of an input prompt affects the energy consumption of an LLM producing a response. Second, we will compare three different 8 Billion parameter models, rjn-1, Llama 3.1 and Deepseek-r1 (developed by Essential AI, Meta and Deepseek respectively) in terms of their energy consumption to study how much variation in energy efficiency there is between different LLM developers.
 
 ## Methodology
 
-Before we begin our tests, we must minimise the effect of external factors on our test results. Thus, the following measures have been to reduce confounding variables:
+Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating fibonacci numbers) for 5 minutes before the start of our tests.
+
+To further improve the validity of our tests, we must minimise the effect of external factors on our test results. Thus, the following measures have been to reduce confounding variables:
 
 - Adaptive screen brightness disabled
 - Monitor set to 50% brightness
+- Display sleep disabled
 - All applications aside from VS Code and Ollama (used to run our LLMs) closed
-- Wi-Fi and BlueTooth disabled (no ethernet)
+- Background services limited as much as possible (constrained by services required by OS)
+- Wi-Fi and BlueTooth disabled
+- AirDrop disable (not applicable as we are not using MacOS, but a recommendation if this study is replicated)
 - Power Plan set to balanced
 - Notifications disabled
-- Only a mouse and keyboard are plugged in
+- Only mouse and keyboard plugged in
 
 Additionally, all of our tests will be run on the same computer with the following hardware:
 
 - **CPU:**
 - **GPU:**
 - **RAM:**
-
-Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating fibonacci numbers) for 5 minutes before the start of our tests.
 
 The prompts tested were taken from dataset-factoid-webquestions ([Petr Baudis et at.](https://github.com/brmson/dataset-factoid-webquestions/blob/master/main/trainmodel.json)), a dataset licensed under the CC-BY 4.0 License. This dataset was modified to only include each prompt alongside the count of words for said prompt. To perform energy consumption measurements, we will use [EnergiBridge](https://github.com/tdurieux/EnergiBridge), an energy measurement utility, which will record the energy used per LLM response in Joules. All of the evaluated LLMs will be run locally via [Ollama](https://ollama.com/).
 
@@ -88,7 +91,7 @@ The data for our test will consist of 18 total prompts: three prompts of 5 throu
 
 For this test, we wanted to see how efficient different LLM models made by different companies were. To select our LLMs, we looked for 8B parameter LLMs that were released within at most 1.5 years of each other. We chose three different 'types' of LLM developers - a relatively small LLM developer, Essential AI, a medium-sized developer, Deepseek, and a large developer, Meta AI; we thus chose the 8 Billion rnj-1, deepseek-r1 and llama3.1 models respectively.
 
-To perform this test, we will sample five seven-word prompts at random from our dataset (note: we use random_state=0 for reproducibility). For each prompt, 30 executions of said prompt will be repated on each of the three chosen LLMs.
+To perform this test, we will sample five seven-word prompts at random from our dataset (note: we use random_state=0 for reproducibility). For each prompt, 30 executions of said prompt will be repeated on each of the three chosen LLMs.
 
 ## Results
 
