@@ -233,6 +233,29 @@ Generally speaking, most of the groups revealed to have data that is not normall
 
 Depending on the result, the choice of statistical test was made as described below.
 
+| Name | Type | Shapiro-Wilk (W) | p-value |
+|---|---|---:|---:|
+| TEAMS_CAM_ON_PW | ON | 0.000 | 0.000 |
+| TEAMS_CAM_OFF_PW | ON | 0.000 | 0.000 |
+| TEAMS_SHARE_ON_PW | ON | 0.000 | 0.000 |
+| ZOOM_CAM_ON_EDP | OFF | 0.000 | 0.000 |
+| TEAMS_CAM_ON_EDP | OFF | 0.000 | 0.000 |
+| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 0.000 |
+
+*Table 1: Features*
+
+| Name | Type | Shapiro-Wilk (W) | p-value |
+|---|---|---:|---:|
+| TEAMS_CAM_ON_PW | ON | 0.000 | 0.000 |
+| TEAMS_CAM_OFF_PW | ON | 0.000 | 0.000 |
+| TEAMS_SHARE_ON_PW | ON | 0.000 | 0.000 |
+| ZOOM_CAM_ON_EDP | OFF | 0.000 | 0.000 |
+| TEAMS_CAM_ON_EDP | OFF | 0.000 | 0.000 |
+| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 0.000 |
+
+*Table 2: App and Features*
+
+
 ### Significance Testing
 Two independent-sample significance tests were considered in this case. 
 
@@ -240,12 +263,61 @@ Two independent-sample significance tests were considered in this case.
 
 When at least one group violated the normality assumptions, the **Mann-Whitney U test** was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
 
+| Name | Test Name | Effect Value | 
+|---|---|---:|
+| TEAMS_CAM_ON_PW | ON | 0.000 | 
+| TEAMS_CAM_OFF_PW | ON | 0.000 | 
+| TEAMS_SHARE_ON_PW | ON | 0.000 | 
+| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+
+*Table 3: Features*
+
+
+
+| Name | Test Name  | Effect Value | 
+|---|---|---:|
+| TEAMS_CAM_ON_PW | ON | 0.000 | 
+| TEAMS_CAM_OFF_PW | ON | 0.000 | 
+| TEAMS_SHARE_ON_PW | ON | 0.000 | 
+| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+
+*Table 4: App*
+
+
+
 ### Effect size estimation
 In addition to statistical significance, **effect sizes** should be computed to help indicate the practical relevance of an observed difference. 
 
 For Welch's t-test, **Cohen's d** was used to quantify standardized mean differences. For the Mann-Whitney U test, the **common language effect size** was computed, representing the probability that a randomly selected observation from one group exceeds an observation from another group. 
 
 These measures are meant to provide insight into the magnitude of observed effects, independent of sample size. 
+
+| Name | Effect Name | Effect Value | 
+|---|---|---:|
+| TEAMS_CAM_ON_PW | ON | 0.000 | 
+| TEAMS_CAM_OFF_PW | ON | 0.000 | 
+| TEAMS_SHARE_ON_PW | ON | 0.000 | 
+| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+
+*Table 5: Features*
+
+| Name | Effect Name | Effect Value | 
+|---|---|---:|
+| TEAMS_CAM_ON_PW | ON | 0.000 | 
+| TEAMS_CAM_OFF_PW | ON | 0.000 | 
+| TEAMS_SHARE_ON_PW | ON | 0.000 | 
+| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
+| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+
+*Table 6: App and Features*
+
 
 
 
