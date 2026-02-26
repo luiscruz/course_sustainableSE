@@ -37,16 +37,16 @@ We chose to record the energy measurements of our experiment as the primary metr
 As mentioned previously, energy consumption per run per set size will the primary metirc for our analysis. We are examining two relationships, between different complexity algorithms and between the same algorithms acorss langauages. To show the noramality of our data we expect
 - **Algorithmic Complexity Energy Analysis:**
   - To prove the normality of the data, we will use a set of Shapiro-Wilk tests:
-  $$H_0^{(i)}: p \geq 0.05, Data is normally distributed \forall i \in {Algorithms}$$
-  $$H_A^{(i)}: P < 0.05, Data is NOT noramlly distributed \forall i \in {Algorithms}$$
+  $$H_0^{(i)}: p \geq 0.05, Data\ is\ normally\ distributed\ \forall i \in {Algorithms}$$
+  $$H_A^{(i)}: P < 0.05, Data\ is\ NOT\ noramlly\ distributed\ \forall i \in {Algorithms}$$
 
   - To compare each test set we use **<Chosen Method>**:
   $$ TODO $$
 
 - **Language Energy Comparison**
   - Again, we utilize the Shapiro-Wilk Test to show normality:
-  $$H_0^{(i)}: p \geq 0.05, Data is normally distributed \forall i \in {SharedAlgos}$$
-  $$H_A^{(i)}: P < 0.05, Data is NOT noramlly distributed \forall i \in {SharedAlgos}$$
+  $$H_0^{(i)}: p \geq 0.05, Data\ is\ normally\ distributed\ \forall i \in {SharedAlgos}$$
+  $$H_A^{(i)}: P < 0.05, Data\ is\ NOT\ noramlly\ distributed\ \forall i \in {SharedAlgos}$$
 
   - As we are comparing only two elements here, we can apply a two-sided t-test:
   $$H_0: E_{Rust} = E_{Python}$$
