@@ -156,9 +156,9 @@ Finally, the **compression ratio (CR)** is calculated as the size of the compres
 First, we visualize the distribution of energy consumption and the mean with 95% confidence intervals for each combination of language, mode and data type. 
 These plots provide initial insight relevant to RQ1 and RQ2.
 
-We perform Welch's t-tests to compare energy consumption between programming languages.
+We apply Shapiro-Wilk to assess whether the distributions are normal.
+We perform Welch's t-tests between languages per workload to determine whether the differences in energy consumption are statistically significant.
 Cohen's d is computed and used to quantify effect sizes.
-Additionally, we apply Shapiro-Wilk to assess whether the distributions are normal.
 
 To address RQ3, we plot energy consumption against execution time to visualize the relationship between them.
 To evaluate this relationship, we use Pearson's correlation coefficient.
@@ -207,7 +207,7 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 
 ## Statistical Results
 
-### Shapiro-Wilk
+### Shapiro-Wilk Energy Consumption Distribution Normality
 | Dataset        | Mode       | Lang   | W     | p value  | Normal (α=0.05) |
 |----------------|------------|--------|-------|----------|-----------------|
 | compressible   | compress   | cpp    | 0.942 | 1.03e-01 | True            |
@@ -227,10 +227,10 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 | incompressible | decompress | java   | 0.988 | 9.80e-01 | True            |
 | incompressible | decompress | python | 0.978 | 7.68e-01 | True            |
 
-### Welch's t-test
+### Welch's t-test Between Languages per Workload
 ![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
 
-### Pearson's
+### Pearson's Correlation Coefficient between Energy consumption and Time
 | data type      | mode       | pearson r | p value       |
 |----------------|------------|-----------|---------------|
 | compressible   | compress   | 0.995502  | 1.246119e-122 |
@@ -238,36 +238,30 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 | incompressible | compress   | 0.996787  | 3.110406e-131 |
 | incompressible | decompress | 0.996859  | 8.266893e-122 |
 
-### Cohen's d between languages
+### Cohen's d between languages per workload
 ![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
 
 # Discussion
 
 ## Interpretation of Results
-rqs: 
-RQ1. Do Python, Java, Go, and C++ differ significantly in energy consumption
-when performing identical gzip compression and decompression 
-tasks under controlled conditions?
-RQ2. Are the observed energy differences consistent across data types 
-(compressible vs. incompressible) and operations 
-(compression vs. decompression), and how statistically significant 
-are these differences?
-RQ3. Is the language that achieves the lowest runtime also 
-the most energy efficient for gzip compression and decompression?
+The [Shapiro-Wilk](#shapiro-wilk-energy-consumption-distribution-normality) test reports non-normal data. 
+However, with closer inspection of distribution we concluded that it was normal enough.
 
-observations:
-- The data shows that the languages perform significantly different
-- C++ consistently performs the best
-- python performs about the same as C++ on compressing compressible data. However, it is significantly worse on other tasks. Possibly alluding to a bottleneck in file writing, which would be less noticable for compressing compressible data, but more on other tasks.
-- Go surprisingly matches C++ on incompressible data. Which could mean the implementation of gzip itself is less efficient.
-- Java consistently uses more energy when compared to C++
-- Shapiro-Wilk shows that normality is inconsistent
-- There is a clear positive correlation between energy consumption and runtime
+The results from [Welchs t-test](#welchs-t-test-between-languages-per-workload) show that the languages perform significantly different compared to each other. 
+With the only exception being Go and C++ when performing on incompressible data. This directly answers RQ1.
 
-rq answers:
-rq1: Mostly yes. With the exception of between Go and C++ on incompressible data.
-rq2: No. Cohen's d shows that inter-language differences are sometimes exaggerated or even completely reversed under different conditions.
-rq3: Yes. There is a strong correlation between 
+The actual difference in performance does depend on the workload as can be visualized from [Cohen's D test](#cohens-d-between-languages-per-workload). 
+For instance, Python consistently performs relatively worse on decompression tasks and tasks working with incompressible data. 
+A possible cause could be slower writing to files, which would see similar patterns.
+Another example of inconsistent difference is seen with Go, where it is as efficient as C++ on incompressible data. 
+Conversely, it's the slowest on compressible data. Alluding to a slow implementation of the algorithm. 
+One counter example can be found when comparing Java and C++ where C++ consistently outperforms java in terms of energy consumption, where Java uses approximately 60% energy as reported by [Energy Percent Change between languages Table](#energy-percent-change-between-languages-).
+These examples demonstrate that the observed energy differences are inconsistent between workloads, thereby disproving RQ2.
+
+[Energy over Runtime Plot](#energy-over-runtime) and [Pearson Correlation Coefficient](#pearsons-correlation-coefficient-between-energy-consumption-and-time) demonstrate
+that runtime and energy have a clear positive relation. 
+Interestingly, Go uses more energy than Java for decompressing compressible data within the same time.
+
 
 ## Practical Implications
 
