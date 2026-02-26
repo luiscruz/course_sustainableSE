@@ -51,7 +51,7 @@ It is not possible to shut off the unnecessary things that run in our system. St
 Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
 
 # Introduction
-## Context and Motivation
+## Context and Motivation (improve this!)
 Around six years ago, the COVID-19 pandemic began, prompting nations around the world to enforce a lockdown with the intention of reducing virus transmission. People were strongly advised to stay home and as a consequence, this led to a considerable increase in work from home (WFH) arrangements. 
 
 According to Adrjan et al., WFH job postings have quadrupled across 20 countries from 2020 to 2023, with these kind of postings still remaining popular despite a lifting of pandemic restrictions. Naturally, video conference applications rose in popularity and because of this, it is imperative to consider the energy usages of these applications as the number of people transitioning to remote working during this time increases significantly. 
@@ -102,21 +102,97 @@ For the experiments, the replication package can be found in the following [repo
 
 # Results
 
+This section will present the findings of the different power consumption and energy delay product values across the different video conference applications and features.
+
 As mentioned previously, EnergiBridge was used to measure energy consumption. The tool provides the following relevant metrics:
 - Delta
-- SYSTEM_POWER (Watts)
+- CPU_Energy (Joules)
 
 With the metrics above, the key metrics to be calculated per trial were:
-1. Average Power Consumption (W): Calculated by averaging the power readings over the duration of the trial
-2. Total Energy Consumption (J): Calculated by multiplying the power consumption by the delta and summing the results over all the samples in the CSV file. 
-3. Energy Delay Product: Calculated by multiplying energy by the total time
+1. Total Energy Consumption (J): Calculated by computing the difference of the cumulative energy metric. 
+2. Average Power Consumption (W): Calculated by dividing the total energy consumption over the duration of the trial.
+3. Energy Delay Product: Calculated by multiplying energy by the total duration of the trial.
 
+
+## Outlier detection
+
+We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
 ## Experimental results
 
-- Violet and Box Plot
-- Outlier discussion with threshold
-- Violet and Box Plot without outliers
+ After the removal of outliers, the results can be seen illustrated below. 
+
+### Power and EDP Comparison for camera on vs camera off
+
+<div style="display: flex; gap: 20px;">
+
+  <div style="flex: 1;">
+    <strong>Power</strong><br>
+    <img src="img/camera_avg_power_W_combined.png" width="100%">
+    <p style="text-align: center; font-style: italic; margin-top: 6px;">
+    Figure 1: Average Power Consumption values for features camera on vs camera off.
+    </p>
+  </div>
+
+  <div style="flex: 1;">
+    <strong>EDP</strong><br>
+    <img src="img/camera_EDP_Js_combined.png" width="100%">
+    <p style="text-align: center; font-style: italic; margin-top: 6px;">
+    Figure 2: EDP values for features camera on vs camera off.    
+    </p>
+  </div>
+
+</div>
+
+Queue statistics!!
+
+### Power and EDP Comparison for background blurring on vs off
+
+<div style="display: flex; gap: 20px;">
+
+  <div style="flex: 1;">
+    <strong>Power</strong><br>
+    <img src="img/blur_avg_power_W_combined.png" width="100%">
+    <p style="text-align: center; font-style: italic; margin-top: 6px;">
+    Figure 3: Average Power Consumption values for features background blurring on vs off.
+    </p>
+  </div>
+
+  <div style="flex: 1;">
+    <strong>EDP</strong><br>
+    <img src="img/blur_EDP_Js_combined.png" width="100%">
+    <p style="text-align: center; font-style: italic; margin-top: 6px;">
+    Figure 4: EDP values for features background blurring on vs off.
+    </p>
+  </div>
+</div>
+
+Queue statistics!!
+
+### Power and EDP Comparison for screen sharing on vs off
+
+<div style="display: flex; gap: 20px;">
+
+  <div style="flex: 1;">
+    <strong>Power</strong><br>
+    <img src="img/share_avg_power_W_combined.png" width="100%">
+    <p style="text-align: center; font-style: italic; margin-top: 6px;">
+    Figure 5: Average Power Consumption values for features screen sharing on vs off.
+    </p>
+  </div>
+
+  <div style="flex: 1;">
+    <strong>EDP</strong><br>
+    <img src="img/share_EDP_Js_combined.png" width="100%">
+    <p style="text-align: center; font-style: italic; margin-top: 6px;">
+    Figure 6: EDP values for features screen sharing on vs off.
+    </p>
+  </div>
+
+</div>
+
+Queue statistics!!
+
 ## Statistical Analysis
 
 - Shapiro-Wilk
