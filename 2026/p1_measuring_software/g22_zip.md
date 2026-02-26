@@ -265,6 +265,30 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 # Discussion
 
 ## Interpretation of Results
+rqs: 
+RQ1. Do Python, Java, Go, and C++ differ significantly in energy consumption
+when performing identical gzip compression and decompression 
+tasks under controlled conditions?
+RQ2. Are the observed energy differences consistent across data types 
+(compressible vs. incompressible) and operations 
+(compression vs. decompression), and how statistically significant 
+are these differences?
+RQ3. Is the language that achieves the lowest runtime also 
+the most energy efficient for gzip compression and decompression?
+
+observations:
+- The data shows that the languages perform significantly different
+- C++ consistently performs the best
+- python performs about the same as C++ on compressing compressible data. However, it is significantly worse on other tasks. Possibly alluding to a bottleneck in file writing, which would be less noticable for compressing compressible data, but more on other tasks.
+- Go surprisingly matches C++ on incompressible data. Which could mean the implementation of gzip itself is less efficient.
+- Java consistently uses more energy when compared to C++
+- Shapiro-Wilk shows that normality is inconsistent
+- There is a clear positive correlation between energy consumption and runtime
+
+rq answers:
+rq1: Mostly yes. With the exception of between Go and C++ on incompressible data.
+rq2: No. Cohen's d shows that inter-language differences are sometimes exaggerated or even completely reversed under different conditions.
+rq3: Yes. There is a strong correlation between 
 
 ## Practical Implications
 
