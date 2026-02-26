@@ -16,7 +16,7 @@ Software powers the world. Every sent message, every stored dataset, and every a
 
 Recent studies suggest that the choice of programming language is one such decision. Pereira *et al.* [4] report substantial differences in runtime and energy consumption for equivalent workloads, which they ascribe to language-specific memory management and compiler optimization. A very simple design choice can have tangible effects on the environment when it is considered over millions of executions. This observation leads to an important question: when software developers choose a language ecosystem for a given task, are they implicitly making an energy choice as well?
 
-This project investigates that question through a controlled case study. We will examine the energy consumption of a typical software engineering task: file compression and decompression using the `gzip` format [5]. Every second, massive amounts of data are compressed and decompressed, measurements showing that 90.5% of websites rely on it, with `gzip` alone accounting for 49.5% of all sites [6]. Web servers compress HTTP responses, databases archive backups, package managers transfer compressed artifacts, and cloud services are constantly moving compressed artifacts between storage and computation tiers. Compression is one of the most common tasks in today’s computing world, which makes even small differences in its energy efficiency significant from a sustainability perspective.
+This project investigates that question through a controlled case study. We will examine the energy consumption of a typical software engineering task: file compression and decompression using the `gzip` format [5]. Every second, massive amounts of data are compressed and decompressed, measurements showing that 90.5% of websites rely on it, with `gzip` alone accounting for 49.5% of all sites [6]. Compression is one of the most common tasks in today’s computing world, which makes even small differences in its energy efficiency significant from a sustainability perspective.
 
 The case study was intentionally chosen so as to be simple and easy to understand. Instead of comparing the relative merits of various compression algorithms, we chose to focus on the well-known example of `gzip` in order to examine how different programming languages complete the same exercise. We will compare file compression implementations written in Python, Java, Go, and C++, implemented using each language's standard libraries and typical runtime characteristics as much as possible. That is because, in a real-world setting, developers tend not to write their own low-level algorithms but rely instead on the abstractions provided by the language. Our comparison will thus allow us to realistically analyze the sustainability implications of choosing one language environment over another for a common task.
 
@@ -126,30 +126,27 @@ We standardize the same algorithm design across all languages. Each implementati
 
 ### Java
 
-The Java implementation uses the standard `java.util.zip` package [11], with `GZIPOutputStream` for compression and `GZIPInputStream` for decompression. Files are processed in a streaming manner using buffered I/O and fixed 32 KB chunks, avoiding full-file loads into memory to keep memory usage stable and comparable across input sizes. To enforce **gzip level 6**, we use a small custom subclass of `GZIPOutputStream` that sets the internal `Deflater` level after construction.
+The Java implementation uses the standard `java.util.zip` package [11], with `GZIPOutputStream` for compression and `GZIPInputStream` for decompression. Files are processed in a streaming manner using buffered I/O and fixed 32 KB chunks. We set the internal `Deflater` level to 6.
 
 ### C++
 
-The C++ implementation directly uses the `zlib` library [12] for compression and decompression, both of which are performed with matching parameters through `deflateInit2` and `inflateInit2`, respectively. Data is processed incrementally, in fixed-size chunks, by feeding the input buffers into the stream and writing the output until the stream ends. We chose to use chunked streaming so that we could avoid loading the entire file into memory, and so manage to keep the memory usage stable across file sizes. This also happens to be a typical design for C++ applications.
+The C++ implementation directly uses the `zlib` library [12] for compression and decompression through `deflateInit2` and `inflateInit2`, respectively. Data is processed incrementally, in fixed-size chunks, so that we could avoid loading the entire file into memory, and so manage to keep the memory usage stable across file sizes. This also happens to be a typical design for C++ applications.
 
 ### Python
 
-The python implementation uses the built-in `gzip` module, which is a wrapper around the `zlib` library you would find in C++. The API is very straightforward, and is representative of how Python developers would typically perform compression and decompression tasks. The three simple methods `open`, `compress`, and `decompress` are used to read and write files in a streaming fashion. The `gzip` module also allows us to set the compression level, which we fix at 6 to match the other implementations.
+The Python implementation uses the built-in `gzip` module, which is a wrapper around the C++ `zlib` library. The API is straightforward and representative of how Python developers would typically perform compression and decompression tasks. The three simple methods `open`, `compress`, and `decompress` are used to read and write files in a streaming fashion. The `gzip` module also allows us to set the compression level, which we fix at 6.
 
 ### Go
 
-The Go implementations utilizes the built-in `compress/gzip` library to (de)compress the input file.
-For compressing, the library creates a writer pointing to the output file.
-The input file is then copied into the writer thereby writing to the output file.
-For decompressing, it takes a similar approach. Here it creates a reader for the input file instead and a regular io writer is used.
+The Go implementations uses the built-in `compress/gzip` library to (de)compress the input file. For compressing, the library creates a writer pointing to the output file and the input file is then copied into the writer, thereby writing to the output file. For decompressing, it creates a reader for the input file instead with a regular IO writer.
 
 ## Evaluation Metrics
 
-To evaluate the sustainability and performance of the selected languages, we measure several metrics that capture different aspects of their behavior. These metrics allow us to compare the energy efficiency and runtime performance of the implementations in a comprehensive manner, answering the research questions we posed earlier. 
+To answer our research question, we use several metrics which allow us to comprehensively compare the energy efficiency and runtime performance of the implementations. 
 
-**Energy consumption (E)** expressed in Joules (J) is our primary metric, measured using EnergiBridge. It represents the total work performed by the hardware to execute the compression and decompression tasks. Minimizing E is the direct goal of reducing carbon footprint of the software, and measuring it forms the basis to answering all of our research questions, but especially our main questions, RQ1.
+**Energy consumption (E)** expressed in Joules (J) is our primary metric, measured using EnergiBridge. It represents the total work performed by the hardware to execute the compression and decompression tasks. Minimizing E is the direct goal of reducing software carbon footprint, and measuring it forms the basis for answering all of our research questions, but especially our main questions, RQ1.
 
-We will also measure the **energy per megabyte**, in Joules per megabyte (J/MB). This is calculated as the total energy consumed (E) divided by the size of the input file in megabytes and it provides a normalized measure of energy efficiency which allows us to make comparisons across different workloads (dataset and operation combinations) and therefore to answer RQ1, 2 and 3. Logically, a lower E/MB indicates better energy efficiency per unit of data processed.
+We will also measure the **energy per megabyte**, in Joules per megabyte (J/MB). This is calculated as the total energy consumed (E) divided by the size of the input file in megabytes and it provides a normalized measure of energy efficiency which allows us to make comparisons across different workloads (dataset and operation combinations) and therefore to answer RQ1, 2, and 3. Logically, a lower E/MB indicates better energy efficiency per unit of data processed.
 
 **Runtime (T)** is measured in seconds (s) using wall-clock time and, in this project, contributes towards answering RQ3. This metric is often substituted as a proxy for the performance of an implementation, and through its use, we can analyze the trade-offs between energy efficiency and implementation efficiency and determine whether the fastest implementation also consumes the least energy.
 
@@ -157,19 +154,17 @@ Finally, the **compression ratio (CR)** is calculated as the size of the compres
 
 
 ## Statistical Analysis
-First, we visualize the distribution of energy consumption and the mean with 95% confidence intervals for each combination of language, mode and data type. 
-These plots provide initial insight relevant to RQ1 and RQ2.
 
-We apply Shapiro-Wilk to assess whether the distributions are normal.
-We perform Welch's t-tests between languages per workload to determine whether the differences in energy consumption are statistically significant.
-Cohen's d is computed and used to quantify effect sizes.
+To answer RQ1, we first visualize the distribution of energy consumption across each workload condition (dataset type x operation), then report the mean, standard deviation, and a 95% t-based confidence interval for the mean.
 
-To address RQ3, we plot energy consumption against execution time to visualize the relationship between them.
-To evaluate this relationship, we use Pearson's correlation coefficient.
+Within each condition, we apply the Shapiro–Wilk test [13] to verify whether the energy measurements are plausibly normal. Then, we compare the languages using pairwise Welch's two-sample t-test to determine whether the differences in energy consumption are statistically significant, as part of RQ2. We chose Welch’s test [14] because it does not assume equal variances between groups, which is appropriate given that runtime variability may differ across language implementations. Since we test multiple language pairs per condition, we also apply the Holm correction [15] to the p-values to reduce the risk of false positives.
+
+We further conduct an Effect Size analysis by calculating Cohen's *d* [16], along with the percent change and the mean difference, to measure how large and practically significant the differences between languages are. We also plot the total energy versus runtime per condition to address RQ3, and compute Pearson's correlation coefficient to evaluate their relationship.
 
 # Results
 
 ## Evaluation Results
+
 ![mean_energy_ci_usage.png](img/g22_zip/mean_energy_ci_usage.png)
 #### Figure 1: Mean Energy with Confidence Intervals
 
@@ -180,6 +175,7 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 #### Figure 3: Energy over Runtime
 
 #### Table 1: Energy Percent Change between languages 
+
 | compressible - compress | cpp | go      | java   | python |
 |-------------------------|-----|---------|--------|--------|
 | cpp                     | 0   | +126.2% | +80.8% | +8.7%  |
@@ -211,7 +207,8 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 ## Statistical Results
 
 #### Table 2: Shapiro-Wilk Energy Consumption Distribution Normality
-| Dataset        | Mode       | Lang   | W     | p value  | Normal (α=0.05) |
+
+| Dataset        | Mode       | Lang   | W     | p value  | Normal (α<=0.05) |
 |----------------|------------|--------|-------|----------|-----------------|
 | compressible   | compress   | cpp    | 0.942 | 1.03e-01 | True            |
 | compressible   | compress   | go     | 0.980 | 8.34e-01 | True            |
@@ -231,9 +228,9 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 | incompressible | decompress | python | 0.978 | 7.68e-01 | True            |
 
 ![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
-#### Figure 4: Welch's t-test Between Languages per Workload
+#### Figure 4: Welch's t-test Between Languages per Workload after Holm correction
 
-#### Table 3: Pearson's Correlation Coefficient between Energy consumption and Time
+#### Table 3: Pearson's Correlation Coefficient between Energy Consumption and Time
 | data type      | mode       | pearson r | p value       |
 |----------------|------------|-----------|---------------|
 | compressible   | compress   | 0.995502  | 1.246119e-122 |
@@ -243,39 +240,33 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 
 
 ![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
-#### Figure 5: Cohen's d between languages per workload
+#### Figure 5: Cohen's d Between Languages per Workload
 
 # Discussion
-This section explores the results and answers the research questions. In addition, it explores the practical impact of the findings.
 
 ## Interpretation of Results
-Although half of the distributions failed the Shapiro-Wilk test, visual inspection indicated only minor deviations from normality.
-Given the moderate robustness of Welch's t-test to non-normality, parametric testing was deemed appropiate.
 
-### RQ1: Do Python, Java, Go, and C++ differ significantly in energy consumption when performing identical `gzip` compression and decompression tasks under controlled conditions?
-The results from [Figure 1](#figure-1-mean-energy-with-confidence-intervals) and [Figure 4](#figure-4-welchs-t-test-between-languages-per-workload) show significant differences between languages on the same task.
-These differences are likely caused by implementation or runtime overhead.
-The only exception being Go and C++ which perform approximately the same on incompressible data.
+Although half of the distributions failed the Shapiro-Wilk test, visual inspection indicated only minor deviations from normality. Given the moderate robustness of Welch's t-test to non-normality, parametric testing was deemed appropiate.
 
-### RQ2: Are the observed energy differences consistent across data types (compressible vs. incompressible) and operations (compression vs. decompression), and how statistically significant are these differences?
-The actual differences depends on the specific workload as visualized in [Figure 5](#figure-5-cohens-d-between-languages-per-workload).
-For instance, Python consistently performs relatively worse on decompression tasks and tasks working with incompressible data. 
-A possible cause could be slower writing to files, which would see similar patterns.
-Another example of inconsistent difference is seen with Go, where it is as efficient as C++ on incompressible data, as mentioned earlier. 
-Conversely, it's the slowest on compressible data. Alluding to a slow implementation of the compression/decompression algorithm. 
-Some difference, however, are consistent throughout the workloads.
-Most notably, C++ consistently performs the best and Java consistently is on the slower end.
-Overall the results demonstrate that the observed energy differences are mostly inconsistent between workloads, thereby disproving RQ2.
+### RQ1: Magnitude of Language Effects
 
-### RQ3: Is the language that achieves the lowest runtime also the most energy efficient for `gzip` compression and decompression?
+The results from [Figure 1](#figure-1-mean-energy-with-confidence-intervals) and [Figure 4](#figure-4-welchs-t-test-between-languages-per-workload) show significant differences between languages across workloads. C++ consistently achieves the lowest mean energy consumption, while Python and Java generally consume more energy, with Go varying depending on workload. For the most extreme case (incompressible decompression), Python requires approximately 279% more energy than C++. In contrast, the difference between C++ and Go for incompressible compression is less than 1%, which is negligible. These results confirm that differences in programming languages can indeed result in large differences in energy consumption for the same algorithm with the same input.
+
+### RQ2: Consistency Across Workloads
+
+The actual differences depends on the specific workload as visualized in [Figure 5](#figure-5-cohens-d-between-languages-per-workload). For instance, Python consistently performs relatively worse on decompression tasks and tasks working with incompressible data.  A possible cause could be slower writing to files, which would see similar patterns. Another example of inconsistent difference is seen with Go, where it is as efficient as C++ on incompressible data, as mentioned earlier.  Conversely, it's the slowest on compressible data. Alluding to a slow implementation of the compression/decompression algorithm.  Some difference, however, are consistent throughout the workloads. Most notably, C++ consistently performs the best and Java consistently is on the slower end. Overall the results demonstrate that the observed energy differences are mostly inconsistent between workloads, thereby disproving RQ2.
+
+### RQ2: Statistical and Practical Significance
+
+
+### RQ3: Runtime-Energy Relationship
+
 [Figure 3](#figure-3-energy-over-runtime) and [Table 2](#table-3-pearsons-correlation-coefficient-between-energy-consumption-and-time) demonstrate
-that energy consumption and runtime have a positive relation.
-Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Python for decompressing compressible data despite running for the same amount of time.
+that energy consumption and runtime have a positive relation. Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Python for decompressing compressible data despite running for the same amount of time.
 
 ## Practical Implications
-When looking for the most efficient programming language from an environmental standpoint, C++ is a clear winner. It consistently outperforms the other languages across all workloads.
-If development time is a concern and the program mostly compresses files, then Python is an excellent alternative with only 9% more consumption.
-Java and Go are still valid options when (de)compressing data is not the main focus of the program.
+
+When looking for the most efficient programming language from an environmental standpoint, C++ is a clear winner. It consistently outperforms the other languages across all workloads. If development time is a concern and the program mostly compresses files, then Python is an excellent alternative with only 9% more consumption. Java and Go are still valid options when (de)compressing data is not the main focus of the program.
 
 # Conclusion
 
@@ -285,7 +276,7 @@ Java and Go are still valid options when (de)compressing data is not the main fo
 
 This study evaluates a single use case, namely `gzip` compression and decompression. Therefore, while it is, indeed, a common and computationally intensive task, our results cannot be generalized across other workloads, as they might use the hardware differently and therefore exhibit different energy readings. Additionally, all measurements were carried out on one machine, so the results may vary from one hardware configuration to another.
 
-As a result, the scope of this paper could be expanded to include other compression algorithms, such as `zstd` [13] or `brotli` [14], which use different types of strategies, to investigate whether our results are truly due to the language itself or if they stem from the language's interactions with its corresponding `gzip` library. More broadly, future work could extend this research to other types of use cases, such as database operations or handling web requests, to determine whether the patterns we observed could potentially be generalized beyond compression.
+As a result, the scope of this paper could be expanded to include other compression algorithms, such as `zstd` [17] or `brotli` [18], which use different types of strategies, to investigate whether our results are truly due to the language itself or if they stem from the language's interactions with its corresponding `gzip` library. More broadly, future work could extend this research to other types of use cases, such as database operations or handling web requests, to determine whether the patterns we observed could potentially be generalized beyond compression.
 
 Alternatively, from a narrower perspective, further research could complement our paper by repeating our experiments on different hardware and runtime environments, to explore how sensitive our results are to the underlying configurations. Finally, it could also compare a low-latency implementation of `gzip` with the standard library-based one to examine the trade-offs between energy efficiency and convenience.
 
@@ -305,9 +296,9 @@ Alternatively, from a narrower perspective, further research could complement ou
 
 [7] S. McGuire, E. Schultz, B. Ayoola, and P. Ralph, "Sustainability is stratified: Toward a better theory of sustainable software engineering," in *Proc. 2023 IEEE/ACM 45th Int. Conf. Software Engineering (ICSE)*, May 2023, pp. 1996–2008, doi: 10.1109/ICSE48619.2023.00169.
 
-[8] L. Cruz, “Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments,” blog post, Oct. 10, 2021. [Online]. Available: http://luiscruz.github.io/2021/10/10/scientific-guide.html. doi: 10.6084/m9.figshare.22067846.v1.
+[8] L. Cruz, "Green Software Engineering Done Right: a Scientific Guide to Set Up Energy Efficiency Experiments," blog post, Oct. 10, 2021. [Online]. Available: http://luiscruz.github.io/2021/10/10/scientific-guide.html. doi: 10.6084/m9.figshare.22067846.v1.
 
-[9] Sallou, J., Cruz, L., & Durieux, T. (2023). EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement (Version 1.0.0) [Computer software]. https://doi.org/10.48550/arXiv.2312.13897
+[9] Sallou, J., Cruz, L., & Durieux, T. (2023). "EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement" (Version 1.0.0) [Computer software]. https://doi.org/10.48550/arXiv.2312.13897
 
 [10] J.-L. Gailly and Free Software Foundation, *GNU Gzip Manual*, version 1.14, Feb. 2025. [Online]. Available: https://www.gnu.org/software/gzip/manual/gzip.html.
 
@@ -315,6 +306,17 @@ Alternatively, from a narrower perspective, further research could complement ou
 
 [12] J.-L. Gailly and M. Adler, *zlib.h -- interface of the 'zlib' general purpose compression library*, version 1.3.2, Feb. 2026. [Online]. Available: https://zlib.net.
 
-[13] Y. Collet et al., "Zstandard – Fast real-time compression algorithm," GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
+[13] Shapiro, S. S., & Wilk, M. B. (1965). An analysis of variance test for normality (complete samples). *Biometrika*, 52(3/4), 591–611, doi: 10.1093/biomet/52.3-4.591.
 
-[14] J. Alakuijala and Z. Szabadka, "Brotli: A general-purpose data compressor," *Commun.* ACM, vol. 61, no. 4, pp. 86–95, Apr. 2018, doi: 10.1145/3231935.
+[14] Welch, B. L. (1947). The generalization of "Student's" problem when several different population variances are involved. *Biometrika*, 34(1/2), 28–35, doi: 10.1093/biomet/34.1-2.28.
+
+[15] Holm, S. (1979). A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics*, 6(2), 65–70, doi: 10.2307/4615733.
+
+[16] J. Cohen, "Statistical power analysis for the behavioral sciences," 2nd ed. Hillsdale, NJ: Lawrence Erlbaum Associates, 1988, ch. 2, pp. 20-27, doi: 10.4324/9780203771587.
+
+[17] Y. Collet et al., "Zstandard – Fast real-time compression algorithm," GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
+
+[18] J. Alakuijala and Z. Szabadka, "Brotli: A general-purpose data compressor," *Commun.* ACM, vol. 61, no. 4, pp. 86–95, Apr. 2018, doi: 10.1145/3231935.
+
+# Note
+Outside of the header, references, tables, and this note, the total word count of the report is 
