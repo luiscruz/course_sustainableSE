@@ -17,7 +17,6 @@ Algorithmic time complexity is a fundamental aspect of code analysis and a unive
 
 ---
 
-
 ### Experiment Setup
 
 
@@ -27,10 +26,35 @@ The first step was the selection of algorithms to implement for our experiment. 
 - **Quick Sort:** Has a complexity of $O(n^2)$. Implemented in Rust and Python.
 - **Radix Sort:** Has a complexity of $O(n log n)$. Implemented in Python. Chosen as it has a unique operation method where it performs iterative sorting on each significant digit of all values in the set.
 - **Heap Sort:** Has a complexity of $O(n log n)$. Implemented in Python. Also has a unique operation whereby the root of the heap is removed on recursive heapify calls.
+**TODO: REASONS**
 
+### Data Analysis
+
+We chose to record the energy measurements of our experiment as the primary metric rather than the power as sorting algorithms are specific instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement (in reality, much much higher than 30) so that we can test for a Normal/Gaussian distribution of our data.
+
+#### Hypotheses
+
+As mentioned previously, energy consumption per run per set size will the primary metirc for our analysis. We are examining two relationships, between different complexity algorithms and between the same algorithms acorss langauages. To show the noramality of our data we expect
+- **Algorithmic Complexity Energy Analysis:**
+  - To prove the normality of the data, we will use a set of Shapiro-Wilk tests:
+  $$H_0^{(i)}: p \geq 0.05, Data is normally distributed \forall i \in {Algorithms}$$
+  $$H_A^{(i)}: P < 0.05, Data is NOT noramlly distributed \forall i \in {Algorithms}$$
+
+  - To compare each test set we use **<Chosen Method>**:
+  $$ TODO $$
+
+- **Language Energy Comparison**
+  - Again, we utilize the Shapiro-Wilk Test to show normality:
+  $$H_0^{(i)}: p \geq 0.05, Data is normally distributed \forall i \in {SharedAlgos}$$
+  $$H_A^{(i)}: P < 0.05, Data is NOT noramlly distributed \forall i \in {SharedAlgos}$$
+
+  - As we are comparing only two elements here, we can apply a two-sided t-test:
+  $$H_0: E_{Rust} = E_{Python}$$
+  $$H_A: E_{Rust} = E_{Python}$$
 
 #### Experiment Runs
-We created a simple Python CLI tool to perform the experiment by defining arguments for algorithm type, test set size, test set distribution and the number of runs to be performed. We performed **X** runs of each algorithm with a set size of **Y** and a **Z** distribution. The experiment run was automated with a one minute "cool off" period between tests to try account for tail energy consumption. The experiment was performed in one block on a single machine with background tasks minimized.
+
+We created a simple Python CLI tool to perform the experiment by defining arguments for algorithm type, test set size, test set distribution and the number of runs to be performed. We performed **X** runs of each algorithm with a set size of **Y** and a **Z** distribution. The experiment run was automated with a 10 second "cool off" period between tests to try account for tail energy consumption. This period was chosen after some initial experimentation to show no tail impact and because of the relative simplicity of the test operations. The experiment was performed in one block on a single machine running MacOS with background tasks minimized and after a power intensive task to ensure the CPU was "warmed up."
 
 ```bash
 $ python runner.py --algo algorithms/radix_sort.py --size 10000 --runs 5 --distribution reversed
@@ -38,8 +62,13 @@ $ python runner.py --algo algorithms/radix_sort.py --size 10000 --runs 5 --distr
 
 ---
 
-### Data Collection
-We chose to record the energy measurements of our experiment rather than the power as sorting algorithms are specific instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement so that we can assume a Normal/Gaussian distribution of our data as per the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem).
+#### Machine Specification
+The exact specs of the machine we used are outlined below. This can be useful when comparing to results you have gotten yourself. 
+
+#### Other Points to Note
+
+---
+
 
 ## Unbiased Energy Data ⚖️
 
