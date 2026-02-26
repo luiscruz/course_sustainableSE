@@ -174,7 +174,15 @@ Execution time (T) is measured in seconds (s) using wall-clock time. This metric
 Compression ratio (CR) is a metric calculated as the size of the compressed file divided by the size of the original file. This metric captures the effectiveness of the compression algorithm in reducing file size and helps us answer RQ2. A lower CR indicates better compression efficiency.
 
 ## Statistical Analysis
+First, we visualize the distribution of energy consumption and the mean with 95% confidence intervals for each combination of language, mode and data type. 
+These plots provide initial insight relevant to RQ1 and RQ2.
 
+We perform Welch's t-tests to compare energy consumption between programming languages.
+Cohen's d is computed and used to quantify effect sizes.
+Additionally, we apply Shapiro-Wilk to assess whether the distributions are normal.
+
+To address RQ3, we plot energy consumption against execution time to visualize the relationship between them.
+To evaluate this relationship, we use Pearson's correlation coefficient.
 
 # Results
 
@@ -188,7 +196,7 @@ Compression ratio (CR) is a metric calculated as the size of the compressed file
 ### Energy over Runtime
 ![energy_vs_time.png](img/g22_zip/energy_vs_time.png)
 
-### Percent Change
+### Energy Percent Change between languages 
 
 | compressible - compress | cpp | go      | java   | python |
 |-------------------------|-----|---------|--------|--------|
@@ -220,9 +228,6 @@ Compression ratio (CR) is a metric calculated as the size of the compressed file
 
 ## Statistical Results
 
-### Cohen's d
-![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
-
 ### Shapiro-Wilk
 | Dataset        | Mode       | Lang   | W     | p value  | Normal (α=0.05) |
 |----------------|------------|--------|-------|----------|-----------------|
@@ -245,6 +250,17 @@ Compression ratio (CR) is a metric calculated as the size of the compressed file
 
 ### Welch's t-test
 ![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
+
+### Pearson's
+| data type      | mode       | pearson r | p value       |
+|----------------|------------|-----------|---------------|
+| compressible   | compress   | 0.995502  | 1.246119e-122 |
+| compressible   | decompress | 0.975349  | 2.738179e-79  |
+| incompressible | compress   | 0.996787  | 3.110406e-131 |
+| incompressible | decompress | 0.996859  | 8.266893e-122 |
+
+### Cohen's d between languages
+![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
 
 # Discussion
 
