@@ -64,4 +64,42 @@ In this blog post, we will explore how much energy the LLM uses with varying con
 * Multiple choice exam questions are given which only one question is right.
 * For every question, no context is given or a 2k, 5k, 10k, or 20k tokens context is given.
 
-With this study, we aim to show the energy consumptions for those who wants to fine tune the model with various context sizes. 
+With this study, we aim to show the energy consumptions for those who wants to fine tune the model with various context sizes.
+
+# Methodology
+We have designated a specific system to measure the energy consumption of different context sizes. We aimed to capture the CPU metrics and its energy usage. This section describes the steps taken to ensure consistent and reproducible results.
+
+## Experiment hardware setup
+Our chosen LLM model is ran in a specific locally controlled environment. This is to gather unbiased energy data and eliminate variations in results due to using different machines.
+
+The hardware of the machine used for experiments:
+* Processor: AMD Ryzen 7 5700X3D @ 3.00Hz
+* GPU: AMD Radeon RX 9070 XT 16GB
+* Memory: 32GB RAM DDR4 3200 MT/s
+* Operating System: Ubuntu 24.04.3 LTS
+* Power Monitoring Tool: EnergiBridge
+
+We ran this machine also in similar environment conditions, taking into account the room temperature and run the entire experiment in one execution. This is to reduce the external factors which can influence the results of the experiment. Before we conducted the experiment, all programs which deemed not necessary was properly closed. We only kept the basic tasks running for example, bare minimum operating system services and ethernet connection. In the operation system, we only had a terminal running our Python experiment and LMstudio, which runs our chosen LLM model.
+
+## Chosen model and sizes of context
+For our experiment, only one model is used to keep the experiment consistent. We wanted a model with powerful reasoning and can run agentic tasks. This is to ensure that the model will reason with the context provided. Hence we chose for **gpt-oss-20b** (11.28 GB). This model has agentic capabilities and full chain-of-thought. We found this important because we wanted a model with the latest relevant features. This is to ensure our experiment is close to the real-world usage of LLM models. Then, we have fed the LLM model with multiple choice exam questions of CSE1305: Algorithms and Data Structures and one of the summaries of the course.
+
+We have chosen 5 different summary sizes which can serve as context for the exam questions:
+1. No summary (0 kB)
+2. 2k token summary (12 kB)
+3. 5k token summary (31 kB)
+4. 10k token summary (61 kB)
+5. 20k token summary (121 kB)
+
+Each run with energy measurements ran the same LLM with one of the five summary sizes. The entire experiment is fully automonous for simplicity. Each run outputs a CSV with energy measurements provided by Energibridge.
+
+## Experiment procedure
+Our experiment goes as follows:
+1. Close all unnecessary programs which can interfere with the energy measurements.
+2. Start up the LMstudio daemon.
+3. Load gpt-oss-20b and set the max context size on 30k tokens.
+4. Run "run_experiment.sh" which includes the Python script feeding the LLM with exam questions and summaries, and Energibridge which gives the energy measurements of the CPU. It has first a 5 minute warmup and a 10 second sleep time between questions. 
+5. Retrieve all CSV files. 
+
+## Data integrity
+To protect integrity, we ensure to only generate unbiased data and the external factors has minimal influence with the measurements. For every summary, the experiment is repeared 30 times and we monitored that there is at least an answer for every exam question.
