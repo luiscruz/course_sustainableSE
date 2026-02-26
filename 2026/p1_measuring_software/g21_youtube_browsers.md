@@ -77,7 +77,7 @@ To ensure that every test run was conducted under as close as possible to identi
 
 ### 3. Measurement Infrastructure
 #### 3.1 Automation: Selenium
-This experiment utilized Selenium WebDriver for full automation. Compared to manual operation, the key advantages include:
+This experiment utilized [Selenium](https://www.selenium.dev/) WebDriver for full automation. Compared to manual operation, the key advantages include:
 
 - **Precise Timing:** Ensures that video playback duration is exactly consistent across every run.
 
@@ -85,10 +85,10 @@ This experiment utilized Selenium WebDriver for full automation. Compared to man
 
 - **Fairness:** Every browser loads the same set of URLs through identical script logic.
 
-#### 3.2 Energy Monitoring: Energybridge
-We utilized Energybridge for hardware-level data acquisition.
+#### 3.2 Energy Monitoring: Energibridge
+We utilized [Energibridge](https://github.com/tdurieux/energibridge) for hardware-level data acquisition.
 
-**Integration:** Energybridge was launched and terminated in synchronization with the Selenium script via a master loop script (.ps1 or .sh).
+**Integration:** Energibridge was launched and terminated in synchronization with the Selenium script via a master loop script (.ps1 or .sh).
 
 **Data Source:** The tool reads directly from hardware interfaces (such as Intel RAPL) to capture CPU energy counters and instantaneous GPU power draw.
 
