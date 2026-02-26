@@ -55,12 +55,12 @@ All experiments are executed on the same machine and OS, with the following spec
 
 | Category | Specification |
 |---|---|
-| Machine / Laptop model | `<e.g., Lenovo ThinkPad ... / custom desktop>` |
-| CPU | `<e.g., Intel Core i7-12700H / AMD Ryzen ...>` |
-| CPU cores / threads | `<e.g., 14 cores (6P+8E) / 20 threads>` |
-| RAM | `<e.g., 16 GB DDR4>` |
-| Operating system | `<e.g., Linux Mint 22.x (Ubuntu 24.04 base)>` |
-| EnergiBridge version | `<version>` |
+| Machine / Laptop model | `HP ZBook Power 15.6 inch G9 Mobile Workstation PC` |
+| CPU | `i7-12700H` |
+| CPU cores / threads | `20 cores / 40 threads` |
+| RAM | `16 GB DDR4` |
+| Operating system | `Fedora Linux 43 (Workstation Edition)` |
+| EnergiBridge version | `0.0.7` |
 
 ### Input Preparation
 
@@ -75,6 +75,10 @@ gzip -6 -n -c INPUT > ref.gz
 ```
 
 The `-n` option removes filename and timestamp metadata from the gzip header, thus contributing to the project's reproducibility. We do this to ensure that all languages decompress the **same exact `.gz` bytes**.
+
+compressible: 353eea1dc2dc6774663338846b8a36c38528d0330d22e9fe35138367c45abbdf
+
+incompressible: 21f4a81500d3e55e6ffdc9b42bcc211da17a9490beb39de0a4917c20ac7ebf7d
 
 ### Measurement Tooling and Execution Procedure
 
@@ -134,6 +138,10 @@ The python implementation uses the built-in `gzip` module, which is a wrapper ar
 
 ### Go
 
+The Go implementations utilizes the built-in `compress/gzip` library to (de)compress the input file.
+For compressing, the library creates a writer pointing to the output file.
+The input file is then copied into the writer thereby writing to the output file.
+For decompressing, it takes a similar approach. Here it creates a reader for the input file instead and a regular io writer is used.
 
 ## Evaluation Metrics
 
@@ -149,22 +157,125 @@ Finally, the **compression ratio (CR)** is calculated as the size of the compres
 
 
 ## Statistical Analysis
+First, we visualize the distribution of energy consumption and the mean with 95% confidence intervals for each combination of language, mode and data type. 
+These plots provide initial insight relevant to RQ1 and RQ2.
 
+We apply Shapiro-Wilk to assess whether the distributions are normal.
+We perform Welch's t-tests between languages per workload to determine whether the differences in energy consumption are statistically significant.
+Cohen's d is computed and used to quantify effect sizes.
 
+To address RQ3, we plot energy consumption against execution time to visualize the relationship between them.
+To evaluate this relationship, we use Pearson's correlation coefficient.
 
 # Results
 
 ## Evaluation Results
+![mean_energy_ci_usage.png](img/g22_zip/mean_energy_ci_usage.png)
+#### Figure 1: Mean Energy with Confidence Intervals
+
+![energy_dist.png](img/g22_zip/energy_dist.png)
+#### Figure 2: Energy Distributions
+
+![energy_vs_time.png](img/g22_zip/energy_vs_time.png)
+#### Figure 3: Energy over Runtime
+
+#### Table 1: Energy Percent Change between languages 
+| compressible - compress | cpp | go      | java   | python |
+|-------------------------|-----|---------|--------|--------|
+| cpp                     | 0   | +126.2% | +80.8% | +8.7%  |
+| go                      | -   | 0       | -20.1% | -52.0% |
+| java                    | -   | -       | 0      | -39.9% |
+| python                  | -   | -       | -      | 0      |
+
+| compressible - decompress | cpp | go     | java   | python |
+|---------------------------|-----|--------|--------|--------|
+| cpp                       | 0   | +79.8% | +61.8% | +67.6% |
+| go                        | -   | 0      | -10%   | -6.8%  |
+| java                      | -   | -      | 0      | +3.6%  |
+| python                    | -   | -      | -      | 0      |
+
+| incompressible - compress | cpp | go     | java   | python |
+|---------------------------|-----|--------|--------|--------|
+| cpp                       | 0   | -0.15% | +40.1% | +15.2% |
+| go                        | -   | 0      | +40.3% | +15.4% |
+| java                      | -   | -      | 0      | -17.9% |
+| python                    | -   | -      | -      | 0      |
+
+| incompressible - decompress | cpp | go    | java   | python  |
+|-----------------------------|-----|-------|--------|---------|
+| cpp                         | 0   | +3.9% | +65.4% | +279.2% |
+| go                          | -   | 0     | +59.3% | +265.1% |
+| java                        | -   | -     | 0      | +129.2% |
+| python                      | -   | -     | -      | 0       |
 
 ## Statistical Results
 
+#### Table 2: Shapiro-Wilk Energy Consumption Distribution Normality
+| Dataset        | Mode       | Lang   | W     | p value  | Normal (α=0.05) |
+|----------------|------------|--------|-------|----------|-----------------|
+| compressible   | compress   | cpp    | 0.942 | 1.03e-01 | True            |
+| compressible   | compress   | go     | 0.980 | 8.34e-01 | True            |
+| compressible   | compress   | java   | 0.841 | 4.04e-04 | False           |
+| compressible   | compress   | python | 0.786 | 3.66e-05 | False           |
+| compressible   | decompress | cpp    | 0.862 | 1.10e-03 | False           |
+| compressible   | decompress | go     | 0.976 | 7.17e-01 | True            |
+| compressible   | decompress | java   | 0.914 | 1.84e-02 | False           |
+| compressible   | decompress | python | 0.715 | 2.63e-06 | False           |
+| incompressible | compress   | cpp    | 0.974 | 6.51e-01 | True            |
+| incompressible | compress   | go     | 0.955 | 2.36e-01 | True            |
+| incompressible | compress   | java   | 0.863 | 1.19e-03 | False           |
+| incompressible | compress   | python | 0.978 | 7.75e-01 | True            |
+| incompressible | decompress | cpp    | 0.888 | 4.23e-03 | False           |
+| incompressible | decompress | go     | 0.378 | 3.43e-10 | False           |
+| incompressible | decompress | java   | 0.988 | 9.80e-01 | True            |
+| incompressible | decompress | python | 0.978 | 7.68e-01 | True            |
+
+![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
+#### Figure 4: Welch's t-test Between Languages per Workload
+
+#### Table 3: Pearson's Correlation Coefficient between Energy consumption and Time
+| data type      | mode       | pearson r | p value       |
+|----------------|------------|-----------|---------------|
+| compressible   | compress   | 0.995502  | 1.246119e-122 |
+| compressible   | decompress | 0.975349  | 2.738179e-79  |
+| incompressible | compress   | 0.996787  | 3.110406e-131 |
+| incompressible | decompress | 0.996859  | 8.266893e-122 |
+
+
+![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
+#### Figure 5: Cohen's d between languages per workload
 
 # Discussion
+This section explores the results and answers the research questions. In addition, it explores the practical impact of the findings.
 
 ## Interpretation of Results
+Although half of the distributions failed the Shapiro-Wilk test, visual inspection indicated only minor deviations from normality.
+Given the moderate robustness of Welch's t-test to non-normality, parametric testing was deemed appropiate.
+
+### RQ1: Do Python, Java, Go, and C++ differ significantly in energy consumption when performing identical `gzip` compression and decompression tasks under controlled conditions?
+The results from [Figure 1](#figure-1-mean-energy-with-confidence-intervals) and [Figure 4](#figure-4-welchs-t-test-between-languages-per-workload) show significant differences between languages on the same task.
+These differences are likely caused by implementation or runtime overhead.
+The only exception being Go and C++ which perform approximately the same on incompressible data.
+
+### RQ2: Are the observed energy differences consistent across data types (compressible vs. incompressible) and operations (compression vs. decompression), and how statistically significant are these differences?
+The actual differences depends on the specific workload as visualized in [Figure 5](#figure-5-cohens-d-between-languages-per-workload).
+For instance, Python consistently performs relatively worse on decompression tasks and tasks working with incompressible data. 
+A possible cause could be slower writing to files, which would see similar patterns.
+Another example of inconsistent difference is seen with Go, where it is as efficient as C++ on incompressible data, as mentioned earlier. 
+Conversely, it's the slowest on compressible data. Alluding to a slow implementation of the compression/decompression algorithm. 
+Some difference, however, are consistent throughout the workloads.
+Most notably, C++ consistently performs the best and Java consistently is on the slower end.
+Overall the results demonstrate that the observed energy differences are mostly inconsistent between workloads, thereby disproving RQ2.
+
+### RQ3: Is the language that achieves the lowest runtime also the most energy efficient for `gzip` compression and decompression?
+[Figure 3](#figure-3-energy-over-runtime) and [Table 2](#table-3-pearsons-correlation-coefficient-between-energy-consumption-and-time) demonstrate
+that energy consumption and runtime have a positive relation.
+Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Python for decompressing compressible data despite running for the same amount of time.
 
 ## Practical Implications
-
+When looking for the most efficient programming language from an environmental standpoint, C++ is a clear winner. It consistently outperforms the other languages across all workloads.
+If development time is a concern and the program mostly compresses files, then Python is an excellent alternative with only 9% more consumption.
+Java and Go are still valid options when (de)compressing data is not the main focus of the program.
 
 # Conclusion
 
