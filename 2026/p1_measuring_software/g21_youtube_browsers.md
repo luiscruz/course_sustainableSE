@@ -1,15 +1,15 @@
 ---
 author: Leonidas Hadjiyiannis, Ivan Ivanov, Noky Soekarman, Yuchen Sun
 group_number: 21
-title: "Youtube Energy Consumption on Different Browsers"
+title: "Youtube Energy Consumption on Different Browsers with or without Hardware Acceleration"
 image: "img/gX_template/project_cover.png"
 date: 12/02/2026
-summary: For our project 1 we will be analyzing the energy consumption of the CPU when running the same youtube short on two different browsers (firfox & google chrome) on ubuntu24.04.3LTS using AMD Ryzen 7 4800H
+summary: For our project 1 we will be analyzing the energy consumption of the CPU when running the same youtube short on two different browsers (firefox & google chrome) on ubuntu24.04.3LTS using AMD Ryzen 7 4800H
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
-# Youtube Energy Consumption on Different Browsers
+# Youtube Energy Consumption on Different Browsers with or without Hardware Acceleration
 
 ## **Introduction**
 
@@ -108,7 +108,6 @@ The resulting CSV files contain several key metrics used for analysis:
 | `Delta` | ms | Time difference between samples | Validates the stability of the sampling frequency. |
 | `CPU_ENERGY` | Joules | Cumulative CPU energy | The primary data for calculating CPU power consumption. |
 | `GPU0_POWER` | mWatts | Instantaneous GPU power | Must be integrated over time to calculate total GPU energy. |
-| `PACKAGE_TEMPERATURE` | °C | Hardware temperature | Used to monitor for potential thermal throttling. |
 
 ## **Result**
 ### Data Cleaning and Outlier Handling
@@ -131,42 +130,36 @@ The final distribution of valid samples is shown below:
 | Firefox | Off | 29 |
 | Firefox | On | 30 |
 
-### Total Energy Consumption
-The most striking finding of this study is that enabling hardware acceleration consistently increased total energy consumption across all tested browsers. This contradicts the common assumption that offloading tasks to the GPU is inherently more energy-efficient for video playback.
+### Average Total Power Consumption
 
-![Total Energy(J)](./img/gX_template/total_energy.png)
-
-As seen in the graph, while Chrome and Edge show a moderate increase, Firefox displays a significantly wider gap between its "On" and "Off" states.
+![Average Total Power(W)](./img/g21/Average_Total_Power.png)
 
 *Table 2: Statistical Comparison of Total Energy (HW On vs. HW Off)*
-| Browser | Metric | #_gpu_off | #_gpu_on | p-value | Mean Off (J) | Mean On (J) | Change (%)|
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Chrome | Total Energy | 30 | 30 | 2.44e-09 | 2241.73 | 2419.26 | +7.92% |
-| Edge | Total Energy | 30 | 30 | 6.05e-07 | 2244.28 | 2403.25 | +7.08% |
-| Firefox | Total Energy | 30 | 29 | 8.62e-10 | 2126.69 | 2425.17 | +14.04% |
+|   | browser | metric              | #_gpu_off | #_gpu_on | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label     |
+|---|---------|--------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-----------------------|
+| 0 | chrome  | avg_total_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 31.944582 | 42.889812 | 34.263181            | 1.0         | CLES P(on > off)      |
+| 1 | edge    | avg_total_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 31.959125 | 41.972643 | 31.332268            | 1.0         | CLES P(on > off)      |
+| 2 | firefox | avg_total_power_w  | 29        | 30       | Mann–Whitney | 4.461750e-11  | 31.269099 | 42.086639 | 34.594986            | 1.0         | CLES P(on > off)      |
 
-### Runtime Performance
-We analyzed whether the increased energy consumption was justified by faster execution times. However, the data suggests that hardware acceleration provided no meaningful speed advantage for YouTube Shorts.
+### Average CPU Power Consumption
 
-**The results show that enabling hardware acceleration consistently increases energy consumption and EDP across all browsers, while providing little to no runtime benefit.**
-![Runtime](./img/gX_template/runtime.png)
+![Average CPU PowerConsuption()](./img/g21/Average_CPU_Power.png)
 
-For Chrome and Edge, the runtime difference was statistically insignificant. For Firefox, enabling the GPU actually resulted in a slight but statistically significant increase in runtime (+0.35%), suggesting that the overhead of GPU scheduling may introduce minor latencies in the Gecko engine.
+|   | browser | metric            | #_gpu_off | #_gpu_on | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
+|---|---------|------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-------------------|
+| 0 | chrome  | avg_cpu_power_w  | 30        | 30       | Mann–Whitney | 8.890991e-10  | 13.451759 | 12.427455 | -7.614645            | 0.038889    | CLES P(on > off)  |
+| 1 | edge    | avg_cpu_power_w  | 30        | 30       | Mann–Whitney | 2.601511e-08  | 13.476417 | 12.473504 | -7.441979            | 0.081111    | CLES P(on > off)  |
+| 2 | firefox | avg_cpu_power_w  | 29        | 30       | Mann–Whitney | 8.615805e-01  | 11.617181 | 11.566381 | -0.437286            | 0.513793    | CLES P(on > off)  |
 
-*Table 3: Statistical Comparison of Runtime (HW On vs. HW Off)*
-| Browser | Metric | n_off | n_on | p-value | Mean Off (s) | Mean On (s) | Change (%)|
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Chrome | Runtime | 30 | 30 | 0.1857 | 130.86 | 130.81 | -0.04% |
-| Edge | Runtime | 30 | 30 | 0.1833 | 130.83 | 130.97 | +0.11% |
-| Firefox | Runtime | 29 | 30 | 0.00002 | 136.96 | 137.44 | +0.35% |
+### Average GPU Power Consumption
 
-### Energy-Delay Product (EDP)
-The Energy-Delay Product (EDP) is the "golden standard" for evaluating the efficiency of a system, as it penalizes solutions that save energy at the cost of significantly slower performance.
+![Average GPU Power(W)](./img/g21/Average_GPU_Power.png)
 
-
-![Energy-Delay Product](./img/gX_template/EDP.png)
-
-In our experiment, because the runtime remained largely flat while energy increased, the EDP scores followed the same negative trend as total energy. Firefox suffered the most severe efficiency penalty, with its EDP increasing by over 14.04%. This indicates that for this specific workload, Firefox is optimized more efficiently when running on the CPU alone.
+|   | browser | metric            | #_gpu_off | #_gpu_on | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
+|---|---------|------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-------------------|
+| 0 | chrome  | avg_gpu_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 18.492823 | 30.462356 | 64.725293            | 1.0         | CLES P(on > off)  |
+| 1 | edge    | avg_gpu_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 18.482708 | 29.499139 | 59.603987            | 1.0         | CLES P(on > off)  |
+| 2 | firefox | avg_gpu_power_w  | 29        | 30       | Mann–Whitney | 4.461750e-11  | 19.651918 | 30.520258 | 55.304224            | 1.0         | CLES P(on > off)  |
 
 ### Statistical Significance
 To ensure our findings were robust, we conducted normality tests followed by non-parametric comparisons.
@@ -174,6 +167,7 @@ To ensure our findings were robust, we conducted normality tests followed by non
 #### Special Finding
 It can be observed from the results of the Shapiro–Wilk test that several configurations deviate significantly from normality (p < 0.05). Therefore, non-parametric statistical tests are used for subsequent comparisons.
 
+[TODO]
 For all three browsers, enabling hardware acceleration leads to a statistically significant increase in total energy consumption and EDP... The mean energy consumption increases by approximately 7–8% for Chrome and Edge, and by over 14% for Firefox, showing that hardware acceleration consistently worsens energy efficiency for this workload.
 
 ---
@@ -182,31 +176,36 @@ For all three browsers, enabling hardware acceleration leads to a statistically 
 | Metric | Test Type | Findings |
 | :--- | :--- | :--- |
 | Normality | Shapiro-Wilk | Most groups failed (p < 0.05), requiring non-parametric tests. |
-| Significance | Mann-Whitney U | All energy/EDP increases were statistically significant (p < 0.05). |
-| Effect Size | CLES | Very high probability (up to 97%) that HW-On consumes more energy than HW-Off. |
+| Significance | Mann-Whitney U | All power increases were statistically significant (p < 0.05). |
+| Effect Size | CLES | Very high probability that HW-On consumes more energy than HW-Off. |
+
 ## **Discussion**
+
+TODO
+- Why is hardware acc. more power hungry?
+- Startup spike
+
 The results of this experiment challenge the conventional wisdom that hardware acceleration is inherently energy-efficient. While GPUs feature dedicated hardware decoders (optimized for formats like VP9 or AV1) that are theoretically more efficient than a general-purpose CPU, the system-wide energy consumption reveals a significant "Offloading Overhead." In a browser environment, data must be frequently transferred between CPU memory and GPU VRAM. This process of cross-hardware synchronization and driver management consumes a non-trivial amount of power. For the YouTube Shorts used in this study (30 seconds), the instantaneous power spike during the initialization of the GPU decoding pipeline is substantial. Due to the short duration, this "startup cost" is never balanced out by the subsequent low-power decoding phase. Consequently, the CPU alone demonstrates superior energy efficiency for lightweight video streams, suggesting an efficiency threshold for hardware acceleration.
 
-The most significant finding in the dataset is the disparity in energy increase: Firefox saw a 14.04% surge in consumption with hardware acceleration enabled, nearly double that of Chromium-based Chrome and Edge (7–8%). This gap highlights the fundamental differences in how rendering engines interface with underlying hardware. Chrome and Edge share the Chromium core, which benefits from deep optimizations for the Windows Hardware Abstraction Layer (HAL) and graphics driver interfaces, allowing for more efficient resource scheduling. In contrast, Firefox’s Gecko engine may incur redundant overhead in its "Copy-back" mechanisms or rendering pipeline synchronization when handling GPU acceleration. These architectural differences suggest that Firefox’s invocation of GPU resources results in greater instructional redundancy and energy waste, making it significantly less energy-efficient than its Chromium counterparts in this specific scenario.
-
-From a Green Software perspective, these findings carry important practical implications. The current "one-size-fits-all" approach of browsers—where hardware acceleration is enabled by default—is clearly not the most sustainable choice for short-form videos or low-bitrate content. For mobile or laptop users, the 14% energy penalty in Firefox translates directly into reduced battery life, which accumulates into significant energy waste over long-term daily use. Developers should consider more elastic energy-efficiency strategies, such as dynamically toggling hardware acceleration based on video duration, codec format, or the device's remaining power state. By adopting such energy-aware design, we can achieve meaningful decarbonization of digital activities without compromising the user experience, ultimately reducing the overall environmental impact of internet infrastructure.
+From a Green Software perspective, these findings carry important practical implications. The current "one-size-fits-all" approach of browsers—where hardware acceleration is enabled by default—is clearly not the most sustainable choice for short-form videos or low-bitrate content. For mobile or laptop users, the TODO% energy penalty in Firefox translates directly into reduced battery life, which accumulates into significant energy waste over long-term daily use.
 
 ## **Limitations and future work**
-While our study gives us a clear look at how hardware acceleration hits users' battery during YouTube Shorts, it’s important to remember that the type of video plays a massive role. Since we only focused on 30-second clips, the GPU might not have had enough time to hit its "sweet spot" for efficiency. If users were watching a long 4K or 8K movie, the specialized hardware inside your GPU might actually start saving you more power than the initial "cost" of waking it up. We’d love to test long-form content in the future, even if it means our experimental runs will take a whole lot longer.
+While our study gives us a clear look at how hardware acceleration hits the different computer components during YouTube Shorts, it’s important to remember that the type of video plays a massive role. Since we only focused on 30-second clips, at a resolution of 1080p, the GPU might not have hit it's crossover point where it is more efficient than the CPU. If users were watching content that was more decode intensive such as 4K or even 8K video, the GPU decoding might be more efficient than the CPU decoding. Even different video codecs could make a difference.
 
-Another thing to keep in mind is that all our data comes from just one specific computer setup. In the real world, the difference between an integrated graphics chip and a beefy dedicated graphics card is huge. Everything from the hardware architecture to your power settings or even your driver version can change how much energy gets sucked up. Future tests across a variety of rigs would definitely help us see the full picture. Also, browsers aren't always transparent about which video "language"—or codec—they choose. One browser might pick VP9 while another goes for AV1, and that choice alone could explain some of the energy gaps we saw.
+Another thing to keep in mind is that all our data comes from just one specific computer setup. In the real world, the difference between an integrated graphics chip and a beefy dedicated graphics card is huge. Everything from the hardware architecture to your power settings or even your driver version can change how much energy gets used. Future tests across a variety of computers would definitely help us see a broader picture. Also, browsers aren't always transparent about which video "language"—or codec—they choose. One browser might pick VP9 while another goes for AV1, and that choice alone could explain some of the energy gaps we saw.
 
-Finally, let’s talk about the "noise" of modern computers. Even though we tried to stay in "Zen Mode" by killing unnecessary apps, operating systems are always busy behind the scenes. There’s almost always some background task popping up that has nothing to do with the browser but still wiggles the energy meter. We used a strict 32-run strategy and tossed out the "warmup" runs to smooth things out, but at the end of the day, measuring energy in a real-world environment instead of a sterile lab is always going to have its limits.
+Finally, let’s talk about the "noise" of modern computers. Even though we tried to stay in "Zen Mode" by killing unnecessary apps, operating systems are always busy behind the scenes. There’s almost always some background task popping up that has nothing to do with the browser but still influences the power consumption. We used a strict 32-run strategy and tossed out the "warmup" runs to smooth things out, but at the end of the day, measuring energy in a real-world environment instead of a sterile lab is always going to have its limits.
 
-## **Conclusion**
+## **Conclusion** [TODO]
 This study evaluated the energy efficiency of Chrome, Microsoft Edge, and Firefox while playing YouTube shorts, specifically focusing on the impact of hardware acceleration. Our data reveals an important finding: enabling hardware acceleration significantly increases total energy consumption and the Energy-Delay Product (EDP) across all browsers, without providing a meaningful reduction in runtime.
 
 Key findings from our analysis include:
 
 - **Energy Penalty:** Enabling the GPU resulted in a 7–8% energy increase for Chrome and Edge, and a substantial 14.04% increase for Firefox.
 
-- **No Speed Advantage:** The impact on runtime was practically negligible (less than 0.4% change), proving that for short-form video, the GPU does not make the task "faster."
-
 - **Firefox Vulnerability:** Firefox's Gecko engine exhibited the highest sensitivity to GPU offloading, suggesting it is currently most energy-efficient when relying on CPU-based decoding for this workload.
 
 In conclusion, while hardware acceleration is a nice feature for high-performance rendering, it is not an "always optimal" solution for energy sustainability. For users looking to maximize battery life during casual video browsing, particularly in Firefox, disabling hardware acceleration may be a highly effective strategy. These insights emphasize the need for context-aware software design that balances performance and power based on the specific nature of the digital workload.
+
+# TODO
+# Add code repo link
