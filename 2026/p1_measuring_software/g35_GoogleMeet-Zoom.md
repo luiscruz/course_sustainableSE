@@ -3,9 +3,9 @@ author: Ayush Khadka, Carolyn Alcaraz, Nicolas Loaiza Atehortua, Benas Pranauska
 group_number: 35
 title: "Comparing the difference in Power Consumption between Video Conference Applications Microsoft Teams and Zoom"
 image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+date: 27/02/2026
 summary: |-
-  This project is about comparing the energy usage of Microsoft Teams and Zoom. We will run both applications for 1  minute for 15-30 iterations. We will measure the cpu power over time. We will use Energibridge. 
+  This project is about comparing the energy usage of Microsoft Teams and Zoom. We compare the energy impact of enabling different variations of video-call features on both applications: camera on/off, blur on/off, and screen-share on/off. We run 30 iterations per feature pair, per application, and measure the energy costs over time. We use Energibridge for measuring the data, and develop automated scripts to run the experiments reproducibly. 
   
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
@@ -56,7 +56,7 @@ Six years ago, the COVID-19 pandemic began, prompting nations around the world t
 
 According to Adrjan et al., WFH job postings have quadrupled across 20 countries from 2020 to 2023, with these kind of postings still remaining popular despite a lifting of pandemic restrictions. Naturally, video conference applications rose in popularity and because of this, it is imperative to consider the energy usages of these applications as the number of people transitioning to remote working during this time increases significantly. 
 
-From a user perspective, the energy efficiency of video conferencing software matters because it directly affects the experience of working on a laptop. Online meetings can be long and frequent, and if an application draw more power, the **laptop will drain faster**. This would require more frequent charging, and may force users to adapt their workday around power availability by, for example, staying near outlets or carrying chargers. Higher power draw can also increase heat and fan activity, impacting comfort and potentially influencing audio quality if fan noise is captured by the microphones. Over time, frequent high-power usage by contribute to **faster batter wear**, reducing the lifespan of a device. 
+From a user perspective, the energy efficiency of video conferencing software matters because it directly affects the experience of working on a laptop. Online meetings can be long and frequent, and if an application draw more power, the **laptop will drain faster**. This would require more frequent charging, and may force users to adapt their workday around power availability by, for example, staying near outlets or carrying chargers. Higher power draw can also increase heat and fan activity, impacting comfort and potentially influencing audio quality if fan noise is captured by the microphones. Over time, frequent high-power usage by contribute to **faster battery wear**, reducing the lifespan of a device. 
 
 Beyond individual devices, energy usage also has **system-level implications**. Video conferencing can be used at **massive scale across organizations**, with even modest per-hour difference in power consumption accumulating across users. Understanding how application choice and feature configuration affects power demand can support recommendations for more sustainable digital work practices. 
 
@@ -75,34 +75,49 @@ The more specific objectives of this study are to:
 - Evaluate the impact of background blurring on the power consumption across the two different platforms.
 - And lastly, identify which of the two applications is more energy-efficient under different feature configurations and provide insights into how specific features affect the energy consumption of of video conference applications and their implications for sustainable work from home practices.
 
-# Methodology
-Include independent and independent variables somewhere
+# Methodology 
 
 ## Experimental setup
 
-### Hardware and Software Environment
-Include the different hardware and software variables, as well as our energy measurement tools (energibridge)
+The experiment was conducted in a controlled environment on a single computer with the following device specifications:
 
-Processor: AMD Ryzen 7 7730U with Radeon Graphics (2.00 GHz) 
-Installed RAM: 16.0 GB
-System Type: 64 Bit operating system, x64-based processor
 
-Windows Specification:
-Edition: Windows 11 home
-Version: 25H2
+- **Processor:** AMD Ryzen 7 7730U with Radeon Graphics (2.00 GHz) 
+- **Installed RAM:** 16.0 GB
+- **System Type:** 64-bit operating system, x64-based processor
+- **Operating System:** Windows 11 home, version 25H2
 
-## Experiment Design
+Moreover, the following sofware was used to run the experiment:
 
-- What we compare (zoom camera on vs off, etc)
-- What they measure (joules etc)
-- Saying that we ran 30 tests on each, for reliability etc.
+- **Automation Environment:** Python, version 3.14
+- **Applications Under Test:** Microsoft Teams, version 26032.208.4399.5; Zoom Workplace, version 6.6.11 (23272)
+- **Monitoring Tool:** Energibridge, version 0.0.7
 
-### Controlled Testing Environment
-Include zen mode and freeze settings from template
-Any other things to note like consistent screen brightness, or closing non-essential apps, turning off notifications, etc. etc.
-Mention the shuffling!
 
-And the settings we are using is 100% brightness, volume 30%, using wireless connection, all non essential apps and notifications have been closed. Laptop was left charging. Only thing open is cmd.exe terminal with administrative power.
+## Variables and Metrics
+
+We categorize the experimental parameters into dependent and independent variables, in order to measure how toggling different video-call features influences the power demands of the system.
+
+**Independent Variables:**
+
+- **Applications:** Microsoft Teams vs. Zoom Workplace.
+- **Feature States:** Camera On/Off, Blur On/Off, Screen-share On/Off.
+
+**Dependent Variables:**
+
+- **Mean Power (W):** the rate of energy consumption during the trial.
+- **Total Energy (J):** the total amount of energy consumed in 30 seconds.
+- **Energy Delay Product (J·s):** trade-off between energy efficiency and the time taken to complete the task.
+
+Next, we establish a controlled testing environment, to achieve as accurate and reproducible results as possible.
+
+
+## Controlled Testing Environment
+The experiment was conducted in "Zen mode" to minimize bias.
+
+All non-essential applications were stopped, and device notifications disabled. The only application open on the device was ``cmd.exe`` terminal with administrative power. The computer used wireless internet connection, and was plugged into a power source throughout the experiment. The brightness of the screen was set to 100%, and the volume to 30%.
+
+In the following subsection, we describe the step-by-step testing procedure and the automation of the experiment.
 
 
 ## Automation & Testing Procedure 
@@ -127,7 +142,7 @@ The experiment is driven by a single automation script that imports two platform
 For the experiments, the replication package can be found in the following [repository](https://github.com/ayushhhkha/SSE_TeamsVsZoom).
 
 ## Data Collection & Processing 
-Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each reading we derive mean power (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
+Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each reading we derive the dependent variable values: mean power (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
 
 
 # Results
@@ -328,9 +343,9 @@ These measures are meant to provide insight into the magnitude of observed effec
 ## Interpretation of Results
 
 ## Potential Explanations
-
+TODO
 ## Implications
-
+TODO
 # Limitations
 
 There are some limitations that will be briefly discussed in this section:
