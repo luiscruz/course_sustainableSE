@@ -52,7 +52,7 @@ Nevertheless, using statistical metrics to measure effect size is not enough –
 
 # Introduction
 ## Context and Motivation
-Six years ago, the COVID-19 pandemic began, prompting nations around the world to enforce a lockdown with the intention of reducing virus transmission. People were strongly advised to stay home and as a consequence, this led to a considerable increase in work from home (WFH) arrangements with video conferencing becoming a core part of daily work. 
+Six years ago, the COVID-19 pandemic began, prompting nations around the world to enforce a lockdown with the intention of reducing virus transmission. People were strongly advised to stay home and as a consequence, this led to a considerable increase in work from home (WFH) arrangements with **video conferencing** becoming a core part of daily work. 
 
 According to Adrjan et al., WFH job postings have quadrupled across 20 countries from 2020 to 2023, with these kind of postings still remaining popular despite a lifting of pandemic restrictions. Naturally, video conference applications rose in popularity and because of this, it is imperative to consider the energy usages of these applications as the number of people transitioning to remote working during this time increases significantly. 
 
@@ -62,7 +62,7 @@ Beyond individual devices, energy usage also has **system-level implications**. 
 
 While the number of people transitioning to remote working has recently seemed to stabilized in Europe and in other places around the world, as reported by Eurofound researcher Oscar Vargas Llave, "The possibility of working from home hasn’t [been] sedimented in European workplaces". Thus, research into the energy usages of video conference applications remains relevant in this day and age.
 
-For the purposes of this research, the video conference applications to be investigated for energy usage are Zoom Workplace and Microsoft Teams. Both applications have native apps, and share similar features that will be experimented on, namely, the turning on and off of the camera, the sharing of screens, and the blurring of the background. 
+For the purposes of this research, the video conference applications to be investigated for energy usage are **Zoom Workplace** and **Microsoft Teams**. Both applications have native apps, and share similar features that will be experimented on, namely, the turning on and off of the camera, the sharing of screens, and the blurring of the background. 
 
 ## Research Objectives
 
