@@ -267,7 +267,7 @@ Overall the results demonstrate that the observed energy differences are mostly 
 ### RQ3: Is the language that achieves the lowest runtime also the most energy efficient for `gzip` compression and decompression?
 [Figure 3](#figure-3-energy-over-runtime) and [Table 2](#table-3-pearsons-correlation-coefficient-between-energy-consumption-and-time) demonstrate
 that energy consumption and runtime have a positive relation.
-Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Java for decompressing compressible data despite running for the same amount of time.
+Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Python for decompressing compressible data despite running for the same amount of time.
 
 ## Practical Implications
 When looking for the most efficient programming language from an environmental standpoint, C++ is a clear winner. It consistently outperforms the other languages.
