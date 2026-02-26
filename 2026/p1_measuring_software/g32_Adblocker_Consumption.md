@@ -64,6 +64,12 @@ Google Chrome was used as the browser in both configurations. Both browser profi
 * **Profile 1:** No ad blocker installed
 * **Profile 2:** Stands AdBlocker installed and enabled with default filter settings
 
+The following python and library versions were used for this experiment:
+* **Python:** 3.12.3
+* **Python Libraries:**
+  * **websocket-client:** 1.9.0
+  * **requests:** 2.32.5
+
 Energy measurements were collected using Energibridge. The energy of the CPU package was obtained from the `PACKAGE_ENERGY (J)` counter. This metric represents cumulative CPU energy consumption and is appropriate for bounded, one-off workloads.
 
 ---
@@ -106,12 +112,15 @@ The histogram, boxplot and violin plots obtained from the results are shown belo
 
 ![Histogram of Energy Distribution](img/g32_Histogram_Energy_Distribution.png)
 
+**Figure 1.** Histogram - The left distribution indicates the energy consumption of Profile 2, and the right distribution indicates the energy consumption for Profile 1.
+
 ![Box Plot of Energy Consumption](img/g32_Box_Plot_Energy_Consumption.png)
+
+**Figure 2.** Box Plot - Comparison of total energy consumption for Profile 1 and Profile 2
 
 ![Violin Plot of Energy Consumption](img/g32_Violin_Plot_Energy_Consumption.png)
 
-**Figures** Comparison of total energy consumption for Profile 1 and Profile 2.
-Top: Histogram. Middle: Boxplot. Bottom: Violin plot.
+**Figure 3.** Violin Plot - Comparison of total energy consumption for Profile 1 and Profile 2.
 
 ---
 
@@ -183,6 +192,8 @@ test
 ## Conclusion
 
 In this study, we investigated the impact of enabling an ad blocker on CPU package energy consumption during a simulated news browsing session. Using 30 independent executions per configuration and following the statistical analysis procedure, we compared browsing sessions with and without an ad blocker.
+
+Answering our research question, enabling an ad blocker does reduce CPU package energy consumption during a simulated news browsing session, resulting in a statistically significant reduction compared to browsing without an ad blocker.
 
 Our results indicate that enabling the ad blocker reduced total CPU energy consumption per session. The difference was statistically significant under the tested workload.
 
