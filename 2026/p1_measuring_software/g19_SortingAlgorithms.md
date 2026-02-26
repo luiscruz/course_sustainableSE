@@ -21,6 +21,7 @@ Algorithmic time complexity is a fundamental aspect of code analysis and a unive
 
 
 #### Algorithm selection
+
 The first step was the selection of algorithms to implement for our experiment. We tried to identify a set of algorithms which would span a range of complexities and operational methods. We selected these algorithms to cover a wide span of theoretical complexity and memory behaviour, since our research question can not solely be covered by only asymptotic runtime, as energy effects are also driven by allocation patterns and cache locality. In order to also explore how programming languages affect this, we decided to test with Rust and Python, and for this we needed a mix of algorithms that can be implemented consistently across both languages so that we can separate algorithm effects from language and runtime effects. We decided that half of the algorithms would have a cross language implementation, and the rest would just be in Python.
 
 The following are the chosen algorithms for the experiment:
@@ -31,7 +32,39 @@ The following are the chosen algorithms for the experiment:
 
 ### Data Analysis
 
-We chose to record the energy measurements of our experiment as the primary metric rather than the power as sorting algorithms are specific instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement (in reality, much much higher than 30) so that we can test for a Normal/Gaussian distribution of our data.
+We chose to record the energy measurements of our experiment as the primary metric rather than the power as sorting algorithms are specific instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement (in reality, much much higher than 30) so that we can test for a Normal/Gaussian distribution of our data. 
+
+#### Measurement boundary and instrumentation
+
+In our setup, EnergiBridge measures energy for the whole benchmark command, including Python start up, imports, and reading and writing files. Our runtime timer measures only the time spent inside the sorting function. We do this on purpose, because we care most about the real energy cost of running a sorting task end to end, not only the energy used by the in memory sorting step.
+
+#### Dataset generation, persistence, and reproducibility
+
+For each configuration, defined by algorithm, input size and distribution, we generate an input array deterministically and make it persist to the disk. We also configured subsequent repetitions to reuse the exact same dataset file, since htis reduces variance caused by different random inputs and allows strict run to run comparability. We also control randomness via a deterministic seeding strategy so that the same configuration always maps to the same dataset. For replication purposes, we decided to store the input datasets as JSON to make the replication package easy to inspect and language independent.
+
+We use multiple input distributions:
+
+- random
+- sorted
+- reverse sorted
+- almost sorted, defined as a sorted array with a small fraction of elements swapped at random positions
+
+#### Execution order, warmup, and cooldown
+
+To reduce bias from run order effects, we randomised the execution order of the full configuration matrix before running measurements. Also we decided to execute warmup runs that are not recorded, in order to stabilise CPU frequency scaling and OS power states. Between recorded runs, we enforce a fixed cooldown period so that any pre-generated energy and thermal carry over effects are reduced.
+
+#### Correctness checks and failure handling
+
+Each run includes a correctness check that verifies the output array is sorted. In the case that a run fails the correctness check, it is flagged and excluded from analysis, and the failure is recorded in the logs. This ensures that energy results are not reported for incorrect implementations or unstable runs.
+
+#### System controls and machine state
+
+To keep all experiments fair, we executed them all on a single machine under the same fxied environment.
+
+- The device remains plugged in throughout the experiment session 
+- Background tasks are minimised by closing non essential applications
+- Display brightness remains fixed throughout the session
+- Network usage is kept stable, and no large downloads or updates are allowed during runs
 
 #### Hypotheses
 
