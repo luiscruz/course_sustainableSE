@@ -229,6 +229,38 @@ energy increase observed earlier.
 
 ---
 
+## Statistical Validation
+
+To assess whether the observed energy differences are statistically meaningful, we first test
+the assumption of normality using the **Shapiro–Wilk test** for each browser–quality group.
+The results show that while Chrome energy measurements are approximately normally distributed,
+both Firefox configurations significantly deviate from normality (p < 0.01).
+
+Because normality cannot be assumed consistently across groups, we rely on the **non-parametric
+Mann–Whitney U test** for all comparisons.
+
+When pooling data across browsers, the comparison between **Auto** and **HD720** playback
+reveals a highly significant difference in energy consumption (p ≈ 4.4 × 10⁻¹¹), confirming that
+forcing higher video quality leads to increased energy usage.
+
+Comparing browsers within each quality setting yields a more nuanced result. Under **Auto**
+quality, the difference between Chrome and Firefox is not statistically significant (p = 0.137),
+largely due to Firefox’s high variance. Under **HD720**, however, the difference becomes
+statistically significant (p = 0.031), indicating that browser choice has a measurable impact
+on energy consumption when higher quality is enforced.
+
+Overall, these statistical tests confirm that the observed trends are not due to random
+fluctuations, and that video quality and browser choice both play a systematic role in
+energy consumption during short-form video playback.
+
+| Comparison | Test | p-value | Interpretation |
+|---|---|---:|---|
+| Auto vs HD720 | Mann–Whitney U | 4.4 × 10⁻¹¹ | Significant |
+| Chrome vs Firefox (Auto) | Mann–Whitney U | 0.137 | Not significant |
+| Chrome vs Firefox (HD720) | Mann–Whitney U | 0.031 | Significant |
+
+---
+
 ## Discussion
 
 Two key effects emerge from the results.
