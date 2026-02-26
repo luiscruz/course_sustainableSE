@@ -4,7 +4,7 @@ group_number: 21
 title: "Youtube Energy Consumption on Different Browsers with or without Hardware Acceleration"
 image: "img/g21/cover.png"
 date: 12/02/2026
-summary: In this project, we analyze the power consumption of YouTube video playback across three browsers (Chrome, Edge, and Firefox) on Windows 11 using an AMD Ryzen 7 4800H system. We compare configurations with hardware acceleration enabled and disabled, using average total power (W) as the primary metric. The goal is to evaluate whether hardware acceleration improves energy efficiency during video streaming.
+summary: In this project, we analyze the power consumption of YouTube video playback across three browsers (Chrome, Edge, and Firefox) on Windows 11 using an AMD Ryzen 7 4800H, NVidia GeForce GTX 1650ti system. We compare configurations with hardware acceleration enabled and disabled, using average total power (W) as the primary metric. The goal is to evaluate whether hardware acceleration improves energy efficiency during video streaming.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
@@ -28,6 +28,8 @@ To optimize video performance, modern browsers utilize "Hardware Acceleration". 
 
 Theoretically, because GPUs are more efficient at handling parallel computations and dedicated codec logic (such as VP9 or AV1 formats), this should lower the total system energy consumption. However, does the activation of the GPU introduce additional driver overhead, memory copy costs, or scheduling latencies? In a complex web environment like YouTube, whether "Hardware Acceleration" truly achieves a win-win for both performance and energy saving remains a subject of ongoing debate and empirical investigation.
 
+[A study from Tech With Mirza](https://mirzabilal.com/cpu-vs-gpu-for-video-transcoding-challenging-the-cost-speed-myth#heading-benchmark-details) investigated this question for various rescaling and resampling operations. Their conclusion was that using the GPU is more efficient in terms of total energy consumption, because the operations simply took less time when using a GPU. But how would this play out in a realtime workload such as video streaming on YouTube?
+
 ### Our Mission
 This study aims to provide empirical evidence on how browser environments truly influence the energy efficiency of video playback. By conducting a comparative analysis of three major browsers (Chrome, Microsoft Edge, and Firefox) we explore the following core question:
 
@@ -41,7 +43,7 @@ This experiment selected three representative web browsers: Google Chrome, Micro
 
 Kernel Diversity: Chrome and Edge are based on the Chromium engine, while Firefox utilizes the independent Gecko engine. Comparing different engines under identical workloads provides significant scientific insight into energy optimization strategies.
 
-Market Share: These three browsers account for the vast majority of desktop users globally.
+Market Share: These three browsers account for the vast majority of desktop users that use Windows globally. [Source](https://gs.statcounter.com/browser-market-share/desktop/worldwide)
 
 Vendor Specific Optimizations: Since Edge is deeply integrated with the Windows OS and Chrome is the most popular cross platform browser, comparing them allows us to observe how different vendors optimize hardware acceleration.
 
