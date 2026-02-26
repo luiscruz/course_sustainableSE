@@ -135,7 +135,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
 ## Experimental results
 
- After the removal of outliers, the results can be seen illustrated below. 
+ After the removal of outliers, the results can be seen illustrated below. Each figure compares Zoom and Microsoft Teams under the specified feature ON vs OFF conditions. The violin plots show the full distribution of the measurements across the 30 runs, while the embedded box plots indicate the mean and interquartile range. Finally, the dashed horizontal line represents the mean value. 
 
 ### Power and EDP Comparison for camera on vs camera off
 
@@ -159,8 +159,6 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
 </div>
 
-Queue statistics!!
-
 ### Power and EDP Comparison for background blurring on vs off
 
 <div style="display: flex; gap: 20px;">
@@ -181,8 +179,6 @@ Queue statistics!!
     </p>
   </div>
 </div>
-
-Queue statistics!!
 
 ### Power and EDP Comparison for screen sharing on vs off
 
@@ -206,7 +202,7 @@ Queue statistics!!
 
 </div>
 
-Queue statistics!!
+Across all the features, it can be observed that enabling the feature generally results in higher average power consumption compared to disabling it. This effect can be seen for both applications, with the exactl magnitude and variability differing between Zoom and Microsoft Teams. Note that the width and shape of the violins show that feature-enabled conditions often exhibit greater variability, suggesting less stable energy behaviour when additional processing, such as video effects and sharing, is active. 
 
 ## Statistical Analysis
 
