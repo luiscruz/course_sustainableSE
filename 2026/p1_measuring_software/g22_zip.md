@@ -25,7 +25,7 @@ This is a practical study for software developers. In a large-scale system where
 
 # Research Questions
 
-Through this study, we seek to answer a practical question: when two systems perform the same task, how much does the choice of programming language matter for energy efficiency? To that end, we use our case study of `gzip` file compression and decompression to narrow down our scope to three aspects of the problem. First, we examine whether there are any systematic energy differences between language ecosystems. Second, we explore whether these differences are consistent across workload characteristics, and, more importantly, whether they are statistically significant rather than incidental. Third, we investigate the relationship between runtime and energy, given that runtime is commonly used as a proxy for efficiency. We thus propose the following research questions:
+Through this study, we seek to answer a practical question: when two systems perform the same task, how much does the choice of programming language matter for energy efficiency? To that end, we use our case study of `gzip` file compression and decompression to narrow down our scope to three aspects of the problem::
 
 **RQ1.** Do Python, Java, Go, and C++ differ significantly in energy consumption when performing identical `gzip` compression and decompression tasks under controlled conditions?
 
@@ -36,13 +36,13 @@ Through this study, we seek to answer a practical question: when two systems per
 
 # Methodology
 
-This section explains the experimental design we used to measure and compare the energy consumption of `gzip` compression and decompression for different programming languages. We discuss the design of the input data, the experimental setup, the implementation details for each programming language, and the statistical analysis that has been performed on the results.
+This section explains the experimental design we used to measure and compare the energy consumption of `gzip` compression and decompression for different programming languages.
 
 ## Data
 
-We generate fully deterministic synthetic input data both for the purpose of reproducibility and to make sure that the differences in energy consumption can be attributed solely to the language ecosystems and not to the variability of our input datasets. All inputs are created by a custom Python script (`data/generate_input.py`), which takes a fixed seed and a size in megabytes, then produces exactly the same sequence of bytes every time. The script also prints the SHA-256 hash of every file it produces, so that it can be determined whether the input data used in a later replication attempt is exactly the same as the one in our experiment.
+We generate fully deterministic synthetic input data both for the purpose of reproducibility and to make sure that the differences in energy consumption can be attributed solely to the language ecosystems and not to the variability of our input datasets. All inputs are created by a custom Python script (`data/generate_input.py`), which takes a fixed seed and a size in megabytes, then produces exactly the same sequence of bytes every time. The script also prints the SHA-256 hash of every file it produces for replication purposes.
 
-We examine two workload types, which represent the extremes of the compression spectrum. The first type of workload contains highly *compressible data*, modeled after unstructured logs. The data is represented as JSONL (JSON Lines) records with the same structure and repeated fields (log level, service, region, action, etc). The values of each field are varied deterministically by using a seeded SHA-256 counter-mode pseudo-random number generator (PRNG). The second type of workload contains *incompressible data*, which is generated as a uniform byte stream using the same deterministic PRNG and stored in a binary file. This simulates data that has very little redundancy, such as encrypted or already-compressed data. We chose to include both types of workloads so that we could observe how different languages perform under both optimal and worst-case conditions.
+We examine two workload types, which represent the extremes of the compression spectrum. The first type of workload contains highly *compressible data*, modeled after unstructured logs. The data is represented as JSONL (JSON Lines) records with the same structure and repeated fields (log level, service, region, action, etc). The values of each field are varied deterministically by using a seeded SHA-256 counter-mode pseudo-random number generator (PRNG). The second type contains *incompressible data*, which is generated as a uniform byte stream using the same deterministic PRNG and stored in a binary file. This simulates data that has very little redundancy, such as encrypted or already-compressed data. We chose to include both types of workloads so that we could observe how different languages perform under both optimal and worst-case conditions.
 
 
 ## Experimental Setup
@@ -51,40 +51,20 @@ This section describes the setup used for the experiments. We took inspiration f
 
 ### Hardware and Software Environment
 
-All experiments are executed on the same machine and OS. Below is a table summarizing the specifications of the machine used.
+All experiments are executed on the same machine and OS, with the following specifications:
 
 | Category | Specification |
 |---|---|
 | Machine / Laptop model | `<e.g., Lenovo ThinkPad ... / custom desktop>` |
 | CPU | `<e.g., Intel Core i7-12700H / AMD Ryzen ...>` |
 | CPU cores / threads | `<e.g., 14 cores (6P+8E) / 20 threads>` |
-| CPU base / boost frequency | `<if known>` |
 | RAM | `<e.g., 16 GB DDR4>` |
-| Storage | `<e.g., 512 GB NVMe SSD>` |
 | Operating system | `<e.g., Linux Mint 22.x (Ubuntu 24.04 base)>` |
-| Kernel version | `<e.g., Linux 6.x>` |
-| Power mode | `<e.g., plugged in, performance mode / balanced>` |
 | EnergiBridge version | `<version>` |
-| GNU gzip version | `<e.g., gzip 1.12 / 1.13 / 1.14>` |
-| C++ compiler | `<e.g., g++ 13.x>` |
-| Java runtime / compiler | `<e.g., OpenJDK 17.0.x (java/javac)>` |
-| Go version | `<e.g., go1.22.x>` |
-| Python version | `<e.g., Python 3.12.x>` |
 
-### Experimental Design and Conditions
+### Input Preparation
 
-We evaluate four language implementations (`cpp`, `java`, `go`, `python`) under two dataset types and two operation modes, leading to 4 experimental groups:
-
-| **Dataset Type** | **Operation** | **Description** |
-| ------------------ | -------------- | ----------------------------------------------------------- |
-| **Compressible** | **Compress** | Compression of a highly compressible dataset |
-| **Compressible** | **Decompress** | Decompression of the compressed `.gz` file                  |
-| **Incompressible** | **Compress** | Compression of an incompressible dataset      |
-| **Incompressible** | **Decompress** | Decompression of the compressed `.gz` file                  |
-
-
-
-### Input Preparation and Decompression Fairness
+We evaluate four language implementations (`cpp`, `java`, `go`, `python`) under two dataset types (*compressible* and *incompressible*) and two operation modes (*compression* and *decompression*), leading to 4 experimental groups.
 
 Input files are generated automatically at the start of each experiment using the existing deterministic generator (`data/generate_input.py`). We use one **compressible** dataset (`.jsonl`) and one **incompressible** dataset (`.bin`) with a fixed size of 256MB.
 
@@ -105,14 +85,13 @@ energibridge -o <run.csv> -i <interval_us> --summary -- <language_command>
 ```
 
 The script records:
+- an EnergiBridge summary output in a per-run CSV file (`raw/run_k.csv`)
+- stdout/stderr in a log file (`raw/run_k.log`)
+- the wall-clock runtime (`wall_time_s`) measured by the Python orchestrator
 
-* EnergiBridge summary output in a per-run CSV file (`raw/run_k.csv`)
-* stdout/stderr in a log file (`raw/run_k.log`)
-* wall-clock runtime (`wall_time_s`) measured by the Python orchestrator
+We use an EnergiBridge sampling interval of 100 µs, which is the default. This interval provides sufficient detail for our short-duration runs, capturing energy fluctuations. After each run, the script parses the EnergiBridge CSV and computes per-column deltas between the first and last recorded values for numeric counters.
 
-We use an EnergiBridge sampling interval of 100 µs, which is the default. This interval provides sufficient detail for our short-duration runs, capturing energy fluctuations. After each run, the script parses the EnergiBridge CSV and computes per-column deltas between the first and last recorded values for numeric counters. This helps in eliminating noise from transient power fluctuations and system stabilization effects.
-
-### Bias Mitigation and Experimental Protocol
+### Experimental Protocol
 
 An important inspiration for our protocol is the observation made by L. Cruz (2021) [8] that software energy measurements can be strongly affected by thermal state, background processes, and temporal drift [8]. To reduce these sources of bias, the runner implements the following controls.
 
@@ -128,14 +107,13 @@ An important inspiration for our protocol is the observation made by L. Cruz (20
 ### Manual Controls and Remaining Sources of Bias
 
 Before running long experiments, we aim to keep the environment stable by:
+- closing unnecessary applications and browser tabs,
+- disabling notifications and updates,
+- keeping hardware peripherals constant,
+- maintaining fixed screen brightness/resolution and power settings,
+- avoiding unrelated network activity when possible.
 
-* closing unnecessary applications and browser tabs,
-* disabling notifications and updates,
-* keeping hardware peripherals constant,
-* maintaining fixed screen brightness/resolution and power settings,
-* avoiding unrelated network activity when possible.
-
-These steps align with Cruz’s "Zen mode" and "freeze your settings" recommendations to reduce the impact of background tasks and environmental changes on energy measurements [8]. As Cruz points out, **“the first thing we need to make sure of is that the only thing running in our system is the software we want to measure”** and to minimize competing tasks, such as background processes and unnecessary hardware [8]. While we do our best to control these factors, residual noise may remain, and its effect is discussed later in the analysis and limitations.
+These steps align with L. Cruz’s "Zen mode" and "freeze your settings" recommendations to reduce the impact of background tasks and environmental changes on energy measurements [8].
 
 
 ## Implementation Details
@@ -161,7 +139,7 @@ The python implementation uses the built-in `gzip` module, which is a wrapper ar
 
 To evaluate the sustainability and performance of the selected languages, we measure several metrics that capture different aspects of their behavior. These metrics allow us to compare the energy efficiency and runtime performance of the implementations in a comprehensive manner, answering the research questions we posed earlier. 
 
-**Energy consumption (E)** expressed in Joules (J) is our primary metric, measured using EnergiBridge. It represents the total work performed by the hardware to execute the compression and decompression tasks. Minimizing E is the direct goal of reducing carbon footprint of the software, and measuring it forms the basis to answering all of our research questions, but especially our main questions, RQ1. In our scenario, measuring E is more suitable than measuring power (P) in Watts (W), which represents the rate of energy consumption, because we are interested in the total energy used for a given (de)compression task rather than the continuous power draw. 
+**Energy consumption (E)** expressed in Joules (J) is our primary metric, measured using EnergiBridge. It represents the total work performed by the hardware to execute the compression and decompression tasks. Minimizing E is the direct goal of reducing carbon footprint of the software, and measuring it forms the basis to answering all of our research questions, but especially our main questions, RQ1.
 
 We will also measure the **energy per megabyte**, in Joules per megabyte (J/MB). This is calculated as the total energy consumed (E) divided by the size of the input file in megabytes and it provides a normalized measure of energy efficiency which allows us to make comparisons across different workloads (dataset and operation combinations) and therefore to answer RQ1, 2 and 3. Logically, a lower E/MB indicates better energy efficiency per unit of data processed.
 
