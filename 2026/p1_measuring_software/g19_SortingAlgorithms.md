@@ -21,12 +21,13 @@ Algorithmic time complexity is a fundamental aspect of code analysis and a unive
 
 
 #### Algorithm selection
-The first step was the selection of algorithms to implement for our experiment. We tried to identify a set of algorithms which would span a range of complexities and operational methods. The following are the chosen algorithms for the experiment:
-- **Merge Sort:**  Has a complexity of $O(n log n)$. Implemented in Rust and Python
-- **Quick Sort:** Has a complexity of $O(n^2)$. Implemented in Rust and Python.
-- **Radix Sort:** Has a complexity of $O(n log n)$. Implemented in Python. Chosen as it has a unique operation method where it performs iterative sorting on each significant digit of all values in the set.
-- **Heap Sort:** Has a complexity of $O(n log n)$. Implemented in Python. Also has a unique operation whereby the root of the heap is removed on recursive heapify calls.
-**TODO: REASONS**
+The first step was the selection of algorithms to implement for our experiment. We tried to identify a set of algorithms which would span a range of complexities and operational methods. We selected these algorithms to cover a wide span of theoretical complexity and memory behaviour, since our research question can not solely be covered by only asymptotic runtime, as energy effects are also driven by allocation patterns and cache locality. In order to also explore how programming languages affect this, we decided to test with Rust and Python, and for this we needed a mix of algorithms that can be implemented consistently across both languages so that we can separate algorithm effects from language and runtime effects. We decided that half of the algorithms would have a cross language implementation, and the rest would just be in Python.
+
+The following are the chosen algorithms for the experiment:
+- **Merge Sort:** It provides a stable baseline with worst case $O(n log n)$ behaviour and a predictable access pattern. It usually allocates extra arrays during merging, so it represents an algorithm with higher memory allocation and copying. We implemented it in both Rust and Python to support our cross language comparison for a non in place algorithm.
+- **Quick Sort:** We included it because its worst case complexity is $O(n^2)$ which is essential for our plan to compare quadratic worst case behaviour to $O(n log n)$. It mostly sorts in place and uses a partitioning step that accesses data differently than Merge Sort, so it helps isolate how in place operation and locality affect energy. We implemented it in Rust and Python so that we get a second cross language comparison with a different memory profile than Merge Sort.
+- **Radix Sort:** Has a complexity of $O(n log n)$ and was chosen because it is non comparison based and works by repeated digit passes rather than pairwise comparisons. This makes its work pattern very different, with repeated full array scans and bucket grouping, which can increase cache misses and memory traffic. Implemented only in Python. 
+- **Heap Sort:** Although it has the same theoretical complexity as Merge Sort $O(n log n)$, it moves elements across the array in a less sequential way, which can increase cache misses and memory traffic. This makes it useful for observing energy costs linked to weaker cache locality. Also implemented only in Python.
 
 ### Data Analysis
 
