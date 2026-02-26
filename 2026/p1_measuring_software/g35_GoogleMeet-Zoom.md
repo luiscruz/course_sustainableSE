@@ -101,18 +101,29 @@ Mention the shuffling!
 And the settings we are using is 100% brightness, volume 30%, using wireless connection, all non essential apps and notifications have been closed. Laptop was left charging. Only thing open is cmd.exe terminal with administrative power.
 
 
-## Automation and testing procedure 
+## Automation & Testing Procedure 
 
-- 1 script talking to 2 others and energibridge to achieve some functionality
-- the cooldowns/fibonacci, the random selection
-- Saying we run energibridge for 30s for each test (2) in each iteration
+The experiment is driven by a single automation script that imports two platform-specific automation modules. Once started, it requires no manual intervention.
+
+**Warm-up.** A 5-minute CPU-intensive task (Fibonacci sequence) stabilises CPU thermals before any measurement begins, reducing cold-start variance.
+
+**Randomised scheduling.** For each task, the script must complete 15 iterations per platform. Instead of running them sequentially, it randomly selects which platform to test next from whichever still has remaining iterations. This shuffling mitigates ordering effects such as room temperature changes or background OS activity, that could systematically bias one platform's results.
+
+**Iteration lifecycle.** Each iteration follows a fixed sequence:
+
+1. **Launch**: the selected application opens and joins a pre-configured meeting automatically.
+2. **Baseline measurement**: EnergiBridge records system-level energy consumption for 30 seconds under the baseline condition (e.g., camera off, no blur, no screen share).
+3. **Feature measurement**: the script toggles the feature (e.g., enables camera, blur, or screen sharing) and EnergiBridge records for another 30 seconds.
+4. **Teardown**: the application is force-killed to ensure a clean state for the next iteration.
+5. **Cooldown**: a 60-second waiting period is performed to prevent tail energy consumption between iterations.
+
 
 ### Replication Package
 
 For the experiments, the replication package can be found in the following [repository](https://github.com/ayushhhkha/SSE_TeamsVsZoom).
 
-## Data Collection and processing 
-(2 sentences)
+## Data Collection & Processing 
+Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each trace we derive mean power (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
 
 
 # Results
