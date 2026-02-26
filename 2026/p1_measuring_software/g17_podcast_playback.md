@@ -155,114 +155,9 @@ Each configuration was repeated 30 times to reduce measurement variation caused 
 * Core temperatures  
 * Short term system noise
 
-## 3\. Results & Data Analysis
-
-### 3.1 Data Cleaning and Preprocessing
-
-Each configuration was run 30 times, resulting in a total of 240 measurements across all configs. Energy values were computed using the *CPU\_ENERGY* counter retrieved from EnergiBridge.
-
-Outlier detection was done using the three-standard-deviation rule (|x − x̄| \> 3s). 
-
-A total of 1 run was identified as a statistical outlier and removed from further analysis.  The remaining data were used for statistical testing. This outlier was removed from the brave\_apple\_1x configuration. 
-
-### 3.2 Exploratory Analysis & Visualisations
-
-| *Configuration* | *\# samples* | *Mean (J)* | *Std (J)* | *Median (J)* |
-| ----- | ----- | ----- | ----- | ----- |
-| **Chrome \- Apple 1x** | 30 | 304.24 | 6.41 | 303.49 |
-| **Chrome \- Apple 2x** | 30 | 299.26 | 3.68 | 299.27 |
-| **Chrome \- Spotify 1x** | 30 | 728.74 | 8.57 | 728.78 |
-| **Chrome \-Spotify 2x** | 30 | 732.30 | 5.17 | 732.90 |
-| **Brave \- Apple 1x** | 29 | 296.78 | 3.30 | 296.32 |
-| **Brave \- Apple 2x** | 30 | 296.32 | 3.14 | 296.63 |
-| **Brave \- Spotify 1x** | 30 | 716.36 | 11.85 | 715.56 |
-| **Brave \- Spotify 2x** | 30 | 716.83 | 11.16 | 719.50 |
-
-#### Global Box Plot
-![](.\img\g17_podcast_playback\plots\box\global_boxplot.png)
-
-#### Global Violin Plot
-
-![](.\img\g17_podcast_playback\plots\violin\global_violinplot.png)
-
-#### Focused 1x versus 2x Box Plots
-
-<p align="center">
-  <img src="./img/g17_podcast_playback/plots/box/brave_apple_1x_vs_brave_apple_2x.png" width="45%" />
-  <img src="./img/g17_podcast_playback/plots/box/brave_spotify_1x_vs_brave_spotify_2x.png" width="45%" />
-</p>
-
-<p align="center">
-  <img src="./img/g17_podcast_playback/plots/box/chrome_apple_1x_vs_chrome_apple_2x.png" width="45%" />
-  <img src="./img/g17_podcast_playback/plots/box/chrome_spotify_1x_vs_chrome_spotify_2x.png" width="45%" />
-</p>
-
-### 3.3 Normality Testing
-
-The Shapiro-Wilk test was applied to each configuration to assess normality of energy measurements.  For configurations where p ≥ 0.05, normality was assumed. For configurations where p \< 0.05, data was considered non-normal.
-
-| *Configuration* | *Shapiro p-value* | *Normal Distribution Assumed?* |
-| ----- | ----- | ----- |
-| **Chrome \- Apple 1x** | 0.132789 | Yes |
-| **Chrome \- Apple 2x** | 0.532414 | Yes |
-| **Chrome \- Spotify 1x** | 0.170301 | Yes |
-| **Chrome \- Spotify 2x** | 0.604625 | Yes |
-| **Brave \- Apple 1x** | 0.104885 | Yes |
-| **Brave \- Apple 2x** | 0.819705 | Yes |
-| **Brave \- Spotify 1x** | 0.000055 | No |
-| **Brave \- Spotify 2x** | 0.009320 | No |
-
-### 3.4 Statistical Significance Testing
-
-To compare 1x and 2x playback within each browser-platform pair, a two-sided Welch’s t-test was performed for configurations satisfying normality (α \= 0.05), while the Mann-Whitney U test was applied for non-normally distributed data.
-
-| *Comparison* | *Test Used* | *p-value* | *Statistically Significant?* |
-| ----- | ----- | ----- | ----- |
-| **Chrome \- Spotify (1x vs 2x)** | Welch’s t-test | 0.057297 | No |
-| **Brave \- Spotify (1x vs 2x)** | Mann-Whitney U | 0.911709 | No |
-| **Chrome \- Apple (1x vs 2x)** | Welch’s t-test | 0.000583 | Yes |
-| **Brave \- Apple (1x vs 2x)** | Welch’s t-test | 0.585504 | No |
+## 3\. Results
 
 
-
-### 3.5 Effect Size Analysis
-
-Effect sizes were interpreted using standard thresholds for Cohen’s d (small ≥ 0.2, medium ≥ 0.5, large ≥ 0.8) \[10\]  and the Common Language Effect Size interpretation framework.
-
-| *Comparison* | *Effect Size Method* | *Effect Size Value(s)* | *Interpretation* |
-| ----- | ----- | ----- | ----- |
-| **Chrome \- Spotify (1x vs 2x)** | Cohen’s d | d \= \-0.5030 | Medium |
-| **Brave \- Spotify (1x vs 2x)** | Median ΔM \+ CLES | ΔM \= \-3.9388 CLES \= 0.4911 | \~49.11% probability (no clear dominance) |
-| **Chrome \- Apple (1x vs 2x)** | Cohen’s d | d \= 0.9537 | Large |
-| **Brave \- Apple (1x vs 2x)** | Cohen’s d | d \= 0.1429 | Negligible |
-
-### 3.6 Summary of Findings
-
-Across 240 experimental runs, only one statistical outlier was identified and removed (Brave-Apple 1x), allowing for measurement stability and consistency across configurations.
-
-#### Normality and Test Selection
-
-Shapiro-Wilk testing indicated that all configurations except Brave-Spotify (1x and 2x) satisfied normality assumptions. Thus:
-
-* Welch’s t-tests were applied for all normally distributed comparisons.  
-* The Mann-Whitney U test was applied for Brave-Spotify.
-
-#### Statistical Significance
-
-Only the **Chrome-Apple (1x vs 2x)** comparison showed a statistically significant difference (p \= 0.000583). All other browser-platform pairs showed no statistically significant difference at a \= 0.05.
-
-However, it is worth noting that Chrome–Spotify approached significance (p \= 0.057), but did not meet the α \= 0.05 threshold.
-
-#### Effect Sizes and Practical Significance
-
-Effect size analysis revealed the following:
-
-* **Chrome-Apple** showed a large effect size (d \= 0.95), indicating a significant reduction in energy consumption at 2x  playback.  
-* **Chrome-Spotify** showed a medium effect size (d \= 0.50) meaning that the difference between 1× and 2x  playback was moderate in size, but there was not enough statistical evidence to confirm that the difference is reliable.  
-* **Brave-Spotify** demonstrated negligible practical difference (CLES ≈ 0.49), meaning that the energy consumption was more or less the same for 1x and 2x playback.  
-* **Brave-Apple** also showed a negligible effect (d \= 0.14). Playback speed had very little impact on energy consumption.
-
-These statistical findings form the basis for the interpretation presented in the following discussion section.
 
 ## 4\. Discussion
 
@@ -319,3 +214,112 @@ Future work could compare web-based players with native applications, extend exp
 \[9\] Microsoft. n.d. *Playwright.* Retrieved February 23, 2026 from [https://playwright.dev/](https://playwright.dev/)
 
 \[10\] Statistics How To. n.d. *Cohen’s d: Definition, formula and examples.* Retrieved February 23, 2026 from [https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/cohens-d/](https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/cohens-d/)
+
+## Appendix
+
+### Data Cleaning and Preprocessing
+
+Each configuration was run 30 times, resulting in a total of 240 measurements across all configs. Energy values were computed using the *CPU\_ENERGY* counter retrieved from EnergiBridge.
+
+Outlier detection was done using the three-standard-deviation rule ($|x − x̄| > 3s$). 
+
+A total of 1 run was identified as a statistical outlier and removed from further analysis.  The remaining data were used for statistical testing. This outlier was removed from the brave\_apple\_1x configuration. 
+
+### Exploratory Analysis & Visualisations
+
+| *Configuration* | *\# samples* | *Mean (J)* | *Std (J)* | *Median (J)* |
+| ----- | ----- | ----- | ----- | ----- |
+| **Chrome \- Apple 1x** | 30 | 304.24 | 6.41 | 303.49 |
+| **Chrome \- Apple 2x** | 30 | 299.26 | 3.68 | 299.27 |
+| **Chrome \- Spotify 1x** | 30 | 728.74 | 8.57 | 728.78 |
+| **Chrome \-Spotify 2x** | 30 | 732.30 | 5.17 | 732.90 |
+| **Brave \- Apple 1x** | 29 | 296.78 | 3.30 | 296.32 |
+| **Brave \- Apple 2x** | 30 | 296.32 | 3.14 | 296.63 |
+| **Brave \- Spotify 1x** | 30 | 716.36 | 11.85 | 715.56 |
+| **Brave \- Spotify 2x** | 30 | 716.83 | 11.16 | 719.50 |
+
+#### Global Box Plot
+![](.\img\g17_podcast_playback\plots\box\global_boxplot.png)
+
+#### Global Violin Plot
+
+![](.\img\g17_podcast_playback\plots\violin\global_violinplot.png)
+
+#### Focused 1x versus 2x Box Plots
+
+<p align="center">
+  <img src="./img/g17_podcast_playback/plots/box/brave_apple_1x_vs_brave_apple_2x.png" width="45%" />
+  <img src="./img/g17_podcast_playback/plots/box/brave_spotify_1x_vs_brave_spotify_2x.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="./img/g17_podcast_playback/plots/box/chrome_apple_1x_vs_chrome_apple_2x.png" width="45%" />
+  <img src="./img/g17_podcast_playback/plots/box/chrome_spotify_1x_vs_chrome_spotify_2x.png" width="45%" />
+</p>
+
+### Normality Testing
+
+The Shapiro-Wilk test was applied to each configuration to assess normality of energy measurements.  For configurations where p ≥ 0.05, normality was assumed. For configurations where p \< 0.05, data was considered non-normal.
+
+| *Configuration* | *Shapiro p-value* | *Normal Distribution Assumed?* |
+| ----- | ----- | ----- |
+| **Chrome \- Apple 1x** | 0.132789 | Yes |
+| **Chrome \- Apple 2x** | 0.532414 | Yes |
+| **Chrome \- Spotify 1x** | 0.170301 | Yes |
+| **Chrome \- Spotify 2x** | 0.604625 | Yes |
+| **Brave \- Apple 1x** | 0.104885 | Yes |
+| **Brave \- Apple 2x** | 0.819705 | Yes |
+| **Brave \- Spotify 1x** | 0.000055 | No |
+| **Brave \- Spotify 2x** | 0.009320 | No |
+
+### Statistical Significance Testing
+
+To compare 1x and 2x playback within each browser-platform pair, a two-sided Welch’s t-test was performed for configurations satisfying normality (α \= 0.05), while the Mann-Whitney U test was applied for non-normally distributed data.
+
+| *Comparison* | *Test Used* | *p-value* | *Statistically Significant?* |
+| ----- | ----- | ----- | ----- |
+| **Chrome \- Spotify (1x vs 2x)** | Welch’s t-test | 0.057297 | No |
+| **Brave \- Spotify (1x vs 2x)** | Mann-Whitney U | 0.911709 | No |
+| **Chrome \- Apple (1x vs 2x)** | Welch’s t-test | 0.000583 | Yes |
+| **Brave \- Apple (1x vs 2x)** | Welch’s t-test | 0.585504 | No |
+
+
+
+### Effect Size Analysis
+
+Effect sizes were interpreted using standard thresholds for Cohen’s d (small ≥ 0.2, medium ≥ 0.5, large ≥ 0.8) \[10\]  and the Common Language Effect Size interpretation framework.
+
+| *Comparison* | *Effect Size Method* | *Effect Size Value(s)* | *Interpretation* |
+| ----- | ----- | ----- | ----- |
+| **Chrome \- Spotify (1x vs 2x)** | Cohen’s d | d \= \-0.5030 | Medium |
+| **Brave \- Spotify (1x vs 2x)** | Median ΔM \+ CLES | ΔM \= \-3.9388 CLES \= 0.4911 | \~49.11% probability (no clear dominance) |
+| **Chrome \- Apple (1x vs 2x)** | Cohen’s d | d \= 0.9537 | Large |
+| **Brave \- Apple (1x vs 2x)** | Cohen’s d | d \= 0.1429 | Negligible |
+
+### Summary of Findings
+
+Across 240 experimental runs, only one statistical outlier was identified and removed (Brave-Apple 1x), allowing for measurement stability and consistency across configurations.
+
+#### Normality and Test Selection
+
+Shapiro-Wilk testing indicated that all configurations except Brave-Spotify (1x and 2x) satisfied normality assumptions. Thus:
+
+* Welch’s t-tests were applied for all normally distributed comparisons.  
+* The Mann-Whitney U test was applied for Brave-Spotify.
+
+#### Statistical Significance
+
+Only the **Chrome-Apple (1x vs 2x)** comparison showed a statistically significant difference (p \= 0.000583). All other browser-platform pairs showed no statistically significant difference at a \= 0.05.
+
+However, it is worth noting that Chrome–Spotify approached significance (p \= 0.057), but did not meet the α \= 0.05 threshold.
+
+#### Effect Sizes and Practical Significance
+
+Effect size analysis revealed the following:
+
+* **Chrome-Apple** showed a large effect size (d \= 0.95), indicating a significant reduction in energy consumption at 2x  playback.  
+* **Chrome-Spotify** showed a medium effect size (d \= 0.50) meaning that the difference between 1× and 2x  playback was moderate in size, but there was not enough statistical evidence to confirm that the difference is reliable.  
+* **Brave-Spotify** demonstrated negligible practical difference (CLES ≈ 0.49), meaning that the energy consumption was more or less the same for 1x and 2x playback.  
+* **Brave-Apple** also showed a negligible effect (d \= 0.14). Playback speed had very little impact on energy consumption.
+
+These statistical findings form the basis for the interpretation presented in the following discussion section.
