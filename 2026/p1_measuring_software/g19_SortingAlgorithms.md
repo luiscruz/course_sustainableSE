@@ -51,7 +51,7 @@ As mentioned previously, energy consumption per run per set size will the primar
 
   - As we are comparing only two elements here, we can apply a two-sided t-test:
   $$H_0: E_{Rust} = E_{Python}$$
-  $$H_A: E_{Rust} = E_{Python}$$
+  $$H_A: E_{Rust} \neq E_{Python}$$
 
 #### Experiment Runs
 
