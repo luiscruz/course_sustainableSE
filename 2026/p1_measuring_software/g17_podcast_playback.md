@@ -10,9 +10,9 @@ identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
-# **Energy Consumption for Online Podcast Playback**
+# Energy Consumption for Online Podcast Playback
 
-**1\. Introduction**  
+## 1\. Introduction  
 Digital media consumption has become an integral part of everyday life, spanning platforms such as YouTube, Netflix, and digital music services. Podcasts, in particular, have seen significant growth in recent years \[1\], with millions of users consuming audio content daily through platforms such as Spotify and Apple Podcasts. A common user behaviour on these platforms is adjusting playback speed (e.g., 1x, 1.5x, or 2x) to listen to the content faster and more efficiently \[2\]\[3\].
 
 While increasing playback speed reduces listening time, the net effect of this trade-off on total energy consumption is not immediately obvious as faster playback increases processing demand while reducing overall playback duration.
@@ -25,33 +25,33 @@ By isolating playback speed as a behavioural variable, this work contributes to 
 
 **Research Question:**  How does increasing playback speed (1x vs 2x) influence device-level energy consumption during desktop-based podcast streaming across different platforms and browsers?
 
-**2\. Methodology**
+## 2\. Methodology
 
-## **2.1 Experimental Overview**
+### 2.1 Experimental Overview
 
 This study measures device-level energy consumption during continuous podcast playback under controlled desktop conditions. The experiment assesses how playback speed and browser implementation influence energy usage.
 
 All measurements were conducted on a single laptop to eliminate hardware variability. Playback sessions were fully automated to ensure identical interaction across all configurations.
 
-## **2.2  Design Decisions and Platform Selection**
+### 2.2  Design Decisions and Platform Selection
 
 The experimental framework and platform choices were guided by three main categories: experimental control, reproducibility, and relevance to real-world usage.
 
-**→ Selection of Spotify and Apple Podcasts**
+#### Selection of Spotify and Apple Podcasts
 
 Spotify and Apple Podcasts were chosen because they are two of the most widely used podcast platforms globally \[5\]\[6\]. Both platforms support variable playback speed, which is central to our research question. Comparing these two platforms allows us to evaluate whether implementation differences influence energy efficiency under the same playback conditions.
 
-**→ Web-Based Platforms vs Native Applications**
+#### Web-Based Platforms vs Native Applications
 
 The web versions of Spotify and Apple Podcasts were selected instead of their desktop applications. While native applications are more commonly used, web-based playback allows for stronger experimental control and automation. Browser automation frameworks such as Playwright allow constant scripting of navigation, playback initiation, and speed adjustment. This ensures that all trials follow an identical structure and can be reproduced reliably.
 
-**→ Selection of Chrome and Brave Browsers**
+#### Selection of Chrome and Brave Browsers
 
 Google Chrome and Brave were selected as representative Chromium-based browsers. Google Chrome was selected due to its current global market share \[7\]. To maintain experimental control, a second Chromium-based browser was selected rather than choosing a browser built on a different rendering engine. By selecting two browsers based on the same engine, variability introduced by engine-level architecture is reduced. This allows for a more controlled comparison focused on browser-level implementation differences, background process behaviour, and energy management strategies rather than engine-specific effects.
 
-## **2.3 Experimental Variables**
+### 2.3 Experimental Variables
 
-**→ Independent Variables** 
+#### Independent Variables 
 
 The following factors were varied:
 
@@ -76,7 +76,7 @@ This results in eight configurations:
 * Brave \- Apple Podcasts \- 1x speed  
 * Brave \- Apple Podcasts \- 2x speed
 
-## **2.4 Test Platform**
+### 2.4 Test Platform
 
 All experiments were conducted on a single laptop to remove hardware related variability.
 
@@ -88,7 +88,7 @@ All experiments were conducted on a single laptop to remove hardware related var
 | Memory | 32 GB RAM |
 | Architecture | x86\_64 |
 
-## **2.5 Software Environment**
+### 2.5 Software Environment
 
 | Component | Specification |
 | :---- | :---- |
@@ -98,7 +98,7 @@ All experiments were conducted on a single laptop to remove hardware related var
 | Display Server | Wayland |
 | Firmware Version | PSCN17WW |
 
-## **2.6 Measurement Setup**
+### 2.6 Measurement Setup
 
 Energy measurements were collected using EnergiBridge \[8\]. EnergiBridge samples processor energy counters at specific intervals. For our experiment we used an interval of 500ms. 
 
@@ -106,7 +106,7 @@ Total energy consumption for each trial was computed using the cumulative CPU\_E
 
 Energy \= Final Value \- Initial Value
 
-**2.7 Automation Procedure**
+### 2.7 Automation Procedure
 
 Playback sessions were fully automated using Playwright \[9\], a browser automation framework that enables deterministic control of web-based interactions. Playwright allows programmatic launching of browser instances, navigation to specific URLs, and scripted interaction with page elements. This ensures that each trial follows an identical execution path, eliminating variability caused by manual user input.
 
@@ -133,7 +133,7 @@ The browser startup, page load, and playback start waits allow buffering, decodi
 
 Automation ensures reproducibility, consistent timing, and identical interaction patterns across all configurations.
 
-## **2.8 Controlled Variables**
+### 2.8 Controlled Variables
 
 The following factors were held constant across all trials:
 
@@ -146,7 +146,7 @@ The following factors were held constant across all trials:
 * Sampling interval  
 * Hardware configuration
 
-## **2.9 Repetition Strategy and Variance Reduction**
+### 2.9 Repetition Strategy and Variance Reduction
 
 Each configuration was repeated 30 times to reduce measurement variation caused by:
 
@@ -155,9 +155,9 @@ Each configuration was repeated 30 times to reduce measurement variation caused 
 * Core temperatures  
 * Short term system noise
 
-**3\. Results & Data Analysis**
+## 3\. Results & Data Analysis
 
-## **3.1 Data Cleaning and Preprocessing**
+### 3.1 Data Cleaning and Preprocessing
 
 Each configuration was run 30 times, resulting in a total of 240 measurements across all configs. Energy values were computed using the *CPU\_ENERGY* counter retrieved from EnergiBridge.
 
@@ -165,7 +165,7 @@ Outlier detection was done using the three-standard-deviation rule (|x − x̄| 
 
 A total of 1 run was identified as a statistical outlier and removed from further analysis.  The remaining data were used for statistical testing. This outlier was removed from the brave\_apple\_1x configuration. 
 
-## **3.2 Exploratory Analysis & Visualisations**
+### 3.2 Exploratory Analysis & Visualisations
 
 | *Configuration* | *\# samples* | *Mean (J)* | *Std (J)* | *Median (J)* |
 | ----- | ----- | ----- | ----- | ----- |
@@ -178,19 +178,20 @@ A total of 1 run was identified as a statistical outlier and removed from furthe
 | **Brave \- Spotify 1x** | 30 | 716.36 | 11.85 | 715.56 |
 | **Brave \- Spotify 2x** | 30 | 716.83 | 11.16 | 719.50 |
 
-**→ Global Box Plot**![][image1]
+#### Global Box Plot
+![][image1]
 
-## **→ Global Violin Plot**
+#### Global Violin Plot
 
 ![][image2]
 
-## **→ Focused 1x versus 2x Box Plots**
+#### Focused 1x versus 2x Box Plots
 
 ![][image3]![][image4]
 
-## **![][image5]![][image6]**
+![][image5]![][image6]
 
-## **3.3 Normality Testing**
+### 3.3 Normality Testing
 
 The Shapiro-Wilk test was applied to each configuration to assess normality of energy measurements.  For configurations where p ≥ 0.05, normality was assumed. For configurations where p \< 0.05, data was considered non-normal.
 
@@ -205,7 +206,7 @@ The Shapiro-Wilk test was applied to each configuration to assess normality of e
 | **Brave \- Spotify 1x** | 0.000055 | No |
 | **Brave \- Spotify 2x** | 0.009320 | No |
 
-## **3.4 Statistical Significance Testing**
+### 3.4 Statistical Significance Testing
 
 To compare 1x and 2x playback within each browser-platform pair, a two-sided Welch’s t-test was performed for configurations satisfying normality (α \= 0.05), while the Mann-Whitney U test was applied for non-normally distributed data.
 
@@ -216,15 +217,9 @@ To compare 1x and 2x playback within each browser-platform pair, a two-sided Wel
 | **Chrome \- Apple (1x vs 2x)** | Welch’s t-test | 0.000583 | Yes |
 | **Brave \- Apple (1x vs 2x)** | Welch’s t-test | 0.585504 | No |
 
-## 
 
-## 
 
-## 
-
-## 
-
-## **3.5 Effect Size Analysis**
+### 3.5 Effect Size Analysis
 
 Effect sizes were interpreted using standard thresholds for Cohen’s d (small ≥ 0.2, medium ≥ 0.5, large ≥ 0.8) \[10\]  and the Common Language Effect Size interpretation framework.
 
@@ -235,24 +230,24 @@ Effect sizes were interpreted using standard thresholds for Cohen’s d (small �
 | **Chrome \- Apple (1x vs 2x)** | Cohen’s d | d \= 0.9537 | Large |
 | **Brave \- Apple (1x vs 2x)** | Cohen’s d | d \= 0.1429 | Negligible |
 
-## **3.6 Summary of Findings**
+### 3.6 Summary of Findings
 
 Across 240 experimental runs, only one statistical outlier was identified and removed (Brave-Apple 1x), allowing for measurement stability and consistency across configurations.
 
-### **→ Normality and Test Selection**
+#### Normality and Test Selection
 
 Shapiro-Wilk testing indicated that all configurations except Brave-Spotify (1x and 2x) satisfied normality assumptions. Thus:
 
 * Welch’s t-tests were applied for all normally distributed comparisons.  
 * The Mann-Whitney U test was applied for Brave-Spotify.
 
-### **→ Statistical Significance**
+#### Statistical Significance
 
 Only the **Chrome-Apple (1x vs 2x)** comparison showed a statistically significant difference (p \= 0.000583). All other browser-platform pairs showed no statistically significant difference at a \= 0.05.
 
 However, it is worth noting that Chrome–Spotify approached significance (p \= 0.057), but did not meet the α \= 0.05 threshold.
 
-### **→ Effect Sizes and Practical Significance**
+#### Effect Sizes and Practical Significance
 
 Effect size analysis revealed the following:
 
@@ -263,21 +258,21 @@ Effect size analysis revealed the following:
 
 These statistical findings form the basis for the interpretation presented in the following discussion section.
 
-**4\. Discussion**
+## 4\. Discussion
 
-## **4.1 Interpretation of Results**
+### 4.1 Interpretation of Results
 
 Across 240 experimental runs, playback speed did not consistently reduce device-level energy consumption. Only the Chrome–Apple configuration showed a statistically significant difference between 1x and 2x playback (p \= 0.000583), with a large effect size (d \= 0.95). In all other cases, differences were either small or statistically non-significant (e.g., Chrome–Spotify, p \= 0.057; Brave–Spotify, p \= 0.912).
 
 Platform differences were much larger. Spotify consumed approximately 716–732 J per run, while Apple Podcasts consumed approximately 296–304 J under identical conditions. This represents more than a twofold difference in total energy use. These findings suggest that platform implementation has a substantially greater influence on energy consumption than playback speed.
 
-## **4.2  Practical Significance**
+### 4.2  Practical Significance
 
 From a practical standpoint, increasing playback speed is unlikely to produce consistent energy savings for most users. While Chrome–Apple showed a measurable reduction at 2x speed, the absolute difference was modest relative to total consumption.
 
 In contrast, platform choice resulted in energy differences exceeding 400 J per trial. When scaled across repeated listening sessions and large user bases, such differences could become meaningful. These results suggest that improvements in platform efficiency may offer greater sustainability benefits than behavioural adjustments such as increasing playback speed.
 
-**5\. Limitations and Issues**
+## 5\. Limitations and Issues
 
 This study was conducted on a single laptop running a fixed operating system configuration. While this improved experimental consistency, it limits generalisability to other hardware architectures, particularly ARM-based systems, mobile devices, or alternative operating systems. 
 
@@ -287,17 +282,17 @@ The measurement window (90 seconds) may not fully capture longer-term adaptive b
 
 Finally, despite careful control of variables, minor variability may still arise from operating system scheduling behaviour, background processes, thermal conditions, and adaptive streaming dynamics. Although repetition reduced random noise, such factors cannot be entirely eliminated.
 
-**6\. Conclusion**
+## 6\. Conclusion
 
 This study examined how playback speed influences device-level energy consumption during desktop-based web podcast streaming. Across 240 experimental runs, playback speed did not consistently reduce energy use. Only one browser–platform combination showed a statistically significant difference.
 
 Platform choice had a substantially larger impact on energy consumption than playback speed. The findings suggest that improvements in platform design are likely to have a greater effect on energy efficiency than changes in listening behaviour.
 
-**7\. Future Work**
+## 7\. Future Work
 
 Future work could compare web-based players with native applications, extend experiments to mobile devices, and include additional playback speeds such as 1.5x. Measuring GPU and memory energy separately would provide a more complete system-level view. Further studies could examine offline playback, video podcasts, and other operating systems to improve generalisability.
 
-**References**
+## References
 
 \[1\] Podcast Statistics. n.d. *33 Podcast Statistics 2026 (Number of Podcasts & Viewership).* Retrieved February 23, 2026 from [https://podcastatistics.com/](https://podcastatistics.com/)
 
