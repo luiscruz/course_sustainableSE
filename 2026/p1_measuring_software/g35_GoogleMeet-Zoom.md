@@ -156,7 +156,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
     <strong>Power</strong><br>
     <img src="img/g35_teams_zoom/camera_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    Figure 1: Average Power Consumption values for features camera on vs camera off.
+    <strong>Figure 1</strong>: Average Power Consumption values for features camera on vs camera off.
     </p>
   </div>
 
@@ -164,7 +164,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
     <strong>EDP</strong><br>
     <img src="img/g35_teams_zoom/camera_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    Figure 2: EDP values for features camera on vs camera off.    
+    <strong>Figure 2</strong>: EDP values for features camera on vs camera off.    
     </p>
   </div>
 
@@ -178,7 +178,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
     <strong>Power</strong><br>
     <img src="img/g35_teams_zoom/blur_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    Figure 3: Average Power Consumption values for features background blurring on vs off.
+    <strong>Figure 3</strong>: Average Power Consumption values for features background blurring on vs off.
     </p>
   </div>
 
@@ -186,7 +186,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
     <strong>EDP</strong><br>
     <img src="img/g35_teams_zoom/blur_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    Figure 4: EDP values for features background blurring on vs off.
+    <strong>Figure 4</strong>: EDP values for features background blurring on vs off.
     </p>
   </div>
 </div>
@@ -199,7 +199,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
     <strong>Power</strong><br>
     <img src="img/g35_teams_zoom/share_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    Figure 5: Average Power Consumption values for features screen sharing on vs off.
+    <strong>Figure 5</strong>: Average Power Consumption values for features screen sharing on vs off.
     </p>
   </div>
 
@@ -207,7 +207,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
     <strong>EDP</strong><br>
     <img src="img/g35_teams_zoom/share_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    Figure 6: EDP values for features screen sharing on vs off.
+    <strong>Figure 6</strong>: EDP values for features screen sharing on vs off.
     </p>
   </div>
 
@@ -218,7 +218,7 @@ Across all the features, it can be observed that enabling the feature generally 
 ## Statistical Analysis
 
 ### Normality testing
-To determine the kind of statistical tests to conduct, the normality of the data destribution was evaluated using the Shapiro-Wilk test.
+To determine the kind of statistical tests to conduct, the normality of the data destribution was evaluated using the **Shapiro-Wilk test**.
 
 The test was applied separately to each group, with a significance level of `a = 0.05` being used:
 - if `p >= 0.05`: the data was normally distributed
@@ -231,16 +231,14 @@ Depending on the result, the choice of statistical test was made as described be
 ### Significance Testing
 Two independent-sample significance tests were considered in this case. 
 
-#### Welch's t-test
-Welch's t-test was used in the case both groups passed the normality test. This is because this test compares mean differences, making it appropriate for when distributional assumptions are met. 
+**Welch's t-test** was used in the case both groups passed the normality test. This is because this test compares mean differences, making it appropriate for when distributional assumptions are met. 
 
-#### Mann-Whitney U Test
-When at least one group violated the normality assumptions, the Mann-Whitney U test was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
+When at least one group violated the normality assumptions, the **Mann-Whitney U test** was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
 
 ### Effect size estimation
-In addition to statistical significance, effect sizes should be computed to help indicate the practical relevance of an observed difference. 
+In addition to statistical significance, **effect sizes** should be computed to help indicate the practical relevance of an observed difference. 
 
-For Welch's t-test, 'Cohen's d' was used to quantify standardized mean differences. For the Mann-Whitney U test, the 'common language effect size' was computed, representing the probability that a randomly selected observation from one group exceeds an observation from another group. 
+For Welch's t-test, **Cohen's d** was used to quantify standardized mean differences. For the Mann-Whitney U test, the **common language effect size** was computed, representing the probability that a randomly selected observation from one group exceeds an observation from another group. 
 
 These measures are meant to provide insight into the magnitude of observed effects, independent of sample size. 
 
