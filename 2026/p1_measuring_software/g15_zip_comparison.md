@@ -5,7 +5,7 @@ title: "Zip Wars: Which Compression Tool is Burning Through Your Energy?"
 image: "img/g15_zip_comparison/zip.jpg"
 date: 12/02/2026
 summary: |-
-  Zipping your files has become as ubiquotous as Googling for information or, by now, asking Chat (knowing as ChatGPT'ing). Zip archives are the standard in consumer and business data distribution. But there are multiple providers that can compress your folders. We will investigate if there's a difference, and if there is one choice, that could significantly influence our global ICT energy usage.
+  Zipping your files has become as ubiquitous as Googling for information or, by now, asking Chat (known as ChatGPT'ing). Zip archives are the standard in consumer and business data distribution. But there are multiple providers that can compress your folders. We will investigate if there's a difference, and if there is one choice that could significantly influence our global ICT energy usage.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
@@ -14,7 +14,7 @@ Every time a server rotates its logs, a CI pipeline bundles an artifact, or a cl
 
 We pitted three widely-used tools against each other: 7-Zip (LZMA2), gzip (DEFLATE), and Zstandard (zstd), and measured the energy each consumed across a range of realistic workloads. The answer turned out to be more interesting than "tool X wins." It depends almost entirely on *what* you're compressing, and the reasons why reveal something fundamental about how these algorithms work.
 
-All scripts, raw data, and analysis code are available in our [replication package](https://github.com/prajusth/SSE_P1). We've deliberately only included relavant graphs and results for readability's sake. The complete set of results and graphs can be found in the `results` directory in our [replication package](https://github.com/prajusth/SSE_P1).
+All scripts, raw data, and analysis code are available in our [replication package](https://github.com/prajusth/SSE_P1). We've deliberately only included relevant graphs and results for readability's sake. The complete set of results and graphs can be found in the `results` directory in our [replication package](https://github.com/prajusth/SSE_P1).
 
 ## The setup
 
@@ -24,6 +24,8 @@ We needed test data that would represent the kinds of files compression tools en
 - **CSV (.csv):** Tabular datasets with IDs, timestamps, floating-point values, categorical labels, and description strings. The repeating column structure gives compression algorithms a lot to work with.
 - **PDF (.pdf):** Built from raw PDF syntax with text content compressed internally via FlateDecode (zlib). Since the data inside is already compressed at creation time, external tools have very little redundancy left to exploit.
 - **BMP (.bmp):** Uncompressed bitmap images with smooth color gradients plus random noise. Raw pixel data (BGR, 24-bit) with no internal compression, representing use cases like medical imaging or raw sensor data.
+
+These four types were chosen to cover a spectrum of compressibility: from highly redundant structured text (logs, CSV), through incompressible pre-compressed data (PDF), to raw binary data (BMP). It's worth noting that in practice, compression tools are often applied to entire directories or mixed-content archives rather than individual files. Our single-file setup isolates the per-type behavior cleanly, but real-world pipelines that compress folders containing a mix of these types would see blended results somewhere between our best and worst cases. The per-type breakdown here lets you estimate what that blend would look like for your specific workload.
 
 Each file type was generated at three target sizes: small (~10 MB), medium (~100 MB), and large (~500 MB). PDF files don't land exactly on these targets because PDF structure overhead (page objects, cross-reference tables, stream dictionaries) adds bulk beyond the content payload.
 
@@ -75,10 +77,10 @@ The scatter plot below shows all 72 configurations at once:
 
 ## Does zstd actually compress well enough?
 
-A tool that uses no energy and doesn't compress anything is useless. If zstd is just doing less work and getting worse results, the savings don't mean much. We need to check whether zstd's speed comes at the expense of actually compressing well. The compression ratio plots break this out per file type and size, we've included the ratios for the large files, the raios are comparable for other sizes.
+A tool that uses no energy and doesn't compress anything is useless. If zstd is just doing less work and getting worse results, the savings don't mean much. We need to check whether zstd's speed comes at the expense of actually compressing well. The compression ratio plots break this out per file type and size; we've included the ratios for the large files, as the ratios are comparable for other sizes.
 
 ![Compression ratio default for large files](img/g15_zip_comparison/compression_ratio_default_large.png)
-*Figure 4a: Compression ratio at default level for the large files (lower = better). Text and CSV: all three tools cluster together. Images: they diverge dramatically.*
+*Figure 4: Compression ratio at default level for large files (lower = better). Text and CSV: all three tools cluster together. Images: they diverge dramatically.*
 
 **Text and CSV** are where zstd's energy advantage really pays off. All three tools compress these well (ratios of 0.14-0.22 at default), separated by only 7 percentage points. The gap is small because text-like data plays to every algorithm's strengths. zstd finds most of the savings quickly; 7-Zip's deeper search hits diminishing returns.
 
@@ -90,8 +92,8 @@ A tool that uses no energy and doesn't compress anything is useless. If zstd is 
 
 The findings above create a tension we need to resolve. zstd uses far less energy, but for some file types it doesn't compress well. 7-Zip uses far more energy, but sometimes that energy buys real results. Just comparing raw joules or raw compression ratios doesn't capture the trade-off. What we really want to know is: how much energy does each tool spend per unit of *useful* work? To answer that, we computed joules per percentage point of size reduced. A tool spending 50 J to save 50% costs 1 J/%; one spending 50 J to save 5% costs 10 J/%.
 
-![Efficiency fast](img/g15_zip_comparison/efficiency_default_large.png)
-*Figure 5a: Energy per percent size reduction at fast level. Note the different y-axis scales across file types.*
+![Efficiency default large](img/g15_zip_comparison/efficiency_default_large.png)
+*Figure 5: Energy per percent size reduction at default level for large files. Note the different y-axis scales across file types.*
 
 For text and CSV at default/large, zstd spends 0.29-0.32 J/%, gzip 1.77-1.91 J/%, and 7-Zip 5.92-7.14 J/%. That makes zstd 6-25x more efficient on structured data.
 
@@ -110,8 +112,8 @@ Everything so far has compared tools against each other. But there's another kno
 
 Energy alone misses something important. In production, a tool that uses moderate energy but ties up a CPU core for minutes is blocking other work. We need a metric that captures both dimensions. The Energy Delay Product (EDP = Energy × Time) does exactly that: it penalizes tools that are both slow and hungry, rewarding those that finish quickly and cheaply.
 
-![EDP fast](img/g15_zip_comparison/edp_fast_large.png)
-*Figure 7: EDP at fast level.*
+![EDP fast large](img/g15_zip_comparison/edp_fast_large.png)
+*Figure 7: EDP at fast level for large files.*
 
 EDP reveals a surprise: gzip has a *worse* EDP than 7-Zip at fast level. For large PDFs (fast), gzip's EDP is 2,947 J·s vs. 7-Zip's 2,338 J·s. gzip is slower on binary data and draws more energy doing it. We'd have missed this looking at energy alone. zstd's EDP is in a different league: 37-64 J·s for the same workloads.
 
@@ -129,7 +131,7 @@ Practical implication: batch small files into larger archives before compressing
 17 of 72 groups failed the Shapiro-Wilk normality test. We inspected each one:
 
 ![Histograms of non-normal groups](img/g15_zip_comparison/non_normals.png)
-*Figure 10: Histograms of all 17 non-normal groups with their W statistics, p-values, and skewness.*
+*Figure 9: Histograms of all 17 non-normal groups with their W statistics, p-values, and skewness.*
 
 Most of the 17 show right-skewed distributions: a tight main cluster with a tail stretching toward higher energy values. This is a common pattern in performance measurements, where occasional slowdowns (from background OS activity, cache effects, or minor thermal fluctuations) push individual runs to the right. A few groups show more distinctive shapes: `gzip/fast/csv/medium` (W=0.74) has a single far-right outlier pulling the whole distribution; `gzip/default/image/medium` (W=0.83) looks mildly bimodal, though the exact cause is unclear; and several of the small-file configurations (`zstd/fast/text/small`, `gzip/fast/text/small`, `gzip/fast/csv/small`) show wider spreads relative to their means, which makes sense since sub-second jobs are more sensitive to measurement overhead and OS scheduling jitter.
 
@@ -153,11 +155,10 @@ The industry is already moving here. The Linux kernel uses zstd for module compr
 
 ## Threats to validity
 
-Our experiment ran on a single machine (AMD Ryzen 7 4800H), so absolute numbers are hardware-specific; we expect relative rankings to hold. Synthetic test files have different entropy profiles than real-world data, especially PDFs. The experiment ran for approximately 12 hours in total (including cooldown periods between runs), making some thermal drift unavoidable despite our cooldown mechanisms. RAPL measures only CPU package energy, missing memory and disk I/O. Because zstd finishes so much faster, it allows these other components to return to a low-power idle state sooner (a pattern sometimes called "race to sleep"). This means zstd's true system-wide energy advantage is likely even larger than our CPU-only measurements suggest.
+Our experiment ran on a single machine (AMD Ryzen 7 4800H), so absolute numbers are hardware-specific; we expect relative rankings to hold. Synthetic test files have different entropy profiles than real-world data, especially PDFs. The experiment ran for approximately 12 hours in total (including cooldown periods between runs), making some thermal drift unavoidable despite our cooldown mechanisms. We tested individual files rather than mixed-content archives; folder-level compression may introduce additional overhead from file system metadata and directory traversal that we did not measure. RAPL measures only CPU package energy, missing memory and disk I/O. Because zstd finishes so much faster, it allows these other components to return to a low-power idle state sooner (a pattern sometimes called "race to sleep"). This means zstd's true system-wide energy advantage is likely even larger than our CPU-only measurements suggest.
 
 ## Conclusion
 
 "Which compression tool should I use?" is the wrong question. The right one is "what am I compressing?" For text-like workloads that dominate most software pipelines, zstd at fast level gives good compression at 85-96% less energy than 7-Zip and 69-84% less than gzip, with nearly the same output size. For raw binary data, 7-Zip's LZMA2 does work that simpler algorithms genuinely can't, and its energy premium buys meaningful compression. For anything already compressed, the most energy-efficient option is the simplest: don't compress it again.
 
 Sometimes the greenest optimization isn't a smarter algorithm. It's just picking the right tool for the job, or deciding not to run the job at all.
-
