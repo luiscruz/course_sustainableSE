@@ -84,6 +84,8 @@ To simulate realistic browsing behavior, we developed an automated script that n
 
 The script uses Chrome DevTools Protocol via a WebSocket connection to navigate to each website, wait for page loading, and scroll the page at fixed intervals. For each website, the script scrolls continuously for 30 seconds, simulating a user reading and browsing content. This results in a fixed browsing session consisting of three sequential news pages.
 
+**Disclaimer**: Most news websites use cookies. Before running the scripts cookies pop-up should be closed in both profiles in all websites.
+
 ---
 
 ### Experimental Procedure
@@ -156,6 +158,15 @@ In addition to statistical significance, the magnitude of the observed differenc
 
 ---
 
+### Practical Effect
+
+According to our analysis, profile without the adblocker has an average CPU package power around 10.0 whereas the profile with the adblocker is 6.1. According to [eyeo's 2023 ad-filtering report](https://info.eyeo.com/adfiltering-report) around 900 million people are using adblockers, of which around 400 million is desktop users. Additionally, according to [Global Web Index's 2018 report](https://www.gwi.com/hubfs/Downloads/Ad-Blocking-trends-report.pdf) around 43% of internet users reported to have used ad-blockers in the past month of report date. On the news side, survey data from [GWI reports](https://www.gwi.com/hubfs/Digital_vs_Traditional_Media_Consumption.pdf?utm_source=chatgpt.com) that internet users (16–64) spent about 50 minutes per day on 'online press' globally (2016). Even if we conservatively assume 50 million adblocker users spending about 30 minutes per day on online press, the estimated annual energy savings would be approximately 35 GWh.
+
+Under our conservative assumptions, the estimated 35 million kWh in annual savings is equivalent to the yearly electricity use of roughly 10,000-13,000 Dutch households, depending on the household consumption data of [CBS](https://www.cbs.nl/en-gb/figures/detail/81528ENG).
+
+
+---
+
 ## Discussion
 
 The results show that the browsing profile with the ad blocker enabled consumed considerably less energy than the profile without the ad blocker. On average, the ad blocker reduced total CPU package energy consumption by approximately 30% per browsing session.
@@ -168,7 +179,7 @@ Part of the energy reduction may also be explained by differences in runtime. If
 
 While the measurements focus on a single browsing session, the observed energy savings become significant when considered at scale. Web browsing is one of the most frequent daily computing activities, and ad blockers are used by millions of users. A consistent reduction in CPU energy consumption per session suggests that content blocking mechanisms can contribute meaningfully to reducing overall energy demand on end-user devices.
 
-From a sustainable perspective, this raises questions about responsibility and design incentives. While website operators prioritize revenue generation, the resulting energy costs can have an effect on end users and their devices. Tools such as ad blockers can therefore be seen as more energy-efficient behavior. On the other hand, from an economic point of view, news websites rely on the ads to create revenue to stay alive. If we promote the idea of using adblockers, we may be consequently limiting these websites from being able to produce content. It raises the question on how can news articles gain revenue in a different manner that could be more energy efficient. This problem links to the trade-off in sustainable software engineering that pushing for more sustainable practices can have an economic, time, or effort cost.
+From a sustainable perspective, this raises questions about responsibility and design incentives. While website operators prioritize revenue generation, the resulting energy costs can have an effect on end users and their devices. Tools such as ad blockers can therefore be seen as more energy-efficient behavior. On the other hand, from an economic point of view, news websites rely on ads to generate the revenue needed to stay alive. If we promote the idea of using adblockers, we may consequently be limiting these websites’ ability to produce content. This concern is especially important given that a significant share of news audiences now blocks ads, highlighting the scale of the challenge facing the industry. At the same time, the business model of news media has shifted away from ad dependence toward subscription based access. This raises the question of how news articles can generate revenue in a different, more energy-efficient manner and whether subscription based access is in fact more energy efficient. This problem links to the trade-off in sustainable software engineering that pushing for more sustainable practices can have an economic, time, or effort cost.
 
 ---
 
