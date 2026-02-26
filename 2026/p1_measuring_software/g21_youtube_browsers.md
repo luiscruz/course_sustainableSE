@@ -110,6 +110,12 @@ The resulting CSV files contain several key metrics used for analysis:
 | `GPU0_POWER` | mWatts | Instantaneous GPU power | Must be integrated over time to calculate total GPU energy. |
 
 ## **Result**
+Since we are comparing video streaming with a number of configurations, we are going to compare the average wattage consumed per configuration. This is done because video streaming is a continous load on a system rather than some task which eventually reaches the end.
+
+Because we are checking whether ofloading some work to the GPU, we will present three plots, one where the CPU and GPU wattage is combined, and two that show the average wattage per component.
+
+All the plots are acompanied by a table stating some statistical numbers. Some of these numbers compare hardware acceleration on vs off, the way this should be interpreted is that the numbers are for the "on" configs relative to the "off" configs. So when it states that there is 34 percent difference, that means the "on" config scored 34 percent higher on that metric compared to the "off" config.
+
 ### Data Cleaning and Outlier Handling
 Before performing the core analysis, we ensured the integrity of the dataset by removing "warmup" runs and identifying anomalies. We followed the "N+2" principle, discarding the first two runs of every configuration to allow the hardware to reach a stable thermal state.
 
@@ -134,8 +140,10 @@ The final distribution of valid samples is shown below:
 
 ![Average Total Power(W)](./img/g21/Average_Total_Power.png)
 
-*Table 2: Statistical Comparison of Total Energy (HW On vs. HW Off)*
-|   | browser | metric              | #_gpu_off | #_gpu_on | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label     |
+In the above violin plot you can see the average power consumption in wattage per configuration for the CPU and GPU combined. Here you can see that for all browsers the power consumption is higher when hardware acceleration is turned on.
+
+*Table 2: Statistical Comparison of Total Power (HW On vs. HW Off)*
+|   | browser | metric              | # runs with GPU on | # runs with GPU off | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label     |
 |---|---------|--------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-----------------------|
 | 0 | chrome  | avg_total_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 31.944582 | 42.889812 | 34.263181            | 1.0         | CLES P(on > off)      |
 | 1 | edge    | avg_total_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 31.959125 | 41.972643 | 31.332268            | 1.0         | CLES P(on > off)      |
@@ -143,9 +151,13 @@ The final distribution of valid samples is shown below:
 
 ### Average CPU Power Consumption
 
-![Average CPU PowerConsuption()](./img/g21/Average_CPU_Power.png)
+![Average CPU Power Consuption(W)](./img/g21/Average_CPU_Power.png)
 
-|   | browser | metric            | #_gpu_off | #_gpu_on | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
+The above violin plot shows the average power consumption in wattage per configuration for just the CPU. As you might notice, they are much closer together than in the previous plot. Yet there is still a small reduction in power consumption from hardware acceleration off to on. This can be simply explained, the CPU is giving some work to the GPU rather than doing it itself.
+
+*Table 3: Statistical Comparison of CPU Power (HW On vs. HW Off)*
+
+|   | browser | metric            | # runs with GPU on | # runs with GPU off | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
 |---|---------|------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-------------------|
 | 0 | chrome  | avg_cpu_power_w  | 30        | 30       | Mann–Whitney | 8.890991e-10  | 13.451759 | 12.427455 | -7.614645            | 0.038889    | CLES P(on > off)  |
 | 1 | edge    | avg_cpu_power_w  | 30        | 30       | Mann–Whitney | 2.601511e-08  | 13.476417 | 12.473504 | -7.441979            | 0.081111    | CLES P(on > off)  |
@@ -155,7 +167,11 @@ The final distribution of valid samples is shown below:
 
 ![Average GPU Power(W)](./img/g21/Average_GPU_Power.png)
 
-|   | browser | metric            | #_gpu_off | #_gpu_on | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
+This final violin plot shows the average power consumpiton in wattage per configuration for just the GPU. Here we can see where the big difference comes from in the first plot. When hardware acceleration is turned off, all the browsers have almost the same GPU power consumption. This makes sense, because the browsers were the only process that were utalizing the high performance GPU during the experiments. So when the hardware acceleration is turned off, the GPU sits idle doing nothing. Only when the hardware acceleration is turned on, the GPU starts processing the video decoding workload.
+
+*Table 4: Statistical Comparison of GPU Power (HW On vs. HW Off)*
+
+|   | browser | metric            | # runs with GPU on | # runs with GPU off | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
 |---|---------|------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-------------------|
 | 0 | chrome  | avg_gpu_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 18.492823 | 30.462356 | 64.725293            | 1.0         | CLES P(on > off)  |
 | 1 | edge    | avg_gpu_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 18.482708 | 29.499139 | 59.603987            | 1.0         | CLES P(on > off)  |
@@ -172,7 +188,7 @@ For all three browsers, enabling hardware acceleration leads to a statistically 
 
 ---
 
-*Table 4: Summary of Statistical Tests*
+*Table 5: Summary of Statistical Tests*
 | Metric | Test Type | Findings |
 | :--- | :--- | :--- |
 | Normality | Shapiro-Wilk | Most groups failed (p < 0.05), requiring non-parametric tests. |
