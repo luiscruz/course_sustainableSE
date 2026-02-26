@@ -1,0 +1,18 @@
+Subfolder: measurements_2
+Samples: tiktok=29 youtube=29
+Normality (Shapiro-Wilk, raw):
+tiktok: W=0.798329 p=7.79693e-05 normal=False
+youtube: W=0.975345 p=0.710568 normal=True
+Normality (after 1.5x IQR outlier removal):
+tiktok: W=0.798329 p=7.79693e-05 normal=False
+youtube: W=0.955754 p=0.294548 normal=True
+Outliers removed: tiktok=0 youtube=2
+Normality still failed: experiment should be repeated.
+Mann-Whitney U (two-sided):
+U=459 p=0.271934 alpha=0.05
+Welch's t-test (two-sided):
+t=0.674799 p=0.505244 alpha=0.05
+mean_tiktok=241.841 mean_youtube=238.711
+mean_diff (A-B)=3.1293
+percent_diff (A-B)/B=1.31092%
+Cohen's d=0.174119
