@@ -143,7 +143,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>Power</strong><br>
-    <img src="img/camera_avg_power_W_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/camera_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 1: Average Power Consumption values for features camera on vs camera off.
     </p>
@@ -151,7 +151,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>EDP</strong><br>
-    <img src="img/camera_EDP_Js_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/camera_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 2: EDP values for features camera on vs camera off.    
     </p>
@@ -165,7 +165,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>Power</strong><br>
-    <img src="img/blur_avg_power_W_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/blur_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 3: Average Power Consumption values for features background blurring on vs off.
     </p>
@@ -173,7 +173,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>EDP</strong><br>
-    <img src="img/blur_EDP_Js_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/blur_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 4: EDP values for features background blurring on vs off.
     </p>
@@ -186,7 +186,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>Power</strong><br>
-    <img src="img/share_avg_power_W_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/share_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 5: Average Power Consumption values for features screen sharing on vs off.
     </p>
@@ -194,7 +194,7 @@ We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
 
   <div style="flex: 1;">
     <strong>EDP</strong><br>
-    <img src="img/share_EDP_Js_combined.png" width="100%">
+    <img src="img/g35_teams_zoom/share_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
     Figure 6: EDP values for features screen sharing on vs off.
     </p>
