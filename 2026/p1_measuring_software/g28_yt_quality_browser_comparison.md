@@ -140,7 +140,7 @@ and execution time.
 
 ### Energy distribution across configurations
 
-<img src="img/g28_yt_quality_browser_comparison/energy_violin.png" width="1500"/>
+<img src="img/g28_yt_quality_browser_comparison/energy-dist.png" width="1500"/>
 
 **Figure 1:** Distribution of total CPU package energy (J).
 
@@ -170,7 +170,7 @@ in total energy consumption.
 
 ### Power behavior over time
 
-<img src="img/g28_yt_quality_browser_comparison/power_over_time.png" width="1500"/>
+<img src="img/g28_yt_quality_browser_comparison/power.png" width="1500"/>
 
 **Figure 3:** Average CPU package power over time (30-run average).
 
