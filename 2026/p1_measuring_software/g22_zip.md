@@ -170,20 +170,80 @@ Energy consumption (E) measured in Joules (J) is the primary metric of interest,
 
 Execution time (T) is measured in seconds (s) using wall-clock time. This metric captures the performance of the implementations and helps us answer RQ3. It is particulary relevant when considering the trade-off between energy efficiency and runtime, as some implementations may be more energy efficient but take longer to execute. Minimizing T is important for user experience and operational efficiency. We could highlight implementations that are energy efficient but have long runtimes using the Energy Delay Product (EDP) measured in Joule * seconds (J·s), which is calculated as E multiplied by T. This metric captures the trade-off between energy efficiency and runtime performance, and minimizing EDP can lead to more balanced solutions. 
 
-Compression ratio (CR) is a metric calculated as the size of the compressed file divided by the size of the original file. This metric captures the effectiveness of the compression algorithm in reducing file size and helps us answer RQ2. A lower CR indicates better compression efficiency. 
-
-
-
-
-
+Compression ratio (CR) is a metric calculated as the size of the compressed file divided by the size of the original file. This metric captures the effectiveness of the compression algorithm in reducing file size and helps us answer RQ2. A lower CR indicates better compression efficiency.
 
 ## Statistical Analysis
+
 
 # Results
 
 ## Evaluation Results
+### Mean Energy + Confidence Intervals
+![mean_energy_ci_usage.png](img/g22_zip/mean_energy_ci_usage.png)
+
+### Energy Distributions
+![energy_dist.png](img/g22_zip/energy_dist.png)
+
+### Energy over Runtime
+![energy_vs_time.png](img/g22_zip/energy_vs_time.png)
+
+### Percent Change
+
+| compressible - compress | cpp | go      | java   | python |
+| --- |-----|---------|--------|--------|
+| cpp | 0 | +126.2% | +80.8% | +8.7%  |
+| go | - | 0       | -20.1% | -52.0% |
+| java | - | -       | 0      | -39.9% |
+| python | -   | -       | -      | 0      |
+
+| compressible - decompress | cpp | go     | java   | python |
+| --- |-----|--------|--------|--------|
+| cpp | 0 | +79.8% | +61.8% | +67.6% |
+| go | - | 0      | -10%   | -6.8%  |
+| java | - | -      | 0      | +3.6%  |
+| python | -   | -      | -      | 0      |
+
+| incompressible - compress | cpp | go     | java   | python |
+| --- |-----|--------|--------|--------|
+| cpp | 0 | -0.15% | +40.1% | +15.2% |
+| go | - | 0      | +40.3% | +15.4% |
+| java | - | -      | 0      | -17.9% |
+| python | -   | -      | -      | 0      |
+
+| incompressible - decompress | cpp | go    | java   | python  |
+| --- |-----|-------|--------|---------|
+| cpp | 0 | +3.9% | +65.4% | +279.2% |
+| go | - | 0     | +59.3% | +265.1% |
+| java | - | -     | 0      | +129.2% |
+| python | -   | -     | -      | 0       |
 
 ## Statistical Results
+
+### Cohen's d
+![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
+
+### Shapiro-Wilk
+| Dataset         | Mode        | Lang   | W        | p value      | Normal (α=0.05) |
+|----------------|------------|--------|----------|--------------|----------------|
+| compressible   | compress   | cpp    | 0.941976 | 1.028241e-01 | True           |
+| compressible   | compress   | go     | 0.980313 | 8.338067e-01 | True           |
+| compressible   | compress   | java   | 0.840987 | 4.038257e-04 | False          |
+| compressible   | compress   | python | 0.785829 | 3.655971e-05 | False          |
+| compressible   | decompress | cpp    | 0.861749 | 1.103541e-03 | False          |
+| compressible   | decompress | go     | 0.976164 | 7.170051e-01 | True           |
+| compressible   | decompress | java   | 0.913648 | 1.841219e-02 | False          |
+| compressible   | decompress | python | 0.715353 | 2.630398e-06 | False          |
+| incompressible | compress   | cpp    | 0.973907 | 6.505627e-01 | True           |
+| incompressible | compress   | go     | 0.955466 | 2.362211e-01 | True           |
+| incompressible | compress   | java   | 0.863222 | 1.188030e-03 | False          |
+| incompressible | compress   | python | 0.978161 | 7.748320e-01 | True           |
+| incompressible | decompress | cpp    | 0.887594 | 4.232543e-03 | False          |
+| incompressible | decompress | go     | 0.378395 | 3.433827e-10 | False          |
+| incompressible | decompress | java   | 0.988442 | 9.808026e-01 | True           |
+| incompressible | decompress | python | 0.977920 | 7.679622e-01 | True           |
+
+### Welch's t-test
+![Welch t-test.png](img/g22_zip/Welch%20t-test.png)
 
 # Discussion
 
