@@ -25,11 +25,11 @@ This is a practical study for software developers. In a large-scale system where
 
 # Research Questions
 
-Through this study, we seek to answer a practical question: when two systems perform the same task, how much does the choice of programming language matter for energy efficiency? To that end, we use our case study of `gzip` file compression and decompression to narrow down our scope to three aspects of the problem::
+Through this study, we seek to answer a practical question: when two systems perform the same task, how much does the choice of programming language matter for energy efficiency? To that end, we use our case study of `gzip` file compression and decompression to narrow down our scope to three aspects of the problem:
 
 **RQ1.** Do Python, Java, Go, and C++ differ significantly in energy consumption when performing identical `gzip` compression and decompression tasks under controlled conditions?
 
-**RQ2.** Are the observed energy differences consistent across data types (compressible vs. incompressible) and operations (compression vs. decompression), and how statistically significant are these differences?
+**RQ2.** Are the observed energy differences consistent across data types (compressible vs. incompressible) and operations (compression vs. decompression), and how practically and statistically significant are these differences?
 
 **RQ3.** Is the language that achieves the lowest runtime also the most energy efficient for `gzip` compression and decompression?
 
@@ -66,7 +66,7 @@ All experiments are executed on the same machine and OS, with the following spec
 
 We evaluate four language implementations (`cpp`, `java`, `go`, `python`) under two dataset types (*compressible* and *incompressible*) and two operation modes (*compression* and *decompression*), leading to 4 experimental groups.
 
-Input files are generated automatically at the start of each experiment using the existing deterministic generator (`data/generate_input.py`). We use one **compressible** dataset (`.jsonl`) and one **incompressible** dataset (`.bin`) with a fixed size of 256MB.
+Input files are generated automatically at the start of each experiment using the existing deterministic generator (`data/generate_input.py`). We use one **compressible** dataset (`.jsonl`, SHA: 353eea1dc2dc6774663338846b8a36c38528d0330d22e9fe35138367c45abbdf) and one **incompressible** dataset (`.bin`, SHA: 21f4a81500d3e55e6ffdc9b42bcc211da17a9490beb39de0a4917c20ac7ebf7d) with a fixed size of 256MB.
 
 For decompression experiments, the script generates a **single reference gzip file per dataset** using **GNU gzip** at compression level 6 with header normalization:
 
@@ -75,10 +75,6 @@ gzip -6 -n -c INPUT > ref.gz
 ```
 
 The `-n` option removes filename and timestamp metadata from the gzip header, thus contributing to the project's reproducibility. We do this to ensure that all languages decompress the **same exact `.gz` bytes**.
-
-compressible: 353eea1dc2dc6774663338846b8a36c38528d0330d22e9fe35138367c45abbdf
-
-incompressible: 21f4a81500d3e55e6ffdc9b42bcc211da17a9490beb39de0a4917c20ac7ebf7d
 
 ### Measurement Tooling and Execution Procedure
 
@@ -150,7 +146,7 @@ We will also measure the **energy per megabyte**, in Joules per megabyte (J/MB).
 
 **Runtime (T)** is measured in seconds (s) using wall-clock time and, in this project, contributes towards answering RQ3. This metric is often substituted as a proxy for the performance of an implementation, and through its use, we can analyze the trade-offs between energy efficiency and implementation efficiency and determine whether the fastest implementation also consumes the least energy.
 
-Finally, the **compression ratio (CR)** is calculated as the size of the compressed file divided by the size of the original file. A lower CR indicates a better compression. We use this metric as part of RQ3 to confirm that all languages achieve roughly the same compression performance, because, if one language had a significantly worse ratio, then it might appear as faster or more energy efficient simply because it has been compressing less aggressively.
+Finally, the **compression ratio (CR)** is calculated as the size of the original file divided by the size of the compressed file. A higher CR indicates a better compression. We use this metric as part of RQ3 to confirm that all languages achieve roughly the same compression performance, because, if one language had a significantly worse ratio, then it might appear as faster or more energy efficient simply because it has been compressing less aggressively.
 
 
 ## Statistical Analysis
@@ -159,68 +155,68 @@ To answer RQ1, we first visualize the distribution of energy consumption across 
 
 Within each condition, we apply the Shapiro–Wilk test [13] to verify whether the energy measurements are plausibly normal. Then, we compare the languages using pairwise Welch's two-sample t-test to determine whether the differences in energy consumption are statistically significant, as part of RQ2. We chose Welch’s test [14] because it does not assume equal variances between groups, which is appropriate given that runtime variability may differ across language implementations. Since we test multiple language pairs per condition, we also apply the Holm correction [15] to the p-values to reduce the risk of false positives.
 
-We further conduct an Effect Size analysis by calculating Cohen's *d* [16], along with the percent change and the mean difference, to measure how large and practically significant the differences between languages are. We also plot the total energy versus runtime per condition to address RQ3, and compute Pearson's correlation coefficient to evaluate their relationship.
+We further conduct an Effect Size analysis by calculating Cohen's *d* [16], along with the percent change and the mean difference, to measure how large and practically significant the differences between languages are. We finally plot the total energy versus runtime per condition to address RQ3, and compute Pearson's correlation coefficient to evaluate their relationship.
 
 # Results
 
 ## Evaluation Results
 
-| Language |     Dataset    |    Mode    | Mean E | Std E |     CI (95%)     |
-| -------- | -------------- | ---------- | ------ | ----- | ---------------- |
-| cpp      | compressible   | compress   | 13.788 | 0.131 | [13.739, 13.837] |
-|          |                | decompress | 2.422  | 0.056 | [2.401, 2.443]   |
-|          | incompressible | compress   | 32.909 | 0.206 | [32.833, 32.986] |
-|          |                | decompress | 1.288  | 0.047 | [1.270, 1.306]   |
-| go       | compressible   | compress   | 31.190 | 0.268 | [31.090, 31.290] |
-|          |                | decompress | 4.354  | 0.097 | [4.318, 4.390]   |
-|          | incompressible | compress   | 32.862 | 0.304 | [32.748, 32.975] |
-|          |                | decompress | 1.338  | 0.187 | [1.268, 1.408]   |
-| java     | compressible   | compress   | 24.928 | 0.611 | [24.700, 25.156] |
-|          |                | decompress | 3.919  | 0.117 | [3.876, 3.963]   |
-|          | incompressible | compress   | 46.094 | 0.366 | [45.957, 46.231] |
-|          |                | decompress | 2.131  | 0.067 | [2.106, 2.156]   |
-| python   | compressible   | compress   | 14.985 | 0.178 | [14.919, 15.051] |
-|          |                | decompress | 4.059  | 0.132 | [4.010, 4.108]   |
-|          | incompressible | compress   | 37.906 | 0.227 | [37.821, 37.991] |
-|          |                | decompress | 4.885  | 0.146 | [4.831, 4.940]   |
+| Dataset            | Mode           | Language | Mean E (J) | Std (J) | 95% CI           |
+| ------------------ | -------------- | -------- | ---------- | ------- | ---------------- |
+|   Compressible     |   Compress     | C++      | 13.788     | 0.131   | [13.739, 13.837] |
+|                    |                | Go       | 31.190     | 0.268   | [31.090, 31.290] |
+|                    |                | Java     | 24.928     | 0.611   | [24.700, 25.156] |
+|                    |                | Python   | 14.985     | 0.178   | [14.919, 15.051] |
+|                    |   Decompress   | C++      | 2.422      | 0.056   | [2.401, 2.443]   |
+|                    |                | Go       | 4.354      | 0.097   | [4.318, 4.390]   |
+|                    |                | Java     | 3.919      | 0.117   | [3.876, 3.963]   |
+|                    |                | Python   | 4.059      | 0.132   | [4.010, 4.108]   |
+|   Incompressible   |   Compress     | C++      | 32.909     | 0.206   | [32.833, 32.986] |
+|                    |                | Go       | 32.862     | 0.304   | [32.748, 32.975] |
+|                    |                | Java     | 46.094     | 0.366   | [45.957, 46.231] |
+|                    |                | Python   | 37.906     | 0.227   | [37.821, 37.991] |
+|                    |   Decompress   | C++      | 1.288      | 0.047   | [1.270, 1.306]   |
+|                    |                | Go       | 1.338      | 0.187   | [1.268, 1.408]   |
+|                    |                | Java     | 2.131      | 0.067   | [2.106, 2.156]   |
+|                    |                | Python   | 4.885      | 0.146   | [4.831, 4.940]   |
 
 #### Table 1: Energy Consumption for Each Language Across Workloads
+
+| compressible - compress | C++ | Go      | Java   | Python |
+|-------------------------|-----|---------|--------|--------|
+| C++                     | 0   | +126.2% | +80.8% | +8.7%  |
+| Go                      | -   | 0       | -20.1% | -52.0% |
+| Java                    | -   | -       | 0      | -39.9% |
+| Python                  | -   | -       | -      | 0      |
+
+| compressible - decompress | C++ | Go     | Java   | Python |
+|---------------------------|-----|--------|--------|--------|
+| C++                       | 0   | +79.8% | +61.8% | +67.6% |
+| Go                        | -   | 0      | -10%   | -6.8%  |
+| Java                      | -   | -      | 0      | +3.6%  |
+| Python                    | -   | -      | -      | 0      |
+
+| incompressible - compress | C++ | Go     | Java   | Python |
+|---------------------------|-----|--------|--------|--------|
+| C++                       | 0   | -0.15% | +40.1% | +15.2% |
+| Go                        | -   | 0      | +40.3% | +15.4% |
+| Java                      | -   | -      | 0      | -17.9% |
+| Python                    | -   | -      | -      | 0      |
+
+| incompressible - decompress | C++ | Go    | Java   | Python  |
+|-----------------------------|-----|-------|--------|---------|
+| C++                         | 0   | +3.9% | +65.4% | +279.2% |
+| Go                          | -   | 0     | +59.3% | +265.1% |
+| Java                        | -   | -     | 0      | +129.2% |
+| Python                      | -   | -     | -      | 0       |
+
+#### Table 2: Energy Percent Change between Languages 
 
 ![energy_dist.png](img/g22_zip/energy_dist.png)
 #### Figure 1: Energy Distributions
 
 ![energy_vs_time.png](img/g22_zip/energy_vs_time.png)
 #### Figure 2: Energy over Runtime
-
-| compressible - compress | cpp | go      | java   | python |
-|-------------------------|-----|---------|--------|--------|
-| cpp                     | 0   | +126.2% | +80.8% | +8.7%  |
-| go                      | -   | 0       | -20.1% | -52.0% |
-| java                    | -   | -       | 0      | -39.9% |
-| python                  | -   | -       | -      | 0      |
-
-| compressible - decompress | cpp | go     | java   | python |
-|---------------------------|-----|--------|--------|--------|
-| cpp                       | 0   | +79.8% | +61.8% | +67.6% |
-| go                        | -   | 0      | -10%   | -6.8%  |
-| java                      | -   | -      | 0      | +3.6%  |
-| python                    | -   | -      | -      | 0      |
-
-| incompressible - compress | cpp | go     | java   | python |
-|---------------------------|-----|--------|--------|--------|
-| cpp                       | 0   | -0.15% | +40.1% | +15.2% |
-| go                        | -   | 0      | +40.3% | +15.4% |
-| java                      | -   | -      | 0      | -17.9% |
-| python                    | -   | -      | -      | 0      |
-
-| incompressible - decompress | cpp | go    | java   | python  |
-|-----------------------------|-----|-------|--------|---------|
-| cpp                         | 0   | +3.9% | +65.4% | +279.2% |
-| go                          | -   | 0     | +59.3% | +265.1% |
-| java                        | -   | -     | 0      | +129.2% |
-| python                      | -   | -     | -      | 0       |
-
-#### Table 2: Energy Percent Change between languages 
 
 |      Dataset       | Language | Mean CR | % Above Best |
 | ------------------ | -------- | ------- | ------------ |
@@ -233,33 +229,54 @@ We further conduct an Effect Size analysis by calculating Cohen's *d* [16], alon
 |                    | Java     | 0.99970 | 0.0%         |
 |                    | Python   | 0.99970 | 0.0%         |
 
-#### Table 3: Compression Rate
+#### Table 3: Compression Ratio
 
 ## Statistical Results
 
-| Dataset        | Mode       | Lang   | W     | p value  | Normal (α<=0.05) |
-|----------------|------------|--------|-------|----------|-----------------|
-| compressible   | compress   | cpp    | 0.942 | 1.03e-01 | True            |
-|    |    | go     | 0.980 | 8.34e-01 | True            |
-|    |    | java   | 0.841 | 4.04e-04 | False           |
-|    |    | python | 0.786 | 3.66e-05 | False           |
-|    | decompress | cpp    | 0.862 | 1.10e-03 | False           |
-|    |  | go     | 0.976 | 7.17e-01 | True            |
-|    |  | java   | 0.914 | 1.84e-02 | False           |
-|    |  | python | 0.715 | 2.63e-06 | False           |
-| incompressible | compress   | cpp    | 0.974 | 6.51e-01 | True            |
-|  |    | go     | 0.955 | 2.36e-01 | True            |
-|  |    | java   | 0.863 | 1.19e-03 | False           |
-|  |    | python | 0.978 | 7.75e-01 | True            |
-|  | decompress | cpp    | 0.888 | 4.23e-03 | False           |
-|  |  | go     | 0.378 | 3.43e-10 | False           |
-|  |  | java   | 0.988 | 9.80e-01 | True            |
-|  |  | python | 0.978 | 7.68e-01 | True            |
+| Dataset        | Mode       | Language | Pearson r | p-value  |
+| -------------- | ---------- | -------- | --------- | -------- |
+| Compressible   | Compress   | C++      | 0.399     | 2.88e-02 |
+|    |    | Go       | 0.063     | 7.41e-01 |
+|    |    | Java     | 0.954     | 3.67e-16 |
+|    |    | Python   | 0.341     | 6.53e-02 |
+|    | Decompress | C++      | 0.597     | 4.96e-04 |
+|    |  | Go       | -0.234    | 2.12e-01 |
+|    |  | Java     | 0.779     | 3.91e-07 |
+|    |  | Python   | 0.609     | 3.55e-04 |
+| Incompressible | Compress   | C++      | 0.671     | 4.97e-05 |
+|  |    | Go       | 0.744     | 2.42e-06 |
+|  |    | Java     | 0.579     | 8.04e-04 |
+|  |    | Python   | 0.670     | 5.09e-05 |
+|  | Decompress | C++      | 0.203     | 2.83e-01 |
+|  |  | Go       | 0.839     | 7.20e-09 |
+|  |  | Java     | 0.416     | 2.23e-02 |
+|  |  | Python   | 0.500     | 4.88e-03 |
 
-#### Table 4: Shapiro-Wilk Test for Normality (Energy Consumption)
+#### Table 4: Pearson's Correlation Coefficient between Energy Consumption and Time
+
+| Dataset        | Mode       | Language   | W     | p value  | Normal (α<=0.05) |
+|----------------|------------|--------|-------|----------|-----------------|
+| compressible   | compress   | c++    | 0.942 | 1.03e-01 | True            |
+|    |    | Go     | 0.980 | 8.34e-01 | True            |
+|    |    | Java   | 0.841 | 4.04e-04 | False           |
+|    |    | Python | 0.786 | 3.66e-05 | False           |
+|    | decompress | C++    | 0.862 | 1.10e-03 | False           |
+|    |  | Go     | 0.976 | 7.17e-01 | True            |
+|    |  | Java   | 0.914 | 1.84e-02 | False           |
+|    |  | Python | 0.715 | 2.63e-06 | False           |
+| incompressible | compress   | C++    | 0.974 | 6.51e-01 | True            |
+|  |    | Go     | 0.955 | 2.36e-01 | True            |
+|  |    | Java   | 0.863 | 1.19e-03 | False           |
+|  |    | Python | 0.978 | 7.75e-01 | True            |
+|  | decompress | C++    | 0.888 | 4.23e-03 | False           |
+|  |  | Go     | 0.378 | 3.43e-10 | False           |
+|  |  | Java   | 0.988 | 9.80e-01 | True            |
+|  |  | Python | 0.978 | 7.68e-01 | True            |
+
+#### Table 5: Shapiro-Wilk Test for Normality (Energy Consumption)
 
 ![Welch t-test.png](img/g22_zip/Welch_t_test.png)
-#### Figure 4: Welch's t-test Between Languages per Workload after Holm correction
+#### Figure 3: Welch's t-test Between Languages per Workload after Holm correction
 
 | Dataset        | Mode       | Language A | Language B | p value  | Significant (α=0.05) |
 | -------------- | ---------- | ---------- | ---------- | -------- | -------------------- |
@@ -288,12 +305,12 @@ We further conduct an Effect Size analysis by calculating Cohen's *d* [16], alon
 |                |            | Go         | Java       | < 1e-21  | Yes                  |
 |                |            | C++        | Go         | 0.16     | No                   |
 
-#### Table 5: Pairwise P-Values after Welch's t-test
+#### Table 6: Pairwise P-Values after Welch's t-test
 
 | Dataset        | Mode       | Language A | Language B | Cohen’s d | Mean Diff (J) | % Change (B vs A) |
 | -------------- | ---------- | ---------- | ---------- | --------- | ------------- | ----------------- |
 | Compressible   | Compress   | C++        | Go         | 82.52     | +17.403       | +126.2%           |
-|    | Compress   | C++        | Java       | 25.20     | +11.140       | +80.8%            |
+|    |    | C++        | Java       | 25.20     | +11.140       | +80.8%            |
 |    |    | C++        | Python     | 7.67      | +1.197        | +8.7%             |
 |    |    | Go         | Java       | -13.27    | -6.262        | -20.1%            |
 |    |    | Go         | Python     | -71.29    | -16.206       | -52.0%            |
@@ -317,53 +334,45 @@ We further conduct an Effect Size analysis by calculating Cohen's *d* [16], alon
 |  |  | Go         | Python     | 21.14     | +3.547        | +265.1%           |
 |  |  | Java       | Python     | 24.23     | +2.754        | +129.2%           |
 
-#### Table 6: Effect Size Analysis
-
-| Dataset        | Mode       | Language | Pearson r | p-value  |
-| -------------- | ---------- | -------- | --------- | -------- |
-| Compressible   | Compress   | C++      | 0.399     | 2.88e-02 |
-|    |    | Go       | 0.063     | 7.41e-01 |
-|    |    | Java     | 0.954     | 3.67e-16 |
-|    |    | Python   | 0.341     | 6.53e-02 |
-|    | Decompress | C++      | 0.597     | 4.96e-04 |
-|    |  | Go       | -0.234    | 2.12e-01 |
-|    |  | Java     | 0.779     | 3.91e-07 |
-|    |  | Python   | 0.609     | 3.55e-04 |
-| Incompressible | Compress   | C++      | 0.671     | 4.97e-05 |
-|  |    | Go       | 0.744     | 2.42e-06 |
-|  |    | Java     | 0.579     | 8.04e-04 |
-|  |    | Python   | 0.670     | 5.09e-05 |
-|  | Decompress | C++      | 0.203     | 2.83e-01 |
-|  |  | Go       | 0.839     | 7.20e-09 |
-|  |  | Java     | 0.416     | 2.23e-02 |
-|  |  | Python   | 0.500     | 4.88e-03 |
-
-#### Table 7: Pearson's Correlation Coefficient between Energy Consumption and Time
+#### Table 7: Effect Size Analysis
 
 ![cohen_d_comp.png](img/g22_zip/cohen_d_comp.png)
-#### Figure 5: Cohen's d Between Languages per Workload
+#### Figure 4: Cohen's d Between Languages per Workload
 
 # Discussion
 
 ## Interpretation of Results
 
-Although half of the distributions failed the Shapiro-Wilk test, visual inspection indicated only minor deviations from normality. Given the moderate robustness of Welch's t-test to non-normality, parametric testing was deemed appropiate.
+Approximately half of the energy distributions fail Shapiro–Wilk at α = 0.05 ([Table 5](#table-5-shapiro-wilk-test-for-normality-energy-consumption)), which indicates that they deviate from normality. However, the distributions in [Figure 1](#figure-1-energy-distributions) show only very mild deviations, and given that each group has n = 30, Welch’s t-test remains robust to them.
 
 ### RQ1: Magnitude of Language Effects
 
-The results from [Figure 1](#figure-1-mean-energy-with-confidence-intervals) and [Figure 4](#figure-4-welchs-t-test-between-languages-per-workload) show significant differences between languages across workloads. C++ consistently achieves the lowest mean energy consumption, while Python and Java generally consume more energy, with Go varying depending on workload. For the most extreme case (incompressible decompression), Python requires approximately 279% more energy than C++. In contrast, the difference between C++ and Go for incompressible compression is less than 1%, which is negligible. These results confirm that differences in programming languages can indeed result in large differences in energy consumption for the same algorithm with the same input.
+The results from Tables [1](#table-1-energy-consumption-for-each-language-across-workloads) and [2](#table-2-energy-percent-change-between-languages) show significant differences in mean energy between languages. C++ consistently achieves the lowest mean energy consumption, while Python and Java generally consume more energy, with Go varying depending on workload. 
+
+For the most extreme case (incompressible decompression), Python requires approximately 279% more energy than C++ (4.89 J versus 1.29 J). In contrast, the difference between C++ and Go for the incompressible dataset is less than 1% (32.91 J vs 32.86 J for incompressible compression; 1.29 J vs 1.34 J for incompressible decompression), suggesting that when the workload is effectively “copy-like” (incompressible gzip), the implementations converge in both behavior and energy cost. 
+
+These results confirm that differences in programming languages can indeed result in large differences in energy consumption for the same algorithm with the same input.
 
 ### RQ2: Consistency Across Workloads
 
-The actual differences depends on the specific workload as visualized in [Figure 5](#figure-5-cohens-d-between-languages-per-workload). For instance, Python consistently performs relatively worse on decompression tasks and tasks working with incompressible data.  A possible cause could be slower writing to files, which would see similar patterns. Another example of inconsistent difference is seen with Go, where it is as efficient as C++ on incompressible data, as mentioned earlier.  Conversely, it's the slowest on compressible data. Alluding to a slow implementation of the compression/decompression algorithm.  Some difference, however, are consistent throughout the workloads. Most notably, C++ consistently performs the best and Java consistently is on the slower end. Overall the results demonstrate that the observed energy differences are mostly inconsistent between workloads, thereby disproving RQ2.
+The actual differences between languages seem to depend on the specific workload condition, as visualized in [Table 2](#table-2-energy-percent-change-between-languages) and [Figure 4](#figure-4-cohens-d-between-languages-per-workload). For instance, Go is as efficient as C++ on incompressible data (-0.15% in compression; +3.9% in decompression), but it's also the slowest on compressible data (+126.2% in compression; 79.8% in decompression), which indicates that its relative efficiency is linked to how much actual compression work is performed (or not). Conversely, Python is notably more efficient in compression tasks (+8.7% for compressible; +15.2% for incompressible) and much worse in decompression tasks (+67.6 for compressible; 279.2% for incompressible). 
+
+Moreover, these energy gaps cannot be justified by the difference in algorithm performance, since its proxy, the compression ratio, is the same for incompressible data, and differs by at most 3.1% for the compressible one ([Table 3](#table-3-compression-ratio)). This suggest that the "best" language may simply vary according to the required workload. Yet, some differences remain consistent throughout workloads. Most importantly, C++ consistently performs the best and Java is consistently on the slower end. Overall the results demonstrate that the observed energy differences are mostly inconsistent between workloads, thereby disproving the first part of RQ2.
+
 
 ### RQ2: Statistical and Practical Significance
 
+We verify the statistical significance of our results through Welch's t-test, followed by a Holm correctiom. [Figure 3](#figure-3-welchs-t-test-between-languages-per-workload-after-holm-correction) and [Table 6](#table-6-pairwise-p-values-after-welchs-t-test) both show that nearly all pairwise differences are statistically significant, which confirms that the energy gaps explained in the section above are not caused by random measurement noise. The only consistently non-significant comparisons were the C++ vs. Go on incompressible data (compression p-value = 0.48, incompression p-value = 0.16 > α = 0.05). This behaviour is expected and matches the near-zero percent differences in [Table 2](#table-2-energy-percent-change-between-languages).
+
+Similarly, we verify the practical significance of our results through an Effect Size analysis ([Table 7](#table-7-effect-size-analysis)). We notice that the largest differences also correspond to the largest gaps identified earlier. For example, C++ vs. Go on compressible compression shows a mean difference of +17.4 J (+126.2%) with Cohen's *d* = 82.5, and C++ vs. Python on incompressible decompression shows +3.60 J(+279.2%) with *d* = 33.1, both of which indicate extremely large differences between the distributions. Conversely, the comparisons that were statistically non-significant are also practically insignificant. For example, in the comparison between C++ and Go for incompressible compression, the mean difference is -0.048 J (-0.1%, *d* = -0.18), while for incompressible decompression, the mean difference is +0.05 J (+3.9%, *d* = 0.37).
+
+Overall, the combined results support the idea that most language differences are both statistically and practically significant. Indeed, in several workloads, the choice of language increases the energy consumption by more than double, a figure that would translate directly into increased environmental impact for large-scale systems.
 
 ### RQ3: Runtime-Energy Relationship
 
-[Figure 3](#figure-3-energy-over-runtime) and [Table 2](#table-3-pearsons-correlation-coefficient-between-energy-consumption-and-time) demonstrate
-that energy consumption and runtime have a positive relation. Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Python for decompressing compressible data despite running for the same amount of time.
+[Figure 2](#figure-2-energy-over-runtime) showed that energy consumption generally increases with runtime, which is expected [8]. However, this relationship is not uniform within a language across workloads. As such, we used Pearson's coefficient to further analyze our results. [Table 4](#table-4-pearsons-correlation-coefficient-between-energy-consumption-and-time) proved that the within-language correlations can range from weak (e.g., Go on compressible compression: r = 0.063, p = 0.741; C++ on incompressible decompression: r = 0.203, p = 0.283) to very strong (e.g., Java on compressible compression: r = 0.954, p << 0.001; Go on incompressible decompression: r = 0.839, p << 0.001). 
+
+This explain why languages with similar runtimes can still have different energies in [Figure 2](#figure-2-energy-over-runtime). Runtime is a strong influence on energy, as faster implementations consume less energy, but that relationship is not always strictly proportional, as there are other factors at play too, such as differences in average power draw. The interesting case where Go and Python run for the same amount of time, yet have different energy consumptions for the compressible decompression workload supports this idea, that comparable performance (or time) does not guarantee comparable energy. In practical terms, minimizing runtime is often, but not always, equivalent to minimizing the energy consumption. However, the strength of this equivalence depends on the specific language and workload combination.
 
 ## Practical Implications
 
@@ -418,6 +427,3 @@ Alternatively, from a narrower perspective, further research could complement ou
 [17] Y. Collet et al., "Zstandard – Fast real-time compression algorithm," GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
 
 [18] J. Alakuijala and Z. Szabadka, "Brotli: A general-purpose data compressor," *Commun.* ACM, vol. 61, no. 4, pp. 86–95, Apr. 2018, doi: 10.1145/3231935.
-
-# Note
-Outside of the header, references, tables, and this note, the total word count of the report is 
