@@ -146,7 +146,8 @@ With the metrics above, the key metrics to be calculated per trial were:
 
 ## Outlier detection
 
-We used a Z-Score threshold of 3.0 to determine the outliers. Blah Blah Blah...
+Before diving into the experimental results we removed anomalies to improve data reliability. We used a Z-Score threshold of 3.0 to determine the outliers. The reason why we picked 3 is due to how it covers 99.7% of normal data which lies within 3 standard deviations. Another reason why we picked 3.0 is because a thereshold of 3.0 ensures that only extreme measurements error are removed while it keeps normal variability intact. Based on the application, our experiment flagged outliers between 0 and 1 per group of 30 iterations. In total, only 5 outliers were removed. Based on this it confirms that our data was generally stable and that only extreme measurement errors were detected. Since the number of identified outliers were negligible, we decided that we will not demonstrate visualization or data processing with outliers since these outliers were negligible and will do not demonstrate a significant reflection of our data.
+
 
 ## Experimental results
 
@@ -264,13 +265,13 @@ There are some limitations that will be briefly discussed in this section:
 
 ### Limited Test Duration: 
 
-In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. 
+In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. Based on this we cannot clearly have results that can have system wide implications in order for certain companies to pick the most energy efficient application.
 
-### Wired Connection: 
-Another limitation is the use of wireless connection in which a wired connection would offer a more stable energy reading but this does not reflect real life scenarios since most video conferencing applications work through wireless connections. 
+### Singular Hardware System: 
+Another limitation is that this experiment was conducted in a single machine in which results could vary in different machines. The energy consumption can vary depending on the computers, CPU architecture, GPU, the battery health and power management.
 
-### Singular Operating System: 
-Another limitation is that this experiment was conducted in a single machine in which results could vary in different machines such as a Mac or Linux computer. 
+### Operating Systems:
+Only the Windows OS was used in which compared to MacOS and Linux, it can have different power management policies and task scheduling mechanism which can influence the energy consumption. Depending on the OS, certain background processes can be running which can impact the energy consumptions. Depending on the OS, certain features tested can have optimizations made for that specific OS. 
 
 # Future Work
 
@@ -278,9 +279,12 @@ For additional work, it would be interesting to observe the experimentation bein
 
 # Conclusion
 
-Our paper discusses the energy difference between 
+Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share.
+
 
 # References
 
 1. Sweigart, Al. “Welcome to PyAutoGUI’s Documentation! — PyAutoGUI 1.0.0 Documentation.” Readthedocs.io, 2014, pyautogui.readthedocs.io/en/latest/.
+2. https://www.dmaic.com/faq/empirical-rule/
+3. https://www.dmaic.com/faq/z-score-standard-score/
 
