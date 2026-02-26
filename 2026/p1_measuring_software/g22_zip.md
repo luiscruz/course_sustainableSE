@@ -242,7 +242,6 @@ To evaluate this relationship, we use Pearson's correlation coefficient.
 #### Figure 5: Cohen's d between languages per workload
 
 # Discussion
-
 This section explores the results and answers the research questions. In addition, it explores the practical impact of the findings.
 
 ## Interpretation of Results
@@ -270,8 +269,9 @@ that energy consumption and runtime have a positive relation.
 Interestingly, [Figure 3](#figure-3-energy-over-runtime) shows that Go uses more energy than Python for decompressing compressible data despite running for the same amount of time.
 
 ## Practical Implications
-When looking for the most efficient programming language from an environmental standpoint, C++ is a clear winner. It consistently outperforms the other languages.
-
+When looking for the most efficient programming language from an environmental standpoint, C++ is a clear winner. It consistently outperforms the other languages across all workloads.
+If development time is a concern and the program mostly compresses files, then Python is an excellent alternative with only 9% more consumption.
+Java and Go are still valid options when (de)compressing data is not the main focus of the program.
 
 # Conclusion
 
