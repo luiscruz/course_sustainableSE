@@ -26,6 +26,38 @@ Based on the experimental setup, we pose the following research questions:
 We hypothesize that RF-DETR and YOLOv8 will differ in energy consumption even when their model sizes are similar, due to differences in architectural design and computational patterns.
 
 # Methodology
+To understand how different computer vision architectures influence energy consumption we conducted an experiment comparing YOLOv8m and RF-DETR Medium. For the experiment we chose the medium size of both models to represent a mid-range design within each architecture family. The models differ slightly in parameter count (25.9M vs 33.7), but this is expected as their architectural design is different and thus we treat it as part of the comparison. 
+
+Both models are evaluated on the same set of images drawn from the COCOval2017[https://cocodataset.org/#home], a very popular benchmark in object detection research. This dataset contains 5,000 images but we decided to run our experiment on a randomly selected subset, choosing 500 images for warmup purposes and 1500 for energy measurements, due to the limited resources and timeframe of the project. We used the same 1500 images and in the same order for both models to guarantee that each model processed the exact same workload under the same conditions. 
+
+Before running any measurements, the pretrained weights for both models were downloaded to ensure that the energy measurements would not be influenced.
+
+### Experiment Setup
+All experiments were conducted on the same hardware and software environment to avoid confounding effects related to system configuration. 
+
+#### Hardware and Software Specifications:
+- **CPU:** Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+- **GPU:** NVIDIA Quadro T1000 Max-Q, 4GB VRAM (TDP 35W)
+- **Memory:** 16GB RAM
+- **Operating System**: Ubuntu 24.04.4
+- **NVIDIA Driver:** 580.126.09 | CUDA 13.0
+
+We measured energy consumption using Energibridge [https://github.com/tdurieux/EnergiBridge].Energibridge is an energy profiler which collects CPU and GPU energy usage data during program execution.
+
+Before running the experiment, we had to minimize any confounding factors that could influence the energy measurements. For this we followed the "Zen mode" [https://luiscruz.github.io/2021/10/10/scientific-guide.html] strategy. We closed any applications or unnecessary background services that were running and made sure to turn off all notifications. Additionally, we disconnected all external hardware and turned off the wifi. Moreover, we froze our settings [https://luiscruz.github.io/2021/10/10/scientific-guide.html] by disabling automatic brightness adjustment, idle deeming and setting the brightness to the lowest end at 242. 
+We kept the machine plugged into an external power source throughout the experiment to avoid power fluctuations. Lastly, we performed all experiments at a stable temperature of 23.5℃.
+
+### Experiment Procedure
+To avoid-cold start effects, we warmed up both the CPU and GPU for 5min each. For warming up the CPU we repeatedly ran a Fibonacci sequence and for warming up the GPU we ran the two models on the warmup dataset.
+
+During the experiment, both YOLOv8m and RF-DETR Medium processed images one at a time rather than in batches. This decision was made to prevent computation costs across multiple images and to allow precise measurements of energy consumption and execution time per-image. 
+
+We executed the experiment using a fixed sequence of inference  runs. We generated a shuffled list of 60 runs in advance, consisting of 30 executions of YOLOv8m and 30 executions of RF-DETR Medium to distribute the bias more evenly across the two executions. Before each execution run, the system was put to sleep for 30 seconds to prevent tail energy consumption from previous measurements. We chose a sleep of 30 seconds since each energy test for each model was less than 3min. For each interference run energy was measured using EnergiBridge. Once the measurements were complete, the results were saved to a SCV file for later analysis.
+
+
+
+### Replication Package  
+A replication package can be found [here](https://github.com/riritz/Sustainable_SE). 
 # Results
 # Discussion
 # Conclusion
