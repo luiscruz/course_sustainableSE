@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load data
-df = pd.read_csv("summary_new.csv")
+df = pd.read_csv("outlier_removed_summary.csv")
 
 meet_cpu = df[df["platform"] == "meet"]["total_net_sent_mb"]
 teams_cpu = df[df["platform"] == "teams"]["total_net_sent_mb"]

@@ -140,6 +140,7 @@ We compute per-platform means and standard deviations and run (Mann-Whitney U or
 
 *To be completed after experiments are run.*
 
+
 ### 5.1 Energy Consumption
 
 
