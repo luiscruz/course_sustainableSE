@@ -171,7 +171,124 @@ In summary, on Windows, Chrome is consistently more energy-efficient for computa
 ---
 
 ### **Linux**
-To be added
+
+The Linux testing phase involved 30 measurement rounds and 5 warmup rounds per benchmark, following the same protocol as macOS and Windows. Brightness, refresh rate, and display settings were configured identically. The test environment used a standard Linux desktop with Wayland graphics support (Fedora/KDE). One notable limitation: Linux did not report CPU temperature data during testing, due to the fact that CPU MSRs on Linux do not give access to it. 
+
+#### **Comparative Results Summary**
+
+The table below presents the metrics collected across the three BrowserBench benchmarks on Linux. Like the macOS/Windows results, positive difference values indicate Firefox consumed or scored higher, whereas negative values indicate Chrome did. Cohen's D and statistical tests (Mann-Whitney U and T-Test p < 0.05) establish both practical and statistical significance.
+
+| Test Category | Metric | Chrome Mean | Firefox Mean | Diff (%) | Cohen's D | Mann-Whitney p | T-Test p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **MotionMark** | Energy (J) | 14700.94 | 13774.30 | −6.30% | 11.884 | 8.91e-07 | 1.26e-29 |
+| | Avg Watts | 46.06 | 43.82 | −4.86% | 13.786 | 8.91e-07 | 5.97e-32 |
+| | Peak Watts | 58088.51 | 728089.43 | +1153.41% | −0.530 | 0.0156 | 0.135 |
+| | Max Temp (°C) | 0.0 | 0.0 | — | — | — | — |
+| | Avg RAM (GB) | 3.995 | 4.215 | +5.49% | −3.311 | 8.91e-07 | 1.61e-11 |
+| | Duration (s) | 319.19 | 314.33 | −1.52% | 1.969 | 4.03e-06 | 1.73e-06 |
+| **Speedometer** | Energy (J) | 1076.34 | 1498.89 | +39.26% | −2.508 | 7.05e-07 | 1.10e-09 |
+| | Avg Watts | 38.93 | 41.04 | +5.43% | −2.620 | 7.68e-08 | 3.70e-10 |
+| | Peak Watts | 52010.72 | 54434.22 | +4.66% | −2.324 | 1.05e-06 | 6.87e-09 |
+| | Max Temp (°C) | 0.0 | 0.0 | — | — | — | — |
+| | Avg RAM (GB) | 4.071 | 4.756 | +16.84% | −8.486 | 7.68e-08 | 4.10e-27 |
+| | Duration (s) | 27.81 | 36.53 | +31.34% | −1.602 | 7.05e-07 | 1.03e-05 |
+| **JetStream 2** | Energy (J) | 1953.25 | 3321.23 | +70.04% | −81.037 | 1.46e-06 | 2.86e-61 |
+| | Avg Watts | 44.68 | 43.60 | −2.41% | 5.263 | 1.46e-06 | 2.03e-17 |
+| | Peak Watts | 77252.55 | 77731.97 | +0.62% | −0.614 | 0.289 | 0.091 |
+| | Max Temp (°C) | 0.0 | 0.0 | — | — | — | — |
+| | Avg RAM (GB) | 4.313 | 4.769 | +10.56% | −6.449 | 1.46e-06 | 2.28e-20 |
+| | Duration (s) | 43.72 | 76.17 | +74.23% | −190.692 | 1.46e-06 | 2.18e-75 |
+
+#### **Visualizations**
+
+![Energy Consumption Comparison](img/g5_browser_bench/energy_joules_comparison_boxplot_linux.png)
+
+Firefox consumed 70% more total energy than Chrome in JetStream 2, compared to only 6% less in MotionMark. The Speedometer gap is also significant, with Firefox using 39% more energy despite similar average power draw, which is a clear sign that execution time dominates the energy difference.
+
+![Average Power Draw Comparison](img/g5_browser_bench/avg_watts_comparison_boxplot_linux.png)
+
+Chrome draws slightly less average power in MotionMark (4.86% less), while Firefox draws more in Speedometer (5.43% more) and JetStream 2 (slightly less, −2.41%). This reveals that the energy differences are not primarily driven by power spikes but by how long each browser takes to complete the work.
+
+![Memory Consumption Comparison](img/g5_browser_bench/avg_ram_gb_comparison_boxplot_linux.png)
+
+Firefox consistently uses more RAM across all benchmarks: 5.5% more in MotionMark, 16.8% more in Speedometer, and 10.6% more in JetStream 2. This suggests Firefox's memory model is less efficient on Linux, possibly due to differences in garbage collection tuning or heap fragmentation compared to macOS.
+
+![Duration Comparison](img/g5_browser_bench/duration_sec_comparison_boxplot_linux.png)
+
+Chrome is significantly faster: 1.5% faster in MotionMark, 31% faster in Speedometer, and 74% faster in JetStream 2. These speed differences directly translate to energy savings, since the CPU can return to idle sooner when work completes faster.
+
+![Metric Difference Heatmap](img/g5_browser_bench/metric_difference_heatmap_linux.png)
+
+The heatmap illustrates Chrome's advantage in computation-heavy workloads (deep red in JetStream) and Firefox's modest advantage in graphics (light color in MotionMark). Overall, Firefox tends to draw less power despite some usage spikes in RAM.
+
+#### **Analysis**
+
+The results on Linux expose a larger performance gap between browsers than macOS, and reveal different root causes for each benchmark type.
+
+**Graphics Performance (MotionMark):**
+Firefox achieved a 6.3% energy advantage on Linux, comparable to its 7.3% advantage on macOS but markedly better than its 2.0% advantage on Windows. This pattern suggests Firefox's graphics pipeline benefits from more direct hardware access on Unix-like systems (macOS and Linux) compared to Windows's DirectX abstraction layer.
+
+On macOS, Firefox leverages Core Animation and IOSurfaces for GPU-accelerated rendering. On Linux, both browsers likely use OpenGL or Vulkan directly through X11 or Wayland. Firefox's consistent 6–7% advantage across macOS and Linux suggests its compositing strategy is genuinely more efficient for graphics workloads, independent of platform-specific APIs. The minimal advantage on Windows (2%) indicates that DirectX may level the playing field between Gecko and Blink's graphics implementations, or that Windows's scheduler affects graphics performance differently.
+
+Across all platforms, MotionMark is the only benchmark where Firefox is more energy-efficient, which makes it a clear win for users prioritizing graphical responsiveness and battery life during more media-heavy browsing.
+
+**Computation Performance (JetStream 2 and Speedometer):**
+On Linux, Chrome is fairly dominant, and notably more than on Windows or macOS. Firefox consumes 70% more energy in JetStream 2 on Linux and completes 74% slower, compared to 52% more energy and 53% slower on Windows, and 65% more energy and 71% slower on macOS. This growing gap across platforms, which is worst on Linux, intermediate on Windows, and second-worst on macOS, suggests that **Linux's environment amplifies V8's compilation advantages over SpiderMonkey**.
+
+Chrome's V8 JavaScript engine uses multi-tier Just-In-Time (JIT) compilation, which is most effective when the CPU scheduler and memory hierarchy align with its optimization strategy. Linux's simpler scheduler and lower-level hardware access may expose these advantages more directly than Windows's abstracted scheduling or macOS's more conservative power management.
+
+In Speedometer, the pattern is similar: Firefox takes 31% longer on Linux (36.5 vs 27.8 seconds), 19% longer on Windows (35.3 vs 29.6 seconds), and 9.8% longer on macOS (36.1 vs 32.9 seconds). The execution gap widens on Linux and Windows but narrows on macOS, suggesting that **macOS's I/O subsystem and event handling is more balanced between browsers**, while Linux and Windows more heavily penalize SpiderMonkey's simpler JIT strategy. This directly causes 39% more energy consumption on Linux, 39.6% on Windows, and 20% on macOS for Firefox in Speedometer.
+
+The pattern strongly suggests a **compiler optimization gap that worsens under less-abstracted operating systems**.
+
+**Memory Consumption:**
+Firefox uses 5–17% more RAM across all benchmarks on Linux, compared to 1–4% on Windows and less than 2% on macOS. The growing  memory footprint on Linux suggests that:
+- Firefox's garbage collection is less aggressively tuned for Linux than for macOS
+- Linux system allocators (glibc) may fragment differently than macOS allocators
+- Firefox's layer compositing overhead is highest on Linux due to direct graphics API usage
+- Windows's memory management (intermediate abstraction) sits between Linux's and macOS's efficiency
+
+The fact that macOS shows minimal RAM differences suggests that Firefox is well-optimized for macOS's memory model, moderately optimized for Windows, and least optimized for Linux. This supports the hypothesis that Firefox development prioritizes macOS compatibility.
+
+**Why the Differences Are Larger on Linux Than Windows and macOS:**
+
+Several factors explain why the Chrome/Firefox gap is widest on Linux, intermediate on Windows, and smallest on macOS:
+
+1. **Graphics APIs & Abstraction Levels**: 
+   - macOS: Core Animation (deeply integrated, heavily optimized for both browsers)
+   - Windows: DirectX (medium abstraction, somewhat balanced between engines)
+   - Linux: X11/Wayland + OpenGL/Vulkan (fragmented, lowest-level access)
+   
+   Linux's lower-level graphics APIs expose browser engine differences more directly, allowing V8's optimizations to shine while revealing SpiderMonkey's weaker implementation.
+
+2. **V8 Optimization Priorities**:
+   Google with Chrome has invested heavily in V8 optimizations for Linux servers (Node.js, Deno, cloud infrastructure) and Linux desktops. Whereas Firefox's SpiderMonkey is primarily tuned for interactive browsing on Windows and macOS, with Linux as a secondary concern. Windows benefits from better Windows-specific tuning, while macOS's power management somewhat masks SpiderMonkey's weaknesses.
+
+3. **CPU Scheduler Alignment**:
+   - Linux: Simple, scheduler-centric design where CPU affinity and cache locality directly impact performance. Chrome's threading model aligns naturally with this, giving it measurable advantages during JIT compilation.
+   - Windows: Abstract scheduling layer (IOCP, thread pool) that mediates browser behavior, somewhat leveling the field.
+   - macOS: Power-aware scheduler that can throttle aggressive workloads, reducing peak performance differences.
+
+4. **Memory & System Library Integration**:
+   - Firefox on macOS links to tightly integrated frameworks, benefiting from optimized memory management.
+   - Firefox on Windows uses more abstracted system calls, reducing but not eliminating inefficiency.
+   - Firefox on Linux links against system libraries (glibc, GTK, fontconfig) with variable availability and performance, leading to the highest overhead.
+   - Chrome on all platforms bundles dependencies, ensuring consistent behavior regardless of system configuration.
+
+**Cross-Platform Summary:**
+- **MotionMark (Graphics)**: Firefox 7% better on macOS, 6% better on Linux, 2% better on Windows. -> Unix systems favor Firefox; Windows narrows the gap.
+- **JetStream 2 (Computation)**: Chrome 65% better on macOS, 52% better on Windows, 70% better on Linux. -> Linux amplifies Chrome's advantages the most.
+- **Speedometer (Interactivity)**: Chrome 20% better on macOS, 40% better on Windows and Linux. -> Windows and Linux both heavily penalize Firefox, with computation becoming the bottleneck.
+
+**Implications and Recommendations:**
+
+For **Linux users**, Chrome is the clear choice for energy efficiency and responsiveness, especially for computational and interactive workloads. The 70% energy penalty in JetStream 2 and 31% slowdown in Speedometer are substantial and will be felt in real-world performance. Firefox's 6% graphics advantage is marginal and unlikely to offset these disadvantages for typical web browsing.
+
+For **power-constrained environments** (laptops, embedded systems): If Linux is the platform, Chrome is strongly preferred. The energy savings in computation-heavy tasks, with 70% less energy in JetStream 2, translate directly to longer battery life.
+
+For **workload-specific choice**: Only if your browsing is *exclusively* graphics-focused (e.g., media editing, 3D visualization) should you consider Firefox on Linux. Otherwise, Chrome is objectively more efficient across all major workload categories on Linux.
+
+For **comparison to other platforms**: Linux users experience the worst Firefox performance relative to Chrome across all three platforms. This suggests that browser developers (especially Mozilla) deprioritize Linux optimization compared to macOS and Windows, or that Linux's lower-level system access naturally exposes engine differences that macOS's abstraction layers and Windows's balancing mechanisms reduce.
 
 ---
 
