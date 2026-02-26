@@ -73,7 +73,10 @@ The more specific objectives of this study are to:
 
 # Methodology
 Include independent and independent variables somewhere
-## Hardware and Software Environment
+
+## Experimental setup
+
+### Hardware and Software Environment
 Include the different hardware and software variables, as well as our energy measurement tools (energibridge)
 
 Processor: AMD Ryzen 7 7730U with Radeon Graphics (2.00 GHz) 
@@ -81,23 +84,35 @@ Installed RAM: 16.0 GB
 System Type: 64 Bit operating system, x64-based processor
 
 Windows Specification:
-Edition: windows 11 home
+Edition: Windows 11 home
 Version: 25H2
 
-## Controlled Testing Environment
+## Experiment Design
+
+- What we compare (zoom camera on vs off, etc)
+- What they measure (joules etc)
+- Saying that we ran 30 tests on each, for reliability etc.
+
+### Controlled Testing Environment
 Include zen mode and freeze settings from template
 Any other things to note like consistent screen brightness, or closing non-essential apps, turning off notifications, etc. etc.
 Mention the shuffling!
 
 And the settings we are using is 100% brightness, volume 30%, using wireless connection, all non essential apps and notifications have been closed. Laptop was left charging. Only thing open is cmd.exe terminal with administrative power.
 
-## Testing Protocol
-### Warm up
-### Automated testing procedure
-Include some cool down to allow environment to return to baseline conditions
+
+## Automation and testing procedure 
+
+- 1 script talking to 2 others and energibridge to achieve some functionality
+- the cooldowns/fibonacci, the random selection
+- Saying we run energibridge for 30s for each test (2) in each iteration
+
 ### Replication Package
 
 For the experiments, the replication package can be found in the following [repository](https://github.com/ayushhhkha/SSE_TeamsVsZoom).
+
+## Data Collection and processing 
+(2 sentences)
 
 
 # Results
@@ -200,6 +215,9 @@ Queue statistics!!
 
 # Discussion
 ## Interpretation of Results
+
+## Potential Explanations
+
 ## Implications
 
 # Limitations
