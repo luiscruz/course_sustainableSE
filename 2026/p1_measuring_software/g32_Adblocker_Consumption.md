@@ -171,13 +171,12 @@ Despite efforts to control experimental conditions, several threats to validity 
 
 **Construct Validity:** The study measures CPU package energy rather than full system energy. Other components such as DRAM, storage, and network interfaces also contribute to total device energy consumption. Therefore, the results specifically reflect CPU-related energy effects and may not fully represent overall device-level energy savings.
 
-**External Validity:** The browsing workload was limited to three selected news websites and a fixed interaction pattern. Different types of websites, such as video streaming platforms, social media applications, or static content pages, may exhibit different energy characteristics. Furthermore, only one ad blocker and one hardware platform were tested. Results may vary across different browsers, filter configurations, operating systems, or processor architectures.
+**External Validity:** The browsing workload was limited to three selected news websites and a fixed interaction pattern. Different types of websites, such as video streaming platforms, social media applications, or static content pages, may exhibit different energy characteristics. All the aforementioned websites are used on a daily basis by many users worldwide so measuring the impact of using and ad blocker would provide a clearer idea on its effect. Furthermore, only one ad blocker and one hardware platform were tested. There are many ad blockers available for download that may contain different strategies on preventing ads, with some perhaps being more or less efficient. Even though there is evidence to suggest that using the ad blocker mentioned above may reduce the energy consumption, other adblockers can have the opposite effect. It should also be mentioned that results may vary across different browsers, filter configurations, operating systems, or processor architectures.
 
 **Ecological Validity:** Although the automated scrolling script simulates reading behavior, it does not capture the full variability of real user interaction patterns. Human browsing behavior includes pauses, clicks, tab switching, and multitasking, which may influence energy consumption differently.
 
 These limitations should be considered when interpreting the results and generalizing the findings beyond the experimental setup.
 
-test
 ---
 
 ## Conclusion
