@@ -2,7 +2,7 @@
 author: Fedor Baryshnikov, Jari de Keijzer, Tobias Veselka, Stilyan Penchev
 group_number: 27
 title: "LLM Prompting: an energy consumption study"
-image: "img/gX_template/project_cover.png"
+image: "img/g27_llm_response_generation/ai-technology-microchip-background-digital-transformation-concept.jpg"
 date: 27/02/2026
 summary: |-
   This study will focus on analysing the energy consumption of two LLM-related tasks. Firstly, we will analyse how the length of a question input prompt affects the energy consumption of an LLM generating a response. Secondly, we will study three different models by three different developers and compare their energy efficiency when generating a response to a question.
