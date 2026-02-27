@@ -32,7 +32,7 @@ The aim is to quantify and compare the power consumption associated with doomscr
 The design of the experiment was one of the most important steps of the experimental setup. During the design phase, we contemplated and debated between various approaches to perform the experiment. The choice of approach affects the implementation and results of the experiment, hence they needed to be critically discussed and justified. 
 
 #### <u>Frequency of Scrolling</u>
-The design of the experiment also tries to mimic the actions of users, while keeping it consistent so that it's scientifically measurable and reproducible. An example of this choice was the frequency of scrolling - non-randomized (scrolling consistently after every two, five, and 10 seconds). In reality, the frequency of scrolling depends on different factors (attention capture of the video, user preference, network constraints, etc.) and is hence naturally random. However, to attain scientific basis for our experiments, we chose to make scrolling consistent. This allows us to evaluate the impact of the pace of the content consumption as well.
+The design of the experiment also tries to mimic the actions of users, while keeping it consistent so that it's scientifically measurable and reproducible. An example of this choice was the frequency of scrolling - non-randomized (scrolling consistently after every two, five, and ten seconds). In reality, the frequency of scrolling depends on different factors (attention capture of the video, user preference, network constraints, etc.) and is hence naturally random. However, to attain scientific basis for our experiments, we chose to make scrolling consistent. This allows us to evaluate the impact of the pace of the content consumption as well.
 
 #### <u>Platform Selection</u>
 Initially, we chose to measure the energy consumption of scrolling Instagram Reels and YouTube Shorts. However, the former was found to not allow an anonymous user to scroll more than four videos on their web application. This is not enough to get reliable measurements. Since each experiment needed to be isolated from the others, we opted to not log in to an account. Therefore, Instagram tests had to be dropped. Instead, we focused on YouTube Shorts and TikTok.
@@ -53,8 +53,8 @@ To isolate the tests from each other, we are creating a new browser instance and
 
 Energy measurement began after:
 - Closing all popups.
-- Rejecting "optional cookies" (see the section on "Cookies and Popups").
-- Closing random popups while scrolling. This is needed since we are not logged into any of the social media apps (see the section on "Cookies and Popups").
+- Rejecting "optional cookies" (see [Cookies and Popups](#cookies-and-popups)).
+- Closing random popups while scrolling. This is needed since we are not logged into any of the social media apps (see [Cookies and Popups](#cookies-and-popups)).
 - Warm up time of 5 seconds so any other browser processes are completed.
 
 Other factors such as brightness, sound of the system, size of the browser window, stable wired WiFi connection, room temperature remained constant during in experiments to not skew the energy consumption of the system.
@@ -127,16 +127,14 @@ Large effect: d ≈ 0.8
 While statistical difference is unlikely to arise by chance, the practical importance will be further evaluated in the discussion section.
 
 # Results
-
 ## Analysis
 ### Exploratory Analysis
 
-This section presents violin and box plots based on the averages of 30 measurements for each platform on 2, 5 and 10 second intervals of scrolling.
+This section presents violin and box plots based on the averages of 30 measurements for each platform on two, five and ten second intervals of scrolling.
 
 “Raw” plots include all observations, while “clean” plots exclude outliers using the 1.5xIQR rule. We found that for some runs on TikTok, the reels were stuck, and the bot script was unable to scroll. We assume that these occurences represent the outliers on the lower end, providing a justification to remove them.
 
 #### 2 second intervals
-
 ![2_raw](img/g25_energy_compare/measurements_2_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -153,19 +151,15 @@ On average, energy consumption is similar across platforms. However, TikTok show
 No noticeable difference after outlier removal.
 
 #### 5 second intervals
-
 ![5_raw](img/g25_energy_compare/measurements_5_violin_box_raw.png)
 
 ##### Chrome_TikTok
-
 As in the 2-second case, variability is higher than YouTube. The distribution is more strongly skewed toward higher values, suggesting a greater likelihood of increased energy consumption.
 
 ##### Chrome_YouTube
-
 Variability increases compared to the 2-second interval. The distribution shows slight lower-tail skewness, with the median below the mean.
 
 ##### Comparison
-
 Both the mean and median are higher for TikTok, indicating greater overall energy consumption relative to YouTube.
 
 ![5_clean](img/g25_energy_compare/measurements_5_violin_box_clean.png)
@@ -175,25 +169,20 @@ After removing the outliers, Chrome_tiktok graph appears to attain a normal dist
 ![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
 
 ##### Chrome_TikTok
-
 Variability remains higher than YouTube but the distribution is more evenly spread and appears approximately symmetric. No clear outliers are observed.
 
 ##### Chrome_YouTube
-
 Variability increases relative to earlier intervals. The mean and median converge, and the distribution appears approximately normal.
 
 ##### Comparison
-
 Unlike previous intervals, the minimum energy consumption is roughly the same across platforms. However, TikTok consistently shows higher average consumption across runs.
 
 ![10_clean](img/g25_energy_compare/measurements_10_violin_box_clean.png)
 
 ##### Conclusion
-
 Accross the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
 
 ### Statistical Significance
-
 The tests were conducted after removing outliers.
 
 | Interval (s) | TikTok Normal |  YouTube Normal | Test Type      | Test Score | Significant  |
@@ -203,7 +192,6 @@ The tests were conducted after removing outliers.
 | 10s          | True          | True            | Welsch's t-test| 0.0002     | Yes          |
 
 ### Effect Size
-
 | Interval (s) | Mean difference | Percent difference | Cohen's d |
 |--------------|-----------------|--------------------|-----------|
 | 2s           | 3.1293          | 1.31%              | 1.174     |
@@ -211,7 +199,6 @@ The tests were conducted after removing outliers.
 | 10s          | 3.81185         | 1.81%              | 1.0327    |
 
 ## Discussion
-
 ### Test Isolation
 Whether the described test isolation methods (such as creating a new browser from scratch on each run) is realistic depends on the user behavior and device. 
 
