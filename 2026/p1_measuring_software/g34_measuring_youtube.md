@@ -33,20 +33,22 @@ consciously opting in.
 
 In this blog post, we investigate whether these non-essential YouTube settings have a measurable effect on client-side
 energy consumption. We conducted a controlled experiment in which each feature was enabled in isolation and energy
-consumption was recorded over repeated trials. Our hypothesis is that each of these features introduces additional
+consumption was recorded over repeated trials. **Our hypothesis is that each of these features introduces additional
 computational work and therefore increases energy consumption relative to the baseline, where all those features are
-disabled.
+disabled.**
 
 If this hypothesis holds, it raises a broader and important question: should non-essential features that increase energy
 consumption be enabled by default — particularly at the scale of billions of viewing hours per day? Even marginal
 increases per device could translate into significant aggregate energy costs. In this case, the platform designers
-should reconsider these defaults in the interest of energy efficiency and sustainability.
+should reconsider these defaults in the interest of energy efficiency and sustainability. We approach this research question through a series of replicable experiments outlined in our Methodology. We then further discuss the analysis of our results, their discussion, and last the limitations we had as well as future possible work.
 
 # Methodology
+Our method of exploring this hypothesis was to first outline the explored settings, then automating the workflow of the EnergiBridge measurements, and lastly analyzing our results.
 
 ## Explored YouTube settings
 
-YouTube offers several optional settings that can be toggled in the settings menu. For this experiment, we isolated
+YouTube offers several optional settings that can be toggled in the settings menu. Since we wanted to measure each of these features' additional consumption, we measured each setting in isolation in order to be able to reach more specific conclusions.
+For this experiment, we isolated
 three
 non-essential features, testing each individually against a common baseline.
 
@@ -108,7 +110,7 @@ Below we outline the specifications we used to run the experiments for replicabi
 
 ## Data Analysis
 
-For each trial, energy consumption was recorded continuously over a 60-second playback window. The primary metric
+For each trial, energy consumption was recorded with EnergiBridge continuously over a 60-second playback window. The primary metric
 extracted from these measurements was System Power (Watts). To obtain a single representative value per trial, we
 averaged all recorded timestamps within the interval. This resulted in one aggregate value per trial, which we
 refer to as **Average System Power (Watts)** and use as the key metric in our data analysis.
@@ -116,7 +118,7 @@ refer to as **Average System Power (Watts)** and use as the key metric in our da
 ### Outlier Removal
 
 Initially, outliers were considered for removal using a Z-score threshold of 3.0. However, this approach proved
-unreliable, as multiple extreme values inflated the standard deviation, leaving some outliers undetected. To address
+unreliable and not sufficiently robust for our case, as multiple extreme values inflated the standard deviation, leaving some outliers undetected. To address
 this, outliers were identified using the **Interquartile range (IQR) method**:
 
 $$
@@ -174,7 +176,7 @@ Together, these measures provided us with a solid foundation for evaluating whet
 influence client-side energy consumption.
 
 # Results
-Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explained why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to YouTube's content downloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However we have no clear way of pinpointing the exact cause. 
+Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explain why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to YouTube's content downloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However, we have no clear way of pinpointing the exact cause. 
 
 | Category      | Outliers Removed |   Valid Range  | Total Runs |
 |---------------|------------------|----------------|------------|
@@ -185,7 +187,7 @@ Our results have quite a few outliers. In total we have 13 outliers, with `voice
 
 
 
-Further insights can be found in the outlier removed plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations-and-future-work). Later in the [Statistical significance](#statistical-significance) we will see that although this difference exists, on a statistical level, these differences are negligible. 
+Further insights can be found in the outlier removed plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in [Limitations and Future Work](#limitations-and-future-work). Later in the section [Statistical Significance](#statistical-significance) we discuss that although this difference exists, on a statistical level these differences are negligible. 
 
 <div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;" >
   <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="outlier removed Histogram containing all 4 experimental classes">
