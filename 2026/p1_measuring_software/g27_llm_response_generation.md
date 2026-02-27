@@ -1,7 +1,7 @@
 ---
 author: Fedor Baryshnikov, Jari de Keijzer, Tobias Veselka, Stilyan Penchev
 group_number: 27
-title: "Title of the Template blog"
+title: "LLM Prompting: an energy consumption study"
 image: "img/gX_template/project_cover.png"
 date: 27/02/2026
 summary: |-
@@ -9,40 +9,6 @@ summary: |-
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-<!--
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
-
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
----
-<!-- #### 👉 Note 1:
-
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
-
----
-
-## Unbiased Energy Data ⚖️
-
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
-
-### Zen mode 🧘🏾‍♀️
-
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
-
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
-
-### Freeze your settings 🥶
-
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
-
----
-
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.  -->
 
 # LLM Prompting: an energy consumption study
 
@@ -56,7 +22,7 @@ This study will focus on analysing the energy consumption of prompting LLMs. Spe
 
 ## Methodology
 
-Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating Fibonacci numbers) for 5 minutes before the start of our tests. Furthermore, a 5-second sleep period is used between measurements, to prevent collateral tasks from previous the measurement from affecting the next measurement. The 5-second duration is a tradeoff between minimizing tail energy consumption of previous measurements and allowing the measurements to be run within a reasonable timeframe.
+Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating Fibonacci numbers) for 5 minutes before the start of our tests. Furthermore, a 5-second sleep period is used between measurements, to prevent collateral tasks from the previous measurement from affecting the next measurement. The 5-second duration is a tradeoff between minimizing tail energy consumption of previous measurements and allowing the measurements to be run within a reasonable timeframe.
 
 To further improve the validity of our tests, we must minimise the effect of external factors on our test results. Thus, the following measures have been to reduce confounding variables:
 
@@ -96,21 +62,47 @@ To perform this test, we will sample twenty prompts of varying length at random 
 
 ## Results
 
-After setting up the code to run the experiment automatically, and making sure the computer was warmed up and all confounding variables were limited, we ran the experiment and obtained the following results.
+After setting up the code to run the experiment automatically, and making sure the computer was warmed up and all confounding variables were limited, we ran the experiment. For each of the independent variables, we calculated:
+
+- **Max**: the most energy consumed by a single LLM run, in Joules
+- **Min**: the least energy consumed by a single LLM run, in Joules
+- **Mean**: the average amount of energy consumed across all the runs of with this independent variable value, in Joules
+- **Standard Deviation**: the standard deviation across all the runs with this independent variable value, in Joules
+
+Note: e.c. stands for "energy consumed"
 
 ### Part 1
 
-Running part one of our experiment took a total of 36 prompts (6 prompts for the 6 prompt lengths), each executed 30 times, resulting in1080 total response generations. 
-
+Running part one of our experiment took a total of 36 prompts (6 prompts for the 6 prompt lengths), each executed 30 times, resulting in1080 total response generations.
 
 In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
 
-
 <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> 
-When analysing the overall energy consumption of our LLM by prompt length, a clear outlier can be observed at prompt length euqal to 5. This prompt length has produced 
 
-<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width=""/>
+In the plot below, we can see the average energy consumption of the CPU and GPU for each prompt length. As expected the GPU uses more energy than the CPU, and again here the spread is higher on the shorter length prompts.
+<img src="img\g27_llm_response_generation\p1_energy_vs_prompt_length_cpu_gpu.png"/> 
 
+
+
+
+This next table shows the max, min, mean and standard deviation of the energy consumed for each prompt length. We can see that the max values are almost all very similar, except for an outlier in the 8 word prompts. We can also see that the means of the different length prompts are very similar except for the 5-word prompt. As explained before the spread is more in the shorter length prompts, which is reflected in the standard deviation values being higher for the shorter length prompts. The minimum values get higher with the length of the prompts with an outlier for the 6-word prompt.
+
+**Total energy consumption statistics:**
+
+| Prompt length | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
+| ------------- | ------------ | ------------ | ------------- | --------------------- |
+| 5             | 212.15       | 7.09         | 131.04        | 60.94                 |
+| 6             | 212.45       | 26.69        | 181.23        | 53.10                 |
+| 7             | 212.79       | 9.89         | 186.22        | 53.82                 |
+| 8             | 267.79       | 7.16         | 190.44        | 47.57                 |
+| 9             | 213.66       | 113.20       | 202.26        | 14.52                 |
+| 10            | 212.32       | 190.68       | 204.31        | 5.94                  |
+
+In this next plot we can see the execution duration and the prompt length is very similar compared to the energy consumption plot, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt.
+
+<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png"/>
+
+This last plot for part 1 shows the correlation between the time taken to generate a response and the energy consumed, also split up into prompt length. We can see that there is an almost perfect linear correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, however we also see that the correlation is the same over all prompt lengths. This indicates that the variance in energy consumption is mostly due to the variance in time taken to generate a response, and that the prompt length does not have a significant effect on the energy consumption.
 
 <img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
 
@@ -136,7 +128,17 @@ The energy usage of the CPU and the GPU can be seen in the image below. All mode
 
 ## Analysis
 
-This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt.
+### Part 1
+What we noticed in the results section for part one is that there is much bigger spread in the energy consumption for the shorter prompts, yet the means were quite similar (except for the 5-word prompts, which had a bit lower mean energy consumption). Thus, we can conclude that the length of a prompt does not have a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts. This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt. Another potential reason the prompt length has little effect on the energy used could be an indication of what part of the LLM response generation chain actually uses the power - in this case, our results would indicate that it is the response generation element of the LLM, rather than the LLM interpreting the prompt, which takes up the majority of the energy. However this is just speculation and further research is needed to confirm this. 
+
+What we also noticed is that there is an almost perfect linear correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt. So we can conclude that the variance in energy consumption is mostly due to the variance in time taken to generate a response.
+
+To conclude, we can't say that the length of a prompt has a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts and that the execution time is the most important in factor in determining the energy consumption of an LLM when generating a response. What influences this, we cannot conclude from this experiment and further research is needed to determine the factors that influence the execution time.
+
+### Part 2
+The main pattern is that model choice has a clear effect on both execution time and energy use. Across the same prompt set and repetitions, rnj-1:8b is generally the fastest and lowest-energy model, llama3.1:8b is in the middle, and deepseek-r1:8b tends to be the slowest and most energy-intensive. We also see that rnj-1:8b has a wider spread in some plots, which suggests less consistent run-to-run behavior than the other two models. One measurement with negative total energy was removed in the plotting step, indicating a likely sensor/measurement artifact rather than real negative consumption.
+
+From the CPU/GPU split, GPU energy is consistently higher than CPU energy for all models, which is expected for LLM inference workloads. This suggests that model-level efficiency differences mainly show up through how much GPU compute time each model needs to produce a response. In conclusion, unlike P1 (where prompt length had limited effect on average energy), P2 shows that model implementation/behavior is a major factor in sustainability outcomes. However, explaining why one model is faster or more stable than another requires further profiling (token counts, decoding behavior and hardware-level utilization).
 
 ## Limitations
 
@@ -146,9 +148,11 @@ Another limitation is the use of a mere 6 prompts of each length for our first t
 
 Another limitation was the release date of the different LLM compared in part two. We primarily selected our LLMs based on the parameter size, while looking for LLMs that were released roughly within 1.5 years of one another. With LLMs becoming publicly available within the last decade, 1.5 years may still be considered a relatively long time - thus, our experiment could be improved by using newer LLMs released within a shorter timeframe of one another.
 
+Another limitation was that we did not evaluate the quality of our LLM generated responses. A good analysis would have been a ratio of quality to energy consumed per LLM, which would have given us a good picture of how truly effectively an LLM consumes energy when generating a response.
+
 ## Conclusion
 
-Conclusion goes here.
+This study focused on two main topics: analysing how the prompt length affects an LLM producing a response, and also how different developers compare when it comes to their models' energy efficiency. To ensure a fair test, we took careful precautions to eliminate factors such as computer temperature, varying specs and varying settings from affecting our tests. For the first part of our study, we observed that the prompt length plays little importance when it comes to an LLM's energy consumption, yet longer prompts tend to give more reliable measurements of energy consumption. For part two, we noticed similar energy consumption between our large and medium sized LLM developers, Meta and Deepseek, with Meta's models occasionally consuming much less energy. Essential AI's rjn-1 model consistently consumed less energy than Meta and Deepseek's models, with its upper quartile still being below the other two's lower quartile. However, this is not necessarily an indication of quality due to our study not attempting to evaluate the quality of the responses. 
 
 ## Code
 
