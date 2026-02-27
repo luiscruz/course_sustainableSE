@@ -16,18 +16,34 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
 # Introduction
-Most programs are initially written in a _single-threaded_ fashion. A single-threaded program has only one thread of execution. This means that the program performs one execution at a time, in a sequential matter. This makes developing, debugging and maintaining the program simple, as the program as a whole s easier to reason about. However, many modern operating systems have multi-core processors, which have the capability of executing many tasks in parallel. With single-threaded programs, most of these cores are left unused. This can become especially noticeable if _blocking_ requests are involved, where the execution of the entire program is halted until a task finishes.
+Most programs are initially written in a _single-threaded_ fashion. A single-threaded program has only one thread of execution. This means that the program performs one execution at a time, in a sequential matter. This makes developing, debugging and maintaining the program simple, as the program as a whole is easier to reason about. However, many modern operating systems have multi-core processors, which have the capability of executing many tasks in parallel. With single-threaded programs, most of these cores are left unused. This can become especially noticeable if _blocking_ requests are involved, where the execution of the entire program is halted until a task finishes.
 
 A common solution to this program is to make the program _multi-threaded_. Multi-threaded programs run tasks concurrently, or in parallel. Each thread executes its own execution path of the program, allowing the program to execute multiple tasks at a time. Now, a blocking request could be executed on a different thread, allowing to program to continue execution without having to wait for the request to complete.
 
 With many cores being available on modern operating systems, this paradigm becomes increasingly common. The increased efficiency of the program's execution seems like an obvious reason to take advantage of it. However, when making this change, energy consumption is often left out of the equation. In this report, we will investigate how single-threaded and multi-threaded programs compare in energy consumption, and what considerations a developer should take in mind when choosing between the two paradigms.
 
-More specifically, we will investigate the memory usage of the same program differs when given a single-threaded and multi-threaded implementation. For this, we will take into account the transistor density, the overhead of creating a thread, the number of threads used and the effect of reusing threads.
+More specifically, we will investigate how the memory usage of the same program differs given a single-threaded and multi-threaded implementation. For this, we will take into account the overhead of creating a thread, the number of threads used and the effect of reusing threads.
 
 # Methodology
-We will use X/Y/Z as testing language. One should note that in this language, ...
+We will use Java as testing language. Java has APIs available that allows us to easily configure the number of threads and whether threads are reused. Furthermore, in Java threads are OS threads, which is what we want to measure. Languages like Go have coroutines that are lightweight versions of threads, which are managed by the Go runtime and not the OS. Because these threads barely have any overhead, they are less interesting to study.
 
-We will measure the energy consumption using A/B/C.
+We will measure the energy consumption using EnergiBridge[^1]<sup>,</sup>[^2]. EnergiBridge is a cross-platform energy measurement utility which internally uses LibreHardwareMonitor[^3] to measure the energy consumption of a program. EnergiBridge is designed to support multiple operating systems and processor brands, which makes it not only easy to use, but also easy to compare different hardware setups. EnergiBridge can be used from the command line. For example, to measure the energy usage of visiting `google.com` using Google Chrome for ten seconds, one can use the following command:
+
+```shell
+energibridge -m 10 -- google-chrome google.com
+```
+
+For a more detailed usage guide, see the GitHub page.
+
+To aid the reproducibility of our results, we will abstract away the usage of EnergiBridge in PowerShell scripts. Because EnergiBridge requires elevated permissions, the scripts will automatically trigger a User Account Control (UAC) prompt that asks for the required permissions. Because running a PowerShell script with elevated permissions carries some risk, the reader is invited to audit the scripts first.
+
+Because multi-threaded programs draw more power simultaneously, one should measure the _total_ energy consumption across all processors. Luckily, this is what LibreHardwareMonitor does; it measures the energy/power sensors at the package level. Here package level refers to the entire physical CPU chip. Thus, because the energy measurements are tied to hardware sensors, they automatically include all active threads running on all cores.
+
+However, because all cores are always measured, there will be a significant amount of background noise that will be captured in the measurements. Therefore, to make our measurements as accurate as possible, one must eliminate as many sources of background memory consumption as possible, and only measure the memory consumption as a consequence of executing the program. For this, we will first perform a null-measurement, which will measure the energy consumption of the system when nothing is being done. On Windows, the `timeout` command sleeps (in contrast to busy waiting) for an amount of time. The `null_measurement.ps1` script measuresures sleeping for ten seconds for a total of thirty iterations.
+
+```shell
+./null_measurement.ps1
+```
 
 # Implementation
 To measure the differences in energy consumption, we will use the X/Y/Z as test program. This program lends itself well for this experiment because it is not easily optimised by the compiler/CPU, ...
@@ -43,6 +59,14 @@ We will use X/Y/Z to draw conclusions, ...
 
 # Conclusion and future work
 A.
+
+# References
+
+[^1]: Sallou, J., Cruz, L., & Durieux, T. (2023). _EnergiBridge: Empowering software sustainability through cross-platform energy measurement_. arXiv. https://doi.org/10.48550/arXiv.2312.13897
+
+[^2]: Durieux, T. (n.d.). _EnergiBridge_. GitHub. https://github.com/tdurieux/EnergiBridge
+
+[^3]: LibreHardwareMonitor. (n.d.). _LibreHardwareMonitor_. GitHub. https://github.com/LibreHardwareMonitor/LibreHardwareMonitor
 
 # END OF REPORT
 
