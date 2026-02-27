@@ -255,11 +255,15 @@ Finally, DeepSeek's thinking mode was disabled throughout to keep the comparison
 Beyond these limitations, the most immediate extension would be evaluating response correctness alongside energy consumption. This study identifies which models are more efficient, but not whether that comes at a quality cost. Computing a quality per joule metric would make the findings considerably more actionable, and exploring different quantization parameters alongside this would also be worthwhile.
 
 
+### References
 
-<!-- References
-
-1 - Wang, L., et al. (2025). Green prompting: A comprehensive evaluation of prompt engineering on LLM energy efficiency. arXiv. https://arxiv.org/html/2503.10666v1
-
-2 -  Capgemini Research Institute. (2025). From words to watts: How prompting patterns shape AI's environmental impact. https://www.capgemini.com/insights/expert-perspectives/from-words-to-watts-how-prompting-patterns-shape-ais-environmental-impact/
-
-3 - Jin, H., et al. (2025). The energy cost of reasoning: Analyzing energy usage in LLMs with test-time compute. OpenReview. https://openreview.net/forum?id=Kdc8aiKxF6 -->
+1. Wang, L., et al. (2025). *Green prompting: A comprehensive evaluation of prompt engineering on LLM energy efficiency*. arXiv. [https://arxiv.org/html/2503.10666v1](https://arxiv.org/html/2503.10666v1)
+2. Capgemini Research Institute. (2025). *From words to watts: How prompting patterns shape AI's environmental impact*. [Link to Report](https://www.capgemini.com/insights/expert-perspectives/from-words-to-watts-how-prompting-patterns-shape-ais-environmental-impact/)
+3. Jin, H., et al. (2025). *The energy cost of reasoning: Analyzing energy usage in LLMs with test-time compute*. OpenReview. [https://openreview.net/forum?id=Kdc8aiKxF6](https://openreview.net/forum?id=Kdc8aiKxF6)
+4. National Science Review. *DeepSeek-V3 Technical Report*. [Read Article](https://academic.oup.com/nsr/article/12/3/nwaf044/8010848?login=false)
+5. Financial Content (2026). *The DeepSeek Disruption: How R1's $6 Million Breakthrough Shattered the AI Brute-Force Myth*. [Read Article](https://www.financialcontent.com/article/tokenring-2026-2-5-the-deepseek-disruption-how-r1s-6-million-breakthrough-shattered-the-ai-brute-force-myth)
+6. *Training Efficiency:* Rinnovabili. *DeepSeek's Energy Consumption: AI's 75% Power Cut*. [Read Article](https://www.rinnovabili.net/business/markets/deepseeks-energy-consumption-ais-75-power-cut/)
+7. *Inference Challenges:* MIT Technology Review (2025). *DeepSeek might not be such good news for energy after all*. [Read Article](https://www.technologyreview.com/2025/01/31/1110776/deepseek-might-not-be-such-good-news-for-energy-after-all/)
+8. *Inference Challenges:* TechAnnouncer. *Unpacking DeepSeek Energy Usage: A Deep Dive into AI's Power Footprint*. [Read Article](https://techannouncer.com/unpacking-deepseek-energy-usage-a-deep-dive-into-ais-power-footprint/)
+9. *Jevons Paradox (Overuse):* ScienceDirect. *DeepSeek efficient but high energy consumption due to popularity*. [Read Article](https://www.sciencedirect.com/science/article/pii/S266667582500147X)
+10. *Methodology Limitations Note:* ScienceDirect. *Estimation-based analysis of AI energy trends* (Note: Relies on reported figures rather than direct measurement). [Read Article](https://www.sciencedirect.com/science/article/pii/S1364032125008329#tbl3)
