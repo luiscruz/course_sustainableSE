@@ -191,7 +191,7 @@ Future work could evaluate real webcam input instead of synthetic streams, longe
 
 ## 8. Replication
 
-The full replication package is available at: GH url
+The full replication package is available at: https://github.com/Yuunjisan/Group20-Replication
 
 ```bash
 git clone [repo-url]
