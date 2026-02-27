@@ -119,7 +119,65 @@ This indicates that when continuously running a multi-threaded program as oppose
 
 
 # Statistical analysis of the results
-We will use X/Y/Z to draw conclusions, ...
+
+## Normality testing
+
+Before choosing our statistical tests, we first check whether the data from each configuration follows a normal distribution. For this, we use the Shapiro-Wilk test. Under the null hypothesis, the data is normally distributed; we reject normality at a significance level of α = 0.05.
+
+| Configuration | Shapiro-Wilk p-value | Normal? |
+|---------------|---------------------|---------|
+| null          | 0.00176             | No      |
+| threads_1     | 0.9999              | Yes     |
+| threads_2     | 0.95544             | Yes     |
+| threads_4     | 0.86007             | Yes     |
+| threads_8     | 0.49363             | Yes     |
+
+The null measurement does not follow a normal distribution (p = 0.00176 < 0.05). This is expected: idle energy consumption is influenced by background activity, which introduces irregular spikes. 
+
+All thread configurations are clearly normally distributed (all p-values well above 0.05). This allows us to use parametric tests for comparison.
+
+## Descriptive statistics
+
+| Configuration | Mean (J)   | Std. dev. (J) | Relative to 1 thread |
+|---------------|-----------|----------------|----------------------|
+| threads_1     | 1296.574  | 22.389         | baseline             |
+| threads_2     | 1147.454  | 30.183         | −11.5%               |
+| threads_4     | 905.818   | 22.795         | −30.1%               |
+| threads_8     | 841.099   | 18.767         | −35.1%               |
+
+A trend shows that energy consumption decreases as the number of threads increases. Going from 1 to 2 threads already saves about 149 J per run (11.5%), and doubling again to 4 threads saves a further 242 J. The jump from 4 to 8 threads, however, only gives an additional 65 J savings (a 7.1% reduction from 4 threads). This suggests smaller returns as more threads are added.
+
+## Effect size (Cohen's d)
+
+Because all thread configurations are normally distributed, we compute Cohen's d to quantify how strongly the distributions differ. Cohen's d is the difference in means divided by the pooled standard deviation. By convention, d = 0.2 is considered small, d = 0.5 medium, and d = 0.8 large.
+
+| Comparison              | Mean diff. (J) | Pooled SD (J) | Cohen's d |
+|------------------------|-----------------|---------------|-----------|
+| 1 thread vs. 2 threads | 149.12          | 26.57         | 5.61 |
+| 1 thread vs. 4 threads | 390.76          | 22.59         | 17.30 |
+| 1 thread vs. 8 threads | 455.48          | 20.66         | 22.05 |
+| 4 threads vs. 8 threads| 64.72           | 20.88         | 3.10 |
+
+All effect sizes are far above the "large" threshold (d > 0.8), meaning the differences are statistically significant. The distributions barely overlap at all. Even the smallest comparison (4 vs. 8 threads) has d = 3.10, which means the two groups are clearly separated.
+
+## Practical significance
+
+A single run of the workload on 1 thread uses about 1297 J. On 8 threads, that drops to 841 J, which is a saving of roughly 456 J per execution. Over a year, that adds up to about 4.6 kWh per machine assuming 100 workloads a day. For a server consisting of many machines processing thousands of such tasks daily, the cumulative savings become meaningful both in cost and in carbon footprint.
+
+It is worth noticing, that these savings come from a CPU-heavy hashing workload where parallelism directly reduces total execution time. In workloads that are I/O-bound, memory-bound, or that have heavy synchronisation overhead, the energy savings from threading could be smaller.. Our results should not be generalised to all workloads without further investigation.
+
+## Diminishing returns
+
+The data shows clear diminishing returns. Doubling from 1 to 2 threads saves 149 J; from 2 to 4 saves 242 J (the biggest absolute gain); from 4 to 8 saves only 65 J. The marginal gain per additional thread decreases sharply at higher thread counts. This is consistent with Amdahl's law: as more threads are added, the inherently sequential portions of the program (thread creation, task dispatch, result aggregation) become the bottleneck. At some point, adding more threads will stop helping — and may even hurt due to increased context switching and contention.
+
+## Limitations
+
+A few limitations should be noted:
+
+- We only tested one workload (SHA-512 hashing). Different workloads may behave differently under threading.
+- The null measurement's non-normality suggests that background noise is not perfectly stable. On a different machine or OS, this may be more or less of an issue.
+- We did not test thread counts beyond 8 (because of hardware limitaiton), which means we cannot say where the optimal number of threads lies for this specific workload and hardware.
+- The measurements were performed on a single machine. Hardware differences will affect the results.
 
 # Conclusion and future work
 A.
