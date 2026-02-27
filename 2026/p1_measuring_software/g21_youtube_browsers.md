@@ -1,5 +1,5 @@
 ---
-author: Leonidas Hadjiyiannis, Ivan Ivanov, Noky Soekarman, Yuchen Sun
+author: Leonidas Hadjiyiannis, Noky Soekarman, Yuchen Sun
 group_number: 21
 title: "Youtube Energy Consumption on Different Browsers with or without Hardware Acceleration"
 image: "img/g21/cover.png"
@@ -122,6 +122,8 @@ One Firefox run with hardware acceleration disabled (run 31) was identified as f
 
 The final distribution of valid samples is shown below:
 
+*Table 1: Final Sample Counts per Configuration*
+
 | Browser | Hardware Acceleration | Sample Count (n) |
 | :--- | :--- | :--- |
 | Chrome | Off | 30 |
@@ -131,7 +133,6 @@ The final distribution of valid samples is shown below:
 | Firefox | Off | 29 |
 | Firefox | On | 30 |
 
-*Table 1: Final Sample Counts per Configuration*
 
 ### Average Total Power Consumption
 
@@ -139,13 +140,14 @@ The final distribution of valid samples is shown below:
 
 In the above violin plot you can see the average power consumption in wattage per configuration for the CPU and GPU combined. Here you can see that for all browsers the power consumption is higher when hardware acceleration is turned on.
 
+*Table 2: Statistical Comparison of Total Power (HW On vs. HW Off)*
+
 |   | browser | metric              | # runs with GPU on | # runs with GPU off | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label     |
 |---|---------|--------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-----------------------|
 | 0 | chrome  | avg_total_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 31.944582 | 42.889812 | 34.263181            | 1.0         | CLES P(on > off)      |
 | 1 | edge    | avg_total_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 31.959125 | 41.972643 | 31.332268            | 1.0         | CLES P(on > off)      |
 | 2 | firefox | avg_total_power_w  | 29        | 30       | Mann–Whitney | 4.461750e-11  | 31.269099 | 42.086639 | 34.594986            | 1.0         | CLES P(on > off)      |
 
-*Table 2: Statistical Comparison of Total Power (HW On vs. HW Off)*
 
 ### Average CPU Power Consumption
 
@@ -153,13 +155,14 @@ In the above violin plot you can see the average power consumption in wattage pe
 
 The above violin plot shows the average power consumption in wattage per configuration for just the CPU. As you might notice, they are much closer together than in the previous plot. Yet there is still a small reduction in power consumption from hardware acceleration off to on. This can be simply explained, the CPU is giving some work to the GPU rather than doing it itself.
 
+*Table 3: Statistical Comparison of CPU Power (HW On vs. HW Off)*
+
 |   | browser | metric            | # runs with GPU on | # runs with GPU off | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
 |---|---------|------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-------------------|
 | 0 | chrome  | avg_cpu_power_w  | 30        | 30       | Mann–Whitney | 8.890991e-10  | 13.451759 | 12.427455 | -7.614645            | 0.038889    | CLES P(on > off)  |
 | 1 | edge    | avg_cpu_power_w  | 30        | 30       | Mann–Whitney | 2.601511e-08  | 13.476417 | 12.473504 | -7.441979            | 0.081111    | CLES P(on > off)  |
 | 2 | firefox | avg_cpu_power_w  | 29        | 30       | Mann–Whitney | 8.615805e-01  | 11.617181 | 11.566381 | -0.437286            | 0.513793    | CLES P(on > off)  |
 
-*Table 3: Statistical Comparison of CPU Power (HW On vs. HW Off)*
 
 ### Average GPU Power Consumption
 
@@ -167,13 +170,14 @@ The above violin plot shows the average power consumption in wattage per configu
 
 This final violin plot shows the average power consumpiton in wattage per configuration for just the GPU. Here we can see where the big difference comes from in the first plot. When hardware acceleration is turned off, all the browsers have almost the same GPU power consumption. This makes sense, because the browsers were the only process that were utilizing the high performance GPU during the experiments. So when the hardware acceleration is turned off, the GPU sits idle doing nothing. Only when the hardware acceleration is turned on, the GPU starts processing the video decoding workload.
 
+*Table 4: Statistical Comparison of GPU Power (HW On vs. HW Off)*
+
 |   | browser | metric            | # runs with GPU on | # runs with GPU off | test          | p_value       | mean_off  | mean_on   | pct_change_on_vs_off | effect_size | effect_size_label |
 |---|---------|------------------|-----------|----------|--------------|---------------|-----------|-----------|----------------------|-------------|-------------------|
 | 0 | chrome  | avg_gpu_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 18.492823 | 30.462356 | 64.725293            | 1.0         | CLES P(on > off)  |
 | 1 | edge    | avg_gpu_power_w  | 30        | 30       | Mann–Whitney | 3.019859e-11  | 18.482708 | 29.499139 | 59.603987            | 1.0         | CLES P(on > off)  |
 | 2 | firefox | avg_gpu_power_w  | 29        | 30       | Mann–Whitney | 4.461750e-11  | 19.651918 | 30.520258 | 55.304224            | 1.0         | CLES P(on > off)  |
 
-*Table 4: Statistical Comparison of GPU Power (HW On vs. HW Off)*
 
 ### Statistical Significance
 To ensure our findings were robust, we conducted normality tests followed by non-parametric comparisons.
@@ -184,6 +188,7 @@ It can be observed from the results of the Shapiro–Wilk test that several conf
 For all three browsers, enabling hardware acceleration leads to a statistically significant increase in average total power consumption (p < 0.05, Mann–Whitney test). The mean power consumption increases by approximately 34% for Chrome, 31% for Edge, and 35% for Firefox. This indicates that hardware acceleration substantially increases power usage during video playback for this workload.
 
 ---
+*Table 5: Summary of Statistical Tests*
 
 | Metric | Test Type | Findings |
 | :--- | :--- | :--- |
@@ -191,7 +196,6 @@ For all three browsers, enabling hardware acceleration leads to a statistically 
 | Significance | Mann-Whitney U | All power increases were statistically significant (p < 0.05). |
 | Effect Size | CLES | Very high probability that HW-On consumes more energy than HW-Off. |
 
-*Table 5: Summary of Statistical Tests*
 
 ## **Discussion**
 
