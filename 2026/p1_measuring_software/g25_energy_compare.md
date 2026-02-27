@@ -22,6 +22,29 @@ If you're going to doomscroll, you might as well do it in an energy-efficient wa
 
 ## Methodology
 
+We'll describe the various methodological aspects and their respective justifications that were chosen for this project.
+
+### Design Choices of the Experiments
+
+The design of the experiment was one of the most important steps of the experimental setup. During the design phase, we contemplated and debated between various approaches to perform the experiment. The choice of approach affects the implementation and results of the experiment, hence they needed to be critically discussed and justified. 
+
+#### <u>Frequency of Scrolling</u>
+
+The design of the experiment also tries to mimic the actions of users, while keeping it consistent so that it's scientifically measurable and reproducible. An example of this choice was the frequency of scrolling - non-randomized (scrolling consistently after every 2, 5, and 10 seconds). In reality, the frequency of scrolling depends on different factors (attention capture of the video, user preference, network constraints, etc.) and is hence naturally random. However, to attain scientific basis for our experiments, we chose to make scrolling consistent.
+
+#### <u>Moment of Energy Consumption Measurement</u>
+
+Another key design choice was when we start measuring the energy used by the system. We know energy tests are flaky, and energy measurement had to be malleable to ensure room for error (network issues or delay, start-up time for the browser, warm up time, killing background processes of the system, etc.). Energy measurement began after:
+- closing all popups (INSERT SCREENSHOT FOR CLOSING DIFFERENT POPUPS)
+- "rejecting optional cookies"
+- closing random popups while scrolling (since we are not logged into any of the social media apps)
+- warm up time of 5 seconds (for any other browser processes to be completed)
+
+Other factors such as brightness, sound of the system, size of the browser window, stable wired WiFi connection, room temperature remained constant during in experiments to not skew the energy consumption of the system.
+
+#### <u>Warm-up Time</u>
+
+
 
 ### Experimental Setup
 
@@ -58,7 +81,7 @@ Violin + Box plots, expect the shape and outliers of the data.
 
 ## Discussion
 
-### Practical importance
+
 
 ## Conclusion
 
