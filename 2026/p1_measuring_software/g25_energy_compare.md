@@ -230,6 +230,14 @@ The experiments required conquering challenges like recommendation algorithms an
 Ultimately, these results still provide a clear and practical takeaway for the everyday user. Should you find yourself with a low battery and the urge to scroll, opting for YouTube Shorts over TikTok might just buy you those crucial extra minutes of entertainment.
 
 # Future work
+This research establishes a baseline for insight into the energy demands of browser-based doomscrolling. The reality, however, is that the vast majority of social media consumption occurs on mobile devices. Future research can measure these effects for smartphones and tablets.
+
+This may be of even more import because mobile devices often rely on wireless networks (e.g., Wi-Fi and 5G). Investigating the differences between our findings and those for mobile devices can be even more directly applicable to the everyday user's on-the-go experience.
+
+Additionally, our methodology prioritized isolation. We used a fresh browser profile for each experiment for exactly thirty-second sessions. This strips away some of the complexities of real-world use. Future experiments can focus on the energy impact of fully logged-in sessions where targeted advertising and personalized recommendation algorithms are also running in the background. 
+
+Furthermore, extending the scrolling duration from thirty seconds to several minute, or even hours, would provide valuable insights into sustained power draw. Longer sessions would allow insights into how devices handle thermal throttling over time. It can also assert whether platforms optimize managing background resources when a user falls into a prolonged doomscrolling loop.
+
 
 # Replication Package
 For reproducibility of these experiments, we have published all the scripts and measurement files on a public Github Repository: [Energy-experiments-P1](https://github.com/SSE26/energy-experiments-P1).
