@@ -1,7 +1,7 @@
 ---
 author: Fedor Baryshnikov, Jari de Keijzer, Tobias Veselka, Stilyan Penchev
 group_number: 27
-title: "Title of the Template blog"
+title: "LLM Prompting: an energy consumption study"
 image: "img/gX_template/project_cover.png"
 date: 27/02/2026
 summary: |-
@@ -9,41 +9,6 @@ summary: |-
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-<!--
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
-
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
--->
-
-<!-- #### 👉 Note 1:
-
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
-
----
-
-## Unbiased Energy Data ⚖️
-
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
-
-### Zen mode 🧘🏾‍♀️
-
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
-
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
-
-### Freeze your settings 🥶
-
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
-
----
-
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.  -->
 
 # LLM Prompting: an energy consumption study
 
@@ -112,13 +77,18 @@ Running part one of our experiment took a total of 36 prompts (6 prompts for the
 
 In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
 
-
-
 <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> 
 
+In the plot below, we can see the average energy consumption of the CPU and GPU for each prompt length. As expected the GPU uses more energy than the CPU, and again here the spread is higher on the shorter length prompts.
 <img src="img\g27_llm_response_generation\p1_energy_vs_prompt_length_cpu_gpu.png"/> 
 
-**Total energy consumption:**
+
+
+
+This next table shows the max, min, mean and standard deviation of the energy consumed for each prompt length. We can see that the max values are almost all very similar, except for an outlier in the 8 word prompts. We can also see that the means of the different length prompts are very similar except for the 5-word prompt. As explained before the spread is more in the shorter length prompts, which is reflected in the standard deviation values being higher for the shorter length prompts. The minimum values get higher with the length of the prompts with an outlier for the 6-word prompt.
+
+**Total energy consumption statistics:**
+
 | Prompt length | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
 | ------------- | ------------ | ------------ | ------------- | --------------------- |
 | 5             | 212.15       | 7.09         | 131.04        | 60.94                 |
@@ -128,8 +98,11 @@ In the plot below, we can see the average energy consumption of the LLM for each
 | 9             | 213.66       | 113.20       | 202.26        | 14.52                 |
 | 10            | 212.32       | 190.68       | 204.31        | 5.94                  |
 
+In this next plot we can see the execution duration and the prompt length is very similar compared to the energy consumption plot, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt.
 
 <img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png"/>
+
+This last plot for part 1 shows the correlation between the time taken to generate a response and the energy consumed, also split up into prompt length. We can see that there is an almost perfect linear correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, however we also see that the correlation is the same over all prompt lengths. This indicates that the variance in energy consumption is mostly due to the variance in time taken to generate a response, and that the prompt length does not have a significant effect on the energy consumption.
 
 <img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
 
