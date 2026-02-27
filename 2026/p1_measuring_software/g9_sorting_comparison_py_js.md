@@ -17,6 +17,18 @@ This decision is almost never made with energy consumption in mind, yet the envi
 
 Sorting is among the most fundamental operations in computer science [^cormen2009]. It is a common task performed in various applications, including serverless functions. The energy cost of such sorting tasks depends not only on the algorithmic complexity, but also on the programming language that runs it. Python and JavaScript have different runtime characteristics that can lead to varying energy consumption for similar tasks. By directly comparing the energy usage of three among the most used sorting algorithms - merge sort, quicksort, and heapsort - in both Python and JavaScript across datasets of varying sizes, we aim to provide insights into how language choice in serverless functions can impact the energy consumption of cloud applications.
 
+# Methodology
+The experiment can be ran automatically by executing the ‘run_experiment.sh’ script, which measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
+While setting up and conducting our experiment, we followed the Scientific Guide to Set Up Energy Efficiency Experiments in order to ensure the accuracy, correctness and appropriateness of our results, and to reduce bias as much as possible. Whenever running the experiments, all other software, notifications and services was turned off. Settings of the machines running the experiment that might affect power consumption, such as screen brightness, were also frozen. The machines ran dummy tasks before the experiments were conducted as warm up. Due to the amount of time the experiments take, the number of repetetitions were kept at 10 for each sorting algorithm, which results in 30 total repetitions per experiment. The order of the sorting algorithms being subject to the experiment were also randomized, and the room temperature was kept stable. Once all these conditions were met, the automated script was run on the machines, once for each of the three sorting algorithms. Finally, the datasets being used in the experiment as the input for the sorting algorithms are simple input-n.txt files, which contain numbers in each row,going from 1 to n-1. The algorithms take these files, and sort their contents.
+To ensure that we actually measure the energy consumption, and therefore the difference in amount of energy consumed, between python and javascript while minimizing all other factors that might affect energy consumption, our experimental variables were determined as follows:
+- Independent: Programming languages (Python and JavaScript)
+- Dependent: Energy consumption
+- Controlled: Implementation of the sort algorithms, specs of the machines running the experiment, versions of the tools used in running the experiment
+
+  - Python version: 3.13.7
+  - Node version: v22.22.0
+  - Specs: Apple M2, 16GB RAM + Apple M1, 16GB
+  
 
 # References
 
