@@ -353,7 +353,15 @@ Across all three features, the data reveals a consistent but nuanced picture: **
 
 
 ## Potential Explanations
-TODO
+While we cannot confirm what caused the result patterns observed, in this subsection we make educated guesses, and explore the potential causes of such patterns. Each of them could be a topic to be validated in further research.
+
+**Predictable camera ON/OFF test results** in both applications show that both Teams and Zoom interface with the camera hardware in similar direct manner. It is also clear that Teams has approximately the same overhead of energy consumption when compared to a corresponding test in Zoom.
+
+**Higher baseline power draw** observed in Microsoft Teams could be explained by the design of the application compared to Zoom Workplace. Teams is designed to be one of the central applications of a company with significantly more extensive functionality than Zoom (messaging interface, file sharing, live status updates, etc.) This, by design, causes Teams to consistently run more background services for tasks, such as message or file syncing. In contrast, Zoom offers more limited functionality outside of the call itself, which makes it likely almost all of its energy consumption comes from the active call. 
+
+**Asymmetric screen sharing results** could be explained by different applications employing different screen capture strategies. Zoom might be using more aggresive video encoding that only updates parts of the video that actually change, whereas Teams might periodically capture the entire screen. If Teams captures the entire screen more frequently, or the time between different captures is slightly randomized, it would explain the higher divergence of the results. Moreover, we have not measured the frame rate of the shared screen, which could have had an impact of the results if, for example, Teams' frame rate is designed to adjust more sensitively to connection fluctuations.
+
+
 ## Implications
 TODO
 # Limitations
