@@ -169,7 +169,6 @@ After the removal of outliers, the results can be seen illustrated below. Each f
     <strong>Figure 6</strong>: EDP (J*s) values for features screen sharing on vs off.
     </p>
   </div>
-
 </div>
 
 
@@ -359,7 +358,7 @@ Only the Windows OS was used in which compared to MacOS and Linux, it can have d
 
 # Future Work
 
-For additional work, it would be interesting to observe the experimentation being conducted on a Windows laptop and a MacOS which can lead to an interesting analysis of cross platforms and to determine which application is the most energy efficient in both OS. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack in order to effectively analyse each video conferencing application and determine the most energy efficient. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations were video conferencing application are meant for longer usage.
+For additional work, it would be interesting to observe the experimentation being conducted on different OS for an interesting energy analysis. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations.
 
 # Conclusion
 
