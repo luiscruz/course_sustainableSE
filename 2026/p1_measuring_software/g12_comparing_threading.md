@@ -45,29 +45,24 @@ However, because all cores are always measured, there will be a significant amou
 ./null_measurement.ps1
 ```
 
-Moreover, one should ensure that the measurements are consistent and reproducible. For this, we will adhere to the following criteria and configuration settings when performing the measurements:
-
-- all applications should be closed;
-- notifications should be turned off;
-- only the required hardware should be connected (no USB drives, external disks, external displays, etc.);
-- unnecessary services running in the background should be stopped (e.g., web server, file sharing, etc.);
-- network connections should be switched off;
-- brightness is fixed to the lowest possible;
-- volume is turned off.
-
-In our case, the device that was used to perform the measurements has the following specifications:
-
-- the operating system is Windows 11;
-- the CPU is TODO;
-- the installed physical memory (RAM) is TODO;
-- the resolution is 1920 x 1080, with a refresh rate of 60 hertz;
+See the [Hardware setup](#hardware-setup) section for the hardware specifications and configurations of the device that was used for performing the measurements.
 
 To reduce variance, each specific measurement will be performed thirty times. Additionally, between each measurement, there is a configurable pause that allows the processor to cool down.
 
 In the next section we will discuss in more detail what particular program we used for measuring energy consumption.
 
 # Implementation
-To measure the differences in energy consumption, we will use the X/Y/Z as test program. This program lends itself well for this experiment because it is not easily optimised by the compiler/CPU, ...
+To measure the differences in energy consumption, we will use a task that conforms to the following criteria:
+
+- It should be CPU-intensive. This ensures that the observed energy consumption comes as much as possible from the task that is being performed, and not from other sources.
+- It should not be able to be optimized away entirely. Even though `javac` will mostly give a faithful translation of the source code into bytecode, the just-in-time (JIT) compiler can choose not to execute the task as long as the meaning of the program is preserved.
+- It should be deterministic. Each iteration of the task should in theory perform the same operations (subject to nondeterministic ways in which the JIT optimizes code). This ensures the measurements are reproducible.
+- It should take a significant amount of time. Short-lived tasks can be hard to distinguish from background noise.
+- It should be self-contained. It should for instance not depend on I/O, which has little to do with the CPU but rather with other subsystems.
+
+We found a good candidate for this to be hashing computations. More specifically, we used SHA512, which is the 512 bit digest implementation of the SHA-2 algorithm. Hash functions in general conform to most of the above criteria, and SHA-2 is sufficiently complicated so that it cannot be optimized away. To use it in Java, the Google Guava library[^4] exposes various hash functions with a convenient API for hashing many Java variable types directly. Because SHA-2 is relatively fast, we will compute the hash iteratively. To ensure the task is not optimized away, the result of each iteration is collected in a `sink` variable. Below is the code for the task:
+
+https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Program.java#L13-L19
 
 # Hardware setup
 To be able to ensure that the measurements are consistent and reproducible some precautions had to be taken. Most importantly all the collected measurements were made on the same device, as using only one device makes it easier to have a consistent setup. 
@@ -197,3 +192,5 @@ Several directions could extend this work:
 [^2]: Durieux, T. (n.d.). _EnergiBridge_. GitHub. https://github.com/tdurieux/EnergiBridge
 
 [^3]: LibreHardwareMonitor. (n.d.). _LibreHardwareMonitor_. GitHub. https://github.com/LibreHardwareMonitor/LibreHardwareMonitor
+
+[^4]: Google. (n.d.). _Guava: Google core libraries for Java_. https://guava.dev/
