@@ -64,6 +64,18 @@ We found a good candidate for this to be hashing computations. More specifically
 
 https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Program.java#L13-L19
 
+Note that the task itself is a completely sequential task, there is no parallelism involved. We will however run this task many times, which is where we can employ multi-threading. In the single-threaded implementation, the task is executed in a for-loop sequentially for a given iteration count. Again, to ensure the task is not optimized away, a `sink` variable is used. The code for the single-threaded implementation is given below:
+
+https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/SingleThreadedProgram.java
+
+Now, we will distinguish two multi-threaded implementations. In the first, threads are not reused. That is, when a certain thread has completed its calculations, it is destroyed. Then, if a new calculation is available to be performed, a new thread will be created. This implementation aims to investigate the energy consumption of the overhead of creating OS threads. In Java, one can accomplish this model by creating an `ExecutorService` whose thread pool size is zero. The code is given below:
+
+https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedProgram.java
+
+The other multi-threaded implementation does reuse threads. This means that if a calculation is finished, the thread will be kept alive until a new calculation is available to be executed, after which the thread will perform the calculations. This gets almost completely rid of the overhead of creating threads, as only the initially used threads have to be created, whereafter the threads are always reused. In Java, such a model can be created using `Executors#newFixedThreadPool`. The code for this implementation is given below:
+
+https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedCachedProgram.java
+
 # Hardware setup
 To be able to ensure that the measurements are consistent and reproducible some precautions had to be taken. Most importantly all the collected measurements were made on the same device, as using only one device makes it easier to have a consistent setup. 
 In our case, the device that was used to perform the measurements has the following specifications:
