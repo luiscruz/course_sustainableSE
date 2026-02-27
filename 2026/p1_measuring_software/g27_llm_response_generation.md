@@ -106,7 +106,7 @@ In the plot below, we can see the average energy consumption of the LLM for each
 
 <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png" alt="Energy usage vs prompt length" width="450"/> <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_cpu_gpu.png" alt="Energy usage of CPU and GPU vs prompt length" width="450"/>
 
-When analysing the overall energy consumption of our LLM, 
+When analysing the overall energy consumption of our LLM by prompt length, a clear outlier can be observed at prompt length euqal to 5. This prompt length has produced 
 
 <img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width="450"/>
 
