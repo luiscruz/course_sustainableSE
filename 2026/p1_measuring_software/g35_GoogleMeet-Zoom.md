@@ -213,6 +213,7 @@ Generally speaking, most of the groups revealed to have data that is not normall
 Depending on the result, the choice of statistical test was made as described below.
 
 *Table 1: Shapiro-Wilk p-values for the power values of the different features*
+
 | **Platform** | **Feature** | **Shapiro-Wilk p-value (ON)** | **Shapiro-Wilk p-value (OFF)** | **Both normal** |
 |:--------:|:-------:|------------:|-------------:|-------------:|
 | TEAMS    | CAM     | 0.656        | 0.222         | True |
@@ -223,6 +224,7 @@ Depending on the result, the choice of statistical test was made as described be
 | ZOOM     | SHARE   | 0.005        | 0.001         | False |
 
 *Table 2: Shapiro-Wilk p-values for the EDP values of the different features*
+
 | **Platform** | **Feature** | **Shapiro-Wilk p-value (ON)** | **Shapiro-Wilk p-value (OFF)** | **Both normal** |
 |:--------:|:-------:|------------:|-------------:|-------------:|
 | TEAMS    | CAM     | 0.963        | 0.375         | True |
@@ -240,6 +242,7 @@ Two independent-sample significance tests were considered in this case.
 When at least one group violated the normality assumptions, the **Mann-Whitney U test** was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
 
 *Table 3: Significance test p-values for the power values of the different features*
+
 | **Platform** | **Feature** | **Test Used**           | **Test p-value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Welch t-test        | 0.001 |
@@ -250,6 +253,7 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 | ZOOM     | SHARE   | Mann–Whitney U      | 0.444 |
 
 *Table 4: Significance test p-values for the EDP values of the different features*
+
 | **Platform** | **Feature** | **Test Used**           | **Test p-value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Welch t-test        | 0.000 |
@@ -262,6 +266,7 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 Both platforms appear to have *camera activation consistently produce statistically significant differences* in power consumption and EDP values. The same can be said for screen sharing, particularly for Microsoft Teams. On the other hand, background blurring seemed to yield mixed or non-significant results. 
 
 *Table 5: Significance test p-values for the power values of the different applications and their features*
+
 | **Feature** | **Condition** | **Test Used**           | **Test p-value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Mann-Whitney U      | 0.000 |
@@ -272,6 +277,7 @@ Both platforms appear to have *camera activation consistently produce statistica
 | SHARE    | OFF       | Mann–Whitney U      | 0.051 |
 
 *Table 6: Significance test p-values for the EDP values of the different applications and their features*
+
 | **Feature** | **Condition** | **Test Used**           | **Test p-value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Welch t-test        | 0.000 |
@@ -293,6 +299,7 @@ For Welch's t-test, **Cohen's d** was used to quantify standardized mean differe
 These measures are meant to provide insight into the magnitude of observed effects, independent of sample size. 
 
 *Table 7: Effect size for the power values of the different features*
+
 | **Platform** | **Feature** | **Effect size Used**    | **Value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Cohen's d           | -0.935 |
@@ -303,6 +310,7 @@ These measures are meant to provide insight into the magnitude of observed effec
 | ZOOM     | SHARE   | Common Language     | 0.441 |
 
 *Table 8: Effect size for the EDP values of the different features*
+
 | **Platform** | **Feature** | **Effect size Used**    | **Value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Cohen's d           | -1.03 |
@@ -315,6 +323,7 @@ These measures are meant to provide insight into the magnitude of observed effec
 Effect size results confirm the *large practical impact* that camera activation has on the power consumption and EDP values across platforms. Screen sharing shows moderate effects while blur generally showcased moderate to small effects.
 
 *Table 9: Effect size for the power values of the different applications and their features*
+
 | **Feature** | **Condition** | **Effect size Used**     | **Value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Common Language     | 0.173 |
@@ -325,6 +334,7 @@ Effect size results confirm the *large practical impact* that camera activation 
 | SHARE    | OFF       | Common Language     | 0.649 |
 
 *Table 10: Effect size for the EDP values of the different applications and their features*
+
 | **Feature** | **Condition** | **Effect size Used**     | **Value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Cohen's d           | 1.279 |
