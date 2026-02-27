@@ -43,7 +43,7 @@ The design of the experiment also tries to mimic the actions of users, while kee
 #### <u>Moment of Energy Consumption Measurement</u>
 
 Another key design choice was when we start measuring the energy used by the system. We know energy tests are flaky, and energy measurement had to be malleable to ensure room for error (network issues or delay, start-up time for the browser, warm up time, killing background processes of the system, etc.). Energy measurement began after:
-- closing all popups (INSERT SCREENSHOT FOR CLOSING DIFFERENT POPUPS)
+- closing all popups 
 - "rejecting optional cookies"
 - closing random popups while scrolling (since we are not logged into any of the social media apps)
 - warm up time of 5 seconds (for any other browser processes to be completed)
@@ -58,6 +58,21 @@ Other factors such as brightness, sound of the system, size of the browser windo
 
 
 ### Hardware/Software Details
+
+We run the experiments on a machine with the following hardware specifications:
+- Machine model: HP HP ZBook X G1i 16 inch Mobile Workstation PC
+- CPU: Intel® Core™ Ultra 7 255H × 16
+- GPU: Intel® Graphics (ARL)
+- RAM: 32.0 GiB
+- Network connection type: Ethernet
+
+Furthermore, we run the experiments with the following software versions:
+- OS: Ubuntu 24.04.3 LTS (64-bit)
+- Chromium browser: Version 145.0.7632.109 (Official Build) (64-bit)
+- Python: 3.12.3
+- Energibridge: 
+
+Other software requirements and versions that are used for this project can be found in `requirements.txt` file of our Github Repository which is linked in the [Replication Package](#replication-package) section.
 
 ## Test Environment
 All tests were conducted within a standard Linux-based Operating System, using the Google Chrome browser. 
@@ -217,6 +232,10 @@ While analyzing the results, we noticed that the energy consumption of TikTok of
 # Conclusion
 
 # Future work
+
+# Replication Package
+
+For reproducibility of these experiments, we have published all the scripts and measurement files on a public Github Repository: [Energy-experiments-P1](https://github.com/SSE26/energy-experiments-P1).
 
 # References
 
