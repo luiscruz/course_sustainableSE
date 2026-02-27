@@ -30,6 +30,9 @@ The following are the chosen algorithms for the experiment:
 - **Radix Sort:** Has a complexity of $O(n log n)$ and was chosen because it is non comparison based and works by repeated digit passes rather than pairwise comparisons. This makes its work pattern very different, with repeated full array scans and bucket grouping, which can increase cache misses and memory traffic. Implemented only in Python. 
 - **Heap Sort:** Although it has the same theoretical complexity as Merge Sort $O(n log n)$, it moves elements across the array in a less sequential way, which can increase cache misses and memory traffic. This makes it useful for observing energy costs linked to weaker cache locality. Also implemented only in Python.
 
+#### Existing Literature
+There is some interesting existing work in this space, most notably [Towards understanding algorithmic factors affecting energy consumption: Switching complexity, randomness, and preliminary experiments](https://www.researchgate.net/publication/221406552_Towards_understanding_algorithmic_factors_affecting_energy_consumption_Switching_complexity_randomness_and_preliminary_experiments) a joint papaer released by researchers at Microsoft and Google. While their reasearch focuses on mobile devices, their definition of "Switching Complexity" (i.e., the frequency with which a piece of code will 'jump' between modules within the CPU) is very useful here as it gives some creadance to the idea that algorithms of equal time complexity can very substantially in their energy use. This greatly influced our algorithm selection process.
+
 ### Data Analysis
 
 We chose to record the energy measurements of our experiment as the primary metric rather than the power as sorting algorithms are specific instances you run as opposed to a software application which essentially runs as long as the user desires. As mentioned previously, we intend to collect in excess of 30 data points per measurement (in reality, much much higher than 30) so that we can test for a Normal/Gaussian distribution of our data. 
@@ -40,7 +43,7 @@ In our setup, EnergiBridge measures energy for the whole benchmark command, incl
 
 #### Dataset generation, persistence, and reproducibility
 
-For each configuration, defined by algorithm, input size and distribution, we generate an input array deterministically and make it persist to the disk. We also configured subsequent repetitions to reuse the exact same dataset file, since htis reduces variance caused by different random inputs and allows strict run to run comparability. We also control randomness via a deterministic seeding strategy so that the same configuration always maps to the same dataset. For replication purposes, we decided to store the input datasets as JSON to make the replication package easy to inspect and language independent.
+For each configuration, defined by algorithm, input size and distribution, we generate an input array deterministically and make it persist to the disk. We also configured subsequent repetitions to reuse the exact same dataset file, since this reduces variance caused by different random inputs and allows strict run to run comparability. We also control randomness via a deterministic seeding strategy so that the same configuration always maps to the same dataset. For replication purposes, we decided to store the input datasets as JSON to make the replication package easy to inspect and language independent.
 
 We use multiple input distributions:
 
@@ -59,7 +62,7 @@ Each run includes a correctness check that verifies the output array is sorted. 
 
 #### System controls and machine state
 
-To keep all experiments fair, we executed them all on a single machine under the same fxied environment.
+To keep all experiments fair, we executed them all on a single machine under the same fixed environment.
 
 - The device remains plugged in throughout the experiment session 
 - Background tasks are minimised by closing non essential applications
@@ -68,7 +71,7 @@ To keep all experiments fair, we executed them all on a single machine under the
 
 #### Hypotheses
 
-As mentioned previously, energy consumption per run per set size will the primary metirc for our analysis. We are examining two relationships, between different complexity algorithms and between the same algorithms acorss langauages. To show the noramality of our data we expect
+As mentioned previously, energy consumption per run per set size will be the primary metric for our analysis. We are examining two relationships, between different complexity algorithms and between the same algorithms across languages. 
 - **Algorithmic Complexity Energy Analysis:**
   - To prove the normality of the data, we will use a set of Shapiro-Wilk tests:
   $$H_0^{(i)}: p \geq 0.05, Data\ is\ normally\ distributed\ \forall i \in {Algorithms}$$
@@ -85,6 +88,7 @@ As mentioned previously, energy consumption per run per set size will the primar
 
   - As we are comparing only two elements here, we can apply a two-sided t-test:
   $$H_0: E_{Rust} = E_{Python}$$
+
   $$H_A: E_{Rust} \neq E_{Python}$$
 
 #### Experiment Runs
@@ -95,7 +99,7 @@ We created a simple Python CLI tool to perform the experiment by defining argume
 $ python runner.py --algo algorithms/radix_sort.py --size 10000 --runs 5 --distribution reversed
 $ python scripts/run_rust_energy.py -n 500000 --dataset-dir Results/tmp_datasets --runs 1 --sleep 10
 ```
-#### Results
+### Results
 
 First, lets start off with the python algorithms only:
 
@@ -123,7 +127,7 @@ Violin plot of the different algorithms' energy usage.
 The figure illustrates the above points very well, with rusts' usage being so low that it's nearly impossible to see what values it averages at, with the highest outlier only slightly above the lowest mean for python. The difference is massive.
 
 #### Conclusion
-With this data in hand, we can put both hypotheses to sleep, and clearly state that there is significant difference in energy usage based on what algorithm you pick AND what language you use. 
+With this data in hand, we can put both hypotheses to sleep, and clearly state that there is a significant difference in energy usage based on what algorithm you pick as well as what language you use. As we expected, lower levels languages like Rust dramatically outpreform higher level language implementations. Furthermore, we see that time complexity alone is not sufficient data to compare imnplementations in terms of energy use. As the world and we as software engineers continue to focus more and more on the long term sustatinability of our work, keeping this relationship (or lack thereof) in mind when designing/maintianing systems. Wider adoption of the "Switching Complexity" definition and/or inscreased measurement of it would certainly help us to become better programmers, reduced CO2 emissions and save money.
 
 #### Machine Specification
 The exact specs of the machine we used are outlined below. This can be useful when comparing to results you have gotten yourself. 
