@@ -210,7 +210,8 @@ Generally speaking, most of the groups revealed to have data that is not normall
 
 Depending on the result, the choice of statistical test was made as described below.
 
-| Platform | Feature | Shapiro-Wilk p-value (ON) | Shapiro-Wilk p-value (OFF) | Both normal |
+*Table 1: Shapiro-Wilk p-values for the power values of the different features*
+| **Platform** | **Feature** | **Shapiro-Wilk p-value (ON)** | **Shapiro-Wilk p-value (OFF)** | **Both normal** |
 |:--------:|:-------:|------------:|-------------:|-------------:|
 | TEAMS    | CAM     | 0.656        | 0.222         | True |
 | ZOOM     | CAM     | 0.004        | 0.006         | False |
@@ -219,9 +220,8 @@ Depending on the result, the choice of statistical test was made as described be
 | TEAMS    | SHARE   | 0.091        | 0.007         | False | 
 | ZOOM     | SHARE   | 0.005        | 0.001         | False |
 
-*Table 1: Shapiro-Wilk p-values for the power values of the different features*
-
-| Platform | Feature | Shapiro-Wilk p-value (ON) | Shapiro-Wilk p-value (OFF) | Both normal |
+*Table 2: Shapiro-Wilk p-values for the EDP values of the different features*
+| **Platform** | **Feature** | **Shapiro-Wilk p-value (ON)** | **Shapiro-Wilk p-value (OFF)** | **Both normal** |
 |:--------:|:-------:|------------:|-------------:|-------------:|
 | TEAMS    | CAM     | 0.963        | 0.375         | True |
 | ZOOM     | CAM     | 0.064        | 0.027         | False |
@@ -230,9 +230,6 @@ Depending on the result, the choice of statistical test was made as described be
 | TEAMS    | SHARE   | 0.001        | 0.000         | False | 
 | ZOOM     | SHARE   | 0.000        | 0.000         | False |
 
-*Table 2: Shapiro-Wilk p-values for the EDP values of the different features*
-
-
 ### Significance Testing
 Two independent-sample significance tests were considered in this case. 
 
@@ -240,7 +237,8 @@ Two independent-sample significance tests were considered in this case.
 
 When at least one group violated the normality assumptions, the **Mann-Whitney U test** was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
 
-| Platform | Feature | Test Used           | Test p-value |
+*Table 3: Significance test p-values for the power values of the different features*
+| **Platform** | **Feature** | **Test Used**           | **Test p-value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Welch t-test        | 0.001 |
 | ZOOM     | CAM     | Mann–Whitney U      | 0.000 |
@@ -249,9 +247,8 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 | TEAMS    | SHARE   | Mann–Whitney U      | 0.001 |
 | ZOOM     | SHARE   | Mann–Whitney U      | 0.444 |
 
-*Table 3: Significance test p-values for the power values of the different features*
-
-| Platform | Feature | Test Used           | Test p-value |
+*Table 4: Significance test p-values for the EDP values of the different features*
+| **Platform** | **Feature** | **Test Used**           | **Test p-value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Welch t-test        | 0.000 |
 | ZOOM     | CAM     | Mann–Whitney U      | 0.000 |
@@ -260,12 +257,11 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 | TEAMS    | SHARE   | Mann–Whitney U      | 0.027 |
 | ZOOM     | SHARE   | Mann–Whitney U      | 0.429 |
 
-*Table 4: Significance test p-values for the EDP values of the different features*
 
 talk about inbetween features
 
-
-| Feature | Condition | Test Used           | Test p-value |
+*Table 5: Significance test p-values for the power values of the different applications and their features*
+| **Feature** | **Condition** | **Test Used**           | **Test p-value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Mann-Whitney U      | 0.000 |
 | CAM      | OFF       | Mann–Whitney U      | 0.000 |
@@ -274,9 +270,8 @@ talk about inbetween features
 | SHARE    | ON        | Mann–Whitney U      | 0.001 |
 | SHARE    | OFF       | Mann–Whitney U      | 0.051 |
 
-*Table 5: Significance test p-values for the power values of the different applications and their features*
-
-| Feature | Condition | Test Used           | Test p-value |
+*Table 6: Significance test p-values for the EDP values of the different applications and their features*
+| **Feature** | **Condition** | **Test Used**           | **Test p-value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Welch t-test        | 0.000 |
 | CAM      | OFF       | Mann–Whitney U      | 0.000 |
@@ -285,7 +280,6 @@ talk about inbetween features
 | SHARE    | ON        | Mann–Whitney U      | 0.072 |
 | SHARE    | OFF       | Mann–Whitney U      | 0.599 |
 
-*Table 6: Significance test p-values for the EDP values of the different applications and their features*
 
 talk about inbetween features and applications
 
@@ -297,7 +291,8 @@ For Welch's t-test, **Cohen's d** was used to quantify standardized mean differe
 
 These measures are meant to provide insight into the magnitude of observed effects, independent of sample size. 
 
-| Platform | Feature | Effect size Used    | Value |
+*Table 7: Effect size for the power values of the different features*
+| **Platform** | **Feature** | **Effect size Used**    | **Value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Cohen's d           | -0.935 |
 | ZOOM     | CAM     | Common Language     | 0.864 |
@@ -306,9 +301,8 @@ These measures are meant to provide insight into the magnitude of observed effec
 | TEAMS    | SHARE   | Common Language     | 0.761 |
 | ZOOM     | SHARE   | Common Language     | 0.441 |
 
-*Table 7: Effect size for the power values of the different features*
-
-| Platform | Feature | Effect size Used    | Value |
+*Table 8: Effect size for the EDP values of the different features*
+| **Platform** | **Feature** | **Effect size Used**    | **Value** |
 |:--------:|:-------:|:-------------------:|:------------:|
 | TEAMS    | CAM     | Cohen's d           | -1.03 |
 | ZOOM     | CAM     | Common Language     | 0.819 |
@@ -317,11 +311,11 @@ These measures are meant to provide insight into the magnitude of observed effec
 | TEAMS    | SHARE   | Common Language     | 0.666 |
 | ZOOM     | SHARE   | Common Language     | 0.560 |
 
-*Table 8: Effect size for the EDP values of the different features*
 
 talk about in between features
 
-| Feature | Condition | Effect size Used     | Value |
+*Table 9: Effect size for the power values of the different applications and their features*
+| **Feature** | **Condition** | **Effect size Used**     | **Value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Common Language     | 0.173 |
 | CAM      | OFF       | Common Language     | 0.146 |
@@ -330,9 +324,8 @@ talk about in between features
 | SHARE    | ON        | Common Language     | 0.257 |
 | SHARE    | OFF       | Common Language     | 0.649 |
 
-*Table 9: Effect size for the power values of the different applications and their features*
-
-| Feature | Condition | Effect size Used     | Value |
+*Table 10: Effect size for the EDP values of the different applications and their features*
+| **Feature** | **Condition** | **Effect size Used**     | **Value** |
 |:--------:|:---------:|:-------------------:|:------------:|
 | CAM      | ON        | Cohen's d           | 1.279 |
 | CAM      | OFF       | Common Language     | 0.162 |
@@ -341,7 +334,6 @@ talk about in between features
 | SHARE    | ON        | Common Language     | 0.365 |
 | SHARE    | OFF       | Common Language     | 0.540 |
 
-*Table 10: Effect size for the EDP values of the different applications and their features*
 
 talk about inbetween features and applications
 
