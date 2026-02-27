@@ -12,6 +12,7 @@ import os
 import sys
 import time
 import logging
+import random
 from datetime import datetime
 from pathlib import Path
 
@@ -34,13 +35,10 @@ log = logging.getLogger("experiment_runner")
 # Experiment matrix
 # ---------------------------------------------------------------------------
 
-DEFAULT_BOT_COUNTS = [1]
 DEFAULT_REPEATS = 30
 DEFAULT_CALL_DURATION = 120  # seconds
 COOLDOWN_BETWEEN_RUNS = 60  # seconds — let system settle between experiments
 
-
-import random
 
 def run_full_experiment(
     meet_url: str | None = None,
@@ -98,7 +96,6 @@ def run_full_experiment(
     
     random.seed(random_seed)
     random.shuffle(experiment_queue)
-    print(experiment_queue)
     log.info("Experiment order randomized.")
 
     os.makedirs(output_dir, exist_ok=True)

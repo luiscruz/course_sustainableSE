@@ -276,7 +276,6 @@ def measure_experiment(
     use_energibridge = ENERGIBRIDGE_BIN is not None
 
     eb_monitor = None
-    psutil_monitor = None
 
     eb_csv_path = os.path.join(output_dir, f"{base_name}_energibridge.csv")
 
@@ -290,8 +289,6 @@ def measure_experiment(
 
     if eb_monitor:
         eb_monitor.start()
-    if psutil_monitor:
-        psutil_monitor.start()
 
     # --- Run the actual bots ---
     bot_results = run_bots(config)
@@ -302,8 +299,6 @@ def measure_experiment(
 
     if eb_monitor:
         eb_monitor.stop()
-    if psutil_monitor:
-        psutil_monitor.stop()
 
     metrics.stop()
 
@@ -328,8 +323,6 @@ def measure_experiment(
     if eb_monitor:
         result.update(eb_monitor.get_results())
         result["energibridge_csv"] = eb_csv_path
-    elif psutil_monitor:
-        result.update(psutil_monitor.get_results())
 
     # Add network metrics from SystemMetricsCollector
     result.update(metrics.get_summary())

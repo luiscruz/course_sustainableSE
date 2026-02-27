@@ -21,6 +21,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import (
@@ -191,18 +192,7 @@ def join_google_meet(driver: webdriver.Chrome, url: str, bot_id: int, guest_name
     # as animations finish
     join_btn.click()
     log.info(f"Bot {bot_id}: Join button clicked")
-    time.sleep(1)  
-    # mute_microphone(driver, bot_id)
-
-def mute_microphone(driver, bot_id):
-    try:
-        body = driver.find_element(By.TAG_NAME, "body")
-        body.send_keys(Keys.COMMAND, "d")  # macOS
-        # If running on Linux/Windows use:
-        # body.send_keys(Keys.CONTROL, "d")
-        log.info(f"Bot {bot_id}: Microphone muted")
-    except Exception as e:
-        log.warning(f"Bot {bot_id}: Failed to mute mic: {e}")
+    time.sleep(1)
 
 
 def leave_google_meet(driver: webdriver.Chrome, bot_id: int):
@@ -233,37 +223,7 @@ def join_microsoft_teams(driver: webdriver.Chrome, url: str, bot_id: int, guest_
     _click_teams_join(driver, bot_id)
     log.info(f"Bot {bot_id}: In Teams lobby (or meeting)")
     time.sleep(3)  # Wait for lobby/meeting to stabilize
-    # _mute_via_shortcut(driver, bot_id)
 
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
-
-def _mute_via_shortcut(driver, bot_id):
-    log.info(f"Bot {bot_id}: Sending Mute shortcut")
-
-    try:
-        time.sleep(3)
-
-        # Click body to force focus
-        body = driver.find_element(By.TAG_NAME, "body")
-        body.click()
-
-        time.sleep(0.5)
-
-        actions = ActionChains(driver)
-        actions.key_down(Keys.COMMAND).key_down(Keys.SHIFT)
-        actions.send_keys("m")
-        actions.key_up(Keys.SHIFT).key_up(Keys.COMMAND)
-        actions.perform()
-
-        log.info(f"Bot {bot_id}: Shortcut sent.")
-
-    except Exception as e:
-        log.error(f"Bot {bot_id}: Shortcut failed. Error: {e}")
-
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 
 def _select_teams_browser_option(driver, bot_id):
     """Click 'Continue on this browser' on the Teams launcher page."""
@@ -302,15 +262,6 @@ def _click_teams_join(driver, bot_id):
     driver.execute_script("arguments[0].click();", btn)
     log.info(f"Bot {bot_id}: Clicked Teams 'Join now'")
 
-
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
-import time
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 
 def leave_microsoft_teams(driver, bot_id):
     driver.find_element("tag name", "body").click()
