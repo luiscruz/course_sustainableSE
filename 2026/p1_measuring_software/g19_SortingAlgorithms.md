@@ -106,7 +106,7 @@ First, lets start off with the python algorithms only:
 | Radixsort | 2.43 J | 2.17 |
 | Quicksort | 3.54 J | 1.03 |
 
-Using the anova test we get a p value of roughly p = 6.82e-54 < 0.05, making it clear there is a significant statistical difference in energy usage between algorithms. Looking at the table (and figure TODO), it is clear that Radixsort and Quicksort are the most energy-efficient, with mergesort not far behind and heapsort being the least efficient of all.
+Using the anova test we get a p value of roughly p = 6.82e-54 < 0.05, making it clear there is a significant statistical difference in energy usage between algorithms. Looking at the table (and in the image below), it is clear that Radixsort and Quicksort are the most energy-efficient, with mergesort not far behind and heapsort being the least efficient of all.
 
 For the Rust-based algorithms, we can compare the quicksort and mergesort values to the python values: 
 
@@ -116,6 +116,11 @@ For the Rust-based algorithms, we can compare the quicksort and mergesort values
 | Quicksort | 0.68 J | 0.57 |
 
 Even without the comparison, we can clearly see there is a significant difference between the languages. For Mergesort, Rust is more efficient by a factor of 10(!!), and for quicksort by roughly 5. The energy usage also fluctuates less. Performing a 2-sided t-test on the averages between the languages we get a p-value of p = 2.44e-64 < 0.05, again showing a significant difference between the languages in terms of efficiency. The differences are staggering, showing truly how efficient low-level languages like Rust are compared to Python.
+
+![Violin plot, showing the energy usage between algorithms and languages](/2026/p1_measuring_software/img/image.png)
+Violin plot of the different algorithms' energy usage. 
+
+The figure illustrates the above points very well, with rusts' usage being so low that it's nearly impossible to see what values it averages at, with the highest outlier only slightly above the lowest mean for python. The difference is massive.
 
 #### Conclusion
 With this data in hand, we can put both hypotheses to sleep, and clearly state that there is significant difference in energy usage based on what algorithm you pick AND what language you use. 
@@ -128,7 +133,6 @@ Processor: 2,3 GHz Dual core Intel core i5
 Graphics card: Intel Iris plus graphics 640 1536 MB 
 Memory: 8 GB 2133MHz LPDDR3
 Operating system: MacOS Ventura 13.7.8 
-#### Other Points to Note
 
 ---
 
