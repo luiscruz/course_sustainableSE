@@ -5,7 +5,6 @@ title: "Are YouTube’s Default Features Silently Wasting Energy? An Experimenta
 image: "img/g34_measuring_software/project_cover.png"
 date: 12/02/2026
 summary: |-
-  [Source Code](https://github.com/g34-sustainable-software/p1_dev/tree/dev)
   This study investigates whether YouTube’s optional player features—Ambient Mode, Stable Volume, and Voice Boost—affect 
   client-side energy consumption. In controlled experiments isolating each feature, we measure energy usage relative to 
   a baseline with all features disabled. Our results show that Ambient Mode significantly increases energy consumption, 
@@ -177,40 +176,16 @@ influence client-side energy consumption.
 # Results
 Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explained why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to YouTube's content downloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However we have no clear way of pinpointing the exact cause. 
 
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Outliers Removed</th>
-    <th>Valid Range</th>
-    <th>Total Runs</th>
-  </tr>
-  <tr>
-    <td>stable volume</td>
-    <td>3</td>
-    <td>[2.25, 2.47]</td>
-    <td>30</td>
-  </tr>
-  <tr>
-    <td>ambient mode</td>
-    <td>2</td>
-    <td>[10.56, 11.46]</td>
-    <td>30</td>
-  <tr>
-    <td>all off</td>
-    <td>1</td>
-    <td>[2.18, 2.65]</td>
-    <td>30</td>
-  </tr>
-  <tr>
-    <td>voice boost</td>
-    <td>7</td>
-    <td>[2.12, 2.40]</td>
-    <td>30</td>
-  </tr>
-</table>
+| Category      | Outliers Removed |   Valid Range  | Total Runs |
+|---------------|------------------|----------------|------------|
+| Stable Volume | 3                | [2.25, 2.47]   | 30         |
+| Ambient Mode  | 2                | [10.56, 11.46] | 30         |
+| All off       | 1                | [2.18, 2.65]   | 30         |
+| Voice Boost   | 7                | [2.12, 2.40]   | 30         |
 
 
-Further insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations). Later in the [Statistical significance](#statistical-significances) we will see that although this difference exists, on a statistical level, these differences are negligible. 
+
+Further insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations-and-future-work). Later in the [Statistical significance](#statistical-significance) we will see that although this difference exists, on a statistical level, these differences are negligible. 
 
 <div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;" >
   <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="Normalised Histogram containing all 4 experimental classes">
@@ -249,7 +224,10 @@ Statistical significance alone is not sufficient to judge the impact of a featur
 |---------------------------|---------------|--------------|-------------|
 | Median Difference (W)     | -0.019        | 8.671        | -0.130      |
 | Percentage Change (%)     | -0.782 %      | 365.328 %    | -5.478 %    |
-| Percentage of Pairs (%)   | 35.38 %       | 100.00 %    | 0.15 %      |
+| Percentage of Pairs (%)   | 35.38 %       | 100.00 %     | 0.15 %      |
+
+
+
 
 For Ambient Mode, all three metrics indicate a clear and consistent increase in system power usage compared to the baseline. The median power draw increases by 8.67 W, corresponding to a 365% median-based increase, and 100% of Ambient Mode trials consume more power than baseline trials. This pattern indicates a sustained increase in energy consumption rather than an effect driven by a small number of extreme measurements.
 
@@ -268,6 +246,12 @@ First of all, as mentioned in the discussion section, we did not see a significa
 Secondly, since the settings are concerned with display and sound, the initial version of the experiment included 100% brightness and volume to better observe the effects. However, since the execution of 4 different cases took several hours, the full-battery of the hardware we used did not last enough to finish the experiment. This is why we used 30% for both brightness and sound to be able to finish the full execution. We decided against the charging of the hardware throughout the experiment since we had assumed that connection of an external device would have an uncontrollable effect on the results. However, reflecting on our experiment, the receding battery might have also affected our results negatively throughout the runs. Therefore, the experiment could be replicated with higher levels of brightness and sound while being plugged to a power outlet, while assessing if this would affect the results or not. 
 
 Finally, although we used outlier detection procedures, our results still contain samples that disrupt normality. We have mentioned that a possible cause for this could be the unstable wireless internet connection and the resulting buffering of the video. Since the EnergiBridge tool that we used does not distinguish between energy usage of different processes, we did not have a systematic way of addressing this in our analysis. To address this, the experiment can be replicated with a bigger sample size. Furthermore, a tool can be developed to distinguish and measure the energy consumption of different processes to better observe these external effects to support sustainability research in the future. 
+
+
+# Replication 
+[Source Code](https://github.com/g34-sustainable-software/p1_dev/tree/dev) \
+The link takes you to our github repository. Follow the instructions to fully replicate our experimentation.
+
 
 # References
 
