@@ -35,9 +35,9 @@ quality are often made without awareness of their potential system-level consequ
 Studying these user-facing choices provides insight into how software design and default
 settings can influence sustainability at scale.
 
-This project investigates whether two everyday software choices—**browser selection**
+This project investigates whether two everyday software choices:**browser selection**
 (Google Chrome vs Mozilla Firefox) and **video quality selection** (automatic quality vs forced
-720p)—lead to measurable differences in energy consumption for the same YouTube Short.
+720p), lead to measurable differences in energy consumption for the same YouTube Short.
 We focus on short-form content because it represents a bounded, repeatable task that is
 consumed at massive scale, making even small per-play differences relevant when aggregated
 across millions of users.
@@ -77,7 +77,7 @@ secondarily to explain *why* energy differences arise.
 | Browser | Chrome, Firefox |
 | Video quality | Auto, HD720 |
 
-Each configuration is executed **30 times**, with randomized execution order to reduce
+Each configuration is executed 30 times, with randomized execution order to reduce
 systematic bias (e.g., thermal or caching effects).
 
 ### Environment and controls
@@ -111,7 +111,7 @@ rendering workload during playback.
 
 ### YouTube Workload
 
-To ensure a controlled and repeatable workload, we use a **single YouTube Short video** across
+To ensure a controlled and repeatable workload, we use a single YouTube Short video across
 all experiments. Short-form content is particularly suitable for energy analysis because it
 represents a bounded interaction with a well-defined start and end, while still exercising the
 full browser media pipeline.
@@ -122,7 +122,7 @@ characteristics.
 
 ### Playback Control and Alignment
 
-Video playback is fully automated and aligned to the **actual playback window**, rather than
+Video playback is fully automated and aligned to the actual playback window, rather than
 page load or script execution. Energy measurement begins only after playback is confirmed and
 terminates before end-of-video elements or autoplay behavior can introduce additional workload.
 This alignment ensures that measurements reflect the energy cost of video playback itself.
@@ -220,8 +220,8 @@ distribution.
 
 **Figure 3:** Average CPU package power over time (30-run average).
 
-Chrome shows a pronounced **initial power burst** during startup, followed by a lower, stable
-power phase. Firefox exhibits **smoother but more sustained power draw** across playback.
+Chrome shows a pronounced initial power burst during startup, followed by a lower, stable
+power phase. Firefox exhibits smoother but more sustained power draw across playback.
 
 This sustained load explains why Firefox can consume more total energy despite lower peak
 power. Forcing HD720 increases sustained power in both browsers, accounting for the consistent
@@ -279,13 +279,37 @@ use and massive user populations, making them relevant from a sustainability per
 
 ---
 
+## Implications
+
+At the user level, the results show that everyday, seemingly minor choices, such as forcing a
+higher playback quality or switching browsers,can influence energy consumption even for short,
+casual interactions like watching a YouTube Short. While users typically optimize for visual
+quality or smoothness, these results suggest that default settings and browser choice also play a
+role in energy efficiency. Making energy costs more visible or better aligned with default
+behaviors could help users make more sustainable choices without sacrificing usability.
+
+At the browser level, the contrast between Chrome’s consistency and Firefox’s higher variance
+highlights that energy efficiency is not only about average consumption, but also about
+predictability. Highly variable energy behavior can lead to disproportionately expensive runs,
+which is undesirable at scale. Browser vendors may therefore benefit from treating energy
+stability as a first-class optimization goal alongside performance and correctness, particularly
+for short, bursty workloads such as short-form video playback.
+
+At the platform and ecosystem level, the consistent increase in energy consumption when
+forcing higher video quality suggests that adaptive quality mechanisms are not only beneficial
+for buffering and performance, but also for energy efficiency. Platform-level decisions about
+default quality heuristics can therefore have a meaningful impact on aggregate energy usage when
+applied across millions of users and billions of video views.
+
+---
+
 ## Limitations
 
 As with any controlled experiment, this study has several limitations that should be considered when interpreting the results. First, all measurements are conducted on a single machine under a specific hardware and software configuration. Energy consumption patterns may differ on other systems, particularly on mobile devices or systems with discrete GPUs.
 
 Second, the analysis focuses exclusively on CPU package-level energy consumption. While this captures a substantial portion of the workload involved in browser-based video playback, it does not account for energy usage by other components such as the display, GPU, or network interface. As a result, the reported values should be interpreted as relative comparisons rather than absolute system-wide energy costs.
 
-Third, the experiment uses a single YouTube Short video. Although this allows for a controlled and repeatable workload, different content characteristics—such as motion complexity or encoding format—may influence energy consumption differently. Future work could extend this analysis to a broader set of videos and playback scenarios.
+Third, the experiment uses a single YouTube Short video. Although this allows for a controlled and repeatable workload, different content characteristics: such as motion complexity or encoding format, may influence energy consumption differently. Future work could extend this analysis to a broader set of videos and playback scenarios.
 
 Finally, while automation and repeated measurements reduce noise and improve consistency, real-world usage inevitably involves additional variability, including background applications, user interaction, and fluctuating network conditions. These factors are intentionally minimized here to isolate the effects of browser and quality settings.
 
@@ -294,8 +318,8 @@ Finally, while automation and repeated measurements reduce noise and improve con
 
 ## Conclusion
 
-This project set out to answer a simple but practical question: do everyday software choices—such
-as browser selection and video quality settings—have a measurable impact on energy consumption
+This project set out to answer a simple but practical question: do everyday software choices (such
+as browser selection and video quality settings) have a measurable impact on energy consumption
 during short-form video playback? Our results show that they do.
 
 Under controlled experimental conditions, we find that forcing higher video quality (720p)
@@ -311,10 +335,15 @@ even modest per-play differences become relevant from a sustainability perspecti
 
 More broadly, this study highlights the importance of energy-aware software evaluation. Consumer
 software is typically optimized for performance and visual quality, while energy consumption
-remains largely invisible to users. Treating energy as a first-class metric—both in software design
-and in user-facing defaults—can help reduce the environmental footprint of widely used digital
+remains largely invisible to users. Treating energy as a first-class metric (both in software design
+and in user-facing defaults), can help reduce the environmental footprint of widely used digital
 services.
 
 As short-form video continues to dominate online media consumption, understanding and
 optimizing its energy cost will become increasingly important. Small efficiency improvements,
 when applied at scale, have the potential to produce meaningful environmental benefits.
+
+---
+
+## Link to the repository
+https://github.com/uddhav-pisharody/p1-energy-video-analysis
