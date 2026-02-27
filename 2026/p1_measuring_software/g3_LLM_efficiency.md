@@ -178,7 +178,7 @@ The three excluded runs showed energy values around an order of magnitude below 
 
 ## Threats to Validity
 
-**Internal validity:** We ran all experiments on one machine in a single session, which helps keep things consistent but does mean the results might be hard to replicate on other setups. One limitation is that GPU power was sampled every second via amd-smi, which is much coarser than the millisecond-level CPU measurements from EnergiBridge. We also didn't have precise control over room temperature, though we tried to keep conditions stable.
+**Internal validity:** We ran all experiments on one machine in a single session, which helps keep things consistent but does mean the results might be hard to replicate on other setups. One limitation is that GPU power was sampled every second via amd-smi, which is much coarser than the millisecond-level CPU measurements from EnergiBridge. We tried to keep conditions stable by having the room temperature set to 18°C and running the entire experiment in one go, but there could still be fluctuations that affect energy use.
 
 **External validity:** Our results only apply to this specific model, task type (multiple-choice questions), and hardware. Other models, quantisation settings, or different types of tasks like open-ended generation could behave quite differently.
 
@@ -188,9 +188,9 @@ The three excluded runs showed energy values around an order of magnitude below 
 
 To wrap things up: yes, context size really does matter for energy consumption, and the effect is bigger than you might expect. Going from 0k to 20k tokens increases CPU energy by 919%, and all pairwise differences are statistically significant (p < 2.23 × 10⁻⁹, CLES ≥ 0.95). The growth is super-linear but not quite quadratic, which lines up with how transformer attention works in practice.
 
-One of the more surprising findings is that the CPU actually draws less power at larger context sizes, even though total energy goes way up. This points to a memory-bandwidth bottleneck — the CPU is mostly waiting on data rather than crunching numbers. On the GPU side, energy was consistently 2.4× higher in EDP terms, likely due to partial VRAM offloading over PCIe.
+One of the more surprising findings is that the CPU actually draws less power at larger context sizes, even though total energy goes way up. This points to a memory-bandwidth bottleneck. The CPU is mostly waiting on data rather than crunching numbers. On the GPU side, energy was consistently 2.4× higher in EDP terms, likely due to partial VRAM offloading over PCIe.
 
-The takeaway for anyone using LLMs locally: don't just dump as much context as possible. Techniques like Retrieval-Augmented Generation (RAG) [1] let you be selective about what context you include, saving both energy and avoiding crashes at the hardware limits. Future work could look at multiple models and hardware setups, and also measure whether more context actually improves answer quality — because right now we only measured the energy cost, not whether it was worth it.
+The takeaway for anyone using LLMs locally: don't just dump as much context as possible. Techniques like Retrieval-Augmented Generation (RAG) [1] let you be selective about what context you include, saving both energy and avoiding crashes at the hardware limits. Future work could look at multiple models and hardware setups, and also measure whether more context actually improves answer quality. Right now we only measured the energy cost, not whether it was worth it.
 
 # References
 
