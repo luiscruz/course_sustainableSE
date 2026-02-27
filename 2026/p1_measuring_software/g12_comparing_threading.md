@@ -127,7 +127,9 @@ Besides the setting of the device itself the environment can also have an impact
 After ensuring that all the above-mentioned conditions were met, the scripts to make the measurements were ready to be run.
 
 # Results
-After running all the tests the following plots can be made:
+After running all the tests we found that running the `MULTI_THREADED`setting without caching the threads did not make any difference compared to the `SINGLE_THREADED`setting for all of the tested thread amounts. This shows that having to recreate threads is very expensive and does not improve behavior in any way. The `MULTI_THREADED_CACHED` settng on the other hand did results in some meaningfull data. All plots and analysis from now on will therefor only be for the cached variant of the tests.
+
+Using the collected data the following plots can be created:
 
 The first plot shows the average power consumption for the null measurements. The mean power over 28 runs (2 were left out as outliers) shows that the device uses around 2.2 W when in an idle state.
 
