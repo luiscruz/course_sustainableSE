@@ -174,13 +174,18 @@ The data shows clear diminishing returns. Doubling from 1 to 2 threads saves 149
 
 A few limitations should be noted:
 
-- We only tested one workload (SHA-512 hashing). Different workloads may behave differently under threading.
-- The null measurement's non-normality suggests that background noise is not perfectly stable. On a different machine or OS, this may be more or less of an issue.
-- We did not test thread counts beyond 8 (because of hardware limitaiton), which means we cannot say where the optimal number of threads lies for this specific workload and hardware.
-- The measurements were performed on a single machine. Hardware differences will affect the results.
+- We only tested one workload (SHA-512 hashing). Different workloads may behave differently under threading. Testing additional workloads was outside the time scope of this project.
+- We did not test thread counts beyond 8 (because of hardware limitation), which means we cannot say where the optimal number of threads lies for this specific workload and hardware. 
+- The measurements were performed on a single machine. Hardware differences will affect the results. We mitigated this by strictly controlling the environment (see Hardware setup), but access to additional machines was not available.
 
 # Conclusion and future work
-A.
+For a CPU-bound workload, multi-threading reduces total energy consumption, up to 35% with 8 threads compared to a single thread. The effect sizes are very large (Cohen's d ≥ 3.10), confirming these are reliable differences. However, the gains diminish: most of the benefit is captured by 4 threads, and doubling further to 8 adds only a modest improvement. In high-throughput settings (servers, batch processing), the cumulative savings are practically significant. For developers, this means multi-threading is not only a performance tool, but also an energy tradeoff.
+
+Several directions could extend this work:
+
+1. **More thread counts.** We tested 1, 2, 4, and 8 threads. Testing 16, 32, and beyond would help identify the trend better. 
+2. **Different workloads.** The SHA-512 hashing task is purely CPU-bound. Studying I/O-bound, memory-bound, or mixed workloads would show whether the energy benefit of multi-threading holds across different types of computation.
+3. **Execution time vs. energy trade-off.** While we focused on total energy, a combined analysis of execution time _and_ energy (e.g., energy-delay product) would provide a more complete picture for decision-making in performance-sensitive contexts.
 
 # References
 
