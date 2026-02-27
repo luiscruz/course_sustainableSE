@@ -162,6 +162,24 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 <img src="img/g9/meme.png" width="450" alt="js over python meme">
 </div>
 
+## Conclusion
+
+This study compared the energy consumption of merge sort, quick sort, and heap sort in Python and JavaScript across nine dataset sizes and two machines. The results are clear: JavaScript consumed on average 6.7 times less energy than Python, and this gap grows significantly at larger dataset sizes, reaching 18 times at 4 million elements. Statistical testing confirmed that the language gap is significant, while the algorithm choice alone had no meaningful effect on energy consumption.
+
+For developers building serverless applications, this has a clear practical takeaway: the runtime matters more than the algorithm. For teams already working in Python, quicksort offers some advantage at large scales due to its cache friendly access patterns, but even that cannot bridge the gap with JavaScript. If energy efficiency is a real concern, switching runtimes is the most impactful decision available.
+
+These findings align with prior work by Pereira et al., while extending it to a specific algorithmic context and a serverless computing framing. Our results add to the growing body of evidence that programming language choice carries real environmental weight. As cloud functions are executed at massive scale, language runtime design has real environmental consequences that developers and organizations should factor into their decisions.
+
+## Limitations and Future Work
+
+This study has a few limitations worth noting. The experiments were run on only two Apple machines, one M1 and one M2, both running macOS. While two devices help reduce single machine bias, the results may not generalize to other hardware architectures or operating systems like Linux and Windows, which are commonly used in cloud environments.
+
+We made the Python and JavaScript implementations as functionally similar as possible, but some differences were unavoidable given that each language has its own idioms and standard libraries. These differences could have a small effect on the results independently of the runtime itself.
+
+We also ran each configuration 10 times per dataset size. More repetitions would give more reliable estimates, especially at the larger dataset sizes where variance was noticeably higher.
+
+For future work, testing more programming languages such as Java, Go, or Rust would broaden the comparison. Testing more sorting algorithms and running experiments on Linux machines or actual cloud infrastructure would also improve the generalizability of the findings.
+
 # References
 
 [^akay2025]: Akay, B. E. (2025). *Benchmark dataset for sorting algorithms* [Benchmark Dataset for Sorting Algorithms]. Kaggle. https://www.kaggle.com/datasets/bekiremirhanakay/benchmark-dataset-for-sorting-algorithms
