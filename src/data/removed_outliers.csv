@@ -1,0 +1,5 @@
+platform,total_experiment_duration_s,timestamp,timeseries_file,energy_cpu_joules,energy_duration_s,energy_method,avg_power_watts,max_power_watts,avg_cpu_percent,max_cpu_percent,avg_cpu_temp_c,avg_memory_mb,energibridge_csv,total_net_sent_mb,total_net_recv_mb,repeat,run_number
+teams,135.92,20260222_145914,data/teams_1bot_r25_20260222_145914_timeseries.csv,772.8323,135.56,energibridge,5.71,22.43,7.34,76.37,41.61,9900.6,data/teams_1bot_r25_20260222_145914_energibridge.csv,5.51,92.49,,
+meet,125.67,20260222_170328,data/meet_1bot_r7_20260222_170328_timeseries.csv,675.7793,125.43,energibridge,5.4,19.53,6.77,84.95,41.29,9974.0,data/meet_1bot_r7_20260222_170328_energibridge.csv,6.14,68.02,7.0,15.0
+teams,137.37,20260222_135813,data/teams_1bot_r7_20260222_135813_timeseries.csv,765.1497,137.04,energibridge,5.59,19.85,7.51,76.58,42.32,9625.7,data/teams_1bot_r7_20260222_135813_energibridge.csv,5.19,27.58,7.0,1.0
+meet,125.63,20260222_141052,data/meet_1bot_r8_20260222_141052_timeseries.csv,726.8081,125.32,energibridge,5.82,23.24,9.64,98.57,43.13,10151.0,data/meet_1bot_r8_20260222_141052_energibridge.csv,3.44,67.43,8.0,5.0
