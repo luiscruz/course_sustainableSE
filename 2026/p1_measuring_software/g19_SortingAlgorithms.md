@@ -63,8 +63,8 @@ To keep all experiments fair, we executed them all on a single machine under the
 
 - The device remains plugged in throughout the experiment session 
 - Background tasks are minimised by closing non essential applications
-- Display brightness remains fixed throughout the session
-- Network usage is kept stable, and no large downloads or updates are allowed during runs
+- Low display brightness, remains fixed throughout the session
+- Device is set to airplane mode with bluetooth turned off to reduce background traffic further
 
 #### Hypotheses
 
@@ -74,8 +74,9 @@ As mentioned previously, energy consumption per run per set size will the primar
   $$H_0^{(i)}: p \geq 0.05, Data\ is\ normally\ distributed\ \forall i \in {Algorithms}$$
   $$H_A^{(i)}: P < 0.05, Data\ is\ NOT\ noramlly\ distributed\ \forall i \in {Algorithms}$$
 
-  - To compare each test set we use **<Chosen Method>**:
-  $$ TODO $$
+  - To check if there is a significant difference between python algorithms we use a ANOVA comparison:
+  $$H_0^{(i)}: p \geq 0.05, There\ is\ no\ difference\ in\ energy\ usage\ \forall i \in {Python\ Algorithms}$$
+  $$H_A^{(i)}: P < 0.05, Data\ IS\ difference\ in\ energy\ usage\ \forall i \in {Python\ Algorithms}$$
 
 - **Language Energy Comparison**
   - Again, we utilize the Shapiro-Wilk Test to show normality:
@@ -88,17 +89,45 @@ As mentioned previously, energy consumption per run per set size will the primar
 
 #### Experiment Runs
 
-We created a simple Python CLI tool to perform the experiment by defining arguments for algorithm type, test set size, test set distribution and the number of runs to be performed. We performed **X** runs of each algorithm with a set size of **Y** and a **Z** distribution. The experiment run was automated with a 10 second "cool off" period between tests to try account for tail energy consumption. This period was chosen after some initial experimentation to show no tail impact and because of the relative simplicity of the test operations. The experiment was performed in one block on a single machine running MacOS with background tasks minimized and after a power intensive task to ensure the CPU was "warmed up."
+We created a simple Python CLI tool to perform the experiment by defining arguments for algorithm type, test set size, test set distribution and the number of runs to be performed. We performed 30 runs for each distribution, with a set size of 500.000, totaling 120 runs per algorithm. The experiment run was automated with a 10 second "cool off" period between tests to try account for tail energy consumption. This period was chosen after some initial experimentation to show no tail impact and because of the relative simplicity of the test operations. The experiment was performed in one block on a single machine running MacOS with background tasks minimized and after a power intensive task to ensure the CPU was "warmed up."
 
 ```bash
 $ python runner.py --algo algorithms/radix_sort.py --size 10000 --runs 5 --distribution reversed
+$ python scripts/run_rust_energy.py -n 500000 --dataset-dir Results/tmp_datasets --runs 1 --sleep 10
 ```
+#### Results
 
----
+First, lets start off with the python algorithms only:
+
+| Algorithm | Mean energy usage | Std. Deviation |
+| --- | ---| --- |
+| Heapsort | 13.61 J | 9.81 |
+| Mergesort | 5.26 J | 3.13 |
+| Radixsort | 2.43 J | 2.17 |
+| Quicksort | 3.54 J | 1.03 |
+
+Using the anova test we get a p value of roughly p = 6.82e-54 < 0.05, making it clear there is a significant statistical difference in energy usage between algorithms. Looking at the table (and figure TODO), it is clear that Radixsort and Quicksort are the most energy-efficient, with mergesort not far behind and heapsort being the least efficient of all.
+
+For the Rust-based algorithms, we can compare the quicksort and mergesort values to the python values: 
+
+| Algorithm | Mean energy usage | Std. Deviation |
+| --- | ---| --- |
+| Mergesort | 0.58 J | 0.28 |
+| Quicksort | 0.68 J | 0.57 |
+
+Even without the comparison, we can clearly see there is a significant difference between the languages. For Mergesort, Rust is more efficient by a factor of 10(!!), and for quicksort by roughly 5. The energy usage also fluctuates less. Performing a 2-sided t-test on the averages between the languages we get a p-value of p = 2.44e-64 < 0.05, again showing a significant difference between the languages in terms of efficiency. The differences are staggering, showing truly how efficient low-level languages like Rust are compared to Python.
+
+#### Conclusion
+With this data in hand, we can put both hypotheses to sleep, and clearly state that there is significant difference in energy usage based on what algorithm you pick AND what language you use. 
 
 #### Machine Specification
 The exact specs of the machine we used are outlined below. This can be useful when comparing to results you have gotten yourself. 
 
+Device: MacBook Pro 2017
+Processor: 2,3 GHz Dual core Intel core i5
+Graphics card: Intel Iris plus graphics 640 1536 MB 
+Memory: 8 GB 2133MHz LPDDR3
+Operating system: MacOS Ventura 13.7.8 
 #### Other Points to Note
 
 ---
