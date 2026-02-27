@@ -118,7 +118,7 @@ EnergiBridge runs as a background process from just before the bot joins to just
 
 ### 3.6 Analysis
 
-We compute per-platform means and standard deviations and run (Mann-Whitney U or Welch's t-test) to test whether the difference is statistically significant at α = 0.05. We produce four charts: energy per session, system power over time, CPU usage over time, and network traffic.
+We compute per-platform means and standard deviations and run Mann-Whitney U to test whether the difference is statistically significant at α = 0.05. We produce four charts: energy per session, system power over time, CPU usage over time, and network traffic.
 
 ---
 
@@ -128,70 +128,46 @@ We compute per-platform means and standard deviations and run (Mann-Whitney U or
 
 **Network I/O is system-wide.** `psutil.net_io_counters()` captures all traffic on the machine, not just Chrome's. Background OS processes can inflate the figures. We closed non-essential applications before running, but cannot eliminate this entirely.
 
-**Teams lobby timing.** Teams routes guest participants through a lobby before admitting them. The wait time depends on how quickly the host responds. Google Meet was configured to admit participants instantly. This introduces a small, variable difference in the time the browser spends running call-related code before the call formally starts.
-
 **Single hardware configuration.** All measurements were taken on one machine. Absolute energy figures will differ on different hardware. The relative comparison between platforms should hold directionally, but we cannot verify this without testing on additional machines.
-
-**Teams leave is macOS-only.** Our leave implementation for Teams sends `Cmd+Shift+H`. This shortcut does not exist on Linux or Windows. The failure is non-fatal and does not affect the energy measurement, but replication on other operating systems requires adjusting this part of the code.
 
 ---
 
 ## 5. Results
 
-We compare Google Meet and Microsoft Teams across 27 repeated experimental runs per platform (after outlier removal). All runs lasted 120 seconds under identical hardware and browser conditions. Since normality assumptions were violated for multiple variables (Shapiro–Wilk p < 0.05), we report Mann–Whitney U tests with $\alpha$ = 0.05.
+Originally, we ran 60 experiments. After removing outliers, values more than three standard deviations from the mean, we were left with 27 repeated runs for Google Meet and Microsoft Teams
+Every video call lasted two minutes, with identical hardware and browser conditions across all runs. Since normality assumptions were violated for multiple variables (Shapiro–Wilk p < 0.05), we report Mann–Whitney U tests with α = 0.05.
 
-### 5.1 Energy Consumption
+### 5.1 Energy Consumption & CPU Usage
 
 #### Results Averaged Over 27 Runs
 
-| Metric         | Google Meet (Mean ± SD) | Microsoft Teams (Mean ± SD) | Relative Difference | Mann–Whitney p-value |
-| -------------- | ----------------------- | --------------------------- | ------------------- | -------------------- |
-| CPU Energy (J) | 662.98 ± 13.59          | 772.80 ± 14.48              | **+16.6%**          | < 0.001              |
-| Avg Power (W)  | 5.30 ± 0.10             | 5.71 ± 0.11                 | **+7.7%**           | < 0.001              |
+| Metric         | Google Meet (Mean ± SD) | Microsoft Teams (Mean ± SD) | Google Meet (Median) | Microsoft Teams (Median) | Relative Difference | Mann–Whitney p-value |
+| -------------- | ----------------------- | --------------------------- | ------------------- | ----------------------- | ----------------- | ------------------- |
+| CPU Energy (J) | 662.98 ± 13.59          | 772.80 ± 14.48              | 662.75              | 772.24                  | **+16.6%**        | < 0.001             |
+| Avg Power (W)  | 5.30 ± 0.10             | 5.71 ± 0.11                 | 5.29                | 5.71                    | **+7.7%**         | < 0.001             |
+| Avg CPU (%) | 6.22 ± 0.74             | 7.28 ± 0.43                 | 5.95                | 7.25                    | **+21.8%**                  | < 0.001             |
 
 
-#### Results Using Medians
+| Energy (J) | Average Power (W) | CPU Usage (%) |
+|------------|-------------------|---------------|
+| ![Energy (J)](energyJoule.png) | ![Average Power (W)](avgPowWatts.png) | ![CPU Usage (%)](cpuPercentage.png) |
 
-| Metric         | Google Meet (Median) | Microsoft Teams (Median) | Relative Difference |
-| -------------- | -------------------- | ------------------------ | ------------------- |
-| CPU Energy (J) | 662.75               | 772.24                   | **+16.5%**          |
-| Avg Power (W)  | 5.29                 | 5.71                     | **+7.9%**           |
+Each video call lasted 120 seconds on both Google Meet and Microsoft Teams,
+ensuring identical workload conditions.
+However, the overall experiment duration was longer for Teams due to slower loading times,
+which naturally increased total recorded energy (Joules).
+To ensure a fair comparison, we therefore focused not only on total energy consumption but also on per-second metrics,
+including average power draw and average CPU usage. 
+Even when normalized per second, Teams consistently consumed more resources.
+- Median CPU usage was 5.95% for Meet and 7.25% for Teams, meaning Teams required approximately 17% more CPU utilization. This difference was statistically significant (Mann–Whitney U = 65.5, p < 0.001) with a very large effect size (r = 0.82).
+- In terms of energy, Teams consumed on average 109.8 Joules more per experimental run about 16.6% higher than Meet, and the distributions did not overlap at all (U = 0.0, p < 0.001; rank-biserial r = 1.0), meaning every Teams run consumed more energy than every Meet run. 
+- Average power was also significantly higher for Teams (approximately 8% higher; U = 3.0, p < 0.001; r ≈ 0.99). All differences across CPU usage, total CPU energy, and average power were statistically significant (p < 0.001), with large to near-maximal effect sizes. 
 
-![img.png](energyJoule.png)
-
-![img.png](avgPowWatts.png)
-
-### 5.2 CPU Usage
-
-| Metric      | Google Meet | Microsoft Teams | Relative Difference (mean) | Mann–Whitney p-value |
-| ----------- | ----------- | --------------- | -------------------------- | -------------------- |
-| Avg CPU (%) | 6.22 ± 0.74 | 7.28 ± 0.43     | **+17.0%**                 | < 0.001              |
-
-Median CPU usage was 5.95% for Meet and 7.25% for Teams.
-
-Microsoft Teams required approximately 17% more CPU utilisation than Google Meet. The difference was statistically significant (U = 65.5, p < 0.001) with a very large effect size (r = 0.82).
-
-The increased CPU activity aligns directly with the observed increase in energy consumption.
-
-![img.png](cpuPercentage.png)
-
-#### Statistical Significance
-
-All differences in CPU usage, average power, and total CPU energy were statistically significant (Mann–Whitney U, p < 0.001).
-
-Effect sizes (rank-biserial correlation):
-- CPU usage: 0.82 (large)
-- Energy consumption: 1.00 (maximal separation)
-- Average power: 0.99 (near-maximal)
-
-Microsoft Teams consumed on average 109.8 Joules more per 120-second session than Google Meet. The distributions did not overlap: the Mann–Whitney U statistic for energy was U = 0.0 (p < 0.001), corresponding to a rank-biserial effect size of 1.0 — the maximum possible effect. Every Teams run consumed more energy than every Meet run.
-
-Average power draw was also significantly higher for Teams (U = 3.0, p < 0.001), with an extremely large effect size (r $\approx$ 0.99).
-
-These results indicate a consistent and substantial energy gap between the two platforms under identical workload conditions.
+These results indicate a consistent and substantial energy gap between the two platforms under identical workload conditions. Consequently, the difference cannot be attributed solely to longer experiment durations.
 
 
-### 5.3 Network Traffic
+### 5.2 Network Traffic
+
 
 | Metric             | Google Meet (Mean ± SD) | Microsoft Teams (Mean ± SD) | Relative Difference | p-value |
 | ------------------ | ----------------------- | --------------------------- | ------------------- | ------- |
@@ -204,9 +180,9 @@ Median received data:
 
 Teams consistently received substantially more network data than Meet. The rank-biserial correlation for received bytes was 1.0, indicating complete separation between platforms.
 
-![img.png](sentData.png)
-
-![img.png](recvData.png)
+| Sent Data (Bytes) | Received Data (Bytes) |  |
+|------------------|---------------------|--|
+| ![Sent](sentData.png) | ![Received](recvData.png) |  |
 
 ### 5.4  Summary of Observed Differences
 
@@ -222,26 +198,32 @@ All differences are statistically significant with large effect sizes.
 
 ## 6. Discussion
 
-Our results provide strong evidence that Microsoft Teams consumes more energy than Google Meet in browser-based desktop calls under controlled conditions.
+Our results provide strong evidence that Microsoft Teams consumes more energy than Google Meet during browser-based desktop calls under controlled conditions.
+We believe the primary reason for this energy gap lies in how the two applications are architected and delivered.
 
-The most important result is the 16–17% increase in total CPU energy consumption. Unlike a small percentage difference that can be statistically significant but negligible in practice, this magnitude is substantial. Given that video calls can last for hours and occur daily across millions of users, a 16% per-session difference will scale into a meaningful cumulative energy impact.
+Microsoft Teams is designed as a comprehensive collaboration platform rather than just a video conferencing tool. In addition to video calls, it integrates chat, file management, calendars, and team workspaces into a single environment. It relies heavily on React and state management systems to keep modules such as Chat, Teams, and Calendar synchronized in real time. While this architecture enables a rich, integrated user experience, it also introduces additional computational overhead.
 
-In the Mann–Whitney U test results for energy consumption and network reception, U = 0.0 indicates complete separation between distributions. In practical terms, every single Teams run consumed more energy than every Meet run.
+In contrast, Google Meet is a comparatively lightweight, browser-native service. It runs directly within an existing browser tab and is built around WebRTC — a standardized set of real-time communication APIs embedded in modern web browsers for audio and video streaming [1]. Because Meet primarily focuses on delivering video conferencing rather than an extensive suite of collaboration tools, we expected it to consume less energy. Our results strongly support that expectation.
 
-The energy difference is consistent with the architectural expectations. 
+The most important finding is the 16–17% increase in total CPU energy consumption observed in Microsoft Teams. This is not a marginal difference that is statistically significant yet practically negligible. Instead, this magnitude is substantial. Given that video calls often last for hours and occur daily across millions of users, a 16% per-session difference can scale into a meaningful cumulative energy impact.
 
-Teams showed:
-- Higher average CPU utilisation
-- Higher sustained power draw
-- Significantly higher incoming network traffic
+The Mann–Whitney U test further reinforces this conclusion. For both energy consumption and network reception, we obtained U = 0.0, indicating complete separation between the distributions. In practical terms, every single Teams run consumed more energy than every Meet run under our test conditions. This level of consistency strengthens the reliability of the findings.
 
-The increased network traffic (over 50% more data received) suggests that Teams might use different encoding strategies, bitrate targets, or buffering mechanisms compared to Meet. Increased decoding workload and JavaScript processing overhead likely translate into a higher sustained CPU activity. However, we can observe that the outgoing traffic was slightly lower in Teams than Meet. This indicates that the primary workload difference lies in receiving and processing the video streams rather than transmitting them.
+The energy difference aligns with architectural expectations. 
+Prior research has shown that frontend framework complexity [2] and network load [3] are strong predictors of energy consumption.
 
-From a sustainable software engineering perspective, this finding highlights how architectural and frontend decisions can greatly impact the energy consumption. However, the relative difference may vary on other hardware or with real webcam feeds.
+Teams demonstrated Higher average CPU utilization, Higher sustained power draw , higher incoming network traffic.
+Notably, Teams received over 50% more data than Meet. This suggests differences in encoding strategies, bitrate targets, or buffering mechanisms. Increased decoding workload and additional JavaScript processing overhead likely translate into higher sustained CPU activity.
+Interestingly, outgoing traffic was slightly lower in Teams than in Meet. This indicates that the primary workload difference lies in receiving and processing video streams rather than transmitting them.
+
+From a sustainable software engineering perspective, these findings highlight how architectural and frontend design decisions can significantly influence energy consumption. While functionality and integration provide value to users, they also carry measurable environmental costs.
+However, it is important to acknowledge that the relative difference may vary across different hardware configurations or when using real webcam feeds instead of controlled test inputs.
+
 
 ---
 
-## 7. Conclusion
+## 7. Conclusion, Limitations and Future Work
+   
 
 This study measured the energy cost of browser-based video calls on Google Meet and Microsoft Teams via EnergiBridge.
 
@@ -264,6 +246,9 @@ Future work could evaluate:
 - Mobile devices
 - Multi-participant scaling effects
 
+Limitations
+ - We were unable to run all the experiments in a single session because Google Teams required a premium subscription for meetings longer than 60 minutes. After each 60-minute session, we had to start a new meeting. This introduced a human error within the experiments.
+ - Due to hardware limitations, we were only able to simulate five participants on each platform. A more realistic scenario would involve a larger number of participants instead just five.
 ---
 
 ## 8. Replication
@@ -284,3 +269,9 @@ python analyze.py --data-dir ../data --output-dir ../figures
 ```
 
 See `README.md` for full prerequisites and troubleshooting.
+
+## 9. Rerouces
+[1] Leo. (2026, February 14). Five best online meeting services: Latency, Efficiency & Accessibility ranked. https://lifetips.alibaba.com/tech-efficiency/five-best-online-meeting-services
+[2] Angular or react: Which one consumes less energy? – BL Research. (2026, February 16). https://www.research-bl.com/angular-or-react-which-one-consumes-less-energy/
+[3] R. Horn et al., "Native vs Web Apps: Comparing the Energy Consumption and Performance of Android Apps and their Web Counterparts," 2023 IEEE/ACM 10th International Conference on Mobile Software Engineering and Systems (MOBILESoft), Melbourne, Australia, 2023, pp. 44-54, doi: 10.1109/MOBILSoft59058.2023.00013. keywords: {Energy consumption;Video on demand;Volume measurement;Memory management;Energy measurement;Telecommunication traffic;Time measurement;Energy consumption;Android;Mobile Web;Performance;Empirical Software Engineering},
+
