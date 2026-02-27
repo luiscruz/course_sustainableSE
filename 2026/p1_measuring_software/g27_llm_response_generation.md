@@ -14,8 +14,7 @@ This problem takes another level if we are counting on these measurements to mak
 
 This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
 Read on so that we can get your paper accepted in the best scientific conference.
--->
-
+---
 <!-- #### 👉 Note 1:
 
 If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
@@ -49,7 +48,7 @@ Nevertheless, using statistical metrics to measure effect size is not enough –
 
 ## Introduction
 
-In November 2022, OpenAI released ChatGPT ([Matt Casey, 2023](https://snorkel.ai/large-language-models)) - arguably the first Large Language Model (LLM) available to the general public. This, alongside the recent Artificial Intelligence (AI) revolution, marked a real turn in what we perceive computers to be capable of - no longer could programs only deal with scenarios pre-defined by a programmer; they now also (appeared to) reason for themselves. 
+In November 2022, OpenAI released ChatGPT ([Matt Casey, 2023](https://snorkel.ai/large-language-models)) - arguably the first Large Language Model (LLM) available to the general public. This, alongside the recent Artificial Intelligence (AI) revolution, marked a real turn in what we perceive computers to be capable of - no longer could programs only deal with scenarios pre-defined by a programmer; they now also (appeared to) reason for themselves.
 
 However, with subsequent research into the LLM-production pipeline, LLM developers have received a vast amount of criticism for the negative social and environmental impact that LLMs and their production cause. Arguably the most common criticism of LLM developers is the unethical and oftentimes illegal sourcing of training data for their models. These claims often touch base on the infringement of copyright or GDPR to prove the wrong-doings of LLM developers. However, another aspect that must be considered is the environmental impact of LLMs - specifically, the energy consumed to both test and train these LLMs. [Jacob Morrison et al.](https://arxiv.org/pdf/2503.05804) found that training a 13 billion parameter model from the OLMo model family consumed an estimated 230 MWh of electricity - which they state is enough to power the average US home for 21 years.
 
@@ -96,18 +95,20 @@ For this test, we wanted to see how efficient different LLM models made by diffe
 To perform this test, we will sample twenty prompts of varying length at random from our dataset (note: we use random_state=0 for reproducibility). For each prompt, 30 executions will be repeated on each of the three chosen LLMs.
 
 ## Results
+
 After setting up the code to run the experiment automatically, and making sure the computer was warmed up and all confounding variables were limited, we ran the experiment and obtained the following results.
 
 ### Part 1
-Running part one of our experiment took a total of 36 prompts * 30 executions = 1080 total response generations. Running this took around 3 hours in total.
+
+Running part one of our experiment took a total of 36 prompts (6 prompts for the 6 prompt lengths), each executed 30 times, resulting in1080 total response generations. 
+
+
 In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
 
 <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png" alt="Energy usage vs prompt length" width="450"/> <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_cpu_gpu.png" alt="Energy usage of CPU and GPU vs prompt length" width="450"/>
 
-![My Project Screenshot](img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png)
+When analysing the overall energy consumption of our LLM by prompt length, a clear outlier can be observed at prompt length euqal to 5. This prompt length has produced 
 
-
-What we see in the plot below this is that there is 
 <img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width="450"/>
 
 <img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png" alt="" width="450"/>
@@ -122,8 +123,8 @@ Running part two of our experiment took a total of 20 prompts * 30 executions * 
 
 <img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png" alt="" width="450"/>
 
-
 ## Analysis
+
 This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt.
 
 ## Limitations
