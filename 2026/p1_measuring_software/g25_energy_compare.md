@@ -65,8 +65,8 @@ Energy measurement began after:
 YouTube allows an anonymous user to scroll through Shorts without any limitations, but it does show a cookie consent prompt that pops up before the first video is loaded. Before the measurements are taken, the script clicks the "Reject all" button to ensure that the cookie consent prompt does not influence the results.
 
 <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-block: 1rem;">
-    <img src="./img/g25_energy_compare/youtube_cookies.png" alt="YouTube cookie prompt" style="width: calc(50% - 1rem);"/>
-    <img src="./img/g25_energy_compare/tiktok_cookies.jpeg" alt="TikTok cookie prompt" style="width: calc(50% - 1rem);"/>
+    <img src="./img/g25_energy_compare/youtube_cookies.png" alt="YouTube cookie prompt" style="width: calc(36% - 1rem);"/>
+    <img src="./img/g25_energy_compare/tiktok_cookies.jpeg" alt="TikTok cookie prompt" style="width: calc(54% - 1rem);"/>
 </div>
 
 Similarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" buttonm, close the "verification slider", and click on "Got it" before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the "X" button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
