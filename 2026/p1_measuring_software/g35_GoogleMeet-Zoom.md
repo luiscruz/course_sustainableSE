@@ -37,7 +37,7 @@ The primary research objective of this piece is to compare the two aforementione
 
 # Methodology 
 
-## Experimental setup
+## Experimental Setup
 
 The experiment was conducted in a controlled environment on a single computer with the following device specifications:
 
@@ -82,7 +82,7 @@ All non-essential applications were stopped, and device notifications disabled. 
 In the following subsection, we describe the step-by-step testing procedure and the automation of the experiment.
 
 
-## Automation & Testing Procedure 
+## Automation and Testing Procedure 
 
 The experiment is driven by a single automation script that imports two platform-specific automation modules. Once started, it requires no manual intervention.
 
@@ -110,7 +110,7 @@ Each 30-second EnergiBridge run creates a CSV containing timestamped energy read
 ## Outlier detection
 Before diving into the experimental results we removed outliers to improve data reliability. We used a Z-Score threshold of 3.0 to determine the outliers. The reason why we picked 3 is due to how it covers 99.7% of normal data which lies within 3 standard deviations. Another reason why we picked 3.0 is because a thereshold of 3.0 ensures that only extreme measurements error are removed while it keeps normal variability intact. Based on the application, our experiment flagged outliers between 0 and 1 per group of 30 iterations. In total, only 5 outliers were removed. Based on this it confirms that our data was generally stable and that only extreme measurement errors were detected. Since the number of identified outliers were negligible, we decided that we will not demonstrate visualization or data processing with outliers since these outliers were negligible and will do not demonstrate a significant reflection of our data.
 
-## Experimental results
+## Experimental Results
 After the removal of outliers, the results can be seen illustrated below. Each figure compares Zoom and Microsoft Teams under the specified feature ON vs OFF conditions. The violin plots show the full distribution of the measurements across the 30 runs, while the embedded box plots indicate the mean and interquartile range.
 
 ### Power and EDP Comparison for camera on vs camera off
@@ -169,6 +169,7 @@ After the removal of outliers, the results can be seen illustrated below. Each f
     <strong>Figure 6</strong>: EDP (J*s) values for features screen sharing on vs off.
     </p>
   </div>
+
 </div>
 
 
@@ -327,7 +328,7 @@ Overall, the statistical analysis shows that *camera activation is the dominant 
 
 
 # Discussion
-## Potential Explanations
+## Potential Explanations of the Results
 While we cannot confirm what caused the result patterns observed, in this subsection we make educated guesses, and explore the potential causes of such patterns. Each of them could be a topic to be validated in further research.
 
 **Predictable camera ON/OFF test results** in both applications show that both Teams and Zoom interact with the camera hardware in similar direct manner. It is also clear that Teams has approximately the same overhead of energy consumption when compared to a corresponding test in Zoom.
@@ -348,7 +349,7 @@ At the organizational level, small considerations can have a real impact on the 
 # Limitations
 ### Limited Test Duration: 
 
-In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. Based on this we cannot clearly have results that can have system wide implications in order for certain companies to pick the most energy efficient application.
+A realistic conference call usually lasts more than 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. Based on this, we cannot clearly have results that can have system-wide implications in order for certain companies to pick the most energy efficient application.
 
 ### Singular Hardware System: 
 Another limitation is that this experiment was conducted in a single machine in which results could vary in different machines. The energy consumption can vary depending on the computers, CPU architecture, GPU, the battery health and power management.
