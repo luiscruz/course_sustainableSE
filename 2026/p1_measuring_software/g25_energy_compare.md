@@ -69,7 +69,7 @@ YouTube allows an anonymous user to scroll through Shorts without any limitation
     <img src="./img/g25_energy_compare/tiktok_cookies.jpeg" alt="TikTok cookie prompt" style="width: calc(50% - 1rem);"/>
 </div>
 
-Simmilarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" buttonm, close the "verification slider", and click on "Got it" before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the "X" button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
+Similarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" buttonm, close the "verification slider", and click on "Got it" before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the "X" button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
 
 #### <u>Warm-up Time</u>
 We decided to keep a warm-up time of 5 seconds to ensure the CPU reaches a stable thermal state and reducing fluctuations. 
@@ -109,7 +109,7 @@ Other software requirements and versions that are used for this project can be f
 Violin + Box plots, expect the shape and outliers of the data.
 
 ### Normality
-After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 3 standard deviations from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
+After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 1.5 x IQR (Inter-quartile range) from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
 
 ### Statistical Significance
 Group differences were evaluated using the Welch’s t-test, which does not assume equal variances between groups. Statistical significance was determined using a α = 0.05.
@@ -181,7 +181,7 @@ Unlike previous intervals, the minimum energy consumption is roughly the same ac
 ![10_clean](img/g25_energy_compare/measurements_10_violin_box_clean.png)
 
 ##### Conclusion
-Accross the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
+Across the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
 
 ### Statistical Significance
 The tests were conducted after removing outliers.
@@ -237,7 +237,7 @@ This may be of even more import because mobile devices often rely on wireless ne
 
 Additionally, our methodology prioritized isolation. We used a fresh browser profile for each experiment for exactly thirty-second sessions. This strips away some of the complexities of real-world use. Future experiments can focus on the energy impact of fully logged-in sessions where targeted advertising and personalized recommendation algorithms are also running in the background. 
 
-Furthermore, extending the scrolling duration from thirty seconds to several minute, or even hours, would provide valuable insights into sustained power draw. Longer sessions would allow insights into how devices handle thermal throttling over time. It can also assert whether platforms optimize managing background resources when a user falls into a prolonged doomscrolling loop.
+Furthermore, extending the scrolling duration from thirty seconds to several minutes, or even hours, would provide valuable insights into sustained power draw. Longer sessions would allow insights into how devices handle thermal throttling over time. It can also assert whether platforms optimize managing background resources when a user falls into a prolonged doomscrolling loop.
 
 
 # Replication Package
