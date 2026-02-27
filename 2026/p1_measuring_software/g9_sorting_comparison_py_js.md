@@ -128,7 +128,7 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 
 # References
 
-[^akay2025]: Akay, B. E. (2025). *Benchmark dataset for sorting algorithms* [Data set]. Kaggle. https://www.kaggle.com/datasets/bekiremirhanakay/benchmark-dataset-for-sorting-algorithms
+[^akay2025]: Akay, B. E. (2025). *Benchmark dataset for sorting algorithms* [Benchmark Dataset for Sorting Algorithms]. Kaggle. https://www.kaggle.com/datasets/bekiremirhanakay/benchmark-dataset-for-sorting-algorithms
 
 [^hellerstein2019]: Hellerstein, J. M., Faleiro, J., Gonzalez, J., Schleier-Smith, J., Sreekanti, V., Tumanov, A., & Wu, C. (2019). Serverless computing: One step forward, two steps back. *9th Biennial Conference on Innovative Data Systems Research (CIDR '19)*. [https://arxiv.org/abs/1812.03651](https://arxiv.org/abs/1812.03651)
 
