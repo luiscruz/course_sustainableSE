@@ -173,6 +173,51 @@ We did not instrument the pipeline into fine-grained phases in this iteration, b
   - Python’s interpreter overhead often makes it slower on CPU-bound tasks, but in this specific workload the Parquet writer and I/O patterns may dominate, allowing Python to remain competitive.
 - **Parquet + compression libraries** to influence both time and energy. Different default buffer sizes, compression implementations, and vectorization can change CPU utilization significantly.
 
+### 5) Connecting the hypotheses to our observed ranking (Rust ≈ Python << Go < Java)
+
+#### Rust: lowest energy and lowest EDP
+Rust’s result is consistent with a typical ingestion profile for an AOT-compiled language:
+- **Low runtime overhead**: no interpreter and no GC pauses; tight loops over decoded JSON lines can be efficient.
+- **Predictable memory behavior**: fewer hidden allocations and a lower-level control of buffers can reduce CPU work per record.
+- **Good “throughput per watt”**: Rust’s average power is similar to Python (~15–16W), but it finishes slightly faster, which reduces energy.
+
+Even if some of the benefit comes from library implementation quality (e.g., Arrow/Parquet writer), the practitioner takeaway remains: in this pipeline, Rust delivered the best combined energy+latency outcome.
+
+#### Python: surprisingly close to Rust (but with caveats)
+In many CPU-bound tasks, Python is slower due to interpreter overhead. Our results show Python **close to Rust** in both energy and time, which suggests the workload may not be “pure Python execution” dominated:
+- **Native extensions matter**: Parquet writing via `pyarrow` runs largely in optimized native code. If a non-trivial fraction of total time is spent in the Arrow/Parquet layer, Python’s interpreter overhead becomes less dominant.
+- **Validation cost is limited**: our strict validation checks a small set of fields and simple string patterns. If the bottleneck is I/O + decompression + Arrow serialization rather than Python-level branching, Python can remain competitive.
+
+However, this closeness should not be over-generalized: a pipeline with heavier per-record transformations (e.g., complex schema normalization, joins, enrichment) would likely magnify Python’s interpreter overhead and shift the ranking.
+
+#### Go: lower power, but much longer runtime
+Go stands out as the **lowest average power** (~11.9W) but **second-worst energy** because it runs much longer:
+- **Longer runtime dominates energy**: even with lower power, total energy accumulates over time ($E \\approx P \\times T$).
+- **Potential sources of longer runtime**:
+  - JSON decoding in Go can allocate heavily unless carefully optimized (e.g., using streaming decoders, reuse buffers).
+  - The Parquet writing stack and compression settings can be a bottleneck depending on library and row-group/buffer defaults.
+  - GC and allocation patterns: Go’s GC is efficient, but allocation-heavy parsing can still increase CPU work and extend runtime.
+
+This is a concrete example of why “lower average watts” does not automatically imply “lower energy” for batch jobs.
+
+#### Java: not the slowest, but the highest energy (power-heavy execution)
+Java uses the most energy despite completing faster than Go. The reason is visible in the power figures: Java draws the **highest average power** (~19.5W).
+Likely contributing factors include:
+- **JIT compilation and warmup**: even with one warmup run, JIT activity can still influence measured runs (depending on code paths and JVM tiering), sometimes raising CPU utilization and power.
+- **Aggressive optimization → aggressive CPU usage**: Java often achieves good throughput by using the CPU more aggressively (higher frequency, more sustained utilization), which can increase average package power.
+- **GC + allocation behavior**: if the JSON + aggregation path allocates heavily, GC activity can add overhead and raise power.
+
+In other words, Java may be “fast” in a wall-clock sense while still being “expensive” in energy because it keeps the package in a higher power state for most of the run.
+
+#### Cross-cutting factor: ecosystem/libraries are part of the reality
+Even if all four implementations follow the same logical pipeline, the *actual work performed* differs subtly via:
+- parsing strategies and defaults,
+- compression implementations and tuning,
+- Parquet writer row-group sizing,
+- buffering and I/O patterns.
+
+From an engineering standpoint, this is not a bug in the comparison—it reflects real decisions teams make. But it does mean our results should be interpreted as **language + typical ecosystem** for this ingestion task, not “language runtime in isolation”.
+
 ---
 
 ## Threats to validity (what could bias these results?)
