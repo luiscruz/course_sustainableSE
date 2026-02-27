@@ -406,9 +406,9 @@ Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft 
 
 # References
 
-1. Sweigart, Al. “Welcome to PyAutoGUI’s Documentation! — PyAutoGUI 1.0.0 Documentation.” Readthedocs.io, 2014, pyautogui.readthedocs.io/en/latest/.
-2. “The Empirical Rule (68-95-99.7).” Dmaic.com, 2 Oct. 2025, www.dmaic.com/faq/empirical-rule/. Accessed 26 Feb. 2026.
-3. “Z-Score (Standard Score).” Dmaic.com, 8 Oct. 2025, www.dmaic.com/faq/z-score-standard-score/. Accessed 26 Feb. 2026.
+1. Sweigart, Al. Welcome to PyAutoGUI’s documentation! — PyAutoGUI  documentation. (2021). Readthedocs.io. http://pyautogui.readthedocs.io/en/latest/
+2. The Empirical Rule (68-95-99.7). (2025b, October 2). Dmaic.com. http://www.dmaic.com/faq/empirical-rule/
+3. Z-Score (Standard Score). (2025b, October 8). Dmaic.com. https://www.dmaic.com/faq/z-score-standard-score/
 4. Adrjan, P., Ciminelli, G., Judes, A., Koelle, M., Schwellnus, C., & Sinclair, T. M. (2025). Working from home after COVID-19: Evidence from job postings in 20 countries. Labour Economics, 96, 102751. https://doi.org/10.1016/j.labeco.2025.102751
 5. Desmarais, A. (2025, March 22). Why remote work is not the lasting COVID legacy some may have hoped. Euronews; Euronews.com. https://www.euronews.com/next/2025/03/22/how-did-the-covid-19-pandemic-affect-remote-work-in-europe
 
