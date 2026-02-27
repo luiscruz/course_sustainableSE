@@ -69,7 +69,7 @@ We categorize the experimental parameters into dependent and independent variabl
 - **Total Energy (J):** the total amount of energy consumed in 30 seconds.
 - **Energy Delay Product (J·s):** trade-off between energy efficiency and the time taken to complete the task.
 
-Average Power Consumption was chosen as we are reporting on the consumption of a continuous use case rather than a one-off use case. Energy Delay Product was chosen to evaluate the overall efficiency of by balancing energy consumption against performance.
+Average Power Consumption was chosen as we are reporting on the consumption of a continuous use case rather than a one-off use case. Energy Delay Product was chosen to evaluate the overall efficiency by balancing energy consumption against performance.
 
 Next, we establish a controlled testing environment, to achieve as accurate and reproducible results as possible.
 
