@@ -1,8 +1,6 @@
 """
 stress_test.py — Comprehensive pre-experiment stress test.
 
-If this passes, run_experiment.py will almost certainly complete without errors.
-
 Usage:
     cd 2026/experiment
     sudo python3 stress_test.py
@@ -38,8 +36,6 @@ BINARY     = '../EnergiBridge/target/release/energibridge'
 CONDITIONS = ['AUTO', 'AUTO_NC', 'MEDIUM', 'HIGH', 'HIGH_NC', 'VERY_HIGH']
 CANVAS_ON  = {'HIGH', 'AUTO'}
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-
 passes = 0
 failures = 0
 phase_results = {}
@@ -65,75 +61,41 @@ def get_confidence(screenshot_gray, template_path):
 
 
 def _locate_canvas_label_robust():
-    """
-    Locate canvas_label.png on the current screen matching ONLY the
-    lighter (text) pixels — ignoring the dark background entirely.
-
-    canvas_label.png is dark-mode: 89.6% of pixels are near-black
-    (~18–40 grey = settings panel background); the "Canvas" text
-    characters are the lighter ~10% (~60–179 grey).  When canvas is ON,
-    Spotify plays a canvas video behind the settings panel, brightening
-    those background pixels.  By masking them out, the score reflects
-    only the text characters, which the video cannot affect.
-
-    Uses TM_CCORR_NORMED + Otsu mask (supported in OpenCV 4.x).
-    Threshold: score >= 0.75  (meaningful; not an arbitrary low value).
-
-    Returns a pyautogui.Box in LOGICAL coordinates for _scan_canvas_row,
-    or None if not found.
-    """
     tmpl_gray = cv2.cvtColor(
         np.array(Image.open('screenshots/canvas_label.png').convert('RGB')),
         cv2.COLOR_RGB2GRAY,
     )
-    # Otsu separates the dark background cluster (~18–40) from the
-    # lighter text cluster (~60–179).  THRESH_BINARY keeps lighter pixels.
+
     _, mask = cv2.threshold(tmpl_gray, 0, 255,
                             cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     mask_pixels = int(mask.sum()) // 255
     if mask_pixels < 20:
         return None
 
-    # Both the template and pyautogui.screenshot() are at physical pixel
-    # resolution (2× on Retina) — no resizing needed.  The scale factor is
-    # only used below to convert the match location back to logical coords.
     scr_pil  = pyautogui.screenshot()
     scr_gray = cv2.cvtColor(np.array(scr_pil), cv2.COLOR_RGB2GRAY)
 
     log_w, _ = pyautogui.size()
-    scale = max(1, round(scr_gray.shape[1] / log_w))   # 2 on Retina, 1 elsewhere
+    scale = max(1, round(scr_gray.shape[1] / log_w)) 
 
-    # TM_SQDIFF with mask: lower = better, 0 = perfect.
-    # TM_CCORR_NORMED + sparse mask produces NaN in OpenCV 4.x (known bug).
     result = cv2.matchTemplate(scr_gray, tmpl_gray, cv2.TM_SQDIFF, mask=mask)
     min_val, _, min_loc, _ = cv2.minMaxLoc(result)
-    # Normalise to 0–1 (worst case: every text pixel is 255 off)
     norm_ssd = min_val / (mask_pixels * 65025.0)
 
-    if norm_ssd > 0.15:   # allow up to 15% mean squared error on text pixels
+    if norm_ssd > 0.15:  
         return None
 
-    # Convert physical-pixel match location to logical coordinates for
-    # _scan_canvas_row (which expects a logical-coordinate Box).
     px, py = min_loc
     tmpl_h, tmpl_w = tmpl_gray.shape
     return Box(px // scale, py // scale, tmpl_w // scale, tmpl_h // scale)
 
 
 def read_canvas_state():
-    """
-    Re-open settings and pixel-scan to get current canvas toggle state.
-    Uses text-pixel-only masked matching so the canvas video background
-    does not affect the confidence score.
-    """
     open_settings()
     try:
         label = _locate_canvas_label_robust()
         if label is None:
             return None
-        # The canvas video plays behind settings and can land on a video frame
-        # that obscures the toggle's pixel colours.  Retry for up to ~1 second
-        # to catch a frame where the toggle is unobstructed.
         for _ in range(8):
             try:
                 _, _, is_on = _scan_canvas_row(label)
@@ -147,7 +109,6 @@ def read_canvas_state():
         close_settings()
 
 
-# ── Phase 1: Screenshot confidence ───────────────────────────────────────────
 
 def phase1():
     print('\n' + '='*60)
@@ -161,7 +122,6 @@ def phase1():
     pyautogui.hotkey('command', 'up')
     time.sleep(0.5)
 
-    # ── Pass A: screenshots visible with dropdown CLOSED ──────────────────────
     closed_screenshots = [
         (1, 'screenshots/quality_dropdown.png'),
         (6, 'screenshots/canvas_label.png'),
@@ -176,8 +136,6 @@ def phase1():
         record('phase1', f'[{i}/6] {os.path.basename(path):35s} conf={conf:.3f}', ok,
                '' if ok else 'BELOW THRESHOLD 0.6')
 
-    # ── Pass B: option screenshots — only visible when dropdown is OPEN ────────
-    # Locate and click the dropdown button first.
     dropdown = pyautogui.locateOnScreen('screenshots/quality_dropdown.png', confidence=0.6)
     if dropdown is None:
         for i, path in [(2, 'screenshots/quality_automatic.png'),
@@ -190,7 +148,7 @@ def phase1():
         click_x = int(dropdown.left + dropdown.width * 0.92)
         click_y = dropdown.top + dropdown.height // 2
         pyautogui.click(click_x, click_y)
-        time.sleep(1.2)   # wait for dropdown list to appear
+        time.sleep(1.2)   
 
         open_screenshots = [
             (2, 'screenshots/quality_automatic.png'),
@@ -208,14 +166,13 @@ def phase1():
             record('phase1', f'[{i}/6] {os.path.basename(path):35s} conf={conf:.3f}', ok,
                    '' if ok else 'BELOW THRESHOLD 0.6')
 
-        pyautogui.press('escape')   # close dropdown without changing selection
+        pyautogui.press('escape') 
         time.sleep(0.3)
 
     pyautogui.hotkey('command', 'w')
     time.sleep(0.5)
 
 
-# ── Phase 2: All 36 transitions ───────────────────────────────────────────────
 
 def phase2():
     print('\n' + '='*60)
@@ -224,7 +181,6 @@ def phase2():
 
     n = 0
     for src in CONDITIONS:
-        # First configure source so we're starting from a known state
         try:
             configure(src)
         except Exception as e:
@@ -240,9 +196,6 @@ def phase2():
                      f'quality={QUALITY_MAP[dst]:10s}')
             try:
                 configure(dst)
-                # Verify canvas state visually (best-effort).
-                # None means the canvas video blocked pixel detection — not a
-                # real error, because configure() already verified via set_canvas().
                 actual = read_canvas_state()
                 if actual is not None and actual != dst_canvas:
                     record('phase2', label, False,
@@ -255,7 +208,6 @@ def phase2():
             time.sleep(1)
 
 
-# ── Phase 3: Crash-scenario replay ───────────────────────────────────────────
 
 def phase3():
     print('\n' + '='*60)
@@ -263,8 +215,8 @@ def phase3():
     print('='*60)
 
     crash_sequences = [
-        ('VERY_HIGH', 'AUTO_NC'),   # original crash 1 sequence
-        ('HIGH',      'AUTO_NC'),   # canvas ON→OFF, most sensitive toggle
+        ('VERY_HIGH', 'AUTO_NC'),  
+        ('HIGH',      'AUTO_NC'),  
     ]
 
     for src, dst in crash_sequences:
@@ -285,7 +237,6 @@ def phase3():
             time.sleep(1)
 
 
-# ── Phase 4: Same-condition idempotency ───────────────────────────────────────
 
 def phase4():
     print('\n' + '='*60)
@@ -303,7 +254,6 @@ def phase4():
             time.sleep(1)
 
 
-# ── Phase 5: Full pipeline per condition ──────────────────────────────────────
 
 def phase5():
     print('\n' + '='*60)
@@ -342,7 +292,6 @@ def phase5():
         time.sleep(1)
 
 
-# ── Summary ───────────────────────────────────────────────────────────────────
 
 def summary():
     print('\n' + '='*60)

@@ -175,7 +175,7 @@ def main():
         else:
             print(f'\nFresh start — {total_runs} runs planned.')
             print(f'Running {WARMUP_S}s CPU warmup...')
-            # fibonacci_warmup(seconds=WARMUP_S)
+            fibonacci_warmup(seconds=WARMUP_S)
             print('Warmup complete.')
 
         # Per-condition counters for filename numbering
