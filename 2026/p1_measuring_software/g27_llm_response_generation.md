@@ -112,10 +112,10 @@ Running part one of our experiment took a total of 36 prompts (6 prompts for the
 In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
 
 
+
+<img width=45% src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> <img width=46.3% src="img\g27_llm_response_generation\p1_energy_vs_prompt_length_cpu_gpu.png"/> 
+
 **Total energy consumption:**
-
-<img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> 
-
 | Prompt length | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
 | ------------- | ------------ | ------------ | ------------- | --------------------- |
 | 5             | 212.15       | 7.09         | 131.04        | 60.94                 |
@@ -125,10 +125,7 @@ In the plot below, we can see the average energy consumption of the LLM for each
 | 9             | 213.66       | 113.20       | 202.26        | 14.52                 |
 | 10            | 212.32       | 190.68       | 204.31        | 5.94                  |
 
-<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width=""/>
-
-
-<img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
+<img width=45% src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png"/> <img width=43% src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
 
 ### Part 2
 
