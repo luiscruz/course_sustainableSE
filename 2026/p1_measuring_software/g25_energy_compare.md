@@ -104,36 +104,15 @@ EnergiBridge is a cross-platform command-line utility that can analyze the perfo
 
 Other software requirements and versions that are used for this project can be found in `requirements.txt` file of our Github Repository which is linked in the [Replication Package](#replication-package) section.
 
-## Analysis
-### Exploratory Analysis
-Violin + Box plots, expect the shape and outliers of the data.
+# Analysis
+## Exploratory Analysis
 
-### Normality
-After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 1.5 x IQR (Inter-quartile range) [^outlier-detection] from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
-
-### Statistical Significance
-Group differences were evaluated using the Welch’s t-test, which does not assume equal variances between groups. Statistical significance was determined using a α = 0.05.
-
-### Effect Size
-To evaluate the practical implication of the observed results, mean difference and percent change were calculated.
-Cohen’s d was computed to measure statistical effect size. Effect sizes were interpreted according to conventional benchmarks:
-
-Small effect: d ≈ 0.2
-
-Medium effect: d ≈ 0.5
-
-Large effect: d ≈ 0.8
-
-While statistical difference is unlikely to arise by chance, the practical importance will be further evaluated in the discussion section.
-
-# Results
-## Analysis
-
-This section presents violin and box plots based on the averages of 30 measurements for each platform on two, five and ten second intervals of scrolling.
+This section presents violin and box plots as well as their visual exploration based on the averages of 30 measurements for each platform on 2, 5 and 10 second intervals of scrolling.
 
 “Raw” plots include all observations, while “clean” plots exclude outliers using the 1.5xIQR rule. We found that for some runs on TikTok, the reels were stuck, and the bot script was unable to scroll. We assume that these occurences represent the outliers on the lower end, providing a justification to remove them.
 
-### 2 Second Intervals
+#### 2 second intervals
+
 ![2_raw](img/g25_energy_compare/measurements_2_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -149,42 +128,55 @@ On average, energy consumption is similar across platforms. However, TikTok show
 
 No noticeable difference after outlier removal.
 
-### 5 Second Intervals
+#### 5 second intervals
+
 ![5_raw](img/g25_energy_compare/measurements_5_violin_box_raw.png)
 
 ##### Chrome_TikTok
+
 As in the 2-second case, variability is higher than YouTube. The distribution is more strongly skewed toward higher values, suggesting a greater likelihood of increased energy consumption.
 
 ##### Chrome_YouTube
+
 Variability increases compared to the 2-second interval. The distribution shows slight lower-tail skewness, with the median below the mean.
 
 ##### Comparison
+
 Both the mean and median are higher for TikTok, indicating greater overall energy consumption relative to YouTube.
 
 ![5_clean](img/g25_energy_compare/measurements_5_violin_box_clean.png)
 
 After removing the outliers, Chrome_tiktok graph appears to attain a normal distribution. Since outliers were on the lower end, both mean and median are higher.
 
-### 10 Second Intervals
-
 ![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
 
 ##### Chrome_TikTok
+
 Variability remains higher than YouTube but the distribution is more evenly spread and appears approximately symmetric. No clear outliers are observed.
 
 ##### Chrome_YouTube
+
 Variability increases relative to earlier intervals. The mean and median converge, and the distribution appears approximately normal.
 
 ##### Comparison
+
 Unlike previous intervals, the minimum energy consumption is roughly the same across platforms. However, TikTok consistently shows higher average consumption across runs.
 
 ![10_clean](img/g25_energy_compare/measurements_10_violin_box_clean.png)
 
-##### Conclusion
-Across the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
+### Conclusion
+
+Accross the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
+
+## Statistical Analysis
+
+Across all runs examined, the calculated differences consistently show higher energy consumption for TikTok compared to YouTube. Given this pattern, this relationship will be treated as implicit in the following results analysis.
+
+### Normality
+After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's (α = 0.05) test was performed. If the results do not assume normality, the outliers were removed and the Shapiro-Wilk's test was conducted again. 
 
 ### Statistical Significance
-The tests were conducted after removing outliers.
+Group differences were evaluated using the Welch’s t-test when both distributions are normal, and non-parametric Whitney-Mann U test otherwise. Statistical significance was determined with α = 0.05 (significant when *score &lt; 0.05*).
 
 | Interval (s) | TikTok Normal |  YouTube Normal | Test Type      | Test Score | Significant  |
 |--------------|---------------|-----------------|----------------|------------|--------------|
@@ -193,11 +185,56 @@ The tests were conducted after removing outliers.
 | 10s          | True          | True            | Welsch's t-test| 0.0002     | Yes          |
 
 ### Effect Size
+To evaluate the practical implication of the observed results, mean difference and percent change were calculated.
+Cohen’s d was computed to measure statistical effect size. Effect sizes were interpreted according to conventional benchmarks:
+
+Small effect: d ≈ 0.2
+
+Medium effect: d ≈ 0.5
+
+Large effect: d ≈ 0.8
+
 | Interval (s) | Mean difference | Percent difference | Cohen's d |
 |--------------|-----------------|--------------------|-----------|
 | 2s           | 3.1293          | 1.31%              | 1.174     |
 | 5s           | 14.7714         | 6.68%              | 4.5612    |
 | 10s          | 3.81185         | 1.81%              | 1.0327    |
+
+### Interpretation
+
+The analysis indicates that for the 2-second interval datasets, the observed effect size is large (Cohen’s d > 1). However, the corresponding statistical test does not reach the significance threshold (α = 0.05), meaning there is insufficient evidence to conclude that the observed difference reflects a systematic pattern rather than random variation.
+
+The effect is very large and statistically significant for 5s. The effect is large and significant for 10s. 
+
+In conclusion, statistically, with α = 0.05, it can be inferred that using Chrome, TikTok consumes more energy than YouTube on average.
+
+The practical measurements will be discussed in the Practical Importance subsection of the Discussion section.
+
+## Discussion
+## Test isolation
+
+To isolate the tests from each other, we're creating a new browser instance and profile for each run. This ensures that the browser's cache and other stateful data do not influence the results. Static assets such as the JavaScript bundle and CSS files are not cached across runs, which means that each run will have to download and process these assets from scratch.
+
+Wether this is realistic depends on the user behavior and device. For example, Chromium allows an origin to use up to 60% of the total disk space for caching, and when disk space is low, evict the least recently visited origins[^storage-for-the-web]. A user could visit the homepage of YouTube, download the static assets once, and then watch Shorts without re-downloading the assets. However, modern web applications, including YouTube[^youtube-ab-testing], often use A/B testing to serve different versions of the site to different users, which can lead to variations in energy consumption. Additionally, updates to the application can cause different versions of the static assets to be served, which can also invalidate the cached assets. Therefore, we believe that our approach of creating a new browser instance and profile for each run is a reasonable way to isolate the tests and ensure that the results are not influenced by caching or other stateful data.
+
+### Recommendation algorithms
+
+While developing the scripts to automate the Chromium browser, we encountered several challenges. Althrough we start with the same video uploaded to both platforms, the recommendation algorithms of YouTube and Instagram may serve different videos to the user, which can lead to variations in energy consumption. To attempt to reduce the influence of the recommendation algorithms, all tests are run without a logged in user. Therefore, a scrolling session of one test should not influence the next test, as the recommendation algorithms will not have any user data to personalize the content. However, it is still possible that the platforms use browser fingerprinting techniques to attempt to identify the user and serve personalized content, which could influence the results.
+
+### Automation mitigations
+
+Initially, we attempted to measure the energy consumption of scrolling Instagram Reels. However, we found that the Instagram web application does now allow an anonymous user to scroll more than 4 videos, which is not enough to get a reliable measurement. As we did not want to log in to an account, we decided to drop the Instagram Reels tests.
+
+<div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-block: 1rem;">
+    <img src="./img/g25_energy_compare/youtube_cookies.png" alt="YouTube cookie prompt" style="width: calc(50% - 1rem);"/>
+    <img src="./img/g25_energy_compare/tiktok_cookies.png" alt="TikTok cookie prompt" style="width: calc(50% - 1rem);"/>
+</div>
+
+Instead, we focused on YouTube Shorts and TikTok. YouTube allows an anonymous user to scroll through Shorts without any limitations, but it does show a cookie consent prompt that pops up before the first video is loaded. Before the measurements are taken, the script clicks the "Reject all" button to ensure that the cookie consent prompt does not influence the results.
+
+Simmilarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" button before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the X button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
+
+While analyzing the results, we noticed that the energy consumption of TikTok of some test runs was significantly lower than the other runs. After investigating the issue, we found that TikTok was disallowing the automated browser to scroll through the videos, and loaded only the first video. These outlier runs were excluded from the analysis to ensure that the results are not influenced by this issue.
 
 ## Discussion
 ### Test Isolation
@@ -218,6 +255,20 @@ To attempt to reduce the influence of the recommendation algorithms, all tests a
 While analyzing the results, we noticed that the energy consumption of TikTok of some test runs was significantly lower than the other runs. After investigating the issue, we found that TikTok was disallowing the automated browser to scroll through the videos, and loaded only the first video. These outlier runs were excluded from the analysis to ensure that the results are not influenced by this issue.
 
 ### Practical Importance
+
+At the 5-second intervals, the difference is the most noticeable, with TikTok consuming 6.68% more energy than YouTube. It can be speculated, that frozen scrolling bot detection patterns might contribute to this difference, but practically, there is no denial that TikTok consumes more energy.
+
+At the 10-second intervals, the difference is smaller (1.81%).
+
+At 2-second intervals, due to high variability of TikTok usage, statistical significance may not be achieved using the current testing methods, but based on the other occurences, it might be assumed that TikTok consumes more energy than YouTube.
+
+As for practical implications, higher energy consumption means faster battery drain - an annoyance to dedicated doomscrollers. While the difference may seem negligible in ordinary circumstance, it becomes noticeable when it accumulates over time or when the remaining battery percentage suddenly matters.
+
+For example, in situations where the final percentage of battery life becomes critical (getting kidnapped or mother in hospital), that remaining charge may no longer be available if more energy-intensive applications were used beforehand. In less urgent circumstances, users who engage in extended scrolling may simply find themselves losing a few additional minutes of device usage or entertainment.
+
+Over the long term, higher energy demand also implies more frequent charging cycles. This accelerates battery degradation, shortening overall battery lifespan and potentially reducing the usable life of the device. This means faster device replacement, making the accumulated difference have economic consequences.
+
+From an environmental perspective, increased energy consumption contributes to greater electricity demand and associated emissions, depending on the energy source. Additionally, faster battery wear and shorter device lifecycles contribute to electronic waste and the resource demands of manufacturing replacements.
 
 # Conclusion
 Our research is aimed to analyse the differences in energy consumption of "doomscrolling" accross different popular short-form video social media platforms. The motivation for this experiment was to help reduce everyday frustrations of rapid battery drain and increasing electricity costs.
