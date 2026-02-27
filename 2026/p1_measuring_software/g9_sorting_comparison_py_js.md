@@ -1,29 +1,50 @@
 ---
-author: Norah Elisabeth Milanesi, Nassiri Mohammed, Oei Jimmy, Turanlı Gonenc
+author: Norah Elisabeth Milanesi, Mohammed Nassiri, Jimmy Oei, Gonenc Turanlı
 group_number: 9
-title: "Measuring the Energy Cost of Merge Sort: Python vs. JavaScript"
+title: "Sorting Out Energy: Comparing Merge Sort, Quick Sort, and Heap Sort in Python vs. JavaScript"
 image: "img/g9/js_vs_py.png"
 date: 12/02/2026
 summary: |-
-  This project investigates the energy consumption differences between Python and JavaScript when sorting large datasets using merge sort algorithm. By executing the same algorithm across datasets of varying sizes, we will analyze how programming language runtime characteristics influence energy usage and performance. Through this comparison, the study seeks to provide insights into the sustainability implications of language choice for computationally intensive tasks.
+  This study compares the energy consumption of three widely used sorting algorithms - merge sort, quick sort, and heap sort - implemented in both Python and JavaScript (Node.js). By measuring energy usage across datasets of varying sizes, we gain insights into how language choice affects the energy efficiency of sorting operations. Our findings are particularly relevant to serverless cloud environments, where the language choice can have significant implications for the energy consumption of applications at scale.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
+TODO: introduction here
 
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Energy Efficiency in Serverless Computing
+Cloud computing has fundamentally reshaped how software is deployed. Among its forms, serverless computing - also known as Function as a Service (FaaS) - has gained significant traction [^hellerstein2019]. Services such as AWS Lambda, Azure Functions, and Google Cloud Functions enable developers to execute code on-demand without managing any underlying infrastructure. There exists a clear duopoly in the serverless computing market, where Python and JavaScript (Node.js) are the dominant programming languages [^eismann2022]. This makes the choice between them a routine decision for cloud developers worldwide.
 
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
+This decision is almost never made with energy consumption in mind, yet the environmental impact of software is becoming increasingly important. As serverless functions are used at massive scale, even small differences in energy usage can become a significant cumulative power draw. As companies seek to reduce their carbon footprints, understanding the energy implications of their software is crucial for achieving their sustainability goals. This process starts with the choice of what programming language is used to develop their software, as prior research has shown this choice can have a measurable effect on energy consumption. Pereira et al. [^pereira2017] compared 27 languages and found that Node.js was considerably more energy efficient than Python. However, their study used general micro-benchmarks and did not examine specific algorithms or the serverless context.
+
+Sorting is among the most fundamental operations in computer science [^cormen2009]. It is a common task performed in various applications, including serverless functions where they are especially used at scale for data processing: ingesting events, ETL pipelines, ranking records before storage, etc. Furthermore, sorting is a computationally intensive task that puts direct pressure on the language runtime, which makes it a good candidate for comparing energy efficiency across languages. By directly comparing the energy usage of sorting algorithms - merge sort, quicksort, and heapsort - in Python and JavaScript we aim to provide insights into how language choice in serverless functions can impact the energy consumption of cloud applications.
 
 
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
+## Why Merge Sort, Quick Sort, and Heap Sort?
+Merge sort, quick sort, and heap sort are among the most recognized and used sorting algorithms [^pizarrovasquez2020]. These three all share the same average time complexity of O(n log n), which makes their performance more comparable as the algorithmic efficiency is similar. However, the three algorithms also have different computational profiles as you can see in the table below. By controlling for time complexity, we can better isolate the differences between the computational profiles of the algorithms to see whether Python or Node.js affect them equally or favour specific ones.
 
---- 
+| Algorithm | Best Case | Average Case | Worst Case | Memory | Computational Profile |
+|-----------|-----------|--------------|------------|--------|-----------------------|
+| Merge Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(n)$ | Divide-and-conquer, recursive |
+| Quick Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | $O(\log n)$ | Divide-and-conquer, in-place |
+| Heap Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(1)$ | In-place, binary heap |
 
-### Results & Statistical Analysis
+# Methodology
+The experiment can be ran automatically by executing the ‘run_experiment.sh’ script, which measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
+While setting up and conducting our experiment, we followed the Scientific Guide to Set Up Energy Efficiency Experiments in order to ensure the accuracy, correctness and appropriateness of our results, and to reduce bias as much as possible. Whenever running the experiments, all other software, notifications and services was turned off. Settings of the machines running the experiment that might affect power consumption, such as screen brightness, were also frozen. The machines ran dummy tasks before the experiments were conducted as warm up. Due to the amount of time the experiments take, the number of repetetitions were kept at 10 for each sorting algorithm, which results in 30 total repetitions per experiment. The order of the sorting algorithms being subject to the experiment were also randomized, and the room temperature was kept stable. Once all these conditions were met, the automated script was run on the machines, once for each of the three sorting algorithms. Finally, the datasets being used in the experiment as the input for the sorting algorithms are simple input-n.txt files, which contain numbers in each row,going from 1 to n-1. The algorithms take these files, and sort their contents.
+To ensure that we actually measure the energy consumption, and therefore the difference in amount of energy consumed, between python and javascript while minimizing all other factors that might affect energy consumption, our experimental variables were determined as follows:
+- Independent: Programming languages (Python and JavaScript)
+- Dependent: Energy consumption
+- Controlled: Implementation of the sort algorithms, specs of the machines running the experiment, versions of the tools used in running the experiment
 
-#### *Language Comparison*
+  - Python version: 3.13.7
+  - Node version: v22.22.0
+  - Specs: Apple M2, 16GB RAM + Apple M1, 16GB
+  
+
+## Results & Statistical Analysis
+
+### *Language Comparison*
 
 The most prominent finding is the large energy gap between Python and JavaScript. Averaged across all algorithms and dataset sizes, JavaScript consumed a mean of 3.94 J while Python consumed 26.24 J, a 6.7× difference. This gap is confirmed as statistically significant by a Mann-Whitney U test (U = 640, p < 0.0001), with a large effect size (rank-biserial r = −0.76, where |r| > 0.5 indicates a large effect). The Mann-Whitney test was chosen over a t-test because the energy distributions are right-skewed and span several orders of magnitude, violating the normality assumption. Figure 1 shows the mean energy growth across dataset sizes for each language–algorithm combination, and Figure 2 provides the overall distribution comparison.
 <div align="center">
@@ -47,7 +68,7 @@ The most prominent finding is the large energy gap between Python and JavaScript
 
 The energy gap grows non-linearly with dataset size. At small sizes (<= 125,000 elements) both languages remain below 10 J, but beyond 250,000 elements Python's energy diverges sharply. At 4,000,000 elements, Python Heapsort consumed 259.6 J compared to just 14.4 J for its JavaScript equivalent: an 18× difference at that scale. This divergence reflects Python's interpreted execution model, where each sorting operation incurs interpreter overhead that compounds at scale, whereas JavaScript's V8 JIT compiler optimises hot loops at runtime.
 
-#### *Algorithm Comparison*
+### *Algorithm Comparison*
 
 When aggregated across both languages, mean energy consumption ranked as: Heapsort (21.2 J) > Mergesort (13.5 J) > Quicksort (10.6 J). However, a Kruskal-Wallis test found no statistically significant difference between the three algorithms (H = 1.77, p = 0.41), and all pairwise Mann-Whitney comparisons between algorithms were also non-significant (all p > 0.24). This means the algorithm choice alone does not reliably predict energy consumption: the effect is dominated by the language.
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
@@ -73,7 +94,7 @@ Power draw analysis (Figure 6) reveals that Python not only runs longer but also
   </figure>
 </div>
 
-#### *Why Does This Happen?*
+### *Why Does This Happen?*
 
 Before we dig in, a quick reminder of what we're actually measuring, because power and energy are not the same thing:
 
@@ -101,37 +122,16 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 <img src="img/g9/meme.png" width="450" alt="js over python meme">
 </div>
 
-### References
+# References
+
+[^hellerstein2019]: Hellerstein, J. M., Faleiro, J., Gonzalez, J., Schleier-Smith, J., Sreekanti, V., Tumanov, A., & Wu, C. (2019). Serverless computing: One step forward, two steps back. *9th Biennial Conference on Innovative Data Systems Research (CIDR '19)*. [https://arxiv.org/abs/1812.03651](https://arxiv.org/abs/1812.03651)
+
+[^eismann2022]: Eismann, S., Scheuner, J., van Eyk, E., Schwinger, M., Grohmann, J., Herbst, N., Abad, C. L., & Iosup, A. (2022). The state of serverless applications: Collection, characterization, and community consensus. *IEEE Transactions on Software Engineering*, *48*(10), 4152–4166. [https://doi.org/10.1109/TSE.2021.3113940](https://doi.org/10.1109/TSE.2021.3113940)
+
+[^pereira2017]: Pereira, R., Couto, M., Ribeiro, F., Rua, R., Cunha, J., Fernandes, J. P., & Saraiva, J. (2021). Ranking programming languages by energy efficiency. *Science of Computer Programming*, *205*, 102609. [https://doi.org/10.1016/j.scico.2021.102609](https://doi.org/10.1016/j.scico.2021.102609)
+
+[^cormen2009]: Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.). MIT Press.
+
+[^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting algorithms and their execution times: An empirical evaluation. In *Advances in Emerging Trends and Technologies — Proceedings of ICAETT 2020* (pp. 335–348). Springer. [https://doi.org/10.1007/978-3-030-63665-4_27](https://doi.org/10.1007/978-3-030-63665-4_27)
 
 [1] Cormen, T. H. et al. (2009). Introduction to Algorithms 
-
-#### 👉 Note 1:
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
-
---- 
-
-## Unbiased Energy Data ⚖️
-
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
-
-### Zen mode 🧘🏾‍♀️
-
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
-
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
-
-### Freeze your settings 🥶
-
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
-
----
-
-### 
-
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
-
