@@ -5,12 +5,16 @@ title: "Energy Implications of Language and Runtime Choices in Data Ingestion Pi
 image: "img/g8_programming_languages_data_ingestion/mean_energy_ci.svg"
 date: 28/02/2026
 summary: |-
-  Energy consumption is becoming an important concern in software engineering, yet developers rarely have concrete guidance on how implementation choices influence energy efficiency. In this study, we investigate how programming language selection affects energy usage in a common data-intensive workload. We design and implement an identical data ingestion pipeline that reads large JSONL datasets, performs schema validation and lightweight transformations, aggregates records, and writes the results to Parquet format. The pipeline is implemented across multiple languages representing different runtime and compilation models, namely Python, Go, Java, and Rust.
+    Compare the energy consumption of Python, Java, Go, and Rust when performing a data ingestion task.
 
-  Using EnergiBridge, we systematically measure execution time, energy consumption, and resource utilization under controlled experimental conditions. By analyzing both total energy usage and average power draw, we examine whether observed differences are primarily driven by runtime performance or by variations in power behavior. Our results provide practical insights into the energy-performance trade-offs of language and runtime choices for data processing systems. We further provide a replication package containing implementations, automation scripts, and measurement procedures to support reproducibility and future comparative studies.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
+## Introduction
+
+Energy consumption is becoming an important concern in software engineering, yet developers rarely have concrete guidance on how implementation choices influence energy efficiency. In this study, we investigate how programming language selection affects energy usage in a common data-intensive workload. We design and implement an identical data ingestion pipeline that reads large JSONL datasets, performs schema validation and lightweight transformations, aggregates records, and writes the results to Parquet format. The pipeline is implemented across multiple languages representing different runtime and compilation models, namely Python, Go, Java, and Rust.
+
+  Using EnergiBridge, we systematically measure execution time, energy consumption, and resource utilization under controlled experimental conditions. By analyzing both total energy usage and average power draw, we examine whether observed differences are primarily driven by runtime performance or by variations in power behavior. Our results provide practical insights into the energy-performance trade-offs of language and runtime choices for data processing systems. We further provide a replication package containing implementations, automation scripts, and measurement procedures to support reproducibility and future comparative studies.
 
 ## Why compare language energy for ingestion pipelines?
 
@@ -65,7 +69,7 @@ All implementations download from the same GH Archive endpoint and write outputs
 
 ### What we measured
 Per run, we report:
-- **Energy (J)**: **CPU package energy** ($E_{pkg}$) derived from the `PACKAGE_ENERGY (J)` counter.
+- **Energy (J)**: **CPU package energy** ($E_{pkg}$) derived from the `PACKAGE_ENERGY (J) ` counter (intel cpu, linux mint).
 - **Time (s)**: wall-clock runtime of the benchmark command.
 - **Average power (W)**: $P_{avg} = E_{pkg} / T$
 - **Energy–Delay Product (EDP)**: $EDP = E_{pkg} \\times T$ (lower is better if you care about both energy and latency)
