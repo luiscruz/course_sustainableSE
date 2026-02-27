@@ -47,15 +47,8 @@ To ensure that we actually measure the energy consumption, and therefore the dif
 
 [^eismann2022]: Eismann, S., Scheuner, J., van Eyk, E., Schwinger, M., Grohmann, J., Herbst, N., Abad, C. L., & Iosup, A. (2022). The state of serverless applications: Collection, characterization, and community consensus. *IEEE Transactions on Software Engineering*, *48*(10), 4152–4166. [https://doi.org/10.1109/TSE.2021.3113940](https://doi.org/10.1109/TSE.2021.3113940)
 
-[^pereira2017]: Rui Pereira, Marco Couto, Francisco Ribeiro, Rui Rua, Jácome Cunha, João Paulo Fernandes, João Saraiva,
-Ranking programming languages by energy efficiency,
-Science of Computer Programming,
-Volume 205,
-2021,
-102609,
-ISSN 0167-6423,
-https://doi.org/10.1016/j.scico.2021.102609.
+[^pereira2017]: Pereira, R., Couto, M., Ribeiro, F., Rua, R., Cunha, J., Fernandes, J. P., & Saraiva, J. (2021). Ranking programming languages by energy efficiency. *Science of Computer Programming*, *205*, 102609. [https://doi.org/10.1016/j.scico.2021.102609](https://doi.org/10.1016/j.scico.2021.102609)
 
 [^cormen2009]: Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.). MIT Press.
 
-[^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting Algorithms and Their Execution Times an Empirical Evaluation. In L.-K. Lee, L. H. U, F. L. Wang, S. K. Cheung, O. Au, & K. C. Li (Eds.), Advances in Emerging Trends and Technologies - Proceedings of ICAETT 2020 (pp. 335-348). (Advances in Intelligent Systems and Computing; Vol. 1302). Springer. https://doi.org/10.1007/978-3-030-63665-4_27
+[^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting algorithms and their execution times: An empirical evaluation. In *Advances in Emerging Trends and Technologies — Proceedings of ICAETT 2020* (pp. 335–348). Springer. [https://doi.org/10.1007/978-3-030-63665-4_27](https://doi.org/10.1007/978-3-030-63665-4_27)
