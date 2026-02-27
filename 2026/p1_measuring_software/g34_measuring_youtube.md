@@ -71,7 +71,7 @@ We defined four conditions (one per setting plus the baseline) and conducted 30 
 trials in total. To minimize human error and ensure consistency across trials, the entire experiment was automated using
 Python and Playwright [2]. The hardware and software details of the machine on which we conducted the
 experiment are provided below in section [Hardware/Software Details](#hardwaresoftware-details). The video used throughout all trials was a fixed,
-publicly available YouTube video **(TODO: ADD VIDEO)** with no ads and streamed at a consistent quality (480p).
+publicly available [YouTube video](https://www.youtube.com/watch?v=d4u4cgxTShU) with no ads and streamed at a consistent quality (480p).
 ### Zen Mode
 Before the experiment began, we prepared the machine by closing all applications, disabling
 all notifications, disabling brightness adjusting. Display brightness and system volume were both fixed at 30% for the duration
@@ -185,17 +185,17 @@ Our results have quite a few outliers. In total we have 13 outliers, with `voice
 
 
 
-Further insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations-and-future-work). Later in the [Statistical significance](#statistical-significance) we will see that although this difference exists, on a statistical level, these differences are negligible. 
+Further insights can be found in the outlier removed plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations-and-future-work). Later in the [Statistical significance](#statistical-significance) we will see that although this difference exists, on a statistical level, these differences are negligible. 
 
 <div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;" >
-  <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="Normalised Histogram containing all 4 experimental classes">
+  <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="outlier removed Histogram containing all 4 experimental classes">
 </div>
 
 
 The histograms below give us an insight into the type of statistical tests we can run, as they highlight the normality of our data. We can see that all classes on the lower end of the violin plot have a right tail indicating outliers with high wattage, while the `ambient mode` has a left tail indicating low wattage outliers. After the outlier removal every class can be considered a normal distribution except for `all-off` which as mentioned above seems to have outliers within a smaller range as well. We can clearly see this with the gap between the lower end and the upper end of the graph. 
 <div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;">
-  <img src="./img/g34_measuring_youtube/Non-Normalised_full_histogram.png" alt="Non-Normalised Violinplot containing all 4 experimental classes">
-  <img src="./img/g34_measuring_youtube/full_histogram.png" alt="Normalised Histogram containing all 4 experimental classes">
+  <img src="./img/g34_measuring_youtube/Non-Normalised_full_histogram.png" alt="Non-outlier removed Violinplot containing all 4 experimental classes">
+  <img src="./img/g34_measuring_youtube/full_histogram.png" alt="outlier removed Histogram containing all 4 experimental classes">
 </div>
 
 ## Statistical Significance
@@ -204,7 +204,7 @@ Because the energy consumption data did not consistently satisfy normality assum
 The figure below shows the statistical significance of each comparison, expressed as −log10(p), with the dashed horizontal line indicating the significance threshold of p = 0.05.
 
 <div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;">
-  <img src="./img/g34_measuring_youtube/Mann-Whitney-Test.png" alt="Non-Normalised Violinplot containing all 4 experimental classes">
+  <img src="./img/g34_measuring_youtube/Mann-Whitney-Test.png" alt="Non-outlier removed Violinplot containing all 4 experimental classes">
 </div>
 
 <p> </p>
@@ -253,7 +253,7 @@ Finally, although we used outlier detection procedures, our results still contai
 The link takes you to our github repository. Follow the instructions to fully replicate our experimentation.
 
 
-# References
+# Referencess
 
 [1] Global Media Insight. YouTube Users
 Statistics. https://www.globalmediainsight.com/blog/youtube-users-statistics/#Daily_Active_Users_on_YouTube
