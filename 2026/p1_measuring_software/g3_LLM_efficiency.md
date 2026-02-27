@@ -116,6 +116,8 @@ The experiment was executed as a single automated session using the following pr
 3. **Cooldown:** A 10-second idle period between consecutive runs to allow thermal dissipation and prevent energy measurement carryover.
 4. **Measurement:** For each run, EnergiBridge recorded CPU energy consumption (Joules) at millisecond granularity, while amd-smi sampled GPU socket power (Watts) at one-second intervals in a background process.
 
+The replication package can be found [here](https://github.com/CS4575-SSE/group_3_assignment_1/releases/tag/v1.0-replication).
+
 # Results
 
 Across 150 inference runs spanning five context sizes, the data shows a coherent picture that largely confirms our expectations while surfacing a few counterintuitive findings.
