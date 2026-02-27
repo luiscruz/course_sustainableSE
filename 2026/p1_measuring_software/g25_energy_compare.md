@@ -69,7 +69,7 @@ YouTube allows an anonymous user to scroll through Shorts without any limitation
     <img src="./img/g25_energy_compare/tiktok_cookies.jpeg" alt="TikTok cookie prompt" style="width: calc(50% - 1rem);"/>
 </div>
 
-Simmilarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" buttonm, close the "verification slider", and click on "Got it" before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the "X" button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
+Similarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" buttonm, close the "verification slider", and click on "Got it" before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the "X" button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
 
 #### <u>Warm-up Time</u>
 We decided to keep a warm-up time of 5 seconds to ensure the CPU reaches a stable thermal state and reducing fluctuations. 
@@ -109,7 +109,7 @@ Other software requirements and versions that are used for this project can be f
 Violin + Box plots, expect the shape and outliers of the data.
 
 ### Normality
-After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 3 standard deviations from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
+After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 1.5 x IQR (Inter-quartile range) [^outlier-detection] from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
 
 ### Statistical Significance
 Group differences were evaluated using the Welch’s t-test, which does not assume equal variances between groups. Statistical significance was determined using a α = 0.05.
@@ -133,7 +133,7 @@ This section presents violin and box plots based on the averages of 30 measureme
 
 “Raw” plots include all observations, while “clean” plots exclude outliers using the 1.5xIQR rule. We found that for some runs on TikTok, the reels were stuck, and the bot script was unable to scroll. We assume that these occurences represent the outliers on the lower end, providing a justification to remove them.
 
-### 2 second intervals
+### 2 Second Intervals
 ![2_raw](img/g25_energy_compare/measurements_2_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -149,7 +149,7 @@ On average, energy consumption is similar across platforms. However, TikTok show
 
 No noticeable difference after outlier removal.
 
-### 5 second intervals
+### 5 Second Intervals
 ![5_raw](img/g25_energy_compare/measurements_5_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -165,7 +165,7 @@ Both the mean and median are higher for TikTok, indicating greater overall energ
 
 After removing the outliers, Chrome_tiktok graph appears to attain a normal distribution. Since outliers were on the lower end, both mean and median are higher.
 
-### 10 second intervals
+### 10 Second Intervals
 
 ![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
 
@@ -181,7 +181,7 @@ Unlike previous intervals, the minimum energy consumption is roughly the same ac
 ![10_clean](img/g25_energy_compare/measurements_10_violin_box_clean.png)
 
 ##### Conclusion
-Accross the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
+Across the runs, TikTok showed more unstable or inconsistent energy consumption across runs with similar or higher mean and average. It can be inferred, that TikTok is less energy efficient in the long run.
 
 ### Statistical Significance
 The tests were conducted after removing outliers.
@@ -209,35 +209,35 @@ However, modern web applications, including YouTube[^youtube-ab-testing], often 
 
 Therefore, we believe that our approach of creating a new browser instance and profile for each run is a reasonable way to isolate the tests and ensure that the results are not influenced by caching or other stateful data.
 
-### Recommendation algorithms
+### Recommendation Algorithms
 While developing the scripts to automate the Chromium browser, we encountered several challenges. Althrough we start with the same video uploaded to both platforms, the recommendation algorithms of YouTube and Instagram may serve different videos to the user, which can lead to variations in energy consumption.
 
 To attempt to reduce the influence of the recommendation algorithms, all tests are run without a logged in user. Therefore, a scrolling session of one test should not influence the next test, as the recommendation algorithms will not have any user data to personalize the content. However, it is still possible that the platforms use browser fingerprinting techniques to attempt to identify the user and serve personalized content, which could influence the results.
 
-### Automation mitigations
+### Automation Mitigations
 While analyzing the results, we noticed that the energy consumption of TikTok of some test runs was significantly lower than the other runs. After investigating the issue, we found that TikTok was disallowing the automated browser to scroll through the videos, and loaded only the first video. These outlier runs were excluded from the analysis to ensure that the results are not influenced by this issue.
 
-### Practical importance
+### Practical Importance
 
 # Conclusion
 Our research is aimed to analyse the differences in energy consumption of "doomscrolling" accross different popular short-form video social media platforms. The motivation for this experiment was to help reduce everyday frustrations of rapid battery drain and increasing electricity costs.
 
 We designed a controlled experimental setup using the EnergiBridge utility to measure the precise power draw of a desktop Chrome browser during automated, 30-second scrolling sessions for both YouTube Shorts and TikTok. The tests were varied between different scrolling frequencies, scrolling every two, five, and ten seconds. Additionally, environmental controls were set like hardwired internet, terminating background tasks and setting a fixed screen brightness and sound. The experiments were ran using fresh browser profiles for every run.
 
-Our findings indicate that there are differences in energy consumption of doomscrolling. Across the tests, YouTube Shorts consistently proved to be more stable and energy-efficient than TikTok. TikTok exhibited a higher overall power consumption and a greater run-to-run variability. This finding was more prominent, and statistically significant, for the five-second and ten-second scrolling intervals. In order for TikTok to maintain a continuous feed, it requires demands noticeably more system resources than YouTube.
+Our findings indicate that there are differences in energy consumption of doomscrolling. Across the tests, YouTube Shorts consistently proved to be more stable and energy-efficient than TikTok. TikTok exhibited a higher overall power consumption and a greater run-to-run variability. This finding was more prominent, and statistically significant, for the five-second and ten-second scrolling intervals. In order for TikTok to maintain a continuous feed, it demands noticeably more system resources than YouTube.
 
-The experiments required conquering challenges like recommendation algorithms and anti-automation measures that can impact the findings. These were taken into account in the results but may still have effect on the validity of the experiments. Techniques such as fingerprinting can negate our efforts for test isolation.
+The experiments required conquering challenges like recommendation algorithms and anti-automation measures that can impact the findings. These were taken into account in the results but may still have an effect on the validity of the experiments. Techniques such as fingerprinting can negate our efforts for test isolation.
 
 Ultimately, these results still provide a clear and practical takeaway for the everyday user. Should you find yourself with a low battery and the urge to scroll, opting for YouTube Shorts over TikTok might just buy you those crucial extra minutes of entertainment.
 
-# Future work
+# Future Work
 This research establishes a baseline for insight into the energy demands of browser-based doomscrolling. The reality, however, is that the vast majority of social media consumption occurs on mobile devices. Future research can measure these effects for smartphones and tablets.
 
 This may be of even more import because mobile devices often rely on wireless networks (e.g., Wi-Fi and 5G). Investigating the differences between our findings and those for mobile devices can be even more directly applicable to the everyday user's on-the-go experience.
 
 Additionally, our methodology prioritized isolation. We used a fresh browser profile for each experiment for exactly thirty-second sessions. This strips away some of the complexities of real-world use. Future experiments can focus on the energy impact of fully logged-in sessions where targeted advertising and personalized recommendation algorithms are also running in the background. 
 
-Furthermore, extending the scrolling duration from thirty seconds to several minute, or even hours, would provide valuable insights into sustained power draw. Longer sessions would allow insights into how devices handle thermal throttling over time. It can also assert whether platforms optimize managing background resources when a user falls into a prolonged doomscrolling loop.
+Furthermore, extending the scrolling duration from thirty seconds to several minutes, or even hours, would provide valuable insights into sustained power draw. Longer sessions would allow insights into how devices handle thermal throttling over time. It can also assert whether platforms optimize managing background resources when a user falls into a prolonged doomscrolling loop.
 
 
 # Replication Package
@@ -253,4 +253,7 @@ For reproducibility of these experiments, we have published all the scripts and 
 
 [^storage-for-the-web]: P. LePage, "Storage for the web," *web.dev*, Sep. 23, 2024. [Online]. Available: [https://web.dev/articles/storage-for-the-web](https://web.dev/articles/storage-for-the-web). [Accessed: Feb. 26, 2026].
 
-[^youtube-ab-testing]: "YouTube feature experiments & rollouts, *YouTube Help*. [Online]. Available: [https://support.google.com/youtube/answer/7367023?hl=en](https://support.google.com/youtube/answer/7367023?hl=en). [Accessed: Feb. 26, 2026].
+[^youtube-ab-testing]: "YouTube feature experiments & rollouts," *YouTube Help*. [Online]. Available: [https://support.google.com/youtube/answer/7367023?hl=en](https://support.google.com/youtube/answer/7367023?hl=en). [Accessed: Feb. 26, 2026].
+
+[^outlier-detection]: S. Chaudhary, "Why 1.5 Is Used in the IQR Rule for Outlier Detection," *builtin*, Jan. 24, 2024. [Online]. Available: [https://builtin.com/articles/1-5-iqr-rule](https://builtin.com/articles/1-5-iqr-rule).
+[Accessed: Feb. 27, 2026].
