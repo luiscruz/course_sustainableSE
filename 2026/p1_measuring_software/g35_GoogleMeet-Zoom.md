@@ -257,8 +257,7 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 | TEAMS    | SHARE   | Mann–Whitney U      | 0.027 |
 | ZOOM     | SHARE   | Mann–Whitney U      | 0.429 |
 
-
-talk about inbetween features
+Both platforms appear to have camera activation consistently produce statistically significant differences in power consumption and EDP values. The same can be said for screen sharing, particularly for Microsoft Teams. On the other hand, background blurring seemed to yield mixed or non-significant results. 
 
 *Table 5: Significance test p-values for the power values of the different applications and their features*
 | **Feature** | **Condition** | **Test Used**           | **Test p-value** |
@@ -281,7 +280,7 @@ talk about inbetween features
 | SHARE    | OFF       | Mann–Whitney U      | 0.599 |
 
 
-talk about inbetween features and applications
+When comparing the two application directly with each other, we can see that the camera ON and OFF conditions show significant differences (p < 0.001), indicating clear platform-level distinctions. Screen sharing differences are also significant in the ON conditions, while background blurring showed less consistent and weaker differences between the applications. 
 
 
 ### Effect size estimation
@@ -311,8 +310,7 @@ These measures are meant to provide insight into the magnitude of observed effec
 | TEAMS    | SHARE   | Common Language     | 0.666 |
 | ZOOM     | SHARE   | Common Language     | 0.560 |
 
-
-talk about in between features
+Effect size results confirm the large practical impact that camera activation has on the power consumption and EDP values across platforms. Screen sharing shows moderate effects while blur generally showcased moderate to small effects.
 
 *Table 9: Effect size for the power values of the different applications and their features*
 | **Feature** | **Condition** | **Effect size Used**     | **Value** |
@@ -335,8 +333,9 @@ talk about in between features
 | SHARE    | OFF       | Common Language     | 0.540 |
 
 
-talk about inbetween features and applications
+Between applications, camera ON produced large EDP effect size, indicating practical differences under active video conditions. For blur and screen sharing, effect sizes were generally small, suggesting that the platform differences are less pronounced. Thus, the most significant cross-application difference concerns the camera usage rather than the other features. 
 
+Overall, the statistical analysis shows that camera activation is the dominant factor influencing both the power consumption and EDP values, producing significant results and large effect sizes across platforms. Screen sharing has moderate but platform-dependent impact, while background blurring demonstrates generally weaker and less consistent effects. 
 
 # Discussion
 ## Interpretation of Results
