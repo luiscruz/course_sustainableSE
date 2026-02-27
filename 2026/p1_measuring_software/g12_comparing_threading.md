@@ -102,9 +102,20 @@ After ensuring that all the above mentioned conditions were met, the scripts to 
 # Results
 After running all the tests the following plots can be made:
 
+The first plot shows the average power consumption for the null measurements. The mean power over 28 runs (2 were left out as outliers) shows that the device uses around 2.2 W when in an idle state.
+
 ![null](img/g12_comparing_threading/null.png "Null Measurements")
+
+This second plot shows the programs total energie consumption in Joules, for each experiment with different amounts of threads. For each experiment around 0 to 3 measurements were labeled as outliers and were left out from this plot. As already mentioned using more threads for computations also speeds up the process. To still be able to compare the experiments, we want to isolate the energy consumption of the program itself. To do this we subtract the found background power consuption (2.2 W) multiplied by the time it took each measurement to run:
+$J_{program} = J_{total} - P_{null} * \Delta t$
+
 ![energy](img/g12_comparing_threading/energy_plot.png "Total energy consumption")
+
+Interestingly using more threads clearly reduces the total energy consumption. This means that parallelizing a program will not only speed up the run time, but can also reduce the total energy it will consume. We however have to keep in mind that this does not mean that the program draws less power. On the contrary, the third plot shows that using more threads increases the power usage of the program:
+
 ![power](img/g12_comparing_threading/power_plot.png "Average power consumption")
+
+This indicates that when continuously running a multi-threaded program as opposed a single threaded program, will use a lot more energy. Only when running the program a (small) finite amount of times it will be beneficial for the energy consumption to use multiple threads compared to a single one.
 
 
 # Statistical analysis of the results
