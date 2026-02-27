@@ -1,0 +1,7 @@
+pyautogui
+pillow
+opencv-python
+numpy
+pandas
+matplotlib
+scipy

@@ -33,13 +33,13 @@ from warmup import fibonacci_warmup
 RESULTS            = 'results'
 BINARY             = '../EnergiBridge/target/release/energibridge'
 PROGRESS_FILE      = 'progress.json'
-WARMUP_S           = 60      # seconds for initial full warmup
-RESUME_WARMUP_S    = 60      # warmup on crash-resume
-PREBUFFER_S        = 10      # seconds of pre-buffering per run
-PREBUFFER_SETTLE_S = 1       # settle after prebuffer pause (power decay only)
-MEASURE_SETTLE_S   = 18      # settle after resume_playback — must absorb the full
-                             # ~15-16s audio decoder startup spike so the CSV
-                             # contains only steady-state data
+WARMUP_S           = 60      
+RESUME_WARMUP_S    = 60      
+PREBUFFER_S        = 10    
+PREBUFFER_SETTLE_S = 1     
+MEASURE_SETTLE_S   = 18      
+                             
+                           
 SEED               = 42
 CONDITIONS         = ['AUTO', 'AUTO_NC', 'MEDIUM', 'HIGH', 'HIGH_NC', 'VERY_HIGH']
 REPS_PER_COND      = {c: 30 for c in CONDITIONS}
@@ -175,7 +175,7 @@ def main():
         else:
             print(f'\nFresh start — {total_runs} runs planned.')
             print(f'Running {WARMUP_S}s CPU warmup...')
-            fibonacci_warmup(seconds=WARMUP_S)
+            # fibonacci_warmup(seconds=WARMUP_S)
             print('Warmup complete.')
 
         # Per-condition counters for filename numbering
