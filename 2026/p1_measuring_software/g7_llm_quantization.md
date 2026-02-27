@@ -3,9 +3,9 @@ author: Ceylin Ece, Georgios Markozanis, Kunal Narwani, Amy van der Meijden
 group_number: 7
 title: "Measuring the True Energy Cost of Correct LLM Inference"
 image: "img/g7_llm_quantization/project_cover.png"
-date: 02/27/2026
+date: 2026-02-27
 summary: |-
-    A model that uses less energy per token is not necessarily cheaper per correct answer. This project challenges the common practice of measuring LLM inference energy in isolation by introducing **correctness as a first-class metric**. We benchmark three recent ~3B-parameter LLMs from distinct model families (Llama 3.2, Qwen 2.5, Phi-3), all at 4-bit quantization, against the MBPP coding benchmark. Rather than reporting only energy per token, we measure **energy per correct solution** and find that models with nearly identical per-token costs can differ by over 13× in the energy required to produce a correct output.
+    A model that uses less energy per token is not necessarily cheaper per correct answer. This project challenges the common practice of measuring LLM inference energy in isolation by introducing correctness as a first-class metric. We benchmark three recent ~3B-parameter LLMs from distinct model families (Llama 3.2, Qwen 2.5, Phi-3), all at 4-bit quantization, against the MBPP coding benchmark. Rather than reporting only energy per token, we measure energy per correct solution and find that models with nearly identical per-token costs can differ by over 13× in the energy required to produce a correct output.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
@@ -24,7 +24,7 @@ We hypothesize that models with higher pass rates will also consume more energy 
 
 ### Methodology
 
-#### Models
+#### **Models**
 We select three general-purpose instruction-tuned models from distinct model families: 
 - [Qwen 2.5](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF) - Q4_K_M quantization
 - [Llama 3.2](https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF) - Q4_K_M quantization
@@ -40,7 +40,7 @@ this happened to be the newer Q4_K_M (K-quant mixed) format, while for Phi-3 Min
 standard Q4 format was available. Because the quantization method was not controlled, it
 constitutes a **confounding variable** (discussed further in Limitations & Future Work).
 
-#### Dataset
+#### **Dataset**
 We use the MBPP (Mostly Basic Python Problems) benchmark, specifically the sanitized MBPP+
 variant, which provides cleaner unit tests than the original. MBPP consists of approximately 500
 entry-level Python programming problems, each accompanied by a natural-language description and
@@ -53,10 +53,10 @@ problem — the foundation of our energy-per-correct-solution metric. Unlike ope
 tasks, coding benchmarks with automated tests allow correctness to be measured objectively and at
 scale without human evaluation.
 
-#### Hardware
+#### **Hardware**
 Apple MacBook Pro (2021) with an M1 Pro chip and 16 GB of unified memory. All models run via llama.cpp with Metal acceleration enabled. Experiments run as root to allow [EnergiBridge](https://github.com/tdurieux/EnergiBridge) access to system energy counters via PowerMetrics on macOS.
 
-#### Experimental Setup
+#### **Experimental Setup**
 Each model configuration is run for 20 trials of the full 224-task benchmark, yielding 20 × 224 =
 4,480 inference measurements per model. We follow established best practices for energy
 measurement experiments:
@@ -73,19 +73,25 @@ measurement experiments:
 
 With 20 trials per model, the full experiment took approximately 13 hours
 
-#### Correctness assessment
+#### **Correctness assessment**
 Each model's output is evaluated against MBPP's unit tests. A solution passes if and only if all
 associated tests pass. This yields a binary pass/fail per task, from which we compute:
 - Pass rate = (passed tasks) / (total tasks)
 - Energy per correct solution = (total energy) / (number of passed tasks)
 
 ### Results
-| Metric                         | Qwen 2.5        | Llama 3.2        | Phi-3 Mini        |
-|----------------------------------|------------------|------------------|-------------------|
-| Total energy (J)                 | 8,298 ± 468      | 15,680 ± 661     | 97,502 ± 4,356    |
-| Energy per token (J)             | 0.98 ± 0.06      | 0.89 ± 0.10      | 1.00 ± 0.08       |
-| Energy per correct solution (J)  | 65.3 ± 3.7       | 140.9 ± 15.9     | 871.0 ± 74.3      |
-| Pass rate (%)                    | ~56.7            | ~49.7            | ~50.0             |
+- Total energy consumption (J) (after outlier removal):
+    - Qwen 2.5: 8,298 ± 468
+    - Llama 3.2: 15,680 ± 661
+    - Phi-3: 97,502 ± 4,356
+- Total energy consumption per token (J) (energy/token) (after outlier removal):
+    - Qwen 2.5: 0.98 ± 0.06
+    - Llama 3.2: 0.89 ± 0.10
+    - Phi-3: 1.00 ± 0.08
+- Total energy consumption per correct output (J):
+    - Qwen 2.5: 65.3 ± 3.7
+    - Llama 3.2: 140.9 ± 15.9
+    - Phi-3: 871.0 ± 74.3
 
     Outlier removal: We applied z-score–based outlier removal (|z| > 3) independently to each
     metric before computing summary statistics, to guard against measurement anomalies from
