@@ -174,12 +174,44 @@ Together, these measures provided us with a solid foundation for evaluating whet
 influence client-side energy consumption.
 
 ## Results
+Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explained why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to youtube's content donwloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However we have no clear way of pinpointing the exact cause. 
 
-Below we can see our test results before and after removing outliers. All results excluding `all-off` contain a long tail at 20+ Watt. These are likely due to factors such as pre-downloading the video in youtube and network connection issues. By removing these blatant outliers we can have a deeper insight into our results. 
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Outliers Removed</th>
+    <th>Valid Range</th>
+    <th>Total Runs</th>
+  </tr>
+  <tr>
+    <td>stable volume</td>
+    <td>3</td>
+    <td>[2.25, 2.47]</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>ambient mode</td>
+    <td>2</td>
+    <td>[10.56, 11.46]</td>
+    <td>30</td>
+  <tr>
+    <td>all off</td>
+    <td>1</td>
+    <td>[2.18, 2.65]</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>voice boost</td>
+    <td>7</td>
+    <td>[2.12, 2.40]</td>
+    <td>30</td>
+  </tr>
+</table>
+
 
 Furhter insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what I mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations). Later in the [Statistical significances](#statistical-significances) we will see that although this difference exists, on a statistical level, these differences are negligable. 
-<div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;" >
-  <img src="./img/g34_measuring_youtube/Non-normalised_full_violinplot.png" alt="Non-Normalised Violinplot containing all 4 experimental classes">
+
+<div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;" >
   <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="Normalised Histogram containing all 4 experimental classes">
 </div>
 
@@ -190,7 +222,6 @@ The histograms below give us an insight into the type of statistical tests we ca
   <img src="./img/g34_measuring_youtube/full_histogram.png" alt="Normalised Histogram containing all 4 experimental classes">
 </div>
 
-## Statistical Significances 
 
 ## Discussion
 From our results, we observed that voice-boost and ambient-mode have a statistically significant difference in their energy consumption compared to the baseline. However, from a practical significance perspective, we observe that for voice-boost the effect size is significantly lower than that of ambient-mode, to the point where it can be considered negligible for a user as it promotes the understandability of a video. In this case, the voice-boost setting is possibly compensating for its marginal energy consumption by reducing the need for additional features that also promote understandability. This can be the use of a higher volume, subtitles, or re-watching that also consume additional energy. Therefore, we only reach conclusions on the ambient-mode setting in this study and discuss the rest further in [Limitations and Future Work](#limitations-and-future-work).
