@@ -141,7 +141,7 @@ Essential AI's rnj-1 model exhibits a significantly wider spread in energy consu
 
 <img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width=""/>
 
-<!-- <img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png"/> -->
+<img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" alt="" width=""/>
 
 ## Analysis
 
@@ -152,8 +152,10 @@ What we also noticed is that there is an almost perfect linear correlation betwe
 
 To conclude, we can't say that the length of a prompt has a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts and that the execution time is the most important in factor in determining the energy consumption of an LLM when generating a response. What influences this, we cannot conclude from this experiment and further research is needed to determine the factors that that influence the execution time.
 
+### Part 2
+The main pattern is that model choice has a clear effect on both execution time and energy use. Across the same prompt set and repetitions, rnj-1:8b is generally the fastest and lowest-energy model, llama3.1:8b is in the middle, and deepseek-r1:8b tends to be the slowest and most energy-intensive. We also see that rnj-1:8b has a wider spread in some plots, which suggests less consistent run-to-run behavior than the other two models. One measurement with negative total energy was removed in the plotting step, indicating a likely sensor/measurement artifact rather than real negative consumption.
 
-
+From the CPU/GPU split, GPU energy is consistently higher than CPU energy for all models, which is expected for LLM inference workloads. This suggests that model-level efficiency differences mainly show up through how much GPU compute time each model needs to produce a response. In conclusion, unlike P1 (where prompt length had limited effect on average energy), P2 shows that model implementation/behavior is a major factor in sustainability outcomes. However, explaining why one model is faster or more stable than another requires further profiling (token counts, decoding behavior and hardware-level utilization).
 
 ## Limitations
 
