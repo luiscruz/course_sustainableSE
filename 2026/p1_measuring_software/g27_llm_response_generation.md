@@ -122,7 +122,17 @@ Essential AI's rnj-1 model exhibits a significantly wider spread in energy consu
 
 <img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width=""/>
 
-<!-- <img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png"/> -->
+The aforementioned difference in IQR distance and spread, as well as other statistical metrics have been tabulated below.
+
+| Model         | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
+|---------------|--------------|--------------|---------------|-----------------------|
+| deepseek-r1   |  465.06      |  305.99      |  366.33       | 36.06                 |
+| llama3.1      |  394.15      |  29.16       |  345.37       | 59.20                 |
+| rnj-1         |  466.90      |  7.405       |  205.44       | 119.34                |
+
+The energy usage of the CPU and the GPU can be seen in the image below. All models show the same trend: the graphics card is the primary driver of energy usage, outpacing the CPU's average demand.
+
+<img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" width=""/>
 
 ## Analysis
 
