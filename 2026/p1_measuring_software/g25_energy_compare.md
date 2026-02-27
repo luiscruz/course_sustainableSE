@@ -148,6 +148,8 @@ Both the mean and median are higher for TikTok, indicating greater overall energ
 
 After removing the outliers, Chrome_tiktok graph appears to attain a normal distribution. Since outliers were on the lower end, both mean and median are higher.
 
+#### 10 second intervals
+
 ![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
 
 ##### Chrome_TikTok
