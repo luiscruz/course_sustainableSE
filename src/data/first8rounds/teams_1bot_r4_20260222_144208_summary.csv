@@ -1,0 +1,2 @@
+platform,num_bots,call_duration_config,total_experiment_duration_s,bots_successful,bots_failed,timestamp,timeseries_file,energy_cpu_joules,energy_duration_s,energy_method,avg_power_watts,max_power_watts,avg_cpu_percent,max_cpu_percent,avg_cpu_temp_c,avg_memory_mb,energibridge_csv,total_net_sent_mb,total_net_recv_mb
+teams,1,120,135.86,1,0,20260222_144208,data/teams_1bot_r4_20260222_144208_timeseries.csv,761.994,135.7,energibridge,5.62,21.83,7.22,78.91,41.31,10277.2,data/teams_1bot_r4_20260222_144208_energibridge.csv,3.08,91.89
