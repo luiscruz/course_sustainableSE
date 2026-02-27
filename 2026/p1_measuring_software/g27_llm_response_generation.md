@@ -8,7 +8,8 @@ summary: |-
   This study will focus on analysing the energy consumption of two LLM-related tasks. Firstly, we will analyse how the length of a question input prompt affects the energy consumption of an LLM generating a response. Secondly, we will study three different models by three different developers and compare their energy efficiency when generating a response to a question.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
-<!-- ---
+---
+<!--
 This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
 
 This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
@@ -118,7 +119,7 @@ When analysing the overall energy consumption of our LLM by prompt length, a cle
 
 Running part two of our experiment took a total of 20 prompts * 30 executions * 3 LLMs = 1800 total response generations. Running this took around 5 hours in total.
 
-<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png.png" alt="" width="450"/> <img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" alt="" width="450"/>
+<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width="450"/> <img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" alt="" width="450"/>
 
 <img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png" alt="" width="450"/>
 
