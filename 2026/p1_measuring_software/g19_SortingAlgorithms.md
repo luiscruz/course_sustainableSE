@@ -14,11 +14,10 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 ### Introduction
 What if I told you that simply choosing the wrong programming language for a basic sorting algorithm could consume **10 times** more real-world energy? We set out to measure the actual physical cost of classic sorting algorithms, and the results completely upended our expectations about efficiency.
 
-To investigate this, we looked at algorithmic time complexity—a fundamental aspect of code analysis and a universal measure across computer science, typically depicted using "Big O" notation (we will assume worst case Big O, going forward). While this measurement method should  yield reliable results, perfect conditions are rarely achievable in the real world. In this article, we will examine how our expected trends will compare to actual measurements taken across a variety of algorithms using implementations in both Rust and Python.
+To investigate this, we looked at algorithmic time complexity. This fundamental aspect of code analysis and a universal measure across computer science, is typically depicted using "Big O" notation (we will assume worst case Big O, going forward). While this measurement method should  yield reliable results, perfect conditions are rarely achievable in the real world. In this article, we will examine how our expected trends will compare to actual measurements taken across a variety of algorithms using implementations in both Rust and Python.
 
 
 ---
-
 ### Experiment Setup
 
 
