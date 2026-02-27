@@ -2,10 +2,10 @@
 author: Maria Cristescu, Nicolas Hornea, Daniël Rugge, Alexandru Verhoveţchi
 group_number: 26
 title: "Browser Energy Usage: The Effect of Ad Blocking"
-image: ![Cover](img/g26_adblocker_browser/violin_energy_j_by_browser.png)
+image: "img/g26_adblocker_browser/project_cover.png"
 date: 12/02/2026
 summary: |-
-  This project measures the energy consumption of different web browsers with and without UBlock Origin ad blocking. Using LibreHardwareMonitor on Windows, we compare power usage across browsers (Chrome, Firefox and Edge) and websites popular in the Netherlands (i.e. Youtube, Reddit, Nu.nl) to determine whether UBlock increases or decreases overall energy consumption.
+  This project measures the energy consumption of different web browsers with and without UBlock Origin ad blocking. Using LibreHardwareMonitor on Windows, we compare power usage across browsers (i.e. Chrome, Firefox and Edge) and websites (i.e. Youtube, Netflix, Reddit, Nu.nl) to determine whether UBlock increases or decreases overall energy consumption.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
