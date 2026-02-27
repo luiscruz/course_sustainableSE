@@ -9,21 +9,7 @@ summary: |-
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
-
-## Table of Contents
-
-1. [Introduction](#1-introduction)
-2. [Background](#2-background)
-3. [Experimental Design](#3-experimental-design)
-4. [Threats to Validity](#4-threats-to-validity)
-5. [Results](#5-results)
-6. [Discussion](#6-discussion)
-7. [Conclusion, Limitations and Future Work](#7-conclusion-limitations-and-future-work)
-8. [Replication](#8-replication)
-
----
-
-## 1. Introduction
+## Introduction
 
 Pick any medium-sized company. Its employees probably spend two to three hours a day on video calls. Multiply that by the number of employees, and then by the number of companies doing the same thing, and you have a workload that runs continuously, at massive scale, on hardware that people rarely think of as having an energy cost.
 
@@ -33,9 +19,9 @@ Nobody seems to have measured whether this difference is real, or how large it i
 
 ---
 
-## 2. Background
+## Background
 
-### 2.1 Software Energy Measurement
+### Software Energy Measurement
 
 The energy a piece of software consumes depends on which hardware resources it exercises and for how long. For a browser-based video call the main contributors are CPU load from video encoding and decoding, JavaScript execution, and DOM rendering, along with network I/O and memory bandwidth. CPU is typically the largest contributor.
 
@@ -43,7 +29,7 @@ Measuring this accurately is harder than it sounds. The obvious approach is to e
 
 That second point matters more than it might seem. Miettinen and Nurminen [5] measured eight JavaScript implementations of the same application and found up to 30% difference in energy consumption between them. The implementations were functionally identical. The difference came down to how much work each JS library asked the engine to do. Their study used mobile phones and older libraries, but the principle holds: two platforms built on different JS stacks, running in the same browser, can have meaningfully different energy costs. That is precisely the situation with Meet and Teams.
 
-### 2.2 Prior Work on Video Call Energy
+### Prior Work on Video Call Energy
 
 The closest study to ours is Wattenbach et al. [3], published at MOBILESoft 2022. They compared Google Meet and Zoom on Android using an automated experiment with 20 runs per treatment, measuring energy via Android's Batterystats profiler. Their main finding was that Zoom consumed about 4% less energy than Meet on average, though the difference was statistically significant only at a medium effect size (Cliff's delta = −0.344). They also found that camera use had by far the largest impact on energy, increasing consumption by over 274% compared to a camera-off call, while microphone use had negligible effect.
 
@@ -51,13 +37,13 @@ Their work is directly relevant to ours but leaves two gaps. First, it targets A
 
 One methodological difference is worth noting. Wattenbach et al. used Batterystats, which is a software-based energy estimator. They acknowledge this is less precise than hardware measurement. We use [EnergiBridge](https://github.com/tdurieux/EnergiBridge), which reads directly from hardware power sensors, giving us more accurate absolute figures.
 
-### 2.3 EnergiBridge
+### EnergiBridge
 
 EnergiBridge [4] is a cross-platform energy measurement tool developed by Thomas Durieux that reads power sensors directly from the hardware. On Apple Silicon it reads total system power via Apple's SMC through `powermetrics`. On Intel chips and Linux it reads CPU package and DRAM power via Intel's RAPL interface. On Windows it uses LibreHardwareMonitor.
 
 EnergiBridge samples at up to 5 Hz and produces both a time-series of instantaneous power in Watts and a total energy figure in Joules. We use Joules as our primary metric because it combines power draw and time: a platform that draws slightly more watts but for a shorter active period could end up using less total energy than one that draws less but stays busy longer.
 
-### 2.4 Why These Two Platforms Might Differ
+### Why These Two Platforms Might Differ
 
 Both Google Meet and Microsoft Teams (specifically the consumer `teams.live.com` version) run inside Chrome. They share the same browser runtime, the same JavaScript engine, and the same WebRTC APIs for peer-to-peer media. On the surface this makes them look equivalent. They are not.
 
@@ -71,18 +57,18 @@ The prior mobile findings from Wattenbach et al. showed Meet consuming more ener
 
 ---
 
-## 3. Experimental Design
+## Experimental Design
 
-### 3.1 Overview
+###  Overview
 
 We measure the client-side energy consumed by a single measured browser participant joining a 120-second call alongside five additional participants, on each platform, repeated 30 times in randomised order.
 
-### 3.2 Experiment Setting
+### Experiment Setting
 For each platform, we deployed five additional participant bots using an automation script to better
 simulate a real-life environment. To avoid interfering with the client-side machine used for measurements, the bots ran on a separate machine.
 The number of bots per platform was determined by the hardware capacity of the bot-hosting machine.
 
-### 3.3 Browser Automation
+### Browser Automation
 
 We use Selenium WebDriver to control real Chrome browser instances.
 Human interaction introduces timing variability that automation removes.
@@ -94,13 +80,14 @@ and microphone signal rather than a real one.
 Both platforms receive an identical media input, 
 so any difference in codec workload comes from how each platform processes that input,
 not from what was in the video.
-### 3.4 Energy Measurement
+
+### Energy Measurement
 
 **EnergiBridge** runs as a background process from just before the bot joins to just after it leaves. It writes a high-frequency power time-series to CSV and prints total energy consumed when it exits.
 
 Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory, and network bytes in both directions. Together, these give us hardware-level power data at 5 Hz and a complete system-level view at 1 Hz.
 
-### 3.5 Controls
+### Controls
 
 **Randomised run order.** The 60 experiments were split into four batches (8, 9, 9, and 4 runs) due to the one-hour session limit of Google Meet. Before each batch, the full sequence was shuffled to distribute time-of-day effects, background activity, and thermal drift evenly across platforms.
 
@@ -116,7 +103,7 @@ Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory
 
 **Consistent meeting setup.** A human host created calls on Google Meet and Microsoft Teams. The host and four bots remained connected throughout; only the experimental bot joined and left per run, ensuring consistent meeting conditions.
 
-### 3.6 Experimental Matrix
+### Experimental Matrix
 
 | Parameter | Value |
 |---|---|
@@ -134,7 +121,7 @@ Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory
 
 ---
 
-## 4. Threats to Validity
+## Threats to Validity
 
 **Fake media streams are a lower bound.** A synthetic camera feed produces a simple, static signal. A real webcam with motion and lighting variation requires more codec work from both platforms. Our results underestimate real-world consumption, and the gap between platforms could be larger or smaller under realistic conditions.
 
@@ -144,12 +131,12 @@ Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory
 
 ---
 
-## 5. Results
+## Results
 
 Originally, we ran 60 experiments. After removing outliers, values more than three standard deviations from the mean, we were left with 27 repeated runs for Google Meet and Microsoft Teams
 Every video call lasted two minutes, with identical hardware and browser conditions across all runs. Since normality assumptions were violated for multiple variables (Shapiro–Wilk p < 0.05), we report Mann–Whitney U tests with α = 0.05.
 
-### 5.1 Energy Consumption & CPU Usage
+### Energy Consumption & CPU Usage
 
 #### Results Averaged Over 27 Runs
 
@@ -160,9 +147,9 @@ Every video call lasted two minutes, with identical hardware and browser conditi
 | Avg CPU (%)    | 6.22 ± 0.74             | 7.28 ± 0.43                 | 5.95                | 7.25                    | **+21.8%**        | < 0.001             |
 
 
-| Energy (J) | Average Power (W) | CPU Usage (%) |
-|------------|-------------------|---------------|
-| ![Energy (J)](energyJoule.png) | ![Average Power (W)](avgPowWatts.png) | ![CPU Usage (%)](cpuPercentage.png) |
+| Energy (J)                                       | Average Power (W) | CPU Usage (%) |
+|--------------------------------------------------|-------------------|---------------|
+| ![Energy (J)](./img/gX_template/energyJoule.png) | ![Average Power (W)](./img/gX_template/avgPowWatts.png) | ![CPU Usage (%)](./img/gX_template/cpuPercentage.png) |
 
 Each video call lasted 120 seconds on both Google Meet and Microsoft Teams,
 ensuring identical workload conditions.
@@ -178,7 +165,7 @@ Even when normalized per second, Teams consistently consumed more resources.
 These results indicate a consistent and substantial energy gap between the two platforms under identical workload conditions. Consequently, the difference cannot be attributed solely to longer experiment durations.
 
 
-### 5.2 Network Traffic
+### Network Traffic
 
 
 | Metric             | Google Meet (Mean ± SD) | Microsoft Teams (Mean ± SD) | Relative Difference | p-value |
@@ -194,11 +181,11 @@ Teams consistently received substantially more network data than Meet. The rank-
 
 | Sent Data (Bytes) | Received Data (Bytes) |  |
 |------------------|---------------------|--|
-| ![Sent](sentData.png) | ![Received](recvData.png) |  |
+| ![Sent](./img/gX_template/sentData.png) | ![Received](./img/gX_template/recvData.png) |  |
 
 ---
 
-## 6. Discussion
+## Discussion
 
 Our results provide strong evidence that Microsoft Teams consumes more energy than Google Meet during browser-based desktop calls under controlled conditions.
 We believe the primary reason for this energy gap lies in how the two applications are architected and delivered.
@@ -224,7 +211,7 @@ However, it is important to acknowledge that the relative difference may vary ac
 
 ---
 
-## 7. Conclusion, Limitations and Future Work
+## Conclusion, Limitations and Future Work
 
 This study measured the energy cost of browser-based video calls on Google Meet and Microsoft Teams via EnergiBridge.
 
@@ -236,7 +223,7 @@ Future work could evaluate real webcam input instead of synthetic streams, longe
 
 ---
 
-## 8. Replication
+## Replication
 
 The full replication package is available at: GH url
 
@@ -250,7 +237,7 @@ cp .env.example .env  # add your Meet and Teams URLs
 cd src
 python run_experiment.py --meet-url "$MEET_URL" --teams-url "$TEAMS_URL" \
   --repeats 30 --duration 120 --visible
-python analyze.py --data-dir ../data --output-dir ../figures
+python stats.py 
 ```
 
 See `README.md` for full prerequisites and troubleshooting.
