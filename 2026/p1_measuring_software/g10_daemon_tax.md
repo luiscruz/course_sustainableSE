@@ -1,5 +1,5 @@
 ---
-author: Atharva Dagaonkar, Kasper van Maasdam, Ignas Vasiliauskas, Andreas 
+author: Atharva Dagaonkar, Kasper van Maasdam, Ignas Vasiliauskas, Andreas Tsatsanis
 group_number: 10
 title: "The 'Daemon' Tax: An Energy Analysis of Docker and Podman across RESTful and Computational Workloads."
 image: "img/g10_daemon_tax/Docker vs Podman.jpg"
