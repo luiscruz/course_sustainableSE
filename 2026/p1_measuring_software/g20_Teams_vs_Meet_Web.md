@@ -2,7 +2,7 @@
 author: Ocean Wang, Erkin Başol, Yasar Kocdas, Alexia Neatu
 group_number: 20
 title: "Is Google Meet or Microsoft Teams Greener? Measuring the Energy Cost of Video Calls"
-image: "img/gX_template/project_cover.png"
+image: "img/g20_Teams_vs_Meet_Web/project_cover.png"
 date: 03/03/2022
 summary: |-
     We compare the energy consumption, CPU usage, and data transfer of Google Meet and Microsoft Teams in a browser-based environment under stabilized conditions. Our results show that Microsoft Teams consumes significantly more energy and is therefore less sustainable than Google Meet for video conferencing.
@@ -136,7 +136,7 @@ Originally we ran 60 experiments. After removing outliers more than three standa
 
 | Energy (J) | Average Power (W) | CPU Usage (%) |
 |------------|-------------------|---------------|
-| ![Energy (J)](./img/gX_template/energyJoule.png) | ![Average Power (W)](./img/gX_template/avgPowWatts.png) | ![CPU Usage (%)](./img/gX_template/cpuPercentage.png) |
+| ![Energy (J)](./img/g20_Teams_vs_Meet_Web/energyJoule.png) | ![Average Power (W)](./img/g20_Teams_vs_Meet_Web/avgPowWatts.png) | ![CPU Usage (%)](./img/g20_Teams_vs_Meet_Web/cpuPercentage.png) |
 
 Each call lasted 120 seconds on both platforms, ensuring identical workload conditions. However, the overall experiment duration was longer for Teams due to slower loading times, which naturally increased total recorded energy. To ensure a fair comparison, we therefore examined per-second metrics including average power draw and average CPU usage. Even when normalised per second, Teams consistently consumed more resources.
 
@@ -161,7 +161,7 @@ Teams consistently received substantially more network data than Meet. The rank-
 
 | Sent Data (Bytes) | Received Data (Bytes) |
 |------------------|---------------------|
-| ![Sent](./img/gX_template/sentData.png) | ![Received](./img/gX_template/recvData.png) |
+| ![Sent](./img/g20_Teams_vs_Meet_Web/sentData.png) | ![Received](./img/g20_Teams_vs_Meet_Web/recvData.png) |
 
 ---
 
