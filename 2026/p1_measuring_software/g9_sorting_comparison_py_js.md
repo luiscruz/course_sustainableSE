@@ -5,7 +5,7 @@ title: "Sorting Out Energy: Comparing Merge Sort, Quick Sort, and Heap Sort in P
 image: "img/g9/js_vs_py.png"
 date: 12/02/2026
 summary: |-
-  This study compares the energy consumption of three widely used sorting algorithms - merge sort, quick sort, and heap sort - implemented in both Python and JavaScript (Node.js). By measuring energy usage across datasets of varying sizes, we gain insights into how language choice affects the energy efficiency of sorting operations. Our findings are particularly relevant to serverless cloud environments, where the language choice can have significant implications for the energy consumption of applications at scale.
+  This study investigates the energy consumption of merge sort, quick sort, and heap sort in Python and JavaScript (Node.js). A total of 1,080 experiments with varying dataset sizes were conducted using Energibridge. Results show that JavaScript consumed on average 6.7× less energy than Python (3.94 J vs 26.24 J), while algorithm choice alone had no statistically significant effect on energy consumption. Our findings suggest that for energy-critical serverless sorting workloads, the choice of runtime matters more than the choice of algorithm.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
