@@ -64,7 +64,7 @@ Merge sort, quick sort, and heap sort are among the most recognized and used sor
 </figure>
 
 ## Methodology
-The experiment can be ran automatically by executing the ‘run_experiment.sh’ script. It is important to note that to replicate our experiment, the only input required from the experimentor is to change the name of the algorithm used in the script, specifically the value of the variables 'PYTHON_SCRIPT' and 'JS_SCRIPT'. The user may also be required to change the 'EBERGIBRIDGE_CMD' variable to only 'energibridge' or another value depending on the Energibridge installation. 
+Having chosen these algorithms, we then created a repository[^repo] in which we developed our experiment. The experiment can be ran automatically by executing the ‘run_experiment.sh’ script. It is important to note that to replicate our experiment, the only input required from the experimentor is to change the name of the algorithm used in the script, specifically the value of the variables 'PYTHON_SCRIPT' and 'JS_SCRIPT'. The user may also be required to change the 'ENERGIBRIDGE_CMD' variable to only 'energibridge' or another value depending on the Energibridge installation. 
 
 The script measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
 
@@ -173,5 +173,7 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 [^cormen2009]: Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.). MIT Press.
 
 [^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting algorithms and their execution times: An empirical evaluation. In *Advances in Emerging Trends and Technologies — Proceedings of ICAETT 2020* (pp. 335–348). Springer. [https://doi.org/10.1007/978-3-030-63665-4_27](https://doi.org/10.1007/978-3-030-63665-4_27)
+
+[^repo]:Milanesi, N.E., Nassiri, M., Oei, J., Turanlı, G.. https://github.com/JimmyOei/sse_group_9
 
 [1] Cormen, T. H. et al. (2009). Introduction to Algorithms 
