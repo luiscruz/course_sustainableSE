@@ -64,7 +64,7 @@ Merge sort, quick sort, and heap sort are among the most recognized and used sor
 </figure>
 
 ## Methodology
-The experiment can be ran automatically by executing the ‘run_experiment.sh’ script. It is important to note that to replicate our experiment, the only input required from the experimenter is to change the name of the algorithm used in the script, specifically the value of the variables 'PYTHON_SCRIPT' and 'JS_SCRIPT'. The user may also be required to change the 'EBERGIBRIDGE_CMD' variable to only 'energibridge' or another value depending on the Energibridge installation. 
+The experiment can be ran automatically by executing the ‘run_experiment.sh’ script. It is important to note that to replicate our experiment, the only input required from the experimenter is to change the name of the algorithm used in the script, specifically the value of the variables 'PYTHON_SCRIPT' and 'JS_SCRIPT'. The user may also be required to change the 'ENERGIBRIDGE_CMD' variable to only 'energibridge' or another value depending on the Energibridge installation. 
 
 The script measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
 
@@ -147,7 +147,7 @@ where P(t) is the power sampled at each timestep and Δt is the interval in seco
 
 So why does Python consume so much more of both? It comes down to how each runtime executes the code. CPython (Python's default interpreter) executes bytecode instruction-by-instruction, dynamic-typing every variable at every step. Each comparison in the sort loop goes through multiple layers of indirection. JavaScript's V8 engine watches that same loop, identifies it as "hot", and JIT-compiles it to optimised native machine code mid-execution. The result is that V8 runs the inner sort loop at near-native speed, CPython does not.
 
-The algorithm differences are rooted in complexity and memory access patterns[1]:
+The algorithm differences are rooted in complexity and memory access patterns[^cormen2009]:
 
 - Heapsort thrashes the CPU cache: its heap operations jump non-sequentially through memory, triggering frequent cache misses. This is cheap in JavaScript (V8 handles it gracefully) but devastating in Python, where each miss multiplies the interpreter overhead.
 - Mergesort allocates O(n) auxiliary memory per merge, which means more heap allocations and GC pressure, this shows up in Python's higher variance at large sizes.
@@ -173,5 +173,3 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 [^cormen2009]: Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.). MIT Press.
 
 [^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting algorithms and their execution times: An empirical evaluation. In *Advances in Emerging Trends and Technologies — Proceedings of ICAETT 2020* (pp. 335–348). Springer. [https://doi.org/10.1007/978-3-030-63665-4_27](https://doi.org/10.1007/978-3-030-63665-4_27)
-
-[1] Cormen, T. H. et al. (2009). Introduction to Algorithms
