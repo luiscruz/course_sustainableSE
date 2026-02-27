@@ -5,7 +5,7 @@ title: "Comparing Energy Consumption in Computer Vision Across Different Model A
 image: "img/g4_cv_energy_comparison/g4_project_cover.png"
 date: 12/02/2026
 summary: |-
-  In this project, we aim to investigate how different computer vision AI architectures affect energy consumption. We want to compare two open-source models, RF-DETR and YOLOv8, to see how transformer-based versus CNN-based designs impact energy usage. Identical use cases will be run across both models while measuring energy consumption with tools like EnergiBridge. 
+  This study investigates how different computer vision AI architectures affect energy consumption. It compares two open-source object detection models of similar size, RF-DETR medium and YOLOv8 medium, to explore how transformer-based versus CNN-based designs impact energy usage. The results show that RF-DETR consumes approximately twice the total energy per inference than the CNN-based model YOLOv8. These findings highlight that architectural design significantly impacts energy consumption and should be considered alongside accuracy and latency when selecting computer vision AI models.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
