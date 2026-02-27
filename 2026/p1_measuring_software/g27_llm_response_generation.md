@@ -57,7 +57,7 @@ This study will focus on analysing the energy consumption of prompting LLMs. Spe
 
 ## Methodology
 
-Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating Fibonacci numbers) for 5 minutes before the start of our tests. Furthermore, a 5-second sleep period is used between measurements, to prevent collateral tasks from previous the measurement from affecting the next measurement. The 5-second duration is a tradeoff between minimizing tail energy consumption of previous measurements and allowing the measurements to be run within a reasonable timeframe.
+Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating Fibonacci numbers) for 5 minutes before the start of our tests. Furthermore, a 5-second sleep period is used between measurements, to prevent collateral tasks from the previous measurement from affecting the next measurement. The 5-second duration is a tradeoff between minimizing tail energy consumption of previous measurements and allowing the measurements to be run within a reasonable timeframe.
 
 To further improve the validity of our tests, we must minimise the effect of external factors on our test results. Thus, the following measures have been to reduce confounding variables:
 
@@ -101,8 +101,8 @@ After setting up the code to run the experiment automatically, and making sure t
 
 - **Max**: the most energy consumed by a single LLM run, in Joules
 - **Min**: the least energy consumed by a single LLM run, in Joules
-- **Mean**: the average amount of energy consumed accross all the runs of with this independent variable value, in Joules
-- **Standard Deviation**: the standard deviation accross all the runs with this independent variable value, in Joules
+- **Mean**: the average amount of energy consumed across all the runs of with this independent variable value, in Joules
+- **Standard Deviation**: the standard deviation across all the runs with this independent variable value, in Joules
 
 Note: e.c. stands for "energy consumed"
 
@@ -150,7 +150,7 @@ What we noticed in the results section for part one is that there is much bigger
 
 What we also noticed is that there is an almost perfect linear correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt. So we can conclude that the variance in energy consumption is mostly due to the variance in time taken to generate a response.
 
-To conclude, we can't say that the length of a prompt has a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts and that the execution time is the most important in factor in determining the energy consumption of an LLM when generating a response. What influences this, we cannot conclude from this experiment and further research is needed to determine the factors that that influence the execution time.
+To conclude, we can't say that the length of a prompt has a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts and that the execution time is the most important in factor in determining the energy consumption of an LLM when generating a response. What influences this, we cannot conclude from this experiment and further research is needed to determine the factors that influence the execution time.
 
 ### Part 2
 The main pattern is that model choice has a clear effect on both execution time and energy use. Across the same prompt set and repetitions, rnj-1:8b is generally the fastest and lowest-energy model, llama3.1:8b is in the middle, and deepseek-r1:8b tends to be the slowest and most energy-intensive. We also see that rnj-1:8b has a wider spread in some plots, which suggests less consistent run-to-run behavior than the other two models. One measurement with negative total energy was removed in the plotting step, indicating a likely sensor/measurement artifact rather than real negative consumption.
@@ -169,7 +169,7 @@ Another limitation was that we did not evaluate the quality of our LLM generated
 
 ## Conclusion
 
-This study focused on two main topics: analysing how the prompt length affects an LLM producing a response, and also how different developers compare when it comes to their models' energy efficiency. To ensure a fair test, we took careful precautions to eliminate factors such as computer temperature, varying specs and varying settings from affecting our tests. For the first part of our study, we observed that the prompt length plays little importance when it comes to an LLM's energy consumption, yet longer prompts tend to give more reliable measurements of energy consumption. For part two, we noticed similar energy consumption between our large and medium sized LLM developers, Meta and Deepseek, with Meta's models occasionally consuming much less energy. Essential AI's rjn-1 model consistently consumed less energy than Meta and Deepseek's models, with it's upper quartile still being below the other two's lower quartile. However, this is not nesessarily an indication of quality due to our study not attempting to evaluate the quality of the responses. 
+This study focused on two main topics: analysing how the prompt length affects an LLM producing a response, and also how different developers compare when it comes to their models' energy efficiency. To ensure a fair test, we took careful precautions to eliminate factors such as computer temperature, varying specs and varying settings from affecting our tests. For the first part of our study, we observed that the prompt length plays little importance when it comes to an LLM's energy consumption, yet longer prompts tend to give more reliable measurements of energy consumption. For part two, we noticed similar energy consumption between our large and medium sized LLM developers, Meta and Deepseek, with Meta's models occasionally consuming much less energy. Essential AI's rjn-1 model consistently consumed less energy than Meta and Deepseek's models, with its upper quartile still being below the other two's lower quartile. However, this is not necessarily an indication of quality due to our study not attempting to evaluate the quality of the responses. 
 
 ## Code
 
