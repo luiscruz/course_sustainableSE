@@ -73,7 +73,8 @@ We measure the client-side energy consumed by a single browser participant in a 
 For each platform, we deployed five additional participant bots using an automation script to better
 simulate a real-life environment. To avoid interfering with the client-side machine used for measurements, the bots ran on a separate machine.
 The number of bots per platform was determined by the hardware capacity of the bot-hosting machine.
-### 3.2 Browser Automation
+
+### 3.3 Browser Automation
 
 We use Selenium WebDriver to control real Chrome browser instances.
 Human interaction introduces timing variability that automation removes.
@@ -85,13 +86,13 @@ and microphone signal rather than a real one.
 Both platforms receive an identical media input, 
 so any difference in codec workload comes from how each platform processes that input,
 not from what was in the video.
-### 3.3 Energy Measurement
+### 3.4 Energy Measurement
 
 **EnergiBridge** runs as a background process from just before the bot joins to just after it leaves. It writes a high-frequency power time-series to CSV and prints total energy consumed when it exits.
 
 Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory, and network bytes in both directions. Together, these give us hardware-level power data at 5 Hz and a complete system-level view at 1 Hz.
 
-### 3.4 Controls
+### 3.5 Controls
 
 **Randomised run order.** The 60 experiments were split into four batches (8, 9, 9, and 4 runs) due to the one-hour session limit of Google Meet. Before each batch, the full sequence was shuffled to distribute time-of-day effects, background activity, and thermal drift evenly across platforms.
 
@@ -106,7 +107,7 @@ Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory
 **Environment control.** Room temperature was kept constant, with windows closed.
 
 **Consistent meeting setup.** A human host created calls on Google Meet and Microsoft Teams. The host and four bots remained connected throughout; only the experimental bot joined and left per run, ensuring consistent meeting conditions.
-### 3.5 Experimental Matrix
+### 3.6 Experimental Matrix
 
 | Parameter | Value |
 |---|---|
