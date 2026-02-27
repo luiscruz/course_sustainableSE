@@ -106,7 +106,7 @@ To protect data integrity, we ensure to only generate unbiased data and the exte
 
 # Results
 
-Across 150 inference runs spanning five context sizes, the data paints a coherent picture — one that largely confirms our expectations while surfacing a few genuinely counterintuitive findings along the way.
+Across 150 inference runs spanning five context sizes, the data shows a coherent picture that largely confirms our expectations while surfacing a few counterintuitive findings.
 
 ## Data Validation
 
@@ -150,7 +150,7 @@ With the statistical picture established, we turn to the energy trends themselve
 
 Total CPU energy rises from 2,218 J at 0k context to 21,697 J at 20k — a 9.8× increase for a 20× larger input. The growth is clearly super-linear yet falls short of the theoretical quadratic bound, which is consistent with attention complexity applying only to the context portion of each run,thus **H2 is supported.**
 
-Perhaps the most counterintuitive finding is that average CPU power *decreases* with larger contexts — from 46.8 W at 0k to 33.9 W at 20k. This apparent paradox is resolved by the EDP metric, which grows from 107,929 J·s at 0k to over 13.8 million J·s at 20k. Since EDP = energy × time, the rising EDP alongside falling power indicates a dramatic increase in execution time: the processor runs at lower utilisation for much longer rather than operating at full capacity for a shorter period. This pattern is characteristic of a memory bottleneck, where the CPU is waiting for data rather than being compute-bound.
+Perhaps the most counterintuitive finding is that average CPU power *decreases* with larger contexts — from 46.8 W at 0k to 33.9 W at 20k. This apparent paradox is resolved by the EDP metric, which grows from 107,929 J·s at 0k to over 13.8 million J·s at 20k. Since EDP = energy × time, the rising EDP alongside falling power indicates a dramatic increase in execution time: the processor runs at lower utilisation for much longer rather than operating at full capacity for a shorter period. This behavior is characteristic of a memory bottleneck, where the CPU is waiting for data rather than being compute-bound.
 
 ## CPU versus GPU Observations
 
