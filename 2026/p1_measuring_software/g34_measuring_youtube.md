@@ -75,7 +75,7 @@ publicly available YouTube video **(TODO: ADD VIDEO)** with no ads and streamed 
 ### Zen Mode
 Before the start of experiment began, we prepared the machine by closing all applications, disabling
 all notifications, disabling brightness adjusting. Display brightness and system volume were both fixed at 30% for the duration
-of the experiment, this is discussed further in the [Limitation section](#limitations). Although a wired ethernet connection would have been preferable for network stability, it was not
+of the experiment, this is discussed further in the [Limitation section](#limitations-and-future-work). Although a wired ethernet connection would have been preferable for network stability, it was not
 nto feasible throughout the timeline of the project, so all trials were conducted over the same Wi-Fi network. We acknowledge this as a potential source of variance in our
 measurements.
 
@@ -97,6 +97,7 @@ Each trial proceeded the workflow as follows:
 5. Closing the browser and waiting 30 seconds before the next trial.
 
 ### Hardware/Software Details
+Below we outline the specifications we used to run the experiments for replicability.
 - Model Name:	MacBook Air
 - Model Identifier:	Mac14,2
 - Chip:	Apple M2
@@ -128,8 +129,20 @@ The histograms below give us an insight into the type of statistical tests we ca
 
 ## Statistical Significances 
 
-## Limitations
-Since the settings are concerned with brightness and sound settings, the initial version of the experiment included highest brightness and volume on to the maximum setting. However ,
+## Discussion
+From our results, we observed that voice-boost and ambient-mode have a statistically significant difference in their energy consumption compared to the baseline. However, from a practical significance perspective, we observe that for voice-boost the effect size is significantly lower than that of ambient-mode, to the point where it can be considered negligible for a user as it promotes the understandability of a video. In this case, the voice-boost setting is possibly compensating for its marginal energy consumption by reducing the need for additional features that also promote understandability. This can be the use of a higher volume, subtitles, or re-watching that also consume additional energy. Therefore, we only reach conclusions on the ambient-mode setting in this study and discuss the rest further in [Limitations and Future Work](#limitations-and-future-work).
+
+For ambient-mode, we have observed that it does consume significantly more energy compared to the baseline. This is in line with several sources on the internet, such as a post by Henry Van Megen [6]. These sources attempt to warn that it is consuming energy and resulting in extra C02 while both its environmental impact and added benefit to the user going unnoticed. Considering that Ambient Mode is active by default for dark mode users, many of whom may have chosen dark mode for its energy-efficiency benefits, YouTube has a responsibility to address this design choice more carefully when treating its 2.5 billion users [7]. The company should either clearly inform users about the potential energy implications before enabling it by default or disable the feature by default and allow users to make an informed decision themselves. This is especially important because the feature’s existence is not widely known, and its benefits are generally considered negligible [6].
+
+## Limitations and Future Work
+We faced several limitations due to the short timespan of the project and our hardware. We outline them below.
+
+First of all, as mentioned in the discussion session, we did not see a significant difference in the use of energy consumption for voice boost and stable volume. A possible reason for this is that these features heavily rely on dynamic voice ranges and background noises in a video [2] [3]. The content that we used was a story-time video that had stable levels of narration and background music throughout the video, possibly not triggering the use of these voice correction features fully. Unfortunately we did not have the time to re-run our experiment to address this, but the effect of voice boost and stable volume can be explored further by replicating the experiment with different kinds videos in the future.
+
+Secondly, since the settings are concerned with display and sound, the initial version of the experiment included 100% brightness and volume to better observe the effects. However, since the execution of 4 different cases took several hours, the full-battery of the hardware we used did not last enough to finish the experiment. This is why we used 30% for both brightness and sound to be able to finish the full execution. We decided against the charging of the hardware throughout the experiment since we had assumed that connection of an external device would have an uncontrollable effect on the results. However, reflecting on our experiment, the receding battery might have also affected our results negatively throughout the runs. Therefore, the experiment could be replicated with higher levels of brightness and sound while being plugged to a power outlet, while assessing if this would affect the results or not. 
+
+Finally, although we used outlier detection procedures, our results still contain samples that disrupt normality. We have mentioned that a possible cause for this could be the unstable wireless internet connection and the resulting buffering of the video. Since the EnergiBridge tool that we used does not distinguish between energy usage of different processes, we did not have a systematic way of addressing this in our analysis. To address this, the experiment can be replicated with a bigger sample size. Furthermore, a tool can be developed to distinguish and measure the energy consumption of different processes to better observe these external effects to support sustainability research in the future. 
+
 # References
 
 [1] Global Media Insight. YouTube Users
@@ -144,3 +157,7 @@ Mix. https://epic-lab.com/how-youtubes-new-stable-volume-feature-destroys-your-c
 It. https://nymynet.com/voice-boost-youtube-explained-when-and-why-you-should-use-it/
 
 [5] T. Durieux. EnergiBridge. GitHub. https://github.com/tdurieux/EnergiBridge/tree/main/src
+
+[6] Change.org. Reduce energy waste — Help turn off YouTube’s power-hungry default ambient mode. https://www.change.org/p/reduce-energy-waste-help-turn-off-youtube-s-power-hungry-default-ambient-mode
+
+[7] Brian Dean. YouTube Stats: How Many People Use YouTube? Backlinko. Last updated Dec. 29, 2025. https://backlinko.com/youtube-users :contentReference[oaicite:0]{index=0}
