@@ -370,11 +370,11 @@ Only the Windows OS was used in which compared to MacOS and Linux, it can have d
 
 # Future Work
 
-For additional work, it would be interesting to observe the experimentation being conducted on a Windows laptop and a MacOS which can lead to an interesting analysis of cross platforms and to determine which application is the most energy efficient in both OS. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack in order to effectively analyse each video conferencing application and determine the most energy efficient. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations were video conferencing application are meant for longer usage. With our replication package, the future work can immediately begin.
+For additional work, it would be interesting to observe the experimentation being conducted on a Windows laptop and a MacOS which can lead to an interesting analysis of cross platforms and to determine which application is the most energy efficient in both OS. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack in order to effectively analyse each video conferencing application and determine the most energy efficient. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations were video conferencing application are meant for longer usage.
 
 # Conclusion
 
-Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share. Across 30 iteration per condition, by enabling the features on, it increased energy usage in which the largest effect came from enabling the camera whereas using blur showed weaker effects. Microsoft Teams shows a higher baseline and larger spikes while Zoom is more consistent. Hopefully this helps you pick the most efficient application!
+Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share. Across 30 iteration per condition, by enabling the features on, it increased energy usage in which the largest effect came from enabling the camera whereas using blur showed weaker effects. Microsoft Teams shows a higher baseline and larger spikes while Zoom is more consistent. Hopefully this helps you pick the most efficient application! 😊😊
 
 
 # References
