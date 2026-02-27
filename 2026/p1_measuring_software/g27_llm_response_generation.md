@@ -111,9 +111,10 @@ Running part one of our experiment took a total of 36 prompts (6 prompts for the
 
 In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
 
-<img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png" alt="Energy usage vs prompt length" width="450"/> <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_cpu_gpu.png" alt="Energy usage of CPU and GPU vs prompt length" width="450"/>
 
 **Total energy consumption:**
+
+<img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> 
 
 | Prompt length | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
 | ------------- | ------------ | ------------ | ------------- | --------------------- |
@@ -124,19 +125,20 @@ In the plot below, we can see the average energy consumption of the LLM for each
 | 9             | 213.66       | 113.20       | 202.26        | 14.52                 |
 | 10            | 212.32       | 190.68       | 204.31        | 5.94                  |
 
-<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width="450"/>
+<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width=""/>
 
-<img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png" alt="" width="450"/>
 
-<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length_correlation.png" alt="" width="450"/>
+<img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
 
 ### Part 2
 
-Running part two of our experiment took a total of 20 prompts * 30 executions * 3 LLMs = 1800 total response generations. Running this took around 5 hours in total.
+In the comparison of three models with identical parameter counts, The deepseek-r1 and llama3.1 models show similar inter quartile ranges (IQR) regarding the energy consumption. However, Deepseek's proved itself to be less energy-efficient on average. While Meta's distribution -ignoring outliers- has a tail outside the IQR tending towards lower energy usage, DeepSeek's distribution is characterized by a tail of higher energy consumption values, indicating more frequent cases of increased energy usage.
 
-<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width="450"/> <img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" alt="" width="450"/>
+Essential AI's rnj-1 model exhibits a significantly wider spread in energy consumption compared to the other models. This model gravitates to a more uniform distribution across the prompts, as evidenced by the larger IQR.
 
-<img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png" alt="" width="450"/>
+<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width=""/>
+
+<!-- <img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png"/> -->
 
 ## Analysis
 
