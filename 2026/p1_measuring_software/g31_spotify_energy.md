@@ -97,12 +97,12 @@ CPU utilisation mirrors the energy pattern: auto and high show higher sustained 
 
 Temperature differences are comparatively small (within \~0.5°C across groups), indicating that thermal variation is unlikely to be the primary driver of the energy gap. The very high setting has the highest outlier.
 
-![](../experiment/analysis_plots/01_energy_9.png)
-![](../experiment/analysis_plots/02_avg_power_9.png)
+![](../experiment/analysis_plots/01_energy_1.png)
+![](../experiment/analysis_plots/02_avg_power_1.png)
 
-![](../experiment/analysis_plots/05_cpu_usage_9.png)
+![](../experiment/analysis_plots/05_cpu_usage_1.png)
 
-![](../experiment/analysis_plots/06_temperature_9.png)
+![](../experiment/analysis_plots/06_temperature_1.png)
 
 | Group | mean\_power\_W | std\_power\_W | avg\_min\_power\_W | avg\_max\_power\_W | between\_run\_std\_W |
 | :---- | :---- | :---- | :---- | :---- | :---- |
