@@ -311,6 +311,8 @@ Second, the analysis focuses exclusively on CPU package-level energy consumption
 
 Third, the experiment uses a single YouTube Short video. Although this allows for a controlled and repeatable workload, different content characteristics: such as motion complexity or encoding format, may influence energy consumption differently. Future work could extend this analysis to a broader set of videos and playback scenarios.
 
+Furthermore, there are two more limitations that become apparent during the workload execution. First, the "Auto" quality setting relies on a proprietary algorithm. Therefore, we cannot definitively tell which resolutions we are comparing against the HD720 baseline. Second, there is a discrepancy in total execution duration between the two browsers. While the YouTube Short itself has a fixed length, Firefox runs took longer to complete compared to Chrome. This extended runtime is likely driven by slower initial buffering, delayed DOM event firing, or another Firefox overhead.
+
 Finally, while automation and repeated measurements reduce noise and improve consistency, real-world usage inevitably involves additional variability, including background applications, user interaction, and fluctuating network conditions. These factors are intentionally minimized here to isolate the effects of browser and quality settings.
 
 
