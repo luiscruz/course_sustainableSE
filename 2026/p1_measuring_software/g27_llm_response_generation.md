@@ -3,7 +3,7 @@ author: Fedor Baryshnikov, Jari de Keijzer, Tobias Veselka, Stilyan Penchev
 group_number: 27
 title: "Title of the Template blog"
 image: "img/gX_template/project_cover.png"
-date: 12/03/2026
+date: 27/02/2026
 summary: |-
   This study will focus on analysing the energy consumption of two LLM-related tasks. Firstly, we will analyse how the length of a question input prompt affects the energy consumption of an LLM generating a response. Secondly, we will study three different models by three different developers and compare their energy efficiency when generating a response to a question.
 identifier: p1_measuring_software_2026 # Do not change this
@@ -95,12 +95,31 @@ For this test, we wanted to see how efficient different LLM models made by diffe
 To perform this test, we will sample twenty prompts of varying length at random from our dataset (note: we use random_state=0 for reproducibility). For each prompt, 30 executions will be repeated on each of the three chosen LLMs.
 
 ## Results
+After setting up the code to run the experiment automatically, and making sure the computer was warmed up and all confounding variables were limited, we ran the experiment and obtained the following results.
 
 ### Part 1
+Running part one of our experiment took a total of 36 prompts * 30 executions = 1080 total response generations. Running this took around 3 hours in total.
+In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
+
+<img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png" alt="Energy usage vs prompt length" width="450"/> <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_cpu_gpu.png" alt="Energy usage of CPU and GPU vs prompt length" width="450"/>
+
+<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width="450"/>
+
+<img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png" alt="" width="450"/>
+
+<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length_correlation.png" alt="" width="450"/>
 
 ### Part 2
 
+Running part two of our experiment took a total of 20 prompts * 30 executions * 3 LLMs = 1800 total response generations. Running this took around 5 hours in total.
+
+<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png.png" alt="" width="450"/> <img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" alt="" width="450"/>
+
+<img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png" alt="" width="450"/>
+
+
 ## Analysis
+This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt.
 
 ## Limitations
 
