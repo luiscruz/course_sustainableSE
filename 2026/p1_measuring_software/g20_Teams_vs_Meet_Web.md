@@ -83,7 +83,7 @@ Chrome was configured with `--use-fake-device-for-media-stream`, supplying a syn
 
 **Isolated Chrome profiles.** Each run used a fresh Chrome profile deleted afterwards to prevent state carryover.
 
-**Zen Mode.** All non-essential applications were closed, external devices disconnected, and the laptop remained plugged in at 100% battery. No interaction occurred during execution, and brightness remained constant.
+**Zen Mode.** All non-essential applications were closed, external devices disconnected, and the laptop remained plugged in at 100% battery. No interaction occurred during execution, and brightness remained constant. 
 
 **System warm-up.** A Fibonacci script ran for five minutes before the first run to stabilise system temperature.
 
