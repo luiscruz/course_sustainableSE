@@ -114,7 +114,9 @@ In the plot below, we can see the average energy consumption of the LLM for each
 
 
 
-<img width=45% src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> <img width=46.3% src="img\g27_llm_response_generation\p1_energy_vs_prompt_length_cpu_gpu.png"/> 
+<img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> 
+
+<img src="img\g27_llm_response_generation\p1_energy_vs_prompt_length_cpu_gpu.png"/> 
 
 **Total energy consumption:**
 | Prompt length | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
@@ -126,7 +128,10 @@ In the plot below, we can see the average energy consumption of the LLM for each
 | 9             | 213.66       | 113.20       | 202.26        | 14.52                 |
 | 10            | 212.32       | 190.68       | 204.31        | 5.94                  |
 
-<img width=45% src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png"/> <img width=43% src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
+
+<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png"/>
+
+<img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
 
 ### Part 2
 
@@ -141,9 +146,9 @@ Essential AI's rnj-1 model exhibits a significantly wider spread in energy consu
 ## Analysis
 
 ### Part 1
-What we noticed in the results section for part one is that there is much bigger spread in the energy consumption for the shorter prompts but that the means were quite similar (except for the 5-word prompts, which had a bit lower mean energy consumption). So, we can conclude that the length of a prompt does not have a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts. This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt. However this is just speculation and further research is needed to confirm this.
+What we noticed in the results section for part one is that there is much bigger spread in the energy consumption for the shorter prompts, yet the means were quite similar (except for the 5-word prompts, which had a bit lower mean energy consumption). Thus, we can conclude that the length of a prompt does not have a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts. This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt. Another potential reason the prompt length has little effect on the energy used could be an indication of what part of the LLM response generation chain actually uses the power - in this case, our results would indicate that it is the response generation element of the LLM, rather than the LLM interpreting the prompt, which takes up the majority of the energy. However this is just speculation and further research is needed to confirm this. 
 
-What we also noticed is that there is perfect correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt. So we can conclude that the variance in energy consumption is mostly due to the variance in time taken to generate a response.
+What we also noticed is that there is an almost perfect linear correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt. So we can conclude that the variance in energy consumption is mostly due to the variance in time taken to generate a response.
 
 To conclude, we can't say that the length of a prompt has a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts and that the execution time is the most important in factor in determining the energy consumption of an LLM when generating a response. What influences this, we cannot conclude from this experiment and further research is needed to determine the factors that that influence the execution time.
 
@@ -158,9 +163,11 @@ Another limitation is the use of a mere 6 prompts of each length for our first t
 
 Another limitation was the release date of the different LLM compared in part two. We primarily selected our LLMs based on the parameter size, while looking for LLMs that were released roughly within 1.5 years of one another. With LLMs becoming publicly available within the last decade, 1.5 years may still be considered a relatively long time - thus, our experiment could be improved by using newer LLMs released within a shorter timeframe of one another.
 
+Another limitation was that we did not evaluate the quality of our LLM generated responses. A good analysis would have been a ratio of quality to energy consumed per LLM, which would have given us a good picture of how truly effectively an LLM consumes energy when generating a response.
+
 ## Conclusion
 
-Conclusion goes here.
+This study focused on two main topics: analysing how the prompt length affects an LLM producing a response, and also how different developers compare when it comes to their models' energy efficiency. To ensure a fair test, we took careful precautions to eliminate factors such as computer temperature, varying specs and varying settings from affecting our tests. For the first part of our study, we observed that the prompt length plays little importance when it comes to an LLM's energy consumption, yet longer prompts tend to give more reliable measurements of energy consumption. For part two, we noticed similar energy consumption between our large and medium sized LLM developers, Meta and Deepseek, with Meta's models occasionally consuming much less energy. Essential AI's rjn-1 model consistently consumed less energy than Meta and Deepseek's models, with it's upper quartile still being below the other two's lower quartile. However, this is not nesessarily an indication of quality due to our study not attempting to evaluate the quality of the responses. 
 
 ## Code
 
