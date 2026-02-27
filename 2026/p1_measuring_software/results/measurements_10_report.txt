@@ -1,0 +1,11 @@
+Subfolder: measurements_10
+Samples: tiktok=29 youtube=29
+Normality (Shapiro-Wilk, raw):
+tiktok: W=0.929756 p=0.0542167 normal=True
+youtube: W=0.966487 p=0.468787 normal=True
+Welch's t-test (two-sided):
+t=3.93231 p=0.000296379 alpha=0.05
+mean_tiktok=214.77 mean_youtube=210.958
+mean_diff (A-B)=3.81185
+percent_diff (A-B)/B=1.80692%
+Cohen's d=1.03267
