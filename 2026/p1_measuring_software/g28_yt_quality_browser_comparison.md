@@ -5,7 +5,7 @@ title: "Energy Consumption of YouTube Short-Form Video Playback: Auto vs HD720 o
 image: "img/gX_template/project_cover.png"
 date: 27/02/2026
 summary: |-
-  We investigate the energy consumption of short-form video playback on YouTube under controlled conditions. Specifically, we analyze how browser choice (Google Chrome vs Mozilla Firefox) and video quality settings (automatic quality selection vs forced 720p playback) affect energy usage. Using the same YouTube Short video across all experiments, we construct a 2×2 experimental design consisting of Chrome–Auto, Chrome–HD720, Firefox–Auto, and Firefox–HD720 configurations. Energy consumption is measured using EnergiBridge at the CPU package level while automating video playback via Playwright. Each configuration is executed 30 times in randomized order to mitigate system noise.
+  We investigate the energy consumption of YouTube short-form video playback under controlled conditions. Specifically, we analyze how browser choice (Google Chrome vs Mozilla Firefox) and video quality settings (automatic quality selection vs forced 720p playback) affect energy usage. Using the same YouTube Short video across all experiments, we construct a 2×2 experimental design consisting of Chrome–Auto, Chrome–HD720, Firefox–Auto, and Firefox–HD720 configurations. Energy consumption is measured using EnergiBridge at the CPU package level while automating video playback via Playwright. Each configuration is executed 30 times in randomized order to mitigate system noise.
 identifier: p1_measuring_software_2026
 all_projects_page: "../p1_measuring_software"
 ---
@@ -48,23 +48,9 @@ We evaluate four configurations, each executed 30 times under controlled conditi
 - Firefox–Auto
 - Firefox–HD720
 
-Even modest differences in energy consumption per playback may accumulate into a
-substantial energy footprint when scaled to repeated daily interactions.
-
 ## Why energy (J) instead of power (W)?
 
-Power and energy answer different questions:
-
-- **Power (W)** describes how much energy is drawn *at a moment*  
-- **Energy (J)** captures the *total cost* of completing a task  
-
-Because watching a YouTube Short is a bounded interaction with a clear start and end, **total
-energy consumption is the most appropriate primary metric**. Two configurations may draw
-similar average power, yet differ substantially in energy if one sustains that power longer or
-executes less predictably.
-
-In this study, **energy (J)** is therefore the primary comparison metric. Power is analyzed
-secondarily to explain *why* energy differences arise.
+Watching a YouTube Short is a bounded interaction. Therefore, total energy **(J)**—which captures the absolute cost of completing the task—is our primary metric. Two configurations may draw similar instantaneous power **(W)** but differ substantially in energy if one sustains that load longer or executes unpredictably. Power is analyzed secondarily to explain *why* energy differences arise.
 
 ---
 
@@ -155,9 +141,7 @@ All runs produce CSV logs, enabling full replication from raw data to plots.
 
 To quantify the energy cost of short-form video playback, we rely on direct energy measurements collected during each experimental run. All measurements are performed using EnergiBridge, a lightweight tool that records energy consumption at the CPU package level by reading hardware energy counters exposed by the system.
 
-For each run, EnergiBridge is launched alongside the automated playback script and records cumulative energy usage over time. The resulting output is stored as a CSV file containing timestamped energy readings. By measuring cumulative energy rather than instantaneous power alone, we can compute the total energy consumed during the playback of a single YouTube Short.
-
-In the CSV files, the two columns relevant to us were: PACKAGE_ENERGY (J) and Time. The Power is calculated using these two.
+EnergiBridge runs concurrently with the playback script, polling hardware energy counters to generate timestamped CSV logs. By evaluating cumulative PACKAGE_ENERGY (J) over Time (s), we capture the total energy cost of a bounded YouTube Short interaction, rather than relying solely on instantaneous power snapshots. Average power (W) is then derived by dividing total energy by playback duration.
 
 From raw measurements, we derive:
 
