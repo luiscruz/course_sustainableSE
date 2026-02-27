@@ -60,6 +60,44 @@ We executed the experiment using a fixed sequence of inference  runs. We generat
 A replication package can be found [here](https://github.com/riritz/Sustainable_SE). 
 
 # Results
+
+First, violin and box plots give a glimpse of the experiment's data distribution. As can be seen in Figure 1, the averaged GPU energy consumption per inference seems to be normally distributed. Note that YOLOv8 seems to be more consistent in its energy consumption than RF-DETR. On the other hand, for the total (i.e., GPU and CPU combined) energy per inference, the CPU has introduced non-normality into the combined energy consumption (see Figure 2).
+
+<figure>
+  <img src="img/g4_cv_energy_comparison/violin-box-gpu-average.png">
+  <figcaption>Figure 1: Violin-box plot of GPU average energy consumption per inference.</figcaption>
+</figure>
+
+<figure>
+  <img src="img/g4_cv_energy_comparison/violin-box-total-average.png">
+  <figcaption>Figure 2: Violin-box plot of total average energy consumption per inference.</figcaption>
+</figure>
+
+Depending on the Shapiro-Wilk normality test, different statistical tests were performed. 
+
+Since the GPU energy consumption was found to be normally distributed, Welch's T-test was used as statistical significance test and effect size analysis was done using the mean difference, percentage change, and Cohen's d statistic. Welch's T-test found a significant p-value of 1.065e-84, meaning we can confidently reject the null hypothesis of YOLOv8 and RF-DETR having the same mean GPU energy consumption per inference. A mean difference of 1.31J was found, which corresponds to RF-DETR using 105.30% (2.05 times) more energy per inference than YOLOv8. Finally, the Cohen's d statistic resulted in an extremely high value of 321.53, which is thought to be caused due to the remarkably low variance between runs.
+
+When we look at both the averaged total energy per inference and the total energy consumption per run, different statistical tests were used because of non-normality. The Mann-Whitney U test was used for statistical significance and resulted in 0 for both cases, showing that there was zero overlap in energy consumption between RF-DETR and YOLOv8. In turn, the Common Language Effect Size (CLES) was 0 as well, meaning measurements from YOLOv8 had 0% chance of being higher than for RF-DETR. Lastly, through the median difference, we found that YOLOv8 consumed 2.5J less energy than RF-DETR per inference and around 3757J less energy overall, which both correspond to a *57.45% reduction*.
+
+When plotting the total energy consumption per inference and per run (see Figures 3 and 4), we can visualize both the lack of overlap between the measurements and the double energy consumption of RF-DETR. 
+
+<figure>
+  <img src="img/g4_cv_energy_comparison/graph-total-per-inference.png">
+  <figcaption>Figure 3: Graph of total average energy consumption per inference.</figcaption>
+</figure>
+
+<figure>
+  <img src="img/g4_cv_energy_comparison/graph-total-per-run.png">
+  <figcaption>Figure 4: Graph of total energy consumption per run.</figcaption>
+</figure>
+
+Finally, we appreciated having an indication of the carbon emission that corresponds to using each model. To this end, we converted the energy to kWh and multiplied by the carbon intensity (being 184 gCo2eq/kWh at 6 feb 2026, 11:45 CET). This resulted in the carbon emission values in Figure 5. Observe that using RF-DETR would have resulted in more than double the carbon emission, in comparison to YOLOv8. 
+
+<figure>
+  <img src="img/g4_cv_energy_comparison/graph-carbon.png">
+  <figcaption>Figure 5: Graph of carbon emission per run.</figcaption>
+</figure>
+
 # Discussion
 
 The results show a significant difference in energy consumption between the two models, YOLOv8 medium and RF-DETR medium. This supports our hypothesis as stated in the introduction: *We hypothesize that RF-DETR and YOLOv8 will differ in energy consumption even when their model sizes are similar, due to differences in architectural design and computational patterns*. Although the models have a relatively similar number of parameters, the transformer-based model RF-DETR consumes approximately twice the total energy per inference than the CNN-based model YOLOv8. Most of the observed increase in energy consumption for RF-DETR is attributable to GPU usage, reflecting the computational intensity of the self-attention layers. Although CPU differences are smaller, they are consistent, suggesting that the transformer architecture imposes a higher computational load across the system. This suggests that parameter count alone is not a reliable predictor of energy efficiency. Instead, architectural design appears to be a key factor influencing computational cost and energy usage.
