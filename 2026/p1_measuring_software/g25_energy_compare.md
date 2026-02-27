@@ -254,6 +254,14 @@ To attempt to reduce the influence of the recommendation algorithms, all tests a
 ### Automation Mitigations
 While analyzing the results, we noticed that the energy consumption of TikTok of some test runs was significantly lower than the other runs. After investigating the issue, we found that TikTok was disallowing the automated browser to scroll through the videos, and loaded only the first video. These outlier runs were excluded from the analysis to ensure that the results are not influenced by this issue.
 
+### Possible causes for discrepancy
+
+- Differences in video encoding and compression strategies. Variations in codec choice, bitrate, and adaptive streaming mechanisms can influence the computational effort required for decoding.
+
+- Aggressive preloading and buffering behavior. Platforms that preload upcoming videos maintain continuous network activity and background processing. 
+
+- Possibly heavier client-side scripting and background processes on TikTok side. Frequent execution of analytics, recommendation algorithms, and advertisement-related scripts increases JavaScript activity and processor utilization.
+
 ### Practical Importance
 
 At the 5-second intervals, the difference is the most noticeable, with TikTok consuming 6.68% more energy than YouTube. It can be speculated, that frozen scrolling bot detection patterns might contribute to this difference, but practically, there is no denial that TikTok consumes more energy.
