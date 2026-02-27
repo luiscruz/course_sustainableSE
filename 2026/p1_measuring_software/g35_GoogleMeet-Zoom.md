@@ -248,27 +248,27 @@ Generally speaking, most of the groups revealed to have data that is not normall
 
 Depending on the result, the choice of statistical test was made as described below.
 
-| Name | Type | Shapiro-Wilk (W) | p-value |
-|---|---|---:|---:|
-| TEAMS_CAM_ON_PW | ON | 0.000 | 0.000 |
-| TEAMS_CAM_OFF_PW | ON | 0.000 | 0.000 |
-| TEAMS_SHARE_ON_PW | ON | 0.000 | 0.000 |
-| ZOOM_CAM_ON_EDP | OFF | 0.000 | 0.000 |
-| TEAMS_CAM_ON_EDP | OFF | 0.000 | 0.000 |
-| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 0.000 |
+| Platform | Feature | Shapiro-Wilk p-value (ON) | Shapiro-Wilk p-value (OFF) | Both normal |
+|:--------:|:-------:|------------:|-------------:|-------------:|
+| TEAMS    | CAM     | 0.656        | 0.222         | True |
+| ZOOM     | CAM     | 0.004        | 0.006         | False |
+| TEAMS    | BLUR    | 0.014        | 0.003         | False |
+| ZOOM     | BLUR    | 0.001        | 0.000         | False |
+| TEAMS    | SHARE   | 0.091        | 0.007         | False | 
+| ZOOM     | SHARE   | 0.005        | 0.001         | False |
 
-*Table 1: Features*
+*Table 1: Shapiro-Wilk p-values for the power values of the different features*
 
-| Name | Type | Shapiro-Wilk (W) | p-value |
-|---|---|---:|---:|
-| TEAMS_CAM_ON_PW | ON | 0.000 | 0.000 |
-| TEAMS_CAM_OFF_PW | ON | 0.000 | 0.000 |
-| TEAMS_SHARE_ON_PW | ON | 0.000 | 0.000 |
-| ZOOM_CAM_ON_EDP | OFF | 0.000 | 0.000 |
-| TEAMS_CAM_ON_EDP | OFF | 0.000 | 0.000 |
-| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 0.000 |
+| Platform | Feature | Shapiro-Wilk p-value (ON) | Shapiro-Wilk p-value (OFF) | Both normal |
+|:--------:|:-------:|------------:|-------------:|-------------:|
+| TEAMS    | CAM     | 0.963        | 0.375         | True |
+| ZOOM     | CAM     | 0.064        | 0.027         | False |
+| TEAMS    | BLUR    | 0.004        | 0.000         | False |
+| ZOOM     | BLUR    | 0.000        | 0.000         | False |
+| TEAMS    | SHARE   | 0.001        | 0.000         | False | 
+| ZOOM     | SHARE   | 0.000        | 0.000         | False |
 
-*Table 2: App and Features*
+*Table 2: Shapiro-Wilk p-values for the EDP values of the different features*
 
 
 ### Significance Testing
@@ -278,28 +278,49 @@ Two independent-sample significance tests were considered in this case.
 
 When at least one group violated the normality assumptions, the **Mann-Whitney U test** was used instead because this test does not rely on distributional assumptions and compares rank other, making it more robust to skewed distributions and outliers. 
 
-| Name | Test Name | Effect Value | 
-|---|---|---:|
-| TEAMS_CAM_ON_PW | ON | 0.000 | 
-| TEAMS_CAM_OFF_PW | ON | 0.000 | 
-| TEAMS_SHARE_ON_PW | ON | 0.000 | 
-| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+| Platform | Feature | Test Used           | Test p-value |
+|:--------:|:-------:|:-------------------:|:------------:|
+| TEAMS    | CAM     | Welch t-test        | 0.001 |
+| ZOOM     | CAM     | Mann–Whitney U      | 0.000 |
+| TEAMS    | BLUR    | Mann–Whitney U      | 0.490 |
+| ZOOM     | BLUR    | Mann–Whitney U      | 0.007 |
+| TEAMS    | SHARE   | Mann–Whitney U      | 0.001 |
+| ZOOM     | SHARE   | Mann–Whitney U      | 0.444 |
 
-*Table 3: Features*
+*Table 3: Significance test p-values for the power values of the different features*
 
-| Name | Test Name  | Effect Value | 
-|---|---|---:|
-| TEAMS_CAM_ON_PW | ON | 0.000 | 
-| TEAMS_CAM_OFF_PW | ON | 0.000 | 
-| TEAMS_SHARE_ON_PW | ON | 0.000 | 
-| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+| Platform | Feature | Test Used           | Test p-value |
+|:--------:|:-------:|:-------------------:|:------------:|
+| TEAMS    | CAM     | Welch t-test        | 0.000 |
+| ZOOM     | CAM     | Mann–Whitney U      | 0.000 |
+| TEAMS    | BLUR    | Mann–Whitney U      | 0.371 |
+| ZOOM     | BLUR    | Mann–Whitney U      | 0.001 |
+| TEAMS    | SHARE   | Mann–Whitney U      | 0.027 |
+| ZOOM     | SHARE   | Mann–Whitney U      | 0.429 |
 
-*Table 4: App*
+*Table 4: Significance test p-values for the EDP values of the different features*
 
+| Feature | Condition | Test Used           | Test p-value |
+|:--------:|:---------:|:-------------------:|:------------:|
+| CAM      | ON        | Welch t-test        | 0. |
+| CAM      | OFF       | Mann–Whitney U      | 0.XXX |
+| BLUR     | ON        | Mann–Whitney U      | 0.XXX |
+| BLUR     | OFF       | Mann–Whitney U      | 0.XXX |
+| SHARE    | ON        | Mann–Whitney U      | 0.XXX |
+| SHARE    | OFF       | Mann–Whitney U      | 0.XXX |
+
+*Table 5: Significance test p-values for the power values of the different applications and their features*
+
+| Feature | Condition | Test Used           | Test p-value |
+|:--------:|:---------:|:-------------------:|:------------:|
+| CAM      | ON        | Welch t-test        | 0.XXX |
+| CAM      | OFF       | Mann–Whitney U      | 0.XXX |
+| BLUR     | ON        | Mann–Whitney U      | 0.XXX |
+| BLUR     | OFF       | Mann–Whitney U      | 0.XXX |
+| SHARE    | ON        | Mann–Whitney U      | 0.XXX |
+| SHARE    | OFF       | Mann–Whitney U      | 0.XXX |
+
+*Table 6: Significance test p-values for the EDP values of the different applications and their features*
 
 
 ### Effect size estimation
