@@ -219,6 +219,15 @@ While analyzing the results, we noticed that the energy consumption of TikTok of
 ### Practical importance
 
 # Conclusion
+Our research is aimed to analyse the differences in energy consumption of "doomscrolling" accross different popular short-form video social media platforms. The motivation for this experiment was to help reduce everyday frustrations of rapid battery drain and increasing electricity costs.
+
+We designed a controlled experimental setup using the EnergiBridge utility to measure the precise power draw of a desktop Chrome browser during automated, 30-second scrolling sessions for both YouTube Shorts and TikTok. The tests were varied between different scrolling frequencies, scrolling every two, five, and ten seconds. Additionally, environmental controls were set like hardwired internet, terminating background tasks and setting a fixed screen brightness and sound. The experiments were ran using fresh browser profiles for every run.
+
+Our findings indicate that there are differences in energy consumption of doomscrolling. Across the tests, YouTube Shorts consistently proved to be more stable and energy-efficient than TikTok. TikTok exhibited a higher overall power consumption and a greater run-to-run variability. This finding was more prominent, and statistically significant, for the five-second and ten-second scrolling intervals. In order for TikTok to maintain a continuous feed, it requires demands noticeably more system resources than YouTube.
+
+The experiments required conquering challenges like recommendation algorithms and anti-automation measures that can impact the findings. These were taken into account in the results but may still have effect on the validity of the experiments. Techniques such as fingerprinting can negate our efforts for test isolation.
+
+Ultimately, these results still provide a clear and practical takeaway for the everyday user. Should you find yourself with a low battery and the urge to scroll, opting for YouTube Shorts over TikTok might just buy you those crucial extra minutes of entertainment.
 
 # Future work
 
