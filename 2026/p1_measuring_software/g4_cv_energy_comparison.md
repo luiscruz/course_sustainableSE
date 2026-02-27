@@ -54,12 +54,24 @@ During the experiment, both YOLOv8m and RF-DETR Medium processed images one at a
 
 We executed the experiment using a fixed sequence of inference  runs. We generated a shuffled list of 60 runs in advance, consisting of 30 executions of YOLOv8m and 30 executions of RF-DETR Medium to distribute the bias more evenly across the two executions. Before each execution run, the system was put to sleep for 30 seconds to prevent tail energy consumption from previous measurements. We chose a sleep of 30 seconds since each energy test for each model was less than 3min. For each interference run energy was measured using EnergiBridge. Once the measurements were complete, the results were saved to a SCV file for later analysis.
 
-
-
 ### Replication Package  
 A replication package can be found [here](https://github.com/riritz/Sustainable_SE). 
+
 # Results
 # Discussion
+
+The results show a significant difference in energy consumption between the two models, YOLOv8 medium and RF-DETR medium. This supports our hypothesis as stated in the introduction: *We hypothesize that RF-DETR and YOLOv8 will differ in energy consumption even when their model sizes are similar, due to differences in architectural design and computational patterns*. Although the models have a relatively similar number of parameters, the transformer-based model consumes substantially more energy during inference. This suggests that parameter count alone is not a reliable predictor of energy efficiency. Instead, architectural design appears to be a key factor influencing computational cost and energy usage.
+
+As mentioned in the introduction, both models share a similar high-level structure, composed of a backbone for feature extraction and a head for bounding box estimation or segmentation. However, they differ in how they process features. Convolutional neural networks, such as the backbone in YOLOv8, operate by applying localized filters across small spatial regions of an image. These filters are reused across the entire image, reducing the total number of computations required while effectively capturing spatial features. In contrast, transformer-based architectures, such as RF-DETR, rely on self-attention mechanisms to model relationships between features. Instead of focusing only on local regions, attention layers compute interactions between all tokens in the input representation. This allows the model to capture global dependencies but increases computational complexity. Self-attention involves large matrix multiplications and frequent data movement between memory and processing units.[^6] This difference in architecture could explain why the YOLO model has a lower energy consumption than the RF-DETR model.
+
+Another notable observation is the low variance between experimental runs. The consistency of the measurements suggests that external influences, such as background processes, were effectively minimized. This strengthens the validity of the results and indicates that the observed energy differences are attributable to the models’ architectures rather than to environmental noise or measurement instability.
+
+From a broader perspective, these findings have implications for sustainable AI deployment. In many real-world applications, object detection models operate continuously. Even modest differences in energy consumption per inference can accumulate significantly when scaled to thousands or millions of predictions. Therefore, architectural choices are not only technical decisions but also sustainability decisions. Selecting a more energy-efficient model can reduce operational costs and environmental impact, particularly in large-scale or long-term deployments. While model comparisons often prioritize accuracy and speed, energy consumption is frequently treated as an afterthought. This experiment provides a concrete energy consumption data for evaluating energy usage alongside other performance metrics.
+
+Several limitations should be considered when interpreting these findings. First, the experiments were conducted on a single hardware configuration with a mid-range GPU. Different hardware, particularly modern GPUs optimized for transformer workloads, could affect energy consumption patterns and potentially reduce the observed gap between CNN- and transformer-based models. Second, due to time and resource constraints, only the medium-sized variants of each architecture were evaluated. While the parameter counts are relatively similar, energy efficiency may scale differently across model sizes. Smaller or larger models could show different trends.
+
+Future work should address these limitations to provide a more comprehensive understanding of the energy implications of different architectures. Experiments across multiple hardware platforms, including GPUs optimized for attention mechanisms, would clarify whether the observed energy differences generalize across environments. Evaluating multiple model sizes, from Nano to Extra Large variants, would help determine how energy efficiency scales within each architecture type. 
+
 # Conclusion
 # References
 
@@ -72,6 +84,8 @@ A replication package can be found [here](https://github.com/riritz/Sustainable_
 [^4]: Isaac Robinson, P. Robicheaux, M. Popov, Deva Ramanan, & N. Peri. (2026). RF-DETR: Neural architecture search for real-time detection transformers. arXiv. https://arxiv.org/abs/2511.09554
 
 [^5]: Maxime Oquab, T. Darcet, T. Moutakanni, H. Vo, M. Szafraniec, V. Khalidov, P. Fernandez, D. Haziza, F. Massa, A. El-Nouby, M. Assran, N. Ballas, W. Galuba, R. Howes, P.-Y. Huang, S.-W. Li, I. Misra, M. Rabbat, V. Sharma, G. Synnaeve, H. Xu, H. Jégou, J. Mairal, P. Labatut, A. Joulin, & P. Bojanowski. (2024). DINOv2: Learning robust visual features without supervision. arXiv. https://arxiv.org/abs/2304.07193
+
+[^6]: Moutik, O., Sekkat, H., Tigani, S., Chehri, A., Saadane, R., Tchakoucht, T. A., & Paul, A. (2023). Convolutional Neural Networks or Vision Transformers: Who Will Win the Race for Action Recognitions in Visual Data? Sensors, 23(2), 734. https://doi.org/10.3390/s23020734
 
 ---
 
