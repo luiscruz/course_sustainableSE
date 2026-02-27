@@ -5,6 +5,7 @@ title: "Are YouTube’s Default Features Silently Wasting Energy? An Experimenta
 image: "img/g34_measuring_software/project_cover.png"
 date: 12/02/2026
 summary: |-
+  [Source Code](https://github.com/g34-sustainable-software/p1_dev/tree/dev)
   This study investigates whether YouTube’s optional player features—Ambient Mode, Stable Volume, and Voice Boost—affect 
   client-side energy consumption. In controlled experiments isolating each feature, we measure energy usage relative to 
   a baseline with all features disabled. Our results show that Ambient Mode significantly increases energy consumption, 
