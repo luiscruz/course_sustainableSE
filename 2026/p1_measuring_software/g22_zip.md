@@ -415,3 +415,7 @@ As a result, the scope of this paper could be expanded to include other compress
 [18] Y. Collet et al., "Zstandard – Fast real-time compression algorithm," GitHub, 2015. [Online]. Available: https://github.com/facebook/zstd.
 
 [19] J. Alakuijala and Z. Szabadka, "Brotli: A general-purpose data compressor," *Commun.* ACM, vol. 61, no. 4, pp. 86–95, Apr. 2018, doi: 10.1145/3231935.
+
+# Replication Package
+
+Our full code for the replication of the project can be found here: https://github.com/tud-arb/course_sustainableSE/tree/dev.
