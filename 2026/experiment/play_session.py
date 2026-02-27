@@ -4,35 +4,31 @@ play_session.py — EnergiBridge measurement target.
 EnergiBridge wraps this script:
     sudo energibridge -o results/condition_run_XX.csv -- python3 play_session.py
 
-The script:
-  1. Starts Spotify playback via AppleScript
-  2. Waits exactly 60 seconds (the measurement window)
-  3. Pauses Spotify
+By the time this script runs, Spotify is ALREADY playing in steady state.
+resume_playback() in run_experiment.py called play() and waited SETTLE_SECONDS
+for the startup transient to clear before energibridge was launched.
 
-Assumes Spotify is already open and a song is loaded/paused at 0:00.
+This script simply:
+  1. Waits MEASUREMENT_SECONDS (Spotify plays uninterrupted)
+  2. Pauses Spotify
+
+No seek, no play call — the CSV contains only clean steady-state power data.
 """
 
 import subprocess
 import time
 
-MEASUREMENT_SECONDS = 45
+MEASUREMENT_SECONDS = 13
 
 
-def play():
-    subprocess.run(
-        ['osascript', '-e', 'tell application "Spotify" to play'],
-        check=True
-    )
+def _osascript(cmd):
+    subprocess.run(['osascript', '-e', cmd], check=True)
 
 
 def pause():
-    subprocess.run(
-        ['osascript', '-e', 'tell application "Spotify" to pause'],
-        check=True
-    )
+    _osascript('tell application "Spotify" to pause')
 
 
 if __name__ == '__main__':
-    play()
     time.sleep(MEASUREMENT_SECONDS)
     pause()

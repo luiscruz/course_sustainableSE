@@ -1,5 +1,5 @@
 """
-run_experiment.py — Full 90-run experiment orchestrator.
+run_experiment.py — Full 180-run experiment orchestrator.
 
 Usage:
     cd 2026/experiment
@@ -9,14 +9,15 @@ Prerequisites:
   1. Open Spotify manually, search for the chosen song (≥45s long), pause at 0:00.
   2. Reference screenshots exist in screenshots/ directory.
   3. EnergiBridge binary built at ../EnergiBridge/target/release/energibridge.
-  4. Keep this terminal alive for the entire ~2.9-hour run (sudo cache).
+  4. Keep this terminal alive for the entire ~2.5-hour run (sudo cache).
 
 Run order:
-  - 90 runs total: 30× LOW + 30× MEDIUM + 30× HIGH, shuffled with seed 42.
-  - progress.json tracks completed runs for crash recovery.
-  - On fresh start: 300s warmup. On resume: 60s warmup before next run.
+  - 180 runs total: 30× each of AUTO, AUTO_NC, MEDIUM, HIGH, HIGH_NC, VERY_HIGH
+  - Canvas ON: AUTO, HIGH — Canvas OFF: all others
+  - Shuffled with seed 42. progress.json tracks completed runs for crash recovery.
+  - On fresh start: 60s warmup. On resume: 60s warmup before next run.
 
-Estimated runtime: ~2.9 hours (90 × ~115s per run).
+Estimated runtime: ~2.5 hours (180 × ~50s per run).
 """
 
 import json
@@ -25,27 +26,29 @@ import random
 import subprocess
 import time
 
-from spotify_controller import configure, prebuffer
+from spotify_controller import configure, prebuffer, resume_playback
 from warmup import fibonacci_warmup
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-RESULTS        = 'results'
-BINARY         = '../EnergiBridge/target/release/energibridge'
-PROGRESS_FILE  = 'progress.json'
-COOLDOWN_S     = 60      # seconds between runs
-WARMUP_S       = 300     # seconds for initial full warmup
-RESUME_WARMUP_S = 60     # shorter warmup on crash-resume
-PREBUFFER_S    = 15      # seconds of pre-buffering per run
-SETTLE_S       = 5       # seconds of settle after prebuffer
-SEED           = 42
-CONDITIONS     = ['LOW', 'MEDIUM', 'HIGH']
-REPS_PER_COND  = 30
+RESULTS            = 'results'
+BINARY             = '../EnergiBridge/target/release/energibridge'
+PROGRESS_FILE      = 'progress.json'
+WARMUP_S           = 60      # seconds for initial full warmup
+RESUME_WARMUP_S    = 60      # warmup on crash-resume
+PREBUFFER_S        = 10      # seconds of pre-buffering per run
+PREBUFFER_SETTLE_S = 1       # settle after prebuffer pause (power decay only)
+MEASURE_SETTLE_S   = 18      # settle after resume_playback — must absorb the full
+                             # ~15-16s audio decoder startup spike so the CSV
+                             # contains only steady-state data
+SEED               = 42
+CONDITIONS         = ['AUTO', 'AUTO_NC', 'MEDIUM', 'HIGH', 'HIGH_NC', 'VERY_HIGH']
+REPS_PER_COND      = {c: 30 for c in CONDITIONS}
 # ─────────────────────────────────────────────────────────────────────────────
 
 
 def build_run_order():
-    """Return a deterministic 90-item list of condition labels."""
-    order = CONDITIONS * REPS_PER_COND
+    """Return a deterministic 120-item shuffled list of condition labels."""
+    order = [c for c, n in REPS_PER_COND.items() for _ in range(n)]
     rng = random.Random(SEED)
     rng.shuffle(order)
     return order
@@ -78,14 +81,14 @@ def _validate_csv(path):
     has_power = 'SYSTEM_POWER' in header
     print(f'  Rows (excl. header): {row_count}')
     print(f'  SYSTEM_POWER present: {has_power}')
-    if row_count < 100:
-        print(f'  WARNING: fewer than 100 rows — expected ~150 at 200ms interval.')
+    if row_count < 50:
+        print(f'  WARNING: fewer than 50 rows — expected ~65 at 200ms interval.')
     if not has_power:
         print(f'  WARNING: SYSTEM_POWER column missing — check EnergiBridge output.')
-    return has_power and row_count >= 100
+    return has_power and row_count >= 50
 
 
-def run_single_iteration(run_index, condition, counter_label):
+def run_single_iteration(run_index, condition, counter_label, total_runs):
     """
     Execute one measurement run:
       configure → prebuffer → EnergiBridge → validate CSV
@@ -96,29 +99,44 @@ def run_single_iteration(run_index, condition, counter_label):
     output_csv = os.path.join(RESULTS, f'{condition.lower()}_run_{counter_label:02d}.csv')
 
     print(f'\n{"="*60}')
-    print(f'Run {run_index + 1}/90  |  Condition: {condition}  |  File: {output_csv}')
+    print(f'Run {run_index + 1}/{total_runs}  |  Condition: {condition}  |  File: {output_csv}')
     print(f'{"="*60}')
 
     # Configure Spotify quality + canvas
     screenshots_present = all(
         os.path.exists(f'screenshots/{f}')
         for f in ['quality_dropdown.png',
-                  'quality_low.png', 'quality_normal.png', 'quality_very_high.png',
-                  'canvas_label.png', 'canvas_toggle_on.png', 'canvas_toggle_off.png']
+                  'quality_automatic.png', 'quality_normal.png', 'quality_high.png',
+                  'quality_very_high.png', 'canvas_label.png']
     )
     if screenshots_present:
         print(f'  Configuring Spotify → {condition}...')
-        configure(condition)
+        for attempt in range(1, 4):
+            try:
+                configure(condition)
+                break
+            except Exception as e:
+                print(f'  Configure attempt {attempt}/3 failed: {e}')
+                if attempt == 3:
+                    raise
+                time.sleep(5)
         print('  Settings applied.')
     else:
         print(f'  SKIPPED auto-configure (no screenshots). Verify manually: {condition}')
 
     # Pre-buffer outside measurement window
     print(f'  Pre-buffering {PREBUFFER_S}s at {condition} quality...')
-    prebuffer(prebuffer_seconds=PREBUFFER_S, settle_seconds=SETTLE_S)
-    print('  Buffer warm. Spotify paused at 0:00.')
+    prebuffer(prebuffer_seconds=PREBUFFER_S, settle_seconds=PREBUFFER_SETTLE_S)
+    print('  Buffer warm. Spotify paused mid-song.')
 
-    # EnergiBridge measurement
+    # Resume playback and wait for the full audio decoder startup spike to clear
+    # BEFORE EnergiBridge starts.  The spike lasts ~15-16s from play(); using
+    # MEASURE_SETTLE_S=18 ensures the CSV contains only steady-state data.
+    print(f'  Resuming playback, waiting {MEASURE_SETTLE_S}s for spike to clear...')
+    resume_playback(settle_seconds=MEASURE_SETTLE_S)
+    print('  Steady state reached. Starting EnergiBridge measurement...')
+
+    # EnergiBridge measurement (Spotify already playing in steady state)
     print(f'  Starting EnergiBridge → {output_csv}')
     subprocess.run(
         [
@@ -138,9 +156,6 @@ def run_single_iteration(run_index, condition, counter_label):
 def main():
     os.makedirs(RESULTS, exist_ok=True)
 
-    # Verify sudo access for EnergiBridge (NOPASSWD rule required in sudoers)
-    subprocess.run(['sudo', '-v'], check=True)
-
     # Prevent display sleep during unattended run
     caffeinate = subprocess.Popen(['caffeinate', '-d'])
     print('caffeinate started (display sleep suppressed).')
@@ -153,7 +168,6 @@ def main():
         total_runs  = len(run_order)
 
         if is_resume:
-            remaining = total_runs - len(completed)
             print(f'\nResuming experiment — {len(completed)}/{total_runs} runs already done.')
             print(f'Running short {RESUME_WARMUP_S}s warmup before next run...')
             fibonacci_warmup(seconds=RESUME_WARMUP_S)
@@ -176,18 +190,13 @@ def main():
             cond_counter[condition] += 1
             counter_label = cond_counter[condition]
 
-            run_single_iteration(run_index, condition, counter_label)
+            run_single_iteration(run_index, condition, counter_label, total_runs)
 
             completed.add(run_index)
             save_progress(completed)
 
-            # Cooldown between runs (skip after last run)
-            if run_index < total_runs - 1:
-                print(f'\n  Cooldown {COOLDOWN_S}s...')
-                time.sleep(COOLDOWN_S)
-
         print('\n' + '='*60)
-        print('Experiment complete. All 90 runs finished.')
+        print(f'Experiment complete. All {total_runs} runs finished.')
         print(f'Results in: {os.path.abspath(RESULTS)}')
 
     finally:

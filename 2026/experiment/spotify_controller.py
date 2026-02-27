@@ -10,16 +10,18 @@ Prerequisites:
   - Reference screenshots in screenshots/ directory (see README)
 """
 
-import os
 import subprocess
 import time
 import pyautogui
 
 # Map experiment condition labels to Spotify UI quality strings
 QUALITY_MAP = {
-    'LOW':    'low',
-    'MEDIUM': 'normal',
-    'HIGH':   'very_high',
+    'AUTO':      'automatic',
+    'AUTO_NC':   'automatic',
+    'MEDIUM':    'normal',
+    'HIGH':      'high',
+    'HIGH_NC':   'high',
+    'VERY_HIGH': 'very_high',
 }
 
 
@@ -62,115 +64,42 @@ def set_audio_quality(condition):
     Raises AssertionError if any screenshot is not found on screen.
     """
     # Step 1 — open the dropdown
-    dropdown = pyautogui.locateOnScreen('screenshots/quality_dropdown.png', confidence=0.7)
+    dropdown = pyautogui.locateOnScreen('screenshots/quality_dropdown.png', confidence=0.6)
     assert dropdown is not None, (
         'Could not locate quality dropdown button on screen.\n'
         'Make sure Spotify Settings > Audio Quality is visible and '
         'screenshots/quality_dropdown.png matches the dropdown arrow.'
     )
-    pyautogui.click(dropdown)
+    # The dropdown button ("Very high ▼") sits in the rightmost ~8% of the
+    # matched row. Using a fraction avoids being thrown off by how wide the
+    # matched region is (full-screen template vs narrow crop).
+    click_x = int(dropdown.left + dropdown.width * 0.92)
+    click_y = dropdown.top + dropdown.height // 2
+    pyautogui.click(click_x, click_y)
     time.sleep(1.0)   # wait for dropdown list to appear
 
-    # Step 2 — click the desired option
+    # Step 2 — click the desired option (full-screen search + retry)
     quality_key = QUALITY_MAP[condition]
     option_path = f'screenshots/quality_{quality_key}.png'
-    btn = pyautogui.locateOnScreen(option_path, confidence=0.7)
-    assert btn is not None, (
-        f'Could not locate quality option on screen: {option_path}\n'
+    for attempt in range(3):
+        btn = pyautogui.locateOnScreen(option_path, confidence=0.62)
+        if btn is not None:
+            print(f'    [quality] found {quality_key!r} at {pyautogui.center(btn)}, clicking')
+            pyautogui.click(pyautogui.center(btn))
+            time.sleep(0.5)
+            return
+        print(f'    [quality] attempt {attempt+1}: {quality_key!r} not found at confidence=0.62')
+        if attempt < 2:
+            # Dropdown may have closed; dismiss and re-open
+            pyautogui.press('escape')
+            time.sleep(0.3)
+            pyautogui.click(click_x, click_y)
+            time.sleep(1.0)
+    raise AssertionError(
+        f'Could not locate quality option after 3 attempts: {option_path}\n'
         'Make sure the dropdown is open and the reference screenshot matches '
         'the option in its unselected state.'
     )
-    pyautogui.click(btn)
-    time.sleep(0.5)
-
-
-def _find_canvas_toggle(dropdown):
-    """
-    Locate Canvas toggle via pixel-column scan (fallback when screenshots fail).
-
-    Scans a 5px-wide strip starting from the dropdown's y position downwards.
-    Toggle order from the quality dropdown: Auto adjust quality (0), compact
-    library layout (1), show local files (2), show now-playing panel (3),
-    Canvas (4).
-
-    Handles Retina (2x) displays: PIL returns physical pixels, so cy values are
-    divided by the detected scale factor before being used as click coordinates.
-
-    Returns (toggle_x, canvas_y, is_on).
-    """
-    # Right-align with the dropdown control column; the toggle oval shares the
-    # same right-hand column as the dropdown arrow.
-    toggle_x = dropdown.left + dropdown.width - 13
-    y_start  = dropdown.top                        # scan from the dropdown downwards
-    screen_h = pyautogui.size().height
-    scan_h   = min(800, screen_h - y_start - 1)   # logical pixels; stay on screen
-
-    # One screenshot grab — fast batch access via PIL
-    img    = pyautogui.screenshot(region=(toggle_x - 2, y_start, 5, scan_h))
-    # On Retina (2×) displays PIL returns physical pixels; detect scale
-    scale  = max(1, round(img.height / scan_h))    # 1 on normal, 2 on Retina
-    cx     = img.width // 2                         # centre column in physical pixels
-    pixels = img.load()
-
-    regions, in_region, region_start = [], False, 0
-    for y in range(img.height):
-        r, g, b   = pixels[cx, y][:3]
-        is_green  = g > 140 and r < 100                                    # Spotify ON (green)
-        is_grey   = 70 < r < 180 and abs(r - g) < 25 and abs(g - b) < 25  # OFF (grey oval)
-        is_toggle = is_green or is_grey
-
-        if is_toggle and not in_region:
-            in_region, region_start = True, y
-        elif not is_toggle and in_region:
-            in_region = False
-            if y - region_start >= 6 * scale:                             # noise threshold
-                cy        = region_start + (y - region_start) // 2
-                rc, gc    = pixels[cx, cy][:2]
-                canvas_y  = y_start + cy // scale                         # logical coordinate
-                regions.append((canvas_y, gc > 140 and rc < 100))
-
-    assert len(regions) >= 5, (
-        f'Canvas toggle not found — found only {len(regions)} toggle region(s) in scan.\n'
-        'Expected ≥5 toggles below the quality dropdown: auto-adjust, compact-lib,\n'
-        'local-files, now-playing, Canvas.\n'
-        'Run the calibration command to debug:\n'
-        '  python3 -c "from spotify_controller import _debug_canvas_scan; _debug_canvas_scan()"'
-    )
-    canvas_y, is_on = regions[4]     # 5th toggle below the dropdown = Canvas
-    return toggle_x, canvas_y, is_on
-
-
-def _debug_canvas_scan():
-    """One-shot diagnostic: open settings and print all toggle positions found."""
-    open_settings()
-    time.sleep(0.5)
-    dropdown = pyautogui.locateOnScreen('screenshots/quality_dropdown.png', confidence=0.7)
-    assert dropdown is not None, 'quality_dropdown not found'
-    print(f'Dropdown at: {dropdown}')
-    toggle_x = dropdown.left + dropdown.width - 13
-    y_start  = dropdown.top
-    screen_h = pyautogui.size().height
-    scan_h   = min(800, screen_h - y_start - 1)
-    img      = pyautogui.screenshot(region=(toggle_x - 2, y_start, 5, scan_h))
-    scale    = max(1, round(img.height / scan_h))
-    cx       = img.width // 2
-    pixels   = img.load()
-    print(f'Image size: {img.size}, scale: {scale}, scan_h (logical): {scan_h}')
-    regions, in_region, region_start = [], False, 0
-    for y in range(img.height):
-        r, g, b = pixels[cx, y][:3]
-        is_toggle = (g > 140 and r < 100) or (70 < r < 180 and abs(r-g) < 25 and abs(g-b) < 25)
-        if is_toggle and not in_region:
-            in_region, region_start = True, y
-        elif not is_toggle and in_region:
-            in_region = False
-            if y - region_start >= 6 * scale:
-                cy = region_start + (y - region_start) // 2
-                rc, gc = pixels[cx, cy][:2]
-                canvas_y = y_start + cy // scale
-                regions.append((canvas_y, gc > 140 and rc < 100))
-    print(f'Toggles found (logical_y, is_on): {regions}')
-    print(f'Expected Canvas at regions[4]: {regions[4] if len(regions)>=5 else "NOT FOUND"}')
 
 
 def _scan_canvas_row(label):
@@ -218,42 +147,29 @@ def _scan_canvas_row(label):
 def set_canvas(condition):
     """
     Toggle the Canvas setting to the correct state.
-    Canvas is ON only for HIGH, OFF for LOW and MEDIUM.
+    Canvas is ON only for HIGH and AUTO; OFF for all others.
 
-    Strategy:
-      1. Locate the Canvas row using its unique label (canvas_label.png).
-      2. Scan the row's pixels for green (ON) or grey (OFF) toggle colours —
-         pixel colour is unambiguous and avoids template-matching false positives.
-      3. Click only if current state does not match desired state.
-
-    Fallback: pixel-column scan anchored on the quality dropdown.
+    Locates the Canvas row via canvas_label.png, then reads the toggle
+    colour (green=ON, grey=OFF) and clicks only if the state is wrong.
+    Raises AssertionError if the label cannot be found — the retry loop
+    in run_experiment.py will catch this and retry configure().
     """
-    want_on    = (condition == 'HIGH')
+    want_on    = condition in ('HIGH', 'AUTO')
     label_path = 'screenshots/canvas_label.png'
 
-    # ── Label + pixel-colour detection (preferred) ────────────────────────────
-    if os.path.exists(label_path):
-        try:
-            label = pyautogui.locateOnScreen(label_path, confidence=0.7)
-        except pyautogui.ImageNotFoundException:
-            label = None
+    try:
+        label = pyautogui.locateOnScreen(label_path, confidence=0.6)
+    except Exception:
+        label = None
 
-        if label is not None:
-            toggle_x, toggle_y, is_on = _scan_canvas_row(label)
-            if is_on != want_on:
-                pyautogui.click(toggle_x, toggle_y)
-                time.sleep(0.5)
-            return
-
-    # ── Pixel-scan fallback ───────────────────────────────────────────────────
-    dropdown = pyautogui.locateOnScreen('screenshots/quality_dropdown.png', confidence=0.7)
-    assert dropdown is not None, (
-        'Could not locate quality dropdown to anchor Canvas scan.\n'
-        'Make sure Spotify Settings > Audio Quality is visible.'
+    assert label is not None, (
+        'Could not locate canvas_label.png on screen.\n'
+        'Make sure Spotify Settings is open and scrolled to show the Canvas row.'
     )
-    toggle_x, canvas_y, is_on = _find_canvas_toggle(dropdown)
+
+    toggle_x, toggle_y, is_on = _scan_canvas_row(label)
     if is_on != want_on:
-        pyautogui.click(toggle_x, canvas_y)
+        pyautogui.click(toggle_x, toggle_y)
         time.sleep(0.5)
 
 
@@ -282,31 +198,48 @@ def configure(condition):
     close_settings()
 
 
-SEEK_SCRIPT = 'tell application "Spotify" to set player position to 0'
+def seek_to_position(seconds):
+    """Seek Spotify playback to an arbitrary position (seconds) via AppleScript."""
+    script = f'tell application "Spotify" to set player position to {seconds}'
+    subprocess.run(['osascript', '-e', script], check=True)
 
 
 def seek_to_start():
     """Seek Spotify playback position to 0:00 via AppleScript."""
-    subprocess.run(['osascript', '-e', SEEK_SCRIPT], check=True)
+    seek_to_position(0)
 
 
 def prebuffer(prebuffer_seconds=15, settle_seconds=5):
     """
-    Warm the Spotify audio buffer at the CURRENTLY configured quality.
+    Warm the Spotify audio/video decoder at the CURRENTLY configured quality.
     Call AFTER configure() and BEFORE EnergiBridge starts.
 
-    Sequence: seek → play 15s → seek → pause → settle 5s
-    The opening seek is defensive: handles crashes that left playback mid-song.
+    Sequence: seek to 0:00 → play prebuffer_seconds → pause (stay mid-song) → settle
+    The final pause preserves decoder state so measurement resumes without a cold-start
+    spike. Do NOT seek back to 0:00 here — that would reset the decoder.
     """
     bring_spotify_to_front()
     play_cmd  = ['osascript', '-e', 'tell application "Spotify" to play']
     pause_cmd = ['osascript', '-e', 'tell application "Spotify" to pause']
 
-    seek_to_start()
+    seek_to_start()                         # defensive: reset to known position
     time.sleep(0.5)
     subprocess.run(play_cmd, check=True)
-    time.sleep(prebuffer_seconds)   # buffer fills at correct bitrate
-    seek_to_start()
-    time.sleep(0.5)
-    subprocess.run(pause_cmd, check=True)
-    time.sleep(settle_seconds)      # CPU/network decay before measurement
+    time.sleep(prebuffer_seconds)           # decoder warms up, buffer fills
+    subprocess.run(pause_cmd, check=True)   # pause mid-song, decoder state preserved
+    time.sleep(settle_seconds)              # CPU/network decay before measurement
+
+
+def resume_playback(settle_seconds=5):
+    """
+    Resume Spotify from its paused mid-song position and wait for the startup
+    transient to clear before EnergiBridge begins recording.
+
+    The audio decoder initialization causes a power spike for the first ~5 s
+    after play() is called from a paused state.  By starting playback HERE
+    (before energibridge launches) the spike is excluded from the CSV entirely,
+    so no post-hoc trimming is needed.
+    """
+    play_cmd = ['osascript', '-e', 'tell application "Spotify" to play']
+    subprocess.run(play_cmd, check=True)
+    time.sleep(settle_seconds)              # wait for spike to fully decay
