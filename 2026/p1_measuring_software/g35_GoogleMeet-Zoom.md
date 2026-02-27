@@ -191,12 +191,6 @@ Across all three features, the data reveals a consistent but nuanced picture: **
 ### Normality testing
 To determine the kind of statistical tests to conduct, the normality of the data destribution was evaluated using the **Shapiro-Wilk test**.
 
-The test was applied separately to each group, with a significance level of `a = 0.05` being used:
-- if `p >= 0.05`: the data was normally distributed
-- if `p < 0.05`: the data was not normally distributed
-
-Generally speaking, most of the groups revealed to have data that is not normally distributed. Depending on the result, the choice of statistical test was made as described below.
-
 *Table 1: Shapiro-Wilk p-values for the power values of the different features*
 
 | **Platform** | **Feature** | **Shapiro-Wilk p-value (ON)** | **Shapiro-Wilk p-value (OFF)** | **Both normal** |
