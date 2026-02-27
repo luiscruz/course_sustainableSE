@@ -198,6 +198,8 @@ def main():
         print('\n' + '='*60)
         print(f'Experiment complete. All {total_runs} runs finished.')
         print(f'Results in: {os.path.abspath(RESULTS)}')
+        
+        subprocess.run(['python3', 'analysis.py'], check=False)
 
     finally:
         caffeinate.terminate()
