@@ -134,4 +134,4 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 
 [^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting algorithms and their execution times: An empirical evaluation. In *Advances in Emerging Trends and Technologies — Proceedings of ICAETT 2020* (pp. 335–348). Springer. [https://doi.org/10.1007/978-3-030-63665-4_27](https://doi.org/10.1007/978-3-030-63665-4_27)
 
-[1] Cormen, T. H. et al. (2009). Introduction to Algorithms 
+[1] Cormen, T. H. et al. (2009). Introduction to Algorithms
