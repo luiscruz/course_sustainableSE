@@ -158,7 +158,10 @@ Because all thread configurations are normally distributed, we compute Cohen's d
 | 1 thread vs. 8 threads | 455.48          | 20.66         | 22.05 |
 | 4 threads vs. 8 threads| 64.72           | 20.88         | 3.10 |
 
-All effect sizes are far above the "large" threshold (d > 0.8), meaning the differences are statistically significant. The distributions barely overlap at all. Even the smallest comparison (4 vs. 8 threads) has d = 3.10, which means the two groups are clearly separated.
+All effect sizes are far above the "large" threshold (d > 0.8), meaning the differences are statistically significant. The distributions barely overlap at all. Even the smallest comparison (4 vs. 8 threads) has d = 3.10, which means the two groups are clearly separated. The figure below visualises this: the fitted normal curves for each configuration are plotted using the measured means and standard deviations.
+
+![distributions](img/g12_comparing_threading/cohens_d_distributions.png "Distribution of energy consumption per thread configuration")
+
 
 ## Practical significance
 
