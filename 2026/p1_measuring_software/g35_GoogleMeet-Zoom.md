@@ -244,7 +244,7 @@ The test was applied separately to each group, with a significance level of `a =
 - if `p >= 0.05`: the data was normally distributed
 - if `p < 0.05`: the data was not normally distributed
 
-Generally speaking, most of the groups revealed to have data that is not normally distributed. The groups that were revealed to be normally distributed are: TEAMS_CAM_ON_PW, TEAMS_CAM_OFF_PW, TEAMS_SHARE_ON_PW, ZOOM_CAM_ON_EDP, TEAMS_CAM_ON_EDP, and TEAMS_CAM_OFF_EDP. Note that the first three concern the average power consumption, while the last three concern the energy delay product values. 
+Generally speaking, most of the groups revealed to have data that is not normally distributed.
 
 Depending on the result, the choice of statistical test was made as described below.
 
@@ -302,23 +302,23 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 
 | Feature | Condition | Test Used           | Test p-value |
 |:--------:|:---------:|:-------------------:|:------------:|
-| CAM      | ON        | Welch t-test        | 0. |
-| CAM      | OFF       | Mann–Whitney U      | 0.XXX |
-| BLUR     | ON        | Mann–Whitney U      | 0.XXX |
-| BLUR     | OFF       | Mann–Whitney U      | 0.XXX |
-| SHARE    | ON        | Mann–Whitney U      | 0.XXX |
-| SHARE    | OFF       | Mann–Whitney U      | 0.XXX |
+| CAM      | ON        | Mann-Whitney U      | 0.000 |
+| CAM      | OFF       | Mann–Whitney U      | 0.000 |
+| BLUR     | ON        | Mann–Whitney U      | 0.363 |
+| BLUR     | OFF       | Mann–Whitney U      | 0.033 |
+| SHARE    | ON        | Mann–Whitney U      | 0.001 |
+| SHARE    | OFF       | Mann–Whitney U      | 0.051 |
 
 *Table 5: Significance test p-values for the power values of the different applications and their features*
 
 | Feature | Condition | Test Used           | Test p-value |
 |:--------:|:---------:|:-------------------:|:------------:|
-| CAM      | ON        | Welch t-test        | 0.XXX |
-| CAM      | OFF       | Mann–Whitney U      | 0.XXX |
-| BLUR     | ON        | Mann–Whitney U      | 0.XXX |
-| BLUR     | OFF       | Mann–Whitney U      | 0.XXX |
-| SHARE    | ON        | Mann–Whitney U      | 0.XXX |
-| SHARE    | OFF       | Mann–Whitney U      | 0.XXX |
+| CAM      | ON        | Welch t-test        | 0.000 |
+| CAM      | OFF       | Mann–Whitney U      | 0.000 |
+| BLUR     | ON        | Mann–Whitney U      | 0.569 |
+| BLUR     | OFF       | Mann–Whitney U      | 0.000 |
+| SHARE    | ON        | Mann–Whitney U      | 0.072 |
+| SHARE    | OFF       | Mann–Whitney U      | 0.599 |
 
 *Table 6: Significance test p-values for the EDP values of the different applications and their features*
 
@@ -330,30 +330,49 @@ For Welch's t-test, **Cohen's d** was used to quantify standardized mean differe
 
 These measures are meant to provide insight into the magnitude of observed effects, independent of sample size. 
 
-| Name | Effect Name | Effect Value | 
-|---|---|---:|
-| TEAMS_CAM_ON_PW | ON | 0.000 | 
-| TEAMS_CAM_OFF_PW | ON | 0.000 | 
-| TEAMS_SHARE_ON_PW | ON | 0.000 | 
-| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+| Platform | Feature | Effect size Used    | Value |
+|:--------:|:-------:|:-------------------:|:------------:|
+| TEAMS    | CAM     | Cohen's d           | -0.935 |
+| ZOOM     | CAM     | Common Language     | 0.864 |
+| TEAMS    | BLUR    | Common Language     | 0.447 |
+| ZOOM     | BLUR    | Common Language     | 0.706 |
+| TEAMS    | SHARE   | Common Language     | 0.761 |
+| ZOOM     | SHARE   | Common Language     | 0.441 |
 
-*Table 5: Features*
+*Table 7: Effect size for the power values of the different features*
 
-| Name | Effect Name | Effect Value | 
-|---|---|---:|
-| TEAMS_CAM_ON_PW | ON | 0.000 | 
-| TEAMS_CAM_OFF_PW | ON | 0.000 | 
-| TEAMS_SHARE_ON_PW | ON | 0.000 | 
-| ZOOM_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_ON_EDP | OFF | 0.000 | 
-| TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
+| Platform | Feature | Effect size Used    | Value |
+|:--------:|:-------:|:-------------------:|:------------:|
+| TEAMS    | CAM     | Cohen's d           | -1.03 |
+| ZOOM     | CAM     | Common Language     | 0.819 |
+| TEAMS    | BLUR    | Common Language     | 0.432 |
+| ZOOM     | BLUR    | Common Language     | 0.699 |
+| TEAMS    | SHARE   | Common Language     | 0.666 |
+| ZOOM     | SHARE   | Common Language     | 0.560 |
 
-*Table 6: App and Features*
+*Table 8: Effect size for the EDP values of the different features*
 
-(Queue in depth explanation between the applications)
+| Feature | Condition | Effect size Used     | Value |
+|:--------:|:---------:|:-------------------:|:------------:|
+| CAM      | ON        | Common Language     | 0.173 |
+| CAM      | OFF       | Common Language     | 0.146 |
+| BLUR     | ON        | Common Language     | 0.569 |
+| BLUR     | OFF       | Common Language     | 0.336 |
+| SHARE    | ON        | Common Language     | 0.257 |
+| SHARE    | OFF       | Common Language     | 0.649 |
 
+*Table 9: Effect size for the power values of the different applications and their features*
+
+| Feature | Condition | Effect size Used     | Value |
+|:--------:|:---------:|:-------------------:|:------------:|
+| CAM      | ON        | Cohen's d           | 1.279 |
+| CAM      | OFF       | Common Language     | 0.162 |
+| BLUR     | ON        | Common Language     | 0.457 |
+| BLUR     | OFF       | Common Language     | 0.237 |
+| SHARE    | ON        | Common Language     | 0.365 |
+| SHARE    | OFF       | Common Language     | 0.540 |
+
+*Table 10: Effect size for the EDP values of the different applications and their features*
 
 # Discussion
 ## Interpretation of Results
