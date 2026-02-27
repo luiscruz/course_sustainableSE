@@ -166,7 +166,7 @@ Before diving into the experimental results we removed anomalies to improve data
 
 ## Experimental results
 
- After the removal of outliers, the results can be seen illustrated below. Each figure compares Zoom and Microsoft Teams under the specified feature ON vs OFF conditions. The violin plots show the full distribution of the measurements across the 30 runs, while the embedded box plots indicate the mean and interquartile range. Finally, the dashed horizontal line represents the mean value. 
+After the removal of outliers, the results can be seen illustrated below. Each figure compares Zoom and Microsoft Teams under the specified feature ON vs OFF conditions. The violin plots show the full distribution of the measurements across the 30 runs, while the embedded box plots indicate the mean and interquartile range.
 
 ### Power and EDP Comparison for camera on vs camera off
 
@@ -289,8 +289,6 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 
 *Table 3: Features*
 
-
-
 | Name | Test Name  | Effect Value | 
 |---|---|---:|
 | TEAMS_CAM_ON_PW | ON | 0.000 | 
@@ -332,9 +330,6 @@ These measures are meant to provide insight into the magnitude of observed effec
 | TEAMS_CAM_OFF_EDP | OFF | 0.000 | 
 
 *Table 6: App and Features*
-
-
-
 
 (Queue in depth explanation between the applications)
 
