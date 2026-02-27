@@ -53,56 +53,68 @@ It is not possible to shut off the unnecessary things that run in our system. St
 Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand. -->
 
 # Introduction
-Large Language Models (LLMs) has been prominent for years. Users from different fields want to get the best performance from their LLM model. Now that agentic LLMs are very powerful, many users don't realise what the cost is of running high reasoning models. There is a cost that not many users realise: energy consumption. This is a hidden cost since most LLMs are not locally run but on the cloud. 
 
-Many AI companies have been fine-tuning their LLMs a lot. By optimizing the many hyperparameters the LLM models have, providing task specific data sets, reinforcing fine-tuning, and many more. Users also try to fine-tune their chats with LLM models by providing context in a form of text, images, and files. Users tend to do this so they can get an answer which fits in the context they have provided. Some would argue that this may improve accuracy of the LLMs output. It is not very known if the model is more efficient if the needed context is given for a task. Are LLMs more energy efficient when more context is given?
+Large Language Models (LLMs) have been prominent for years, and users from different fields want to get the best performance from their models. Now that agentic LLMs are increasingly powerful, many users do not realise what the cost is of running high-reasoning models. There is a cost that often goes unnoticed: energy consumption. This is a hidden cost since most LLMs are not locally run but hosted in the cloud. Users also try to optimise their interactions with LLMs by providing context in the form of text, images, and files, assuming this will yield more accurate and relevant outputs. However, the energy implications of processing increasingly large context windows during inference remain poorly understood, particularly for locally deployed models.
 
-Let's sketch this scenario: a student has a difficult problem to tackle and he wants to use a LLM model to assist him. Since the problem is part of a graded assignment he wants to get the best possible output of the LLM. He doubts if he wants to provide no context, only the relevant lecture slides for the problem or all the slides of the course. At the end, he assumes that providing the most context will give him the best possible answer of the LLM. Is this assumption right? Will the LLM provide a better answer when no context is given? User chat optimisation by providing context is an integral part of use of LLM models. Hence, measuring the energy consumption of various context size is more relevant than ever.
+## Background and Related Work
 
-In this blog post, we will explore how much energy the LLM uses with varying context sizes provided. In our experiment:
-* We use the same model with the same model size. In this case, gpt-oss-20b.
-* Multiple choice exam questions are given which only one question is right.
-* For every question, no context is given or a 2k, 5k, 10k, or 20k tokens context is given.
+Strubell et al. [2] demonstrated that training a single large NLP model can emit as much carbon as five automobiles over their lifetimes, sparking discourse on sustainable AI. Patterson et al. [3] quantified the carbon emissions of training GPT-3 and T5, while Luccioni et al. [4] estimated the full lifecycle carbon footprint of BLOOM.
 
-With this study, we aim to show the energy consumptions for those who wants to fine tune the model with various context sizes.
+These studies focus on the *training* phase, yet the *inference* phase is an increasingly significant contributor to total energy consumption. Desislavov et al. [5] noted that inference costs can dominate over training when models serve millions of users. However, systematic measurements of how input characteristics, such as context window size can affect inference energy remain scarce. This gap is especially pronounced for local inference, where users run models on consumer hardware without the energy optimisations of cloud data centres.
 
-# Methodology
-We have designated a specific system to measure the energy consumption of different context sizes. We aimed to capture the CPU metrics and its energy usage. This section describes the steps taken to ensure consistent and reproducible results.
+## Motivation
 
-## Experiment hardware setup
-Our chosen LLM model is ran in a specific locally controlled environment. This is to gather unbiased energy data and eliminate variations in results due to using different machines.
+Consider a student facing a difficult graded assignment who wants to use an LLM for assistance. They must decide whether to provide no context, only relevant lecture slides, or the entire course material. The assumption is that more context yields better answers but at what energy cost? The transformer self-attention mechanism has quadratic complexity O(N²) with respect to sequence length [6], suggesting that increasing context size yields a super-linear increase in energy. However, the actual energy profile on consumer hardware also depends on memory bandwidth, cache behaviour, and CPU-GPU data transfer overhead.
 
-The hardware of the machine used for experiments:
-* Processor: AMD Ryzen 7 5700X3D @ 3.00Hz
-* GPU: AMD Radeon RX 9070 XT 16GB
-* Memory: 32GB RAM DDR4 3200 MT/s
-* Operating System: Ubuntu 24.04.3 LTS
-* Power Monitoring Tool: EnergiBridge
+## Research Question and Hypotheses
 
-We ran this machine also in similar environment conditions, taking into account the room temperature and run the entire experiment in one execution. This is to reduce the external factors which can influence the results of the experiment. Before we conducted the experiment, all programs which deemed not necessary was properly closed. We only kept the basic tasks running for example, bare minimum operating system services and ethernet connection. In the operation system, we only had a terminal running our Python experiment and LMstudio, which runs our chosen LLM model.
+This study addresses the following research question:
 
-## Chosen model and sizes of context
-For our experiment, only one model is used to keep the experiment consistent. We wanted a model with powerful reasoning and can run agentic tasks. This is to ensure that the model will reason with the context provided. Hence we chose for **gpt-oss-20b** (11.28 GB). This model has agentic capabilities and full chain-of-thought. We found this important because we wanted a model with the latest relevant features. This is to ensure our experiment is close to the real-world usage of LLM models. Then, we have fed the LLM model with multiple choice exam questions of CSE1305: Algorithms and Data Structures and one of the summaries of the course.
+> **RQ:** *How does context window size affect the energy consumption of local LLM inference?*
 
-We have chosen 5 different summary sizes which can serve as context for the exam questions:
-1. No summary (0 kB)
-2. 2k token summary (12 kB)
-3. 5k token summary (31 kB)
-4. 10k token summary (61 kB)
-5. 20k token summary (121 kB)
+We formulate two hypotheses:
 
-Each run with energy measurements ran the same LLM with one of the five summary sizes. The entire experiment is fully automonous for simplicity. Each run outputs a CSV with energy measurements provided by Energibridge.
+- **H1:** Larger context windows lead to significantly higher total energy consumption due to increased computational demand.
+- **H2:** The relationship between context size and energy consumption is non-linear, exhibiting super-linear growth consistent with the quadratic complexity of transformer self-attention.
 
-## Experiment procedure
-Our experiment goes as follows:
-1. Close all unnecessary programs which can interfere with the energy measurements.
-2. Start up the LMstudio daemon.
-3. Load gpt-oss-20b and set the max context size on 30k tokens.
-4. Run "run_experiment.sh" which includes the Python script feeding the LLM with exam questions and summaries, and Energibridge which gives the energy measurements of the CPU. It has first a 5 minute warmup and a 10 second sleep time between questions. 
-5. Retrieve all CSV files. 
+## Hardware and Software Environment
 
-## Data integrity
-To protect data integrity, we ensure to only generate unbiased data and the external factors has minimal influence with the measurements. For every summary, the experiment is repeared 30 times and we monitored that there is at least an answer for every exam question.
+All experiments ran on a single dedicated machine to eliminate hardware variability:
+
+| Component | Specification |
+|-----------|--------------|
+| Processor | AMD Ryzen 7 5700X3D @ 3.00 GHz |
+| GPU | AMD Radeon RX 9070 XT 16 GB |
+| Memory | 32 GB DDR4 3200 MT/s |
+| Operating System | Ubuntu 24.04.3 LTS |
+| CPU Energy Monitoring | EnergiBridge [7] |
+| GPU Power Monitoring | amd-smi |
+| LLM Runtime | LM Studio (daemon mode) |
+
+The entire experiment ran in one execution to reduce external factors. All non-essential programs were closed; only bare-minimum OS services, an ethernet connection, the experiment terminal, and LM Studio remained active. Room temperature was kept approximately constant.
+
+## Model Selection and Context Configurations
+
+We selected a single model for consistency: **gpt-oss-20b** (11.28 GB), which supports agentic capabilities and full chain-of-thought reasoning, reflecting contemporary LLM usage. The model was loaded in LM Studio with a maximum context window of 30,000 tokens.
+
+The task consists of multiple-choice exam questions from CSE1305 (Algorithms and Data Structures) paired with course summaries of varying length. Five context sizes were tested:
+
+| Context Size | File Size | Description |
+|-------------|-----------|-------------|
+| 0k tokens | 0 kB | No context provided |
+| 2k tokens | 12 kB | Brief course summary |
+| 5k tokens | 31 kB | Moderate summary |
+| 10k tokens | 61 kB | Detailed summary |
+| 20k tokens | 121 kB | Comprehensive summary |
+
+## Experiment Procedure
+
+The experiment was executed as a single automated session using the following protocol:
+
+1. **Warmup phase:** One preliminary run with a 2k-token context to bring the system to a steady thermal state, followed by a 5-minute idle period.
+2. **Main phase:** 150 inference runs (30 per context size) executed in an interleaved order. The run cycles through all five context sizes sequentially. This is to prevent temporal drift from systematically biasing any single condition.
+3. **Cooldown:** A 10-second idle period between consecutive runs to allow thermal dissipation and prevent energy measurement carryover.
+4. **Measurement:** For each run, EnergiBridge recorded CPU energy consumption (Joules) at millisecond granularity, while amd-smi sampled GPU socket power (Watts) at one-second intervals in a background process.
 
 # Results
 
@@ -161,3 +173,29 @@ CPU and GPU energy were measured concurrently throughout every run. Figures 8 an
 ![Figure 9: CPU vs GPU average power and EDP comparison.](../img/p1_measuring_software/g3_LLM_efficiency/power_edp.png)
 
 The GPU is the dominant energy consumer across all conditions, drawing approximately 78–83 W compared to the CPU's 34–47 W range. At 20k tokens, GPU total energy reaches 52,960 J versus 21,697 J for the CPU, with GPU EDP (~33.9 million J·s) approximately 2.4× higher. Notably, while CPU power decreases with growing context size, GPU power remains stable at around 80 W throughout — suggesting persistent VRAM and memory bus activity that keeps the GPU occupied regardless of the computational intensity of the inference itself.
+
+# References
+
+[1] P. Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks," in *Advances in Neural Information Processing Systems (NeurIPS)*, 2020.
+
+[2] E. Strubell, A. Ganesh, and A. McCallum, "Energy and Policy Considerations for Deep Learning in NLP," in *Proc. ACL*, 2019.
+
+[3] D. Patterson et al., "Carbon Emissions and Large Neural Network Training," *arXiv preprint arXiv:2104.10350*, 2021.
+
+[4] A. S. Luccioni, S. Viguier, and A.-L. Ligozat, "Estimating the Carbon Footprint of BLOOM, a 176B Parameter Language Model," *Journal of Machine Learning Research*, vol. 24, 2023.
+
+[5] R. Desislavov, F. Martínez-Plumed, and J. Hernández-Orallo, "Trends in AI Inference Energy Consumption: Beyond the Performance-vs-Parameter Laws of Deep Learning," *Sustainable Computing: Informatics and Systems*, vol. 38, 2023.
+
+[6] A. Vaswani et al., "Attention Is All You Need," in *Advances in Neural Information Processing Systems (NeurIPS)*, 2017.
+
+[7] J. Sallou, L. Cruz, and T. Durieux, "EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement," in *Proc. MSR*, 2024.
+
+[8] S. S. Shapiro and M. B. Wilk, "An Analysis of Variance Test for Normality (Complete Samples)," *Biometrika*, vol. 52, no. 3–4, pp. 591–611, 1965.
+
+[9] H. B. Mann and D. R. Whitney, "On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other," *The Annals of Mathematical Statistics*, vol. 18, no. 1, pp. 50–60, 1947.
+
+[10] K. O. McGraw and S. P. Wong, "A Common Language Effect Size Statistic," *Psychological Bulletin*, vol. 111, no. 2, pp. 361–365, 1992.
+
+[11] W. A. Wulf and S. A. McKee, "Hitting the Memory Wall: Implications of the Obvious," *ACM SIGARCH Computer Architecture News*, vol. 23, no. 1, pp. 20–24, 1995.
+
+[12] A. Ivanov et al., "Data Movement Is All You Need: A Case Study on Optimizing Transformers," in *Proc. MLSys*, 2021.
