@@ -103,3 +103,17 @@ Our experiment goes as follows:
 
 ## Data integrity
 To protect data integrity, we ensure to only generate unbiased data and the external factors has minimal influence with the measurements. For every summary, the experiment is repeared 30 times and we monitored that there is at least an answer for every exam question.
+
+# Discussion
+
+## Non-Linear Growth of Energy Consumption
+The +919% energy increase was expected due to the quadratic complexity of the self-attention mechanism in transformers as shown by Vaswani et al [6]. However, the observed growth does not seem to be quadratic. This is because the attention mechanism is only quadratic over the context and this is only a part of the compute during inference. We thus cannot state that the computational complexity of the self-attention mechanism over context directly translates to a quadratic relation with the energy consumption.
+
+## Memory Wall Effect Causes Increased Energy Consumption
+The decrease in CPU power from 46.8 W to 33.9 W due to larger contexts is due to the memory wall effect, as described by W. A. Wulf and S. A. McKee [11]. During inference, the key-value cache grows with the increase in sequence length which in turn requires frequent RAM access when it exceeds the CPU's cache capacity. This forces the CPU to wait and even though this 'idle' time causes lower wattage on average, the increase in program duration causes a significant increase in energy consumption when compared to a scenario where the CPU wouldn't encounter the memory wall effect.
+
+## CPU and GPU Efficiency
+The GPU's higher energy consumption is due to the fact that a GPU's idle energy consumption is a lot higher than a CPU's. So when the GPU has to wait for data transfers, as per the memory wall, it consumes a lot more 'idle' energy than a CPU. Thus inference using the CPU only configuration may be more energy efficient in some cases.
+
+## Outlier Analysis
+The three excluded runs showed energy values around an order of magnitude below their respective medians. This was most likely due to premature termination which occured due to errors during inference. These errors likely occured due to out-of-memory conditions or silent process failures.
