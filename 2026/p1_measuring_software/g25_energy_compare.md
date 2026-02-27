@@ -248,7 +248,7 @@ At 2-second intervals, due to high variability of TikTok usage, statistical sign
 
 As for practical implications, higher energy consumption means faster battery drain - an annoyance to dedicated doomscrollers. While the difference may seem negligible in ordinary circumstance, it becomes noticeable when it accumulates over time or when the remaining battery percentage suddenly matters.
 
-For example, in situations where the final percentage of battery life becomes critical (getting kidnapped or mother in hospital), that remaining charge may no longer be available if more energy-intensive applications were used beforehand. In less urgent circumstances, users who engage in extended scrolling may simply find themselves losing a few additional minutes of device usage or entertainment.
+For example, in situations where the final percentage of battery life becomes critical (getting kidnapped or mother in the hospital), that remaining charge may no longer be available if more energy-intensive applications were used beforehand. In less urgent circumstances, users who engage in extended scrolling may simply find themselves losing a few additional minutes of device usage or entertainment.
 
 Over the long term, higher energy demand also implies more frequent charging cycles. This accelerates battery degradation, shortening overall battery lifespan and potentially reducing the usable life of the device. This means faster device replacement, making the accumulated difference have economic consequences.
 
