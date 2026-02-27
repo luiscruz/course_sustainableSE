@@ -374,14 +374,14 @@ For additional work, it would be interesting to observe the experimentation bein
 
 # Conclusion
 
-Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share.
+Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share. Across 30 iteration per condition, by enabling the features on, it increased energy usage in which the largest effect came from enabling the camera whereas using blur showed weaker effects. Microsoft Teams shows a higher baseline and larger spikes while Zoom is more consistent. Hopefully this helps you pick the most efficient application!
 
 
 # References
 
-1. Sweigart, Al. “Welcome to PyAutoGUI’s Documentation! — PyAutoGUI 1.0.0 Documentation.” Readthedocs.io, 2014, pyautogui.readthedocs.io/en/latest/.
-2. “The Empirical Rule (68-95-99.7).” Dmaic.com, 2 Oct. 2025, www.dmaic.com/faq/empirical-rule/. Accessed 26 Feb. 2026.
-3. “Z-Score (Standard Score).” Dmaic.com, 8 Oct. 2025, www.dmaic.com/faq/z-score-standard-score/. Accessed 26 Feb. 2026.
+1. Sweigart, Al. Welcome to PyAutoGUI’s documentation! — PyAutoGUI  documentation. (2021). Readthedocs.io. http://pyautogui.readthedocs.io/en/latest/
+2. The Empirical Rule (68-95-99.7). (2025b, October 2). Dmaic.com. http://www.dmaic.com/faq/empirical-rule/
+3. Z-Score (Standard Score). (2025b, October 8). Dmaic.com. https://www.dmaic.com/faq/z-score-standard-score/
 4. Adrjan, P., Ciminelli, G., Judes, A., Koelle, M., Schwellnus, C., & Sinclair, T. M. (2025). Working from home after COVID-19: Evidence from job postings in 20 countries. Labour Economics, 96, 102751. https://doi.org/10.1016/j.labeco.2025.102751
 5. Desmarais, A. (2025, March 22). Why remote work is not the lasting COVID legacy some may have hoped. Euronews; Euronews.com. https://www.euronews.com/next/2025/03/22/how-did-the-covid-19-pandemic-affect-remote-work-in-europe
 
