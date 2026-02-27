@@ -70,25 +70,41 @@ In the next section we will discuss in more detail what particular program we us
 To measure the differences in energy consumption, we will use the X/Y/Z as test program. This program lends itself well for this experiment because it is not easily optimised by the compiler/CPU, ...
 
 # Hardware setup
-To be able to ensure a consistent setup for the measurements, as well as minimizing background energy usage, some precautions had to be taken. Most importantly all the collected measurements were made on the same device, specifically a Windows 11 laptop with an Intel Core i7-12700H CPU, as using only one device makes it easier to have a consistent setup. For the measurements collected in the review the following conditions were used:
-- The device is disconnected from the internet
-- Bluetooth is turned off
-- No external devices are connected (USB-drives, computer mouse, external dispalys, etc.)
-- The device is connected to a power supply
-- The brightness of the device is set to the maximum and is not dynamic
-- Screen timeouts are turned off (the device should not enter sleep mode while collecting measurements)
-- All applications are closed such that they do not keep on running in the background
-- Only a powershell is opened that is used to run the scripts for the measurements
+To be able to ensure that the measurements are consistent and reproducible some precautions had to be taken. Most importantly all the collected measurements were made on the same device, as using only one device makes it easier to have a consistent setup. 
+In our case, the device that was used to perform the measurements has the following specifications:
+
+- the operating system is Windows 11;
+- the CPU is an Intel Core i7-12700H;
+- the installed physical memory (RAM) is 16 GB;
+- the resolution is 1920 x 1080, with a refresh rate of 60 hertz;
+
+Additionally the following criteria and configuration settings were used when performing the measurements:
+
+- the device is disconnected from the internet;
+- bluetooth is turned off;
+- no external devices are connected (eg., USB-drives, computer mouse, external dispalys, etc.);
+- the device is connected to a power supply;
+- the brightness of the device is set to the maximum and is not dynamic;
+- screen timeouts are turned off (the device should not enter sleep mode while collecting measurements);
+- all applications are closed such that they do not keep on running in the background;
+- unnecessary services running in the background are stopped (e.g., web server, file sharing, etc.);
+- only a powershell is opened that is used to run the scripts for the measurements;
 
 Besides the setting of the device itself the environment can also have an impact on the performance. Therefore some addition thing had to be ensured like:
-- The temperature of the room is consistent somewhere around 20 degrees Celsius
-- Make sure the room is big, such that the device will not raise the room temperature
-- The laptop is placed in the shadows, such that the sun will not heat it up
-- There are no external heating or cooling devices close enough to the device to have an influence
+
+- The temperature of the room is consistent somewhere around 20 degrees Celsius;
+- Make sure the room is big, such that the device will not raise the room temperature;
+- The laptop is placed in the shadows, such that the sun will not heat it up;
+- There are no external heating or cooling devices close enough to the device to have an influence;
 
 After ensuring that all the above mentioned conditions were met, the scripts to make the measurements were ready to be run.
 
 # Results
+After running all the tests the following plots can be made:
+
+![null](img/g12_comparing_threading/null.png "Null Measurements")
+![energy](img/g12_comparing_threading/energy_plot.png "Total energy consumption")
+![power](img/g12_comparing_threading/power_plot.png "Average power consumption")
 
 
 # Statistical analysis of the results
