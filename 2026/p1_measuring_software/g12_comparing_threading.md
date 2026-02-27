@@ -16,13 +16,15 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
 # Introduction
-Most programs are initially written in a _single-threaded_ fashion. A single-threaded program has only one thread of execution. This means that the program performs one execution at a time, in a sequential matter. This makes developing, debugging and maintaining the program simple, as the program as a whole is easier to reason about. However, many modern operating systems have multi-core processors, which have the capability of executing many tasks in parallel. With single-threaded programs, most of these cores are left unused. This can become especially noticeable if _blocking_ requests are involved, where the execution of the entire program is halted until a task finishes.
+Most programs are initially written in a _single-threaded_ fashion. A single-threaded program has only one thread of execution. This means that the program performs one execution at a time, in a sequential manner. This makes developing, debugging and maintaining the program simple, as the program as a whole is easier to reason about. However, many modern operating systems have multi-core processors, which have the capability of executing many tasks in parallel. With single-threaded programs, most of these cores are left unused. This can become especially noticeable if _blocking_ requests are involved, where the execution of the entire program is halted until a task finishes.
 
 A common solution to this program is to make the program _multi-threaded_. Multi-threaded programs run tasks concurrently, or in parallel. Each thread executes its own execution path of the program, allowing the program to execute multiple tasks at a time. Now, a blocking request could be executed on a different thread, allowing to program to continue execution without having to wait for the request to complete.
 
 With many cores being available on modern operating systems, this paradigm becomes increasingly common. The increased efficiency of the program's execution seems like an obvious reason to take advantage of it. However, when making this change, energy consumption is often left out of the equation. In this report, we will investigate how single-threaded and multi-threaded programs compare in energy consumption, and what considerations a developer should take in mind when choosing between the two paradigms.
 
 More specifically, we will investigate how the memory usage of the same program differs given a single-threaded and multi-threaded implementation. For this, we will take into account the overhead of creating a thread, the number of threads used and the effect of reusing threads.
+
+All the code and scripts used is available in the following repository: [github.com/xpple/CS4575p1-code](https://github.com/xpple/CS4575p1-code). We will refer to excerpts from this repository in our report.
 
 # Methodology
 We will use Java as testing language. Java has APIs available that allows us to easily configure the number of threads and whether threads are reused. Furthermore, in Java threads are OS threads, which is what we want to measure. Languages like Go have coroutines that are lightweight versions of threads, which are managed by the Go runtime and not the OS. Because these threads barely have any overhead, they are less interesting to study.
@@ -39,10 +41,10 @@ To aid the reproducibility of our results, we will abstract away the usage of En
 
 Because multi-threaded programs draw more power simultaneously, one should measure the _total_ energy consumption across all processors. Luckily, this is what LibreHardwareMonitor does; it measures the energy/power sensors at the package level. Here package level refers to the entire physical CPU chip. Thus, because the energy measurements are tied to hardware sensors, they automatically include all active threads running on all cores.
 
-However, because all cores are always measured, there will be a significant amount of background noise that will be captured in the measurements. Therefore, to make our measurements as accurate as possible, one must eliminate as many sources of background memory consumption as possible, and only measure the memory consumption as a consequence of executing the program. For this, we will first perform a null-measurement, which will measure the energy consumption of the system when nothing is being done. On Windows, the `timeout` command sleeps (in contrast to busy waiting) for an amount of time. The `null_measurement.ps1` script measuresures sleeping for ten seconds for a total of thirty iterations.
+However, because all cores are always measured, there will be a significant amount of background noise that will be captured in the measurements. Therefore, to make our measurements as accurate as possible, one must eliminate as many sources of background energy consumption as possible, and only measure the energy consumption as a consequence of executing the program. For this, we will first perform a null-measurement, which will measure the energy consumption of the system when nothing is being done. On Windows, the `timeout` command sleeps (in contrast to busy waiting) for an amount of time. The `null_measurement.ps1` script measuresures sleeping for ten seconds for a total of thirty iterations.
 
 ```shell
-./null_measurement.ps1
+./scripts/null_measurement.ps1
 ```
 
 See the [Hardware setup](#hardware-setup) section for the hardware specifications and configurations of the device that was used for performing the measurements.
@@ -62,19 +64,19 @@ To measure the differences in energy consumption, we will use a task that confor
 
 We found a good candidate for this to be hashing computations. More specifically, we used SHA512, which is the 512 bit digest implementation of the SHA-2 algorithm. Hash functions in general conform to most of the above criteria, and SHA-2 is sufficiently complicated so that it cannot be optimized away. To use it in Java, the Google Guava library[^4] exposes various hash functions with a convenient API for hashing many Java variable types directly. Because SHA-2 is relatively fast, we will compute the hash iteratively. To ensure the task is not optimized away, the result of each iteration is collected in a `sink` variable. Below is the code for the task:
 
-https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Program.java#L13-L19
+[`Program.java#L13-L19`](https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Program.java#L13-L19)
 
 Note that the task itself is a completely sequential task, there is no parallelism involved. We will however run this task many times, which is where we can employ multi-threading. In the single-threaded implementation, the task is executed in a for-loop sequentially for a given iteration count. Again, to ensure the task is not optimized away, a `sink` variable is used. The code for the single-threaded implementation is given below:
 
-https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/SingleThreadedProgram.java
+[`SingleThreadedProgram.java`](https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/SingleThreadedProgram.java)
 
-Now, we will distinguish two multi-threaded implementations. In the first, threads are not reused. That is, when a certain thread has completed its calculations, it is destroyed. Then, if a new calculation is available to be performed, a new thread will be created. This implementation aims to investigate the energy consumption of the overhead of creating OS threads. In Java, one can accomplish this model by creating an `ExecutorService` whose thread pool size is zero. The code is given below:
+Now, we will distinguish two multi-threaded implementations. In the first, threads are not reused. That is, when a certain thread has completed its calculations, it is destroyed. Then, if a new calculation is available to be performed, a new thread will be created. This implementation aims to investigate the energy consumption of the overhead of creating OS threads. In Java, one can accomplish this model by creating a `ThreadPoolExecutor` whose thread pool size is zero. The code is given below:
 
-https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedProgram.java
+[`MultiThreadedProgram.java`](https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedProgram.java)
 
 The other multi-threaded implementation does reuse threads. This means that if a calculation is finished, the thread will be kept alive until a new calculation is available to be executed, after which the thread will perform the calculations. This gets almost completely rid of the overhead of creating threads, as only the initially used threads have to be created, whereafter the threads are always reused. In Java, such a model can be created using `Executors#newFixedThreadPool`. The code for this implementation is given below:
 
-https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedCachedProgram.java
+[`MultiThreadedCachedProgram.java`](https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedCachedProgram.java)
 
 Each different implementation can be invoked with certain parameters. The below table shows the available parameters for each program:
 
@@ -86,7 +88,13 @@ Each different implementation can be invoked with certain parameters. The below 
 
 For each program the input size determines the number of tasks that will be performed. For the multi-threaded implementations, the second parameter determines the (maximum) number of threads that will be used. The shell of the Java app is given below:
 
-https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Main.java
+[`Main.java`](https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Main.java)
+
+The different programs can be tested using the `program_measurement.ps1` script:
+
+```shell
+./scripts/program_measurement.ps1 <arguments>
+```
 
 # Hardware setup
 To be able to ensure that the measurements are consistent and reproducible some precautions had to be taken. Most importantly all the collected measurements were made on the same device, as using only one device makes it easier to have a consistent setup. 
@@ -95,28 +103,28 @@ In our case, the device that was used to perform the measurements has the follow
 - the operating system is Windows 11;
 - the CPU is an Intel Core i7-12700H;
 - the installed physical memory (RAM) is 16 GB;
-- the resolution is 1920 x 1080, with a refresh rate of 60 hertz;
+- the resolution is 1920 x 1080, with a refresh rate of 60 hertz.
 
 Additionally the following criteria and configuration settings were used when performing the measurements:
 
 - the device is disconnected from the internet;
-- bluetooth is turned off;
-- no external devices are connected (eg., USB-drives, computer mouse, external dispalys, etc.);
+- Bluetooth is turned off;
+- no external devices are connected (eg., USB-drives, computer mouse, external displays, etc.);
 - the device is connected to a power supply;
 - the brightness of the device is set to the maximum and is not dynamic;
 - screen timeouts are turned off (the device should not enter sleep mode while collecting measurements);
 - all applications are closed such that they do not keep on running in the background;
 - unnecessary services running in the background are stopped (e.g., web server, file sharing, etc.);
-- only a powershell is opened that is used to run the scripts for the measurements;
+- only a PowerShell is opened that is used to run the scripts for the measurements.
 
 Besides the setting of the device itself the environment can also have an impact on the performance. Therefore some addition thing had to be ensured like:
 
-- The temperature of the room is consistent somewhere around 20 degrees Celsius;
-- Make sure the room is big, such that the device will not raise the room temperature;
-- The laptop is placed in the shadows, such that the sun will not heat it up;
-- There are no external heating or cooling devices close enough to the device to have an influence;
+- the temperature of the room is consistent somewhere around 20 degrees Celsius;
+- make sure the room is big, such that the device will not raise the room temperature;
+- the laptop is placed in the shadows, such that the sun will not heat it up;
+- there are no external heating or cooling devices close enough to the device to have an influence.
 
-After ensuring that all the above mentioned conditions were met, the scripts to make the measurements were ready to be run.
+After ensuring that all the above-mentioned conditions were met, the scripts to make the measurements were ready to be run.
 
 # Results
 After running all the tests the following plots can be made:
@@ -125,7 +133,7 @@ The first plot shows the average power consumption for the null measurements. Th
 
 ![null](img/g12_comparing_threading/null.png "Null Measurements")
 
-This second plot shows the programs total energie consumption in Joules, for each experiment with different amounts of threads. For each experiment around 0 to 3 measurements were labeled as outliers and were left out from this plot. As already mentioned using more threads for computations also speeds up the process. To still be able to compare the experiments, we want to isolate the energy consumption of the program itself. To do this we subtract the found background power consuption (2.2 W) multiplied by the time it took each measurement to run:
+This second plot shows the programs total energy consumption in Joules, for each experiment with different amounts of threads. For each experiment around 0 to 3 measurements were labeled as outliers and were left out from this plot. As already mentioned using more threads for computations also speeds up the process. To still be able to compare the experiments, we want to isolate the energy consumption of the program itself. To do this we subtract the found background power consumption (2.2 W) multiplied by the time it took each measurement to run:
 $J_{program} = J_{total} - P_{null} * \Delta t$
 
 ![energy](img/g12_comparing_threading/energy_plot.png "Total energy consumption")
@@ -177,7 +185,7 @@ Because all thread configurations are normally distributed, we compute Cohen's d
 | 1 thread vs. 8 threads | 455.48          | 20.66         | 22.05 |
 | 4 threads vs. 8 threads| 64.72           | 20.88         | 3.10 |
 
-All effect sizes are far above the "large" threshold (d > 0.8), meaning the differences are statistically significant. The distributions barely overlap at all. Even the smallest comparison (4 vs. 8 threads) has d = 3.10, which means the two groups are clearly separated. The figure below visualises this: the fitted normal curves for each configuration are plotted using the measured means and standard deviations.
+All effect sizes are far above the "large" threshold (d > 0.8), meaning the differences are statistically significant. The distributions barely overlap at all. Even the smallest comparison (4 vs. 8 threads) has d = 3.10, which means the two groups are clearly separated. The figure below visualizes this: the fitted normal curves for each configuration are plotted using the measured means and standard deviations.
 
 ![distributions](img/g12_comparing_threading/cohens_d_distributions.png "Distribution of energy consumption per thread configuration")
 
@@ -186,7 +194,7 @@ All effect sizes are far above the "large" threshold (d > 0.8), meaning the diff
 
 A single run of the workload on 1 thread uses about 1297 J. On 8 threads, that drops to 841 J, which is a saving of roughly 456 J per execution. Over a year, that adds up to about 4.6 kWh per machine assuming 100 workloads a day. For a server consisting of many machines processing thousands of such tasks daily, the cumulative savings become meaningful both in cost and in carbon footprint.
 
-It is worth noticing, that these savings come from a CPU-heavy hashing workload where parallelism directly reduces total execution time. In workloads that are I/O-bound, memory-bound, or that have heavy synchronisation overhead, the energy savings from threading could be smaller.. Our results should not be generalised to all workloads without further investigation.
+It is worth noticing, that these savings come from a CPU-heavy hashing workload where parallelism directly reduces total execution time. In workloads that are I/O-bound, memory-bound, or that have heavy synchronization overhead, the energy savings from threading could be smaller. Our results should not be generalized to all workloads without further investigation.
 
 ## Diminishing returns
 
