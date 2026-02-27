@@ -2,7 +2,7 @@
 author: Maciej Bober, Jeroen Chu, Bill Vi, Joost Weerheim
 group_number: 3
 title: "Comparing Local LLM Inference Energy Consumption"
-image: "img/p1_measuring_software/g3_LLM_efficiency/energy_by_context_size.png"
+image: "img/gX_template/project_cover.png"
 date: 12/02/2026
 summary: |-
     Large language models (LLMs) are increasingly used with supplementary context such as lecture notes, documentation, or retrieved passages to improve output quality. However, the energy cost of processing larger context windows during local inference is poorly understood. This project investigates how varying context sizes (0, 2k, 5k, 10k, and 20k tokens) affect the CPU and GPU energy consumption of a locally deployed 20B-parameter LLM (gpt-oss-20b) answering multiple-choice exam questions. Using EnergiBridge for CPU energy measurement and amd-smi for GPU power monitoring, we conducted 150 automated runs (30 per context size) in a controlled environment. We report total energy consumption, average power draw, and energy-delay product across all context sizes, and apply statistical testing (Shapiro-Wilk, Welch's t-test / Mann-Whitney U) with effect size analysis to assess the significance and magnitude of the observed differences.
@@ -103,6 +103,64 @@ Our experiment goes as follows:
 
 ## Data integrity
 To protect data integrity, we ensure to only generate unbiased data and the external factors has minimal influence with the measurements. For every summary, the experiment is repeared 30 times and we monitored that there is at least an answer for every exam question.
+
+# Results
+
+Across 150 inference runs spanning five context sizes, the data shows a coherent picture that largely confirms our expectations while surfacing a few counterintuitive findings.
+
+## Data Validation
+
+### Normality Testing
+
+Before drawing any statistical conclusions, we first characterised the shape of the energy distributions. We applied the Shapiro-Wilk test [8] to the CPU energy measurements for each context size; Figures 1 and 2 illustrate the resulting distributions.
+
+![Figure 1: Normality check — Histograms with Shapiro-Wilk test results for each context size. The '+' symbol indicates failure to reject H₀ (normal), while no symbol indicates rejection (non-normal).](../img/p1_measuring_software/g3_LLM_efficiency/normality_histograms.png)
+
+![Figure 2: Q-Q plots comparing observed energy distributions against the theoretical normal distribution for each context size.](../img/p1_measuring_software/g3_LLM_efficiency/normality_qqplot.png)
+
+Normality was rejected for the 0k (W = 0.914, p = 0.019) and 10k (W = 0.919, p = 0.028) groups, while the 2k, 5k, and 20k groups passed. Given that not all groups satisfy the normality assumption, we applied the non-parametric Mann-Whitney U test [9] consistently across all pairwise comparisons.
+
+### Outlier Detection and Exclusion
+
+A small number of runs produced anomaly measurements. We identified outliers using both IQR (1.5×) and Z-score (|Z| > 2) criteria; Figure 3 highlights the affected data points.
+
+![Figure 3: Energy distribution per context size. Red dots indicate outliers beyond 1.5×IQR.](../img/p1_measuring_software/g3_LLM_efficiency/outlier_boxplot.png)
+
+Three runs were excluded: `test_40_20k.csv` (1,161 J, Z = 5.25), `test_95_20k.csv` (1,004 J, Z = 5.20), and `test_94_10k.csv` (4,855 J, Z = 5.00). Their energy values were an order of magnitude below their group medians, most likely the result of silent process failures or out-of-memory conditions causing premature termination rather than genuinely low energy use. The cleaned dataset comprises 147 valid runs.
+
+## Statistical Significance
+
+With a validated dataset in place, we ran Mann-Whitney U tests across all ten pairwise context-size combinations. The heatmap in Figure 4 summarises the outcomes.
+
+![Figure 4: Pairwise p-value heatmap (Mann-Whitney U). Green = significant at α = 0.05.](../img/p1_measuring_software/g3_LLM_efficiency/significance_matrix.png)
+
+Every pairwise comparison returned p < 2.23 × 10⁻⁹, confirming that all energy differences are highly statistically significant without exception. Statistical significance, however, says nothing about magnitude, so we also computed the Common Language Effect Size (CLES) [10] relative to the 0k baseline (Figure 5).
+
+![Figure 5: Percentage change in CPU energy and CLES values relative to the 0k baseline.](../img/p1_measuring_software/g3_LLM_efficiency/effect_size_summary.png)
+
+The effect sizes are substantial. Relative to the 0k baseline, CPU energy increases by +58% at 2k tokens, +172% at 5k, +437% at 10k, and **+919%** at 20k — nearly a tenfold increase for the largest context. The CLES values reinforce this: 0.950 for the 0k→2k comparison and 1.000 for all others, indicating that virtually every run at a larger context consumed more energy than any run at a smaller one. **H1 is strongly confirmed.**
+
+## Energy Consumption Trends
+
+With the statistical picture established, we turn to the energy trends themselves. Figures 6 and 7 present total CPU energy, average power draw, and the energy-delay product (EDP) across all five context sizes.
+
+![Figure 6: Average total CPU energy by context window size.](../img/p1_measuring_software/g3_LLM_efficiency/energy_by_context_size.png)
+
+![Figure 7: Three-panel CPU analysis — total energy, average power, and EDP by context size.](../img/p1_measuring_software/g3_LLM_efficiency/energy_analysis.png)
+
+Total CPU energy rises from 2,218 J at 0k context to 21,697 J at 20k — a 9.8× increase for a 20× larger input. The growth is clearly super-linear yet falls short of the theoretical quadratic bound, which is consistent with attention complexity applying only to the context portion of each run,thus **H2 is supported.**
+
+Perhaps the most counterintuitive finding is that average CPU power *decreases* with larger contexts — from 46.8 W at 0k to 33.9 W at 20k. This apparent paradox is resolved by the EDP metric, which grows from 107,929 J·s at 0k to over 13.8 million J·s at 20k. Since EDP = energy × time, the rising EDP alongside falling power indicates a dramatic increase in execution time: the processor runs at lower utilisation for much longer rather than operating at full capacity for a shorter period. This behavior is characteristic of a memory bottleneck, where the CPU is waiting for data rather than being compute-bound.
+
+## CPU versus GPU Observations
+
+CPU and GPU energy were measured concurrently throughout every run. Figures 8 and 9 compare both components across context sizes.
+
+![Figure 8: CPU vs GPU — total energy, average power, and EDP.](../img/p1_measuring_software/g3_LLM_efficiency/cpu_vs_gpu_energy.png)
+
+![Figure 9: CPU vs GPU average power and EDP comparison.](../img/p1_measuring_software/g3_LLM_efficiency/power_edp.png)
+
+The GPU is the dominant energy consumer across all conditions, drawing approximately 78–83 W compared to the CPU's 34–47 W range. At 20k tokens, GPU total energy reaches 52,960 J versus 21,697 J for the CPU, with GPU EDP (~33.9 million J·s) approximately 2.4× higher. Notably, while CPU power decreases with growing context size, GPU power remains stable at around 80 W throughout — suggesting persistent VRAM and memory bus activity that keeps the GPU occupied regardless of the computational intensity of the inference itself.
 
 # Discussion
 
