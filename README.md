@@ -18,5 +18,12 @@ docker build . -t sse-site
 docker run -p 4000:4000 -v $(pwd):/myapp -it sse-site
 ```
 
-The website should then be available at <http://localhost:4000/course_sustainableSE/2025/>.
+For PowerShell, the commands should be:
+
+```powershell
+docker build . -t sse-site
+docker run -p 4000:4000 -v ${PWD}:/myapp -it sse-site
+```
+
+The website should then be available at <http://localhost:4000/course_sustainableSE/2026/>.
 (and only at this link, replacing localhost by an ip address will not work.)
