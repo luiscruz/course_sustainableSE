@@ -133,7 +133,7 @@ This section presents violin and box plots based on the averages of 30 measureme
 
 “Raw” plots include all observations, while “clean” plots exclude outliers using the 1.5xIQR rule. We found that for some runs on TikTok, the reels were stuck, and the bot script was unable to scroll. We assume that these occurences represent the outliers on the lower end, providing a justification to remove them.
 
-### 2 second intervals
+### 2 Second Intervals
 ![2_raw](img/g25_energy_compare/measurements_2_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -149,7 +149,7 @@ On average, energy consumption is similar across platforms. However, TikTok show
 
 No noticeable difference after outlier removal.
 
-### 5 second intervals
+### 5 Second Intervals
 ![5_raw](img/g25_energy_compare/measurements_5_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -165,7 +165,7 @@ Both the mean and median are higher for TikTok, indicating greater overall energ
 
 After removing the outliers, Chrome_tiktok graph appears to attain a normal distribution. Since outliers were on the lower end, both mean and median are higher.
 
-### 10 second intervals
+### 10 Second Intervals
 
 ![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
 
@@ -209,15 +209,15 @@ However, modern web applications, including YouTube[^youtube-ab-testing], often 
 
 Therefore, we believe that our approach of creating a new browser instance and profile for each run is a reasonable way to isolate the tests and ensure that the results are not influenced by caching or other stateful data.
 
-### Recommendation algorithms
+### Recommendation Algorithms
 While developing the scripts to automate the Chromium browser, we encountered several challenges. Althrough we start with the same video uploaded to both platforms, the recommendation algorithms of YouTube and Instagram may serve different videos to the user, which can lead to variations in energy consumption.
 
 To attempt to reduce the influence of the recommendation algorithms, all tests are run without a logged in user. Therefore, a scrolling session of one test should not influence the next test, as the recommendation algorithms will not have any user data to personalize the content. However, it is still possible that the platforms use browser fingerprinting techniques to attempt to identify the user and serve personalized content, which could influence the results.
 
-### Automation mitigations
+### Automation Mitigations
 While analyzing the results, we noticed that the energy consumption of TikTok of some test runs was significantly lower than the other runs. After investigating the issue, we found that TikTok was disallowing the automated browser to scroll through the videos, and loaded only the first video. These outlier runs were excluded from the analysis to ensure that the results are not influenced by this issue.
 
-### Practical importance
+### Practical Importance
 
 # Conclusion
 Our research is aimed to analyse the differences in energy consumption of "doomscrolling" accross different popular short-form video social media platforms. The motivation for this experiment was to help reduce everyday frustrations of rapid battery drain and increasing electricity costs.
