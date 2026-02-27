@@ -364,7 +364,13 @@ While we cannot confirm what caused the result patterns observed, in this subsec
 
 
 ## Implications
-TODO
+The results of our study have practical implications and can help the users of the two video-call applications form sustainable decisions. In this section, we adress the concerns of batery drain, hardware stress, and system-level implications for both users and organizations, as raised in the Motivation section above.
+
+Our research suggests that users and organizations aiming to reduce energy usage during calls should pay attention to both the application they choose and the features that remain enabled by default. Turning the camera off has shown the most consistent results in reducing energy consumption across both applications, which results in the computer's battery lasting longer and the device producing less heat. Sharing screen, particularly on Microsoft Teams, has shown to have the highest power spikes. Consequently, if users are mindful of using this functionality, they can reduce their device wear and have positive effects on the environment across many meetings.
+
+At the organizational level, small considerations can have a real impact on the energy usage and the environmental sustainability. Companies could change default settings to have less features enabled when joining the call. Moreover, companies could impose more sustainable policy changes, such as avoiding mandatory "camera on" requirement in internal meetings. These changes would reduce aggregate energy demand without affecting the productivity, as users would still be able to enable any feature manually.
+
+
 # Limitations
 
 There are some limitations that will be briefly discussed in this section:
