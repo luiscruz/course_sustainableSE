@@ -54,7 +54,7 @@ non-essential features, testing each individually against a common baseline.
 that mirrors the on-screen content in real time, dynamically adjusting when scenes change [2]. This feature is only
 active in dark mode and is enabled by default.
 
-**Stable Volume** automatically normalizes audio levels during playback, dynamically adjusting the volume to reduce
+**Stable Volume** automatically normalises audio levels during playback, dynamically adjusting the volume to reduce
 sudden loudness spikes and flatten the dynamic range within a video [3]. This setting is also enabled by default.
 
 **Voice Boost** enhances the clarity of speech in videos by using AI to identify vocal frequencies and amplify spoken
@@ -69,14 +69,14 @@ consumption.
 
 We defined four conditions (one per setting plus the baseline) and conducted 30 trials per condition, running 120
 trials in total. To minimize human error and ensure consistency across trials, the entire experiment was automated using
-Python and Playwright [2]. The Hardware and software details of the machine on which we conducted the
+Python and Playwright [2]. The hardware and software details of the machine on which we conducted the
 experiment are provided below in section [Hardware/Software Details](#hardwaresoftware-details). The video used throughout all trials was a fixed,
 publicly available YouTube video **(TODO: ADD VIDEO)** with no ads and streamed at a consistent quality (480p).
 ### Zen Mode
-Before the start of experiment began, we prepared the machine by closing all applications, disabling
+Before the experiment began, we prepared the machine by closing all applications, disabling
 all notifications, disabling brightness adjusting. Display brightness and system volume were both fixed at 30% for the duration
-of the experiment, this is discussed further in the [Limitation section](#limitations-and-future-work). Although a wired ethernet connection would have been preferable for network stability, it was not
-nto feasible throughout the timeline of the project, so all trials were conducted over the same Wi-Fi network. We acknowledge this as a potential source of variance in our
+of the experiment, this is discussed further in the [Limitations section](#limitations-and-future-work). Although a wired ethernet connection would have been preferable for network stability, it was not
+not feasible throughout the timeline of the project, so all trials were conducted over the same Wi-Fi network. We acknowledge this as a potential source of variance in our
 measurements.
 
 ### Workflow
@@ -173,8 +173,8 @@ To quantify the magnitude of differences, we computed:
 Together, these measures provided us with a solid foundation for evaluating whether the examined features meaningfully
 influence client-side energy consumption.
 
-## Results
-Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explained why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to youtube's content donwloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However we have no clear way of pinpointing the exact cause. 
+# Results
+Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explained why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to YouTube's content downloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However we have no clear way of pinpointing the exact cause. 
 
 <table>
   <tr>
@@ -209,7 +209,7 @@ Our results have quite a few outliers. In total we have 13 outliers, with `voice
 </table>
 
 
-Furhter insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what I mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations). Later in the [Statistical significances](#statistical-significances) we will see that although this difference exists, on a statistical level, these differences are negligable. 
+Further insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations). Later in the [Statistical significance](#statistical-significances) we will see that although this difference exists, on a statistical level, these differences are negligible. 
 
 <div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;" >
   <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="Normalised Histogram containing all 4 experimental classes">
@@ -222,16 +222,47 @@ The histograms below give us an insight into the type of statistical tests we ca
   <img src="./img/g34_measuring_youtube/full_histogram.png" alt="Normalised Histogram containing all 4 experimental classes">
 </div>
 
+## Statistical Significance
+Because the energy consumption data did not consistently satisfy normality assumptions after outlier removal, we used the Mann–Whitney U test to compare each feature condition against the baseline (all-off). This non-parametric test does not assume normally distributed data and is therefore appropriate for comparing the central tendency of skewed or irregular distributions.
 
-## Discussion
+The figure below shows the statistical significance of each comparison, expressed as −log10(p), with the dashed horizontal line indicating the significance threshold of p = 0.05.
+
+<div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;">
+  <img src="./img/g34_measuring_youtube/Mann-Whitney-Test.png" alt="Non-Normalised Violinplot containing all 4 experimental classes">
+</div>
+
+<p> </p>
+Ambient Mode shows a highly significant difference compared to the baseline (U = 0, p ≪ 0.001), indicating that system power consumption under Ambient Mode is consistently higher than in the all-off condition.
+
+<p></p>
+Voice Boost also shows a statistically significant difference relative to the baseline (U = 666, p < 0.001). However, as discussed later in the effect size analysis, this significance does not translate into a practically meaningful decrease in energy consumption.
+<p></p>
+Stable Volume does not show a statistically significant difference compared to the baseline (U = 506, p ≈ 0.05), suggesting that its effect on system power consumption is negligible under the tested conditions.
+<p></p>
+
+## Effect Sizes
+
+Statistical significance alone is not sufficient to judge the impact of a feature on energy consumption. To assess whether the observed differences are relevant in practice, we examined effect sizes using three measures: the median difference, the median-based percentage change, and the percentage of pairs.
+
+| Effect Size Metric        | Stable Volume | Ambient Mode | Voice Boost |
+|---------------------------|---------------|--------------|-------------|
+| Median Difference (W)     | -0.019        | 8.671        | -0.130      |
+| Percentage Change (%)     | -0.782 %      | 365.328 %    | -5.478 %    |
+| Percentage of Pairs (%)   | 35.38 %       | 100.00 %    | 0.15 %      |
+
+For Ambient Mode, all three metrics indicate a clear and consistent increase in system power usage compared to the baseline. The median power draw increases by 8.67 W, corresponding to a 365% median-based increase, and 100% of Ambient Mode trials consume more power than baseline trials. This pattern indicates a sustained increase in energy consumption rather than an effect driven by a small number of extreme measurements.
+
+In contrast, Voice Boost and Stable Volume show negligible effect sizes. Median differences are close to zero (−0.13 W and −0.02 W, respectively), relative changes are small (−5.48% and −0.78%), and the percentage-of-pairs values remain low (0.15% and 35.38%). This substantial overlap with the baseline distribution suggests that, despite statistical significance for the Voice Boost, the features do not meaningfully affect energy consumption under the tested conditions.
+
+# Discussion
 From our results, we observed that voice-boost and ambient-mode have a statistically significant difference in their energy consumption compared to the baseline. However, from a practical significance perspective, we observe that for voice-boost the effect size is significantly lower than that of ambient-mode, to the point where it can be considered negligible for a user as it promotes the understandability of a video. In this case, the voice-boost setting is possibly compensating for its marginal energy consumption by reducing the need for additional features that also promote understandability. This can be the use of a higher volume, subtitles, or re-watching that also consume additional energy. Therefore, we only reach conclusions on the ambient-mode setting in this study and discuss the rest further in [Limitations and Future Work](#limitations-and-future-work).
 
 For ambient-mode, we have observed that it does consume significantly more energy compared to the baseline. This is in line with several sources on the internet, such as a post by Henry Van Megen [6]. These sources attempt to warn that it is consuming energy and resulting in extra C02 while both its environmental impact and added benefit to the user going unnoticed. Considering that Ambient Mode is active by default for dark mode users, many of whom may have chosen dark mode for its energy-efficiency benefits, YouTube has a responsibility to address this design choice more carefully when treating its 2.5 billion users [7]. The company should either clearly inform users about the potential energy implications before enabling it by default or disable the feature by default and allow users to make an informed decision themselves. This is especially important because the feature’s existence is not widely known, and its benefits are generally considered negligible [6].
 
-## Limitations and Future Work
+# Limitations and Future Work
 We faced several limitations due to the short timespan of the project and our hardware. We outline them below.
 
-First of all, as mentioned in the discussion session, we did not see a significant difference in the use of energy consumption for voice boost and stable volume. A possible reason for this is that these features heavily rely on dynamic voice ranges and background noises in a video [2] [3]. The content that we used was a story-time video that had stable levels of narration and background music throughout the video, possibly not triggering the use of these voice correction features fully. Unfortunately we did not have the time to re-run our experiment to address this, but the effect of voice boost and stable volume can be explored further by replicating the experiment with different kinds videos in the future.
+First of all, as mentioned in the discussion section, we did not see a significant difference in the use of energy consumption for Voice Boost and Stable Volume. A possible reason for this is that these features heavily rely on dynamic voice ranges and background noises in a video [2] [3]. The content that we used was a story-time video that had stable levels of narration and background music throughout the video, possibly not triggering the use of these voice correction features fully. Unfortunately, we did not have the time to re-run our experiment to address this, but the effect of Voice Boost and stable volume can be explored further by replicating the experiment with different kinds of videos in the future.
 
 Secondly, since the settings are concerned with display and sound, the initial version of the experiment included 100% brightness and volume to better observe the effects. However, since the execution of 4 different cases took several hours, the full-battery of the hardware we used did not last enough to finish the experiment. This is why we used 30% for both brightness and sound to be able to finish the full execution. We decided against the charging of the hardware throughout the experiment since we had assumed that connection of an external device would have an uncontrollable effect on the results. However, reflecting on our experiment, the receding battery might have also affected our results negatively throughout the runs. Therefore, the experiment could be replicated with higher levels of brightness and sound while being plugged to a power outlet, while assessing if this would affect the results or not. 
 
@@ -254,4 +285,4 @@ It. https://nymynet.com/voice-boost-youtube-explained-when-and-why-you-should-us
 
 [6] Change.org. Reduce energy waste — Help turn off YouTube’s power-hungry default ambient mode. https://www.change.org/p/reduce-energy-waste-help-turn-off-youtube-s-power-hungry-default-ambient-mode
 
-[7] Brian Dean. YouTube Stats: How Many People Use YouTube? Backlinko. Last updated Dec. 29, 2025. https://backlinko.com/youtube-users :contentReference[oaicite:0]{index=0}
+[7] Brian Dean. YouTube Stats: How Many People Use YouTube? Backlinko. Last updated Dec. 29, 2025. https://backlinko.com/youtube-users
