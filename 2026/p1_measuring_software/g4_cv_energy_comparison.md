@@ -69,9 +69,10 @@ Before results could be extracted from the experiment, we had to perform pre-pro
 
 First, we use violin and box plots to give a glimpse of the experiment's data distribution. As can be seen in Figure 1, the averaged GPU energy consumption per inference seems to be normally distributed. This is expected since the GPU is dedicated to model inference without lots of other interfering processes. Note that YOLOv8 seems to be more consistent in its energy consumption than RF-DETR, and that majority energy seems to be consumed by the GPU. On the other hand, for the total (i.e., GPU and CPU combined) energy per inference, the CPU has introduced non-normality into the combined energy consumption (see Figure 2). We suspect the CPU energy measurements being non-normal due to possible interferences like the operating system activity, or CPU inactivity while waiting for the GPU.
 
-| Figure 1: Violin-box plot of GPU average energy consumption per inference | Figure 2: Violin-box plot of total average energy consumption per inference |
-| :---: | :---: |
+
 | ![](img/g4_cv_energy_comparison/violin-box-gpu-average.png) | ![](img/g4_cv_energy_comparison/violin-box-total-average.png) |
+| :---: | :---: |
+| Figure 1: Violin-box plot of GPU average energy consumption per inference | Figure 2: Violin-box plot of total average energy consumption per inference |
 
 
 Since not all measurements are normally distributed, different statistical tests are performed based on the Shapiro-Wilk normality test.
@@ -82,12 +83,11 @@ When we look at both the averaged total energy per inference and the total energ
 
 When plotting the total energy consumption per inference and per run (see Figures 3 and 4), we can visualize both the lack of overlap between the measurements and the double energy consumption of RF-DETR.
 
-| Figure 3: Graph of total average energy consumption per inference | Figure 4: Graph of total energy consumption per run |
-| :---: | :---: |
 | ![](img/g4_cv_energy_comparison/graph-total-per-inference.png) | ![](img/g4_cv_energy_comparison/graph-total-per-run.png) |
+| :---: | :---: |
+|Figure 3: Graph of total average energy consumption per inference|Figure 4: Graph of total energy consumption per run |
 
-
-Finally, we appreciated having an indication of the carbon emission that corresponds to using each model. To this end, we used $C = E * CI$, where _C_ is the carbon emission in gCo2eq, _E_ is the energy in kWh, and _CI_ is the carbon intensity in gCo2eq/kWh. We obtained a carbon intensity value of 184 gCo2eq/kWh for the Netherlands at 6 feb 2026, 11:45 CET from [Electricity Maps](https://app.electricitymaps.com/map/live/fifteen_minutes). Eventually, this resulted in the carbon emission values in Figure 5. Note that using RF-DETR would have resulted in more than double the carbon emission, in comparison to YOLOv8. 
+Finally, we appreciated having an indication of the carbon emission that corresponds to using each model. To this end, we used $C = E * CI$, where _C_ is the carbon emission in gCo2eq, _E_ is the energy in kWh, and _CI_ is the carbon intensity in gCo2eq/kWh. We obtained a carbon intensity value of 184 gCo2eq/kWh for the Netherlands at 6 feb 2026, 11:45 CET from Electricity Maps.[^11] Eventually, this resulted in the carbon emission values in Figure 5. Note that using RF-DETR would have resulted in more than double the carbon emission, in comparison to YOLOv8. 
 
 <figure>
   <img src="img/g4_cv_energy_comparison/graph-carbon.png">
@@ -98,7 +98,7 @@ Finally, we appreciated having an indication of the carbon emission that corresp
 
 The results show a significant difference in energy consumption between the two models, YOLOv8m and RF-DETR Medium. This supports our hypothesis as stated in the introduction: *We hypothesize that RF-DETR and YOLOv8 will differ in energy consumption even when their model sizes are similar, due to differences in architectural design and computational patterns*. Although the models have a relatively similar number of parameters, the transformer-based model RF-DETR consumes approximately twice the total energy per inference than the CNN-based model YOLOv8. Most of the observed increase in energy consumption for RF-DETR is attributable to GPU usage, reflecting the computational intensity of the self-attention layers. Although CPU differences are smaller, they are consistent, suggesting that the transformer architecture imposes a higher computational load across the system. This suggests that parameter count alone is not a reliable predictor of energy efficiency. Instead, architectural design appears to be a key factor influencing computational cost and energy usage.
 
-As mentioned in the introduction, both models share a similar high-level structure, composed of a backbone for feature extraction and a head for bounding box estimation or segmentation. However, they differ in how they process features. Convolutional neural networks, such as the backbone in YOLOv8, operate by applying localized filters across small spatial regions of an image. These filters are reused across the entire image, reducing the total number of computations required while effectively capturing spatial features. In contrast, transformer-based architectures, such as RF-DETR, rely on self-attention mechanisms to model relationships between features. Instead of focusing only on local regions, attention layers compute interactions between all tokens in the input representation. This allows the model to capture global dependencies but increases computational complexity. Self-attention involves large matrix multiplications and frequent data movement between memory and processing units.[^11] This difference in architecture could explain why the YOLO model has a lower energy consumption than the RF-DETR model.
+As mentioned in the introduction, both models share a similar high-level structure, composed of a backbone for feature extraction and a head for bounding box estimation or segmentation. However, they differ in how they process features. Convolutional neural networks, such as the backbone in YOLOv8, operate by applying localized filters across small spatial regions of an image. These filters are reused across the entire image, reducing the total number of computations required while effectively capturing spatial features. In contrast, transformer-based architectures, such as RF-DETR, rely on self-attention mechanisms to model relationships between features. Instead of focusing only on local regions, attention layers compute interactions between all tokens in the input representation. This allows the model to capture global dependencies but increases computational complexity. Self-attention involves large matrix multiplications and frequent data movement between memory and processing units.[^12] This difference in architecture could explain why the YOLO model has a lower energy consumption than the RF-DETR model.
 
 Other notable observations from the results are the low variance between experimental runs and the low p-value. The consistency of the measurements suggests that external influences, such as background processes, were effectively minimized. This strengthens the validity of the results and indicates that the observed energy differences are attributable to the models’ architectures rather than to environmental noise or measurement instability.
 
@@ -134,46 +134,6 @@ Our study compares the energy consumption of two object detection models during 
 
 [^10]: Cruz, L. (2021). Green software engineering done right: A scientific guide to set up energy efficiency experiments [Blog post]. https://luiscruz.github.io/2021/10/10/scientific-guide.html
 
-[^11]: Moutik, O., Sekkat, H., Tigani, S., Chehri, A., Saadane, R., Tchakoucht, T. A., & Paul, A. (2023). Convolutional Neural Networks or Vision Transformers: Who Will Win the Race for Action Recognitions in Visual Data? Sensors, 23(2), 734. https://doi.org/10.3390/s23020734
+[^11]: Interactive App | Electricity Maps. (2025). Electricitymaps.com. https://app.electricitymaps.com/map/live/fifteen_minutes
 
----
-
-Body lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-This problem takes another level if we are counting on these measurements to make **groundbreaking research contributions** in this area. Some research projects in the past have underestimated this issue and failed to produce replicable findings. Hence, this article presents a roadmap on how to properly set up a scientific methodology to run energy efficiency experiments. It mostly stems from my previous work on [doing research and publishing](/publications) on Green Software.
-
-
-This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
-Read on so that we can get your paper accepted in the best scientific conference.
-
---- 
-#### 👉 Note 1:
-If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
-
---- 
-
-## Unbiased Energy Data ⚖️
-
-There are a few things that need to be considered to minimise the bias of the energy measurements. Below, I pinpoint the most important strategies to minimise the impact of these biases when collecting the data.
-
-### Zen mode 🧘🏾‍♀️
-
-The first thing we need to make sure of is that the only thing running in our system is the software we want to measure. Unfortunately, this is impossible in practice – our system will always have other tasks and things that it will run at the same time. Still, we must at least minimise all these competing tasks:
-
-- all applications should be closed, notifications should be turned off;
-- only the required hardware should be connected (avoid USB drives, external disks, external displays, etc.);
-- turn off notifications;
-- remove any unnecessary services running in the background (e.g., web server, file sharing, etc.);
-- if you do not need an internet or intranet connection, switch off your network;
-- prefer cable over wireless – the energy consumption from a cable connection is more stable than from a wireless connection.
-
-### Freeze your settings 🥶
-
-It is not possible to shut off the unnecessary things that run in our system. Still, we need to at least make sure that they will behave the same across all sets of experiments. Thus, we must fix and report some configuration settings. One good example is the brightness and resolution of your screen – report the exact value and make sure it stays the same throughout the experiment. Another common mistake is to keep the automatic brightness adjustment on – this is, for example, an awful source of errors when measuring energy efficiency in mobile apps.
-
----
-
-### 
-
-Nevertheless, using statistical metrics to measure effect size is not enough – there should be a discussion of the **practical effect size**. More important than demonstrating that we came up with a new version that is more energy efficient, you need to demonstrate that the benefits will actually be reflected in the overall energy efficiency of normal usage of the software. For example, imagine that the results show that a given energy improvement was only able to save one joule of energy throughout a whole day of intensive usage of your cloud software. This perspective can hardly be captured by classic effect-size measures. The statistical approach to effect size (e.g., mean difference, Cohen's-*d*, and so on) is agnostic of the context of the problem at hand.
-
+[^12]: Moutik, O., Sekkat, H., Tigani, S., Chehri, A., Saadane, R., Tchakoucht, T. A., & Paul, A. (2023). Convolutional Neural Networks or Vision Transformers: Who Will Win the Race for Action Recognitions in Visual Data? Sensors, 23(2), 734. https://doi.org/10.3390/s23020734
