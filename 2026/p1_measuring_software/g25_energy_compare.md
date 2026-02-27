@@ -2,7 +2,7 @@
 author: Arnas Venskūnas, Dibyendu Gupta, Nick van Luijk, Sophie Schaaf
 group_number: 25
 title: "Energy Compare Project - Doomscrolling Tiktok vs. Youtube Shorts"
-image: "img/g25_energy_compare/proposal_cover.png"
+image: "p1_measuring_software/img/g25_energy_compare/proposal_cover.jpeg"
 date: 12/02/2026
 summary: |-
     Screen time is often discussed in terms of productivity and mental health, but what about energy usage? In this post, we compare the system energy usage for different frequency of scrolling while doomscrolling Tiktok versus YouTube Shorts.
