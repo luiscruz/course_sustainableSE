@@ -76,6 +76,18 @@ The other multi-threaded implementation does reuse threads. This means that if a
 
 https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/MultiThreadedCachedProgram.java
 
+Each different implementation can be invoked with certain parameters. The below table shows the available parameters for each program:
+
+| Program                 | Arguments                    |
+|-------------------------|------------------------------|
+| `SINGLE_THREADED`       | `<input size>`               |
+| `MULTI_THREADED`        | `<input size> <num threads>` |
+| `MULTI_THREADED_CACHED` | `<input size> <num threads>` |
+
+For each program the input size determines the number of tasks that will be performed. For the multi-threaded implementations, the second parameter determines the (maximum) number of threads that will be used. The shell of the Java app is given below:
+
+https://github.com/xpple/CS4575p1-code/blob/5725c001086c27970dc96d7365befc41b2efa38d/src/main/java/nl/tudelft/cs4575p1/Main.java
+
 # Hardware setup
 To be able to ensure that the measurements are consistent and reproducible some precautions had to be taken. Most importantly all the collected measurements were made on the same device, as using only one device makes it easier to have a consistent setup. 
 In our case, the device that was used to perform the measurements has the following specifications:
