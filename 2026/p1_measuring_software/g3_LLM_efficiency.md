@@ -103,3 +103,21 @@ Our experiment goes as follows:
 
 ## Data integrity
 To protect data integrity, we ensure to only generate unbiased data and the external factors has minimal influence with the measurements. For every summary, the experiment is repeared 30 times and we monitored that there is at least an answer for every exam question.
+
+# Results
+
+# Discussion
+
+
+## Threats to Validity
+
+**Internal validity:** We ran all experiments on one machine in a single session, which helps keep things consistent but does mean the results might be hard to replicate on other setups. One limitation is that GPU power was sampled every second via amd-smi, which is much coarser than the millisecond-level CPU measurements from EnergiBridge. We also didn't have precise control over room temperature, though we tried to keep conditions stable.
+
+**External validity:** Our results only apply to this specific model, task type (multiple-choice questions), and hardware. Other models, quantisation settings, or different types of tasks like open-ended generation could behave quite differently.
+
+**Construct validity:** EDP treats energy and time as equally important, but depending on the use case you might care more about one than the other. Also, we had to handle CPU energy counter wraparound using a threshold-based fix, which could introduce small inaccuracies.
+
+# Conclusion
+
+# References
+
