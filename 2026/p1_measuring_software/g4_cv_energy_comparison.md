@@ -61,37 +61,33 @@ A replication package can be found [here](https://github.com/riritz/Sustainable_
 
 # Results
 
-First, violin and box plots give a glimpse of the experiment's data distribution. As can be seen in Figure 1, the averaged GPU energy consumption per inference seems to be normally distributed. Note that YOLOv8 seems to be more consistent in its energy consumption than RF-DETR. On the other hand, for the total (i.e., GPU and CPU combined) energy per inference, the CPU has introduced non-normality into the combined energy consumption (see Figure 2).
+Before results could be extracted from the experiment, we had to perform pre-processing and data analysis. This involved converting GPU power measurements to energy consumption and calculating instant energy consumption from the monotonic CPU measurements. We decided to focus the data analysis on the following:
 
-<figure>
-  <img src="img/g4_cv_energy_comparison/violin-box-gpu-average.png">
-  <figcaption>Figure 1: Violin-box plot of GPU average energy consumption per inference.</figcaption>
-</figure>
+1. **Averaged GPU energy consumption per inference:** As the GPU handles a majority of the work, we focus on its energy usage per inference.
+2. **Total averaged energy consumption per inference (including the CPU's energy usage):** Once the CPU energy consumption is added, we can analyze the stability of the models per image inference. This metric might be helpful to developers that want to run the model for one image at a time.
+3. **Total energy consumption per run:** This enables us to review the overall impact of running the model on the complete dataset, which gives an approximation for using the model in practice.
 
-<figure>
-  <img src="img/g4_cv_energy_comparison/violin-box-total-average.png">
-  <figcaption>Figure 2: Violin-box plot of total average energy consumption per inference.</figcaption>
-</figure>
+First, we use violin and box plots to give a glimpse of the experiment's data distribution. As can be seen in Figure 1, the averaged GPU energy consumption per inference seems to be normally distributed. This is expected since the GPU is dedicated to model inference without lots of other interfering processes. Note that YOLOv8 seems to be more consistent in its energy consumption than RF-DETR, and that majority energy seems to be consumed by the GPU. On the other hand, for the total (i.e., GPU and CPU combined) energy per inference, the CPU has introduced non-normality into the combined energy consumption (see Figure 2). We suspect the CPU energy measurements being non-normal due to possible interferences like the operating system activity, or CPU inactivity while waiting for the GPU.
 
-Depending on the Shapiro-Wilk normality test, different statistical tests were performed. 
+| Figure 1: Violin-box plot of GPU average energy consumption per inference | Figure 2: Violin-box plot of total average energy consumption per inference |
+| :---: | :---: |
+| ![](img/g4_cv_energy_comparison/violin-box-gpu-average.png) | ![](img/g4_cv_energy_comparison/violin-box-total-average.png) |
+
+
+Since not all measurements are normally distributed, different statistical tests are performed based on the Shapiro-Wilk normality test.
 
 Since the GPU energy consumption was found to be normally distributed, Welch's T-test was used as statistical significance test and effect size analysis was done using the mean difference, percentage change, and Cohen's d statistic. Welch's T-test found a significant p-value of 1.065e-84, meaning we can confidently reject the null hypothesis of YOLOv8 and RF-DETR having the same mean GPU energy consumption per inference. A mean difference of 1.31J was found, which corresponds to RF-DETR using 105.30% (2.05 times) more energy per inference than YOLOv8. Finally, the Cohen's d statistic resulted in an extremely high value of 321.53, which is thought to be caused due to the remarkably low variance between runs.
 
-When we look at both the averaged total energy per inference and the total energy consumption per run, different statistical tests were used because of non-normality. The Mann-Whitney U test was used for statistical significance and resulted in 0 for both cases, showing that there was zero overlap in energy consumption between RF-DETR and YOLOv8. In turn, the Common Language Effect Size (CLES) was 0 as well, meaning measurements from YOLOv8 had 0% chance of being higher than for RF-DETR. Lastly, through the median difference, we found that YOLOv8 consumed 2.5J less energy than RF-DETR per inference and around 3757J less energy overall, which both correspond to a *57.45% reduction*.
+When we look at both the averaged total energy per inference and the total energy consumption per run, different statistical tests were used because of non-normality. The Mann-Whitney U test was used for statistical significance and resulted in 0 for both cases, showing that there was zero overlap in energy consumption between RF-DETR and YOLOv8. In turn, the Common Language Effect Size (CLES) was 0 as well, meaning measurements from YOLOv8 had 0% chance of being higher than for RF-DETR. Lastly, through the median difference, we found that YOLOv8 consumed 2.5J less energy than RF-DETR per inference and around 3757J less energy overall, which both correspond to a **57.45 reduction**.
 
-When plotting the total energy consumption per inference and per run (see Figures 3 and 4), we can visualize both the lack of overlap between the measurements and the double energy consumption of RF-DETR. 
+When plotting the total energy consumption per inference and per run (see Figures 3 and 4), we can visualize both the lack of overlap between the measurements and the double energy consumption of RF-DETR.
 
-<figure>
-  <img src="img/g4_cv_energy_comparison/graph-total-per-inference.png">
-  <figcaption>Figure 3: Graph of total average energy consumption per inference.</figcaption>
-</figure>
+| Figure 3: Graph of total average energy consumption per inference | Figure 4: Graph of total energy consumption per run |
+| :---: | :---: |
+| ![](img/g4_cv_energy_comparison/graph-total-per-inference.png) | ![](img/g4_cv_energy_comparison/graph-total-per-run.png) |
 
-<figure>
-  <img src="img/g4_cv_energy_comparison/graph-total-per-run.png">
-  <figcaption>Figure 4: Graph of total energy consumption per run.</figcaption>
-</figure>
 
-Finally, we appreciated having an indication of the carbon emission that corresponds to using each model. To this end, we converted the energy to kWh and multiplied by the carbon intensity (being 184 gCo2eq/kWh at 6 Feb 2026, 11:45 CET). This resulted in the carbon emission values in Figure 5. Observe that using RF-DETR would have resulted in more than double the carbon emission, in comparison to YOLOv8. 
+Finally, we appreciated having an indication of the carbon emission that corresponds to using each model. To this end, we used $C = E * CI$, where _C_ is the carbon emission in gCo2eq, _E_ is the energy in kWh, and _CI_ is the carbon intensity in gCo2eq/kWh. We obtained a carbon intensity value of 184 gCo2eq/kWh for the Netherlands at 6 feb 2026, 11:45 CET from [Electricity Maps](https://app.electricitymaps.com/map/live/fifteen_minutes). Eventually, this resulted in the carbon emission values in Figure 5. Note that using RF-DETR would have resulted in more than double the carbon emission, in comparison to YOLOv8. 
 
 <figure>
   <img src="img/g4_cv_energy_comparison/graph-carbon.png">
