@@ -14,7 +14,7 @@
 4. [Threats to Validity](#4-threats-to-validity)
 5. [Results](#5-results)
 6. [Discussion](#6-discussion)
-7. [Conclusion](#7-conclusion)
+7. [Conclusion, Limitations and Future Work](#7-conclusion-limitations-and-future-work)
 8. [Replication](#8-replication)
 
 ---
@@ -37,9 +37,11 @@ The energy a piece of software consumes depends on which hardware resources it e
 
 Measuring this accurately is harder than it sounds. The obvious approach is to estimate from CPU utilisation: multiply CPU percentage by the chip's rated power draw (TDP) and by time. This is unreliable because it ignores frequency scaling, thermal states, and the fact that not all CPU work draws equal power. Hardware power sensors are the better option. They report what the chip is actually drawing, not what a model predicts it should draw.
 
+That second point matters more than it might seem. Miettinen and Nurminen [5] measured eight JavaScript implementations of the same application and found up to 30% difference in energy consumption between them. The implementations were functionally identical. The difference came down to how much work each JS library asked the engine to do. Their study used mobile phones and older libraries, but the principle holds: two platforms built on different JS stacks, running in the same browser, can have meaningfully different energy costs. That is precisely the situation with Meet and Teams.
+
 ### 2.2 Prior Work on Video Call Energy
 
-The closest study to ours is Wattenbach et al. [5], published at MOBILESoft 2022. They compared Google Meet and Zoom on Android using an automated experiment with 20 runs per treatment, measuring energy via Android's Batterystats profiler. Their main finding was that Zoom consumed about 4% less energy than Meet on average, though the difference was statistically significant only at a medium effect size (Cliff's delta = −0.344). They also found that camera use had by far the largest impact on energy, increasing consumption by over 274% compared to a camera-off call, while microphone use had negligible effect.
+The closest study to ours is Wattenbach et al. [3], published at MOBILESoft 2022. They compared Google Meet and Zoom on Android using an automated experiment with 20 runs per treatment, measuring energy via Android's Batterystats profiler. Their main finding was that Zoom consumed about 4% less energy than Meet on average, though the difference was statistically significant only at a medium effect size (Cliff's delta = −0.344). They also found that camera use had by far the largest impact on energy, increasing consumption by over 274% compared to a camera-off call, while microphone use had negligible effect.
 
 Their work is directly relevant to ours but leaves two gaps. First, it targets Android mobile apps, not desktop browsers, and mobile energy dynamics differ from laptop CPU workloads. Second, it does not include Microsoft Teams. Our study fills both gaps: we measure browser-based sessions on a desktop machine and compare Meet against Teams rather than Zoom.
 
@@ -47,7 +49,7 @@ One methodological difference is worth noting. Wattenbach et al. used Batterysta
 
 ### 2.3 EnergiBridge
 
-EnergiBridge [6] is a cross-platform energy measurement tool developed by Thomas Durieux that reads power sensors directly from the hardware. On Apple Silicon it reads total system power via Apple's SMC through `powermetrics`. On Intel chips and Linux it reads CPU package and DRAM power via Intel's RAPL interface. On Windows it uses LibreHardwareMonitor.
+EnergiBridge [4] is a cross-platform energy measurement tool developed by Thomas Durieux that reads power sensors directly from the hardware. On Apple Silicon it reads total system power via Apple's SMC through `powermetrics`. On Intel chips and Linux it reads CPU package and DRAM power via Intel's RAPL interface. On Windows it uses LibreHardwareMonitor.
 
 EnergiBridge samples at up to 5 Hz and produces both a time-series of instantaneous power in Watts and a total energy figure in Joules. We use Joules as our primary metric because it combines power draw and time: a platform that draws slightly more watts but for a shorter active period could end up using less total energy than one that draws less but stays busy longer.
 
@@ -57,7 +59,9 @@ Both Google Meet and Microsoft Teams (specifically the consumer `teams.live.com`
 
 Google Meet is a Google product running inside a Google browser. Google has direct influence over both VP9 codec integration and Chrome's WebRTC implementation, and Meet is built to take advantage of that. Its UI is comparatively lean: a call in progress does not do much beyond rendering video tiles and a control bar.
 
-Teams is built on a heavier frontend stack. The consumer web client wraps a React-based framework and carries more JavaScript than Meet. A larger JS bundle means more parsing, more execution, and more ongoing framework overhead during the call. Teams also handles the pre-join flow differently: guests wait in a lobby until admitted, which means the browser is running call-related code before the call has technically started.
+Teams is built on a heavier frontend stack. The consumer web client is built on React [2], which uses a component and virtual DOM architecture to keep different parts of the app in sync as the interface changes. A larger JS bundle means more parsing, more execution, and more ongoing framework overhead during the call. Teams also handles the pre-join flow differently: guests wait in a lobby until admitted, which means the browser is running call-related code before the call has technically started.
+
+This is not just intuition. Oliveira et al. [6] measured React Native against native Java across a range of Android benchmarks and found React Native consumed more energy in almost every scenario tested. The Teams web client uses browser React rather than React Native, so the numbers do not transfer directly, but the pattern is consistent: React-based stacks carry overhead that leaner alternatives avoid. Marmelab's Argos tool found the same directional result on the web specifically, with a React.js frontend consuming more energy than a functionally equivalent Vanilla.js implementation of the same app [7]. The margin was small on a simple app. On a two-minute video call with continuous frame processing and state updates, the gap has more room to compound.
 
 The prior mobile findings from Wattenbach et al. showed Meet consuming more energy than Zoom. Whether that pattern holds when comparing Meet against Teams on desktop is an open question, but the architectural differences above give us a prior expectation: **we expect Teams to consume more energy per session than Meet.** The question is whether the difference is large enough to be meaningful, or whether it gets lost in measurement noise.
 
@@ -67,7 +71,7 @@ The prior mobile findings from Wattenbach et al. showed Meet consuming more ener
 
 ### 3.1 Overview
 
-We measure the client-side energy consumed by a single browser participant in a 120-second call, on each platform, repeated 30 times in randomised order. 
+We measure the client-side energy consumed by a single measured browser participant joining a 120-second call alongside five additional participants, on each platform, repeated 30 times in randomised order.
 
 ### 3.2 Experiment Setting
 For each platform, we deployed five additional participant bots using an automation script to better
@@ -107,6 +111,7 @@ Alongside it, a Python thread samples **`psutil`** every second for CPU%, memory
 **Environment control.** Room temperature was kept constant, with windows closed.
 
 **Consistent meeting setup.** A human host created calls on Google Meet and Microsoft Teams. The host and four bots remained connected throughout; only the experimental bot joined and left per run, ensuring consistent meeting conditions.
+
 ### 3.6 Experimental Matrix
 
 | Parameter | Value |
@@ -148,7 +153,7 @@ Every video call lasted two minutes, with identical hardware and browser conditi
 | -------------- | ----------------------- | --------------------------- | ------------------- | ----------------------- | ----------------- | ------------------- |
 | CPU Energy (J) | 662.98 ± 13.59          | 772.80 ± 14.48              | 662.75              | 772.24                  | **+16.6%**        | < 0.001             |
 | Avg Power (W)  | 5.30 ± 0.10             | 5.71 ± 0.11                 | 5.29                | 5.71                    | **+7.7%**         | < 0.001             |
-| Avg CPU (%) | 6.22 ± 0.74             | 7.28 ± 0.43                 | 5.95                | 7.25                    | **+21.8%**                  | < 0.001             |
+| Avg CPU (%)    | 6.22 ± 0.74             | 7.28 ± 0.43                 | 5.95                | 7.25                    | **+21.8%**        | < 0.001             |
 
 
 | Energy (J) | Average Power (W) | CPU Usage (%) |
@@ -194,17 +199,18 @@ Teams consistently received substantially more network data than Meet. The rank-
 Our results provide strong evidence that Microsoft Teams consumes more energy than Google Meet during browser-based desktop calls under controlled conditions.
 We believe the primary reason for this energy gap lies in how the two applications are architected and delivered.
 
-Microsoft Teams is designed as a comprehensive collaboration platform rather than just a video conferencing tool. In addition to video calls, it integrates chat, file management, calendars, and team workspaces into a single environment. Microsoft Teams is built on React [4], which uses a component and state-based architecture to keep different parts of the app like Chat, Teams lists, and Calendar in sync as things change. This makes the experience feel seamless and integrated, but all that real-time magic comes with a bit of extra computational overhead.
+Microsoft Teams is designed as a comprehensive collaboration platform rather than just a video conferencing tool. In addition to video calls, it integrates chat, file management, calendars, and team workspaces into a single environment. Microsoft Teams is built on React [2], which uses a component and state-based architecture to keep different parts of the app like Chat, Teams lists, and Calendar in sync as things change. This makes the experience feel seamless and integrated, but all that real-time magic comes with a bit of extra computational overhead.
 
-In contrast, Google Meet is a comparatively lightweight, browser-native service. It runs directly within an existing browser tab and is built around WebRTC — a standardized set of real-time communication APIs embedded in modern web browsers for audio and video streaming [1]. Because Meet primarily focuses on delivering video conferencing rather than an extensive suite of collaboration tools, we expected it to consume less energy. Our results strongly support that expectation.
+In contrast, Google Meet is a comparatively lightweight, browser-native service. It runs directly within an existing browser tab and is built around WebRTC, a set of real-time communication APIs embedded in modern web browsers for audio and video streaming. Because Meet primarily focuses on delivering video conferencing rather than an extensive suite of collaboration tools, we expected it to consume less energy. Our results strongly support that expectation.
+
+Prior work on frontend framework energy backs this up. Oliveira et al. [6] showed React-based frameworks impose higher resource overhead than leaner alternatives in most scenarios tested, with the most pronounced gaps appearing under interaction-heavy workloads. A video call fits that profile: the browser is processing incoming frames, updating participant tiles, and managing call state for the entire session. That kind of sustained workload is where framework overhead accumulates rather than cancels out.
 
 The most important finding is the 16–17% increase in total CPU energy consumption observed in Microsoft Teams. Unlike a small percentage difference that can be statistically significant but negligible in practice, this magnitude is substantial. Given that video calls can last for hours and occur daily across millions of users, a 16% per-session difference will scale into a meaningful cumulative energy impact.
 The Mann–Whitney U test further reinforces this conclusion. For both energy consumption and network reception, we obtained U = 0.0, indicating complete separation between the distributions. In practical terms, every single Teams run consumed more energy than every Meet run under our test conditions. This level of consistency strengthens the reliability of the findings.
 
-The energy difference aligns with architectural expectations. 
-Prior research has shown that frontend framework complexity [2] and network load [3] are strong predictors of energy consumption.
+The energy difference aligns with architectural expectations. Prior research has shown that frontend framework complexity [6] and network load [1] are strong predictors of energy consumption.
 
-Teams demonstrated Higher average CPU utilization, Higher sustained power draw, higher incoming network traffic.
+Teams demonstrated higher average CPU utilization, higher sustained power draw, and higher incoming network traffic.
 Notably, Teams received over 50% more data than Meet. This suggests differences in encoding strategies, bitrate targets, or buffering mechanisms. Increased decoding workload and additional JavaScript processing overhead likely translate into higher sustained CPU activity.
 Interestingly, outgoing traffic was slightly lower in Teams than in Meet. This indicates that the primary workload difference lies in receiving and processing video streams rather than transmitting them.
 
@@ -215,31 +221,17 @@ However, it is important to acknowledge that the relative difference may vary ac
 ---
 
 ## 7. Conclusion, Limitations and Future Work
-   
 
 This study measured the energy cost of browser-based video calls on Google Meet and Microsoft Teams via EnergiBridge.
 
-Under controlled, repeatable experimental conditions:
+Under controlled, repeatable experimental conditions, Microsoft Teams consumed approximately 16% more CPU energy per session than Google Meet, required higher sustained CPU utilisation and power draw, and received substantially more network data during calls. All differences were statistically significant with large effect sizes. Although the absolute energy per session is small at the individual level, video conferencing operates at a global scale. Even small per-session increases add up across millions of daily meetings, which means that platform selection has measurable environmental implications. Our findings suggest that, under the tested configuration, Google Meet is the more energy-efficient option for desktop browser-based video calls.
 
-- Microsoft Teams consumed approximately 16% more CPU energy per session than Google Meet.
-- Teams required higher sustained CPU utilisation and power draw.
-- Teams received substantially more network data during calls.
+Although we were able to obtain significant results, it is important to acknowledge the limitations encountered throughout the experiments. Meetings exceeding 60 minutes had to be restarted due to subscription restrictions on Google Meet, which introduced the possibility of human error. Additionally, hardware constraints limited each call to six participants total (one host, four supporting bots, and the measured bot), which may not accurately represent larger, real-world meeting scenarios.
 
-All differences were statistically significant with large effect sizes. Although the absolute energy per session is small at the individual level, video conferencing operates at a global scale. Having this in mind, even small per-session increases add up across millions of daily meetings, which means that platform selection has measurable environmental implications.
-Our findings suggest that, under the tested configuration, Google Meet is the more energy-efficient option for desktop browser-based video calls.
-
-Although we were able to obtain significant results, it is important to acknowledge the limitations encountered throughout the experiments.
-Meetings exceeding 60 minutes had to be restarted due to subscription restrictions on Google Meet, which introduced the possibility of human error.
-Additionally, hardware constraints, limited the simulation to five participants per platform, which may not accurately represent larger, real-world meeting scenarios.
-
-We suggest that the Future work could evaluate:
-- Real webcam input instead of synthetic streams
-- Longer meeting durations
-- Multiple hardware configurations
-- Mobile devices
-- Multi-participant scaling effects
+Future work could evaluate real webcam input instead of synthetic streams, longer meeting durations, multiple hardware configurations, mobile devices, and multi-participant scaling effects. Given the 53% difference in received network data between the platforms, investigating whether codec configuration accounts for part of the energy gap would be a particularly concrete next step.
 
 ---
+
 ## 8. Replication
 
 The full replication package is available at: GH url
@@ -260,14 +252,17 @@ python analyze.py --data-dir ../data --output-dir ../figures
 See `README.md` for full prerequisites and troubleshooting.
 
 ## 9. Resources
-[1] Leo. (2026, February 14). Five best online meeting services: Latency, Efficiency & Accessibility ranked. https://lifetips.alibaba.com/tech-efficiency/five-best-online-meeting-services
 
-[2] Angular or react: Which one consumes less energy? – BL Research. (2026, February 16). https://www.research-bl.com/angular-or-react-which-one-consumes-less-energy/
+[1] R. Horn et al., "Native vs Web Apps: Comparing the Energy Consumption and Performance of Android Apps and their Web Counterparts," 2023 IEEE/ACM 10th International Conference on Mobile Software Engineering and Systems (MOBILESoft), Melbourne, Australia, 2023, pp. 44-54, doi: 10.1109/MOBILSoft59058.2023.00013.
 
-[3] R. Horn et al., "Native vs Web Apps: Comparing the Energy Consumption and Performance of Android Apps and their Web Counterparts," 2023 IEEE/ACM 10th International Conference on Mobile Software Engineering and Systems (MOBILESoft), Melbourne, Australia, 2023, pp. 44-54, doi: 10.1109/MOBILSoft59058.2023.00013. keywords: {Energy consumption;Video on demand;Volume measurement;Memory management;Energy measurement;Telecommunication traffic;Time measurement;Energy consumption;Android;Mobile Web;Performance;Empirical Software Engineering},
+[2] Sumi_Singh. (2023, June 5). Microsoft Teams: Advantages of the new architecture. TECHCOMMUNITY.MICROSOFT.COM. https://techcommunity.microsoft.com/blog/microsoftteamsblog/microsoft-teams-advantages-of-the-new-architecture/3775704
 
-[4] Sumi_Singh. (2023, June 5). Microsoft Teams: Advantages of the new architecture. TECHCOMMUNITY.MICROSOFT.COM. https://techcommunity.microsoft.com/blog/microsoftteamsblog/microsoft-teams-advantages-of-the-new-architecture/3775704
+[3] Wattenbach, L., Aslan, B., Fiore, M. M., Ding, H., Verdecchia, R., & Malavolta, I. (2022). Do You Have the Energy for This Meeting? An Empirical Study on the Energy Consumption of the Google Meet and Zoom Android apps. In MOBILESoft '22: Proceedings of the 9th IEEE/ACM International Conference on Mobile Software Engineering and Systems (pp. 6-16). IEEE. https://doi.org/10.1145/3524613.3527812
 
-[5] Wattenbach, L., Aslan, B., Fiore, M. M., Ding, H., Verdecchia, R., & Malavolta, I. (2022). Do You Have the Energy for This Meeting? An Empirical Study on the Energy Consumption of the Google Meet and Zoom Android apps. In MOBILESoft '22: Proceedings of the 9th IEEE/ACM International Conference on Mobile Software Engineering and Systems (pp. 6-16). Institute of Electrical and Electronics Engineers Inc.. https://doi.org/10.1145/3524613.3527812
+[4] Sallou, J., Cruz, L., & Durieux, T. (2023). EnergiBridge: Empowering software sustainability through cross-platform energy measurement (arXiv:2312.13897). arXiv. https://doi.org/10.48550/arXiv.2312.13897
 
-[6] Sallou, J., Cruz, L., & Durieux, T. (2023). EnergiBridge: Empowering software sustainability through cross-platform energy measurement (arXiv:2312.13897). arXiv. https://doi.org/10.48550/arXiv.2312.13897
+[5] Miettinen, A. P., & Nurminen, J. K. (2010). Analysis of the Energy Consumption of JavaScript Based Mobile Web Applications. In P. Chatzimisios et al. (Eds.), MobiLight 2010, LNICST 45 (pp. 124–135). Springer-Verlag Berlin Heidelberg. https://doi.org/10.1007/978-3-642-16644-0_12
+
+[6] Oliveira, W., Moraes, B., Castor, F., & Fernandes, J. P. (2023). Analyzing the Resource Usage Overhead of Mobile App Development Frameworks. In EASE '23: Proceedings of the 27th International Conference on Evaluation and Assessment in Software Engineering (pp. 152–161). ACM. https://doi.org/10.1145/3593434.3593487
+
+[7] Marmelab. (2021). Argos: Comparing the Energy Consumption of Two Web Stacks. https://marmelab.com/blog/2021/03/04/argos-comparing-the-energy-consumption-of-two-web-stacks.html
