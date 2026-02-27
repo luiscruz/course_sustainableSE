@@ -50,13 +50,13 @@ Vendor Specific Optimizations: Since Edge is deeply integrated with the Windows 
 #### 1.2 Hardware Acceleration States
 For each browser, we tested two distinct configurations:
 
-Hardware Acceleration Enabled: The default browser state where tasks are offloaded to the GPU.
+- **Hardware Acceleration Enabled:** The default browser state where tasks are offloaded to the GPU.
 
-Hardware Acceleration Disabled: Forced via Selenium startup arguments (e.g., --disable-gpu and --disable-software-rasterizer), requiring the CPU to handle all video decoding and rendering tasks.
+- **Hardware Acceleration Disabled:** Forced via Selenium startup arguments (e.g., --disable-gpu and --disable-software-rasterizer), requiring the CPU to handle all video decoding and rendering tasks.
 This comparison aims to quantify the actual energy efficiency gains (or losses) of hardware offloading in video playback scenarios.
 
 #### 1.3 YouTube Workload
-We manually selected four YouTube Shorts, each with an average duration of approximately 30 seconds. These videos were organized into a dedicated playlist and played sequentially during each experimental run. Shorts were chosen because their compact nature and frequent rendering changes better reflect the dynamic energy fluctuations of modern web video content. The youtube videos that we used can be found in [this](https://www.youtube.com/watch?v=Ay8lynMZ4mE&list=PLmSezx7vjyA4vpDfHBdetncvcAlNc2IXs&pp=sAgC) playlist, because the YouTube shorts are added to a playlist, they are played in the normal YouTube player rather than the short player. Since the shorts are played in the normal environment, we could also change the resolution. The resolution of all the shorts were all set at 1080p.
+We manually selected **four** YouTube Shorts, each with an average duration of approximately 30 seconds. These videos were organized into a dedicated playlist and played sequentially during each experimental run. Shorts were chosen because their compact nature and frequent rendering changes better reflect the dynamic energy fluctuations of modern web video content. The youtube videos that we used can be found in [this](https://www.youtube.com/watch?v=Ay8lynMZ4mE&list=PLmSezx7vjyA4vpDfHBdetncvcAlNc2IXs&pp=sAgC) playlist, because the YouTube shorts are added to a playlist, they are played in the normal YouTube player rather than the short player. Since the shorts are played in the normal environment, we could also change the resolution. The resolution of all the shorts were all set at 1080p.
 
 ### 2. Environmental Control and Fairness
 #### 2.1 Hardware Information
@@ -90,11 +90,11 @@ We utilized [Energibridge](https://github.com/tdurieux/energibridge) for hardwar
 
 ### 4. Data Acquisition Process
 #### 4.1 Sampling Strategy and the "N+2" Principle
-For each configuration (e.g., Chrome with GPU enabled), we performed 32 independent runs.
+For each configuration (e.g., Chrome with GPU enabled), we performed 32 independent runs:
 
-**Why 32 runs?** Hardware energy consumption is subject to unavoidable fluctuations caused by thermal changes and minor background system activities.
+- **Why 32 runs?** Hardware energy consumption is subject to unavoidable fluctuations caused by thermal changes and minor background system activities.
 
-**Warmup Logic:** We primarily analyze the data from 30 of these runs. The first two runs are treated as "warmup runs" to allow the hardware to reach a stable operating temperature and ensure all browser components are fully loaded, preventing initial spikes from skewing the statistical accuracy.
+- **Warmup Logic:** We primarily analyze the data from 30 of these runs. The first two runs are treated as "warmup runs" to allow the hardware to reach a stable operating temperature and ensure all browser components are fully loaded, preventing initial spikes from skewing the statistical accuracy.
 
 #### 4.2 Data Structure
 The resulting CSV files contain several key metrics used for analysis:
@@ -108,7 +108,7 @@ The resulting CSV files contain several key metrics used for analysis:
 ## **Result**
 Since we are comparing video streaming with a number of configurations, we are going to compare the average wattage consumed per configuration. This is done because video streaming is a continous load on a system rather than some task which eventually reaches the end.
 
-Because we are checking whether ofloading some work to the GPU, we will present three plots, one where the CPU and GPU wattage is combined, and two that show the average wattage per component.
+Because we are checking whether offloading some work to the GPU, we will present three plots, one where the CPU and GPU wattage is combined, and two that show the average wattage per component.
 
 All the plots are acompanied by a table stating some statistical numbers. Some of these numbers compare hardware acceleration on vs off, the way this should be interpreted is that the numbers are for the "on" configs relative to the "off" configs. So when it states that there is 34 percent difference, that means the "on" config scored 34 percent higher on that metric compared to the "off" config.
 
