@@ -109,9 +109,8 @@ In the plot below, we can see the average energy consumption of the LLM for each
 <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png"/> 
 When analysing the overall energy consumption of our LLM by prompt length, a clear outlier can be observed at prompt length euqal to 5. This prompt length has produced 
 
-<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width="450"/>
+<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width=""/>
 
-<img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png"/>
 
 <img src="img/g27_llm_response_generation/p1_time_vs_energy_correlation.png"/>
 
@@ -120,11 +119,10 @@ When analysing the overall energy consumption of our LLM by prompt length, a cle
 In the comparison of three models with identical parameter counts, The deepseek-r1 and llama3.1 models show similar inter quartile ranges (IQR) regarding the energy consumption. However, Deepseek's proved itself to be less energy-efficient on average. While Meta's distribution -ignoring outliers- has a tail outside the IQR tending towards lower energy usage, DeepSeek's distribution is characterized by a tail of higher energy consumption values, indicating more frequent cases of increased energy usage.
 
 Essential AI's rnj-1 model exhibits a significantly wider spread in energy consumption compared to the other models. This model gravitates to a more uniform distribution across the prompts, as evidenced by the larger IQR.
-<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width="450"/> <img src="img/g27_llm_response_generation/p2_energy_vs_model_cpu_gpu.png" alt="" width="450"/>
 
-<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png"/>
+<img src="img/g27_llm_response_generation/p2_energy_vs_model_total.png" alt="" width=""/>
 
-<img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png"/>
+<!-- <img src="img/g27_llm_response_generation/p2_time_vs_energy_correlation.png"/> -->
 
 ## Analysis
 
