@@ -27,6 +27,10 @@ The idea of performing an experiment on the energy cost of prompting strategies 
 - [Green Prompt Engineering: Investigating the Energy Impact of Prompt Design in Software Engineering](https://arxiv.org/abs/2509.22320)
 - [Prompt engineering and its implications on the energy consumption of Large Language Models](https://arxiv.org/html/2501.05899v1)
 
+### Replication Package
+
+A replication package for this study is available on [GitHub](https://github.com/RebelOfDeath/PromptEnergy)
+
 --- 
 
 ## 2. Research Questions
