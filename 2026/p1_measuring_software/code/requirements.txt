@@ -1,0 +1,6 @@
+numpy>=1.26
+pandas>=2.0
+matplotlib>=3.8
+scipy>=1.11
+huggingface_hub>=0.23
+llama-cpp-python>=0.2.90
