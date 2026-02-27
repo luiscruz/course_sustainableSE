@@ -93,7 +93,7 @@ To guide our investigation and define the scope of our analysis, we have formula
 
 This question addresses the primary objective of our study: determining whether orjson offers measurable energy savings over the standard library. By measuring total energy consumption in Joules, we obtain a direct, hardware-level metric that captures the full energy cost of each operation.
 
-**RQ2.** How do the energy-saving benefits of `orjson` scale as the volume of the dataset increases (e.g., comparing 10MB vs. 100MB files)?
+**RQ2.** How do the energy-saving benefits of `orjson` scale as the volume of the dataset increases (e.g., comparing 1 GB vs. 5 GB files)?
 
 This question explores whether the relationship between library choice and energy consumption is consistent across different workload sizes. Understanding scaling behavior is crucial for extrapolating our findings to real-world applications, where dataset sizes vary significantly.
 
@@ -150,8 +150,8 @@ A pre-generated dummy dataset will be used for consistency. The dataset consists
 - Boolean values and null values
 
 Two dataset sizes will be tested:
-- **Small dataset**: 10MB (to represent typical API payloads)
-- **Large dataset**: 100MB (to represent batch processing scenarios)
+- **Small dataset**: 1 GB (to stress-test single-pass deserialization at a realistic data-engineering scale)
+- **Large dataset**: 5 GB (to evaluate behaviour under sustained, high-memory workloads)
 
 ### Experimental Procedure
 
@@ -165,7 +165,7 @@ For each library (standard `json` and `orjson`), the following steps will be exe
 
 4. **Energy Measurement**: EnergiBridge will measure energy consumption (in Joules) for the combined serialization and deserialization operations.
 
-### Statistical Rigor ??? Ideas
+### Statistical Rigor
 
 To ensure statistical significance, we will:
 
@@ -201,25 +201,25 @@ This section presents the findings from our experimental comparison of `json` an
 
 ![Duration Comparison](analysis/figures/duration_s.png)
 
-The duration comparison reveals a statistically significant difference between the two libraries. **orjson completes the serialization/deserialization workload faster than the standard json library** (~22.5s vs ~23.2s for the averages). This confirms the performance claims made by the orjson documentation and establishes the foundation for examining whether this speed advantage translates into energy savings through the "Race to Sleep" principle.
+The duration comparison reveals a statistically significant difference between the two libraries. **orjson completes the deserialization workload faster than the standard json library** (mean ~22.2 s vs ~23.5 s for the 5 GB dataset; p < 0.001, Cliff's d = 0.79). This confirms the performance claims made by the orjson documentation and establishes the foundation for examining whether this speed advantage translates into energy savings through the "Race to Sleep" principle.
 
 ## CPU Energy Consumption
 
 ![CPU Energy Comparison](analysis/figures/cpu_energy_j.png)
 
-The total CPU energy consumption (measured via RAPL CPU_ENERGY counter) shows that **json consumes slightly less total CPU energy than orjson for the averages** (~627J vs ~638J). This result is statistically significant as we can see that the results are very similar with the highlight that orjson has a much bigger variance for the consumed energy. This makes json a more stable choice going from ~615J to ~660J whereas orjson goes from ~600J to ~700J.
+The total CPU energy consumption (measured via the RAPL CPU_ENERGY counter) shows that **json and orjson consume comparable total CPU energy** (~631 J vs ~636 J on average). Crucially, this difference is **not statistically significant** (Mann-Whitney U, p = 0.50), meaning we cannot conclude either library is more energy-efficient at the package level for this workload size. Notably, orjson exhibits considerably higher variance in energy consumption (~24 J std vs ~14 J std for json), making json the more predictable choice for the 5 GB workload.
 
 ## Single-Core (CORE0) Energy Consumption
 
 ![CORE0 Energy Comparison](analysis/figures/core0_energy_j.png)
 
-The CORE0 energy metric isolates energy consumption on a single CPU core, providing insight into the single-threaded behavior of both libraries. Interestingly, **orjson shows higher CORE0 energy consumption** (~57kJ) compared to json (~31kJ). This larger relative difference compared to total CPU energy suggests that the standard json library relies more heavily on single-threaded execution, while orjson may distribute work across the CPU package. This observation aligns with orjson's use of SIMD instructions, which can process multiple data elements within a single core more efficiently. Thus, json performs better here and contradicts our hypothesis.
+The CORE0 energy metric isolates energy consumption on a single CPU core, providing insight into the single-threaded behaviour of both libraries. Interestingly, **orjson shows substantially higher CORE0 energy consumption** (~55 kJ) compared to json (~33 kJ) for the 5 GB workload (p < 0.001, Cohen's d = -1.86). This large effect suggests that orjson places a considerably heavier sustained load on the primary core. The higher total-package energy in json is thus spread across more micro-architectural state transitions, while orjson concentrates its work on CORE0. From a single-core energy perspective, json is more frugal, a result that partially contradicts the "Race to Sleep" hypothesis at the core level.
 
 ## Average CPU Power Draw
 
-![Average CPU Power Comparison](analysis/figures/avg_cpu_power_w.png)
+![Average CPU Power Comparison — all four groups](analysis/figures/cross_avg_cpu_power.png)
 
-The average CPU power draw reveals a similar conclusion: **json exhibits lower average power consumption** (~27W) than orjson (~28.5W). This confirms the simple "Race to Sleep" model, which predicts that faster execution (orjson) would require higher instantaneous power. Thus, orjson achieves higher power *and* faster execution, suggesting that its Rust-based implementation and SIMD optimizations are faster but less efficient in how they utilize CPU resources for what we tried in this experiement.
+The average CPU power draw, plotted across all four experimental groups (json and orjson, 1 GB and 5 GB), reveals a consistent pattern: **json exhibits lower average power consumption** than orjson at both dataset sizes (~26.9 W vs ~28.6 W for 5 GB; ~26.8 W vs ~27.2 W for 1 GB). This aligns with the "Race to Sleep" model: orjson's Rust-based implementation and SIMD optimizations drive the CPU harder, resulting in higher instantaneous power regardless of dataset size. The magnitude of the power gap narrows at 1 GB (~0.5 W) compared to 5 GB (~1.7 W), suggesting that the overhead of orjson's acceleration is relatively more pronounced for longer, sustained workloads.
 
 ## Energy vs Duration Trade-off
 
@@ -227,11 +227,19 @@ The average CPU power draw reveals a similar conclusion: **json exhibits lower a
 
 Figure above shows a clear positive correlation between execution time and CPU energy: longer runs consume more energy for both libraries.
 
-Although **orjson** consistently completes the workload faster (~3–4% improvement), it also consumes **more total CPU energy** on average. Its data points are shifted toward lower durations but higher energy values, with greater variance compared to `json`.
+Although **orjson** consistently completes the workload faster (~5.4% improvement for the 5 GB dataset), the total CPU energy picture is more nuanced. For the 5 GB workload, its data points are shifted toward lower durations but higher energy values, with greater variance compared to `json`. The ~5.4% runtime reduction is insufficient to compensate for the elevated power draw, resulting in statistically indistinguishable CPU energy consumption (p = 0.50).
 
-This indicates that the performance gain from orjson is offset by its higher instantaneous power draw. The reduction in runtime is not large enough to compensate for the increase in power, resulting in slightly higher overall energy consumption.
+In this setup, `orjson` optimizes for speed while `json` remains marginally more predictable in energy consumption for large, sustained workloads.
+## Cross-Dataset Energy Comparison (1 GB vs 5 GB)
 
-In this setup, `orjson` optimizes for speed, while `json` remains marginally more energy-efficient.
+![All metrics — all four groups](analysis/figures/cross_all_metrics_bar.png)
+
+Scaling the analysis to include the 1 GB dataset reveals an important nuance. For the smaller workload, **orjson is clearly more energy-efficient**: it consumes ~92.7 J of CPU energy vs ~123.3 J for json, a ~25% reduction that is highly significant (p ~ 0, Cohen's d = 28.6). The ~26% speedup at 1 GB (3.4 s vs 4.6 s) is large enough that the "Race to Sleep" principle holds: the CPU spends substantially less time at high-power levels before finishing the job.
+
+In contrast, at 5 GB the ~5.4% speedup does not overcome the overhead of orjson's higher power draw, leaving total CPU energy statistically unchanged. This suggests a threshold effect: below a certain workload size, orjson's acceleration outpaces its power overhead; above it, the two libraries converge in energy cost at the package level.
+
+The average power gap between json and orjson is consistent across both sizes (json always draws less power), confirming that the fundamental power trade-off is a stable property of these libraries rather than an artefact of any particular run length.
+
 ## Time-Series Analysis: Cumulative Energy Delta
 
 ![Run 30 CPU Energy Time Series](analysis/figures/run30_cpu_energy.png)
@@ -259,13 +267,13 @@ The fact that `orjson` appears mostly positive while `json` appears mostly negat
 
 This study investigated whether the performance advantages of `orjson` translate into measurable energy savings compared to the standard Python `json` library.
 
-**RQ1.** Our results show that although `orjson` executes the workload faster (~3-4% improvement), it consumes slightly more total CPU package energy on average. Therefore, `orjson` does not provide energy savings under the tested conditions.
+**RQ1.** Our results show that `orjson` executes the 5 GB workload ~5.4% faster, but this does not translate into statistically significant CPU energy savings at that scale (p = 0.50). For the same library at the 1 GB scale, however, `orjson` achieves a ~26% speedup and reduces total CPU energy by ~25% (~93 J vs ~123 J, p ~ 0). Thus, whether `orjson` provides energy savings depends critically on workload size.
 
-**RQ2.** Across different dataset sizes, the observed pattern remains consistent: execution time decreases with `orjson`, but the higher instantaneous power draw offsets the runtime reduction. Energy consumption does not scale in a way that favors `orjson`.
+**RQ2.** The relationship between library choice and energy consumption is not consistent across dataset sizes. At 1 GB, `orjson` is clearly more energy-efficient, confirming the "Race to Sleep" principle — the speedup is large enough to outweigh the higher instantaneous power draw. At 5 GB, the speedup narrows to ~5.4% and is insufficient to compensate, leaving total CPU energy statistically indistinguishable between the two libraries. Average CPU power, however, remains consistently higher for `orjson` regardless of dataset size.
 
-Regarding the *Race to Sleep* hypothesis, our findings partially validate the model's assumptions (higher power, shorter runtime), but do not confirm its expected outcome. In this scenario, the performance gain is insufficient to compensate for increased power usage, resulting in higher overall energy consumption.
+Regarding the *Race to Sleep* hypothesis, our findings show that it holds at the 1 GB scale but breaks down at 5 GB, suggesting a threshold effect. The magnitude of the performance advantage matters: a ~26% speedup is sufficient to realize energy savings, whereas a ~5% speedup is not.
 
-In conclusion, `orjson` is the superior choice for performance, while `json` remains more energy-efficient for the tested workload.
+In conclusion, `orjson` is the superior choice for both performance and energy efficiency when processing datasets in the 1 GB range. At larger scales (5 GB), the energy advantage disappears, though `json` maintains a slight edge in stability. Developers processing large files repeatedly on power-constrained systems should benchmark their specific workload size before choosing between the two libraries.
 
 ---
 
