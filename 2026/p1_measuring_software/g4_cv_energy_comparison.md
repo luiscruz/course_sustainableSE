@@ -42,7 +42,7 @@ All experiments were conducted on the same hardware and software environment to 
 - **GPU:** NVIDIA Quadro T1000 Max-Q, 4GB VRAM (TDP 35W)
 - **Memory:** 16GB RAM
 - **Operating System**: Ubuntu 24.04.4
-- **NVIDIA Driver:** 580.126.09 | CUDA 13.0
+- **NVIDIA Driver:** 580.126.09 - CUDA 13.0
 
 We measured energy consumption using Energibridge [^9]. Energibridge is an energy profiler that collects CPU and GPU energy usage data during program execution.
 
