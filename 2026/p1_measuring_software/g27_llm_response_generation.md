@@ -43,6 +43,7 @@ Additionally, all of our tests will be run on the same computer with the followi
 - **CPU:** Intel Core i7-13650HX
 - **GPU:** NVIDIA GeForce RTX 4050
 - **RAM:** 24 GB DDR5-4800
+- **Operating System:** Linux Ubuntu 24.04
 
 The prompts tested were taken from dataset-factoid-webquestions ([Petr Baudis et al.](https://github.com/brmson/dataset-factoid-webquestions/blob/master/main/trainmodel.json)), a dataset licensed under the CC-BY 4.0 License. This dataset was modified to only include each prompt alongside the count of words for said prompt. To perform energy consumption measurements, we will use [EnergiBridge](https://github.com/tdurieux/EnergiBridge), an energy measurement utility, which will record the energy and power used by the CPU and GPU respectively for each prompt, which will then be converted to total energy usage in Joules. All of the evaluated LLMs will be run locally via [Ollama](https://ollama.com/).
 
