@@ -107,8 +107,6 @@ For the experiments, the replication package can be found in the following [repo
 Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each reading we derive the dependent variable values: average power consumption (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
 
 # Results
-This section will present the findings of the different power consumption and energy delay product values across the different video conference applications and features.
-
 ## Outlier detection
 Before diving into the experimental results we removed outliers to improve data reliability. We used a Z-Score threshold of 3.0 to determine the outliers. The reason why we picked 3 is due to how it covers 99.7% of normal data which lies within 3 standard deviations. Another reason why we picked 3.0 is because a thereshold of 3.0 ensures that only extreme measurements error are removed while it keeps normal variability intact. Based on the application, our experiment flagged outliers between 0 and 1 per group of 30 iterations. In total, only 5 outliers were removed. Based on this it confirms that our data was generally stable and that only extreme measurement errors were detected. Since the number of identified outliers were negligible, we decided that we will not demonstrate visualization or data processing with outliers since these outliers were negligible and will do not demonstrate a significant reflection of our data.
 
@@ -349,9 +347,6 @@ At the organizational level, small considerations can have a real impact on the 
 
 
 # Limitations
-
-There are some limitations that will be briefly discussed in this section:
-
 ### Limited Test Duration: 
 
 In an actual conference call, it usually lasts more then 10 minutes. However, the experiment was conducted with a 30 second duration in which this interval is quite short and does not reflect the real life usage of the application. Based on this we cannot clearly have results that can have system wide implications in order for certain companies to pick the most energy efficient application.
