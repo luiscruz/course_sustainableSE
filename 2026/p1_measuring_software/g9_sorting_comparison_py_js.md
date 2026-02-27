@@ -29,9 +29,13 @@ Merge sort, quick sort, and heap sort are among the most recognized and used sor
 | Quick Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | $O(\log n)$ | Divide-and-conquer, in-place |
 | Heap Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(1)$ | In-place, binary heap |
 
-# Methodology
-The experiment can be ran automatically by executing the ‘run_experiment.sh’ script, which measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
-While setting up and conducting our experiment, we followed the Scientific Guide to Set Up Energy Efficiency Experiments in order to ensure the accuracy, correctness and appropriateness of our results, and to reduce bias as much as possible. Whenever running the experiments, all other software, notifications and services was turned off. Settings of the machines running the experiment that might affect power consumption, such as screen brightness, were also frozen. The machines ran dummy tasks before the experiments were conducted as warm up. Due to the amount of time the experiments take, the number of repetetitions were kept at 10 for each sorting algorithm, which results in 30 total repetitions per experiment. The order of the sorting algorithms being subject to the experiment were also randomized, and the room temperature was kept stable. Once all these conditions were met, the automated script was run on the machines, once for each of the three sorting algorithms. Finally, the datasets being used in the experiment as the input for the sorting algorithms are simple input-n.txt files, which contain numbers in each row,going from 1 to n-1. The algorithms take these files, and sort their contents.
+## Methodology
+The experiment can be ran automatically by executing the ‘run_experiment.sh’ script. It is important to note that to replicate our experiment, the only input required from the experimentor is to change the name of the algorithm used in the script, specifically the value of the variables 'PYTHON_SCRIPT' and 'JS_SCRIPT'. The user may also be required to change the 'EBERGIBRIDGE_CMD' variable to only 'energibridge' or another value depending on the Energibridge installation. 
+
+The script measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
+
+While setting up and conducting our experiment, we followed the Scientific Guide to Set Up Energy Efficiency Experiments in order to ensure the accuracy, correctness and appropriateness of our results, and to reduce bias as much as possible. Whenever running the experiments, all other software, notifications and services was turned off. Settings of the machines running the experiment that might affect power consumption, such as screen brightness, were also frozen. The machines ran dummy tasks before the experiments were conducted as warm up. Due to the amount of time the experiments take, the number of repetetitions were kept at 10 for each sorting algorithm. With 9 different dataset sizes, 2 different languages, and 3 different algorithms, this totals to 540 experiments per machine. The order of the sorting algorithms being subject to the experiment were also randomized, and the room temperature was kept stable. Once all these conditions were met, the automated script was run on the machines, once for each of the three sorting algorithms. Finally, the datasets being used in the experiment as the input for the sorting algorithms are simple input-n.txt files, which contain numbers in each row,going from 1 to n-1. The algorithms take these files, and sort their contents. They were sourced from kaggle [^akay2025].
+
 To ensure that we actually measure the energy consumption, and therefore the difference in amount of energy consumed, between python and javascript while minimizing all other factors that might affect energy consumption, our experimental variables were determined as follows:
 - Independent: Programming languages (Python and JavaScript)
 - Dependent: Energy consumption
@@ -39,7 +43,7 @@ To ensure that we actually measure the energy consumption, and therefore the dif
 
   - Python version: 3.13.7
   - Node version: v22.22.0
-  - Specs: Apple M2, 16GB RAM + Apple M1, 16GB
+  - Specs: Apple M2, 16GB RAM + Apple M1, 16GB; macOS Tahoe 26.3
   
 
 ## Results & Statistical Analysis
@@ -123,6 +127,8 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 </div>
 
 # References
+
+[^akay2025]: Akay, B. E. (2025). *Benchmark dataset for sorting algorithms* [Data set]. Kaggle. https://www.kaggle.com/datasets/bekiremirhanakay/benchmark-dataset-for-sorting-algorithms
 
 [^hellerstein2019]: Hellerstein, J. M., Faleiro, J., Gonzalez, J., Schleier-Smith, J., Sreekanti, V., Tumanov, A., & Wu, C. (2019). Serverless computing: One step forward, two steps back. *9th Biennial Conference on Innovative Data Systems Research (CIDR '19)*. [https://arxiv.org/abs/1812.03651](https://arxiv.org/abs/1812.03651)
 
