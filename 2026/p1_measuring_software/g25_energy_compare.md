@@ -40,9 +40,19 @@ The design of the experiment was one of the most important steps of the experime
 
 The design of the experiment also tries to mimic the actions of users, while keeping it consistent so that it's scientifically measurable and reproducible. An example of this choice was the frequency of scrolling - non-randomized (scrolling consistently after every 2, 5, and 10 seconds). In reality, the frequency of scrolling depends on different factors (attention capture of the video, user preference, network constraints, etc.) and is hence naturally random. However, to attain scientific basis for our experiments, we chose to make scrolling consistent.
 
+#### <u>Control of other Environmental Variables</u>
+
+Desktop computers often run numerous background processes that could skew our energy measurements. Therefore, we aimed to create a strictly controlled testing environment. We ensured the following:
+- terminated all background applications, including cloud syncing tools
+- disabled wireless networks in favour of an Ethernet connection
+- unplugged all non-essential USB peripherals
+- fixed laptop at medium brightness level and 40% sound
+
+With these mitigations, external influences on the stability of the to-be-measured energy consumption of solely the Doomscrolling. Therefore, solely the power consumption of video rendering and network requests is measured. Becasue of this, the expectation is that the measurements will not differ significantly across platforms.
+
 #### <u>Moment of Energy Consumption Measurement</u>
 
-Another key design choice was when we start measuring the energy used by the system. We know energy tests are flaky, and energy measurement had to be malleable to ensure room for error (network issues or delay, start-up time for the browser, warm up time, killing background processes of the system, etc.). Energy measurement began after:
+Another key design choice was when we start measuring the energy used by the system. We know energy tests are flaky, and energy measurement had to be malleable to ensure room for error (network issues or delay, start-up time for the browser, warm up time etc.). Energy measurement began after:
 - closing all popups 
 - "rejecting optional cookies"
 - closing random popups while scrolling (since we are not logged into any of the social media apps)
@@ -52,10 +62,17 @@ Other factors such as brightness, sound of the system, size of the browser windo
 
 #### <u>Warm-up Time</u>
 
-
+We decided to keep a warm-up time of 5 seconds to ensure the CPU reaches a stable thermal state and reducing fluctuations. 
 
 ### Experimental Setup
 
+The experiment was conducted separately for each platform — TikTok and YouTube Shorts — using a two-process architecture designed to isolate energy measurement from setup overhead.
+
+Before any measurement begins, a background process navigates the Chromium browser to the target platform, enters fullscreen, and handles platform-specific pop-ups, including TikTok's puzzle, GDPR notice, and cookie banner, as well as YouTube's cookie banner. The video is then unmuted and the browser is left to warm up for a fixed period. This entire setup phase is explicitly excluded from energy measurement to avoid skewing results.
+
+Once setup is complete, the doomscrolling loop begins, automatically advancing to the next video at fixed time intervals for the full duration of the experiment. Simultaneously, the main process detects that setup has finished and launches the energy measurement tool, which records energy consumption exclusively during this active scrolling window. This ensures that only steady-state doomscrolling behaviour is captured, free from any setup or initialization noise.
+
+Upon completion, the energy data is saved to a results file per platform, the browser is closed, and both processes terminate cleanly.
 
 ### Hardware/Software Details
 
@@ -85,14 +102,6 @@ For these experiments, the scrolling process was automated. Scrolling frequency 
 
 ## Tests
 **TODO: Finalized code blocks for the test cases.**
-
-## Experimental Controls
-Desktop computers often run numerous background processes that could skew our energy measurements. Therefore, we aimed to create a strictly controlled testing environment. 
-
-To achieve this, we disabled wireless networks in favour of an Ethernet connection. Additionally, we unplugged all non-essential USB peripherals and terminated all background applications, including cloud syncing tools. Lastly, we locked the monitor to a fixed, medium brightness level. 
-
-With these mitigations, external influences on the stability of the to-be-measured energy consumption of solely the Doomscrolling. Therefore, solely the power consumption of video rendering and network requests is measured. Becasue of this, the expectation is that the measurements will not differ significantly across platforms.
-
 
 ## Analysis
 ### Exploratory Analysis
