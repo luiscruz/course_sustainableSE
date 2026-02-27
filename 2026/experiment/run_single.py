@@ -44,7 +44,8 @@ else:
 screenshots_present = all(
     os.path.exists(f'screenshots/{f}')
     for f in ['quality_dropdown.png',
-              'quality_low.png', 'quality_normal.png', 'quality_very_high.png',
+              'quality_automatic.png', 'quality_normal.png', 'quality_high.png',
+              'quality_very_high.png',
               'canvas_label.png', 'canvas_toggle_on.png', 'canvas_toggle_off.png']
 )
 if screenshots_present:
