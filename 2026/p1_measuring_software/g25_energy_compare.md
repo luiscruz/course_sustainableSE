@@ -109,7 +109,7 @@ Other software requirements and versions that are used for this project can be f
 Violin + Box plots, expect the shape and outliers of the data.
 
 ### Normality
-After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 1.5 x IQR (Inter-quartile range) from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
+After the measurements are taken, it is important to ensure that data is normal. To measure normality, Shapiro-Wilk's test was performed. If the results do not assume normality, the points of data, deviating by more than 1.5 x IQR (Inter-quartile range) [^outlier-detection] from the mean were excluded and the Shapiro-Wilk's test was conducted again. If the results still did not indicate normality, the experiment was repeated.
 
 ### Statistical Significance
 Group differences were evaluated using the Welch’s t-test, which does not assume equal variances between groups. Statistical significance was determined using a α = 0.05.
@@ -253,4 +253,7 @@ For reproducibility of these experiments, we have published all the scripts and 
 
 [^storage-for-the-web]: P. LePage, "Storage for the web," *web.dev*, Sep. 23, 2024. [Online]. Available: [https://web.dev/articles/storage-for-the-web](https://web.dev/articles/storage-for-the-web). [Accessed: Feb. 26, 2026].
 
-[^youtube-ab-testing]: "YouTube feature experiments & rollouts, *YouTube Help*. [Online]. Available: [https://support.google.com/youtube/answer/7367023?hl=en](https://support.google.com/youtube/answer/7367023?hl=en). [Accessed: Feb. 26, 2026].
+[^youtube-ab-testing]: "YouTube feature experiments & rollouts," *YouTube Help*. [Online]. Available: [https://support.google.com/youtube/answer/7367023?hl=en](https://support.google.com/youtube/answer/7367023?hl=en). [Accessed: Feb. 26, 2026].
+
+[^outlier-detection]: S. Chaudhary, "Why 1.5 Is Used in the IQR Rule for Outlier Detection," *builtin*, Jan. 24, 2024. [Online]. Available: [https://builtin.com/articles/1-5-iqr-rule](https://builtin.com/articles/1-5-iqr-rule).
+[Accessed: Feb. 27, 2026].
