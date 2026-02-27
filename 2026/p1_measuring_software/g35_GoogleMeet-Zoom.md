@@ -112,13 +112,15 @@ Each 30-second EnergiBridge run creates a CSV containing timestamped energy read
 This section will present the findings of the different power consumption and energy delay product values across the different video conference applications and features.
 
 As mentioned previously, EnergiBridge was used to measure energy consumption. The tool provides the following relevant metrics:
-- Delta
-- CPU_Energy (Joules)
+- *Delta*
+- *CPU_Energy (J)*
 
 With the metrics above, the key metrics to be calculated per trial were:
-1. Total Energy Consumption (J): Calculated by computing the difference of the cumulative energy metric. 
-2. Average Power Consumption (W): Calculated by dividing the total energy consumption over the duration of the trial.
-3. Energy Delay Product: Calculated by multiplying energy by the total duration of the trial.
+1. *Total Energy Consumption (J)*: Calculated by computing the difference of the cumulative energy metric. 
+2. *Average Power Consumption (W)*: Calculated by dividing the total energy consumption over the duration of the trial.
+3. *Energy Delay Product (J * s)*: Calculated by multiplying energy by the total duration of the trial.
+
+Average Power Consumption was chosen as we are reporting on the consumption of a continuous use case rather than a one-off use case. Energy Delay Product was chosen to evaluate the overall efficiency of by balancing energy consumption against performance.
 
 
 ## Outlier detection
