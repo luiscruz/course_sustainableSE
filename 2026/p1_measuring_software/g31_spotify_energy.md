@@ -1,7 +1,7 @@
 ---
 author: Abdul Wahab Aiman, Bińkowska Maja, El Khal Miguel, Marin Alexandru
 group_number: 31
-title: "Spotfiy and Apple music energy consumption comparison"
+title: "Spotfiy energy consumption comparison"
 image: "img/g31_spotify_apple_music/spotify_apple.jpeg"
 date: 12/03/2022
 summary: |-
