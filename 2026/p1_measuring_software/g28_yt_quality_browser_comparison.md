@@ -35,11 +35,11 @@ quality are often made without awareness of their potential system-level consequ
 Studying these user-facing choices provides insight into how software design and default
 settings can influence sustainability at scale.
 
-This project investigates whether two everyday software choices:**browser selection**
+This project investigates whether two everyday software choices: **browser selection**
 (Google Chrome vs Mozilla Firefox) and **video quality selection** (automatic quality vs forced
 720p), lead to measurable differences in energy consumption for the same YouTube Short.
 We focus on short-form content because it represents a bounded, repeatable task that is
-consumed at massive scale, making even small per-play differences relevant when aggregated
+consumed at a massive scale, making even small per-play differences relevant when aggregated
 across millions of users.
 
 We evaluate four configurations, each executed 30 times under controlled conditions:
@@ -207,7 +207,7 @@ efficiency and predictability standpoint.
 
 **Figure 2:** Energy consumption versus runtime.
 
-Chrome runs cluster tightly around 32–33 seconds, while Firefox runs exhibit much larger spread,
+Chrome runs cluster tightly around 32–33 seconds, while Firefox runs exhibit a much larger spread,
 with some executions extending beyond 36–38 seconds. Since energy increases approximately
 linearly with runtime, this duration variability directly explains Firefox’s wider energy
 distribution.
@@ -221,7 +221,7 @@ distribution.
 **Figure 3:** Average CPU package power over time (30-run average).
 
 Chrome shows a pronounced initial power burst during startup, followed by a lower, stable
-power phase. Firefox exhibits smoother but more sustained power draw across playback.
+power phase. Firefox exhibits a smoother but more sustained power draw across playback.
 
 This sustained load explains why Firefox can consume more total energy despite lower peak
 power. Forcing HD720 increases sustained power in both browsers, accounting for the consistent
@@ -243,7 +243,7 @@ When pooling data across browsers, the comparison between **Auto** and **HD720**
 reveals a highly significant difference in energy consumption (p ≈ 4.4 × 10⁻¹¹), confirming that
 forcing higher video quality leads to increased energy usage.
 
-Comparing browsers within each quality setting yields a more nuanced result. Under **Auto**
+Comparing browsers across quality settings yields a more nuanced result. Under **Auto**
 quality, the difference between Chrome and Firefox is not statistically significant (p = 0.137),
 largely due to Firefox’s high variance. Under **HD720**, however, the difference becomes
 statistically significant (p = 0.031), indicating that browser choice has a measurable impact
@@ -282,7 +282,7 @@ use and massive user populations, making them relevant from a sustainability per
 ## Implications
 
 At the user level, the results show that everyday, seemingly minor choices, such as forcing a
-higher playback quality or switching browsers,can influence energy consumption even for short,
+higher playback quality or switching browsers, can influence energy consumption even for short,
 casual interactions like watching a YouTube Short. While users typically optimize for visual
 quality or smoothness, these results suggest that default settings and browser choice also play a
 role in energy efficiency. Making energy costs more visible or better aligned with default
