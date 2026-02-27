@@ -3,7 +3,7 @@ author: Maksym Ziemlewski, Frederik van der Els, Piotr Kranendonk
 group_number: 12
 title: "Comparing the Energy Consumption of Single-Threaded and Multi-Threaded Programs"
 image: "img/gX_template/project_cover.png"
-date: 17/02/2022
+date: 27/02/2022
 summary: |-
   Many tasks lend themselves for parallel programming, which can speed up the execution time of the program. Common ways to achieve this is by using multiple threads, and splitting the task into smaller tasks that can be executed in parallel on the different threads.
   
@@ -70,10 +70,26 @@ In the next section we will discuss in more detail what particular program we us
 To measure the differences in energy consumption, we will use the X/Y/Z as test program. This program lends itself well for this experiment because it is not easily optimised by the compiler/CPU, ...
 
 # Hardware setup
-The tests will be performed on Windows, ...
+To be able to ensure a consistent setup for the measurements, as well as minimizing background energy usage, some precautions had to be taken. Most importantly all the collected measurements were made on the same device, specifically a Windows 11 laptop with an Intel Core i7-12700H CPU, as using only one device makes it easier to have a consistent setup. For the measurements collected in the review the following conditions were used:
+- The device is disconnected from the internet
+- Bluetooth is turned off
+- No external devices are connected (USB-drives, computer mouse, external dispalys, etc.)
+- The device is connected to a power supply
+- The brightness of the device is set to the maximum and is not dynamic
+- Screen timeouts are turned off (the device should not enter sleep mode while collecting measurements)
+- All applications are closed such that they do not keep on running in the background
+- Only a powershell is opened that is used to run the scripts for the measurements
+
+Besides the setting of the device itself the environment can also have an impact on the performance. Therefore some addition thing had to be ensured like:
+- The temperature of the room is consistent somewhere around 20 degrees Celsius
+- Make sure the room is big, such that the device will not raise the room temperature
+- The laptop is placed in the shadows, such that the sun will not heat it up
+- There are no external heating or cooling devices close enough to the device to have an influence
+
+After ensuring that all the above mentioned conditions were met, the scripts to make the measurements were ready to be run.
 
 # Results
-After running the tests, ...
+
 
 # Statistical analysis of the results
 We will use X/Y/Z to draw conclusions, ...
