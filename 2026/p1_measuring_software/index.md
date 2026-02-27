@@ -45,7 +45,7 @@ To add a new article, follow the instructions below:
 
 Before submitting the pull request, you should test whether your file is rendering properly in the website. The easiest way to check it is by running the docker container, as instructed in the Github Readme.
 
-Your page should be listed here: [http://localhost:4000/course_sustainableSE/2026/p1_measuring_software]
+Your page should be listed here: <http://localhost:4000/course_sustainableSE/2026/p1_measuring_software>
 
 If you don't want to deal with jekyll, you can do it the slow and expensive way: 1) enable *github pages* in your fork repo 2) check your the deployed page. (I don't recommend it, though)
 
