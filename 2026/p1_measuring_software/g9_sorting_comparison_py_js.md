@@ -68,7 +68,7 @@ Having chosen these algorithms, we then created a repository[^repo] in which we 
 
 The script measures the energy consumption for different sizes of datasets, with configurable aspects such as iteration count per dataset size and the sorting algorithm to be tested. Specifically, the script runs energibridge and measures the energy consumption of each implementation of the sorting algorithms, for both python and javascript.
 
-While setting up and conducting our experiment, we followed the Scientific Guide to Set Up Energy Efficiency Experiments in order to ensure the accuracy, correctness and appropriateness of our results, and to reduce bias as much as possible. Whenever running the experiments, all other software, notifications and services was turned off. Settings of the machines running the experiment that might affect power consumption, such as screen brightness, were also frozen. The machines ran dummy tasks before the experiments were conducted as warm up. Due to the amount of time the experiments take, the number of repetetitions were kept at 10 for each sorting algorithm. With 9 different dataset sizes, 2 different languages, and 3 different algorithms, this totals to 540 experiments per machine. The order of the sorting algorithms being subject to the experiment were also randomized, and the room temperature was kept stable. Once all these conditions were met, the automated script was run on the machines, once for each of the three sorting algorithms. Finally, the datasets being used in the experiment as the input for the sorting algorithms are simple input-n.txt files, which contain numbers in each row,going from 1 to n-1. The algorithms take these files, and sort their contents. They were sourced from kaggle [^akay2025].
+While setting up and conducting our experiment, we followed the Scientific Guide to Set Up Energy Efficiency Experiments in order to ensure the accuracy, correctness and appropriateness of our results, and to reduce bias as much as possible. Whenever running the experiments, all other software, notifications and services was turned off. Settings of the machines running the experiment that might affect power consumption, such as screen brightness, were also frozen. The machines ran dummy tasks before the experiments were conducted as warm up. Due to the amount of time the experiments take, the number of repetitions were kept at 10 for each sorting algorithm. With 9 different dataset sizes, 2 different languages, and 3 different algorithms, this totals to 540 experiments per machine. The order of the sorting algorithms being subject to the experiment were also randomized, and the room temperature was kept stable. Once all these conditions were met, the automated script was run on the machines, once for each of the three sorting algorithms. Finally, the datasets being used in the experiment as the input for the sorting algorithms are simple input-n.txt files, which contain numbers in each row,going from 1 to n-1. The algorithms take these files, and sort their contents. They were sourced from kaggle [^akay2025].
 
 To ensure that we actually measure the energy consumption, and therefore the difference in amount of energy consumed, between python and javascript while minimizing all other factors that might affect energy consumption, our experimental variables were determined as follows:
 - Independent: Programming languages (Python and JavaScript)
@@ -81,6 +81,8 @@ To ensure that we actually measure the energy consumption, and therefore the dif
   
 
 ## Results & Statistical Analysis
+
+A total of 1,080 controlled experimental runs were performed across two devices, and the resulting energy and performance measurements were aggregated and subjected to statistical analysis.
 
 ### *Language Comparison*
 
@@ -147,7 +149,7 @@ where P(t) is the power sampled at each timestep and Δt is the interval in seco
 
 So why does Python consume so much more of both? It comes down to how each runtime executes the code. CPython (Python's default interpreter) executes bytecode instruction-by-instruction, dynamic-typing every variable at every step. Each comparison in the sort loop goes through multiple layers of indirection. JavaScript's V8 engine watches that same loop, identifies it as "hot", and JIT-compiles it to optimised native machine code mid-execution. The result is that V8 runs the inner sort loop at near-native speed, CPython does not.
 
-The algorithm differences are rooted in complexity and memory access patterns[1]:
+The algorithm differences are rooted in complexity and memory access patterns[^cormen2009]:
 
 - Heapsort thrashes the CPU cache: its heap operations jump non-sequentially through memory, triggering frequent cache misses. This is cheap in JavaScript (V8 handles it gracefully) but devastating in Python, where each miss multiplies the interpreter overhead.
 - Mergesort allocates O(n) auxiliary memory per merge, which means more heap allocations and GC pressure, this shows up in Python's higher variance at large sizes.
@@ -175,5 +177,3 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 [^pizarrovasquez2020]: Pizarro-Vasquez, G. O., Mejia Morales, F., Galvez Minervini, P., & Botto-Tobar, M. (2020). Sorting algorithms and their execution times: An empirical evaluation. In *Advances in Emerging Trends and Technologies — Proceedings of ICAETT 2020* (pp. 335–348). Springer. [https://doi.org/10.1007/978-3-030-63665-4_27](https://doi.org/10.1007/978-3-030-63665-4_27)
 
 [^repo]:Milanesi, N.E., Nassiri, M., Oei, J., Turanlı, G.. https://github.com/JimmyOei/sse_group_9
-
-[1] Cormen, T. H. et al. (2009). Introduction to Algorithms 
