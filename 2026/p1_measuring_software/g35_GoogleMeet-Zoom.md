@@ -195,7 +195,7 @@ After the removal of outliers, the results can be seen illustrated below. Each f
 
 </div>
 
-Across all the features, it can be observed that enabling the feature generally results in higher average power consumption compared to disabling it. This effect can be seen for both applications, with the exactl magnitude and variability differing between Zoom and Microsoft Teams. Note that the width and shape of the violins show that feature-enabled conditions often exhibit greater variability, suggesting less stable energy behaviour when additional processing, such as video effects and sharing, is active. 
+Across all the features, it can be observed that enabling the feature generally results in higher average power consumption compared to disabling it. This effect can be seen for both applications, with the exact magnitude and variability differing between Zoom and Microsoft Teams. Note that the width and shape of the violins show that feature-enabled conditions often exhibit greater variability, suggesting less stable energy behaviour when additional processing, such as video effects and sharing, is active. 
 
 ## Statistical Analysis
 
@@ -348,6 +348,17 @@ talk about inbetween features and applications
 
 # Discussion
 ## Interpretation of Results
+
+Across all three features, the data reveals a consistent but nuanced picture: **enabling a feature generally raises power consumption**, but the magnitude and consistency of that increase varies considerably depending on both the feature and the application.
+
+**Camera (Figures 1–2):** The camera feature yields the most stable and interpretable results. Both applications show a clear power increase when the camera is turned on, with relatively tight distributions. Zoom rises from a median of roughly 5.4 W (OFF) to about 6.1 W (ON), while Teams goes from approximately 6.2 W to 6.6 W. Notably, Teams draws more power than Zoom in both the ON and OFF conditions, and in fact, the Teams baseline with camera off is already higher than Zoom with the camera on. The EDP values in Figure 2 further showcase this, with Teams ON reaching a median around 5800 J·s compared to Zoom ON at roughly 5300 J·s.
+
+**Background Blur (Figures 3–4):** Blur introduces the **highest variability** of any feature tested. Power values span from below 3 W to above 11 W for both applications. For Zoom, enabling blur does produce a visible median increase (from ~5.8 W to ~7.0 W). For Teams, however, the ON and OFF distributions are nearly indistinguishable, with both centering around 6.9–7.0 W with wide, overlapping violin shapes. The EDP plots tell a similar story: large spreads and heavy overlap, particularly for Teams. This high variability makes it difficult to draw strong conclusions about the blur feature's energy impact without further investigation.
+
+**Screen Sharing (Figures 5–6):** Screen sharing produces the most **asymmetric result between applications**. For Zoom, the ON and OFF conditions are fairly close (medians around 5.3 W vs. 5.5 W), with moderate variability. For Teams, however, enabling screen share causes a pronounced jump, where the median rises from roughly 4.9 W to about 7.0 W, and the distribution stretches up to 12.5 W. The Teams ON violin is visibly wider and shifted upward compared to every other condition in this feature pair, making screen sharing the feature where the two applications diverge the most.
+
+**Overall comparison:** Teams consistently shows **higher baseline power draw** across most conditions, while Zoom tends to produce tighter, more predictable distributions. The two applications respond differently to each feature toggle, showing a pattern that warrants further examination of the underlying causes and what it means in practice.
+
 
 ## Potential Explanations
 TODO
