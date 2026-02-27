@@ -106,12 +106,75 @@ Below we outline the specifications we used to run the experiments for replicabi
 - Resolution:	2560x1664 Retina
 - Refresh Rate:	60Hz
 
-### Outlier Removal 
-For outlier removal, we attempted two methods. We initially attempted to remove outliers through the mean and standard deviation, by classifying the absolute difference of the mean and a value outside of $3\sigma$ as an outlier. This method had a flaw, namely if there are enough values that are large enough the standard deviation becomes inflated enough that these values will fall within the $3\sigma$ range and therefore not be removed. To tackle this flaw, we decided to opt for a different method, which makes use of a range that is created within $1.5 \times IQR$. This takes the outliers into account, but they are not nearly as influential as with the mean and standard deviation and therefore will be removed more reliably. 
+## Data Analysis
 
+For each trial, energy consumption was recorded continuously over a 60-second playback window. The primary metric
+extracted from these measurements was System Power (Watts). To obtain a single representative value per trial, we
+averaged all recorded timestamps within the interval. This resulted in one aggregate value per trial, which we
+refer to as **Average System Power (Watts)** and use as the key metric in our data analysis.
 
-## Analysis
-### Testing Results 
+### Outlier Removal
+
+Initially, outliers were considered for removal using a Z-score threshold of 3.0. However, this approach proved
+unreliable, as multiple extreme values inflated the standard deviation, leaving some outliers undetected. To address
+this, outliers were identified using the **Interquartile range (IQR) method**:
+
+$$
+IQR = Q_3 - Q_1
+$$
+
+Observations were considered outliers if they lay outside:
+
+$$
+[Q_1 - 1.5 \cdot IQR,\; Q_3 + 1.5 \cdot IQR]
+$$
+
+Detected outliers were removed prior to further analysis.
+
+### Statistical Analysis
+
+The cleaned data were visualized using boxplots, violin plots, and histograms to inspect distribution and variability.
+Normality was assessed using the **Shapiro–Wilk test**. Since the distributions did not consistently satisfy normality
+assumptions, we used the non-parametric **Mann–Whitney U test** to evaluate statistical significance.
+The test evaluates whether the probability that an observation from one group exceeds an observation from the other
+differs from 0.5:
+
+$$
+H_0: P(X > Y) = 0.5
+$$
+
+for two independent samples \(X\) and \(Y\).
+
+### Effect Size Analysis
+
+To quantify the magnitude of differences, we computed:
+
+- **Median Difference**
+  $$
+  \Delta_{median} = \text{median}(X) - \text{median}(Y)
+  $$
+
+- **Median-Based Percentage Change**
+  $$
+  \%\Delta =
+  \frac{\text{median}(X) - \text{median}(Y)}
+  {\text{median}(Y)} \times 100
+  $$
+
+  where \(Y\) denotes the baseline condition.
+
+- **Percentage of Pairs**
+  $$
+  \frac{\#\{(x_i, y_j) \mid x_i > y_j\}}{n_X \cdot n_Y}
+  $$
+
+  where \(n_X\) and \(n_Y\) are the sample sizes of the two groups.
+
+Together, these measures provided us with a solid foundation for evaluating whether the examined features meaningfully
+influence client-side energy consumption.
+
+## Results
+
 Below we can see our test results before and after removing outliers. All results excluding `all-off` contain a long tail at 20+ Watt. These are likely due to factors such as pre-downloading the video in youtube and network connection issues. By removing these blatant outliers we can have a deeper insight into our results. 
 
 Furhter insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what I mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations). Later in the [Statistical significances](#statistical-significances) we will see that although this difference exists, on a statistical level, these differences are negligable. 
