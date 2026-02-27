@@ -96,18 +96,33 @@ To perform this test, we will sample twenty prompts of varying length at random 
 
 ## Results
 
-After setting up the code to run the experiment automatically, and making sure the computer was warmed up and all confounding variables were limited, we ran the experiment and obtained the following results.
+After setting up the code to run the experiment automatically, and making sure the computer was warmed up and all confounding variables were limited, we ran the experiment. For each of the independent variables, we calculated:
+
+- **Max**: the most energy consumed by a single LLM run, in Joules
+- **Min**: the least energy consumed by a single LLM run, in Joules
+- **Mean**: the average amount of energy consumed accross all the runs of with this independent variable value, in Joules
+- **Standard Deviation**: the standard deviation accross all the runs with this independent variable value, in Joules
+
+Note: e.c. stands for "energy consumed"
 
 ### Part 1
 
-Running part one of our experiment took a total of 36 prompts (6 prompts for the 6 prompt lengths), each executed 30 times, resulting in1080 total response generations. 
-
+Running part one of our experiment took a total of 36 prompts (6 prompts for the 6 prompt lengths), each executed 30 times, resulting in1080 total response generations.
 
 In the plot below, we can see the average energy consumption of the LLM for each prompt length. The main difference we can see is that the spread of the energy consumption for the 5-word prompts is much bigger than the 10-word prompts.
 
 <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_total.png" alt="Energy usage vs prompt length" width="450"/> <img src="img/g27_llm_response_generation/p1_energy_vs_prompt_length_cpu_gpu.png" alt="Energy usage of CPU and GPU vs prompt length" width="450"/>
 
-When analysing the overall energy consumption of our LLM by prompt length, a clear outlier can be observed at prompt length euqal to 5. This prompt length has produced 
+**Total energy consumption:**
+
+| Prompt length | Max e.c. (J) | Min e.c. (J) | Mean e.c. (J) | Standard Dev e.c. (J) |
+| ------------- | ------------ | ------------ | ------------- | --------------------- |
+| 5             | 212.15       | 7.09         | 131.04        | 60.94                 |
+| 6             | 212.45       | 26.69        | 181.23        | 53.10                 |
+| 7             | 212.79       | 9.89         | 186.22        | 53.82                 |
+| 8             | 267.79       | 7.16         | 190.44        | 47.57                 |
+| 9             | 213.66       | 113.20       | 202.26        | 14.52                 |
+| 10            | 212.32       | 190.68       | 204.31        | 5.94                  |
 
 <img src="img/g27_llm_response_generation/p1_time_vs_prompt_length.png" alt="" width="450"/>
 
