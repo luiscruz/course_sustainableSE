@@ -3,7 +3,7 @@ author: Anhar Al Haydar, Tom Clark, Moniek Tummers, Andriana Tzanidou
 group_number: 4
 title: "Comparing Energy Consumption in Computer Vision Across Different Model Architectures"
 image: "img/g4_cv_energy_comparison/g4_project_cover.png"
-date: 12/02/2026
+date: 27/02/2026
 summary: |-
   This study investigates how different computer vision AI architectures affect energy consumption. It compares two open-source object detection models of similar size, RF-DETR medium and YOLOv8 medium, to explore how transformer-based versus CNN-based designs impact energy usage. The results show that RF-DETR consumes approximately twice the total energy per inference than the CNN-based model YOLOv8. These findings highlight that architectural design significantly impacts energy consumption and should be considered alongside accuracy and latency when selecting computer vision AI models.
 identifier: p1_measuring_software_2026 # Do not change this
@@ -46,7 +46,7 @@ All experiments were conducted on the same hardware and software environment to 
 
 We measured energy consumption using Energibridge [^9]. Energibridge is an energy profiler that collects CPU and GPU energy usage data during program execution.
 
-Before running the experiment, we had to minimize any confounding factors that could influence the energy measurements. For this we followed the "Zen mode" [^10] strategy. We closed any applications or unnecessary background services that were running and made sure to turn off all notifications. Additionally, we disconnected all external hardware and turned off the wifi. Moreover, we froze our settings [^10] by disabling automatic brightness adjustment, idle dimming and setting the brightness to the lowest end at 242. 
+Before running the experiment, we had to minimize any confounding factors that could influence the energy measurements. For this we followed the "Zen mode" [^10] strategy. We closed any applications or unnecessary background services that were running and made sure to turn off all notifications. Additionally, we disconnected all external hardware and turned off the wifi. Moreover, we froze our settings [^10] by disabling automatic brightness adjustment, idle dimming and setting the brightness to the lowest end. 
 We kept the machine plugged into an external power source throughout the experiment to avoid power fluctuations. Lastly, we performed all experiments at a stable temperature of 23.5℃.
 
 ### Experiment Procedure
@@ -132,6 +132,6 @@ Our study compares the energy consumption of two object detection models during 
 
 [^10]: Cruz, L. (2021). Green software engineering done right: A scientific guide to set up energy efficiency experiments [Blog post]. https://luiscruz.github.io/2021/10/10/scientific-guide.html
 
-[^11]: Interactive App | Electricity Maps. (2025). Electricitymaps.com. https://app.electricitymaps.com/map/live/fifteen_minutes
+[^11]: Interactive App, Electricity Maps. (2025). Electricitymaps.com. https://app.electricitymaps.com/map/live/fifteen_minutes
 
 [^12]: Moutik, O., Sekkat, H., Tigani, S., Chehri, A., Saadane, R., Tchakoucht, T. A., & Paul, A. (2023). Convolutional Neural Networks or Vision Transformers: Who Will Win the Race for Action Recognitions in Visual Data? Sensors, 23(2), 734. https://doi.org/10.3390/s23020734
