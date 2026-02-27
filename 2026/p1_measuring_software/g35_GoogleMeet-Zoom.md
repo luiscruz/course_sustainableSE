@@ -5,7 +5,7 @@ title: "Comparing the difference in Power Consumption between Video Conference A
 image: "img/gX_template/project_cover.png"
 date: 27/02/2026
 summary: |-
-  This project is about comparing the energy usage of Microsoft Teams and Zoom. We compare the energy impact of enabling different variations of video-call features on both applications: camera on/off, blur on/off, and screen-share on/off. We run 30 iterations per feature pair, per application, and measure the energy costs over time. We use Energibridge for measuring the data, and develop automated scripts to run the experiments reproducibly. 
+  This project concerns comparing the energy usage of Microsoft Teams and Zoom. We compare the energy impact of enabling different variations of video-call features on both applications: camera on/off, blur on/off, and screen-share on/off. We run 30 iterations per feature pair, per application, and measure the energy costs over time. We use Energibridge for measuring the data, and develop automated scripts to run the experiments reproducibly. 
   
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
@@ -14,13 +14,13 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 
 # Introduction
 ## Context and Motivation
-Six years ago, the COVID-19 pandemic began, prompting nations around the world to enforce a lockdown with the intention of reducing virus transmission. People were strongly advised to stay home and as a consequence, this led to a considerable increase in work from home (WFH) arrangements with **video conferencing** becoming a core part of daily work. 
+Six years ago, the COVID-19 pandemic began, prompting nations around the world to enforce a lockdown with the intention of reducing virus transmission. This led to a considerable increase in work from home (WFH) arrangements with **video conferencing** becoming a core part of daily work. 
 
-According to Adrjan et al., WFH job postings have quadrupled across 20 countries from 2020 to 2023, with these kind of postings still remaining popular despite a lifting of pandemic restrictions. Naturally, video conference applications rose in popularity and because of this, it is imperative to consider the energy usages of these applications as the number of people transitioning to remote working during this time increases significantly. 
+According to Adrjan et al., WFH job postings have quadrupled across 20 countries from 2020 to 2023, with these kind of postings still remaining popular despite a lifting of pandemic restrictions. Naturally, video conference applications rose in popularity and because of this, it is imperative to consider the energy usages of these applications.
 
 From a user perspective, the energy efficiency of video conferencing software matters because it directly affects the experience of working on a laptop. Online meetings can be long and frequent, and if an application draw more power, the **laptop will drain faster**. This would require more frequent charging, and may force users to adapt their workday around power availability by, for example, staying near outlets or carrying chargers. Higher power draw can also increase heat and fan activity, impacting comfort and potentially influencing audio quality if fan noise is captured by the microphones. Over time, frequent high-power usage by contribute to **faster battery wear**, reducing the lifespan of a device. 
 
-Beyond individual devices, energy usage also has **system-level implications**. Video conferencing can be used at **massive scale across organizations**, with even modest per-hour difference in power consumption accumulating across users. Understanding how application choice and feature configuration affects power demand can support recommendations for more sustainable digital work practices. 
+Beyond individual devices, energy usage also has **system-level implications**. Video conferencing can be used at **massive scale across organizations**, with even modest per-hour difference in power consumption accumulates across users. Understanding how application choice and feature configuration affects power demand can support recommendations for more sustainable digital work practices. 
 
 While the number of people transitioning to remote working has recently seemed to stabilized in Europe and in other places around the world, as reported by Eurofound researcher Oscar Vargas Llave, "The possibility of working from home hasn’t [been] sedimented in European workplaces". Thus, research into the energy usages of video conference applications remains relevant in this day and age.
 
@@ -28,9 +28,7 @@ For the purposes of this research, the video conference applications to be inves
 
 ## Research Objectives
 
-The primary research objective of this piece is to compare the two aforementioned applications in power usage.
-
-The more specific objectives of this study are to:
+The primary research objective of this piece is to compare the two aforementioned applications in power usage. This can be broken down into:
 - Measure and analyze the baseline power consumption of Zoom Workplace and Microsoft Teams during a video call with the camera turned off. 
 - Compare the difference in power usage of Zoom Workplace and Microsoft Teams with the camera turned off versus with the camera turned on. 
 - Evaluate the impact of screen sharing on the power consumption across the two different platforms. 
@@ -67,9 +65,11 @@ We categorize the experimental parameters into dependent and independent variabl
 
 **Dependent Variables:**
 
-- **Mean Power (W):** the rate of energy consumption during the trial.
+- **Average Power Consumption (W):** the rate of energy consumption during the trial.
 - **Total Energy (J):** the total amount of energy consumed in 30 seconds.
 - **Energy Delay Product (J·s):** trade-off between energy efficiency and the time taken to complete the task.
+
+Average Power Consumption was chosen as we are reporting on the consumption of a continuous use case rather than a one-off use case. Energy Delay Product was chosen to evaluate the overall efficiency of by balancing energy consumption against performance.
 
 Next, we establish a controlled testing environment, to achieve as accurate and reproducible results as possible.
 
@@ -104,32 +104,15 @@ The experiment is driven by a single automation script that imports two platform
 For the experiments, the replication package can be found in the following [repository](https://github.com/ayushhhkha/SSE_TeamsVsZoom).
 
 ## Data Collection & Processing 
-Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each reading we derive the dependent variable values: mean power (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
-
+Each 30-second EnergiBridge run creates a CSV containing timestamped energy readings, producing 360 files across all iterations. From each reading we derive the dependent variable values: average power consumption (W), total energy (J), and the Energy Delay Product (J·s). Outliers are removed using a z-score filter, and the appropriate statistical test (Welch t-test or Mann–Whitney U) is selected based on a Shapiro-Wilk normality check.
 
 # Results
-
 This section will present the findings of the different power consumption and energy delay product values across the different video conference applications and features.
 
-As mentioned previously, EnergiBridge was used to measure energy consumption. The tool provides the following relevant metrics:
-- *Delta*
-- *CPU_Energy (J)*
-
-With the metrics above, the key metrics to be calculated per trial were:
-1. *Total Energy Consumption (J)*: Calculated by computing the difference of the cumulative energy metric. 
-2. *Average Power Consumption (W)*: Calculated by dividing the total energy consumption over the duration of the trial.
-3. *Energy Delay Product (J * s)*: Calculated by multiplying energy by the total duration of the trial.
-
-Average Power Consumption was chosen as we are reporting on the consumption of a continuous use case rather than a one-off use case. Energy Delay Product was chosen to evaluate the overall efficiency of by balancing energy consumption against performance.
-
-
 ## Outlier detection
-
-Before diving into the experimental results we removed anomalies to improve data reliability. We used a Z-Score threshold of 3.0 to determine the outliers. The reason why we picked 3 is due to how it covers 99.7% of normal data which lies within 3 standard deviations. Another reason why we picked 3.0 is because a thereshold of 3.0 ensures that only extreme measurements error are removed while it keeps normal variability intact. Based on the application, our experiment flagged outliers between 0 and 1 per group of 30 iterations. In total, only 5 outliers were removed. Based on this it confirms that our data was generally stable and that only extreme measurement errors were detected. Since the number of identified outliers were negligible, we decided that we will not demonstrate visualization or data processing with outliers since these outliers were negligible and will do not demonstrate a significant reflection of our data.
-
+Before diving into the experimental results we removed outliers to improve data reliability. We used a Z-Score threshold of 3.0 to determine the outliers. The reason why we picked 3 is due to how it covers 99.7% of normal data which lies within 3 standard deviations. Another reason why we picked 3.0 is because a thereshold of 3.0 ensures that only extreme measurements error are removed while it keeps normal variability intact. Based on the application, our experiment flagged outliers between 0 and 1 per group of 30 iterations. In total, only 5 outliers were removed. Based on this it confirms that our data was generally stable and that only extreme measurement errors were detected. Since the number of identified outliers were negligible, we decided that we will not demonstrate visualization or data processing with outliers since these outliers were negligible and will do not demonstrate a significant reflection of our data.
 
 ## Experimental results
-
 After the removal of outliers, the results can be seen illustrated below. Each figure compares Zoom and Microsoft Teams under the specified feature ON vs OFF conditions. The violin plots show the full distribution of the measurements across the 30 runs, while the embedded box plots indicate the mean and interquartile range.
 
 ### Power and EDP Comparison for camera on vs camera off
@@ -137,18 +120,16 @@ After the removal of outliers, the results can be seen illustrated below. Each f
 <div style="display: flex; gap: 20px;">
 
   <div style="flex: 1;">
-    <strong>Power</strong><br>
     <img src="img/g35_teams_zoom/camera_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    <strong>Figure 1</strong>: Average Power Consumption values for features camera on vs camera off.
+    <strong>Figure 1</strong>: Average Power Consumption (W) values for features camera on vs camera off.
     </p>
   </div>
 
   <div style="flex: 1;">
-    <strong>EDP</strong><br>
     <img src="img/g35_teams_zoom/camera_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    <strong>Figure 2</strong>: EDP values for features camera on vs camera off.    
+    <strong>Figure 2</strong>: EDP (J*s) values for features camera on vs camera off.    
     </p>
   </div>
 
@@ -159,18 +140,16 @@ After the removal of outliers, the results can be seen illustrated below. Each f
 <div style="display: flex; gap: 20px;">
 
   <div style="flex: 1;">
-    <strong>Power</strong><br>
     <img src="img/g35_teams_zoom/blur_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    <strong>Figure 3</strong>: Average Power Consumption values for features background blurring on vs off.
+    <strong>Figure 3</strong>: Average Power Consumption (W) values for features background blurring on vs off.
     </p>
   </div>
 
   <div style="flex: 1;">
-    <strong>EDP</strong><br>
     <img src="img/g35_teams_zoom/blur_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    <strong>Figure 4</strong>: EDP values for features background blurring on vs off.
+    <strong>Figure 4</strong>: EDP (J*s) values for features background blurring on vs off.
     </p>
   </div>
 </div>
@@ -180,27 +159,23 @@ After the removal of outliers, the results can be seen illustrated below. Each f
 <div style="display: flex; gap: 20px;">
 
   <div style="flex: 1;">
-    <strong>Power</strong><br>
     <img src="img/g35_teams_zoom/share_avg_power_W_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    <strong>Figure 5</strong>: Average Power Consumption values for features screen sharing on vs off.
+    <strong>Figure 5</strong>: Average Power Consumption (W) values for features screen sharing on vs off.
     </p>
   </div>
 
   <div style="flex: 1;">
-    <strong>EDP</strong><br>
     <img src="img/g35_teams_zoom/share_EDP_Js_combined.png" width="100%">
     <p style="text-align: center; font-style: italic; margin-top: 6px;">
-    <strong>Figure 6</strong>: EDP values for features screen sharing on vs off.
+    <strong>Figure 6</strong>: EDP (J*s) values for features screen sharing on vs off.
     </p>
   </div>
 
 </div>
 
-Across all the features, it can be observed that enabling the feature generally results in higher average power consumption compared to disabling it. This effect can be seen for both applications, with the exact magnitude and variability differing between Zoom and Microsoft Teams. Note that the width and shape of the violins show that feature-enabled conditions often exhibit greater variability, suggesting less stable energy behaviour when additional processing, such as video effects and sharing, is active. 
 
 ## Interpretation of Results
-
 Across all three features, the data reveals a consistent but nuanced picture: **enabling a feature generally raises power consumption**, but the magnitude and consistency of that increase varies considerably depending on both the feature and the application.
 
 **Camera (Figures 1–2):** The camera feature yields the most stable and interpretable results. Both applications show a clear power increase when the camera is turned on, with relatively tight distributions. Zoom rises from a median of roughly 5.4 W (OFF) to about 6.1 W (ON), while Teams goes from approximately 6.2 W to 6.6 W. Notably, Teams draws more power than Zoom in both the ON and OFF conditions, and in fact, the Teams baseline with camera OFF is already higher than Zoom with the camera on. The EDP values in Figure 2 further showcase this, with Teams ON reaching a median around 5800 J·s compared to Zoom ON at roughly 5300 J·s.
@@ -220,9 +195,7 @@ The test was applied separately to each group, with a significance level of `a =
 - if `p >= 0.05`: the data was normally distributed
 - if `p < 0.05`: the data was not normally distributed
 
-Generally speaking, most of the groups revealed to have data that is not normally distributed.
-
-Depending on the result, the choice of statistical test was made as described below.
+Generally speaking, most of the groups revealed to have data that is not normally distributed. Depending on the result, the choice of statistical test was made as described below.
 
 *Table 1: Shapiro-Wilk p-values for the power values of the different features*
 
@@ -366,7 +339,7 @@ Overall, the statistical analysis shows that *camera activation is the dominant 
 ## Potential Explanations
 While we cannot confirm what caused the result patterns observed, in this subsection we make educated guesses, and explore the potential causes of such patterns. Each of them could be a topic to be validated in further research.
 
-**Predictable camera ON/OFF test results** in both applications show that both Teams and Zoom interface with the camera hardware in similar direct manner. It is also clear that Teams has approximately the same overhead of energy consumption when compared to a corresponding test in Zoom.
+**Predictable camera ON/OFF test results** in both applications show that both Teams and Zoom interact with the camera hardware in similar direct manner. It is also clear that Teams has approximately the same overhead of energy consumption when compared to a corresponding test in Zoom.
 
 **Higher baseline power draw** observed in Microsoft Teams could be explained by the design of the application compared to Zoom Workplace. Teams is designed to be one of the central applications of a company with significantly more extensive functionality than Zoom (messaging interface, file sharing, live status updates, etc.) This, by design, causes Teams to consistently run more background services for tasks, such as message or file syncing. In contrast, Zoom offers more limited functionality outside of the call itself, which makes it likely almost all of its energy consumption comes from the active call. 
 
