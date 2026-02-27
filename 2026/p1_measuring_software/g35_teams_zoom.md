@@ -359,7 +359,7 @@ Only the Windows OS was used in which compared to MacOS and Linux, it can have d
 
 # Future Work
 
-For additional work, it would be interesting to observe the experimentation being conducted on different OS for an interesting energy analysis. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations.
+For additional work, it would be interesting to observe the experimentation being conducted on different OS to determine how OS impacts the energy usage. Another interesting work that can be done is testing out more application in demand such as Google Meet and Slack in order to observe their effects. One more additional work that can be conducted would be to increase the intervals which will increase experimentation time but this will align better with real life situations.
 
 # Conclusion
 
