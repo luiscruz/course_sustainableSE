@@ -97,25 +97,28 @@ associated tests pass. This yields a binary pass/fail per task, from which we co
 
 The detailed statistical analysis and all visualizations can be found in the [FINDINGS_REPORT.md](https://github.com/ceylin-ece/sustainableSE-A1/blob/main/FINDINGS_REPORT.md)
 
-<img src="img/gX_template/combined_summary.png" alt="summary" width="700">
+<img src="img/gX_template/combined_summary.png" alt="summary" width="800">
+<br>
 The figure above summarizes the four key measurements: total energy, mean inference time, pass
 rate, and energy per correct solution. Phi-3 consumes roughly **12× more total energy** than Qwen, yet
 all three models achieve similar pass rates (50–57%), meaning Phi-3's extra energy yields almost no
 correctness advantage.
 
-<img src="img/gX_template/energy_per_token_approx.png" alt="energy per token" width="700">
-
+<img src="img/gX_template/energy_per_token_approx.png" alt="energy per token" width="500">
+<br>
 The boxplot above shows the approximate energy cost per completion token. Despite the 12× gap in
 total energy, per-token costs are remarkably similar across all three models (~0.9–1.0 J/token). This
 confirms that the energy gaps are driven by how many tokens each model generates, not by how
 much energy each token costs.
 
-<img src="img/gX_template/energy_per_correct.png" alt="energy per correct" width="700">
+<img src="img/gX_template/energy_per_correct.png" alt="energy per correct" width="500">
+<br>
 This boxplot shows the energy cost per correct solution. Qwen is the clear winner at ~65 J per
 correct answer, while Phi-3 costs ~871 J - over **13× more energy for each correct solution**. The
 boxes are well-separated with no overlap, indicating these differences are robust.
 
-<img src="img/gX_template/energy_vs_passrate.png" alt="energy vs passrate" width="700">
+<img src="img/gX_template/energy_vs_passrate.png" alt="energy vs passrate" width="500">
+<br>
 This scatter plot demonstrates that the results are both precise (low variance within each model
 cluster) and reliable (clear separation between model clusters). Notably, Qwen achieves the highest
 pass rate while consuming the least energy - there is no positive correlation between energy and
