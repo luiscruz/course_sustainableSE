@@ -204,11 +204,11 @@ retained the central mass of the data while removing only extreme deviations, wh
 
 After removing the detected outliers, we re-examined the cleaned dataset using violin plots.
 
-<div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;">
+<div style="display: flex; justify-content: center; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;">
   <img 
     src="./img/g34_measuring_youtube/full_violinplot.png" 
     alt="outlier removed Histogram containing all 4 experimental classes"
-    style="width: 80%;"
+    style="width: 80%; height: 70%;"
   >
 </div>
 
