@@ -195,21 +195,7 @@ Future work could evaluate real webcam input instead of synthetic streams, longe
 
 ## Replication
 
-The full replication package is available at: GH url
-
-```bash
-git clone [repo-url]
-cd SSE-26
-python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-cd EnergiBridge && cargo build -r && cd ..
-cp .env.example .env  # add your Meet and Teams URLs
-cd src
-python run_experiment.py --meet-url "$MEET_URL" --teams-url "$TEAMS_URL" \
-  --repeats 30 --duration 120 --visible
-python analyze.py --data-dir ../data --output-dir ../figures
-```
-
+The full replication package is available at: [GH url](https://github.com/Yuunjisan/Group20-Replication)
 See `README.md` for full prerequisites and troubleshooting.
 
 ## Resources
