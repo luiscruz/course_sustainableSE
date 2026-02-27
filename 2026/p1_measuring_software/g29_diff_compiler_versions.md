@@ -2,8 +2,8 @@
 author: Tess Hobbes, Nina Semjanová, Mikołaj Magiera, Kristian Hristov 
 group_number: 29
 title: "Comparing the energy consumption of running oxipng benchmarks using different Rust compiler versions"
-image: "img/gX_template/project_cover.png"
-date: 03/03/2022
+image: "img/g29/cover.png"
+date: 27/02/2028
 summary: |-
   This study examines how energy consumption and execution time have evolved across various versions of the Rust compiler, spanning from early 2020 to early 2026. This analysis is significant from a sustainability perspective, as newer compiler versions often prioritize speed without necessarily optimizing for energy efficiency. Our results show that both execution time and energy consumption significantly decreased with successive Rust versions until mid-2025. Since then, however, we have observed an upward trend in both metrics with each new release. This shift could be caused by performance regressions or introduction of new features that were not yet optimized in the latest versions. These findings open possibilities for further research to investigate the causes behind this change in a performance that had remained consistent for over five years.
 identifier: p1_measuring_software_2026 # Do not change this
@@ -115,6 +115,7 @@ From 2020 through mid-2025 the Rust toolchain steadily made oxipng both faster a
 
 ## Further Work
 Upcoming work will include pinpointing which LLVM or rustc changes caused the post–mid‑2025 slowdown, then checking whether the tight time–energy link persists on non‑CPU‑bound workloads (I/O or memory heavy) and on other architectures like ARM or RISC‑V and experimenting with flags such as -C target-cpu=native to see if tuning codegen yields further energy savings beyond the defaults.
+
 
 
 ## References 
