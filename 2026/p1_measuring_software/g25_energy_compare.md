@@ -283,8 +283,7 @@ For reproducibility of these experiments, we have published all the scripts and 
 
 [^time-spent]: B. Elad, "Average Time Spent On Social Media By App, Country, Region And Trend (2025)," *ElectroIQ*, Jun. 30, 2025. [Online]. Available: [https://electroiq.com/stats/average-time-spent-on-social-media/](https://electroiq.com/stats/average-time-spent-on-social-media/). [Accessed: Feb. 24, 2026].
 
-[^popular-socials]: C. Tila, "Preferred social media site or platform for viewing short-form video according to internet users in the United States in March 2023," *statista*, Nov 27, 2025. [Online]. Available: [https://www.statista.com/statistics/1462392/us-social-media-platforms-short-form-video-preference/](https://www.statista.com/statistics/1462392/us-social-media-platforms-short-form-video-preference/).
-[Accessed: Feb. 27, 2026].
+[^popular-socials]: C. Tila, "Preferred social media site or platform for viewing short-form video according to internet users in the United States in March 2023," *statista*, Nov 27, 2025. [Online]. Available: [https://www.statista.com/statistics/1462392/us-social-media-platforms-short-form-video-preference/](https://www.statista.com/statistics/1462392/us-social-media-platforms-short-form-video-preference/). [Accessed: Feb. 27, 2026].
 
 [^storage-for-the-web]: P. LePage, "Storage for the web," *web.dev*, Sep. 23, 2024. [Online]. Available: [https://web.dev/articles/storage-for-the-web](https://web.dev/articles/storage-for-the-web). [Accessed: Feb. 26, 2026].
 
