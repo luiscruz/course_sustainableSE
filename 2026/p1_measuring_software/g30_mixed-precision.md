@@ -37,7 +37,7 @@ the training process of a convolutional neural network (CNN) with
 EnergiBridge. The CNN, implemented in TensorFlow, is adapted from one
 that is publicly available on Kaggle[^1]. The dataset on which it is
 trained is the CIFAR-10 dataset[^2], which consists of 60.000 color
-images of $32 \times 32$ pixels with 3 channels (RGB), evenly
+images of $$32 \times 32$$ pixels with 3 channels (RGB), evenly
 distributed across 10 classes.
 
 After 60 training runs of our CNN on the CIFAR-10 dataset, our results
@@ -129,23 +129,23 @@ both FP32 (standard precision) and mixed-precision configurations. The
 violin plots seem to roughly suggest a normal distribution for both
 training types. A Shapiro--Wilk test confirms that there is no
 significant deviation from normality for either group:
-($p_{\text{FP32}} = 0.59$, $p_{\text{mixed}} = 0.27$). As such, our
+($$p_{\text{FP32}} = 0.59$$, $$p_{\text{mixed}} = 0.27$$). As such, our
 analysis can rely on parametric methods that assume an underlying normal
 distribution of the data. From the box-plots, it is immediately clear
 that mixed precision training consistently consumes less energy across
 the different runs compared to FP32. In fact, mixed precision consumed
-approximately $2.80 \times 10^{7}$ Joules per run, while FP32 training
-consumed approximately $3.18 \times 10^{7}$ Joules per run. This
+approximately $$2.80 \times 10^{7}$$ Joules per run, while FP32 training
+consumed approximately $$3.18 \times 10^{7}$$ Joules per run. This
 corresponds to a mean energy reduction of roughly 12--13% when using
 mixed precision. Furthermore, the energy consumption of runs seems
 fairly consistent across both training modalities due to the relatively
 small whiskers on the box plots. This is confirmed by small coefficients
-of variation: $0.36\%$ and $0.32\%$ for FP32 and mixed precision,
+of variation: $$0.36\%$$ and $$0.32\%$$ for FP32 and mixed precision,
 respectively. We can further quantify the difference in total energy
 consumption between FP32 and mixed precision via an independent
-two-sample $t$-test, which reveals a highly significant difference in
-total energy consumption ($t = 151.43$, $p < 10^{-75}$). Additionally,
-the computed effect size is extremely large (Cohen's $d = 39.44$),
+two-sample $$t$$-test, which reveals a highly significant difference in
+total energy consumption ($$t = 151.43$$, $$p < 10^{-75}$$). Additionally,
+the computed effect size is extremely large (Cohen's $$d = 39.44$$),
 indicating that the distributions are almost completely separated and
 that the observed reduction in energy is not only statistically
 significant but also rather substantial.
@@ -162,11 +162,11 @@ precision? Or does mixed precision simply take less time to train? To
 this end, Figure 2 shows the mean system power usage across all
 runs of the two training modalities over time. Given that our power
 usage samples do not always perfectly align (the delta between
-individual measurements varies between $199$ ms and $209$ ms), we have
-chosen to aggregate the data points into $500$ ms bins and calculate the
+individual measurements varies between $$199$$ms and $$209$$ms), we have
+chosen to aggregate the data points into $$500$$ms bins and calculate the
 mean within them. Generally, both FP32 and mixed precision seem to take
 approximately the same time to train. In fact, the mean training times
-are $2.39 \times 10^{5}$ and $2.36 \times 10^{5}$ for FP32 and mixed
+are $$2.39 \times 10^{5}$$ and $$2.36 \times 10^{5}$$ for FP32 and mixed
 precision training, respectively. This indicates that the energy savings
 are not primarily derived from shorter training duration. Instead, the
 difference is driven by consistently lower system power usage throughout
@@ -189,7 +189,7 @@ mixed precision training.*
 | Model Accuracy   | 0.467 ± 0.022               | 0.457 ± 0.021               |   
 
 *Table 1: Comparison of the energy usage and model accuracy of FP32 and Mixed
-Precision training. Values are reported as mean $\pm$ standard
+Precision training. Values are reported as mean $$\pm$$ standard
 deviation.*
 
 While the power--time analysis clarifies what the energy savings can be
@@ -202,18 +202,18 @@ Table 1. Clearly, the drop in energy
 consumption is quite substantial and consistent across runs, while the
 model accuracy decreases slightly. Overall, paired with such a large
 decrease in energy usage, a small drop in performance becomes
-negligible. Test accuracy decreases slightly from $0.467$ to $0.457$,
-representing an absolute difference of $0.01$ (that is, one percentage
-point). Given the overlapping standard deviations ($\pm 0.022$ and
-$\pm 0.021$), this reduction appears small relative to the variability
+negligible. Test accuracy decreases slightly from $$0.467$$ to $$0.457$$,
+representing an absolute difference of $$0.01$$ (that is, one percentage
+point). Given the overlapping standard deviations ($$\pm 0.022$$ and
+$$\pm 0.021$$), this reduction appears small relative to the variability
 observed across runs. In fact, the difference between test accuracy is
-not statistically significant ($t = 1.71$, $p = 0.093$). The effect size
-(Cohen's $d = 0.45$) is moderate, suggesting a small-to-medium practical
+not statistically significant ($$t = 1.71$$, $$p = 0.093$$). The effect size
+(Cohen's $$d = 0.45$$) is moderate, suggesting a small-to-medium practical
 difference, but given the lack of statistical significance, we can
 consider the accuracies effectively comparable. Combining this with
 predictive performance, mixed precision is more energy-efficient,
-consuming on average $6.11 \times 10^{7}$J per accuracy point compared
-to $6.85 \times 10^{7}$J per accuracy point for FP32. This further
+consuming on average $$6.11 \times 10^{7}$$J per accuracy point compared
+to $$6.85 \times 10^{7}$$J per accuracy point for FP32. This further
 supports the case that mixed precision saves energy without meaningful
 accuracy loss.
 
@@ -249,7 +249,7 @@ followed an approximately normal distribution
 tests. This behaviour is expected: while random initialisation affects
 optimisation trajectories and final accuracy, it does not substantially
 change the computational workload under fixed hyperparameters. The
-extremely small coefficients of variation (CV $< 0.4\%$) suggest that
+extremely small coefficients of variation (CV $$< 0.4\%$$) suggest that
 hardware-level fluctuations, such as thermal noise, introduce only minor
 Gaussian variation, and validate our experimental controls.
 
