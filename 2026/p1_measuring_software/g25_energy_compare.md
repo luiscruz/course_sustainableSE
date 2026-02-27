@@ -77,7 +77,7 @@ We decided to keep a warm-up time of 5 seconds to ensure the CPU reaches a stabl
 ### Experimental Setup
 The experiment was conducted separately for each platform — TikTok and YouTube Shorts — using a two-process architecture designed to isolate energy measurement from setup overhead.
 
-Before any measurement begins, a background process navigates the Chromium browser to the target platform, enters fullscreen, and handles platform-specific pop-ups, including TikTok's puzzle, GDPR notice, and cookie banner, as well as YouTube's cookie banner. The video is then unmuted and the browser is left to warm up for a fixed period. This entire setup phase is explicitly excluded from energy measurement to avoid skewing results.
+Before any measurement begins, a background process navigates the Chromium browser (Google Chrome) to the target platform, enters fullscreen, and handles platform-specific pop-ups, including TikTok's puzzle, GDPR notice, and cookie banner, as well as YouTube's cookie banner. The video is then unmuted and the browser is left to warm up for a fixed period (5 seconds). This entire setup phase is explicitly excluded from energy measurement to avoid skewing results.
 
 Once setup is complete, the doomscrolling loop begins automatically advancing to the next video at the specified fixed time interval for the full duration of the experiment. Simultaneously, the main process detects that setup has finished and launches the energy measurement tool, which records energy consumption exclusively during this active scrolling window. This ensures that only steady-state doomscrolling behaviour is captured, free from any setup or initialization noise.
 
@@ -94,16 +94,13 @@ We ran the experiments on a machine with the following hardware specifications:
 - Display resolution and refresh rate: 1920×1200 @ 59.88 Hz
 - Network connection type: Ethernet
 
-All tests were conducted within a standard Linux-based Operating System, using the Google Chrome browser. 
-
-Capturing the energy spent for each experiment was done using EnergiBridge. EnergiBridge is a cross-platform command-line utility that can analyze the performance directly from our machine's low-level hardware sensors.
-For the 
-
 Specifically, we ran the experiments with the following software versions:
 - OS: Ubuntu 24.04.3 LTS (64-bit)
-- Chromium browser: Version 145.0.7632.109 (Official Build) (64-bit)
+- Chromium browser: Google Chrome - Version 145.0.7632.109 (Official Build) (64-bit)
 - Python: 3.12.3
 - Energibridge: 0.0.7
+
+EnergiBridge is a cross-platform command-line utility that can analyze the performance directly from our machine's low-level hardware sensors.
 
 Other software requirements and versions that are used for this project can be found in `requirements.txt` file of our Github Repository which is linked in the [Replication Package](#replication-package) section.
 
@@ -131,13 +128,12 @@ While statistical difference is unlikely to arise by chance, the practical impor
 
 # Results
 ## Analysis
-### Exploratory Analysis
 
 This section presents violin and box plots based on the averages of 30 measurements for each platform on two, five and ten second intervals of scrolling.
 
 “Raw” plots include all observations, while “clean” plots exclude outliers using the 1.5xIQR rule. We found that for some runs on TikTok, the reels were stuck, and the bot script was unable to scroll. We assume that these occurences represent the outliers on the lower end, providing a justification to remove them.
 
-#### 2 second intervals
+### 2 second intervals
 ![2_raw](img/g25_energy_compare/measurements_2_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -153,7 +149,7 @@ On average, energy consumption is similar across platforms. However, TikTok show
 
 No noticeable difference after outlier removal.
 
-#### 5 second intervals
+### 5 second intervals
 ![5_raw](img/g25_energy_compare/measurements_5_violin_box_raw.png)
 
 ##### Chrome_TikTok
@@ -168,6 +164,8 @@ Both the mean and median are higher for TikTok, indicating greater overall energ
 ![5_clean](img/g25_energy_compare/measurements_5_violin_box_clean.png)
 
 After removing the outliers, Chrome_tiktok graph appears to attain a normal distribution. Since outliers were on the lower end, both mean and median are higher.
+
+### 10 second intervals
 
 ![10_raw](img/g25_energy_compare/measurements_10_violin_box_raw.png)
 
@@ -205,7 +203,7 @@ The tests were conducted after removing outliers.
 ### Test Isolation
 Whether the described test isolation methods (such as creating a new browser from scratch on each run) is realistic depends on the user behavior and device. 
 
-For example, Chromium allows an origin to use up to 60% of the total disk space for caching, and when disk space is low, evict the least recently visited origins[^storage-for-the-web]. A user could visit the homepage of YouTube, download the static assets once, and then watch Shorts without re-downloading the assets. 
+For example, Chromium (Google Chrome) allows an origin to use up to 60% of the total disk space for caching, and when disk space is low, evict the least recently visited origins[^storage-for-the-web]. A user could visit the homepage of YouTube, download the static assets once, and then watch Shorts without re-downloading the assets. 
 
 However, modern web applications, including YouTube[^youtube-ab-testing], often use A/B testing to serve different versions of the site to different users, which can lead to variations in energy consumption. Additionally, updates to the application can cause different versions of the static assets to be served, which can also invalidate the cached assets. 
 
