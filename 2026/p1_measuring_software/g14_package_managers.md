@@ -25,10 +25,10 @@ In this experiment, we pit the industry standards against a new challenger to de
 ### The Contenders
 *   **`pip`**: The ubiquitous standard tool included with Python. It is widely compatible but historically slower in resolution.
 *   **`poetry`**: A developer-favorite known for its deterministic dependency resolution and developer experience, written in pure Python.
-*   **`uv`**: The new challenger written in Rust, claiming extreme performance and aggressive parallelization.
+*   **`uv`**: The new challenger written in Rust, claiming extreme performance and aggressive parallelization.[1]
 
 ### The Hypothesis
-We hypothesize that **`uv`**, due to its compiled Rust architecture and efficient resource management (such as hardlinking), will consume significantly less energy than its Python-based counterparts (`pip`, `poetry`) across all scenarios.
+We hypothesize that **`uv`**, due to its compiled Rust architecture and efficient resource management (such as hardlinking), will consume significantly less energy than its Python-based counterparts (`pip`, `poetry`) across all scenarios.[2]
 
 ### Research Questions
 To validate this, we define three specific research questions:
@@ -41,10 +41,10 @@ To validate this, we define three specific research questions:
 ## 2. Background & Motivation
 
 ### Scale & Impact
-The scale of Python's ecosystem is massive. The Python Package Index (PyPI) serves billions of requests per day. Consider a standard CI/CD pipeline: for every commit, a fresh virtual environment is often created, and dependencies are installed from scratch. If a tool can reduce the energy footprint of this process by even 10%, the aggregate savings across millions of daily runs would be substantial. This aligns directly with the principles of **Green Software Engineering**: reducing the carbon intensity of software at the source.
+The scale of Python's ecosystem is massive. The Python Package Index (PyPI) serves billions of requests per day. Consider a standard CI/CD pipeline: for every commit, a fresh virtual environment is often created, and dependencies are installed from scratch. If a tool can reduce the energy footprint of this process by even 10%, the aggregate savings across millions of daily runs would be substantial. This aligns directly with the principles of **Green Software Engineering**: reducing the carbon intensity of software at the source.[3]
 
 ### Developer Experience (DX) vs. Energy
-Traditionally, developers optimize for "Time to Interactive." Waiting for dependencies to lock or install breaks the flow state. However, speed and energy are not always perfectly correlated. A tool might consume more power (Watts) to finish a task faster, potentially resulting in the same total energy (Joules). Our goal is to determine if `uv`'s speed advantage translates into a "Green Win-Win" - improving the developer experience while simultaneously reducing environmental impact.
+Traditionally, developers optimize for "Time to Interactive." Waiting for dependencies to lock or install breaks the flow state.[4] However, speed and energy are not always perfectly correlated. A tool might consume more power (Watts) to finish a task faster, potentially resulting in the same total energy (Joules). Our goal is to determine if `uv`'s speed advantage translates into a "Green Win-Win" - improving the developer experience while simultaneously reducing environmental impact.
 
 ### The Mechanics: Locking vs. Installing
 To understand energy consumption, we must distinguish between the two phases of package management:
@@ -86,7 +86,7 @@ We measured three distinct scenarios to isolate different computing resources (C
 We adhered to a strict protocol to minimize confounding factors:
 
 *   **Hardware:** All experiments were conducted on a **Apple MacBook Pro (14-inch, 2021) with M1 Pro chip and 16GB Unified Memory running macOS.**
-*   **Measurement Tool:** We used **Energibridge** to sample telemetry (including `SYSTEM_POWER (Watts)`, `Delta`, and `Time`). In the analysis, energy was computed by integrating system power over time (`SYSTEM_POWER x Delta`), yielding Joules.
+*   **Measurement Tool:** We used **Energibridge**[5] to sample telemetry (including `SYSTEM_POWER (Watts)`, `Delta`, and `Time`). In the analysis, energy was computed by integrating system power over time (`SYSTEM_POWER x Delta`), yielding Joules.
 *   **Sample Size:** We performed **30 repetitions** per tool, per scenario, to ensure statistical significance.
 *   **Randomization:** The execution order was shuffled (e.g., `pip` → `uv` → `poetry` → `uv`...) to mitigate temporal biases such as thermal throttling or OS background tasks.
 *   **Execution Command:** The full randomized benchmark suite was executed with:
@@ -229,3 +229,17 @@ For the most energy-efficient development lifecycle, we recommend **`uv`**. Its 
 To support open science and allow others to verify our findings, we have made our entire experimental suite available. You can find the automation scripts, the raw CSV data from Energibridge, and the Jupyter Notebook used for analysis in our repository:
 
 [**Link to GitHub Repository**](https://github.com/Elia-J/python-package-manager-energy-benchmark)
+
+---
+
+## 8. References
+[1] Marsh, C. (2024). "uv: Python packaging in Rust." Blog post.
+
+[2] Pereira, R. et al. (2017). "Energy Efficiency across Programming Languages."
+
+[3] Jagroep, E. et al. (2017). "Awakening Awareness on Energy Consumption in Software Engineering."
+
+[4] Lammers, A. (2024). "Why uv is Changing Python Package Management."
+
+[5] Sallou, J. et al. (2023). "EnergiBridge: Empowering Software Sustainability through Cross-Platform Energy Measurement."
+
