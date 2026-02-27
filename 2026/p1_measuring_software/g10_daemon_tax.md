@@ -3,19 +3,19 @@ author: Atharva Dagaonkar, Kasper van Maasdam, Ignas Vasiliauskas, Andreas Tsats
 group_number: 10
 title: "The 'Daemon' Tax: An Energy Analysis of Docker and Podman across RESTful and Computational Workloads."
 image: "img/g10_daemon_tax/Docker vs Podman.jpg"
-date: 12/02/2026
+date: 27/02/2026
 summary: |-
-  This project compares   the energy efficiency of Docker's daemon-based architecture against Podman's daemonless model. Using EnergiBridge to monitor full-system energy consumption, the study deploys a realistic RESTful multi-service web application under both runtimes and measures energy across 30 trials each. While Docker's mean cumulative energy consumption was slightly higher than Podman's, the Welch t-test did not find this difference to be statistically significant (p = 0.10). A medium effect size (Cohen's d = 0.45) and an asymmetric confidence interval suggest the study may be underpowered rather than the effect being truly zero, with implications that scale meaningfully at data-centre level.
+  This project compares the energy efficiency of Docker's daemon-based architecture against Podman's daemonless model. Using EnergiBridge to monitor full-system energy consumption, the study deploys a realistic RESTful multi-service web application under both runtimes and measures energy across 30 trials each. While Docker's mean cumulative energy consumption was slightly higher than Podman's, the Welch t-test did not find this difference to be statistically significant (p = 0.10) and the mean difference's 95% confidence interval includes 0. The medium effect size (Cohen's d = 0.45) and the asymmetry of the confidence interval may suggest that different test setups could result in a significant difference, with implications that scale meaningfully at data-centre level.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
 ## Introduction
 
-Every time you run `docker run`, a daemon that's been sitting in the background since boot quietly handles the request. It manages networking, volumes, image layers — and it never really switches off. Podman takes the opposite stance: no daemon, no middleman, just a direct call to the container runtime.
+Every time you run `docker run`, a daemon that's been sitting in the background since boot quietly handles the request. It manages for instance networking, volumes, and image layers; it never really switches off. Podman takes the opposite stance: no daemon, no middleman, just a direct call to the container runtime.
 
 This architectural difference is well-known. Its energy implications are not.
-Data centres already consume roughly 1–2% of global electricity[^1], and container workloads are a growing slice of that. At the scale of millions of deployments, even a small per-container overhead adds up to something meaningful. Docker's always-on `dockerd` is a natural suspect — but until now, nobody has measured whether it actually costs you energy during active workloads.
+Data centres already consume roughly 1-2% of global electricity[^1], and container workloads are a growing slice of that. At the scale of millions of deployments, even a small per-container overhead adds up to something meaningful. Docker's always-on `dockerd` is a natural suspect. However, until now, nobody has measured whether it actually costs you energy during active workloads.
 
 We decided to find out. We built a realistic multi-service RESTful web application, deployed it under both Docker and Podman, hammered it with 2,000 HTTP requests per trial, and measured full-system energy consumption across 30 runs each. The question we set out to answer is simple: **Does Docker's daemon architecture impose a measurable energy penalty compared to Podman's daemonless model during active workloads?**
 The answer is less clear-cut than we expected. Specifically:
@@ -128,7 +128,7 @@ Finally, in the fifth graph, the cumulative energy usage over run time can be se
 
 ![Figure 5: Cumulative energy usage over run time](img/g10_daemon_tax/fig5_cumulative_runtime.png)
 
-Based on the data, some tests have been performed. These are namely the Shapiro-Wilks Normality Test for both Docker and Podman and the Welch Independent t-test. Also, Cohen's d and the 95% confidence interval of mean difference between the Docker and Podman trials have been calculated. All tests have been performed on the cumulative energy consumption per trial. The results are as follows:
+Based on the data, some tests have been performed. These are namely the Shapiro-Wilks Normality Test for both Docker and Podman and the Welch Independent t-test. Also, Cohen's d and the 95% confidence interval of mean difference between the Docker and Podman trials have been calculated. All tests have been performed on the cumulative energy consumption per trial. We chose to compare cumulative energy consuption over power usage because a significant part of the trials was the starting of the containers. This, together with the inclusion of the stopping of the containers make the trial represent a bounded scenario rather than a continuous use case, which is why we deemed energy a more fitting metric than power. The results are as follows:
 
 | Test | Result |
 |----------|---------|
@@ -142,11 +142,10 @@ Based on the data, some tests have been performed. These are namely the Shapiro-
 
 ## Discussion
 
-The main research question we aimed to answer is whether the Docker container runtime has any runtime energy consumption difference from that of Podman for identical workloads. The results indicate little difference between the two container runtimes. The shapiro-wilkins normality test with an α value of 0.05 fails to reject normality for both the Docker and Podman data, which calls for a parametric test. Across the 30 analysed trials per runtime, the Welch t-test did not detect a statistically significant difference in cumulative energy consumption (p = 0.1007).
-While the Welch t-test does not find a statistically significant difference, the effect size tells a more nuanced story. A Cohen's d of 0.45 is considered a medium effect, and the 95% confidence interval skews heavily positive, ranging from -11 J to +122 J, meaning the data is more consistent with Docker consuming more energy than with the two being equivalent.
-The study may simply be underpowered to detect the true difference at 30 trials per runtime.
+The main research question we aimed to answer is whether the Docker container runtime has any runtime energy consumption difference from that of Podman for identical workloads. The results indicate insignificant difference between the two container runtimes. The shapiro-wilkins normality test with an α value of 0.05 fails to reject normality for both the Docker and Podman data, which calls for a parametric test. Across the 30 analysed trials per runtime (minus outliers), the Welch t-test did not detect a statistically significant difference in cumulative energy consumption (p = 0.1007). Additionally, the mean difference's 95% confidence interval, ranging from -11 J to +122 J, includes 0. This implies we cannot say with 95% confidence that there is even a difference in engergy consumption between the two container runtimes under our test conditions.
+While the Welch t-test does not find a statistically significant difference, the effect size tells a more nuanced story. A Cohen's d of 0.45 is considered a medium effect, and though this experiment did not find significant differences between energy consumption of Podman and Docker, the results are interesting nonetheless. That is because it could be an indication that a different type of workload could, in fact, provide significant results.
 
-The calculus changes at a data-centre scale. If we conservatively assume a 55 J mean difference (the midpoint of the CI) and a modest deployment of 10,000 container lifecycle runs per day, that amounts to roughly 550 kJ, or about 153 Wh, of additional energy daily. Across a year, that is approximately 56 kWh per 10,000 daily runs, purely from the container runtime choice. For hyperscale operators running millions of such workloads, this is no longer negligible.
+The math changes at a data-centre scale. If we conservatively assume a 55 J mean difference (the midpoint of the CI) and a modest deployment of 10,000 container lifecycle runs per day, that amounts to roughly 550 kJ, or about 153 Wh, of additional energy daily. Across a year, that is approximately 56 kWh per 10,000 daily runs, purely from the container runtime choice. For hyperscale operators running millions of such workloads, this is no longer negligible.
 
 ---
 
