@@ -401,7 +401,7 @@ For additional work, it would be interesting to observe the experimentation bein
 
 # Conclusion
 
-Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share.
+Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft Teams**. The features that are being experimented on are turning on/off camera, blur and screen share. Across 30 iteration per condition, by enabling the features on, it increased energy usage in which the largest effect came from enabling the camera whereas using blur showed weaker effects. Microsoft Teams shows a higher baseline and larger spikes while Zoom is more consistent. Hopefully this helps you pick the most efficient application!
 
 
 # References
