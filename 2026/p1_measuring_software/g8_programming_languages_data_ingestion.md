@@ -3,7 +3,7 @@ author: Yuvraj Singh Pathania, Viktor Seršiḱ, Emils Dzintars, Madhav Chawla
 group_number: 8
 title: "Energy Implications of Language and Runtime Choices in Data Ingestion Pipelines"
 image: "img/g8_programming_languages_data_ingestion/mean_energy_ci.svg"
-date: 12/02/2026
+date: 28/02/2026
 summary: |-
   Energy consumption is becoming an important concern in software engineering, yet developers rarely have concrete guidance on how implementation choices influence energy efficiency. In this study, we investigate how programming language selection affects energy usage in a common data-intensive workload. We design and implement an identical data ingestion pipeline that reads large JSONL datasets, performs schema validation and lightweight transformations, aggregates records, and writes the results to Parquet format. The pipeline is implemented across multiple languages representing different runtime and compilation models, namely Python, Go, Java, and Rust.
 
@@ -138,9 +138,43 @@ This is one reason we ran 20 measured repetitions and randomized run order: it m
 
 ![](img/g8_programming_languages_data_ingestion/mean_energy_ci.svg)
 
+This bar chart shows the mean package energy per language with 95% confidence intervals. The error bars represent the uncertainty in our mean estimates based on 20 measured runs per language. Rust and Python cluster together at the low end (~58–62 J), while Go and Java show substantially higher mean energy consumption.
+
 **Energy vs time per run** (each dot is one measured run):
 
 ![](img/g8_programming_languages_data_ingestion/energy_vs_time.svg)
+
+This scatter plot shows the relationship between execution time and package energy for each individual measured run. Points in the lower-left quadrant represent the most efficient runs (low energy, low time). The clustering pattern reveals that:
+- Rust and Python runs cluster tightly in the low-energy, low-time region.
+- Go runs spread horizontally (longer times, moderate energy).
+- Java runs cluster at higher energy levels despite moderate execution times.
+
+**Energy distribution (violin plot)**:
+
+![](img/g8_programming_languages_data_ingestion/energy_violin.svg)
+
+Violin plots combine the information of a box plot (median, quartiles, whiskers) with a kernel density estimate showing the **full distribution shape** of energy values across all 20 measured runs per language. The width of each "violin" at any energy level indicates how many runs had values near that level—wider sections mean more runs clustered there.
+
+Key insights from the energy violin plot:
+- **Rust and Python** show narrow, symmetric distributions centered around ~58–62 J, indicating **consistent, predictable** energy consumption across runs.
+- **Go** shows a wider distribution with a longer tail toward higher energy values, suggesting more variability in its energy behavior.
+- **Java** shows a relatively narrow but **shifted distribution** centered around ~115 J, indicating consistent but consistently higher energy consumption.
+
+The median line (thick horizontal line) shows the central tendency, while the quartile box shows where 50% of runs fall. The whiskers extend to the full range of observed values.
+
+**Time distribution (violin plot)**:
+
+![](img/g8_programming_languages_data_ingestion/time_violin.svg)
+
+The time violin plot reveals the distribution of execution times across measured runs. This complements the energy analysis by showing whether time variability contributes to energy differences.
+
+Observations:
+- **Rust** shows the tightest time distribution (~3.6–3.8s), indicating very consistent performance.
+- **Python** has a slightly wider distribution but still centered around ~3.9s.
+- **Go** shows the widest time distribution (~8.2–9.0s), with substantial variability that contributes to its higher energy consumption.
+- **Java** shows moderate time variability (~5.8–6.0s) but runs at consistently higher power, explaining why it consumes more energy despite being faster than Go.
+
+The violin plots help us understand that **variability matters**: even if two languages have similar mean energy, differences in distribution shape (symmetry, tails, clustering) can affect real-world predictability and worst-case behavior.
 
 ---
 
@@ -246,6 +280,7 @@ We provide a replication package with Dockerfiles, scripts, and the measurement 
 
 - **Repository**: [Programming-Language-Data-Ingestion-Comparison](https://github.com/yuvrajtudelft/Programming-Language-Data-Ingestion-Comparison)
 - **Branch used for this report**: `python-test`
+- **Raw measurement data**: The per-run EnergiBridge CSV files (80 measured + 4 warmup) are available in the `data2/out/energibridge_runs_all_languages/` directory of the `python-test` branch.
 
 At a high level, you can reproduce the measurement matrix by:
 - building the four Docker images, and
