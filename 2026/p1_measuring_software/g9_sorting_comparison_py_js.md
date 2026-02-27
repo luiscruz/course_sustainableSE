@@ -10,8 +10,6 @@ identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
-TODO: introduction here
-
 ## Energy Efficiency in Serverless Computing
 Cloud computing has fundamentally reshaped how software is deployed. Among its forms, serverless computing - also known as Function as a Service (FaaS) - has gained significant traction [^hellerstein2019]. Services such as AWS Lambda, Azure Functions, and Google Cloud Functions enable developers to execute code on-demand without managing any underlying infrastructure. There exists a clear duopoly in the serverless computing market, where Python and JavaScript (Node.js) are the dominant programming languages [^eismann2022]. This makes the choice between them a routine decision for cloud developers worldwide.
 
@@ -23,11 +21,47 @@ Sorting is among the most fundamental operations in computer science [^cormen200
 ## Why Merge Sort, Quick Sort, and Heap Sort?
 Merge sort, quick sort, and heap sort are among the most recognized and used sorting algorithms [^pizarrovasquez2020]. These three all share the same average time complexity of O(n log n), which makes their performance more comparable as the algorithmic efficiency is similar. However, the three algorithms also have different computational profiles as you can see in the table below. By controlling for time complexity, we can better isolate the differences between the computational profiles of the algorithms to see whether Python or Node.js affect them equally or favour specific ones.
 
-| Algorithm | Best Case | Average Case | Worst Case | Memory | Computational Profile |
-|-----------|-----------|--------------|------------|--------|-----------------------|
-| Merge Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(n)$ | Divide-and-conquer, recursive |
-| Quick Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | $O(\log n)$ | Divide-and-conquer, in-place |
-| Heap Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(1)$ | In-place, binary heap |
+<figure>
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Best Case</th>
+      <th>Average Case</th>
+      <th>Worst Case</th>
+      <th>Memory</th>
+      <th>Computational Profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Merge Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n)</td>
+      <td>Divide-and-conquer, recursive</td>
+    </tr>
+    <tr>
+      <td>Quick Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n²)</td>
+      <td>O(log n)</td>
+      <td>Divide-and-conquer, in-place</td>
+    </tr>
+    <tr>
+      <td>Heap Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(1)</td>
+      <td>In-place, binary heap</td>
+    </tr>
+  </tbody>
+</table>
+<figcaption><b>Figure 1.</b> Time complexity, memory complexity, and computational profile of merge sort, quick sort, and heap sort.</figcaption>
+</figure>
 
 ## Methodology
 The experiment can be ran automatically by executing the ‘run_experiment.sh’ script. It is important to note that to replicate our experiment, the only input required from the experimenter is to change the name of the algorithm used in the script, specifically the value of the variables 'PYTHON_SCRIPT' and 'JS_SCRIPT'. The user may also be required to change the 'EBERGIBRIDGE_CMD' variable to only 'energibridge' or another value depending on the Energibridge installation. 
@@ -50,22 +84,22 @@ To ensure that we actually measure the energy consumption, and therefore the dif
 
 ### *Language Comparison*
 
-The most prominent finding is the large energy gap between Python and JavaScript. Averaged across all algorithms and dataset sizes, JavaScript consumed a mean of 3.94 J while Python consumed 26.24 J, a 6.7× difference. This gap is confirmed as statistically significant by a Mann-Whitney U test (U = 640, p < 0.0001), with a large effect size (rank-biserial r = −0.76, where |r| > 0.5 indicates a large effect). The Mann-Whitney test was chosen over a t-test because the energy distributions are right-skewed and span several orders of magnitude, violating the normality assumption. Figure 1 shows the mean energy growth across dataset sizes for each language–algorithm combination, and Figure 2 provides the overall distribution comparison.
+The most prominent finding is the large energy gap between Python and JavaScript. Averaged across all algorithms and dataset sizes, JavaScript consumed a mean of 3.94 J while Python consumed 26.24 J, a 6.7× difference. This gap is confirmed as statistically significant by a Mann-Whitney U test (U = 640, p < 0.0001), with a large effect size (rank-biserial r = −0.76, where |r| > 0.5 indicates a large effect). The Mann-Whitney test was chosen over a t-test because the energy distributions are right-skewed and span several orders of magnitude, violating the normality assumption. Figure 2 shows the mean energy growth across dataset sizes for each language–algorithm combination, and Figure 3 provides the overall distribution comparison.
 <div align="center">
   <figure>
     <img src="img/g9/agg_energy_vs_size.png" width="780" alt="Mean energy vs dataset size">
-    <figcaption><b>Figure 1.</b> Mean energy consumption vs dataset size (log scale), averaged across both devices. Lines represent each language–algorithm combination.</figcaption>
+    <figcaption><b>Figure 2.</b> Mean energy consumption vs dataset size (log scale), averaged across both devices. Lines represent each language–algorithm combination.</figcaption>
   </figure>
 </div>
 <br>
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
   <figure style="text-align: center; margin: 0;">
     <img src="img/g9/agg_violin_language.png" width="550" alt="Energy distribution per language">
-    <figcaption><b>Figure 2.</b> Energy distribution per language.</figcaption>
+    <figcaption><b>Figure 3.</b> Energy distribution per language.</figcaption>
   </figure>
   <figure style="text-align: center; margin: 0;">
     <img src="img/g9/agg_lang_vs_algo_bar.png" width="550" alt="Language comparison per algorithm">
-    <figcaption><b>Figure 3.</b> Mean energy per language grouped by algorithm.</figcaption>
+    <figcaption><b>Figure 4.</b> Mean energy per language grouped by algorithm.</figcaption>
   </figure>
 </div>
 <br>
@@ -78,23 +112,23 @@ When aggregated across both languages, mean energy consumption ranked as: Heapso
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
   <figure style="text-align: center; margin: 0;">
     <img src="img/g9/agg_heatmap_algo_lang.png" width="400" alt="Heatmap of mean energy by algorithm and language">
-    <figcaption><b>Figure 4.</b> Mean energy heatmap (algorithm x language).</figcaption>
+    <figcaption><b>Figure 5.</b> Mean energy heatmap (algorithm x language).</figcaption>
   </figure>
   <figure style="text-align: center; margin: 0;">
     <img src="img/g9/agg_energy_ratio.png" width="650" alt="Energy ratio Python vs JavaScript">
-    <figcaption><b>Figure 5.</b> Energy ratio (Python / JavaScript) per algorithm across dataset sizes.</figcaption>
+    <figcaption><b>Figure 6.</b> Energy ratio (Python / JavaScript) per algorithm across dataset sizes.</figcaption>
   </figure>
 </div>
 <br>
-Notably, the algorithm rankings reverse between languages at large scales. Within Python, Quicksort was the most efficient at 4M elements (102.9 J), followed by Mergesort (142.1 J) and Heapsort (259.6 J). Within JavaScript, Heapsort and Mergesort were nearly identical (14.4 J and 14.9 J), while Quicksort was the least efficient (17.9 J). This inversion is visible in Figure 5, where Quicksort's ratio dips below Heapsort's at large sizes, and suggests that JavaScript's JIT compiler benefits more from Heapsort's regular memory access patterns, whereas Python's interpreter penalises Heapsort's cache-unfriendly access pattern severely at scale.
+Notably, the algorithm rankings reverse between languages at large scales. Within Python, Quicksort was the most efficient at 4M elements (102.9 J), followed by Mergesort (142.1 J) and Heapsort (259.6 J). Within JavaScript, Heapsort and Mergesort were nearly identical (14.4 J and 14.9 J), while Quicksort was the least efficient (17.9 J). This inversion is visible in Figure 6, where Quicksort's ratio dips below Heapsort's at large sizes, and suggests that JavaScript's JIT compiler benefits more from Heapsort's regular memory access patterns, whereas Python's interpreter penalises Heapsort's cache-unfriendly access pattern severely at scale.
 
 #### **Energy vs Execution Time**
 
-Power draw analysis (Figure 6) reveals that Python not only runs longer but also draws more power per second than JavaScript across all algorithms, meaning both dimensions contribute independently to its higher total energy.
+Power draw analysis (Figure 7) reveals that Python not only runs longer but also draws more power per second than JavaScript across all algorithms, meaning both dimensions contribute independently to its higher total energy.
 <div align="center">
   <figure>
     <img src="img/g9/agg_power_draw.png" width="600" alt="Power draw per algorithm and language">
-    <figcaption><b>Figure 6.</b> Mean power draw (Watts) per algorithm and language. Python sustains a higher instantaneous power draw in addition to longer execution times.</figcaption>
+    <figcaption><b>Figure 7.</b> Mean power draw (Watts) per algorithm and language. Python sustains a higher instantaneous power draw in addition to longer execution times.</figcaption>
   </figure>
 </div>
 
@@ -128,7 +162,7 @@ If you're running Python and sorting millions of records, Quicksort can be a goo
 
 # References
 
-[^akay2025]: Akay, B. E. (2025). *Benchmark dataset for sorting algorithms* [Data set]. Kaggle. https://www.kaggle.com/datasets/bekiremirhanakay/benchmark-dataset-for-sorting-algorithms
+[^akay2025]: Akay, B. E. (2025). *Benchmark dataset for sorting algorithms* [Benchmark Dataset for Sorting Algorithms]. Kaggle. https://www.kaggle.com/datasets/bekiremirhanakay/benchmark-dataset-for-sorting-algorithms
 
 [^hellerstein2019]: Hellerstein, J. M., Faleiro, J., Gonzalez, J., Schleier-Smith, J., Sreekanti, V., Tumanov, A., & Wu, C. (2019). Serverless computing: One step forward, two steps back. *9th Biennial Conference on Innovative Data Systems Research (CIDR '19)*. [https://arxiv.org/abs/1812.03651](https://arxiv.org/abs/1812.03651)
 
