@@ -105,7 +105,28 @@ Each trial proceeded the workflow as follows:
 - Resolution:	2560x1664 Retina
 - Refresh Rate:	60Hz
 
+### Outlier Removal 
+For outlier removal, we attempted two methods. We initially attempted to remove outliers through the mean and standard deviation, by classifying the absolute difference of the mean and a value outside of $3\sigma$ as an outlier. This method had a flaw, namely if there are enough values that are large enough the standard deviation becomes inflated enough that these values will fall within the $3\sigma$ range and therefore not be removed. To tackle this flaw, we decided to opt for a different method, which makes use of a range that is created within $1.5 \times IQR$. This takes the outliers into account, but they are not nearly as influential as with the mean and standard deviation and therefore will be removed more reliably. 
+
+
 ## Analysis
+### Testing Results 
+Below we can see our test results before and after removing outliers. All results excluding `all-off` contain a long tail at 20+ Watt. These are likely due to factors such as pre-downloading the video in youtube and network connection issues. By removing these blatant outliers we can have a deeper insight into our results. 
+
+Furhter insights can be found in the Normalised plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what I mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in the [limitations](#limitations). Later in the [Statistical significances](#statistical-significances) we will see that although this difference exists, on a statistical level, these differences are negligable. 
+<div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;" >
+  <img src="./img/g34_measuring_youtube/Non-normalised_full_violinplot.png" alt="Non-Normalised Violinplot containing all 4 experimental classes">
+  <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="Normalised Histogram containing all 4 experimental classes">
+</div>
+
+
+The histograms below give us an insight into the type of statistical tests we can run, as they highlight the normality of our data. We can see that all classes on the lower end of the violin plot have a right tail indicating outliers with high wattage, while the `ambient mode` has a left tail indicating low wattage outliers. After the outlier removal every class can be considered a normal distribution except for `all-off` which as mentioned above seems to have outliers within a smaller range as well. We can clearly see this with the gap between the lower end and the upper end of the graph. 
+<div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;">
+  <img src="./img/g34_measuring_youtube/Non-Normalised_full_histogram.png" alt="Non-Normalised Violinplot containing all 4 experimental classes">
+  <img src="./img/g34_measuring_youtube/full_histogram.png" alt="Normalised Histogram containing all 4 experimental classes">
+</div>
+
+## Statistical Significances 
 
 ## Limitations
 Since the settings are concerned with brightness and sound settings, the initial version of the experiment included highest brightness and volume on to the maximum setting. However ,
