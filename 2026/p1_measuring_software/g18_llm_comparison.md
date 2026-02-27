@@ -1,21 +1,26 @@
 ---
 author: Medon Abraham, Konstantina Anastasiadou, Wilhelm Marcu, Mihai Radu Serban 
 group_number: 18
-title: "ML Models Comparison"
+title: "Can a Student Be Greener Than the Teacher? Measuring the Sustainability of Distilled LLMs"
 image: "img/g18_llm_comparison/project_cover.png"
 date: 12/02/2026
 summary: |-
-  This project investigates the energy efficiency of 'Quantization' by comparing the power consumption of a full-precision 'Heavy' AI model (i.e. Llama, Deepseek) (16-bit) against its 'Compressed' counterpart (4-bit). We aim to quantify exactly how much energy is saved by running lighter models locally, determining if the trade-off in model size translates to meaningful sustainability gains.
+  This study investigates whether the highly efficient, sparse activation patterns of DeepSeek can be successfully transferred to other model architectures (Llama, Qwen). By comparing DeepSeek-distilled models against their standard counterparts, we explore if energy efficiency is a learnable behavior rather than just a structural trait.
 identifier: p1_measuring_software_2026 # Do not change this
 all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
 
 ## Introduction
-The widespread adoption of Large Language Models (LLMs) has become a reality in recent years. The field is now intensely competitive, with larger and more specialised models being introduced at an unprecedented pace. Yet, this rapid progress carries significant energy demands. In the early stages, progress was driven by expanding datasets and training for longer durations on more expensive, high-end hardware; performance gains were solely obtained through vertical scaling. However, what if bigger is not always better? This revelation came in January 2025 with the release of DeepSeek-R1, a model which could match the performance of well established LLM giants such as ChatGPT and Gemini, using low-end GPUs at a fraction of the training cost. This breakthrough signalled a paradigm shift, demonstrating that algorithmic and architectural efficiency are an untapped source of performance gains with significant implications for energy usage and efficiency.
+The widespread adoption of Large Language Models (LLMs) has become a reality in recent years. The field is now intensely competitive, with larger and more specialised models being introduced at an unprecedented pace. Yet, this rapid progress carries significant energy demands. In the early stages, progress was driven by expanding datasets and training for longer durations on more expensive, high-end hardware; performance gains were solely obtained through vertical scaling. However, what if bigger is not always better? This revelation came in January 2025 with the release of DeepSeek-R1, a model which could match the performance of well established LLM giants such as ChatGPT and Gemini, using low-end GPUs at a fraction of the training cost. [^1] [^2] This breakthrough signalled a paradigm shift, demonstrating that algorithmic and architectural efficiency are an untapped source of performance gains with significant implications for energy usage and efficiency.
 
 ## Motivation
-While DeepSeek’s training efficiency has been widely celebrated, its inference efficiency implications remain largely unexplored. This distinction is important because unlike training which occurs only once, inference occurs repeatedly over the course of a model’s lifetime which could potentially lead to greater cumulative energy consumption. DeepSeek achieves its efficiency through its unique combination of a sparse mixture of expert architecture, reinforcement learning, and data distillation techniques. Consequently, only a reduced subset of relevant parameters are activated during inference, thus allowing the model to generate an answer more efficiently using fewer tokens. This raises an interesting research question: if these sparse activation patterns can reduce computational load during inference, could this efficiency pattern be transferred to entirely different models through the process of distillation? If successful, this would demonstrate that efficiency is not merely a property of a particular model, but a learnable behaviour that can be transplanted. This study therefore investigates whether distillation from models trained using DeepSeek’s approach yields student models that are more energy-efficient compared to their conventionally-trained counterparts.
+While DeepSeek’s training efficiency has been widely celebrated [^3], its inference efficiency implications remain largely unexplored [^4] [^5] [^6]. This distinction is important because unlike training which occurs only once, inference occurs repeatedly over the course of a model’s lifetime which could potentially lead to greater cumulative energy consumption. DeepSeek achieves its efficiency through its unique combination of a sparse mixture of expert architecture, reinforcement learning, and data distillation techniques [^7]. Consequently, only a reduced subset of relevant parameters are activated during inference, thus allowing the model to generate an answer more efficiently using fewer tokens. This raises an interesting research question: if these sparse activation patterns can reduce computational load during inference, could this efficiency pattern be transferred to entirely different models through the process of distillation? If successful, this would demonstrate that efficiency is not merely a property of a particular model, but a learnable behaviour that can be transplanted. This study therefore investigates whether distillation from models trained using DeepSeek’s approach yields student models that are more energy-efficient compared to their conventionally-trained counterparts.
+
+<figure style="max-width: 1000px;">
+  <img src="./img/g18_llm_comparison/project_cover.png" alt="knowledge-distillation">
+</figure>
+
 
 ## Methodology
 To answer our research question, we designed an experimental setup to compare the energy consumption between DeepSeek distilled and conventionally-trained models under controlled conditions. When it comes to the choice of particular models to test, we decided to use Llama 3.1 and Qwen 2.5 because the release of DeepSeek-R1 includes distilled variants of both architectures. This allows us to perform a direct comparison without needing to distill the models ourselves. For each architecture, we test at 3 quantization levels (4, 8, and 16 bit) to determine whether any observed efficiency differences persist across the range of precisions used in common deployments.
@@ -61,14 +66,14 @@ To ensure our measurements reflected pure algorithmic efficiency, rather than st
 ### Energy Consumption
 To visualize the distribution of energy consumption across our 12 configurations, we utilized **Violin-Boxplots**. This representation allows us to observe both the central tendencies (median) and the probability density of the trials, which is critical for assessing model reliability.
 
-<figure style="max-width: 800px;">
+<figure style="max-width: 1000px;">
   <img src="./img/g18_llm_comparison/experiment-001/energy_violin_boxplot.png" alt="exp1-violin-boxplot">
-  <figcaption><strong>Figure: Llama vs. DeepSeek Distilled Violin-Boxplot</strong></figcaption>
+  <figcaption><strong>Figure 1: Llama vs. DeepSeek Distilled Violin-Boxplot</strong></figcaption>
 </figure>
 
-<figure style="max-width: 800px;">
+<figure style="max-width: 1000px;">
   <img src="./img/g18_llm_comparison/experiment-002/energy_violin_boxplot.png" alt="exp1-violin-boxplot">
-  <figcaption><strong>Figure: Qwen vs. DeepSeek Distilled Violin-Boxplot</strong></figcaption>
+  <figcaption><strong>Figure 2: Qwen vs. DeepSeek Distilled Violin-Boxplot</strong></figcaption>
 </figure>
 
 Across both architectures, the data illustrates a substantial decrease in energy demand as precision is reduced. Moving from **16-bit** to **4-bit** precision resulted in a median energy reduction of approximately **65-70%**. DeepSeek-r1-7b is the exception to this while showing much smaller relative gains from quantization because it already operates at an efficient low energy floor in its 16-bit configuration (under 250J). 
@@ -108,7 +113,7 @@ Effect Size analysis measures the magnitude of those differences to assess their
 - **Cohen’s d**: Used for normal distributions to measure the difference between means normalized by standard deviation.
 - **Vargha-Delaney A12**: A non-parametric "common language" effect size used for non-normal data. It represents the probability that a random execution from the first group will consume more energy than one from the second.
 
-**Table 1: Horizontal Effect Size (Llama vs. DeepSeek Distilled)**
+**Table 3: Horizontal Effect Size (Llama vs. DeepSeek Distilled)**
 
 | Precision | Metric | Llama Energy (J) | DeepSeek Energy (J) | Distill Savings | Effect Size Metric | Value | 
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | 
@@ -116,7 +121,7 @@ Effect Size analysis measures the magnitude of those differences to assess their
 | 8-BIT | Median | 827.2 | 641.1 | 22.5% | A12 | 0.74 | 
 | 16-BIT | Median | 1677.7 | 1273.2 | 24.1% | A12 | 0.81 |
 
-**Table 2: Horizontal Effect Size (Qwen vs. DeepSeek Distilled)**
+**Table 4: Horizontal Effect Size (Qwen vs. DeepSeek Distilled)**
 
 | Precision | Metric | Qwen Energy (J) | DeepSeek Energy (J) | Distill Savings | Effect Size Metric | Value | 
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | 
@@ -127,7 +132,7 @@ Effect Size analysis measures the magnitude of those differences to assess their
 
 The data indicates that the DeepSeek-distilled models are consistently more efficient than their baseline counterparts. The Vargha-Delaney **A12** value of **0.81** for the **16-bit** model, in Llama vs DeepSeek comparison, represents a large effect, indicating a high probability that a random DeepSeek-Distilled execution will be more efficient than a Llama execution. For Qwen, the distillation effect is really interesting achieving **~90%** energy savings across all precisions. The **A12** score of **1.00** means that in *100%* of the recorded pairs, the DeepSeek model consumed less energy than the Qwen baseline.
 
-**Table 3: Vertical Effect Size (Quantization Savings)**\
+**Table 5: Vertical Effect Size (Quantization Savings)**\
 *This table measures the impact of reducing precision (Quantization) within the same model family.*
 
 | Model Family | FP16 &rarr; Q8 Sav. | A12 (16&rarr;8) | FP16 &rarr; Q4 Sav. | A12 (16&rarr;4) | Q8 &rarr; Q4 Sav. | A12 (8&rarr;4) |
@@ -144,7 +149,7 @@ The transition from raw energy consumption to the EDP provides a holistic view o
 
 <figure style="max-width: 800px;">
   <img src="./img/g18_llm_comparison/experiment-001/edp_boxplot.png" alt="exp1-edp-boxplot">
-  <figcaption><strong>Figure: Llama vs. DeepSeek Distilled EDP boxplot</strong></figcaption>
+  <figcaption><strong>Figure 3: Llama vs. DeepSeek Distilled EDP boxplot</strong></figcaption>
 </figure>
 
 *The EDP plots of Qwen and DeepSeek-Distilled were separated, because of the high difference in EDP score.*
@@ -152,18 +157,18 @@ The transition from raw energy consumption to the EDP provides a holistic view o
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-end;">
   <figure style="flex: 1; max-width: 800px;">
     <img src="./img/g18_llm_comparison/experiment-002/edp_boxplot-qwen.png" alt="exp2-edp-qwen-boxplot" style="width: 100%;">
-    <figcaption align="center"><strong>Figure: Qwen EDP boxplot</strong></figcaption>
+    <figcaption align="center"><strong>Figure 4: Qwen EDP boxplot</strong></figcaption>
   </figure>
   
   <figure style="flex: 1; max-width: 800px;">
     <img src="./img/g18_llm_comparison/experiment-002/edp_boxplot-deepseek-qwen.png" alt="exp2-edp-ds-boxplot" style="width: 100%;">
-    <figcaption align="center"><strong>Figure: DeepSeek-Distilled Qwen EDP boxplot</strong></figcaption>
+    <figcaption align="center"><strong>Figure 5: DeepSeek-Distilled Qwen EDP boxplot</strong></figcaption>
   </figure>
 </div>
 
 We also measured volatility (**Coefficient of Variation, or CV%**) to indicate predictability, showing how much a model's individual runs deviate relative to its average.
 
-**Table 1: EDP and Volatility - (Llama 3.1 8B vs DeepSeek Distilled Llama)**
+**Table 6: EDP and Volatility (Llama 3.1 8B vs DeepSeek Distilled Llama)**
 
 | Model | Median Energy (J) | Time (s) | EDP Score | Volatility (CV%) | 
 | :--- | :--- | :--- | :--- | :--- | 
@@ -175,7 +180,7 @@ We also measured volatility (**Coefficient of Variation, or CV%**) to indicate p
 | Llama-fp16 | 1,677.7 | 30.42 | 51,466.1 | 45.6% |
 
 
-**Table 2: EDP and Volatility - (Qwen 2.5 7B vs DeepSeek Distilled Qwen)** 
+**Table 7: EDP and Volatility (Qwen 2.5 7B vs DeepSeek Distilled Qwen)** 
 
 | Model | Median Energy (J) | Time (s) | EDP Score | Volatility (CV%) | 
 | :--- | :--- | :--- | :--- | :--- | 
@@ -198,19 +203,19 @@ To enable fair comparison of energy usage despite varying response length from t
 
 <figure style="flex: 1; max-width: 800px;">
   <img src="./img/g18_llm_comparison/experiment-001/joules_per_token.png" alt="exp1-joules-per-token">
-  <figcaption><strong>Figure: Energy Cost per Token (Llama vs DeepSeek-Distilled)</strong></figcaption>
+  <figcaption><strong>Figure 6: Energy Cost per Token (Llama vs DeepSeek-Distilled)</strong></figcaption>
 </figure>
 
 <figure style="flex: 1; max-width: 800px;">
   <img src="./img/g18_llm_comparison/experiment-002/joules_per_token.png" alt="exp2-joules-per-token">
-  <figcaption><strong>Figure: Energy Cost per Token (Qwen vs DeepSeek-Distilled)</strong></figcaption>
+  <figcaption><strong>Figure 7: Energy Cost per Token (Qwen vs DeepSeek-Distilled)</strong></figcaption>
 </figure>
 
 ### Verbosity Gap
 
 We take a deeper look into the generated outputs to understand whether energy differences can be explained by a model’s natural tendency to be more or less verbose.
 
-**Table: Verbosity Gap (Llama vs. DeepSeek Distilled)** 
+**Table 8: Verbosity Gap (Llama vs. DeepSeek Distilled)** 
 
 | Precision | DeepSeek Tokens Median | Llama Tokens Median | Verbosity Gap (% Increase) | 
 | :--- | :--- | :--- | :--- | 
@@ -219,7 +224,7 @@ We take a deeper look into the generated outputs to understand whether energy di
 | FP16 | 441 | 567 | +28.6% |
 
 
-**Table: Verbosity Gap (Qwen vs. DeepSeek Distilled)** 
+**Table 9: Verbosity Gap (Qwen vs. DeepSeek Distilled)** 
 
 | Precision | DeepSeek Tokens Median | Qwen Tokens Median | Verbosity Gap (% Increase) | 
 | :--- | :--- | :--- | :--- | 
@@ -233,37 +238,34 @@ On average, the *baseline Llama* architecture generated **27.5%** more tokens pe
 
 ## Conclusion
 
-Our statistical analysis reinforces the exploratory findings: architectural distillation provides a significant efficiency advantage, yielding savings ranging from 16% to over 90% depending on the underlying base architecture. However, the most profound and consistent impact on sustainability comes from quantization, which reduces energy consumption by upwards of 60% to 80% regardless of the model family. These results demonstrate that while architectural distillation is a highly effective and valid path to "Green AI," pairing it with aggressive quantization provides the most reliable and substantial practical savings for sustainable software deployments.
+Our statistical analysis reinforces the exploratory findings: architectural distillation provides a significant efficiency advantage, yielding savings ranging from 16% to over 90%. However, the most profound and consistent impact on sustainability comes from quantization, which reduces energy consumption by 60% to 80%, regardless of the model family. These results demonstrate that pairing distillation with aggressive quantization provides the most reliable and substantial practical savings for sustainable software deployments.
 
-While our findings suggest that DeepSeek distillation effectively lowers the "energy floor," the magnitude of these savings is dependent on the base architecture, with Qwen achieving significantly higher efficiency gains than Llama. Another major factor affecting energy consumption is the difference in verbosity between the original model and its distilled counterpart. Conversational verbosity naturally leads to longer execution times, incurring proportionally higher total energy costs. DeepSeek seems to be optimised for this, so when it acts as a teacher, it enables students to satisfy prompt requirements with far fewer tokens. In the context of Green Software Engineering, this confirms that when evaluating an AI model that uses less total power is not necessarily more sustainable-it may simply be doing less work; true sustainability should be evaluated at the token level.
+While our findings suggest that DeepSeek distillation effectively lowers the "energy floor," the magnitude of these savings is dependent on the base architecture, with Qwen achieving significantly higher efficiency gains than Llama. Another major factor affecting energy consumption is the difference in verbosity between the original model and its distilled counterpart. Conversational verbosity naturally leads to longer execution times, incurring proportionally higher total energy costs. DeepSeek seems to be optimised for this, so when it acts as a teacher, it enables students to satisfy prompt requirements with far fewer tokens. In the context of Green Software Engineering, this confirms that when evaluating an AI model that uses less total power is not necessarily more sustainable, it may simply be doing less work; true sustainability should be evaluated at the token level.
 
 In Sustainable Software Engineering, predictability is highly valued in practical settings. If a model's energy consumption is erratic, it becomes much harder for developers to budget for power or optimize their systems. Our results suggest a practical trade-off: regular models offer predictable, consistent performance ideal for user-facing applications, while distilled models minimize total energy footprint over time at the cost of increased variability, making it suitable for background tasks.
 
 Circling back to our research question, our results indicate that some level of efficiency transfer is possible through distillation. Both distilled models demonstrated measurable energy savings compared to their baselines, with Qwen’s architecture being seemingly more receptive to these efficiency gains.
-While we cannot make absolute, universal claims without testing a wider array of model families, our results provide compelling evidence that distillation is a highly effective, albeit architecture-dependent, pathway for Green AI. Further research is necessary to fully map how these efficiency traits interact with different foundational neural networks across varied hardware.
+While we cannot make absolute, universal claims without testing a wider array of model families, our results provide compelling evidence that distillation is a highly effective, albeit architecture-dependent, pathway for Green AI. 
+
 
 
 ## Limitations & Future Work 
+
 This study prioritized experimental control, and a few design choices constrain how far the findings generalize.
 
-All inferences used a single fixed prompt to maintain identical conditions across models; consequently, the observed verbosity and energy patterns are currently situated within the context of structured reasoning tasks. Testing across a broader prompt set would strengthen the conclusions, particularly to see whether the behavioral differences between distilled and non-distilled models persist across different task types like code generation or summarization.
+All inferences utilized a single fixed prompt to maintain identical conditions across models. Consequently, the observed verbosity and energy patterns apply only to structured reasoning tasks. Testing across a broader prompt set would strengthen the conclusions, particularly to see whether the behavioral differences between distilled and non-distilled models persist across different tasks like code generation or summarization.
 
-The hardware setup is also worth acknowledging. Everything ran on a single machine, and energy readings during inference are sensitive to GPU architecture and thermal behavior. The relative differences between models should still hold, but the absolute values are specific to our setup. Expanding to additional model architectures beyond Llama and Qwen would help clarify whether the efficiency patterns found here are general properties of knowledge distillation from DeepSeek-R1, or something more specific to the two architectures tested.
+The single-machine hardware setup is also worth acknowledging since performance and energy consumption depend on the specific GPU architecture used and available resources. We acknowledge that different patterns may emerge when testing on other systems. Moreover, expanding to additional model architectures beyond Llama and Qwen would help clarify whether the efficiency patterns found here are general properties of knowledge distillation from DeepSeek-R1, or something more specific to the two architectures tested.
 
-Finally, DeepSeek's thinking mode was disabled throughout to keep the comparison fair against models that do not have an equivalent feature. The energy figures for DeepSeek are therefore likely lower than a real deployment with extended reasoning enabled would produce. Measuring that overhead, and whether it is offset by quality improvements, would be a natural follow-up.
-
-Beyond these limitations, the most immediate extension would be evaluating response correctness alongside energy consumption. This study identifies which models are more efficient, but not whether that comes at a quality cost. Computing a quality per joule metric would make the findings considerably more actionable, and exploring different quantization parameters alongside this would also be worthwhile.
+Beyond these limitations, the most immediate extension would be evaluating response correctness alongside energy consumption. This study identifies which models effectively transfer efficiency, but not whether it comes at a quality cost. Computing a quality per joule metric would make the findings considerably more actionable.
 
 
 ### References
 
-1. Wang, L., et al. (2025). *Green prompting: A comprehensive evaluation of prompt engineering on LLM energy efficiency*. arXiv. [https://arxiv.org/html/2503.10666v1](https://arxiv.org/html/2503.10666v1)
-2. Capgemini Research Institute. (2025). *From words to watts: How prompting patterns shape AI's environmental impact*. [Link to Report](https://www.capgemini.com/insights/expert-perspectives/from-words-to-watts-how-prompting-patterns-shape-ais-environmental-impact/)
-3. Jin, H., et al. (2025). *The energy cost of reasoning: Analyzing energy usage in LLMs with test-time compute*. OpenReview. [https://openreview.net/forum?id=Kdc8aiKxF6](https://openreview.net/forum?id=Kdc8aiKxF6)
-4. National Science Review. *DeepSeek-V3 Technical Report*. [Read Article](https://academic.oup.com/nsr/article/12/3/nwaf044/8010848?login=false)
-5. Financial Content (2026). *The DeepSeek Disruption: How R1's $6 Million Breakthrough Shattered the AI Brute-Force Myth*. [Read Article](https://www.financialcontent.com/article/tokenring-2026-2-5-the-deepseek-disruption-how-r1s-6-million-breakthrough-shattered-the-ai-brute-force-myth)
-6. *Training Efficiency:* Rinnovabili. *DeepSeek's Energy Consumption: AI's 75% Power Cut*. [Read Article](https://www.rinnovabili.net/business/markets/deepseeks-energy-consumption-ais-75-power-cut/)
-7. *Inference Challenges:* MIT Technology Review (2025). *DeepSeek might not be such good news for energy after all*. [Read Article](https://www.technologyreview.com/2025/01/31/1110776/deepseek-might-not-be-such-good-news-for-energy-after-all/)
-8. *Inference Challenges:* TechAnnouncer. *Unpacking DeepSeek Energy Usage: A Deep Dive into AI's Power Footprint*. [Read Article](https://techannouncer.com/unpacking-deepseek-energy-usage-a-deep-dive-into-ais-power-footprint/)
-9. *Jevons Paradox (Overuse):* ScienceDirect. *DeepSeek efficient but high energy consumption due to popularity*. [Read Article](https://www.sciencedirect.com/science/article/pii/S266667582500147X)
-10. *Methodology Limitations Note:* ScienceDirect. *Estimation-based analysis of AI energy trends* (Note: Relies on reported figures rather than direct measurement). [Read Article](https://www.sciencedirect.com/science/article/pii/S1364032125008329#tbl3)
+[^1]: National Science Review. *DeepSeek-V3 Technical Report*. [Read Article](https://academic.oup.com/nsr/article/12/3/nwaf044/8010848?login=false)
+[^2]: Financial Content (2026). *The DeepSeek Disruption: How R1's $6 Million Breakthrough Shattered the AI Brute-Force Myth*. [Read Article](https://www.financialcontent.com/article/tokenring-2026-2-5-the-deepseek-disruption-how-r1s-6-million-breakthrough-shattered-the-ai-brute-force-myth)
+[^3]: *Training Efficiency:* Rinnovabili. *DeepSeek's Energy Consumption: AI's 75% Power Cut*. [Read Article](https://www.rinnovabili.net/business/markets/deepseeks-energy-consumption-ais-75-power-cut/)
+[^4]: *Inference Challenges:* MIT Technology Review (2025). *DeepSeek might not be such good news for energy after all*. [Read Article](https://www.technologyreview.com/2025/01/31/1110776/deepseek-might-not-be-such-good-news-for-energy-after-all/)
+[^5]: *Inference Challenges:* TechAnnouncer. *Unpacking DeepSeek Energy Usage: A Deep Dive into AI's Power Footprint*. [Read Article](https://techannouncer.com/unpacking-deepseek-energy-usage-a-deep-dive-into-ais-power-footprint/)
+[^6]: *Methodology Limitations Note:* ScienceDirect. *Estimation-based analysis of AI energy trends* [Read Article](https://www.sciencedirect.com/science/article/pii/S1364032125008329#tbl3)
+[^7]: LLM Distillation Explained: Applications, Implementation & More. [Read Article](https://www.datacamp.com/blog/distillation-llm)
