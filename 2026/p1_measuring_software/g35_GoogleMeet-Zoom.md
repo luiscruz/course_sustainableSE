@@ -112,13 +112,15 @@ Each 30-second EnergiBridge run creates a CSV containing timestamped energy read
 This section will present the findings of the different power consumption and energy delay product values across the different video conference applications and features.
 
 As mentioned previously, EnergiBridge was used to measure energy consumption. The tool provides the following relevant metrics:
-- Delta
-- CPU_Energy (Joules)
+- *Delta*
+- *CPU_Energy (J)*
 
 With the metrics above, the key metrics to be calculated per trial were:
-1. Total Energy Consumption (J): Calculated by computing the difference of the cumulative energy metric. 
-2. Average Power Consumption (W): Calculated by dividing the total energy consumption over the duration of the trial.
-3. Energy Delay Product: Calculated by multiplying energy by the total duration of the trial.
+1. *Total Energy Consumption (J)*: Calculated by computing the difference of the cumulative energy metric. 
+2. *Average Power Consumption (W)*: Calculated by dividing the total energy consumption over the duration of the trial.
+3. *Energy Delay Product (J * s)*: Calculated by multiplying energy by the total duration of the trial.
+
+Average Power Consumption was chosen as we are reporting on the consumption of a continuous use case rather than a one-off use case. Energy Delay Product was chosen to evaluate the overall efficiency of by balancing energy consumption against performance.
 
 
 ## Outlier detection
@@ -257,8 +259,7 @@ When at least one group violated the normality assumptions, the **Mann-Whitney U
 | TEAMS    | SHARE   | Mann–Whitney U      | 0.027 |
 | ZOOM     | SHARE   | Mann–Whitney U      | 0.429 |
 
-
-talk about inbetween features
+Both platforms appear to have *camera activation consistently produce statistically significant differences* in power consumption and EDP values. The same can be said for screen sharing, particularly for Microsoft Teams. On the other hand, background blurring seemed to yield mixed or non-significant results. 
 
 *Table 5: Significance test p-values for the power values of the different applications and their features*
 | **Feature** | **Condition** | **Test Used**           | **Test p-value** |
@@ -281,7 +282,7 @@ talk about inbetween features
 | SHARE    | OFF       | Mann–Whitney U      | 0.599 |
 
 
-talk about inbetween features and applications
+When comparing the two application directly with each other, we can see that the camera *ON* and *OFF* conditions show significant differences ~(`p < 0.001`), indicating *clear platform-level distinctions*. Screen sharing differences are also *significant in the ON conditions*, while background blurring showed less consistent and weaker differences between the applications. 
 
 
 ### Effect size estimation
@@ -311,8 +312,7 @@ These measures are meant to provide insight into the magnitude of observed effec
 | TEAMS    | SHARE   | Common Language     | 0.666 |
 | ZOOM     | SHARE   | Common Language     | 0.560 |
 
-
-talk about in between features
+Effect size results confirm the *large practical impact* that camera activation has on the power consumption and EDP values across platforms. Screen sharing shows moderate effects while blur generally showcased moderate to small effects.
 
 *Table 9: Effect size for the power values of the different applications and their features*
 | **Feature** | **Condition** | **Effect size Used**     | **Value** |
@@ -335,8 +335,9 @@ talk about in between features
 | SHARE    | OFF       | Common Language     | 0.540 |
 
 
-talk about inbetween features and applications
+Between applications, camera ON produced large EDP effect size, indicating *practical differences* under active video conditions. For blur and screen sharing, effect sizes were generally small, suggesting that the platform differences are less pronounced. Thus, the most significant cross-application difference concerns the camera usage rather than the other features. 
 
+Overall, the statistical analysis shows that *camera activation is the dominant factor* influencing both the power consumption and EDP values, producing significant results and large effect sizes across platforms. Screen sharing has moderate but platform-dependent impact, while background blurring demonstrates generally weaker and less consistent effects. 
 
 # Discussion
 ## Interpretation of Results
@@ -392,4 +393,6 @@ Our paper discusses the energy usage between **Zoom Workplace** and **Microsoft 
 1. Sweigart, Al. “Welcome to PyAutoGUI’s Documentation! — PyAutoGUI 1.0.0 Documentation.” Readthedocs.io, 2014, pyautogui.readthedocs.io/en/latest/.
 2. “The Empirical Rule (68-95-99.7).” Dmaic.com, 2 Oct. 2025, www.dmaic.com/faq/empirical-rule/. Accessed 26 Feb. 2026.
 3. “Z-Score (Standard Score).” Dmaic.com, 8 Oct. 2025, www.dmaic.com/faq/z-score-standard-score/. Accessed 26 Feb. 2026.
+4. Adrjan, P., Ciminelli, G., Judes, A., Koelle, M., Schwellnus, C., & Sinclair, T. M. (2025). Working from home after COVID-19: Evidence from job postings in 20 countries. Labour Economics, 96, 102751. https://doi.org/10.1016/j.labeco.2025.102751
+5. Desmarais, A. (2025, March 22). Why remote work is not the lasting COVID legacy some may have hoped. Euronews; Euronews.com. https://www.euronews.com/next/2025/03/22/how-did-the-covid-19-pandemic-affect-remote-work-in-europe
 
