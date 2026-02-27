@@ -82,6 +82,8 @@ To ensure that we actually measure the energy consumption, and therefore the dif
 
 ## Results & Statistical Analysis
 
+A total of 1,080 controlled experimental runs were performed across two devices, and the resulting energy and performance measurements were aggregated and subjected to statistical analysis.
+
 ### *Language Comparison*
 
 The most prominent finding is the large energy gap between Python and JavaScript. Averaged across all algorithms and dataset sizes, JavaScript consumed a mean of 3.94 J while Python consumed 26.24 J, a 6.7× difference. This gap is confirmed as statistically significant by a Mann-Whitney U test (U = 640, p < 0.0001), with a large effect size (rank-biserial r = −0.76, where |r| > 0.5 indicates a large effect). The Mann-Whitney test was chosen over a t-test because the energy distributions are right-skewed and span several orders of magnitude, violating the normality assumption. Figure 2 shows the mean energy growth across dataset sizes for each language–algorithm combination, and Figure 3 provides the overall distribution comparison.
