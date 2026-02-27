@@ -115,8 +115,8 @@ The specific hardware configuration will be documented in the final report to en
 
 ### Software Configuration
 
-- **Python Version**: 3.13 
-- **orjson Version**: 3.11.7
+- **Python Version**: 3.11+ (to ensure compatibility with orjson optimizations)
+- **orjson Version**: Latest stable release
 - **EnergiBridge Version**: 0.0.7 or later
 - **Operating System**: Windows 11
 
@@ -127,14 +127,14 @@ To minimize external interference with our measurements, we will implement the f
 1. **Zen Mode Configuration**:
    - Close all unnecessary applications
    - Disable notifications and automatic updates
-   - Disconnect non-essential peripherals (monitor, mouse)
+   - Disconnect non-essential peripherals
    - Disable network connections during experiments
    - Set display brightness to a fixed value
-   - Maintain consistent room temperature (approximately 20 degrees Celsius)
+   - Maintain consistent room temperature (approximately 25 degrees Celsius)
 
 2. **System Warm-up**: Before measurements, the system will execute a warm-up routine (Fibonacci computations for 300 seconds) to ensure the CPU reaches a stable thermal state.
 
-3. **Cooling Period**: Between experimental runs, the system will rest for 2 seconds to allow CPU temperature to stabilize and prevent thermal throttling from affecting subsequent measurements.
+3. **Cooling Period**: Between experimental runs, the system will rest for 60 seconds to allow CPU temperature to stabilize and prevent thermal throttling from affecting subsequent measurements.
 
 ## The Reproducible Scenario
 
@@ -150,8 +150,8 @@ A pre-generated dummy dataset will be used for consistency. The dataset consists
 - Boolean values and null values
 
 Two dataset sizes will be tested:
-- **Small dataset**: 1GB (to represent typical API payloads)
-- **Large dataset**: 5GB (to represent batch processing scenarios)
+- **Small dataset**: 1 GB (to stress-test single-pass deserialization at a realistic data-engineering scale)
+- **Large dataset**: 5 GB (to evaluate behaviour under sustained, high-memory workloads)
 
 ### Experimental Procedure
 
@@ -199,31 +199,31 @@ This section presents the findings from our experimental comparison of `json` an
 
 ## Duration Analysis
 
-![Duration Comparison](analysis/figures/duration_s.png)
+![Duration Comparison](img/duration_s.png)
 
 The duration comparison reveals a statistically significant difference between the two libraries. **orjson completes the deserialization workload faster than the standard json library** (mean ~22.2 s vs ~23.5 s for the 5 GB dataset; p < 0.001, Cliff's d = 0.79). This confirms the performance claims made by the orjson documentation and establishes the foundation for examining whether this speed advantage translates into energy savings through the "Race to Sleep" principle.
 
 ## CPU Energy Consumption
 
-![CPU Energy Comparison](analysis/figures/cpu_energy_j.png)
+![CPU Energy Comparison](img/cpu_energy_j.png)
 
 The total CPU energy consumption (measured via the RAPL CPU_ENERGY counter) shows that **json and orjson consume comparable total CPU energy** (~631 J vs ~636 J on average). Crucially, this difference is **not statistically significant** (Mann-Whitney U, p = 0.50), meaning we cannot conclude either library is more energy-efficient at the package level for this workload size. Notably, orjson exhibits considerably higher variance in energy consumption (~24 J std vs ~14 J std for json), making json the more predictable choice for the 5 GB workload.
 
 ## Single-Core (CORE0) Energy Consumption
 
-![CORE0 Energy Comparison](analysis/figures/core0_energy_j.png)
+![CORE0 Energy Comparison](img/core0_energy_j.png)
 
 The CORE0 energy metric isolates energy consumption on a single CPU core, providing insight into the single-threaded behaviour of both libraries. Interestingly, **orjson shows substantially higher CORE0 energy consumption** (~55 kJ) compared to json (~33 kJ) for the 5 GB workload (p < 0.001, Cohen's d = -1.86). This large effect suggests that orjson places a considerably heavier sustained load on the primary core. The higher total-package energy in json is thus spread across more micro-architectural state transitions, while orjson concentrates its work on CORE0. From a single-core energy perspective, json is more frugal, a result that partially contradicts the "Race to Sleep" hypothesis at the core level.
 
 ## Average CPU Power Draw
 
-![Average CPU Power Comparison — all four groups](analysis/figures/cross_avg_cpu_power.png)
+![Average CPU Power Comparison — all four groups](img/cross_avg_cpu_power.png)
 
 The average CPU power draw, plotted across all four experimental groups (json and orjson, 1 GB and 5 GB), reveals a consistent pattern: **json exhibits lower average power consumption** than orjson at both dataset sizes (~26.9 W vs ~28.6 W for 5 GB; ~26.8 W vs ~27.2 W for 1 GB). This aligns with the "Race to Sleep" model: orjson's Rust-based implementation and SIMD optimizations drive the CPU harder, resulting in higher instantaneous power regardless of dataset size. The magnitude of the power gap narrows at 1 GB (~0.5 W) compared to 5 GB (~1.7 W), suggesting that the overhead of orjson's acceleration is relatively more pronounced for longer, sustained workloads.
 
 ## Energy vs Duration Trade-off
 
-![Energy vs Duration Scatter](analysis/figures/energy_vs_duration.png)
+![Energy vs Duration Scatter](img/energy_vs_duration.png)
 
 Figure above shows a clear positive correlation between execution time and CPU energy: longer runs consume more energy for both libraries.
 
@@ -232,7 +232,7 @@ Although **orjson** consistently completes the workload faster (~5.4% improvemen
 In this setup, `orjson` optimizes for speed while `json` remains marginally more predictable in energy consumption for large, sustained workloads.
 ## Cross-Dataset Energy Comparison (1 GB vs 5 GB)
 
-![All metrics — all four groups](analysis/figures/cross_all_metrics_bar.png)
+![All metrics — all four groups](img/cross_all_metrics_bar.png)
 
 Scaling the analysis to include the 1 GB dataset reveals an important nuance. For the smaller workload, **orjson is clearly more energy-efficient**: it consumes ~92.7 J of CPU energy vs ~123.3 J for json, a ~25% reduction that is highly significant (p ~ 0, Cohen's d = 28.6). The ~26% speedup at 1 GB (3.4 s vs 4.6 s) is large enough that the "Race to Sleep" principle holds: the CPU spends substantially less time at high-power levels before finishing the job.
 
@@ -242,25 +242,14 @@ The average power gap between json and orjson is consistent across both sizes (j
 
 ## Time-Series Analysis: Cumulative Energy Delta
 
-![Run 30 CPU Energy Time Series](analysis/figures/run30_cpu_energy.png)
+![Run 30 CPU Energy Time Series](img/run30_cpu_energy.png)
 
-<!-- ![Run 30 CORE0 Energy Time Series](analysis/figures/run30_core0_energy.png) -->
 
 The cumulative CPU energy curves increase almost linearly for both libraries, indicating stable power usage throughout execution.
 
 `orjson` shows a steeper slope, meaning higher instantaneous power consumption. Although it finishes earlier, its curve remains slightly above `json`, resulting in higher total CPU energy by the end of the run.
 
 This confirms that the faster execution of `orjson` does not compensate for its increased power draw in this workload.
-
-<!-- The CORE0 cumulative energy plot shows irregular spikes and sharp fluctuations for both libraries, with significantly larger variations for `orjson`.
-
-Unlike the total CPU energy, CORE0 measurements appear noisy and unstable, including negative deltas. This suggests measurement artifacts, counter wrapping, or sampling limitations rather than meaningful single-core energy trends.
-
-An interesting observation is that the CORE0 cumulative delta is mostly **negative for `json`** and mostly **positive for `orjson`**. 
-
-Since cumulative energy consumption cannot physically decrease over time, negative deltas indicate measurement artifacts rather than real energy reduction. These fluctuations are likely caused by sampling granularity (200ms), counter wrap-around, or synchronization issues between RAPL readings and workload execution.
-
-The fact that `orjson` appears mostly positive while `json` appears mostly negative does not imply that one library “returns” energy or behaves fundamentally differently at the core level. Instead, it suggests instability or noise in the CORE0 counter under this measurement setup. -->
 ---
 
 # Conclusion
