@@ -115,8 +115,8 @@ The specific hardware configuration will be documented in the final report to en
 
 ### Software Configuration
 
-- **Python Version**: 3.11+ (to ensure compatibility with orjson optimizations)
-- **orjson Version**: Latest stable release
+- **Python Version**: 3.13 
+- **orjson Version**: 3.11.7
 - **EnergiBridge Version**: 0.0.7 or later
 - **Operating System**: Windows 11
 
@@ -127,14 +127,14 @@ To minimize external interference with our measurements, we will implement the f
 1. **Zen Mode Configuration**:
    - Close all unnecessary applications
    - Disable notifications and automatic updates
-   - Disconnect non-essential peripherals
+   - Disconnect non-essential peripherals (monitor, mouse)
    - Disable network connections during experiments
    - Set display brightness to a fixed value
-   - Maintain consistent room temperature (approximately 25 degrees Celsius)
+   - Maintain consistent room temperature (approximately 20 degrees Celsius)
 
 2. **System Warm-up**: Before measurements, the system will execute a warm-up routine (Fibonacci computations for 300 seconds) to ensure the CPU reaches a stable thermal state.
 
-3. **Cooling Period**: Between experimental runs, the system will rest for 60 seconds to allow CPU temperature to stabilize and prevent thermal throttling from affecting subsequent measurements.
+3. **Cooling Period**: Between experimental runs, the system will rest for 2 seconds to allow CPU temperature to stabilize and prevent thermal throttling from affecting subsequent measurements.
 
 ## The Reproducible Scenario
 
@@ -150,8 +150,8 @@ A pre-generated dummy dataset will be used for consistency. The dataset consists
 - Boolean values and null values
 
 Two dataset sizes will be tested:
-- **Small dataset**: 1 GB (to stress-test single-pass deserialization at a realistic data-engineering scale)
-- **Large dataset**: 5 GB (to evaluate behaviour under sustained, high-memory workloads)
+- **Small dataset**: 1GB (to represent typical API payloads)
+- **Large dataset**: 5GB (to represent batch processing scenarios)
 
 ### Experimental Procedure
 
