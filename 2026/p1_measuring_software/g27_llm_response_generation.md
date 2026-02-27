@@ -14,7 +14,8 @@ This problem takes another level if we are counting on these measurements to mak
 
 This article is divided into two main parts: 1) how to set up energy measurements with minimum bias, and 2) how to analyse and take scientific conclusions from your energy measurements.
 Read on so that we can get your paper accepted in the best scientific conference.
----
+-->
+
 <!-- #### 👉 Note 1:
 
 If you are a **software developer** enthusiastic about energy efficiency but you are not particularly interested in scientific experiments, this article is still useful for you. It is not necessary to do "everything by the book" but you may use one or two of these techniques to reduce the likelihood of making wrong decisions regarding the energy efficiency of your software.
@@ -139,7 +140,15 @@ Essential AI's rnj-1 model exhibits a significantly wider spread in energy consu
 
 ## Analysis
 
-This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt.
+### Part 1
+What we noticed in the results section for part one is that there is much bigger spread in the energy consumption for the shorter prompts but that the means were quite similar (except for the 5-word prompts, which had a bit lower mean energy consumption). So, we can conclude that the length of a prompt does not have a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts. This could be because the LLM has more 'freedom' to generate a response for a shorter prompt, while for a longer prompt, the LLM is more constrained in its response generation - thus, the energy consumption is more consistent across different executions of the same prompt. However this is just speculation and further research is needed to confirm this.
+
+What we also noticed is that there is perfect correlation between the time taken to generate a response and the energy consumed, which is expected as energy is power multiplied by time, and power is relatively stable across different executions of the same prompt. So we can conclude that the variance in energy consumption is mostly due to the variance in time taken to generate a response.
+
+To conclude, we can't say that the length of a prompt has a significant effect on the energy consumption of an LLM when generating a response, but that shorter prompts have more variance in their energy consumption than longer prompts and that the execution time is the most important in factor in determining the energy consumption of an LLM when generating a response. What influences this, we cannot conclude from this experiment and further research is needed to determine the factors that that influence the execution time.
+
+
+
 
 ## Limitations
 
