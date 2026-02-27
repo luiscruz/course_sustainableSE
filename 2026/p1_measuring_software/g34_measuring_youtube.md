@@ -176,7 +176,24 @@ Together, these measures provided us with a solid foundation for evaluating whet
 influence client-side energy consumption.
 
 # Results
-Our results have quite a few outliers. In total we have 13 outliers, with `voice boost` being the largest offender. In the [outlier removal section](#outlier-removal) we explain why we decided to use the IQR to remove outliers, and this table shows how the ranges are fitted around the valid data without too much information loss. Many of the outliers were consuming around 20 Watts of power, which can possibly be attributed to YouTube's content downloading for smoother playback, to heavier power consumption as a result of battery levels or due to network issues. However, we have no clear way of pinpointing the exact cause. 
+
+The histogram below shows the Average power consumption measurements (in Watts) for each of the four experimental
+conditions: All Off, Ambient Mode, Stable Volume, and Voice Boost. Each subplot represents one condition, with the
+x-axis indicating Average power consumption (Watts) and the y-axis representing frequency.
+
+<div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;"> <img src="./img/g34_measuring_youtube/Non-Normalised_full_histogram.png" alt="Histogram before outlier removal"> </div>
+
+In total, 13 outliers were detected. Most of the detected outliers corresponded to power consumption values of
+approximately 20 Watts, which is substantially
+higher than the
+typical range observed in the experiment. One likely cause is network instability over Wi-Fi. When the network
+connection fluctuates or bandwidth temporarily drops, YouTube may increase buffering activity to maintain smooth
+playback.
+
+As explained in the [outlier removal section](#outlier-removal) we applied the IQR method to identify and remove
+outliers. The
+table below summarizes the number of removed outliers and the resulting valid ranges, which show that the method
+retained the central mass of the data while removing only extreme deviations, while minimizing information loss.
 
 | Category      | Outliers Removed |   Valid Range  | Total Runs |
 |---------------|------------------|----------------|------------|
@@ -185,20 +202,49 @@ Our results have quite a few outliers. In total we have 13 outliers, with `voice
 | All off       | 1                | [2.18, 2.65]   | 30         |
 | Voice Boost   | 7                | [2.12, 2.40]   | 30         |
 
+After removing the detected outliers, we re-examined the cleaned dataset using violin plots.
 
-
-Further insights can be found in the outlier removed plot. We can see that our results for `all-off` there is still a distinct tail that rises above the other two plots on the lower end of the graph. This result is unexpected as our baseline should be the graph with the least energy consumption. Most of these outliers can be attributed to what was mentioned above, there is also a possibility that the computer had to pull more power due to the battery level, as described in [Limitations and Future Work](#limitations-and-future-work). Later in the section [Statistical Significance](#statistical-significance) we discuss that although this difference exists, on a statistical level these differences are negligible. 
-
-<div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;" >
-  <img src="./img/g34_measuring_youtube/full_violinplot.png" alt="outlier removed Histogram containing all 4 experimental classes">
+<div style="display: flex; flex-direction: column; margin-bottom: 2rem; padding-bottom: 1rem; gap: 1rem; background-color: white;">
+  <img 
+    src="./img/g34_measuring_youtube/full_violinplot.png" 
+    alt="outlier removed Histogram containing all 4 experimental classes"
+    style="width: 80%;"
+  >
 </div>
 
+Each violin represents one experimental condition. The vertical axis shows power consumption (Watts), while the width of
+each violin reflects the density of observations. Ambient Mode clearly stands out, with values concentrated between
+approximately 10.8 W and 11.3 W, whereas the remaining
+conditions range between roughly 2.2 W and 2.6 W.
+Note that the y-axis is visually broken between 2.8 W and 10.6 W to allow all conditions to be displayed in a single
+figure while preserving their relative ranges. The distributions are relatively compact within their respective valid
+intervals. Most conditions appear approximately
+bell-shaped. However, the All Off condition still exhibits a slightly elevated upper tail compared to others.
 
-The histograms below give us an insight into the type of statistical tests we can run, as they highlight the normality of our data. We can see that all classes on the lower end of the violin plot have a right tail indicating outliers with high wattage, while the `ambient mode` has a left tail indicating low wattage outliers. After the outlier removal every class can be considered a normal distribution except for `all-off` which as mentioned above seems to have outliers within a smaller range as well. We can clearly see this with the gap between the lower end and the upper end of the graph. 
+To further assess distributional properties, we plotted histograms for each condition after outlier removal,
+where the red curve shows the fitted normal probability density function.
+
 <div style="display: flex; flex-direction: column; padding-bottom: 2rem; gap: 1rem; background-color: white;">
-  <img src="./img/g34_measuring_youtube/Non-Normalised_full_histogram.png" alt="Non-outlier removed Violinplot containing all 4 experimental classes">
   <img src="./img/g34_measuring_youtube/full_histogram.png" alt="outlier removed Histogram containing all 4 experimental classes">
 </div>
+
+While most conditions visually resemble normal distributions, the All Off condition exhibits a slight right tail,
+indicating mild deviation from normality. This is
+somewhat unexpected, as the baseline condition should theoretically consume the least energy. One possible explanation
+is a relatively small sample size. Potentially also that the computer had to pull more power due to the
+battery level, as described in [Limitations and Future Work](#limitations-and-future-work). Later in the
+section [Statistical Significance](#statistical-significance) we discuss that although this difference exists, on a
+statistical level these differences are negligible.
+
+To formally evaluate normality, we conducted the Shapiro–Wilk test for each condition. The results are presented in the
+table below and confirm our visual observations from the histogram and violin plots.
+
+| Category      | p-value | Normality Conclusion |
+|---------------|---------|----------------------|
+| All Off       | 0.00057 | Not Normal           |
+| Ambient Mode  | 0.41224 | Normal               |
+| Stable Volume | 0.24914 | Normal               |
+| Voice Boost   | 0.68703 | Normal               |
 
 ## Statistical Significance
 Because the energy consumption data did not consistently satisfy normality assumptions after outlier removal, we used the Mann–Whitney U test to compare each feature condition against the baseline (all-off). This non-parametric test does not assume normally distributed data and is therefore appropriate for comparing the central tendency of skewed or irregular distributions.
@@ -222,13 +268,11 @@ Stable Volume does not show a statistically significant difference compared to t
 
 Statistical significance alone is not sufficient to judge the impact of a feature on energy consumption. To assess whether the observed differences are relevant in practice, we examined effect sizes using three measures: the median difference, the median-based percentage change, and the percentage of pairs.
 
-| Effect Size Metric        | Stable Volume | Ambient Mode | Voice Boost |
-|---------------------------|---------------|--------------|-------------|
-| Median Difference (W)     | -0.019        | 8.671        | -0.130      |
-| Percentage Change (%)     | -0.782 %      | 365.328 %    | -5.478 %    |
-| Percentage of Pairs (%)   | 35.38 %       | 100.00 %     | 0.15 %      |
-
-
+| Effect Size Metric           | Stable Volume | Ambient Mode | Voice Boost |
+|------------------------------|---------------|--------------|-------------|
+| Median Difference (W)        | -0.019        | 8.671        | -0.130      |
+| Median Percentage Change (%) | -0.782 %      | 365.328 %    | -5.478 %    |
+| Percentage of Pairs (%)      | 35.38 %       | 100.00 %     | 0.15 %      |
 
 
 For Ambient Mode, all three metrics indicate a clear and consistent increase in system power usage compared to the baseline. The median power draw increases by 8.67 W, corresponding to a 365% median-based increase, and 100% of Ambient Mode trials consume more power than baseline trials. This pattern indicates a sustained increase in energy consumption rather than an effect driven by a small number of extreme measurements.
