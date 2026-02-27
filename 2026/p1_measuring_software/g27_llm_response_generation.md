@@ -56,7 +56,7 @@ This study will focus on analysing the energy consumption of prompting LLMs. Spe
 
 ## Methodology
 
-Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating fibonacci numbers) for 5 minutes before the start of our tests.
+Before running the tests, the computer must be warmed up. This is done because higher temperature results in higher energy consumption due to the higher electrical resistance of electrical conductors - thus, for a fair test, we must make sure the computer is sufficiently warmed up for our tests to take place under the same thermal conditions. To accomplish this, we ran a CPU-intensive task (in our case, calculating fibonacci numbers) for 5 minutes before the start of our tests. Furthermore, a 5 second sleep period is used between measurements, to prevent collateral tasks from previous measurement from affecting the next measurement. The 5-second duration is a tradeoff between minimizing tail energy consumption of previous measurements and allowing the measurements to be run within areasonable timeframe.
 
 To further improve the validity of our tests, we must minimise the effect of external factors on our test results. Thus, the following measures have been to reduce confounding variables:
 
