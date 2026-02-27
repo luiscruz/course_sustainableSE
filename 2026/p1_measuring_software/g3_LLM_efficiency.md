@@ -2,7 +2,7 @@
 author: Maciej Bober, Jeroen Chu, Bill Vi, Joost Weerheim
 group_number: 3
 title: "Comparing Local LLM Inference Energy Consumption"
-image: "img/gX_template/project_cover.png"
+image: "img/p1_measuring_software/g3_LLM_efficiency/energy_by_context_size.png"
 date: 12/02/2026
 summary: |-
     Large language models (LLMs) are increasingly used with supplementary context such as lecture notes, documentation, or retrieved passages to improve output quality. However, the energy cost of processing larger context windows during local inference is poorly understood. This project investigates how varying context sizes (0, 2k, 5k, 10k, and 20k tokens) affect the CPU and GPU energy consumption of a locally deployed 20B-parameter LLM (gpt-oss-20b) answering multiple-choice exam questions. Using EnergiBridge for CPU energy measurement and amd-smi for GPU power monitoring, we conducted 150 automated runs (30 per context size) in a controlled environment. We report total energy consumption, average power draw, and energy-delay product across all context sizes, and apply statistical testing (Shapiro-Wilk, Welch's t-test / Mann-Whitney U) with effect size analysis to assess the significance and magnitude of the observed differences.
