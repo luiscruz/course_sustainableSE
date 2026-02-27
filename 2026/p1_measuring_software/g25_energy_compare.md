@@ -11,7 +11,6 @@ all_projects_page: "../p1_measuring_software" # Do not change this
 ---
 
 # Introduction
-
 In 2025, people spent on average 141 minutes per day on social media[^time-spent]. That adds up to over 850 hours per person per year, much of it spent watching short-form content. A short break can easily turn into an endless session of watching a stream of recommended videos. This continuous video scrolling is also colloquially dubbed "Doomscrolling".
 
 Every swipe has a cost beyond attention. The energy consumed by our devices to load, decode and play these videos is not something you might think about. In this project, we measure the total system power consumption while doomscrolling Instagram Reels and YouTube Shorts to understand the energy usage of our social media habits.
@@ -26,82 +25,84 @@ However, even if an energy source is available, the cost of energy has only been
 
 If you're going to doomscroll, you might as well do it in an energy-efficient way.
 
-## Motivation
-
 ## Methodology
-
 The aim is to quantify and compare the power consumption associated with doomscrolling. Therefore, we designed a comparative experiment analyzing the energy consumed by both TikTok as well as YouTube.
 
 ### Design Choices of the Experiments
-
 The design of the experiment was one of the most important steps of the experimental setup. During the design phase, we contemplated and debated between various approaches to perform the experiment. The choice of approach affects the implementation and results of the experiment, hence they needed to be critically discussed and justified. 
 
 #### <u>Frequency of Scrolling</u>
+The design of the experiment also tries to mimic the actions of users, while keeping it consistent so that it's scientifically measurable and reproducible. An example of this choice was the frequency of scrolling - non-randomized (scrolling consistently after every two, five, and 10 seconds). In reality, the frequency of scrolling depends on different factors (attention capture of the video, user preference, network constraints, etc.) and is hence naturally random. However, to attain scientific basis for our experiments, we chose to make scrolling consistent. This allows us to evaluate the impact of the pace of the content consumption as well.
 
-The design of the experiment also tries to mimic the actions of users, while keeping it consistent so that it's scientifically measurable and reproducible. An example of this choice was the frequency of scrolling - non-randomized (scrolling consistently after every 2, 5, and 10 seconds). In reality, the frequency of scrolling depends on different factors (attention capture of the video, user preference, network constraints, etc.) and is hence naturally random. However, to attain scientific basis for our experiments, we chose to make scrolling consistent.
+#### <u>Platform Selection</u>
+Initially, we chose to measure the energy consumption of scrolling Instagram Reels and YouTube Shorts. However, the former was found to not allow an anonymous user to scroll more than four videos on their web application. This is not enough to get reliable measurements. Since each experiment needed to be isolated from the others, we opted to not log in to an account. Therefore, Instagram tests had to be dropped. Instead, we focused on YouTube Shorts and TikTok.
 
-#### <u>Control of other Environmental Variables</u>
-
+#### <u>Control of Other Environmental Variables</u>
 Desktop computers often run numerous background processes that could skew our energy measurements. Therefore, we aimed to create a strictly controlled testing environment. We ensured the following:
-- terminated all background applications, including cloud syncing tools
-- disabled wireless networks in favour of an Ethernet connection
-- unplugged all non-essential USB peripherals
-- fixed laptop at medium brightness level and 40% sound
+- Terminated all background applications, including cloud syncing tools.
+- Disabled wireless networks in favour of an Ethernet connection.
+- Unplugged all non-essential USB peripherals.
+- Fixed laptop at medium brightness level and 40% sound.
 
 With these mitigations, external influences on the stability of the to-be-measured energy consumption of solely the Doomscrolling. Therefore, solely the power consumption of video rendering and network requests is measured. Becasue of this, the expectation is that the measurements will not differ significantly across platforms.
 
 #### <u>Moment of Energy Consumption Measurement</u>
+Another key design choice was when we start measuring the energy used by the system. We know energy tests are flaky, and energy measurement had to be malleable to ensure room for error (network issues or delay, start-up time for the browser, warm up time etc.). 
 
-Another key design choice was when we start measuring the energy used by the system. We know energy tests are flaky, and energy measurement had to be malleable to ensure room for error (network issues or delay, start-up time for the browser, warm up time etc.). Energy measurement began after:
-- closing all popups 
-- "rejecting optional cookies"
-- closing random popups while scrolling (since we are not logged into any of the social media apps)
-- warm up time of 5 seconds (for any other browser processes to be completed)
+To isolate the tests from each other, we are creating a new browser instance and profile for each run. This ensures that the browser's cache and other stateful data do not influence the results. Static assets such as the JavaScript bundle and CSS files are not cached across runs, which means that each run will have to download and process these assets from scratch.
+
+Energy measurement began after:
+- Closing all popups.
+- Rejecting "optional cookies" (see the section on "Cookies and Popups").
+- Closing random popups while scrolling. This is needed since we are not logged into any of the social media apps (see the section on "Cookies and Popups").
+- Warm up time of 5 seconds so any other browser processes are completed.
 
 Other factors such as brightness, sound of the system, size of the browser window, stable wired WiFi connection, room temperature remained constant during in experiments to not skew the energy consumption of the system.
 
-#### <u>Warm-up Time</u>
+#### <u>Cookies and Popups</u>
+YouTube allows an anonymous user to scroll through Shorts without any limitations, but it does show a cookie consent prompt that pops up before the first video is loaded. Before the measurements are taken, the script clicks the "Reject all" button to ensure that the cookie consent prompt does not influence the results.
 
+<div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-block: 1rem;">
+    <img src="./img/g25_energy_compare/youtube_cookies.png" alt="YouTube cookie prompt" style="width: calc(50% - 1rem);"/>
+    <img src="./img/g25_energy_compare/tiktok_cookies.png" alt="TikTok cookie prompt" style="width: calc(50% - 1rem);"/>
+</div>
+
+Simmilarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" button before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the X button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
+
+#### <u>Warm-up Time</u>
 We decided to keep a warm-up time of 5 seconds to ensure the CPU reaches a stable thermal state and reducing fluctuations. 
 
 ### Experimental Setup
-
 The experiment was conducted separately for each platform — TikTok and YouTube Shorts — using a two-process architecture designed to isolate energy measurement from setup overhead.
 
 Before any measurement begins, a background process navigates the Chromium browser to the target platform, enters fullscreen, and handles platform-specific pop-ups, including TikTok's puzzle, GDPR notice, and cookie banner, as well as YouTube's cookie banner. The video is then unmuted and the browser is left to warm up for a fixed period. This entire setup phase is explicitly excluded from energy measurement to avoid skewing results.
 
-Once setup is complete, the doomscrolling loop begins, automatically advancing to the next video at fixed time intervals for the full duration of the experiment. Simultaneously, the main process detects that setup has finished and launches the energy measurement tool, which records energy consumption exclusively during this active scrolling window. This ensures that only steady-state doomscrolling behaviour is captured, free from any setup or initialization noise.
+Once setup is complete, the doomscrolling loop begins automatically advancing to the next video at the specified fixed time interval for the full duration of the experiment. Simultaneously, the main process detects that setup has finished and launches the energy measurement tool, which records energy consumption exclusively during this active scrolling window. This ensures that only steady-state doomscrolling behaviour is captured, free from any setup or initialization noise.
 
 Upon completion, the energy data is saved to a results file per platform, the browser is closed, and both processes terminate cleanly.
 
-### Hardware/Software Details
+The experiments consisted of standardized scrolling sessions with a length of 30 seconds. For both platforms, the experiments were repeated 30 times to ensure generalizability.
 
-We run the experiments on a machine with the following hardware specifications:
+### Hardware/Software Details
+We ran the experiments on a machine with the following hardware specifications:
 - Machine model: HP HP ZBook X G1i 16 inch Mobile Workstation PC
 - CPU: Intel® Core™ Ultra 7 255H × 16
 - GPU: Intel® Graphics (ARL)
 - RAM: 32.0 GiB
 - Network connection type: Ethernet
 
-Furthermore, we run the experiments with the following software versions:
+All tests were conducted within a standard Linux-based Operating System, using the Google Chrome browser. 
+
+Capturing the energy spent for each experiment was done using EnergiBridge. EnergiBridge is a cross-platform command-line utility that can analyze the performance directly from our machine's low-level hardware sensors.
+For the 
+
+Specifically, we ran the experiments with the following software versions:
 - OS: Ubuntu 24.04.3 LTS (64-bit)
 - Chromium browser: Version 145.0.7632.109 (Official Build) (64-bit)
 - Python: 3.12.3
 - Energibridge: 
 
 Other software requirements and versions that are used for this project can be found in `requirements.txt` file of our Github Repository which is linked in the [Replication Package](#replication-package) section.
-
-## Test Environment
-All tests were conducted within a standard Linux-based Operating System, using the Google Chrome browser. 
-
-Capturing the energy spent for each experiment was done using EnergiBridge. EnergiBridge is a cross-platform command-line utility that can analyze the performance directly from our machine's low-level hardware sensors.
-
-The experiments consisted of standardized scrolling sessions with a length of 30 seconds. For both platforms, the experiments were repeated 30 times to ensure generalizability.
-
-For these experiments, the scrolling process was automated. Scrolling frequency was varied between the options of two, five or 10 seconds. This allows us to evaluate the impact of the pace of the content consumption as well.
-
-## Tests
-**TODO: Finalized code blocks for the test cases.**
 
 ## Analysis
 ### Exploratory Analysis
@@ -211,29 +212,21 @@ The tests were conducted after removing outliers.
 
 ## Discussion
 
-### Test isolation
+### Test Isolation
+Whether the described test isolation methods (such as creating a new browser from scratch on each run) is realistic depends on the user behavior and device. 
 
-To isolate the tests from each other, we're creating a new browser instance and profile for each run. This ensures that the browser's cache and other stateful data do not influence the results. Static assets such as the JavaScript bundle and CSS files are not cached across runs, which means that each run will have to download and process these assets from scratch.
+For example, Chromium allows an origin to use up to 60% of the total disk space for caching, and when disk space is low, evict the least recently visited origins[^storage-for-the-web]. A user could visit the homepage of YouTube, download the static assets once, and then watch Shorts without re-downloading the assets. 
 
-Wether this is realistic depends on the user behavior and device. For example, Chromium allows an origin to use up to 60% of the total disk space for caching, and when disk space is low, evict the least recently visited origins[^storage-for-the-web]. A user could visit the homepage of YouTube, download the static assets once, and then watch Shorts without re-downloading the assets. However, modern web applications, including YouTube[^youtube-ab-testing], often use A/B testing to serve different versions of the site to different users, which can lead to variations in energy consumption. Additionally, updates to the application can cause different versions of the static assets to be served, which can also invalidate the cached assets. Therefore, we believe that our approach of creating a new browser instance and profile for each run is a reasonable way to isolate the tests and ensure that the results are not influenced by caching or other stateful data.
+However, modern web applications, including YouTube[^youtube-ab-testing], often use A/B testing to serve different versions of the site to different users, which can lead to variations in energy consumption. Additionally, updates to the application can cause different versions of the static assets to be served, which can also invalidate the cached assets. 
+
+Therefore, we believe that our approach of creating a new browser instance and profile for each run is a reasonable way to isolate the tests and ensure that the results are not influenced by caching or other stateful data.
 
 ### Recommendation algorithms
+While developing the scripts to automate the Chromium browser, we encountered several challenges. Althrough we start with the same video uploaded to both platforms, the recommendation algorithms of YouTube and Instagram may serve different videos to the user, which can lead to variations in energy consumption.
 
-While developing the scripts to automate the Chromium browser, we encountered several challenges. Althrough we start with the same video uploaded to both platforms, the recommendation algorithms of YouTube and Instagram may serve different videos to the user, which can lead to variations in energy consumption. To attempt to reduce the influence of the recommendation algorithms, all tests are run without a logged in user. Therefore, a scrolling session of one test should not influence the next test, as the recommendation algorithms will not have any user data to personalize the content. However, it is still possible that the platforms use browser fingerprinting techniques to attempt to identify the user and serve personalized content, which could influence the results.
+To attempt to reduce the influence of the recommendation algorithms, all tests are run without a logged in user. Therefore, a scrolling session of one test should not influence the next test, as the recommendation algorithms will not have any user data to personalize the content. However, it is still possible that the platforms use browser fingerprinting techniques to attempt to identify the user and serve personalized content, which could influence the results.
 
 ### Automation mitigations
-
-Initially, we attempted to measure the energy consumption of scrolling Instagram Reels. However, we found that the Instagram web application does now allow an anonymous user to scroll more than 4 videos, which is not enough to get a reliable measurement. As we did not want to log in to an account, we decided to drop the Instagram Reels tests.
-
-<div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-block: 1rem;">
-    <img src="./img/g25_energy_compare/youtube_cookies.png" alt="YouTube cookie prompt" style="width: calc(50% - 1rem);"/>
-    <img src="./img/g25_energy_compare/tiktok_cookies.png" alt="TikTok cookie prompt" style="width: calc(50% - 1rem);"/>
-</div>
-
-Instead, we focused on YouTube Shorts and TikTok. YouTube allows an anonymous user to scroll through Shorts without any limitations, but it does show a cookie consent prompt that pops up before the first video is loaded. Before the measurements are taken, the script clicks the "Reject all" button to ensure that the cookie consent prompt does not influence the results.
-
-Simmilarly, TikTok also shows a cookie consent prompt, where we again click the "Decline optional cookies" button before the first video is played. TikTok also shows a pop-up asking the user to log in when the page is loaded, but can be dismissed by clicking the X button. Because we do not want to log in to an account, we click the X button whenever the pop-up appears during the measurements.
-
 While analyzing the results, we noticed that the energy consumption of TikTok of some test runs was significantly lower than the other runs. After investigating the issue, we found that TikTok was disallowing the automated browser to scroll through the videos, and loaded only the first video. These outlier runs were excluded from the analysis to ensure that the results are not influenced by this issue.
 
 ### Practical importance
@@ -243,12 +236,11 @@ While analyzing the results, we noticed that the energy consumption of TikTok of
 # Future work
 
 # Replication Package
-
 For reproducibility of these experiments, we have published all the scripts and measurement files on a public Github Repository: [Energy-experiments-P1](https://github.com/SSE26/energy-experiments-P1).
 
 # References
+[^energy-prices]: CBS, "Average energy prices for consumers", Available: [Average energy prices for consumers](https://opendata.cbs.nl/#/CBS/en/dataset/85592ENG/table). [Accessed: Feb. 26, 2026].
 
-[^energy-prices]: CBS, "Average energy prices for consumers", Accessed Feb. 26, 2026, https://opendata.cbs.nl/#/CBS/en/dataset/85592ENG/table
 [^time-spent]: B. Elad, "Average Time Spent On Social Media By App, Country, Region And Trend (2025)," *ElectroIQ*, Jun. 30, 2025. [Online]. Available: [https://electroiq.com/stats/average-time-spent-on-social-media/](https://electroiq.com/stats/average-time-spent-on-social-media/). [Accessed: Feb. 24, 2026].
 
 [^storage-for-the-web]: P. LePage, "Storage for the web," *web.dev*, Sep. 23, 2024. [Online]. Available: [https://web.dev/articles/storage-for-the-web](https://web.dev/articles/storage-for-the-web). [Accessed: Feb. 26, 2026].
