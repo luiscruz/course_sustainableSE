@@ -116,6 +116,9 @@ From 2020 through mid-2025 the Rust toolchain steadily made oxipng both faster a
 ## Further Work
 Upcoming work will include pinpointing which LLVM or rustc changes caused the post–mid‑2025 slowdown, then checking whether the tight time–energy link persists on non‑CPU‑bound workloads (I/O or memory heavy) and on other architectures like ARM or RISC‑V and experimenting with flags such as -C target-cpu=native to see if tuning codegen yields further energy savings beyond the defaults.
 
+## Replication package
+The code we used and the results from it can be found at: https://github.com/ninasemjanova/course_sustainableSE/tree/p1-benchmarking-mikolaj/2026/p1_measuring_software/benchmarking.
+
 
 
 ## References 
