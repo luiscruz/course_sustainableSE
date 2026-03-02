@@ -77,8 +77,8 @@ After the results showed up to be almost constant, we performed another ANOVA to
 
 The results from the experiments are presented in the box and violin plots below.
 
-![Energy usage by Rust Nightly produced software (Voilin + Box)](../img/p1_measuring_software/g29/1.png)
-![Runtime by Rust Nightly produced software (Voilin + Box)](../img/p1_measuring_software/g29/2.png)
+![Energy usage by Rust Nightly produced software (Voilin + Box)](./img/g29/1.png)
+![Runtime by Rust Nightly produced software (Voilin + Box)](./img/g29/2.png)
 
 From both plots we can see that time and energy consumption gradually declined from 2020 compiler versions to around mid-2025. After this we can see that both time and energy consumption are rising until the most recent version from the beginning of 2026. We can observe on average higher jumps between years compared to within the same year.
 
