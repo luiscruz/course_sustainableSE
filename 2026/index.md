@@ -70,7 +70,7 @@ By the end of this course you will be able to:
 | 3    | Wed | 25-02-2026            | **Guest Lecture.** GreenPT                                                                                            |                      |
 | 3    | Thu | 26-02-2026            | **Project.** [Project 1](#project1) - steering meeting.                                                               |                      |
 | 3    | Fri | 27-02-2026            | ⏰ Deadline for [Project 1](#project1) Friday, Feb 27.                                                                |                      |
-| 4    | Mon | 02-03-2026            | **Lecture.** Green AI.                                                                                                | [📊Slides][tbd]  |
+| 4    | Mon | 02-03-2026            | **Lecture.** Green AI.                                                                                                | [📊Slides](https://surfdrive.surf.nl/s/J264YyCFz2Jctwk)  |
 | 4    | Wed | 04-03-2026            | **Hands-on Workshop.** Sustainability Awareness Framework                                                             | [📊Workbook][tbd] |
 | 4    | Thu | 05-03-2026            | **Project.** [Project 2](#project2) - Workshop Topics                                                                 |                      |
 | 5    |     |                       | **Project 2 - steering meeting 1.**                                                                                   |                      |

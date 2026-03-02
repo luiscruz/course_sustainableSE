@@ -8,10 +8,16 @@
 
 .p2-img{
     float:right;
-    max-width:250px;
+    max-height:200px;
     padding:0;
     border: 1px solid black;
     margin-left: 10px;
+}
+
+.project-div{
+    max-height: 220px;
+    display: block;
+    overflow: auto;
 }
 
 .badge{

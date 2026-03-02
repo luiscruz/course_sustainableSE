@@ -9,6 +9,7 @@ exclude: False
 {% for article in articles %}
     {% if article.identifier == 'p1_measuring_software_2026' %}
     {% if article != page %}
+<div class="project-div">
 {% if article.image %}
 <img class="p2-img" src="{{article.image}}"/>
 {% endif %}
@@ -22,9 +23,10 @@ _By {{ article.author }}_
 {% endif -%}
 .</small>
 <br/>
-<small>{{ article.summary | truncate: 200 }}</small>
+<small>{{ article.summary | truncate: 300 }}</small>
 <div class="clearfix"></div>
 <br/>
+</div>
   {% endif %}
   {% endif %}
 {% endfor %}
