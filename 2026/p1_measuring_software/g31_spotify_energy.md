@@ -91,7 +91,7 @@ For empirical performance measurements, such as measuring the energy consumption
 Each metric (total energy, average power, CPU usage, temperature) was tested across all experimental conditions. We computed total energy consumption by integrating power over time, along with additional metrics such as average power, CPU utilisation, and temperature. 
 
 ### **Charts and Result Explanations**  
-Across 30 repetitions per condition, total energy consumption and average power reveal two clearly separated groups. The auto and high configurations consistently exhibit higher median energy consumption (24–25 J) and average power (3.0 W), while auto\_nc, medium, high\_nc, and very\_high cluster around lower values (18.5–19 J and 2.3 W). Mann–Whitney U tests confirm that comparisons between these two groups are statistically significant (p \< 0.001) with very large effect sizes (common language effect size 0 or 1), indicating near-complete separation of distributions. In contrast, comparisons within each cluster show no statistically significant differences (p \> 0.5) and negligible percentage differences (0–1%), suggesting that these configurations behave similarly in terms of energy consumption.
+Across 30 repetitions per condition, total energy consumption and average power reveal two clearly separated groups as seen [here](2026\experiment\results\results.md). The auto and high configurations consistently exhibit higher median energy consumption (24–25 J) and average power (3.0 W), while auto\_nc, medium, high\_nc, and very\_high cluster around lower values (18.5–19 J and 2.3 W). Mann–Whitney U tests confirm that comparisons between these two groups are statistically significant (p \< 0.001) with very large effect sizes (common language effect size 0 or 1), indicating near-complete separation of distributions. In contrast, comparisons within each cluster show no statistically significant differences (p \> 0.5) and negligible percentage differences (0–1%), suggesting that these configurations behave similarly in terms of energy consumption.
 
 CPU utilisation mirrors the energy pattern: auto and high show higher sustained usage (9–10%), while the remaining conditions remain around 6–6.5%. 
 
@@ -103,23 +103,6 @@ Temperature differences are comparatively small (within \~0.5°C across groups),
 ![](../experiment/analysis_plots/05_cpu_usage_1.png)
 
 ![](../experiment/analysis_plots/06_temperature_1.png)
-
-| Group | mean\_power\_W | std\_power\_W | avg\_min\_power\_W | avg\_max\_power\_W | between\_run\_std\_W |
-| :---- | :---- | :---- | :---- | :---- | :---- |
-| auto | 2.9980 | 0.2466 | 2.7629 | 3.5647 | 0.1023 |
-| auto\_nc | 2.3694 | 0.1307 | 2.2498 | 2.6951 | 0.1870 |
-| high | 2.9928 | 0.2653 | 2.7407 | 3.5880 | 0.0909 |
-| high\_nc | 2.3766 | 0.2036 | 2.2208 | 2.8724 | 0.1483 |
-| medium | 2.3945 | 0.1561 | 2.2489 | 2.7551 | 0.1993 |
-| very\_high | 2.4021 | 0.2417 | 2.2474 | 3.1674 | 0.2306 |
-
-**`avg_mean_power_W`** reports the average power consumption across all runs
-
-**`avg_std_power_W`** reports the std power consumption across all runs
-
-**`avg_min_power_W, avg_mean_power_W`**  report average minimum/maximum power observed across all runs 
-
-**`between_run_std_W`** quantifies the variability of mean power between different runs 
 
 ## **Discussion**
 
