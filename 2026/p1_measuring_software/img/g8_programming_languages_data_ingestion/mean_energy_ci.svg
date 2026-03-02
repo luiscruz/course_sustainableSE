@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420">
+<style>text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;fill:#fff;stroke:#000;stroke-width:0.3px;paint-order:stroke fill;}.axis{stroke:#fff;stroke-width:1.5;}.grid{stroke:#666;stroke-width:1;}</style>
+<rect width="820" height="420" fill="#1a1a1a"/>
+<text x="410.0" y="24" text-anchor="middle" font-size="16" font-weight="600" fill="#fff">Mean package energy (n=20) with 95% CI</text>
+<line class="axis" x1="70" y1="40" x2="70" y2="360"/>
+<line class="axis" x1="70" y1="360" x2="800" y2="360"/>
+<line class="grid" x1="70" y1="360.0" x2="800" y2="360.0"/>
+<text x="62" y="364.0" text-anchor="end" font-size="11" fill="#fff">0</text>
+<line class="grid" x1="70" y1="296.0" x2="800" y2="296.0"/>
+<text x="62" y="300.0" text-anchor="end" font-size="11" fill="#fff">25</text>
+<line class="grid" x1="70" y1="232.0" x2="800" y2="232.0"/>
+<text x="62" y="236.0" text-anchor="end" font-size="11" fill="#fff">50</text>
+<line class="grid" x1="70" y1="168.0" x2="800" y2="168.0"/>
+<text x="62" y="172.0" text-anchor="end" font-size="11" fill="#fff">76</text>
+<line class="grid" x1="70" y1="104.0" x2="800" y2="104.0"/>
+<text x="62" y="108.0" text-anchor="end" font-size="11" fill="#fff">101</text>
+<line class="grid" x1="70" y1="40.0" x2="800" y2="40.0"/>
+<text x="62" y="44.0" text-anchor="end" font-size="11" fill="#fff">126</text>
+<text x="18" y="200.0" transform="rotate(-90 18 200.0)" text-anchor="middle" font-size="12" fill="#fff">Energy (J)</text>
+<rect x="110.6" y="210.9" width="101.4" height="149.1" fill="#2ca02c" opacity="0.85"/>
+<line x1="161.2" y1="206.2" x2="161.2" y2="215.6" stroke="#fff" stroke-width="2"/>
+<line x1="153.2" y1="206.2" x2="169.2" y2="206.2" stroke="#fff" stroke-width="2"/>
+<line x1="153.2" y1="215.6" x2="169.2" y2="215.6" stroke="#fff" stroke-width="2"/>
+<text x="161.2" y="382" text-anchor="middle" font-size="12" fill="#fff">Rust</text>
+<text x="161.2" y="202.9" text-anchor="middle" font-size="11" fill="#fff">58.7±1.9</text>
+<rect x="293.1" y="201.5" width="101.4" height="158.5" fill="#1f77b4" opacity="0.85"/>
+<line x1="343.8" y1="195.8" x2="343.8" y2="207.1" stroke="#fff" stroke-width="2"/>
+<line x1="335.8" y1="195.8" x2="351.8" y2="195.8" stroke="#fff" stroke-width="2"/>
+<line x1="335.8" y1="207.1" x2="351.8" y2="207.1" stroke="#fff" stroke-width="2"/>
+<text x="343.8" y="382" text-anchor="middle" font-size="12" fill="#fff">Python</text>
+<text x="343.8" y="193.5" text-anchor="middle" font-size="11" fill="#fff">62.4±2.2</text>
+<rect x="475.6" y="101.3" width="101.4" height="258.7" fill="#ff7f0e" opacity="0.85"/>
+<line x1="526.2" y1="92.5" x2="526.2" y2="110.1" stroke="#fff" stroke-width="2"/>
+<line x1="518.2" y1="92.5" x2="534.2" y2="92.5" stroke="#fff" stroke-width="2"/>
+<line x1="518.2" y1="110.1" x2="534.2" y2="110.1" stroke="#fff" stroke-width="2"/>
+<text x="526.2" y="382" text-anchor="middle" font-size="12" fill="#fff">Go</text>
+<text x="526.2" y="93.3" text-anchor="middle" font-size="11" fill="#fff">101.9±3.5</text>
+<rect x="658.1" y="68.1" width="101.4" height="291.9" fill="#d62728" opacity="0.85"/>
+<line x1="708.8" y1="63.7" x2="708.8" y2="72.5" stroke="#fff" stroke-width="2"/>
+<line x1="700.8" y1="63.7" x2="716.8" y2="63.7" stroke="#fff" stroke-width="2"/>
+<line x1="700.8" y1="72.5" x2="716.8" y2="72.5" stroke="#fff" stroke-width="2"/>
+<text x="708.8" y="382" text-anchor="middle" font-size="12" fill="#fff">Java</text>
+<text x="708.8" y="60.1" text-anchor="middle" font-size="11" fill="#fff">114.9±1.7</text>
+<rect x="655" y="45" width="130" height="78" fill="#2a2a2a" opacity="0.9" rx="3"/>
+<rect x="660" y="41" width="10" height="10" fill="#2ca02c"/>
+<text x="676" y="50" font-size="12" fill="#fff">Rust</text>
+<rect x="660" y="59" width="10" height="10" fill="#1f77b4"/>
+<text x="676" y="68" font-size="12" fill="#fff">Python</text>
+<rect x="660" y="77" width="10" height="10" fill="#ff7f0e"/>
+<text x="676" y="86" font-size="12" fill="#fff">Go</text>
+<rect x="660" y="95" width="10" height="10" fill="#d62728"/>
+<text x="676" y="104" font-size="12" fill="#fff">Java</text>
+</svg>
