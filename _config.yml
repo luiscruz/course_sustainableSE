@@ -33,10 +33,10 @@ whitelist:
   
 collections:
   literature_review_2022:
-    output: true
+    output: false
     directory: 2022/literature_review
   literature_review_2023:
-    output: true
+    output: false
     directory: 2023/literature_review
     
 defaults:
