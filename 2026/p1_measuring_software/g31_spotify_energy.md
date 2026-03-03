@@ -2,7 +2,7 @@
 author: Abdul Wahab Aiman, Bińkowska Maja, El Khal Miguel, Marin Alexandru
 group_number: 31
 title: "Spotfiy energy consumption comparison"
-image: "img/g31_spotify_apple_music/spotify_apple.jpeg"
+image: "img/g31_spotify_energy/spotify_apple.jpeg"
 date: 12/03/2022
 summary: |-
   Energy consumption comparison of Spotify during music playback across different client settings using EnergiBridge. We aim to determine which Spotify settings influence energy consumption the most and identify potential energy “pain points” during playback. This includes comparing energy consumption across:
@@ -67,7 +67,7 @@ To improve repeatability, the experiment was performed using “zen mode”. All
 * OS Version: macOS
 
 ## **Replication**  
-To  make this study reproducible, the full experiment code, automation scripts, and example outputs are available in our course [repository](https://github.com/cookie232/course_sustainableSE/tree/main/2026). The repository includes the experiment runner (run\_experiment.py), the EnergiBridge measurement target (play\_session.py), the Spotify automation controller (spotify\_controller.py).
+To  make this study reproducible, the full experiment code, automation scripts, and example outputs are available in our course [repository](https://github.com/cookie232/course_sustainableSE/tree/dev/2026). The repository includes the experiment runner (run\_experiment.py), the EnergiBridge measurement target (play\_session.py), the Spotify automation controller (spotify\_controller.py).
 
 For replication, the following conditions should be kept consistent across runs:
 
@@ -76,7 +76,7 @@ For replication, the following conditions should be kept consistent across runs:
 * Use the same network type (e.g., Ethernet) and aim for a stable connection, especially because automatic sound quality can change with network conditions.  
 * Use the same song and keep the playback view consistent. For canvas tests, ensure the Canvas visual is actually visible when enabled.
 
-Additional replication procedure guidance can be found in our repository’s information.md.
+Additional replication procedure guidance can be found in our repository’s [information.md](https://github.com/cookie232/course_sustainableSE/blob/dev/2026/information.md).
 
 ### **Video Guide**  
 A short walkthrough video demonstrating how to run our experiment setup is provided [here](https://www.youtube.com/watch?v=N4Vnq-fEOfo).
@@ -91,18 +91,21 @@ For empirical performance measurements, such as measuring the energy consumption
 Each metric (total energy, average power, CPU usage, temperature) was tested across all experimental conditions. We computed total energy consumption by integrating power over time, along with additional metrics such as average power, CPU utilisation, and temperature. 
 
 ### **Charts and Result Explanations**  
-Across 30 repetitions per condition, total energy consumption and average power reveal two clearly separated groups as seen [here](/2026/experiment/results/results.md). The auto and high configurations consistently exhibit higher median energy consumption (24–25 J) and average power (3.0 W), while auto\_nc, medium, high\_nc, and very\_high cluster around lower values (18.5–19 J and 2.3 W). Mann–Whitney U tests confirm that comparisons between these two groups are statistically significant (p \< 0.001) with very large effect sizes (common language effect size 0 or 1), indicating near-complete separation of distributions. In contrast, comparisons within each cluster show no statistically significant differences (p \> 0.5) and negligible percentage differences (0–1%), suggesting that these configurations behave similarly in terms of energy consumption.
+Across 30 repetitions per condition, total energy consumption and average power reveal two clearly separated groups. The auto and high configurations consistently exhibit higher median energy consumption (24–25 J) and average power (3.0 W), while auto\_nc, medium, high\_nc, and very\_high cluster around lower values (18.5–19 J and 2.3 W). Mann–Whitney U tests confirm that comparisons between these two groups are statistically significant (p \< 0.001) with very large effect sizes (common language effect size 0 or 1), indicating near-complete separation of distributions. In contrast, comparisons within each cluster show no statistically significant differences (p \> 0.5) and negligible percentage differences (0–1%), suggesting that these configurations behave similarly in terms of energy consumption.
 
 CPU utilisation mirrors the energy pattern: auto and high show higher sustained usage (9–10%), while the remaining conditions remain around 6–6.5%. 
 
 Temperature differences are comparatively small (within \~0.5°C across groups), indicating that thermal variation is unlikely to be the primary driver of the energy gap. The very high setting has the highest outlier.
 
-![](../experiment/analysis_plots/01_energy_1.png)
-![](../experiment/analysis_plots/02_avg_power_1.png)
+![](img/g31_spotify_energy/01_energy_1.png)
+![](img/g31_spotify_energy/02_avg_power_1.png)
 
-![](../experiment/analysis_plots/05_cpu_usage_1.png)
+![](img/g31_spotify_energy/05_cpu_usage_1.png)
 
-![](../experiment/analysis_plots/06_temperature_1.png)
+![](img/g31_spotify_energy/06_temperature_1.png)
+
+![](img/g31_spotify_energy/07_results.png)
+
 
 ## **Discussion**
 
