@@ -369,4 +369,4 @@ When a company selects a local CPU deployment, the selection is easier. Lower qu
 
 Finally, this paper highlights that reducing energy consumption does not automatically yield the most sustainable LLM deployment. True sustainability also depends on alignment with user needs, quality expectations, and organisational priorities. Efficiency and usability must go hand in hand for true sustainability.
 
-# [COLAB](https://colab.research.google.com/drive/1J7mrIl-dAunW-u7bXcmZlGAxqSJkZj4n?usp=sharing)
+# [COLAB](https://colab.research.google.com/drive/1J7mrIl-dAunW-u7bXcmZlGAxqSJkZj4n?usp=sharing) AND [LOCAL + RESULTS](https://drive.google.com/drive/folders/1oPx2m08ti5Qmaphz3UmAD_rRte7qbuSd?usp=sharing)
