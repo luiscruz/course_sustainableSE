@@ -60,9 +60,9 @@ By the end of this course you will be able to:
 
 | Week | Day | Date                  | Summary                                                                                                               | Slides               |
 |------|-----|-----------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|
-| 1    | Mon | 09-02-2026            | **Lecture.** Course introduction. Sustainable Software: What, Why and How.                                            | [📊Slides](https://surfdrive.surf.nl/s/Knp8Ww2egEti5N7)  |
-| 1    | Wed | 11-02-2026            | **Lecture.** Social and Individual Sustainability.                                                                    | [📊Slides](https://surfdrive.surf.nl/s/axynqagJJbCkpka)  |
-| 1    | Thu | 12-02-2026            | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).                               | [📊Slides](https://surfdrive.surf.nl/s/Cj8SYZmYNBYTD6H)  |
+| 1    | Mon | 09-02-2026            | **Lecture.** Course introduction. Sustainable Software: What, Why and How.                                            | [📊Slides](https://surfdrive.surf.nl/s/fQcpJtPGZkqGSwr)  |
+| 1    | Wed | 11-02-2026            | **Lecture.** Social and Individual Sustainability.                                                                    | [📊Slides](https://surfdrive.surf.nl/s/fFakifkDGSg5cnd)  |
+| 1    | Thu | 12-02-2026            | **Lab.** Measuring software energy consumption. Introduction to [Project 1](#project1).                               | [📊Slides](https://surfdrive.surf.nl/s/Cp6Me4mC2zf7kTe)  |
 | 2    | Mon | 16-02-2026            | **Lecture.** Green Software Engineering — Part I: Scientific guide for reliable energy measurements.                  | [📊Slides](https://surfdrive.surf.nl/s/gtzGbBZnkLNHm3e)  |
 | 2    | Wed | 18-02-2026            | **Lecture.** Green Software Engineering — Part II: units of energy.                                                   | [📊Slides](https://surfdrive.surf.nl/s/dFJWtQDMxdrfJXt)  |
 | 2    | Thu | 19-02-2026            | **Project.** [Project 1](#project1) - steering meeting and formative assessment.                                      |                      |
@@ -70,8 +70,8 @@ By the end of this course you will be able to:
 | 3    | Wed | 25-02-2026            | **Guest Lecture.** GreenPT                                                                                            |                      |
 | 3    | Thu | 26-02-2026            | **Project.** [Project 1](#project1) - steering meeting.                                                               |                      |
 | 3    | Fri | 27-02-2026            | ⏰ Deadline for [Project 1](#project1) Friday, Feb 27.                                                                |                      |
-| 4    | Mon | 02-03-2026            | **Lecture.** Green AI.                                                                                                | [📊Slides](https://surfdrive.surf.nl/s/J264YyCFz2Jctwk)  |
-| 4    | Wed | 04-03-2026            | **Hands-on Workshop.** Sustainability Awareness Framework                                                             | [📊Workbook][tbd] |
+| 4    | Mon | 02-03-2026            | **Lecture.** Green AI.                                                                                                | [📊Slides](https://surfdrive.surf.nl/s/Bb3yDMeeN7R2xbj)  |
+| 4    | Wed | 04-03-2026            | **Hands-on Workshop.** Sustainability Awareness Framework                                                             | [📊Slides](https://surfdrive.surf.nl/s/AABrns65E4CL6Yo) + [📝Workbook](https://www.suso.academy/en/sustainability-awareness-framework-susaf/) |
 | 4    | Thu | 05-03-2026            | **Project.** [Project 2](#project2) - Workshop Topics                                                                 |                      |
 | 5    |     |                       | **Project 2 - steering meeting 1.**                                                                                   |                      |
 | 6    |     |                       | **Project 2 - steering meeting 2.**                                                                                   |                      |
