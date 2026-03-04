@@ -229,3 +229,5 @@ Future work could extend this experiment to:
 - Energy per hour of streaming
 
 Expanding the experimental scope would improve both generalisability and societal relevance of the findings.
+
+Artifacts and replication package: https://github.com/ibrahimbadr95/course_sustainableSE/tree/script_to_automate/2026/p1_measuring_software/Replication%20package 
