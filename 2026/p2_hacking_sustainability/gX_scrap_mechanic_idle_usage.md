@@ -1,8 +1,11 @@
 ---
-author: "Calin Georgescu, Nick van Luijk, Vincent Ruijgrok, Arnas Venskūnas"
-title: "Scrap Mechanic Idle CPU Usage"
+author: "Calin Georgescu, Nick van Luijk, Vincent Ruijgrok, Radu Andrei Vasile, Arnas Venskūnas"
+title: "Patching software inefficiencies"
 image: "img/gX_template/cover.png"
-summary: "Scrap Mechanic is a physics simulation videogame where players engineer their own contraptions. It runs on all kinds of hardware. As long as you have a graphics card, you can play. On CPUs with high core counts, it however becomes obvious there are still optimisations left to be made.\n\nIn this paper, we introduce Scraptifine, a mod for Scrap Mechanic that reduces the idle CPU usage. A CPU profiler was used to find expensive functions, which were then hooked and overwritten with a custom optimized implementation."
+summary: |
+    Software inefficiencies can cause a significant increase in computational resource usage, even during idle or low-load scenarios. These inefficiencies contribute to the total energy used by the system and reduce the overall performance, especially on lower end hardware.
+
+    In this paper, we introduce a framework to identify inefficiencies in existing compiled software. We show how to identify expensive functions using CPU profiling tools, create patches to optimise such functions and finally measure the performance improvement. The resulting patch can then be applied to the source code by the vendor of the software. To show the effectiveness of this framework, we provide an example performance patch for the videogame Scrap Mechanic.
 paper: "../papers/gX_template.pdf"
 source: "https://github.com/luiscruz/course_sustainableSE"
 website: https://luiscruz.github.io/course_sustainableSE/
