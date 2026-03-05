@@ -1,6 +1,6 @@
 ---
 author: "Andrea Vezzuto, Jan Kuhta, Rodrigo Montero Gonzalez, Aadesh Ramai, Samuel van den Houten"
-title: "LangChain Project"
+title: "Group XX: LangChain Middleware for Break Down Model Energy Consumption"
 image: "img/gX_template/cover.png"
 summary: "We plan to build a middleware layer in LangChain that breaks down the energy consumption of multi-model agents based on their token usage and model version."
 paper: "../papers/gX_template.pdf"
