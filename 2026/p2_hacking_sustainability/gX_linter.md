@@ -1,6 +1,6 @@
 ---
-author: "Student1 first and last name, Student2, Student3"
-title: "Template Project"
+author: "Rebecca Andrei, Boris Annink, Paul Anton, Kasper van Maasdam, Radu Serban"
+title: "A Linter and Guideline Framework for Sustainable GitHub Actions Workflows"
 image: "img/gX_template/cover.png"
 summary: "This is a summary with a max of 200 characters; The links below should send the reader to your paper, the tool you folks built (source code or website), and optionally your presentation video. Please remove yaml entries for links you do not use."
 paper: "../papers/gX_template.pdf"
