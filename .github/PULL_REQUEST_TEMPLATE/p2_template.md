@@ -23,9 +23,11 @@ This way your coach can view your progress and give you feedback.
 <TODO: fill out>
 
 ## Your topic idea for Project 2:
-*(Discuss your project idea with the course staff **before** submitting this pull request to make sure it is suitable for project 2.)*
+*(Consider discussing your project idea with the course staff before submitting this pull request to make sure it is somewhat suitable for project 2.)*
 
-*In this project idea, make sure to clearly explain which facet of sustainable SE you are targeting and how your solution will improve it*
+*Give an overview of what solution/tool/technique you will develop for Project 2*
+*Make sure to clearly explain which aspect of **sustainable software engineering** you are targeting and how your solution will improve it.*
+*Please also sketch briefly how you could showcase/evaluate/discuss the effectiveness of your solution. Clarify here whether you will use any data collected from humans*
 
 <TODO: fill out>
 
