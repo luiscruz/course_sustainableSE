@@ -16,6 +16,8 @@ This project aims to investigate how dynamically selecting the location and time
 
 Our goal is to evaluate the impact of such a solution and determine what sort of utility tools can help companies curb their emissions. We will explore existing strategies and potentially develop a prototype or framework to demonstrate the feasibility and benefits of carbon-aware scheduling. The specifics of the implementation are still being defined, but the core focus remains on sustainable software engineering practices in the context of job scheduling.
 
+We found the Carbon Aware SDK already aims to aggregrate a lot of data to produce a time and location dependent carbon rating. Rather than reinventing the wheel, we are interested in building on this mature solution. 
+
 Currently, we have identified the following main questions we want to investigate:
 
 *   Is there an existing paper or project that actively uses the Carbon Aware SDK to schedule tasks in a production-like CI/CD environment?
