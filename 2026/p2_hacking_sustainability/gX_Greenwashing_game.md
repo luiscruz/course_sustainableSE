@@ -1,5 +1,5 @@
 ---
-author: "Conall Lynch, Arjun Rejesh Nair, Viktor Shapchev, Coen Werre & Gabriel Leite Savegnago"
+author: "Conall Lynch, Arjun Rajesh Nair, Viktor Shapchev, Coen Werre & Gabriel Leite Savegnago"
 title: "Carbon Clicker"
 image: "img/gX_template/cover.png"
 summary: "This is a summary with a max of 200 characters; The links below should send the reader to your paper, the tool you folks built (source code or website), and optionally your presentation video. Please remove yaml entries for links you do not use."
