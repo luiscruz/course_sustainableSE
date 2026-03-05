@@ -1,5 +1,5 @@
 ---
-author: "Aiman Abdul Wahab, Carolyn Alcaraz, Ceylin Ece, Gönenç Turan, Miguel El Khal"
+author: "Aiman Abdul Wahab, Carolyn Alcaraz, Ceylin Ece, Gönenç Turanlı, Miguel El Khal"
 title: "Template Project"
 image: "img/gX_template/cover.png"
 summary: "EcoRoute is a command-line tool that helps developers choose the most energy-efficient AI model for code generation. Users provide a coding prompt through the CLI, and EcoRoute analyzes its complexity to recommend an appropriate model tier (e.g., small or large). The tool then displays key information such as the recommended model, estimated token usage, estimated energy consumption, and potential energy savings compared to always using a large model. By guiding developers toward smaller models when appropriate, EcoRoute aims to reduce unnecessary computational cost and energy usage in AI-assisted programming workflows while maintaining effective code generation."
