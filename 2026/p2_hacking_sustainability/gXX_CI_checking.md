@@ -1,5 +1,5 @@
 ---
-author: "Cristian Benghe, Antoni Nowakowski, Andrei Paduraru, Poyraz Temiz"
+author: "Cristian Benghe, Antoni Nowakowski, Andrei Paduraru, Poyraz Temiz, Tess Hobbes"
 title: "Carbon-Aware CI/CD Scheduler"
 image: "img/g0_carbon_cicd/cover.png"
 summary: "A tool that measures CI/CD pipeline energy usage and schedules builds during low-carbon electricity periods using the Carbon Aware SDK to reduce the environmental impact of software development."
