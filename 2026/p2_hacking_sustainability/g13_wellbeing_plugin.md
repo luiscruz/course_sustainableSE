@@ -1,13 +1,13 @@
 ---
 author: "Konstantina Anastasiadou, Zofia Rogacka-Trojak, Amy van der Meijden, Andriana Tzanidou, Jimmy Oei"
 title: "Flow-Sate: Developer Well-being Plugin "
-image: "img/gX_wellbeing_plugin/logo.png"
+image: "img/g13_wellbeing_plugin/logo.png"
 summary: "A local IDE plugin protecting developer well-being. It monitors Flow State to prompt breaks, and analyzes uncommitted code's Cognitive Load to prevent reviewer burnout from complex PRs."
-paper: "../papers/gX_template.pdf"
+paper: "../papers/g13_template.pdf"
 source: "https://github.com/luiscruz/course_sustainableSE"
 website: https://luiscruz.github.io/course_sustainableSE/
 video: https://luiscruz.github.io/course_sustainableSE/
-group_number: 0
+group_number: 13
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
 ---
