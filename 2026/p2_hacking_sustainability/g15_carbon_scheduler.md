@@ -7,7 +7,7 @@ paper: "../papers/gX_carbon_scheduler.pdf"
 source: "https://github.com/luiscruz/course_sustainableSE"
 website: https://luiscruz.github.io/course_sustainableSE/
 video: https://luiscruz.github.io/course_sustainableSE/
-group_number: 0
+group_number: 15
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
 ---
