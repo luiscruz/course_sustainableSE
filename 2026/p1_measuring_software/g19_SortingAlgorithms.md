@@ -155,6 +155,10 @@ Graphics card: Intel Iris plus graphics 640 1536 MB
 Memory: 8 GB 2133MHz LPDDR3
 Operating system: MacOS Ventura 13.7.8 
 
+### Replication Package
+The replication package for this project, including all scripts, datasets, and documentation needed to reproduce our experiments, is available in our GitHub repository:
+[https://github.com/sse-project1-group19/Project-1-Experimentation](https://github.com/sse-project1-group19/Project-1-Experimentation)
+
 ---
 
 ### Sources

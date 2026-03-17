@@ -10,6 +10,9 @@ title: 2026
 Edition of 2025/26<br/>
 [MSc Computer Science] and [MSc Data Science and Artificial Intelligence Technology], [Delft University of Technology]
 
+Jump directly to:  
+{% include navigation.html year=2026 %}
+
 **Sustainable Software Engineering** is an overarching discipline that addresses the long-term consequences of designing, building, and releasing a software project.
 By definition, sustainability covers five main perspectives: **environmental**, **social**, **individual**, economic, technical.
 This course focuses on the first three.
