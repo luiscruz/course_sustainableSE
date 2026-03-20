@@ -1,5 +1,5 @@
 ---
-author: "Ocean Wang, Nicholas Wu, Yasar Kocdas, Levi Ari Pronk"
+author: "Ocean Wang, Nicholas Wu, Yasar Kocdas, Levi Ari Pronk, Madhav Chawla"
 title: "LLM Energy Label"
 image: "img/gX_template/cover.png"
 summary: "A benchmarking tool that measures and compares energy consumption of local LLMs across task types, producing EU-style A to G energy labels to guide sustainable model selection."
