@@ -1,8 +1,8 @@
 ---
-author: "Student1 first and last name, Student2, Student3"
-title: "Template Project"
+author: "Dibyendu Gupta, Cem Gungor, Uddhav Pisharody, Noky Soekarman, Leonidas Hadjiyiannis"
+title: "Tool For Test Energy Use Analysis"
 image: "img/gX_template/cover.png"
-summary: "This is a summary with a max of 200 characters; The links below should send the reader to your paper, the tool you folks built (source code or website), and optionally your presentation video. Please remove yaml entries for links you do not use."
+summary: "We are going to build a vscode extension for testing the energy use of test cases and suggest either improvements or splitting the large test cases to smaller ones and make suggestions for running them less based on the last change. Additionally, we will also implement the feature to run only test cases for the effect of the change."
 paper: "../papers/gX_template.pdf"
 source: "https://github.com/luiscruz/course_sustainableSE"
 website: https://luiscruz.github.io/course_sustainableSE/
