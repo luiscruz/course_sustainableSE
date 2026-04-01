@@ -276,8 +276,76 @@ Example output structure:
 | Average over window | `.\bin\caw\caw.exe emissions -l westeurope -s <start> -e <end> --average` |
 | Current forecast for NL | `.\bin\caw\caw.exe emissions-forecasts -l westeurope` |
 | Forecast with workload window | `.\bin\caw\caw.exe emissions-forecasts -l westeurope -w <minutes>` |
+| **24-h forecast + best CI hour** | **Open `forecast_analysis.ipynb` and run all cells** |
 
-All commands require `$env:ASPNETCORE_ENVIRONMENT = "Development"` to be set so the CLI picks up `appsettings.Development.json`.
+All CLI commands require `$env:ASPNETCORE_ENVIRONMENT = "Development"` to be set so the CLI picks up `appsettings.Development.json`.
+
+---
+
+---
+
+## 9. Find the Best Time to Run CI — 24-Hour Forecast Notebook
+
+`forecast_analysis.ipynb` queries WattTime directly via Python and produces a ranked table plus an annotated chart of the lowest-carbon hour in the next 24 hours, together with the GitHub Actions `cron` expression to target it.
+
+### Prerequisites
+
+The notebook lives in `p2_hacking_sustainability/` alongside the project `.venv`.  
+The following packages must be installed (they are tracked in `pyproject.toml`):
+
+```
+requests   dotenv   matplotlib   ipykernel
+```
+
+Install / sync everything with:
+
+```powershell
+uv sync
+```
+
+### Run the notebook
+
+Open `forecast_analysis.ipynb` in VS Code, select the `.venv` kernel, and run all cells (**Ctrl+Shift+P → Notebook: Run All Cells**).
+
+Alternatively, execute headlessly from the terminal:
+
+```powershell
+cd p2_hacking_sustainability
+.\.venv\Scripts\python.exe -m nbconvert --to notebook --execute `
+    --ExecutePreprocessor.timeout=60 `
+    --output forecast_analysis_executed.ipynb `
+    forecast_analysis.ipynb
+```
+
+### What each section does
+
+| Section | Description |
+|---|---|
+| 1 · Imports & Credentials | Loads `USERNAMME` / `PASSWORD` from `.env` |
+| 2 · Authenticate | Calls `/login` and stores a Bearer token |
+| 3 · Inspect Account Access | Calls `/v3/my-access` — shows authorised regions and endpoints |
+| 4 · Fetch 24-Hour Forecast | `GET /v3/forecast?region=CAISO_NORTH&signal_type=co2_moer&horizon_hours=24` |
+| 5 · Compute Hourly Averages | Buckets 288 five-minute points into 24 hourly means |
+| 6 · Visualise | Matplotlib chart with best hour shaded green; saved to `img/forecast_best_hour.png` |
+| 7 · Recommendation | Prints ranked table + `on: schedule: cron:` snippet |
+
+### WattTime account limitations
+
+The account registered in this project (`AndreiPaduraru`) is authorised for **`CAISO_NORTH` (California ISO) only**. This maps to the Azure `westus` location (San Francisco, lat 37.78 / lon -122.42).
+
+Attempting `MISO_MASON_CITY` (`centralus` / Azure Central US) returns **403 Forbidden** on the forecast endpoint. The `/v3/my-access` response confirms only `CAISO_NORTH` is listed.
+
+To access additional regions (e.g., `MISO_MASON_CITY` for Azure `centralus`):
+- Log into [watttime.org](https://watttime.org) and request a plan that includes MISO coverage, **or**
+- Switch the `ForecastDataSource` to **ElectricityMaps**, which covers all US ISO zones on a free trial (see Option C below).
+
+#### Understanding the CO₂ values
+
+WattTime reports `co2_moer` in **lbs CO₂ / MWh** (Marginal Operating Emissions Rate). The notebook converts to the more intuitive **g CO₂ / kWh**:
+
+$$\text{g CO}_2\text{/kWh} = \text{lbs/MWh} \times \frac{453.592\text{ g}}{1000}$$
+
+Values near 0 g CO₂/kWh are legitimate — California (CAISO) regularly curtails solar during midday, driving marginal emissions to zero during peak solar generation hours (approx. 16:00–21:00 UTC / 9 AM–2 PM PT).
 
 ---
 
@@ -288,5 +356,7 @@ All commands require `$env:ASPNETCORE_ENVIRONMENT = "Development"` to be set so 
 | `Unknown Location: 'westeurope' not found` | `location-sources/json/` folder is empty in publish output | Re-run the Copy-Item step in §4 |
 | `WattTimeClientHttpException 403` on `/historical` or `/forecast` | WattTime free tier only allows `/index` | Upgrade account or switch to ElectricityMaps |
 | `WattTimeClientHttpException 403` on `/region-from-loc` | Wrong BaseURL (old v2 URL) | Use `https://api.watttime.org/v3/` |
-| `JSON data source is not supported for forecast data` | `ForecastDataSource` set to `test-json` | Remove `ForecastDataSource` key from config when using JSON |
 | `ForecastDataSource is not configured` | No forecast source in config | Add WattTime or ElectricityMaps config block |
+| `JSON data source is not supported for forecast data` | `ForecastDataSource` set to `test-json` | Remove `ForecastDataSource` key from config when using JSON |
+| `403` on `centralus` / `MISO_MASON_CITY` forecast | Region not in account's authorised list | Call `/v3/my-access` to see permitted regions; use `westus` / `CAISO_NORTH` instead |
+| `0.0 g CO₂/kWh` for many hours | California solar curtailment — genuinely near-zero marginal emissions | Expected; those are the best hours to schedule CI |
