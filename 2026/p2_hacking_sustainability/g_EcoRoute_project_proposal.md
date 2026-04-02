@@ -50,3 +50,8 @@ As we begin this project, we have identified several key questions to guide our 
 *   Is there a real need to automate the setup of the Carbon Aware SDK for users, and is it feasible to do so for a more seamless experience?
 *   What are the barriers to adoption for tools like the Carbon Aware SDK in industry? Which companies currently use it, and which do not?
 *   How can we accurately estimate the data transfer cost (in terms of energy and carbon) for moving a CI/CD job? Can we design a simple yet effective heuristic for this if a precise model is too complex?
+
+
+## How can we reliably convert the relative scores or ratings from the SDK into an absolute carbon estimate (e.g., in grams of CO₂) for a variety of scheduled tasks?
+
+A: Realistically, we can't. We can get the expected carbon emissions for a region and time per next consumed kwh from the SDK (or the mean marginal carbon intensity - how much carbon is expected to be emitted for the next kwh). But we can't really write a solution that can estimate the energy use for *any* task. If we have a very specific task, we can attempt such a calculation. But our tool is meant to work for any developer trying to use this for a myriad of tasks. It's not realistic to build a suite that basically takes in a script or entire codebase, and spits out an energy use estimate. 

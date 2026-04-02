@@ -4,3 +4,5 @@ _site/
 .jekyll-metadata
 .DS_Store
 .idea
+2026/p2_hacking_sustainability/gh_actions/secrets/*
+2026/p2_hacking_sustainability/gh_actions/backups/*
