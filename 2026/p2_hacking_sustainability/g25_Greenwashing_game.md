@@ -4,9 +4,8 @@ title: "Carbon Clicker"
 image: "img/gX_template/gameScreen.png"
 summary: "Our project was the creation of 'Carbon Clicker' An Engaging Learning tool about Greenwashing in the Tech Sector."
 paper: "../papers/SSE_Group_25_Report.pdf"
-source: "https://github.com/luiscruz/course_sustainableSE"
-website: https://luiscruz.github.io/course_sustainableSE/
-video: https://luiscruz.github.io/course_sustainableSE/
+source: "https://github.com/sse-project1-group19/greenwashing-game"
+website: https://greenwashinggame.netlify.app/
 group_number: 25
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
