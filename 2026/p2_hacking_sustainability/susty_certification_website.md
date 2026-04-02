@@ -4,7 +4,7 @@ title: "Sustainable Certification website"
 image: "img/gX_template/cover.png"
 summary: "For this project we will be buiding an interactive website about sustainable certifications for software teams. The user can answer a survey to find out which certifications or regulations are relevant to them, whether they’re allowed to use them, and which ones might be required."
 paper: "../papers/gX_template.pdf"
-source: "https://github.com/luiscruz/course_sustainableSE"
+source: "https://github.com/vasilchirov/susti-certification"
 website: "https://luiscruz.github.io/course_sustainableSE/"
 video: "https://luiscruz.github.io/course_sustainableSE/"
 group_number: 4
