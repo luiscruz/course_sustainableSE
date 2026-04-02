@@ -2,7 +2,7 @@
 author: "Moniek Tummers, Anouck Heutinck, Maksym Ziemlewski, Alexandru Marin, Vasil Chirov"
 title: "Sustainable Certification website"
 image: "img/gX_template/cover.png"
-summary: "For this project we developed a web-based tool that centralises knowledge about sustainable software certifi-cations. The application gathers existing certifications and provides structured summaries, making information more accessible and easier to navigate. Furthermore, it includes a questionnaire that helps organisations and other individuals who want to improve or communicate their existing sustainability efforts identify certifications that are relevant to their context."
+summary: "For this project we developed a web-based tool that centralises knowledge about sustainable software certifications. The application gathers existing certifications and provides structured summaries, making information more accessible and easier to navigate. Furthermore, it includes a questionnaire that helps organisations and other individuals who want to improve or communicate their existing sustainability efforts identify certifications that are relevant to their context."
 paper: "../papers/g4_sustainable_certification.pdf"
 source: "https://github.com/vasilchirov/susti-certification"
 website: "https://luiscruz.github.io/course_sustainableSE/"
