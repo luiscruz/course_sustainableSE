@@ -1,13 +1,13 @@
 ---
 author: "Roham Koohestani, Kunal Narwani, Nina Semjanová, Caio Miranda Haschelevici, Georgios Markozanis"
-title: "NuclearMix for CodeCarbon"
-image: "img/gx_nuclear_footprint_cover.png"
-summary: "A CodeCarbon extension enabling contract-based electricity mixes and lifecycle-aware nuclear emission factors, paired with an interactive educational website on nuclear electricity lifecycle."
-paper: "../papers/gX_carbon_footprint.pdf"
-source: "https://github.com/OUR_REPO/codecarbon-nuclearmix"
-website: https://OUR_WEBSITE_URL/
-video: https://OUR_VIDEO_URL/
-group_number: 0
+title: "Nuclear Mix for Code Carbon"
+image: "img/g7_template/cover.png"
+summary: "This paper presents NuclearMix, a CodeCarbon extension supporting lifecycle-aware electricity-mix accounting, alongside a scrollytelling website on nuclear emissions. A paired pre/post survey (N=17) showed statistically significant knowledge gains (Cohen's d=1.08). Technical analysis revealed that reported software emissions vary substantially depending on nuclear share and lifecycle factor choice."
+paper: "../papers/g7_nuclearmix.pdf"
+source: "https://github.com/RebelOfDeath/codecarbon_nuclear_code"
+website: https://rohamkoohestani.com/nuclear_footprint/
+video: https://youtu.be/j7jOuuFkxuc
+group_number: 7
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
 ---
@@ -43,14 +43,3 @@ We deliver two interconnected artifacts:
 - **Dual Accounting Modes**: Location-based (grid-average) and market-based (contract-specific)
 - **Transparency**: Outputs include accounting mode, factor sets, mix breakdown, and optional uncertainty intervals
 - **Developer-Friendly**: Extended APIs, comprehensive tests, and clear examples
-
-### Impact
-
-This project will enable organizations to accurately measure and report *their* software's carbon footprint based on actual procurement contracts, while educating the community about lifecycle emissions in energy production. The tool supports more informed decision-making around sustainable computing infrastructure.
-
----
-
-📄 [Read the full paper](../papers/gX_carbon_footprint.pdf)
-💻 [View source code](https://github.com/OUR_REPO/codecarbon-nuclearmix)
-🌐 [Try the interactive website](https://OUR_WEBSITE_URL/)
-🎥 [Watch the presentation](https://OUR_VIDEO_URL/)
