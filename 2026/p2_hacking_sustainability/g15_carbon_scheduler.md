@@ -1,12 +1,11 @@
 ---
-author: "Arda Duyum, Yuvraj Singh Pathania, Brewen Couaran, Taeyong kwon, Elia Jabbour"
+author: "Arda Duyum, Yuvraj Singh Pathania, Brewen Couaran, Taeyong Kwon, Elia Jabbour"
 title: "Carbon-Aware Scheduling"
 image: "img/gX_template/cover.png"
-summary: "A carbon-aware scheduler that shifts batch AI jobs like training and inference to time windows with the cleanest electricity grid, leveraging real-time data from ElectricityMaps and WattTime."
-paper: "../papers/gX_carbon_scheduler.pdf"
-source: "https://github.com/luiscruz/course_sustainableSE"
+summary: "A carbon-aware scheduler that shifts batch AI jobs like training and inference to time windows with the cleanest electricity grid, leveraging real-time data from existing databases."
+paper: "../papers/g15_carbon_scheduler.pdf"
+source: "https://github.com/SSE-25-26-Group15/green-ai-scheduler"
 website: https://luiscruz.github.io/course_sustainableSE/
-video: https://luiscruz.github.io/course_sustainableSE/
 group_number: 15
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
@@ -20,7 +19,7 @@ Standard job schedulers execute tasks immediately upon submission, disregarding 
 
 ## Proposed Solution
 We are building a scheduler that:
-1.  **Monitors Grid Intensity:** Uses APIs like **ElectricityMaps** or **WattTime** to fetch real-time and forecasted carbon intensity data.
+1.  **Monitors Grid Intensity:** Uses APIs like **ElectricityMaps** or **WattTime** to fetch real-time and forecasted carbon intensity data, or makes use of existing databases for forecasting.
 2.  **Optimizes Scheduling:** Maps the training server's location to grid data and identifies "clean energy windows."
 3.  **Shifts Workloads:** Automatically pauses or delays batch AI jobs until the grid carbon intensity drops below a user-defined threshold.
 
