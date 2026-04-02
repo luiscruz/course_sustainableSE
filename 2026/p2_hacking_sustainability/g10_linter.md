@@ -3,7 +3,7 @@ author: "Rebecca Andrei, Boris Annink, Paul Anton, Kasper van Maasdam, Radu Serb
 title: "A Linter and Guideline Framework for Sustainable GitHub Actions Workflows"
 image: "img/g10_cover/cover.png"
 summary: "We created a CI/CD rulebook and workflow linter for GitHub Actions named 'suslint' to assist developers in creating more sustainable workflows."
-paper: "../papers/g10_linter.pdf"
+paper: "papers/g10_linter.pdf"
 source: "https://github.com/KaspervanM/sustainable-gh-workflow-linter"
 website: "https://kaspervanm.github.io/sustainable-gh-workflow-linter/"
 experiments: "https://github.com/PaulAnton03/suslint-experiments-SE/"
