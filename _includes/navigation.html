@@ -1,0 +1,12 @@
+<nav>
+  <div class="content nav-div">
+    {% for entry in site.data.navigation %}
+      {% assign first_char = entry.url | slice: 0 %}
+        {% if first_char == '/' %}
+        <a href="{{ site.baseurl }}/{{ include.year }}{{ entry.url }}" class="button-3">{{ entry.title }}</a>
+      {% else %}
+        <a href="{{ entry.url }}" class="button-3">{{ entry.title }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</nav>
