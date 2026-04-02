@@ -1,11 +1,11 @@
 ---
-author: "Cristian Benghe, Antoni Nowakowski, Andrei Păduraru, Poyraz Temiz, Tess Hobbes"
+author: "Cristian Benghe, Antoni Nowakowski, Andrei Paduraru, Poyraz Temiz, Tess Hobbes"
 title: "Flow: a Carbon-Aware CI/CD Scheduler"
 image: "img/g24_CI_checking/cover.png"
 summary: "Flow is a carbon-aware CI/CD scheduler that defers non-critical GitHub Actions workflows to periods of low grid carbon intensity, achieving up to 80.9% carbon reduction."
 paper: "../papers/g24_CI_checking.pdf"
-source: "https://github.com/Green-Software-Foundation/carbon-aware-sdk"
-website: "https://github.com/Green-Software-Foundation/carbon-aware-sdk"
+source: "https://github.com/Tess4552/flow-sustainble-cicd-scheduler#"
+website: "https://github.com/Tess4552/flow-sustainble-cicd-scheduler#"
 group_number: 24
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
