@@ -1,17 +1,12 @@
 ---
 author: "Rebecca Andrei, Boris Annink, Paul Anton, Kasper van Maasdam, Radu Serban"
 title: "A Linter and Guideline Framework for Sustainable GitHub Actions Workflows"
-image: "img/gX_template/cover.png"
-summary: "This is a summary with a max of 200 characters; The links below should send the reader to your paper, the tool you folks built (source code or website), and optionally your presentation video. Please remove yaml entries for links you do not use."
-paper: "../papers/gX_template.pdf"
-source: "https://github.com/luiscruz/course_sustainableSE"
-website: https://luiscruz.github.io/course_sustainableSE/
-video: https://luiscruz.github.io/course_sustainableSE/
-group_number: 0
+summary: "CI/CD pipelines are widely used in modern software development, but developers often lack clear guidance on how to design more sustainable workflows. We propose creating a CI/CD rulebook and workflow linter for GitHub Actions, named `suslint`. The project consists of a website that displays the rulebook, along with a linting tool that detects inefficient patterns and suggesting improvements based on the rules."
+paper: "../papers/g10_linter.pdf"
+source: "https://github.com/KaspervanM/sustainable-gh-workflow-linter"
+website: "https://kaspervanm.github.io/sustainable-gh-workflow-linter/"
+experiments: "https://github.com/PaulAnton03/suslint-experiments-SE/"
+group_number: 10
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
 ---
-
-On this .md page you can give a brief intro to your project and link to your paper pdf, your published sourcecode or a website that shows off your tool ☀️
-
-If you want to share your video presentation here as well, please upload it to a video platform of your choice and link it here.
