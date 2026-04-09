@@ -6,7 +6,7 @@ summary: "EcoCode is a command-line tool that helps developers choose the most e
 paper: "../papers/g33_EcoCode.pdf"
 source: "https://github.com/Aiman-prog/ecocode"
 website: https://luiscruz.github.io/course_sustainableSE/
-group_number: 33
+group_number: 2
 identifier: "p2_hacking_sustainability_2026" # Do not change this
 all_projects_page: "../p2_hacking_sustainability" # Do not change this
 ---
